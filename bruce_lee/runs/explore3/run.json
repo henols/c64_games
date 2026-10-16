@@ -1,0 +1,22 @@
+{
+  "name": "explore3",
+  "start": { "snapshot": "runs/explore1/entry.vsf" },
+  "steps": [
+    { "frames": 100 },
+    { "joystick": { "port": 1, "direction": "center", "fire": true } },
+    { "frames": 10 },
+    { "joystick": { "port": 1, "direction": "center" } },
+    { "frames": 150 },
+    { "save": "room0" }, { "screen": "room0" },
+    { "joystick": { "port": 2, "direction": "right" } },
+    { "frames": 100 }, { "screen": "r100" },
+    { "frames": 100 }, { "screen": "r200" },
+    { "frames": 100 }, { "screen": "r300" },
+    { "save": "r300" },
+    { "joystick": { "port": 2, "direction": "left" } },
+    { "frames": 100 }, { "screen": "l100" },
+    { "joystick": { "port": 2, "direction": "up" } },
+    { "frames": 100 }, { "screen": "u100" },
+    { "save": "u100" }
+  ]
+}

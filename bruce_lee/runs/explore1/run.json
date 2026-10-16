@@ -1,0 +1,25 @@
+{
+  "name": "explore1",
+  "start": { "program": "original/bruce_lee.prg" },
+  "steps": [
+    { "type": " " },
+    { "runUntil": { "at": "$0400" }, "timeoutFrames": 600 },
+    { "coverage": "crack" },
+    { "save": "entry" },
+    { "frames": 100 }, { "screen": "f100" },
+    { "frames": 200 }, { "screen": "f300" },
+    { "frames": 300 }, { "screen": "f600" },
+    { "frames": 600 }, { "screen": "f1200" },
+    { "frames": 1200 }, { "screen": "f2400" },
+    { "coverage": "attract" },
+    { "joystick": { "port": 2, "direction": "center", "fire": true } },
+    { "frames": 20 },
+    { "joystick": { "port": 2, "direction": "center" } },
+    { "frames": 200 }, { "screen": "fire1" },
+    { "joystick": { "port": 1, "direction": "center", "fire": true } },
+    { "frames": 20 },
+    { "joystick": { "port": 1, "direction": "center" } },
+    { "frames": 200 }, { "screen": "fire2" },
+    { "save": "afterfire" }
+  ]
+}

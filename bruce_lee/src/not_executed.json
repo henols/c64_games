@@ -1,0 +1,764 @@
+{
+  "image": "unpacked/clean/image.json",
+  "revision": "20261016T170255.379-vv114c",
+  "instructions": 601,
+  "files": {
+    "init.asm": 1,
+    "title.asm": 3,
+    "room_draw.asm": 1,
+    "actors.asm": 4,
+    "title_options.asm": 1,
+    "room_state.asm": 1,
+    "interrupts.asm": 3,
+    "keyboard.asm": 1,
+    "frame_update.asm": 11,
+    "text.asm": 1,
+    "game_over.asm": 1,
+    "status.asm": 8,
+    "actor_movement.asm": 11,
+    "object_actions.asm": 12,
+    "sound_effects.asm": 1,
+    "object_pose.asm": 3,
+    "combat_hits.asm": 9,
+    "actor_checks.asm": 1,
+    "background_touch.asm": 7,
+    "score.asm": 2,
+    "lanterns.asm": 2,
+    "room_init.asm": 2,
+    "room_update.asm": 9,
+    "fireballs.asm": 2,
+    "collision.asm": 1,
+    "music_player.asm": 14,
+    "sfx_voice1.asm": 3,
+    "sfx_voice2.asm": 3,
+    "sfx_voice3.asm": 3
+  },
+  "ranges": [
+    {
+      "start": "$0412",
+      "end": "$0414",
+      "file": "init.asm",
+      "routine": "cold_start"
+    },
+    {
+      "start": "$06b2",
+      "end": "$06b4",
+      "file": "title.asm",
+      "routine": "title_screen"
+    },
+    {
+      "start": "$06ba",
+      "end": "$06bc",
+      "file": "title.asm",
+      "routine": "title_screen"
+    },
+    {
+      "start": "$06f3",
+      "end": "$06f9",
+      "file": "title.asm",
+      "routine": "title_screen"
+    },
+    {
+      "start": "$0b47",
+      "end": "$0b48",
+      "file": "room_draw.asm",
+      "routine": "inc_work_ptr_a"
+    },
+    {
+      "start": "$0d3a",
+      "end": "$0d3b",
+      "file": "actors.asm",
+      "routine": "try_spawn_yamo"
+    },
+    {
+      "start": "$0d6f",
+      "end": "$0d71",
+      "file": "actors.asm",
+      "routine": "reset_yamo_timer"
+    },
+    {
+      "start": "$0d96",
+      "end": "$0d98",
+      "file": "actors.asm",
+      "routine": "reset_yamo_timer"
+    },
+    {
+      "start": "$0df5",
+      "end": "$0df6",
+      "file": "actors.asm",
+      "routine": "try_spawn_ninja"
+    },
+    {
+      "start": "$0e7d",
+      "end": "$0e91",
+      "file": "title_options.asm",
+      "routine": "toggle_players_highlight"
+    },
+    {
+      "start": "$102b",
+      "end": "$104a",
+      "file": "room_state.asm",
+      "routine": "save_raster_colours"
+    },
+    {
+      "start": "$1110",
+      "end": "$1112",
+      "file": "interrupts.asm",
+      "routine": "irq_handler"
+    },
+    {
+      "start": "$1116",
+      "end": "$1116",
+      "file": "interrupts.asm",
+      "routine": "nmi_reset_handler"
+    },
+    {
+      "start": "$111d",
+      "end": "$1130",
+      "file": "interrupts.asm",
+      "routine": "clear_sprite_blocks_6_7_11_12"
+    },
+    {
+      "start": "$13ae",
+      "end": "$1487",
+      "file": "keyboard.asm",
+      "routine": "keyboard_scan"
+    },
+    {
+      "start": "$15f7",
+      "end": "$15f8",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$160f",
+      "end": "$1610",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$1634",
+      "end": "$163e",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$1643",
+      "end": "$1644",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$164d",
+      "end": "$1652",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$165b",
+      "end": "$1669",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$16b3",
+      "end": "$16bc",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$16ea",
+      "end": "$16f3",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$1709",
+      "end": "$1716",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$177f",
+      "end": "$1780",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$178f",
+      "end": "$1790",
+      "file": "frame_update.asm",
+      "routine": "game_frame_update"
+    },
+    {
+      "start": "$180e",
+      "end": "$1816",
+      "file": "text.asm",
+      "routine": "print_message"
+    },
+    {
+      "start": "$1971",
+      "end": "$1978",
+      "file": "game_over.asm",
+      "routine": "game_over"
+    },
+    {
+      "start": "$19d1",
+      "end": "$19ea",
+      "file": "status.asm",
+      "routine": "check_demo_exit"
+    },
+    {
+      "start": "$1a35",
+      "end": "$1a37",
+      "file": "status.asm",
+      "routine": "toggle_pause"
+    },
+    {
+      "start": "$1a52",
+      "end": "$1a55",
+      "file": "status.asm",
+      "routine": "clear_text_lines_from_2"
+    },
+    {
+      "start": "$1ad1",
+      "end": "$1aec",
+      "file": "status.asm",
+      "routine": "debug_print_values"
+    },
+    {
+      "start": "$1afc",
+      "end": "$1b01",
+      "file": "status.asm",
+      "routine": "print_falls_count"
+    },
+    {
+      "start": "$1b64",
+      "end": "$1b64",
+      "file": "status.asm",
+      "routine": "handle_game_keys"
+    },
+    {
+      "start": "$1b8e",
+      "end": "$1b90",
+      "file": "status.asm",
+      "routine": "print_hex_byte"
+    },
+    {
+      "start": "$1b9d",
+      "end": "$1b9f",
+      "file": "status.asm",
+      "routine": "print_hex_byte"
+    },
+    {
+      "start": "$1d63",
+      "end": "$1d65",
+      "file": "actor_movement.asm",
+      "routine": "actor_undo_moves"
+    },
+    {
+      "start": "$1dad",
+      "end": "$1db2",
+      "file": "actor_movement.asm",
+      "routine": "actor_undo_moves"
+    },
+    {
+      "start": "$1e17",
+      "end": "$1e38",
+      "file": "actor_movement.asm",
+      "routine": "actor_move_up"
+    },
+    {
+      "start": "$1e49",
+      "end": "$1e58",
+      "file": "actor_movement.asm",
+      "routine": "actor_move_down"
+    },
+    {
+      "start": "$1e80",
+      "end": "$1e82",
+      "file": "actor_movement.asm",
+      "routine": "actor_left_or_fire_move"
+    },
+    {
+      "start": "$1ec1",
+      "end": "$1ec3",
+      "file": "actor_movement.asm",
+      "routine": "actor_right_or_fire_move"
+    },
+    {
+      "start": "$1efa",
+      "end": "$1f09",
+      "file": "actor_movement.asm",
+      "routine": "actor_move_right"
+    },
+    {
+      "start": "$1f33",
+      "end": "$1f36",
+      "file": "actor_movement.asm",
+      "routine": "actor_move_right"
+    },
+    {
+      "start": "$1f64",
+      "end": "$1f75",
+      "file": "actor_movement.asm",
+      "routine": "actor_move_right"
+    },
+    {
+      "start": "$1fd3",
+      "end": "$1fe4",
+      "file": "actor_movement.asm",
+      "routine": "play_sound_80_checked"
+    },
+    {
+      "start": "$1fea",
+      "end": "$1ffe",
+      "file": "actor_movement.asm",
+      "routine": "play_sound_80_checked"
+    },
+    {
+      "start": "$207c",
+      "end": "$207f",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$2082",
+      "end": "$208c",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$217d",
+      "end": "$217f",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$2194",
+      "end": "$21a8",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$21c5",
+      "end": "$21cd",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$21df",
+      "end": "$21e4",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$21f8",
+      "end": "$2200",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$221a",
+      "end": "$2227",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$2278",
+      "end": "$2282",
+      "file": "object_actions.asm",
+      "routine": "continue_object_action"
+    },
+    {
+      "start": "$22b2",
+      "end": "$22b7",
+      "file": "object_actions.asm",
+      "routine": "start_attack_recovery"
+    },
+    {
+      "start": "$22c7",
+      "end": "$22c9",
+      "file": "object_actions.asm",
+      "routine": "start_attack_recovery"
+    },
+    {
+      "start": "$2399",
+      "end": "$239b",
+      "file": "object_actions.asm",
+      "routine": "start_attack_recovery"
+    },
+    {
+      "start": "$255d",
+      "end": "$255d",
+      "file": "sound_effects.asm",
+      "routine": "play_sound_effect"
+    },
+    {
+      "start": "$279c",
+      "end": "$27a0",
+      "file": "object_pose.asm",
+      "routine": "select_object_pose"
+    },
+    {
+      "start": "$27e4",
+      "end": "$27f1",
+      "file": "object_pose.asm",
+      "routine": "select_object_pose"
+    },
+    {
+      "start": "$28ef",
+      "end": "$28f1",
+      "file": "object_pose.asm",
+      "routine": "select_object_pose"
+    },
+    {
+      "start": "$2ace",
+      "end": "$2acf",
+      "file": "combat_hits.asm",
+      "routine": "check_sprite_collisions"
+    },
+    {
+      "start": "$2af4",
+      "end": "$2af5",
+      "file": "combat_hits.asm",
+      "routine": "check_sprite_collisions"
+    },
+    {
+      "start": "$2b37",
+      "end": "$2b38",
+      "file": "combat_hits.asm",
+      "routine": "check_sprite_collisions"
+    },
+    {
+      "start": "$2b79",
+      "end": "$2b7e",
+      "file": "combat_hits.asm",
+      "routine": "mark_hit_landed"
+    },
+    {
+      "start": "$2b90",
+      "end": "$2b95",
+      "file": "combat_hits.asm",
+      "routine": "mark_hit_landed"
+    },
+    {
+      "start": "$2bbb",
+      "end": "$2bc3",
+      "file": "combat_hits.asm",
+      "routine": "mark_hit_landed"
+    },
+    {
+      "start": "$2bdf",
+      "end": "$2be7",
+      "file": "combat_hits.asm",
+      "routine": "mark_hit_landed"
+    },
+    {
+      "start": "$2c03",
+      "end": "$2c0b",
+      "file": "combat_hits.asm",
+      "routine": "mark_hit_landed"
+    },
+    {
+      "start": "$2c2a",
+      "end": "$2c46",
+      "file": "combat_hits.asm",
+      "routine": "mark_hit_landed"
+    },
+    {
+      "start": "$2dd3",
+      "end": "$2ddc",
+      "file": "actor_checks.asm",
+      "routine": "ai_wake_idle_enemies"
+    },
+    {
+      "start": "$2ef1",
+      "end": "$2ef3",
+      "file": "background_touch.asm",
+      "routine": "handle_touched_char"
+    },
+    {
+      "start": "$2f00",
+      "end": "$2f00",
+      "file": "background_touch.asm",
+      "routine": "handle_touched_char"
+    },
+    {
+      "start": "$2fd6",
+      "end": "$3000",
+      "file": "background_touch.asm",
+      "routine": "room16_bonus_fall"
+    },
+    {
+      "start": "$3051",
+      "end": "$3051",
+      "file": "background_touch.asm",
+      "routine": "touch_deadly_char"
+    },
+    {
+      "start": "$30b0",
+      "end": "$30c7",
+      "file": "background_touch.asm",
+      "routine": "trigger_floor_trap"
+    },
+    {
+      "start": "$30f7",
+      "end": "$30fc",
+      "file": "background_touch.asm",
+      "routine": "check_exit_direction"
+    },
+    {
+      "start": "$3103",
+      "end": "$3107",
+      "file": "background_touch.asm",
+      "routine": "check_exit_direction"
+    },
+    {
+      "start": "$3146",
+      "end": "$3159",
+      "file": "score.asm",
+      "routine": "add_score_and_check_bonus"
+    },
+    {
+      "start": "$3191",
+      "end": "$31a3",
+      "file": "score.asm",
+      "routine": "update_high_score"
+    },
+    {
+      "start": "$333e",
+      "end": "$333f",
+      "file": "lanterns.asm",
+      "routine": "collect_lantern_at"
+    },
+    {
+      "start": "$335a",
+      "end": "$335b",
+      "file": "lanterns.asm",
+      "routine": "collect_lantern_at"
+    },
+    {
+      "start": "$3553",
+      "end": "$3554",
+      "file": "room_init.asm",
+      "routine": "room13_init"
+    },
+    {
+      "start": "$35c0",
+      "end": "$35c2",
+      "file": "room_init.asm",
+      "routine": "room16_init"
+    },
+    {
+      "start": "$3caf",
+      "end": "$3cbc",
+      "file": "room_update.asm",
+      "routine": "room10_update"
+    },
+    {
+      "start": "$3cca",
+      "end": "$3cd5",
+      "file": "room_update.asm",
+      "routine": "room11_update"
+    },
+    {
+      "start": "$3d28",
+      "end": "$3d37",
+      "file": "room_update.asm",
+      "routine": "room18_wizard_update"
+    },
+    {
+      "start": "$3e87",
+      "end": "$3ebb",
+      "file": "room_update.asm",
+      "routine": "room13_update"
+    },
+    {
+      "start": "$3fa2",
+      "end": "$3fa5",
+      "file": "room_update.asm",
+      "routine": "room17_update"
+    },
+    {
+      "start": "$3ff6",
+      "end": "$4005",
+      "file": "room_update.asm",
+      "routine": "room17_update"
+    },
+    {
+      "start": "$4012",
+      "end": "$4015",
+      "file": "room_update.asm",
+      "routine": "room17_update"
+    },
+    {
+      "start": "$4022",
+      "end": "$402e",
+      "file": "room_update.asm",
+      "routine": "room17_update"
+    },
+    {
+      "start": "$4039",
+      "end": "$4048",
+      "file": "room_update.asm",
+      "routine": "room17_update"
+    },
+    {
+      "start": "$41b8",
+      "end": "$41bc",
+      "file": "fireballs.asm",
+      "routine": "update_fireballs"
+    },
+    {
+      "start": "$41cf",
+      "end": "$41d3",
+      "file": "fireballs.asm",
+      "routine": "update_fireballs"
+    },
+    {
+      "start": "$535a",
+      "end": "$535d",
+      "file": "collision.asm",
+      "routine": "setup_char_row_test"
+    },
+    {
+      "start": "$e368",
+      "end": "$e36a",
+      "file": "music_player.asm",
+      "routine": "music_set_voice_ptrs"
+    },
+    {
+      "start": "$e3fb",
+      "end": "$e3fd",
+      "file": "music_player.asm",
+      "routine": "music_read_byte"
+    },
+    {
+      "start": "$e43b",
+      "end": "$e440",
+      "file": "music_player.asm",
+      "routine": "music_end_of_tune"
+    },
+    {
+      "start": "$e445",
+      "end": "$e454",
+      "file": "music_player.asm",
+      "routine": "music_end_of_tune"
+    },
+    {
+      "start": "$e466",
+      "end": "$e46f",
+      "file": "music_player.asm",
+      "routine": "music_end_of_tune"
+    },
+    {
+      "start": "$e486",
+      "end": "$e488",
+      "file": "music_player.asm",
+      "routine": "music_start_song_list"
+    },
+    {
+      "start": "$e4bb",
+      "end": "$e4bd",
+      "file": "music_player.asm",
+      "routine": "music_update"
+    },
+    {
+      "start": "$e4e9",
+      "end": "$e4eb",
+      "file": "music_player.asm",
+      "routine": "music_update"
+    },
+    {
+      "start": "$e523",
+      "end": "$e525",
+      "file": "music_player.asm",
+      "routine": "music_update"
+    },
+    {
+      "start": "$e5f7",
+      "end": "$e5f9",
+      "file": "music_player.asm",
+      "routine": "music_read_command"
+    },
+    {
+      "start": "$e677",
+      "end": "$e680",
+      "file": "music_player.asm",
+      "routine": "music_cmd_misc"
+    },
+    {
+      "start": "$e69d",
+      "end": "$e6b4",
+      "file": "music_player.asm",
+      "routine": "music_cmd_misc"
+    },
+    {
+      "start": "$e6e9",
+      "end": "$e6f8",
+      "file": "music_player.asm",
+      "routine": "music_calc_note_ticks"
+    },
+    {
+      "start": "$e779",
+      "end": "$e7b1",
+      "file": "music_player.asm",
+      "routine": "music_cmd_filter"
+    },
+    {
+      "start": "$eb49",
+      "end": "$eb4b",
+      "file": "sfx_voice1.asm",
+      "routine": "sfx_v1_update"
+    },
+    {
+      "start": "$eb4f",
+      "end": "$eb51",
+      "file": "sfx_voice1.asm",
+      "routine": "sfx_v1_update"
+    },
+    {
+      "start": "$ebdd",
+      "end": "$ebe4",
+      "file": "sfx_voice1.asm",
+      "routine": "sfx_v1_op_ctrl"
+    },
+    {
+      "start": "$efb9",
+      "end": "$efbb",
+      "file": "sfx_voice2.asm",
+      "routine": "sfx_v2_update"
+    },
+    {
+      "start": "$efbf",
+      "end": "$efc1",
+      "file": "sfx_voice2.asm",
+      "routine": "sfx_v2_update"
+    },
+    {
+      "start": "$f04d",
+      "end": "$f054",
+      "file": "sfx_voice2.asm",
+      "routine": "sfx_v2_op_ctrl"
+    },
+    {
+      "start": "$f0b9",
+      "end": "$f0bb",
+      "file": "sfx_voice3.asm",
+      "routine": "sfx_v3_update"
+    },
+    {
+      "start": "$f0bf",
+      "end": "$f0c1",
+      "file": "sfx_voice3.asm",
+      "routine": "sfx_v3_update"
+    },
+    {
+      "start": "$f14d",
+      "end": "$f154",
+      "file": "sfx_voice3.asm",
+      "routine": "sfx_v3_op_ctrl"
+    }
+  ]
+}

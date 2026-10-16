@@ -1,0 +1,20 @@
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:trixie",
+	"features": {
+		"ghcr.io/anthropics/devcontainer-features/claude-code:1": {},
+		"https://github.com/henols/c64-re-tools/releases/download/v2.0.0-rc.4/devcontainer-feature-c64-re-tools.tgz": {
+			"target": "claude",
+			"channel": "next"
+		}
+	},
+	"runArgs": ["--add-host=host.docker.internal:host-gateway"],
+	"mounts": [
+		"source=claude-code-config-${devcontainerId},target=/home/vscode/.claude,type=volume"
+	],
+	"containerEnv": {
+		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
+		"NVM_SYMLINK_CURRENT": "false"
+	},
+	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude"
+}

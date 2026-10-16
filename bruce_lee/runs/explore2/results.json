@@ -1,0 +1,19 @@
+{
+  "name": "explore2",
+  "completed": true,
+  "steps": 19,
+  "done": 19,
+  "pc": "$08bf",
+  "files": [
+    "title.bin",
+    "room_start.vsf",
+    "room_start.png",
+    "r100.png",
+    "r200.png",
+    "r300.png",
+    "r500.png",
+    "after_right.vsf",
+    "play1.bin"
+  ],
+  "observations": {}
+}

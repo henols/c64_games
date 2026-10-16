@@ -1,0 +1,28 @@
+{
+  "features": {
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {
+      "version": "1.0.5",
+      "resolved": "ghcr.io/anthropics/devcontainer-features/claude-code@sha256:cfc2e7d3e9fd3b9b01f8d5cb158508a884c8c0ede2e23ed10f32dea5d4ffe69a",
+      "integrity": "sha256:cfc2e7d3e9fd3b9b01f8d5cb158508a884c8c0ede2e23ed10f32dea5d4ffe69a"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "1.8.3",
+      "resolved": "ghcr.io/devcontainers/features/java@sha256:61a839211feda1e2a1f10646648a948e733e4d98d770f3a4b6698a3c5fc92abe",
+      "integrity": "sha256:61a839211feda1e2a1f10646648a948e733e4d98d770f3a4b6698a3c5fc92abe"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "1.7.1",
+      "resolved": "ghcr.io/devcontainers/features/node@sha256:8c0de46939b61958041700ee89e3493f3b2e4131a06dc46b4d9423427d06e5f6",
+      "integrity": "sha256:8c0de46939b61958041700ee89e3493f3b2e4131a06dc46b4d9423427d06e5f6"
+    },
+    "https://github.com/henols/c64-re-tools/releases/download/v2.0.0-rc.4/devcontainer-feature-c64-re-tools.tgz": {
+      "version": "2.0.0-rc.4",
+      "resolved": "https://github.com/henols/c64-re-tools/releases/download/v2.0.0-rc.4/devcontainer-feature-c64-re-tools.tgz",
+      "integrity": "sha256:90e28c9a68c3cb827b90a46f759924fbc6326ec032a9e5d18111adc57c608888",
+      "dependsOn": [
+        "ghcr.io/devcontainers/features/node:1",
+        "ghcr.io/devcontainers/features/java:1"
+      ]
+    }
+  }
+}

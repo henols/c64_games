@@ -1,0 +1,19 @@
+{
+  "name": "explore3",
+  "completed": true,
+  "steps": 22,
+  "done": 22,
+  "pc": "$19b7",
+  "files": [
+    "room0.vsf",
+    "room0.png",
+    "r100.png",
+    "r200.png",
+    "r300.png",
+    "r300.vsf",
+    "l100.png",
+    "u100.png",
+    "u100.vsf"
+  ],
+  "observations": {}
+}

@@ -1,0 +1,46 @@
+# What git keeps of a project folder (for example bruce_lee/):
+#   original/       the input disk or file
+#   .c64-re-tools/knowledge/   the knowledge
+#   src/            the generated source, identical to the image
+#   docs/           the written pages and the generated reference
+#   runs/, tests/   the runs (run.json, results and coverage maps) and the scenarios
+#   tools/
+# Everything below is installed, machine-local, regenerated or scratch.
+
+# Installed by the skills installer: install again on each computer.
+.claude/
+.ap-sdk/
+.mcp.json
+
+# Machine-local state: the knowledge index, one-time batches and step files,
+# and SQLite files of a write in progress.
+**/.c64-re-tools/local/
+**/.c64-re-tools/*.db-journal
+**/.c64-re-tools/*.db-wal
+**/.c64-re-tools/*.db-shm
+
+# Regenerated output.
+# build/: tools/build.sh writes the PRGs and the assembler results (the tests need them).
+# assets/: tools/extract_assets.py writes them from unpacked/image.bin (the docs show them).
+build/
+assets/
+snapshots/
+
+# Copies and archives in the top folder: the input disk belongs in <project>/original/.
+/*.d64
+/*.d71
+/*.d81
+/*.g64
+/*.crt
+/*.tap
+/*.t64
+/*.prg
+/*.zip
+
+# Python, Node and editor scratch.
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+*.swp
+*~

@@ -1,0 +1,410 @@
+{
+ "name": "modes",
+ "start": {
+  "snapshot": "runs/explore1/entry.vsf"
+ },
+ "steps": [
+  {
+   "frames": 3200
+  },
+  {
+   "screen": "demo1"
+  },
+  {
+   "frames": 1500
+  },
+  {
+   "screen": "demo2"
+  },
+  {
+   "frames": 1500
+  },
+  {
+   "screen": "demo3"
+  },
+  {
+   "coverage": "title_demo"
+  },
+  {
+   "snapshot": "runs/explore1/entry.vsf"
+  },
+  {
+   "frames": 100
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     42
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     170
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     17
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     145
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "title_hand"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     5
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     6
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "title_2p"
+  },
+  {
+   "coverage": "title_keys"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     3
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "frames": 200
+  },
+  {
+   "screen": "twop_start"
+  },
+  {
+   "save": "twop_start"
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right"
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 3000
+  },
+  {
+   "screen": "twop_late"
+  },
+  {
+   "coverage": "twoplayer"
+  },
+  {
+   "snapshot": "runs/explore3/room0.vsf"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     60
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "pause"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     60
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "unpause"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     13
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "sound"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     13
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "sound2"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     31
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "vkey"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     31
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "vkey2"
+  },
+  {
+   "coverage": "game_keys"
+  },
+  {
+   "frames": 6000
+  },
+  {
+   "screen": "idle6k"
+  },
+  {
+   "frames": 6000
+  },
+  {
+   "screen": "idle12k"
+  },
+  {
+   "coverage": "game_over"
+  },
+  {
+   "snapshot": "runs/explore3/room0.vsf"
+  },
+  {
+   "write": {
+    "at": "$0109",
+    "bytes": [
+     4
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "$010c",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "frames": 100
+  },
+  {
+   "screen": "f1"
+  },
+  {
+   "coverage": "f1_restart"
+  }
+ ]
+}
