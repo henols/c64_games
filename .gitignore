@@ -21,9 +21,7 @@
 
 # Regenerated output.
 # build/: tools/build.sh writes the PRGs and the assembler results (the tests need them).
-# assets/: tools/extract_assets.py writes them from unpacked/image.bin (the docs show them).
 build/
-assets/
 snapshots/
 
 # Copies and archives in the top folder: the input disk belongs in <project>/original/.

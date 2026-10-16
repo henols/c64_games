@@ -1,3 +1,0 @@
-# The knowledge of c64-re-tools: git keeps the lines of both sides of a merge, with LF line ends on every system.
-*.jsonl merge=union text eol=lf
-.gitattributes text eol=lf
