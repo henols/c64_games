@@ -49,3 +49,8 @@
 {"id":"20261017T120216.142-nid5r4","time":"2026-10-17T12:02:16.142+01:00","origin":"llm","operation":"apply","reason":"Original loader stage, encoded","evidence":[{"kind":"note","ref":"naming/l2/notes.md"}]}
 {"id":"20261017T120216.347-xki8w3","time":"2026-10-17T12:02:16.347+01:00","origin":"llm","operation":"apply","reason":"Original loader stage, decoded and explained","evidence":[{"kind":"note","ref":"naming/l2/notes.md"}]}
 {"id":"20261017T120246.698-opl4bw","time":"2026-10-17T12:02:46.698+01:00","origin":"llm","operation":"apply","reason":"The leftover blocks are no longer part of the game image; their names and comments live in the leftover spaces (bank1-bank7)"}
+{"id":"20261017T120301.895-hp7yew","time":"2026-10-17T12:03:01.895+01:00","origin":"llm","operation":"apply","reason":"Comments point to the leftovers instead of image bytes that are no longer in the game"}
+{"id":"20261017T120438.436-fj3m21","time":"2026-10-17T12:04:38.436+01:00","origin":"llm","operation":"apply","reason":"Loop labels of the loader stage"}
+{"id":"20261017T120438.684-2353db","time":"2026-10-17T12:04:38.684+01:00","origin":"llm","operation":"apply","reason":"Target of the shifted copy"}
+{"id":"20261017T120438.879-1c9er2","time":"2026-10-17T12:04:38.879+01:00","origin":"llm","operation":"apply","reason":"Branch targets of the old fragment"}
+{"id":"20261017T121733.607-wszjh3","time":"2026-10-17T12:17:33.607+01:00","origin":"llm","operation":"apply","reason":"The $033C test is about the original loader stage"}

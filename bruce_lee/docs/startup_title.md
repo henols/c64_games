@@ -62,11 +62,11 @@ flowchart TB
 | [`warm_start_flag`](../src/cold_start.asm#L7) | `$03FF` | 1 byte. 0 = full cold start. The image holds 0. | none | [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start) |
 | [`irq_vector`](../src/cold_start.asm#L31) | `$0408` | 2 bytes, the address of the next raster handler. They are the operand bytes of an instruction of the cold start. | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen), [`show_player_screen`](../src/title_player_screens.asm#L71) [`$0EA7`](reference/modules/title_player_screens.md#show_player_screen), [`init_game_irq`](../src/play_init.asm#L114) [`$082D`](reference/modules/play_init.md#init_game_irq), the raster handlers | the IRQ entry (`JMP (irq_vector)`) |
 | [`random_table`](../src/constants.asm#L151) | `$0200` | 256 bytes of SID noise. | [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start) | none (see section 4.2) |
-| [`text_font`](../src/text_font.asm#L9) | `$8800` | 4 pages of 64 characters: `$8800` ROM characters 32-63, `$8900` ROM characters 0-31, `$8A00` and `$8B00` the same inverted. | [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start) | the title menu lines and the status line |
-| [`charset_rooms_0_9`](../src/constants.asm#L157) | `$A000` | Double-height charset: 128 top halves at `$A000`, 128 bottom halves at `$A400`. | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | the VIC in rooms 0-9 |
-| [`charset_rooms_10_19`](../src/constants.asm#L158) | `$A800` | The same form, from [`room_charset_b`](../src/room_charset_b.asm#L6) [`$9400`](reference/graphics.md#room_charset_b). | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | the VIC in rooms 10-17 and 19 |
-| [`charset_wizard`](../src/constants.asm#L159) | `$B000` | The same form, from [`room_charset_c`](../src/room_charset_c.asm#L6) [`$9800`](reference/graphics.md#room_charset_c). | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | the VIC in room 18 |
-| [`charset_wizard_flash`](../src/constants.asm#L160) | `$B800` | The same form, from [`room_charset_d`](../src/room_charset_d.asm#L8) [`$9C00`](reference/graphics.md#room_charset_d). | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update) maps VMCSB `$3E` to it |
+| [`text_font`](../src/constants.asm#L193) | `$8800` | 4 pages of 64 characters: `$8800` ROM characters 32-63, `$8900` ROM characters 0-31, `$8A00` and `$8B00` the same inverted. | [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start) | the title menu lines and the status line |
+| [`charset_rooms_0_9`](../src/constants.asm#L204) | `$A000` | Double-height charset: 128 top halves at `$A000`, 128 bottom halves at `$A400`. | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | the VIC in rooms 0-9 |
+| [`charset_rooms_10_19`](../src/constants.asm#L205) | `$A800` | The same form, from [`room_charset_b`](../src/room_charset_b.asm#L6) [`$9400`](reference/graphics.md#room_charset_b). | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | the VIC in rooms 10-17 and 19 |
+| [`charset_wizard`](../src/constants.asm#L206) | `$B000` | The same form, from [`room_charset_c`](../src/room_charset_c.asm#L6) [`$9800`](reference/graphics.md#room_charset_c). | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | the VIC in room 18 |
+| [`charset_wizard_flash`](../src/constants.asm#L207) | `$B800` | The same form, from [`room_charset_d`](../src/room_charset_d.asm#L8) [`$9C00`](reference/graphics.md#room_charset_d). | [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) | [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update) maps VMCSB `$3E` to it |
 | [`title_countdown`](../src/constants.asm#L39) | `$0049` | 16-bit frame count, low byte first. `$0960` = 2400 frames at the start. | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen), [`title_menu_option_changed`](../src/title_menu.asm#L68) [`$0916`](reference/modules/title_menu.md#title_menu_option_changed); [`irq_title_frame`](../src/screen_raster_irqs.asm#L81) [`$152C`](reference/modules/screen_raster_irqs.md#irq_title_frame) counts it down | [`title_menu_loop`](../src/title_menu.asm#L14) [`$08B1`](reference/modules/title_menu.md#title_menu_loop) |
 | [`title_music_skip_count`](../src/title_menu.asm#L163) | `$09BB` | 1 byte, signed. The title tune plays when a decrement makes it negative. | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) (4), [`lose_fall`](../src/lose_fall_game_over.asm#L14) [`$1818`](reference/modules/lose_fall_game_over.md#lose_fall) and the S key (0) | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) |
 | [`title_music_off`](../src/room_enemy_tables.asm#L118) | `$1385` | 1 byte. 0 = the title tune can play, 1 = silent. | the S key in [`handle_game_keys`](../src/status_and_keys.asm#L57) [`$1B29`](reference/modules/status_and_keys.md#handle_game_keys) | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) |
@@ -85,27 +85,27 @@ flowchart TB
 
 [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start) runs one time, when the loader gives control to the program. **Code.**
 
-1. SEI, CLD, the stack pointer = `$FF`. It clears the DEN bit of [`SCROLY`](../src/constants.asm#L175) to blank the screen.
+1. SEI, CLD, the stack pointer = `$FF`. It clears the DEN bit of [`SCROLY`](../src/constants.asm#L222) to blank the screen.
 2. It reads [`warm_start_flag`](../src/cold_start.asm#L7) [`$03FF`](reference/modules/cold_start.md#warm_start_flag). A nonzero value jumps to [`cold_start_expand_last_font`](../src/cold_start.asm#L149) [`$04D1`](reference/modules/cold_start.md#cold_start_expand_last_font) (step 9).
    Nothing in the program writes the flag, and the image holds 0, so the program always does the full start.
 3. [`cold_start_full_init`](../src/cold_start.asm#L39) [`$0415`](reference/modules/cold_start.md#cold_start_full_init) clears [`sfx_voice1_state`](../src/sfx_voice1.asm#L6) [`$EB00`](reference/modules/sfx_voice1.md#sfx_voice1_state) and the two other sound effect states.
-4. It sets SID voice 3 to frequency `$FFFF` with the noise waveform and the gate off. [`RANDOM`](../src/constants.asm#L225) (OSC3) then gives
+4. It sets SID voice 3 to frequency `$FFFF` with the noise waveform and the gate off. [`RANDOM`](../src/constants.asm#L272) (OSC3) then gives
    random bytes.
-5. [`cold_start_random_loop`](../src/cold_start.asm#L52) [`$0432`](reference/modules/cold_start.md#cold_start_random_loop) reads 256 samples of [`RANDOM`](../src/constants.asm#L225) into [`random_table`](../src/constants.asm#L151) [`$0200`](reference/variables.md#random_table). A loop of `$60`
+5. [`cold_start_random_loop`](../src/cold_start.asm#L52) [`$0432`](reference/modules/cold_start.md#cold_start_random_loop) reads 256 samples of [`RANDOM`](../src/constants.asm#L272) into [`random_table`](../src/constants.asm#L151) [`$0200`](reference/variables.md#random_table). A loop of `$60`
    DEY steps ([`cold_start_random_delay`](../src/cold_start.asm#L54) [`$0434`](reference/modules/cold_start.md#cold_start_random_delay)) waits between two samples.
 6. `JSR $0080`: the loader leaves an RTS in [`frame_count_256`](../src/constants.asm#L80) [`$0080`](reference/variables.md#frame_count_256), so the call returns at once.
 7. It sets `$01` = `$32` (character ROM at `$D000`). [`cold_start_copy_rom_font`](../src/cold_start.asm#L77) [`$0449`](reference/modules/cold_start.md#cold_start_copy_rom_font) copies ROM characters
-   0-31 to [`text_font_letters`](../src/text_font.asm#L15) [`$8900`](reference/modules/text_font.md#text_font_letters) and ROM characters 32-63 ([`char_rom_chars_32_63`](../src/constants.asm#L197) [`$D100`](reference/variables.md#char_rom_chars_32_63)) to [`text_font`](../src/text_font.asm#L9)
-   `$8800`. It writes each byte EOR `$FF` to [`text_font_inverse_letters`](../src/text_font.asm#L88) [`$8B00`](reference/modules/text_font.md#text_font_inverse_letters) and [`text_font_inverse`](../src/text_font.asm#L49) [`$8A00`](reference/modules/text_font.md#text_font_inverse).
+   0-31 to [`text_font_letters`](../src/constants.asm#L194) [`$8900`](reference/variables.md#text_font_letters) and ROM characters 32-63 ([`char_rom_chars_32_63`](../src/constants.asm#L244) [`$D100`](reference/variables.md#char_rom_chars_32_63)) to [`text_font`](../src/constants.asm#L193)
+   `$8800`. It writes each byte EOR `$FF` to [`text_font_inverse_letters`](../src/constants.asm#L198) [`$8B00`](reference/variables.md#text_font_inverse_letters) and [`text_font_inverse`](../src/constants.asm#L195) [`$8A00`](reference/variables.md#text_font_inverse).
    Then `$01` = `$36` (I/O again).
 8. [`cold_start_patch_font_chars`](../src/cold_start.asm#L94) [`$0468`](reference/modules/cold_start.md#cold_start_patch_font_chars) changes three characters of the font:
-   - code 32 ([`text_font_letters`](../src/text_font.asm#L15) [`$8900`](reference/modules/text_font.md#text_font_letters), the "@") becomes a solid block;
-   - code 66 ([`text_font_keycap_left`](../src/text_font.asm#L54) [`$8A10`](reference/modules/text_font.md#text_font_keycap_left)) becomes a bar of 2 pixels at the right edge (`$03` in each row);
-   - code 86 ([`text_font_keycap_right`](../src/text_font.asm#L76) [`$8AB0`](reference/modules/text_font.md#text_font_keycap_right)) becomes a bar of 2 pixels at the left edge (`$C0` in each row).
+   - code 32 ([`text_font_letters`](../src/constants.asm#L194) [`$8900`](reference/variables.md#text_font_letters), the "@") becomes a solid block;
+   - code 66 ([`text_font_keycap_left`](../src/constants.asm#L196) [`$8A10`](reference/variables.md#text_font_keycap_left)) becomes a bar of 2 pixels at the right edge (`$03` in each row);
+   - code 86 ([`text_font_keycap_right`](../src/constants.asm#L197) [`$8AB0`](reference/variables.md#text_font_keycap_right)) becomes a bar of 2 pixels at the left edge (`$C0` in each row).
    The title menu uses the two bars as the end caps of the option box (section 6.2).
 9. It calls [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) four times (section 4.3). The warm path starts at the fourth call,
    [`cold_start_expand_last_font`](../src/cold_start.asm#L149) [`$04D1`](reference/modules/cold_start.md#cold_start_expand_last_font). This step also sets the stack pointer to `$B8` (the high byte of
-   [`charset_wizard_flash`](../src/constants.asm#L160) [`$B800`](reference/variables.md#charset_wizard_flash), through TAX/TXS). [`restart_to_title`](../src/title_demo_start.asm#L9) [`$050F`](reference/modules/title_demo_start.md#restart_to_title) sets the stack again.
+   [`charset_wizard_flash`](../src/constants.asm#L207) [`$B800`](reference/variables.md#charset_wizard_flash), through TAX/TXS). [`restart_to_title`](../src/title_demo_start.asm#L9) [`$050F`](reference/modules/title_demo_start.md#restart_to_title) sets the stack again.
 10. It calls [`build_contact_masks`](../src/frame_builder.asm#L16) [`$512F`](reference/modules/frame_builder.md#build_contact_masks). That routine first waits for the protection bytes (section 4.4), then
     builds the background contact masks of the actor frames.
 11. It calls [`empty_init_hook`](../src/game_setup.asm#L284) [`$10F7`](reference/modules/game_setup.md#empty_init_hook) (only an RTS).
@@ -134,10 +134,10 @@ c + 128 in the lower row. [`build_double_height_font`](../src/draw_helpers.asm#L
 
 | Source | Output, top halves (c) | Output, bottom halves (c + 128) | Used for |
 |---|---|---|---|
-| [`room_charset_a`](../src/room_charset_a.asm#L12) [`$9000`](reference/graphics.md#room_charset_a) | [`charset_rooms_0_9`](../src/constants.asm#L157) [`$A000`](reference/variables.md#charset_rooms_0_9) | `$A400` | rooms 0-9 |
-| [`room_charset_b`](../src/room_charset_b.asm#L6) [`$9400`](reference/graphics.md#room_charset_b) | [`charset_rooms_10_19`](../src/constants.asm#L158) [`$A800`](reference/variables.md#charset_rooms_10_19) | `$AC00` | rooms 10-17 and 19 |
-| [`room_charset_c`](../src/room_charset_c.asm#L6) [`$9800`](reference/graphics.md#room_charset_c) | [`charset_wizard`](../src/constants.asm#L159) [`$B000`](reference/variables.md#charset_wizard) | `$B400` | room 18 |
-| [`room_charset_d`](../src/room_charset_d.asm#L8) [`$9C00`](reference/graphics.md#room_charset_d) | [`charset_wizard_flash`](../src/constants.asm#L160) [`$B800`](reference/variables.md#charset_wizard_flash) | `$BC00` | VMCSB value `$3E` |
+| [`room_charset_a`](../src/room_charset_a.asm#L12) [`$9000`](reference/graphics.md#room_charset_a) | [`charset_rooms_0_9`](../src/constants.asm#L204) [`$A000`](reference/variables.md#charset_rooms_0_9) | `$A400` | rooms 0-9 |
+| [`room_charset_b`](../src/room_charset_b.asm#L6) [`$9400`](reference/graphics.md#room_charset_b) | [`charset_rooms_10_19`](../src/constants.asm#L205) [`$A800`](reference/variables.md#charset_rooms_10_19) | `$AC00` | rooms 10-17 and 19 |
+| [`room_charset_c`](../src/room_charset_c.asm#L6) [`$9800`](reference/graphics.md#room_charset_c) | [`charset_wizard`](../src/constants.asm#L206) [`$B000`](reference/variables.md#charset_wizard) | `$B400` | room 18 |
+| [`room_charset_d`](../src/room_charset_d.asm#L8) [`$9C00`](reference/graphics.md#room_charset_d) | [`charset_wizard_flash`](../src/constants.asm#L207) [`$B800`](reference/variables.md#charset_wizard_flash) | `$BC00` | VMCSB value `$3E` |
 
 Inputs: [`row_ptr_top`](../src/constants.asm#L15) [`$0004`](reference/variables.md#row_ptr_top) = source, [`data_ptr`](../src/constants.asm#L16) [`$0006`](reference/variables.md#data_ptr) = top output, [`row_ptr_bottom`](../src/constants.asm#L17) [`$0008`](reference/variables.md#row_ptr_bottom) = bottom
 output, [`column_counter`](../src/constants.asm#L122) [`$00F3`](reference/variables.md#column_counter) = 127 (the count of characters minus 1).
@@ -158,7 +158,7 @@ repeat for 128 characters:
 
 The order of the steps matters. [`build_contact_masks`](../src/frame_builder.asm#L16) [`$512F`](reference/modules/frame_builder.md#build_contact_masks) writes its masks over `$9000-$9FBF`, the four source
 charsets, after the expansion. **Code.** **Conclusion:** the warm path of step 2 would expand [`room_charset_d`](../src/room_charset_d.asm#L8)
-`$9C00` again after the masks are there, and it would make a wrong [`charset_wizard_flash`](../src/constants.asm#L160) [`$B800`](reference/variables.md#charset_wizard_flash). The image never
+`$9C00` again after the masks are there, and it would make a wrong [`charset_wizard_flash`](../src/constants.asm#L207) [`$B800`](reference/variables.md#charset_wizard_flash). The image never
 takes this path.
 
 ### 4.4 The protection waits of the start
@@ -167,8 +167,8 @@ Two checks of the start read the protection key page `$CF00-$CFFF`. **Code.**
 
 | Check | Where | Condition | When it fails |
 |---|---|---|---|
-| Signature | [`build_contact_masks`](../src/frame_builder.asm#L16) [`$512F`](reference/modules/frame_builder.md#build_contact_masks) | [`prot_signature_a`](../src/protection_key_page.asm#L43) [`$CF8F`](reference/modules/protection_key_page.md#prot_signature_a) = `$B9` and [`prot_signature_b`](../src/protection_key_page.asm#L62) [`$CFAF`](reference/modules/protection_key_page.md#prot_signature_b) = [`prot_signature_a`](../src/protection_key_page.asm#L43) | loops for ever: the program hangs with a blank screen |
-| Signature XOR | [`title_protection_check`](../src/title_demo_start.asm#L245) [`$06DD`](reference/modules/title_demo_start.md#title_protection_check), at each title | the EOR of the six bytes [`prot_signature_a`](../src/protection_key_page.asm#L43), `+1`, `+2` and [`prot_signature_b`](../src/protection_key_page.asm#L62), `+1`, `+2` is 0 | [`title_protection_wipe`](../src/title_demo_start.asm#L253) [`$06F3`](reference/modules/title_demo_start.md#title_protection_wipe) writes A over memory page by page from `(demo_input_ptr)` and never returns |
+| Signature | [`build_contact_masks`](../src/frame_builder.asm#L16) [`$512F`](reference/modules/frame_builder.md#build_contact_masks) | [`prot_signature_a`](../src/protection_key_page.asm#L26) [`$CF8F`](reference/modules/protection_key_page.md#prot_signature_a) = `$B9` and [`prot_signature_b`](../src/protection_key_page.asm#L45) [`$CFAF`](reference/modules/protection_key_page.md#prot_signature_b) = [`prot_signature_a`](../src/protection_key_page.asm#L26) | loops for ever: the program hangs with a blank screen |
+| Signature XOR | [`title_protection_check`](../src/title_demo_start.asm#L245) [`$06DD`](reference/modules/title_demo_start.md#title_protection_check), at each title | the EOR of the six bytes [`prot_signature_a`](../src/protection_key_page.asm#L26), `+1`, `+2` and [`prot_signature_b`](../src/protection_key_page.asm#L45), `+1`, `+2` is 0 | [`title_protection_wipe`](../src/title_demo_start.asm#L253) [`$06F3`](reference/modules/title_demo_start.md#title_protection_wipe) writes A over memory page by page from `(demo_input_ptr)` and never returns |
 
 **Worked example.** The bytes are `$CF8F-$CF91` = `B9 B4 B4` and `$CFAF-$CFB1` = `B9 B4 B4`. The first check sees
 `$B9` and `$B9 EOR $B9` = 0. The second check computes `B9 EOR B4 EOR B4 EOR B9 EOR B4 EOR B4` = 0. Both checks
@@ -196,7 +196,7 @@ the demo, from [`game_over`](../src/lose_fall_game_over.asm#L82) [`$188E`](refer
 
 1. It blanks the screen and calls [`stop_all_sounds`](../src/sound_request.asm#L63) [`$255E`](reference/modules/sound_request.md#stop_all_sounds).
 2. [`clear_text_screen`](../src/pause_status_line.asm#L104) [`$1A56`](reference/modules/pause_status_line.md#clear_text_screen) clears the text rows. [`title_dummy_table_read`](../src/title_sprite.asm#L6) [`$0E2E`](reference/modules/title_sprite.md#title_dummy_table_read) has no effect.
-3. [`title_clear_sprite_loop`](../src/title_demo_start.asm#L96) [`$059F`](reference/modules/title_demo_start.md#title_clear_sprite_loop) clears [`sprite_buf_b_spr4`](../src/actor_sprite_buffers.asm#L104) [`$83C0`](reference/modules/actor_sprite_buffers.md#sprite_buf_b_spr4). Sprite 0 becomes the TM sign: X-expanded,
+3. [`title_clear_sprite_loop`](../src/title_demo_start.asm#L96) [`$059F`](reference/modules/title_demo_start.md#title_clear_sprite_loop) clears [`sprite_buf_b_spr4`](../src/constants.asm#L192) [`$83C0`](reference/variables.md#sprite_buf_b_spr4). Sprite 0 becomes the TM sign: X-expanded,
    X = 266, Y = 86, light grey, pointer block `$0F`. [`title_copy_tm_sprite`](../src/title_demo_start.asm#L117) [`$05D1`](reference/modules/title_demo_start.md#title_copy_tm_sprite) copies the 12 bytes of
    [`title_tm_sprite_rows`](../src/title_sprite.asm#L22) [`$0E40`](reference/modules/title_sprite.md#title_tm_sprite_rows) into rows 4-7 of the sprite.
 4. [`irq_vector`](../src/cold_start.asm#L31) [`$0408`](reference/modules/cold_start.md#irq_vector) = [`irq_title_frame`](../src/screen_raster_irqs.asm#L81) [`$152C`](reference/modules/screen_raster_irqs.md#irq_title_frame), raster line `$FD`. The border and background are blue (`$F6`).
@@ -216,9 +216,9 @@ the demo, from [`game_over`](../src/lose_fall_game_over.asm#L82) [`$188E`](refer
 
    | Message | Text | Screen row |
    |---|---|---|
-   | `$4F` [`msg_option_players`](../src/messages.asm#L334) [`$46A3`](reference/modules/messages.md#msg_option_players) | F3 - 1 PLAYER - 2 PLAYERS | 12 |
-   | `$50` [`msg_option_opponent`](../src/messages.asm#L346) [`$46BF`](reference/modules/messages.md#msg_option_opponent) | PRESS F5 - COMPUTER - OPPONENT | 14 |
-   | `$51` [`msg_option_begin`](../src/messages.asm#L358) [`$46E0`](reference/modules/messages.md#msg_option_begin) | F7 - TO BEGIN GAME | 16 |
+   | `$4F` [`msg_option_players`](../src/messages_rooms.asm#L225) [`$46A3`](reference/modules/messages_rooms.md#msg_option_players) | F3 - 1 PLAYER - 2 PLAYERS | 12 |
+   | `$50` [`msg_option_opponent`](../src/messages_rooms.asm#L237) [`$46BF`](reference/modules/messages_rooms.md#msg_option_opponent) | PRESS F5 - COMPUTER - OPPONENT | 14 |
+   | `$51` [`msg_option_begin`](../src/messages_rooms.asm#L249) [`$46E0`](reference/modules/messages_rooms.md#msg_option_begin) | F7 - TO BEGIN GAME | 16 |
 
 8. [`title_highlight_defaults`](../src/title_demo_start.asm#L188) [`$066D`](reference/modules/title_demo_start.md#title_highlight_defaults) adds `$40` (the inverted form) to columns 16-25 of rows 12 and 14 and to
    columns 11-12 (the key names) of rows 12, 14 and 16. This marks "1 PLAYER" and "COMPUTER".
@@ -233,7 +233,7 @@ the demo, from [`game_over`](../src/lose_fall_game_over.asm#L82) [`$188E`](refer
 
 The raster interrupt of the title has two handlers. [`irq_title_frame`](../src/screen_raster_irqs.asm#L81) [`$152C`](reference/modules/screen_raster_irqs.md#irq_title_frame) at line `$FD` counts down
 [`frame_countdown`](../src/constants.asm#L38) [`$0048`](reference/variables.md#frame_countdown) and [`title_countdown`](../src/constants.asm#L39) [`$0049`](reference/variables.md#title_countdown), selects the logo charset for the top of the screen and
-plays the music. [`irq_title_split`](../src/screen_raster_irqs.asm#L121) [`$1574`](reference/modules/screen_raster_irqs.md#irq_title_split) at line `$82` switches to [`text_font`](../src/text_font.asm#L9) [`$8800`](reference/modules/text_font.md#text_font) for the menu. **Code.**
+plays the music. [`irq_title_split`](../src/screen_raster_irqs.asm#L121) [`$1574`](reference/modules/screen_raster_irqs.md#irq_title_split) at line `$82` switches to [`text_font`](../src/constants.asm#L193) [`$8800`](reference/variables.md#text_font) for the menu. **Code.**
 
 ![The title screen after the start: one player, computer opponent](images/screens/title.png)
 
@@ -264,7 +264,7 @@ After F3, F5 and L: "2 PLAYERS" and "OPPONENT" are marked, and the message row s
 1. When [`title_music_off`](../src/room_enemy_tables.asm#L118) [`$1385`](reference/modules/room_enemy_tables.md#title_music_off) is nonzero, there is no tune.
 2. Else it decrements [`title_music_skip_count`](../src/title_menu.asm#L163) [`$09BB`](reference/modules/title_menu.md#title_music_skip_count). When the result is 0 or more, there is no tune.
 3. When the result is negative, it sets the count to 4, sets [`music_end_action`](../src/music_player.asm#L35) [`$E314`](reference/modules/music_player.md#music_end_action) = 3, the playlist
-   [`music_playlist`](../src/music_data.asm#L48) [`$E870`](reference/modules/music_data.md#music_playlist) = song 0 and [`music_playlist_end`](../src/music_data.asm#L50) [`$E871`](reference/modules/music_data.md#music_playlist_end) = `$FF` (so song 0 loops), and calls
+   [`music_playlist`](../src/music_data.asm#L37) [`$E870`](reference/modules/music_data.md#music_playlist) = song 0 and [`music_playlist_end`](../src/music_data.asm#L39) [`$E871`](reference/modules/music_data.md#music_playlist_end) = `$FF` (so song 0 loops), and calls
    [`music_api_start`](../src/music_player_state.asm#L11) [`$E003`](reference/modules/music_player_state.md#music_api_start).
 
 The count is 0 in the image. So the tune plays at the first title, then at every fifth title. Two events set the
@@ -317,7 +317,7 @@ stateDiagram-v2
 | Menu | key AND `$7F` = `$05` (F3) | Option changed | [`title_menu_toggle_players`](../src/title_menu.asm#L81) [`$092C`](reference/modules/title_menu.md#title_menu_toggle_players): [`option_two_players`](../src/options_and_patterns.asm#L14) [`$42C9`](reference/modules/options_and_patterns.md#option_two_players) EOR 1, also into the saved copy, highlight |
 | Menu | key AND `$7F` = `$03` (F7) | Start wait | [`title_menu_function_keys`](../src/title_menu.asm#L29) [`$08D2`](reference/modules/title_menu.md#title_menu_function_keys) branches to [`title_menu_start_game`](../src/title_menu.asm#L52) [`$08FC`](reference/modules/title_menu.md#title_menu_start_game) |
 | Menu | high byte of [`title_countdown`](../src/constants.asm#L39) = 8 and low byte < 2 | Message cleared | [`title_menu_check_message_timeout`](../src/title_menu.asm#L37) [`$08E0`](reference/modules/title_menu.md#title_menu_check_message_timeout) prints message `$0E` (36 blanks) on text row 10 |
-| Menu | bit 4 of [`CIAPRB`](../src/constants.asm#L229) = 0 (fire on port 1) | Start wait | [`title_menu_check_fire`](../src/title_menu.asm#L48) [`$08F5`](reference/modules/title_menu.md#title_menu_check_fire) |
+| Menu | bit 4 of [`CIAPRB`](../src/constants.asm#L276) = 0 (fire on port 1) | Start wait | [`title_menu_check_fire`](../src/title_menu.asm#L48) [`$08F5`](reference/modules/title_menu.md#title_menu_check_fire) |
 | Option changed | fire released on both ports, then 4 frames | Menu | [`title_menu_option_changed`](../src/title_menu.asm#L68) [`$0916`](reference/modules/title_menu.md#title_menu_option_changed) sets [`title_countdown`](../src/constants.asm#L39) = `$0960` again |
 | Start wait | fire released on both ports, then 16 frames | [`start_new_game`](../src/title_demo_start.asm#L283) [`$070E`](reference/modules/title_demo_start.md#start_new_game) | [`title_menu_start_game`](../src/title_menu.asm#L52) [`$08FC`](reference/modules/title_menu.md#title_menu_start_game) returns to [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) |
 
@@ -327,7 +327,7 @@ Notes:
   true for two frames, so the row is printed more than once. **Code.**
 - Only fire on joystick port 1 starts a game. Fire on port 2 does nothing on the title. **Code.**
 - An option key restarts the 2400 frames before the demo. **Code.**
-- Each option key waits for [`wait_fire_released`](../src/title_menu.asm#L97) [`$094B`](reference/modules/title_menu.md#wait_fire_released). It returns when bit 4 of [`CIAPRA`](../src/constants.asm#L228) and [`CIAPRB`](../src/constants.asm#L229) are both 1.
+- Each option key waits for [`wait_fire_released`](../src/title_menu.asm#L97) [`$094B`](reference/modules/title_menu.md#wait_fire_released). It returns when bit 4 of [`CIAPRA`](../src/constants.asm#L275) and [`CIAPRB`](../src/constants.asm#L276) are both 1.
 - F3, F5 and F7 also work with shift, because the test masks bit 7. **Code.**
 
 ### 7.2 The key codes
@@ -370,10 +370,10 @@ The title after F3: two players. **Observed.**
 5. [`show_player_screen`](../src/title_player_screens.asm#L71) [`$0EA7`](reference/modules/title_player_screens.md#show_player_screen) shows PLAYER 1 (section 10).
 6. It blanks the screen again and sets the stack pointer to `$FD`.
 7. [`init_game_variables`](../src/game_setup.asm#L18) [`$0F72`](reference/modules/game_setup.md#init_game_variables) clears the game: 4 falls (9 when player 2 moves Yamo), the first bonus fall at
-   [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L69) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score), and a copy of the player block for player 2. [`game_mode`](../src/constants.asm#L134) [`$0104`](reference/variables.md#game_mode) = 1.
+   [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L62) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score), and a copy of the player block for player 2. [`game_mode`](../src/constants.asm#L134) [`$0104`](reference/variables.md#game_mode) = 1.
 8. [`reset_play_state`](../src/play_init.asm#L19) [`$0763`](reference/modules/play_init.md#reset_play_state) makes the game screen and the status line, sets the game interrupt and spawns Bruce.
 9. [`draw_room`](../src/draw_room.asm#L28) [`$09BC`](reference/modules/draw_room.md#draw_room) draws room 0.
-10. [`demo_input_ptr`](../src/constants.asm#L28) [`$001D`](reference/variables.md#demo_input_ptr) = [`demo_input_stream`](../src/demo_input.asm#L65) [`$F300`](reference/modules/demo_input.md#demo_input_stream) (the game does not read it).
+10. [`demo_input_ptr`](../src/constants.asm#L28) [`$001D`](reference/variables.md#demo_input_ptr) = [`demo_input_stream`](../src/demo_input.asm#L10) [`$F300`](reference/modules/demo_input.md#demo_input_stream) (the game does not read it).
 11. The screen goes on, CLI, and it jumps to [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop).
 
 ![Room 0 at the start of a game](images/screens/game_start.png)
@@ -392,7 +392,7 @@ Room 0 when the game starts: the status line shows 1UP, the score, TOP and FALLS
 4. LSR [`game_mode`](../src/constants.asm#L134) [`$0104`](reference/variables.md#game_mode): 1 becomes 0, the demo.
 5. It saves the options in the saved copies and sets both options to 0: one player, computer Yamo.
 6. [`draw_room`](../src/draw_room.asm#L28) [`$09BC`](reference/modules/draw_room.md#draw_room) draws room 0.
-7. [`demo_input_ptr`](../src/constants.asm#L28) [`$001D`](reference/variables.md#demo_input_ptr) = [`demo_input_stream`](../src/demo_input.asm#L65) [`$F300`](reference/modules/demo_input.md#demo_input_stream).
+7. [`demo_input_ptr`](../src/constants.asm#L28) [`$001D`](reference/variables.md#demo_input_ptr) = [`demo_input_stream`](../src/demo_input.asm#L10) [`$F300`](reference/modules/demo_input.md#demo_input_stream).
 8. The screen goes on, CLI, and it jumps to [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop).
 
 The instruction at [`demo_start_blank_screen`](../src/title_demo_start.asm#L36) [`$0537`](reference/modules/title_demo_start.md#demo_start_blank_screen) has a second use: the high byte of its operand,
@@ -406,7 +406,7 @@ The demo is the normal game with [`game_mode`](../src/constants.asm#L134) [`$010
 |---|---|---|
 | [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop) | [`handle_game_keys`](../src/status_and_keys.asm#L57) [`$1B29`](reference/modules/status_and_keys.md#handle_game_keys), pause | no keys, no pause |
 | [`check_demo_abort`](../src/pause_status_line.asm#L7) [`$19B8`](reference/modules/pause_status_line.md#check_demo_abort) | returns at once | fire on port 1 or F1 ends the demo |
-| [`update_actors`](../src/actor_driver_text.asm#L10) [`$179E`](reference/modules/actor_driver_text.md#update_actors) | Bruce's input from the joystick (read by [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update)) | one byte of [`demo_input_stream`](../src/demo_input.asm#L65) [`$F300`](reference/modules/demo_input.md#demo_input_stream) in each pass: bits 0-3 to [`actor_joy_dir`](../src/constants.asm#L92) [`$0098`](reference/variables.md#actor_joy_dir), bits 4-7 to [`actor_fire`](../src/constants.asm#L93) [`$009B`](reference/variables.md#actor_fire) |
+| [`update_actors`](../src/actor_driver_text.asm#L10) [`$179E`](reference/modules/actor_driver_text.md#update_actors) | Bruce's input from the joystick (read by [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update)) | one byte of [`demo_input_stream`](../src/demo_input.asm#L10) [`$F300`](reference/modules/demo_input.md#demo_input_stream) in each pass: bits 0-3 to [`actor_joy_dir`](../src/constants.asm#L92) [`$0098`](reference/variables.md#actor_joy_dir), bits 4-7 to [`actor_fire`](../src/constants.asm#L93) [`$009B`](reference/variables.md#actor_fire) |
 | [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update) | reads the joysticks; counts [`room_time`](../src/constants.asm#L86) [`$0087`](reference/variables.md#room_time); input resets [`idle_timer`](../src/constants.asm#L81) [`$0082`](reference/variables.md#idle_timer) | no joystick read; [`room_time`](../src/constants.asm#L86) stops; [`idle_timer`](../src/constants.asm#L81) is reset in each frame |
 | [`random_byte`](../src/interrupt_entry.asm#L89) [`$1159`](reference/modules/interrupt_entry.md#random_byte) | a byte from `(random_ptr),Y` | always 1 |
 | [`spawn_actor`](../src/actor_spawn.asm#L20) [`$0B8E`](reference/modules/actor_spawn.md#spawn_actor) | Bruce at start point A, enemies by the rules of the room | every actor at start point A |
@@ -436,7 +436,7 @@ The attract demo: Bruce has taken a lantern (score 125), Yamo and the Ninja are 
 [`lose_fall`](../src/lose_fall_game_over.asm#L14) [`$1818`](reference/modules/lose_fall_game_over.md#lose_fall) call it. **Code.**
 
 1. SEI. It blanks the screen, turns the sprites off and sets a blue border and background.
-2. [`show_player_clear_loop`](../src/title_player_screens.asm#L84) [`$0EC1`](reference/modules/title_player_screens.md#show_player_clear_loop) fills the screen page [`game_screen`](../src/game_screen.asm#L9) [`$8C00`](reference/modules/game_screen.md#game_screen)-`$8FFF` with `$DC`. This also writes
+2. [`show_player_clear_loop`](../src/title_player_screens.asm#L84) [`$0EC1`](reference/modules/title_player_screens.md#show_player_clear_loop) fills the screen page [`game_screen`](../src/constants.asm#L199) [`$8C00`](reference/variables.md#game_screen)-`$8FFF` with `$DC`. This also writes
    the sprite pointers, but the sprites are off.
 3. [`stop_all_sounds`](../src/sound_request.asm#L63) [`$255E`](reference/modules/sound_request.md#stop_all_sounds).
 4. [`show_player_digit_loop`](../src/title_player_screens.asm#L97) [`$0ED9`](reference/modules/title_player_screens.md#show_player_digit_loop) copies the two characters of the big digit of [`current_player`](../src/constants.asm#L14) [`$0003`](reference/variables.md#current_player) from
@@ -450,7 +450,7 @@ The attract demo: Bruce has taken a lantern (score 125), Yamo and the Ninja are 
    [`player_screen_wait`](../src/constants.asm#L25) [`$0018`](reference/variables.md#player_screen_wait) = `$038080` counts down in the same loop ([`show_player_wait_loop`](../src/title_player_screens.asm#L150) [`$0F47`](reference/modules/title_player_screens.md#show_player_wait_loop)) and ends
    the wait when the interrupt does not count.
 
-[`irq_player_screen`](../src/screen_raster_irqs.asm#L10) [`$14A4`](reference/modules/screen_raster_irqs.md#irq_player_screen) waits for line `$6E` and changes [`BGCOL1`](../src/constants.asm#L189) about every two lines to `$B`, `$C`, `$F`,
+[`irq_player_screen`](../src/screen_raster_irqs.asm#L10) [`$14A4`](reference/modules/screen_raster_irqs.md#irq_player_screen) waits for line `$6E` and changes [`BGCOL1`](../src/constants.asm#L236) about every two lines to `$B`, `$C`, `$F`,
 `$1`, `$F`, `$C`, `$B`. This shades the big letters from dark grey to white and back. It counts down
 [`frame_countdown`](../src/constants.asm#L38) [`$0048`](reference/variables.md#frame_countdown). **Code.**
 
@@ -470,7 +470,7 @@ The PLAYER 1 screen at the start of a game. **Observed.**
 | The demo always ends when Bruce loses his first fall, after 569 input bytes. | Observed: run d1-flow and run a8/run2. |
 | The title tune plays at the first title, every fifth title and after each demo that ends with a lost fall. | Observed: run d1-flow. |
 | Only fire on port 1 starts a game from the title, but the PLAYER 2 turn uses port 2. | Code. |
-| The warm path of the cold start would make a wrong [`charset_wizard_flash`](../src/constants.asm#L160) [`$B800`](reference/variables.md#charset_wizard_flash), because the masks overwrite its source. Nothing takes the path. | Code; Conclusion. |
+| The warm path of the cold start would make a wrong [`charset_wizard_flash`](../src/constants.asm#L207) [`$B800`](reference/variables.md#charset_wizard_flash), because the masks overwrite its source. Nothing takes the path. | Code; Conclusion. |
 
 ## 12. Still open
 

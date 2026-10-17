@@ -1,5 +1,5 @@
 {
- "name": "Crack leftover: junk in $033C-$03FE at the game entry changes nothing (bytes the crack relocator copied from $C13C)",
+ "name": "Original loader stage: junk in $033C-$03FE at the game entry changes nothing (the encoded last stage of the original protected loader, which the crack relocator copied there)",
  "original": {
   "program": "original/bruce_lee.prg",
   "symbols": "none"

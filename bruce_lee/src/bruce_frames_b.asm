@@ -4,14 +4,14 @@
 
 ; Bruce frame 61 (global frame 61). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 60. Picture: falling.
-; Original source label ADOWNR12 (from the assembler symbol table left at game_screen).
+; Original source label ADOWNR12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_61
         !byte $06,$03,$09,$05,$01,$00,$00,$00
         !byte $00,$00,$04,$44,$4e,$0e,$0a,$1c
         !byte $14,$38,$f8,$70,$20
 ; Bruce frame 63 (global frame 63). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour black
 ; ($F0). Second sprite of pose frame 62. Picture: lying on the floor (mirror of frame 58).
-; Original source label ADOWNR22 (from the assembler symbol table left at game_screen).
+; Original source label ADOWNR22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_63
         !byte $00,$00,$00,$00,$00,$00,$00,$00
         !byte $00,$00,$00,$00,$00,$00,$00,$0c
@@ -21,133 +21,133 @@ bruce_frame_63
         !byte $3f,$f3
 ; Bruce frame 66 (global frame 66). 8 pixels wide, 21 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 67 is the second sprite. Picture: lying flat on the floor.
-; Original source label BDUCKR1 (from the assembler symbol table left at game_screen).
+; Original source label BDUCKR1 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_66
         !byte $00,$00,$00,$00,$00,$00,$00,$00
         !byte $00,$00,$00,$00,$00,$00,$00,$06
         !byte $0c,$0a,$3e,$4e,$4c
 ; Bruce frame 67 (global frame 67). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour black
 ; ($F0). Second sprite of pose frame 66. Picture: lying flat on the floor.
-; Original source label BDUCKR2 (from the assembler symbol table left at game_screen).
+; Original source label BDUCKR2 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_67
         !fill 29, $00
         !byte $06,$18,$18,$18,$12,$79,$94,$7f
         !byte $c0,$1f,$b1,$1f,$b3
 ; Bruce frame 64 (global frame 64). 8 pixels wide, 21 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 65 is the second sprite. Picture: lying flat on the floor.
-; Original source label BDUCKL1 (from the assembler symbol table left at game_screen).
+; Original source label BDUCKL1 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_64
         !byte $00,$00,$00,$00,$00,$00,$00,$00
         !byte $00,$00,$00,$00,$00,$00,$00,$60
         !byte $30,$50,$7c,$70,$30
 ; Bruce frame 65 (global frame 65). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour black
 ; ($F0). Second sprite of pose frame 64. Picture: lying flat on the floor.
-; Original source label BDUCKL2 (from the assembler symbol table left at game_screen).
+; Original source label BDUCKL2 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_65
         !fill 28, $00
         !byte $60,$00,$18,$18,$48,$18,$29,$9e
         !byte $03,$fe,$8f,$f8,$cf,$f8
 ; Bruce frame 34 (global frame 34). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 35 is the second sprite. Picture: jumping.
-; Original source label ALEAPL11 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPL11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_34
         !byte $00,$60,$20,$60,$70,$70,$3c,$3e
         !byte $3a,$3a,$10,$00
 ; Bruce frame 35 (global frame 35). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 34. Picture: jumping.
-; Original source label ALEAPL12 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPL12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_35
         !byte $70,$18,$58,$18,$08,$00,$00,$00
         !byte $00,$00,$0a,$1a,$18,$18,$08,$0e
         !byte $0f,$09,$05,$04,$0c
 ; Bruce frame 38 (global frame 38). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 39 is the second sprite. Picture: jumping (mirror of frame 34).
-; Original source label ALEAPR11 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPR11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_38
         !byte $00,$06,$04,$06,$0e,$0e,$3c,$7c
         !byte $5c,$5c,$08,$00
 ; Bruce frame 36 (global frame 36). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 37 is the second sprite. Picture: jumping.
-; Original source label ALEAPL21 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPL21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_36
         !byte $00,$00,$30,$10,$30,$38,$1c,$1e
         !byte $1c,$18,$18,$10
 ; Bruce frame 40 (global frame 40). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 41 is the second sprite. Picture: jumping.
-; Original source label ALEAPR21 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPR21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_40
         !byte $00,$00,$06,$04,$06,$0e,$1c,$3c
         !byte $1c,$0c,$0c,$04
 ; Bruce frame 39 (global frame 39). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 38. Picture: jumping (mirror of frame 34).
-; Original source label ALEAPR12 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPR12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_39
         !byte $0e,$18,$1a,$18,$10,$00,$00,$00
         !byte $00,$00,$50,$58,$18,$18,$10,$70
         !byte $f0,$90,$a0,$20,$30
 ; Bruce frame 37 (global frame 37). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 36. Picture: jumping.
-; Original source label ALEAPL22 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPL22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_37
         !byte $00,$38,$0c,$2c,$4c,$44,$00,$20
         !byte $20,$00,$00,$08,$78,$78,$4c,$2c
         !byte $24,$16,$12,$13,$01
 ; Bruce frame 41 (global frame 41). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 40. Picture: jumping.
-; Original source label ALEAPR22 (from the assembler symbol table left at game_screen).
+; Original source label ALEAPR22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_41
         !byte $00,$0e,$18,$1a,$19,$11,$00,$02
         !byte $02,$00,$00,$08,$0f,$0f,$19,$1a
         !byte $12,$34,$24,$64,$40
 ; Bruce frame 30 (global frame 30). 8 pixels wide, 14 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 31 is the second sprite. Picture: squatting, black head.
-; Original source label AJUMP11 (from the assembler symbol table left at game_screen).
+; Original source label AJUMP11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_30
         !byte $00,$00,$00,$00,$00,$00,$00,$00
         !byte $18,$7e,$7e,$db,$99,$00,$00
 ; Bruce frame 32 (global frame 32), also frames 68. 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First
 ; sprite of the pose; frame 33 is the second sprite. Picture: both arms raised, black head (frames 68/69 use the same
 ; data).
-; Original source label AJUMP21 (from the assembler symbol table left at game_screen).
+; Original source label AJUMP21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_32
         !byte $00,$00,$00,$00,$81,$81,$db,$7e
         !byte $7e,$3c,$18,$00
 ; Bruce frame 8 (global frame 8). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 9 is the second sprite. Picture: standing, front view.
-; Original source label ACLIMB01 (from the assembler symbol table left at game_screen).
+; Original source label ACLIMB01 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_08
         !byte $00,$00,$0c,$18,$1c,$1c,$18,$3c
         !byte $7e,$7e,$7e,$42
 ; Bruce frame 31 (global frame 31). 8 pixels wide, 20 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 30. Picture: squatting, black head.
-; Original source label AJUMP12 (from the assembler symbol table left at game_screen).
+; Original source label AJUMP12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_31
         !byte $00,$00,$18,$3c,$3c,$3c,$3c,$18
         !byte $81,$81,$81,$00,$00,$18,$3c,$7e
         !byte $e7,$c3,$66,$24,$66
 ; Bruce frame 33 (global frame 33), also frames 69. 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second
 ; sprite of pose frame 32. Picture: both arms raised, black head (frames 68/69 use the same data).
-; Original source label AJUMP22 (from the assembler symbol table left at game_screen).
+; Original source label AJUMP22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_33
         !byte $99,$bd,$ff,$bd,$3c,$18,$00,$00
         !byte $00,$00,$00,$18,$18,$18,$18,$18
         !byte $18,$18,$3c,$24,$42
 ; Bruce frame 9 (global frame 9). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame 8.
 ; Picture: standing, front view.
-; Original source label ACLIMB02 (from the assembler symbol table left at game_screen).
+; Original source label ACLIMB02 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_09
         !byte $18,$3c,$30,$24,$20,$20,$00,$00
         !byte $00,$00,$00,$99,$99,$18,$18,$18
         !byte $18,$18,$18,$3c,$3c
 ; Bruce frame 28 (global frame 28). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 29 is the second sprite. Picture: low kick from the floor (mirror of frame 24).
-; Original source label AKICKR21 (from the assembler symbol table left at game_screen).
+; Original source label AKICKR21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_28
         !byte $00,$30,$68,$58,$7e,$3f,$7f,$f9
         !byte $da,$9c,$88,$00
 ; Bruce frame 29 (global frame 29). 16 pixels wide, 18 rows of 2 bytes (the mask builder reads 19), colour black
 ; ($F0). Second sprite of pose frame 28. Picture: low kick from the floor (mirror of frame 24).
-; Original source label AKICKR22 (from the assembler symbol table left at game_screen).
+; Original source label AKICKR22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_29
         !byte $30,$00,$c0,$00,$90,$00,$a0,$00
         !byte $80,$00,$00,$00,$00,$00,$06,$00
@@ -156,21 +156,21 @@ bruce_frame_29
         !byte $0f,$c0,$00,$00
 ; Bruce frame 27 (global frame 27). 8 pixels wide, 19 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 26. Picture: crouching (mirror of frame 22).
-; Original source label AKICKR12 (from the assembler symbol table left at game_screen).
+; Original source label AKICKR12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_27
         !byte $60,$c0,$90,$a0,$80,$00,$00,$00
         !byte $01,$03,$04,$0e,$1f,$5f,$7b,$33
         !byte $36,$3e,$1e,$3c,$0c
 ; Bruce frame 23 (global frame 23). 8 pixels wide, 19 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 22. Picture: crouching.
-; Original source label AKICKL12 (from the assembler symbol table left at game_screen).
+; Original source label AKICKL12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_23
         !byte $06,$03,$09,$05,$01,$00,$00,$00
         !byte $80,$c0,$20,$70,$f8,$fa,$de,$cc
         !byte $6c,$7c,$78,$3c,$30
 ; Bruce frame 25 (global frame 25). 16 pixels wide, 18 rows of 2 bytes (the mask builder reads 19), colour black
 ; ($F0). Second sprite of pose frame 24. Picture: low kick from the floor.
-; Original source label AKICKL22 (from the assembler symbol table left at game_screen).
+; Original source label AKICKL22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_25
         !byte $00,$0c,$00,$03,$00,$09,$00,$05
         !byte $00,$01,$00,$00,$00,$00,$00,$60
@@ -179,96 +179,96 @@ bruce_frame_25
         !byte $03,$f0,$00,$00
 ; Bruce frame 26 (global frame 26). 8 pixels wide, 15 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 27 is the second sprite. Picture: crouching (mirror of frame 22).
-; Original source label AKICKR11 (from the assembler symbol table left at game_screen).
+; Original source label AKICKR11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_26
         !byte $00,$30,$68,$58,$78,$7f,$3f,$7d
         !byte $7c,$7c,$58,$50,$40,$00,$00
 ; Bruce frame 22 (global frame 22). 8 pixels wide, 15 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 23 is the second sprite. Picture: crouching.
-; Original source label AKICKL11 (from the assembler symbol table left at game_screen).
+; Original source label AKICKL11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_22
         !byte $00,$0c,$16,$1a,$1e,$fe,$fc,$be
         !byte $3e,$3e,$1a,$0a,$02,$00,$00
 ; Bruce frame 24 (global frame 24). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 25 is the second sprite. Picture: low kick from the floor.
-; Original source label AKICKL21 (from the assembler symbol table left at game_screen).
+; Original source label AKICKL21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_24
         !byte $00,$0c,$16,$1a,$7e,$fc,$fe,$9f
         !byte $5b,$39,$11,$00
 ; Bruce frame 0 (global frame 0), also frames 42, 44, 46, 48, 50, 52, 54. 8 pixels wide, 12 rows of 1 byte, colour
 ; yellow ($F7). First sprite of the pose; frame 1 is the second sprite. Picture: standing.
-; Original source label ASTOPL1 (from the assembler symbol table left at game_screen).
+; Original source label ASTOPL1 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_00
         !byte $00,$08,$0c,$14,$1c,$1c,$0c,$0e
         !byte $1e,$36,$72,$1c
 ; Bruce frame 2 (global frame 2). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 3 is the second sprite. Picture: standing (mirror of frame 0).
-; Original source label ASTOPR1 (from the assembler symbol table left at game_screen).
+; Original source label ASTOPR1 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_02
         !byte $00,$10,$30,$28,$38,$38,$30,$70
         !byte $78,$6c,$4e,$38
 ; Bruce frame 1 (global frame 1), also frames 43, 45, 47, 49, 51, 53, 55. 8 pixels wide, 21 rows of 1 byte, colour
 ; black ($F0). Second sprite of pose frame 0. Picture: standing.
-; Original source label ASTOPL2 (from the assembler symbol table left at game_screen).
+; Original source label ASTOPL2 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_01
         !byte $0c,$06,$12,$0a,$02,$00,$00,$00
         !byte $00,$88,$8c,$00,$1c,$1c,$34,$24
         !byte $24,$24,$24,$66,$e7
 ; Bruce frame 3 (global frame 3). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame 2.
 ; Picture: standing (mirror of frame 0).
-; Original source label ASTOPR2 (from the assembler symbol table left at game_screen).
+; Original source label ASTOPR2 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_03
         !byte $30,$60,$48,$50,$40,$00,$00,$00
         !byte $00,$11,$31,$00,$38,$38,$2c,$24
         !byte $24,$24,$24,$66,$e7
 ; Bruce frame 14 (global frame 14). 8 pixels wide, 13 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 15 is the second sprite. Picture: running.
-; Original source label ARUNL11 (from the assembler symbol table left at game_screen).
+; Original source label ARUNL11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_14
         !byte $00,$00,$00,$c0,$40,$c0,$e0,$7e
         !byte $3e,$7a,$7a,$70,$40,$40
 ; Bruce frame 16 (global frame 16). 8 pixels wide, 13 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 17 is the second sprite. Picture: running.
-; Original source label ARUNL21 (from the assembler symbol table left at game_screen).
+; Original source label ARUNL21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_16
         !byte $00,$00,$00,$c0,$40,$c0,$e0,$70
         !byte $38,$38,$38,$38,$10,$00
 ; Bruce frame 18 (global frame 18). 8 pixels wide, 13 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 19 is the second sprite. Picture: running.
-; Original source label ARUNR11 (from the assembler symbol table left at game_screen).
+; Original source label ARUNR11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_18
         !byte $00,$00,$00,$06,$04,$06,$0e,$1c
         !byte $38,$38,$38,$38,$10,$00
 ; Bruce frame 20 (global frame 20). 8 pixels wide, 13 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 21 is the second sprite. Picture: running (mirror of frame 14).
-; Original source label ARUNR21 (from the assembler symbol table left at game_screen).
+; Original source label ARUNR21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_20
         !byte $00,$00,$00,$03,$02,$03,$07,$7e
         !byte $7c,$5e,$5e,$0e,$02,$02
 ; Bruce frame 15 (global frame 15). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 14. Picture: running.
-; Original source label ARUNL12 (from the assembler symbol table left at game_screen).
+; Original source label ARUNL12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_15
         !byte $00,$00,$e0,$30,$b0,$30,$10,$00
         !byte $00,$00,$00,$0a,$9a,$9e,$1c,$28
         !byte $6c,$43,$41,$41,$c0,$00,$00
 ; Bruce frame 17 (global frame 17). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 16. Picture: running.
-; Original source label ARUNL22 (from the assembler symbol table left at game_screen).
+; Original source label ARUNL22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_17
         !byte $00,$00,$e0,$30,$b0,$30,$10,$00
         !byte $00,$00,$00,$04,$2e,$3c,$3c,$18
         !byte $18,$08,$0c,$04,$04,$00,$00
 ; Bruce frame 19 (global frame 19). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 18. Picture: running.
-; Original source label ARUNR12 (from the assembler symbol table left at game_screen).
+; Original source label ARUNR12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_19
         !byte $00,$00,$0e,$18,$1a,$18,$10,$00
         !byte $00,$00,$00,$40,$e8,$78,$78,$30
         !byte $30,$20,$60,$40,$40,$00,$00
 ; Bruce frame 21 (global frame 21). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 20. Picture: running (mirror of frame 14).
-; Original source label ARUNR22 (from the assembler symbol table left at game_screen).
+; Original source label ARUNR22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_21
         !byte $00,$00,$07,$0c,$0d,$0c,$08,$00
         !byte $00,$00,$00,$50,$59,$79,$38,$14

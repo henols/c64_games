@@ -31,7 +31,7 @@ middle and a pagoda at the right. Bruce starts here at a game start and after ea
 | Table | Value |
 |---|---|
 | Map | [`room_map_00`](../src/room_maps_00_04.asm#L18) [`$68F9`](reference/modules/room_maps_00_04.md#room_map_00), 272 bytes, 440 cells |
-| Colours | fill $FE, charset $38 ([`charset_rooms_0_9`](../src/constants.asm#L157) [`$A000`](reference/variables.md#charset_rooms_0_9)), [`room_palette_r0_3`](../src/room_palettes.asm#L29) [`$47C8`](reference/modules/room_palettes.md#room_palette_r0_3), splits $78, $97 |
+| Colours | fill $FE, charset $38 ([`charset_rooms_0_9`](../src/constants.asm#L204) [`$A000`](reference/variables.md#charset_rooms_0_9)), [`room_palette_r0_3`](../src/room_palettes.asm#L29) [`$47C8`](reference/modules/room_palettes.md#room_palette_r0_3), splits $78, $97 |
 | Start A / B | $1A, $C4 / $9F, $62 |
 | Enemies | yes; Ninja $68 / $A0, side $02; Yamo $F0 / $EE, side $80 |
 | Lanterns | 6, [`lantern_list_room0`](../src/lantern_lists.asm#L21) [`$4D0C`](reference/modules/lantern_lists.md#lantern_list_room0) |
@@ -503,7 +503,7 @@ A grey castle hall with three floors. The screenshot shows Yamo (green) and the 
 | Table | Value |
 |---|---|
 | Map | [`room_map_10`](../src/room_maps_10_14.asm#L9) [`$75D8`](reference/modules/room_maps_10_14.md#room_map_10), 372 bytes, 442 cells (rooms.md, section 9) |
-| Colours | fill $F9, charset $3A ([`charset_rooms_10_19`](../src/constants.asm#L158) [`$A800`](reference/variables.md#charset_rooms_10_19)), [`room_palette_r10_12_14_16`](../src/room_palettes.asm#L37) [`$47D7`](reference/modules/room_palettes.md#room_palette_r10_12_14_16), split $56 |
+| Colours | fill $F9, charset $3A ([`charset_rooms_10_19`](../src/constants.asm#L205) [`$A800`](reference/variables.md#charset_rooms_10_19)), [`room_palette_r10_12_14_16`](../src/room_palettes.asm#L37) [`$47D7`](reference/modules/room_palettes.md#room_palette_r10_12_14_16), split $56 |
 | Start A / B | $34, $8C / $96, $5C |
 | Enemies | yes; Ninja $08 / $0C, side $02; Yamo $30 / $30, side $80 |
 | Lanterns | 3, [`lantern_list_room10`](../src/lantern_lists.asm#L73) [`$4E1E`](reference/modules/lantern_lists.md#lantern_list_room10): L4 C1, L7 C30 (+4), L10 C30 |
@@ -817,7 +817,7 @@ two fireballs fall from the wizard. **Observed.**
 | Table | Value |
 |---|---|
 | Map | [`room_map_18`](../src/room_maps_15_19.asm#L113) [`$7E90`](reference/modules/room_maps_15_19.md#room_map_18), 336 bytes, 442 cells (rooms.md, section 9) |
-| Colours | fill $FE, charset $3C ([`charset_wizard`](../src/constants.asm#L159) [`$B000`](reference/variables.md#charset_wizard)), [`room_palette_r18`](../src/room_palettes.asm#L50) [`$47EF`](reference/modules/room_palettes.md#room_palette_r18), no split |
+| Colours | fill $FE, charset $3C ([`charset_wizard`](../src/constants.asm#L206) [`$B000`](reference/variables.md#charset_wizard)), [`room_palette_r18`](../src/room_palettes.asm#L50) [`$47EF`](reference/modules/room_palettes.md#room_palette_r18), no split |
 | Start A / B | $18, $C6 / 0, 0 |
 | Enemies | none |
 | Lanterns | 1, [`lantern_list_room18`](../src/lantern_lists.asm#L99) [`$4E86`](reference/modules/lantern_lists.md#lantern_list_room18): L11 C37 |
@@ -825,8 +825,8 @@ two fireballs fall from the wizard. **Observed.**
 
 **Setup.** [`room18_init`](../src/room_specific_init.asm#L317) [`$35FA`](reference/modules/room_specific_init.md#room18_init): colour RAM $FE for the whole play area; clears the fireball sprite data
 `$8340-$83BF`; no Y expansion and X expansion for all 8 sprites; [`room_state_a`](../src/room_dispatch.asm#L7) = 1 (wizard present), [`room_state_b`](../src/room_dispatch.asm#L9)
-= 1 (animation timer); [`fireball_active`](../src/fireball_text_score_vars.asm#L15) [`$432E`](reference/modules/fireball_text_score_vars.md#fireball_active) = 0, 0; [`fireball_respawn_delay`](../src/fireball_text_score_vars.asm#L19) [`$4330`](reference/modules/fireball_text_score_vars.md#fireball_respawn_delay) = 0 and $10;
-[`fireball_unused_init`](../src/fireball_text_score_vars.asm#L30) [`$4336`](reference/modules/fireball_text_score_vars.md#fireball_unused_init) = 6, 7 (never read). **Code.**
+= 1 (animation timer); [`fireball_active`](../src/fireball_text_score_vars.asm#L8) [`$432E`](reference/modules/fireball_text_score_vars.md#fireball_active) = 0, 0; [`fireball_respawn_delay`](../src/fireball_text_score_vars.asm#L12) [`$4330`](reference/modules/fireball_text_score_vars.md#fireball_respawn_delay) = 0 and $10;
+[`fireball_unused_init`](../src/fireball_text_score_vars.asm#L23) [`$4336`](reference/modules/fireball_text_score_vars.md#fireball_unused_init) = 6, 7 (never read). **Code.**
 
 **Behaviour.** [`room18_frame`](../src/wizard_room.asm#L13) [`$3CDC`](reference/modules/wizard_room.md#room18_frame). Deadly characters do not kill in room 18 ([`touch_deadly_tile`](../src/touch_effects.asm#L75) [`$304B`](reference/modules/touch_effects.md#touch_deadly_tile)
 returns). **Code**; the wizard alive ran in the coverage (**Observed**); the defeat ran in a run of the analysis
@@ -841,7 +841,7 @@ returns). **Code**; the wizard alive ran in the coverage (**Observed**); the def
 2. **Lantern taken** (first pass with the record state 0): [`room_state_a`](../src/room_dispatch.asm#L7) = 0, [`clear_fireball_sprites`](../src/wizard_fireballs.asm#L171) [`$423F`](reference/modules/wizard_fireballs.md#clear_fireball_sprites),
    sprites 5-7 off, tile $61 (code $06) at L11 C0, 3000 points, gaze 1, [`room_state_b`](../src/room_dispatch.asm#L9) = $50.
 3. **Defeat sequence** ([`room18_wizard_defeated`](../src/wizard_room.asm#L134) [`$3DAF`](reference/modules/wizard_room.md#room18_wizard_defeated), [`room_state_b`](../src/room_dispatch.asm#L9) passes): random colours on the wizard
-   area of colour RAM (colour 0 on the last pass); [`room_vmcsb`](../src/constants.asm#L121) [`$00F2`](reference/variables.md#room_vmcsb) = $3E ([`charset_wizard_flash`](../src/constants.asm#L160) [`$B800`](reference/variables.md#charset_wizard_flash)),
+   area of colour RAM (colour 0 on the last pass); [`room_vmcsb`](../src/constants.asm#L121) [`$00F2`](reference/variables.md#room_vmcsb) = $3E ([`charset_wizard_flash`](../src/constants.asm#L207) [`$B800`](reference/variables.md#charset_wizard_flash)),
    or $3C at random while more than 16 passes are left; sound $8B; the four wizard parts toggle (tiles $47-$4E).
 4. **Wizard gone** ([`room18_wizard_gone`](../src/wizard_room.asm#L115) [`$3D9B`](reference/modules/wizard_room.md#room18_wizard_gone), [`room_state_b`](../src/room_dispatch.asm#L9) = 0), every pass: tile $5E (codes $00 $00 $03) at
    L11 C37 and tile $5F (codes $5A $5A) at L12 C38.
@@ -868,7 +868,7 @@ stateDiagram-v2
 | Gone | every pass | Gone: tiles $5E, $5F | [`room18_wizard_gone`](../src/wizard_room.asm#L115) [`$3D9B`](reference/modules/wizard_room.md#room18_wizard_gone) |
 
 The last pass of the sequence leaves [`room_vmcsb`](../src/constants.asm#L121) = $3E, so after the defeat the room shows with
-[`charset_wizard_flash`](../src/constants.asm#L160) [`$B800`](reference/variables.md#charset_wizard_flash) (the expanded [`room_charset_d`](../src/room_charset_d.asm#L8) [`$9C00`](reference/graphics.md#room_charset_d)). Nothing sets it back until the next
+[`charset_wizard_flash`](../src/constants.asm#L207) [`$B800`](reference/variables.md#charset_wizard_flash) (the expanded [`room_charset_d`](../src/room_charset_d.asm#L8) [`$9C00`](reference/graphics.md#room_charset_d)). Nothing sets it back until the next
 [`draw_room`](../src/draw_room.asm#L28). **Code.**
 
 **Links.**

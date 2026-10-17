@@ -91,7 +91,7 @@ the idle timer. The main loop does the game logic.
 10. [`check_background_contact`](../src/background_contact.asm#L17) [`$5212`](reference/modules/background_contact.md#check_background_contact) sets the terrain flags of each actor from its pixels and the background.
 11. [`check_background_touch`](../src/background_touch.asm#L10) [`$2E39`](reference/modules/background_touch.md#check_background_touch) checks the tiles under the actors: lanterns, exits, deadly tiles. An exit goes
     to [`change_room`](../src/background_touch.asm#L234) [`$2F9A`](reference/modules/background_touch.md#change_room), which draws the next room, resets the stack and jumps to [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop).
-12. [`main_loop_protection_check`](../src/game_main_loop.asm#L67) [`$1C13`](reference/modules/game_main_loop.md#main_loop_protection_check) stores [`prot_key_tick`](../src/protection_key_page.asm#L31) [`$CF7A`](reference/modules/protection_key_page.md#prot_key_tick) EOR [`prot_key_tick_pair`](../src/protection_key_page.asm#L53) [`$CF9A`](reference/modules/protection_key_page.md#prot_key_tick_pair) in
+12. [`main_loop_protection_check`](../src/game_main_loop.asm#L67) [`$1C13`](reference/modules/game_main_loop.md#main_loop_protection_check) stores [`prot_key_tick`](../src/protection_key_page.asm#L14) [`$CF7A`](reference/modules/protection_key_page.md#prot_key_tick) EOR [`prot_key_tick_pair`](../src/protection_key_page.asm#L36) [`$CF9A`](reference/modules/protection_key_page.md#prot_key_tick_pair) in
     [`protection_check_value`](../src/actor_step.asm#L623) [`$2007`](reference/modules/actor_step.md#protection_check_value). [`actor_play_step_sound`](../src/actor_step.asm#L556) [`$1FC4`](reference/modules/actor_step.md#actor_play_step_sound) checks this value later.
 13. When [`room_no_enemies`](../src/room_tables.asm#L164) [`$4C9E`](reference/modules/room_tables.md#room_no_enemies) of the room is 0: [`check_fight_collisions`](../src/fight_hits.asm#L14) [`$29C3`](reference/modules/fight_hits.md#check_fight_collisions).
 14. [`update_high_score`](../src/score.asm#L65) [`$3184`](reference/modules/score.md#update_high_score) (section 6.4), [`update_actors`](../src/actor_driver_text.asm#L10) [`$179E`](reference/modules/actor_driver_text.md#update_actors) (input, AI and the action of each actor),
@@ -122,10 +122,10 @@ which no code reads. **Code.**
   ([`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen)). S also sets the count of the title tune to 0, so the next title plays the tune
   when the tune is on. **Code.**
 - **V**: when screen row 0 starts with character `$20`, [`toggle_credit_line`](../src/status_and_keys.asm#L94) [`$1B68`](reference/modules/status_and_keys.md#toggle_credit_line) copies the 40 characters of
-  [`version_banner`](../src/messages.asm#L375) [`$4707`](reference/modules/messages.md#version_banner) ("BRUCE LEE (C) 1984 DATASOFT REV.2 BY RJF") to row 0. Else
+  [`version_banner`](../src/messages_rooms.asm#L266) [`$4707`](reference/modules/messages_rooms.md#version_banner) ("BRUCE LEE (C) 1984 DATASOFT REV.2 BY RJF") to row 0. Else
   [`toggle_credit_line_clear`](../src/status_and_keys.asm#L105) [`$1B7B`](reference/modules/status_and_keys.md#toggle_credit_line_clear) fills row 0 with `$20`. [`reset_play_state`](../src/play_init.asm#L19) [`$0763`](reference/modules/play_init.md#reset_play_state) fills row 0 with `$20`.
   In the text font, `$20` is the solid block that the cold start made, drawn in black. **Code.**
-- **F1** restarts the program state but keeps [`top_score`](../src/fireball_text_score_vars.asm#L63) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score), the options and the handedness. **Code.**
+- **F1** restarts the program state but keeps [`top_score`](../src/fireball_text_score_vars.asm#L56) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score), the options and the handedness. **Code.**
 - The demo has no keys but F1: [`check_demo_abort`](../src/pause_status_line.asm#L7) [`$19B8`](reference/modules/pause_status_line.md#check_demo_abort) scans with the same mode and reacts to F1 only.
 
 ![The credit line after V](images/screens/status_line_v.png)
@@ -150,9 +150,9 @@ The game screen after V: the credit line in row 0 and the status line in row 1. 
   1-2 and drops bit 0). While it runs, [`last_game_key`](../src/constants.asm#L40) [`$004B`](reference/variables.md#last_game_key) = `$FF`. [`check_pause_fire`](../src/pause_status_line.asm#L53) [`$1A08`](reference/modules/pause_status_line.md#check_pause_fire) acts only at
   count 0. The count does not block SPACE.
 - **Fire ends the pause.** [`check_pause_fire`](../src/pause_status_line.asm#L53) [`$1A08`](reference/modules/pause_status_line.md#check_pause_fire) reads the fire button of the current player: port 1
-  ([`CIAPRB`](../src/constants.asm#L229)) for player 1, port 2 ([`CIAPRA`](../src/constants.asm#L228)) for player 2. Fire while not paused does nothing.
+  ([`CIAPRB`](../src/constants.asm#L276)) for player 1, port 2 ([`CIAPRA`](../src/constants.asm#L275)) for player 2. Fire while not paused does nothing.
 - **[`toggle_pause`](../src/pause_status_line.asm#L69) [`$1A22`](reference/modules/pause_status_line.md#toggle_pause)** sets [`pause_state`](../src/constants.asm#L135) [`$0105`](reference/variables.md#pause_state) = ([`pause_state`](../src/constants.asm#L135) EOR `$80`) OR 6.
-  - Into the pause: [`show_paused`](../src/pause_status_line.asm#L88) [`$1A42`](reference/modules/pause_status_line.md#show_paused) sets [`up_blink_timer`](../src/fireball_text_score_vars.asm#L110) [`$43BD`](reference/modules/fireball_text_score_vars.md#up_blink_timer) = `$11` and calls [`blink_player_label`](../src/pause_status_line.asm#L147)
+  - Into the pause: [`show_paused`](../src/pause_status_line.asm#L88) [`$1A42`](reference/modules/pause_status_line.md#show_paused) sets [`up_blink_timer`](../src/fireball_text_score_vars.asm#L103) [`$43BD`](reference/modules/fireball_text_score_vars.md#up_blink_timer) = `$11` and calls [`blink_player_label`](../src/pause_status_line.asm#L147)
     `$1A96` (the label shows and stays), sets [`idle_timer`](../src/constants.asm#L81) [`$0082`](reference/variables.md#idle_timer) = `$51`, and prints "** PAUSED **" (message `$0B`,
     [`show_paused_message`](../src/status_and_keys.asm#L141) [`$1BA4`](reference/modules/status_and_keys.md#show_paused_message)) on the status line from column 15.
   - Out of the pause: [`clear_paused_message`](../src/status_and_keys.asm#L154) [`$1BB6`](reference/modules/status_and_keys.md#clear_paused_message) prints 12 blanks over it. When [`idle_timer`](../src/constants.asm#L81) [`$0082`](reference/variables.md#idle_timer) is
@@ -205,7 +205,7 @@ stateDiagram-v2
 | any | F1 | the title | [`restart_to_title`](../src/title_demo_start.asm#L9) [`$050F`](reference/modules/title_demo_start.md#restart_to_title) |
 
 **Observed** (run d1-flow): after SPACE, [`pause_state`](../src/constants.asm#L135) [`$0105`](reference/variables.md#pause_state) was `$85`, `$83`, `$81`, `$80`, `$80` at 3-frame
-steps, with [`idle_timer`](../src/constants.asm#L81) [`$0082`](reference/variables.md#idle_timer) = `$51` and [`up_blink_timer`](../src/fireball_text_score_vars.asm#L110) [`$43BD`](reference/modules/fireball_text_score_vars.md#up_blink_timer) = `$10`. After fire on port 1, it was `$01`
+steps, with [`idle_timer`](../src/constants.asm#L81) [`$0082`](reference/variables.md#idle_timer) = `$51` and [`up_blink_timer`](../src/fireball_text_score_vars.asm#L103) [`$43BD`](reference/modules/fireball_text_score_vars.md#up_blink_timer) = `$10`. After fire on port 1, it was `$01`
 12 frames later, and [`idle_timer`](../src/constants.asm#L81) was 0. At the first pass of a game [`pause_state`](../src/constants.asm#L135) is `$01`, because
 [`init_game_variables`](../src/game_setup.asm#L18) [`$0F72`](reference/modules/game_setup.md#init_game_variables) writes 1 to `$0100-$0107`.
 
@@ -219,13 +219,13 @@ When player 2 moves Yamo ([`option_yamo_player2`](../src/options_and_patterns.as
 [`frame_update_yamo_idle`](../src/frame_update.asm#L295) [`$173F`](reference/modules/frame_update.md#frame_update_yamo_idle) gives Yamo back to the computer. It counts in [`yamo_idle_time`](../src/constants.asm#L87) [`$0089`](reference/variables.md#yamo_idle_time) only in a
 game, not paused, in a room with enemies. Then it sets [`option_yamo_player2`](../src/options_and_patterns.asm#L18) [`$42CA`](reference/modules/options_and_patterns.md#option_yamo_player2) = 0, the high byte of
 [`room_time`](../src/constants.asm#L86) [`$0087`](reference/variables.md#room_time) = `$20`, plays [`play_open_sound`](../src/wizard_fireballs.asm#L183) [`$424F`](reference/modules/wizard_fireballs.md#play_open_sound), and takes 5 falls (not below 0) from [`falls_left`](../src/constants.asm#L31)
-`$0028` and from the parked player in [`inactive_player_state`](../src/fireball_text_score_vars.asm#L96) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state). **Code.** **Conclusion:** the 5 falls are the
+`$0028` and from the parked player in [`inactive_player_state`](../src/fireball_text_score_vars.asm#L89) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state). **Code.** **Conclusion:** the 5 falls are the
 extra falls of the opponent mode, which starts with 9 falls instead of 4.
 
 ## 5. The status line
 
 [`reset_play_state`](../src/play_init.asm#L19) [`$0763`](reference/modules/play_init.md#reset_play_state) draws the status line at each start of a game, a turn and a fall. Screen row 1 holds it,
-one screen row high, in [`text_font`](../src/text_font.asm#L9) [`$8800`](reference/modules/text_font.md#text_font). Digits are characters `$10-$19`. **Code.**
+one screen row high, in [`text_font`](../src/constants.asm#L193) [`$8800`](reference/variables.md#text_font). Digits are characters `$10-$19`. **Code.**
 
 | Columns | Content | Written by |
 |---|---|---|
@@ -241,7 +241,7 @@ one screen row high, in [`text_font`](../src/text_font.asm#L9) [`$8800`](referen
 
 Screen row 0 holds the credit line or the black bar (section 3).
 
-- **The blink.** [`blink_player_label`](../src/pause_status_line.asm#L147) [`$1A96`](reference/modules/pause_status_line.md#blink_player_label) decrements [`up_blink_timer`](../src/fireball_text_score_vars.asm#L110) [`$43BD`](reference/modules/fireball_text_score_vars.md#up_blink_timer) in each pass. At 0 it sets `$20`
+- **The blink.** [`blink_player_label`](../src/pause_status_line.asm#L147) [`$1A96`](reference/modules/pause_status_line.md#blink_player_label) decrements [`up_blink_timer`](../src/fireball_text_score_vars.asm#L103) [`$43BD`](reference/modules/fireball_text_score_vars.md#up_blink_timer) in each pass. At 0 it sets `$20`
   and prints 3 blanks. At `$10` it prints message 1 + [`current_player`](../src/constants.asm#L14) [`$0003`](reference/variables.md#current_player). So the label is 16 passes on and 16
   passes off, a period of 96 frames. **Code.**
 - **The falls.** [`show_falls_count`](../src/status_and_keys.asm#L10) [`$1AED`](reference/modules/status_and_keys.md#show_falls_count) converts [`falls_left`](../src/constants.asm#L31) [`$0028`](reference/variables.md#falls_left) (0-99) to two decimal digits by repeated
@@ -263,13 +263,13 @@ The status line at the start of a game: 1UP 000000 TOP 000000 FALLS 04. **Observ
 |---|---|---|
 | [`score`](../src/constants.asm#L35) | `$0041` | 24-bit binary, high byte first. The last 3 bytes of the player block. |
 | [`points_to_add`](../src/constants.asm#L30) | `$0025` | 24-bit binary, high byte first, the points of one addition. |
-| [`top_score`](../src/fireball_text_score_vars.asm#L63) | `$4388` | 24-bit binary, high byte first. One top score for both players and all games since the load. |
-| [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L69) | `$438B` | `00 9C 40` = 40000, the score of the first extra fall. |
-| [`bonus_fall_score_step`](../src/fireball_text_score_vars.asm#L73) | `$438E` | `00 75 30` = 30000, the step between extra falls. |
-| [`bonus_fall_next_score`](../src/fireball_text_score_vars.asm#L80) | `$4392` | 24-bit, the score of the next extra fall of the current player. |
-| [`bonus_fall_next_score_other`](../src/fireball_text_score_vars.asm#L84) | `$4395` | the same for the parked player. |
-| [`bcd_conv_binary`](../src/fireball_text_score_vars.asm#L89) | `$4398` | 3 bytes, the work copy of the binary value. |
-| [`bcd_conv_digits`](../src/fireball_text_score_vars.asm#L91) | `$439B` | 4 bytes, 8 BCD digits, high first. `+1..+3` are printed as 6 digits. |
+| [`top_score`](../src/fireball_text_score_vars.asm#L56) | `$4388` | 24-bit binary, high byte first. One top score for both players and all games since the load. |
+| [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L62) | `$438B` | `00 9C 40` = 40000, the score of the first extra fall. |
+| [`bonus_fall_score_step`](../src/fireball_text_score_vars.asm#L66) | `$438E` | `00 75 30` = 30000, the step between extra falls. |
+| [`bonus_fall_next_score`](../src/fireball_text_score_vars.asm#L73) | `$4392` | 24-bit, the score of the next extra fall of the current player. |
+| [`bonus_fall_next_score_other`](../src/fireball_text_score_vars.asm#L77) | `$4395` | the same for the parked player. |
+| [`bcd_conv_binary`](../src/fireball_text_score_vars.asm#L82) | `$4398` | 3 bytes, the work copy of the binary value. |
+| [`bcd_conv_digits`](../src/fireball_text_score_vars.asm#L84) | `$439B` | 4 bytes, 8 BCD digits, high first. `+1..+3` are printed as 6 digits. |
 
 ### 6.2 Adding points
 
@@ -292,7 +292,7 @@ bytes with carry from the low byte (X = 2) to the high byte, checks the extra fa
 
 ### 6.3 Binary to BCD
 
-[`score_to_bcd`](../src/room_misc_support.asm#L142) [`$32DC`](reference/modules/room_misc_support.md#score_to_bcd) converts [`score`](../src/constants.asm#L35) [`$0041`](reference/variables.md#score), and [`show_high_score`](../src/score.asm#L112) [`$31C2`](reference/modules/score.md#show_high_score) converts [`top_score`](../src/fireball_text_score_vars.asm#L63) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score) with
+[`score_to_bcd`](../src/room_misc_support.asm#L142) [`$32DC`](reference/modules/room_misc_support.md#score_to_bcd) converts [`score`](../src/constants.asm#L35) [`$0041`](reference/variables.md#score), and [`show_high_score`](../src/score.asm#L112) [`$31C2`](reference/modules/score.md#show_high_score) converts [`top_score`](../src/fireball_text_score_vars.asm#L56) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score) with
 the same method. **Code.**
 
 ~~~
@@ -312,7 +312,7 @@ stays 0. The low byte is `$7D` = `0111 1101`:
 |---|---|---|---|---|---|---|---|---|
 | BCD after the step | 0 | 1 | 3 | 7 | 15 | 31 | 62 | 125 |
 
-[`bcd_conv_digits`](../src/fireball_text_score_vars.asm#L91) [`$439B`](reference/modules/fireball_text_score_vars.md#bcd_conv_digits) = `00 00 01 25`, and the status line shows 000125. **Observed** (run d1-flow: the score
+[`bcd_conv_digits`](../src/fireball_text_score_vars.asm#L84) [`$439B`](reference/modules/fireball_text_score_vars.md#bcd_conv_digits) = `00 00 01 25`, and the status line shows 000125. **Observed** (run d1-flow: the score
 `00 00 7D` at the end of the demo; the demo screenshot on [startup_title.md](startup_title.md) shows 000125).
 
 **Conclusion:** the status line shows 6 of the 8 BCD digits, so a score of 1,000,000 or more shows only its low 6
@@ -323,22 +323,22 @@ digits.
 [`update_high_score`](../src/score.asm#L65) [`$3184`](reference/modules/score.md#update_high_score) runs in each pass. **Code.**
 
 1. In the demo ([`game_mode`](../src/constants.asm#L134) [`$0104`](reference/variables.md#game_mode) = 0) it only calls [`show_score`](../src/score.asm#L39) [`$315A`](reference/modules/score.md#show_score).
-2. A protection check: when [`prot_key_trap1`](../src/protection_key_page.asm#L33) [`$CF7B`](reference/modules/protection_key_page.md#prot_key_trap1) = [`prot_key_trap1_pair`](../src/protection_key_page.asm#L55) [`$CF9B`](reference/modules/protection_key_page.md#prot_key_trap1_pair), and the same for the trap 2
-   and trap 3 pairs, it jumps through [`io1_dummy`](../src/constants.asm#L240) [`$DE00`](reference/variables.md#io1_dummy) and crashes. With the right key bytes the first pair
+2. A protection check: when [`prot_key_trap1`](../src/protection_key_page.asm#L16) [`$CF7B`](reference/modules/protection_key_page.md#prot_key_trap1) = [`prot_key_trap1_pair`](../src/protection_key_page.asm#L38) [`$CF9B`](reference/modules/protection_key_page.md#prot_key_trap1_pair), and the same for the trap 2
+   and trap 3 pairs, it jumps through [`io1_dummy`](../src/constants.asm#L287) [`$DE00`](reference/variables.md#io1_dummy) and crashes. With the right key bytes the first pair
    differs.
-3. [`update_high_score_compare_loop`](../src/score.asm#L91) [`$31A6`](reference/modules/score.md#update_high_score_compare_loop) compares [`top_score`](../src/fireball_text_score_vars.asm#L63) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score) with [`score`](../src/constants.asm#L35) [`$0041`](reference/variables.md#score) from the high byte.
+3. [`update_high_score_compare_loop`](../src/score.asm#L91) [`$31A6`](reference/modules/score.md#update_high_score_compare_loop) compares [`top_score`](../src/fireball_text_score_vars.asm#L56) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score) with [`score`](../src/constants.asm#L35) [`$0041`](reference/variables.md#score) from the high byte.
    The first byte that differs decides. This is a correct 24-bit compare.
-4. When the score is higher, [`update_high_score_store`](../src/score.asm#L102) [`$31B8`](reference/modules/score.md#update_high_score_store) copies 4 bytes from [`score`](../src/constants.asm#L35) [`$0041`](reference/variables.md#score) to [`top_score`](../src/fireball_text_score_vars.asm#L63)
+4. When the score is higher, [`update_high_score_store`](../src/score.asm#L102) [`$31B8`](reference/modules/score.md#update_high_score_store) copies 4 bytes from [`score`](../src/constants.asm#L35) [`$0041`](reference/variables.md#score) to [`top_score`](../src/fireball_text_score_vars.asm#L56)
    `$4388`, and falls into [`show_high_score`](../src/score.asm#L112) [`$31C2`](reference/modules/score.md#show_high_score).
 
 The fourth byte is a bug, see section 6.5.
 
 ### 6.5 Extra falls and their two bugs
 
-[`check_extra_fall_loop`](../src/score.asm#L18) [`$313A`](reference/modules/score.md#check_extra_fall_loop) runs after each addition. When the score reaches [`bonus_fall_next_score`](../src/fireball_text_score_vars.asm#L80) [`$4392`](reference/modules/fireball_text_score_vars.md#bonus_fall_next_score),
-[`award_extra_fall`](../src/score.asm#L25) [`$3146`](reference/modules/score.md#award_extra_fall) adds [`bonus_fall_score_step`](../src/fireball_text_score_vars.asm#L73) [`$438E`](reference/modules/fireball_text_score_vars.md#bonus_fall_score_step) to the limit, adds 1 to [`falls_left`](../src/constants.asm#L31) [`$0028`](reference/variables.md#falls_left) and
+[`check_extra_fall_loop`](../src/score.asm#L18) [`$313A`](reference/modules/score.md#check_extra_fall_loop) runs after each addition. When the score reaches [`bonus_fall_next_score`](../src/fireball_text_score_vars.asm#L73) [`$4392`](reference/modules/fireball_text_score_vars.md#bonus_fall_next_score),
+[`award_extra_fall`](../src/score.asm#L25) [`$3146`](reference/modules/score.md#award_extra_fall) adds [`bonus_fall_score_step`](../src/fireball_text_score_vars.asm#L66) [`$438E`](reference/modules/fireball_text_score_vars.md#bonus_fall_score_step) to the limit, adds 1 to [`falls_left`](../src/constants.asm#L31) [`$0028`](reference/variables.md#falls_left) and
 calls [`show_falls_count`](../src/status_and_keys.asm#L10) [`$1AED`](reference/modules/status_and_keys.md#show_falls_count). [`init_game_variables`](../src/game_setup.asm#L18) [`$0F72`](reference/modules/game_setup.md#init_game_variables) sets the limit of both players to
-[`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L69) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score). **Code.** The intent: an extra fall at 40000, 70000, 100000 and so on.
+[`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L62) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score). **Code.** The intent: an extra fall at 40000, 70000, 100000 and so on.
 
 ~~~
 for x in 0..2:                              ; high byte first
@@ -359,12 +359,12 @@ never stops early when a higher byte is greater. **Code.**
 high enough. All bytes being greater or equal implies that the score is greater or equal.
 
 **Bug 2: a new top score changes the first limit.** [`update_high_score_store`](../src/score.asm#L102) [`$31B8`](reference/modules/score.md#update_high_score_store) copies 4 bytes, [`score`](../src/constants.asm#L35)
-`$0041-$0043` and zero page `$44`, to [`top_score`](../src/fireball_text_score_vars.asm#L63) [`$4388-$438A`](reference/modules/fireball_text_score_vars.md#top_score) and [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L69) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score). `$44` is
+`$0041-$0043` and zero page `$44`, to [`top_score`](../src/fireball_text_score_vars.asm#L56) [`$4388-$438A`](reference/modules/fireball_text_score_vars.md#top_score) and [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L62) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score). `$44` is
 [`raster_split_index`](../src/constants.asm#L36) [`$0044`](reference/variables.md#raster_split_index), the index of the raster split in the game interrupt. The next game copies the
 damaged value to the limits. **Code.**
 
 - **Observed** (run d1-top): in a game, the score was set seven times above the top score. After each store,
-  [`top_score`](../src/fireball_text_score_vars.asm#L63) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score) held `00 00 xx 02 9C 40`: [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L69) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score) was `02 9C 40` each time.
+  [`top_score`](../src/fireball_text_score_vars.asm#L56) [`$4388`](reference/modules/fireball_text_score_vars.md#top_score) held `00 00 xx 02 9C 40`: [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L62) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score) was `02 9C 40` each time.
 - **Conclusion:** after a game with a new top score, the first extra fall of each later game is at `$029C40` =
   171072 points, not 40000. With bug 1, it also needs the middle byte to be `$9C` or more.
 
@@ -382,8 +382,8 @@ damaged value to the limits. **Code.**
 
 ### 7.1 The player block
 
-[`lose_fall`](../src/lose_fall_game_over.asm#L14) [`$1818`](reference/modules/lose_fall_game_over.md#lose_fall) exchanges these 28 bytes with [`inactive_player_state`](../src/fireball_text_score_vars.asm#L96) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state) when the turn passes to the other
-player. [`init_game_variables`](../src/game_setup.asm#L18) [`$0F72`](reference/modules/game_setup.md#init_game_variables) copies the start values to [`inactive_player_state`](../src/fireball_text_score_vars.asm#L96) at each game start.
+[`lose_fall`](../src/lose_fall_game_over.asm#L14) [`$1818`](reference/modules/lose_fall_game_over.md#lose_fall) exchanges these 28 bytes with [`inactive_player_state`](../src/fireball_text_score_vars.asm#L89) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state) when the turn passes to the other
+player. [`init_game_variables`](../src/game_setup.asm#L18) [`$0F72`](reference/modules/game_setup.md#init_game_variables) copies the start values to [`inactive_player_state`](../src/fireball_text_score_vars.asm#L89) at each game start.
 
 | Bytes | Name | Meaning | At the game start (Observed, run d1-flow) |
 |---|---|---|---|
@@ -399,7 +399,7 @@ Other state of a player is kept in other ways. **Code.**
 | State | How each player keeps it |
 |---|---|
 | the present flag of each lantern | [`swap_player_lanterns`](../src/game_setup.asm#L96) [`$0FED`](reference/modules/game_setup.md#swap_player_lanterns) exchanges it with [`parked_lantern_flags`](../src/constants.asm#L153) [`$0340`](reference/variables.md#parked_lantern_flags) |
-| [`bonus_fall_next_score`](../src/fireball_text_score_vars.asm#L80) [`$4392`](reference/modules/fireball_text_score_vars.md#bonus_fall_next_score) | [`next_turn_swap_score_loop`](../src/lose_fall_game_over.asm#L63) [`$1875`](reference/modules/lose_fall_game_over.md#next_turn_swap_score_loop) exchanges it with [`bonus_fall_next_score_other`](../src/fireball_text_score_vars.asm#L84) [`$4395`](reference/modules/fireball_text_score_vars.md#bonus_fall_next_score_other) |
+| [`bonus_fall_next_score`](../src/fireball_text_score_vars.asm#L73) [`$4392`](reference/modules/fireball_text_score_vars.md#bonus_fall_next_score) | [`next_turn_swap_score_loop`](../src/lose_fall_game_over.asm#L63) [`$1875`](reference/modules/lose_fall_game_over.md#next_turn_swap_score_loop) exchanges it with [`bonus_fall_next_score_other`](../src/fireball_text_score_vars.asm#L77) [`$4395`](reference/modules/fireball_text_score_vars.md#bonus_fall_next_score_other) |
 | [`room_unvisited`](../src/constants.asm#L152) [`$0300`](reference/variables.md#room_unvisited) | one byte per room and player, index room * 2 + [`current_player`](../src/constants.asm#L14) |
 | [`room13_band_bonus`](../src/constants.asm#L149) [`$014B`](reference/variables.md#room13_band_bonus) | 4 bytes per player, index [`current_player`](../src/constants.asm#L14) * 4 |
 | [`extra_fall_pickups_left`](../src/lantern_lists.asm#L109) [`$4E95`](reference/modules/lantern_lists.md#extra_fall_pickups_left) | one byte per player, index [`current_player`](../src/constants.asm#L14) |
@@ -414,12 +414,12 @@ Other state of a player is kept in other ways. **Code.**
 3. [`lose_fall_count`](../src/lose_fall_game_over.asm#L20) [`$1826`](reference/modules/lose_fall_game_over.md#lose_fall_count) decrements [`falls_left`](../src/constants.asm#L31) [`$0028`](reference/variables.md#falls_left). A negative result goes to [`game_over`](../src/lose_fall_game_over.asm#L82) [`$188E`](reference/modules/lose_fall_game_over.md#game_over).
 4. [`next_turn`](../src/lose_fall_game_over.asm#L23) [`$182A`](reference/modules/lose_fall_game_over.md#next_turn): [`actor_energy`](../src/constants.asm#L111) [`$00D1`](reference/variables.md#actor_energy) of the three actors = `$24`, [`enemy_follow_x`](../src/constants.asm#L88) [`$008B`](reference/variables.md#enemy_follow_x) = 0 (no enemy
    follows Bruce), [`clear_fireball_sprites`](../src/wizard_fireballs.asm#L171) [`$423F`](reference/modules/wizard_fireballs.md#clear_fireball_sprites).
-5. In a two-player game, when the parked player is not out ([`inactive_player_state`](../src/fireball_text_score_vars.asm#L96) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state) is positive):
+5. In a two-player game, when the parked player is not out ([`inactive_player_state`](../src/fireball_text_score_vars.asm#L89) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state) is positive):
    [`current_player`](../src/constants.asm#L14) [`$0003`](reference/variables.md#current_player) EOR 1.
 6. [`next_turn_player_screen`](../src/lose_fall_game_over.asm#L40) [`$184B`](reference/modules/lose_fall_game_over.md#next_turn_player_screen): [`show_player_screen`](../src/title_player_screens.asm#L71) [`$0EA7`](reference/modules/title_player_screens.md#show_player_screen) shows PLAYER n, also in a one-player game. Then
    the screen is blanked.
 7. With the same condition as step 5: [`next_turn_swap_block_loop`](../src/lose_fall_game_over.asm#L52) [`$1862`](reference/modules/lose_fall_game_over.md#next_turn_swap_block_loop) exchanges the player block with
-   [`inactive_player_state`](../src/fireball_text_score_vars.asm#L96) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state), [`swap_player_lanterns`](../src/game_setup.asm#L96) [`$0FED`](reference/modules/game_setup.md#swap_player_lanterns) exchanges the lanterns, and
+   [`inactive_player_state`](../src/fireball_text_score_vars.asm#L89) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state), [`swap_player_lanterns`](../src/game_setup.asm#L96) [`$0FED`](reference/modules/game_setup.md#swap_player_lanterns) exchanges the lanterns, and
    [`next_turn_swap_score_loop`](../src/lose_fall_game_over.asm#L63) [`$1875`](reference/modules/lose_fall_game_over.md#next_turn_swap_score_loop) exchanges the limits of the extra falls.
 8. [`next_turn_enter_room`](../src/lose_fall_game_over.asm#L72) [`$1886`](reference/modules/lose_fall_game_over.md#next_turn_enter_room): [`reset_play_state`](../src/play_init.asm#L19) [`$0763`](reference/modules/play_init.md#reset_play_state) draws the game screen and the status line of this
    player and spawns Bruce. X = [`room`](../src/constants.asm#L32) [`$0029`](reference/variables.md#room), and [`place_bruce_at_room_start`](../src/room_misc_support.asm#L11) [`$3217`](reference/modules/room_misc_support.md#place_bruce_at_room_start) enters that room at its
@@ -480,7 +480,7 @@ stateDiagram-v2
   Over --> Title: else, 254 + 64 frames
 ~~~
 
-"Other player in" means [`option_two_players`](../src/options_and_patterns.asm#L14) [`$42C9`](reference/modules/options_and_patterns.md#option_two_players) = 1 and [`inactive_player_state`](../src/fireball_text_score_vars.asm#L96) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state) positive.
+"Other player in" means [`option_two_players`](../src/options_and_patterns.asm#L14) [`$42C9`](reference/modules/options_and_patterns.md#option_two_players) = 1 and [`inactive_player_state`](../src/fireball_text_score_vars.asm#L89) [`$439F`](reference/modules/fireball_text_score_vars.md#inactive_player_state) positive.
 
 | State | Condition | Next state | Code |
 |---|---|---|---|
@@ -499,7 +499,7 @@ stateDiagram-v2
 
 **Observed** (run d1-flow, two players): player 1 started with [`falls_left`](../src/constants.asm#L31) [`$0028`](reference/variables.md#falls_left) set to 0 and lost a fall. The
 game went to [`game_over`](../src/lose_fall_game_over.asm#L82) [`$188E`](reference/modules/lose_fall_game_over.md#game_over), then to [`next_turn`](../src/lose_fall_game_over.asm#L23) [`$182A`](reference/modules/lose_fall_game_over.md#next_turn) and to the PLAYER 2 screen. In the turn of player 2,
-[`current_player`](../src/constants.asm#L14) [`$0003`](reference/variables.md#current_player) = 1, the player block held the start values of player 2, and [`inactive_player_state`](../src/fireball_text_score_vars.asm#L96)
+[`current_player`](../src/constants.asm#L14) [`$0003`](reference/variables.md#current_player) = 1, the player block held the start values of player 2, and [`inactive_player_state`](../src/fireball_text_score_vars.asm#L89)
 `$439F` started with `$FF` (player 1 out). When player 2 lost his last fall, the game went to [`game_over`](../src/lose_fall_game_over.asm#L82) [`$188E`](reference/modules/lose_fall_game_over.md#game_over)
 and then to the title, with [`option_two_players`](../src/options_and_patterns.asm#L14) [`$42C9`](reference/modules/options_and_patterns.md#option_two_players) still 1.
 
@@ -507,7 +507,7 @@ and then to the title, with [`option_two_players`](../src/options_and_patterns.a
 
 | Finding | Evidence |
 |---|---|
-| A new top score writes [`raster_split_index`](../src/constants.asm#L36) [`$0044`](reference/variables.md#raster_split_index) into [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L69) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score); the first extra fall of later games moves from 40000 to 171072. | Observed: run d1-top (value 2 in 7 of 7 stores). Code: [`update_high_score_store`](../src/score.asm#L102) [`$31B8`](reference/modules/score.md#update_high_score_store). |
+| A new top score writes [`raster_split_index`](../src/constants.asm#L36) [`$0044`](reference/variables.md#raster_split_index) into [`bonus_fall_first_score`](../src/fireball_text_score_vars.asm#L62) [`$438B`](reference/modules/fireball_text_score_vars.md#bonus_fall_first_score); the first extra fall of later games moves from 40000 to 171072. | Observed: run d1-top (value 2 in 7 of 7 stores). Code: [`update_high_score_store`](../src/score.asm#L102) [`$31B8`](reference/modules/score.md#update_high_score_store). |
 | The test of the extra fall compares the score per byte, so extra falls come late. | Code: [`check_extra_fall_loop`](../src/score.asm#L18) [`$313A`](reference/modules/score.md#check_extra_fall_loop). |
 | The S key does not change the sound of the game; it switches only the title tune. | Code: one reader of [`title_music_off`](../src/room_enemy_tables.asm#L118) [`$1385`](reference/modules/room_enemy_tables.md#title_music_off). |
 | A paused game starts the screen saver about 4 minutes after the pause; a game without input pauses itself after about 11 minutes. | Code: [`show_paused`](../src/pause_status_line.asm#L88) [`$1A42`](reference/modules/pause_status_line.md#show_paused) and [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update). |

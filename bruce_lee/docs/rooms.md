@@ -94,7 +94,7 @@ All per-room tables have 20 entries, index = [`room`](../src/constants.asm#L32) 
 | [`ninja_spawn_side`](../src/room_enemy_tables.asm#L87) | `$1333` | Ninja start point; only tested for 0. | [`spawn_actor`](../src/actor_spawn.asm#L20) | - |
 | [`yamo_room_delay`](../src/room_enemy_tables.asm#L94) / [`yamo_respawn_delay`](../src/room_enemy_tables.asm#L100) | `$1347` / `$135B` | Passes before Yamo first appears / appears again. | [`draw_room`](../src/draw_room.asm#L28), [`update_yamo_spawn`](../src/actor_spawn.asm#L238) [`$0D0F`](reference/modules/actor_spawn.md#update_yamo_spawn), [`reset_spawn_timer`](../src/actor_spawn.asm#L274) | - |
 | [`yamo_spawn_side`](../src/room_enemy_tables.asm#L107) | `$136F` | Start point of Yamo (and of the Ninja): 0 = random; else 3 times in 4 bit 7 selects (clear = A, set = B). | [`spawn_actor`](../src/actor_spawn.asm#L20) | - |
-| [`room_lantern_count_init`](../src/room_tables.asm#L179) | `$4CCE` | Lanterns of the room at a game start. | [`reset_lantern_counts`](../src/game_setup.asm#L242) [`$10C5`](reference/modules/game_setup.md#reset_lantern_counts) | - |
+| [`room_lantern_count_init`](../src/lantern_counts.asm#L7) | `$4CCE` | Lanterns of the room at a game start. | [`reset_lantern_counts`](../src/game_setup.asm#L242) [`$10C5`](reference/modules/game_setup.md#reset_lantern_counts) | - |
 | [`lantern_list_ptr`](../src/lantern_lists.asm#L13) | `$4CE2` | 21 words: address of the lantern list of the room (entry 20 = [`lantern_list_spare`](../src/lantern_lists.asm#L104) [`$4E90`](reference/modules/lantern_lists.md#lantern_list_spare), not used). | [`check_lantern_pickup`](../src/lantern_pickup.asm#L15), [`setup_room_lanterns_and_init`](../src/lantern_pickup.asm#L79), [`reset_room_lanterns`](../src/lantern_pickup.asm#L160) [`$33DA`](reference/modules/lantern_pickup.md#reset_room_lanterns), [`swap_player_lanterns`](../src/game_setup.asm#L96) [`$0FED`](reference/modules/game_setup.md#swap_player_lanterns) | - |
 | [`room_init_handlers`](../src/room_dispatch.asm#L19) | `$4E9C` | 1 word: init handler address - 1 (RTS table). | [`room_init_dispatch`](../src/lantern_pickup.asm#L136) [`$33BD`](reference/modules/lantern_pickup.md#room_init_dispatch) | - |
 | [`room_frame_handlers`](../src/room_dispatch.asm#L28) | `$4EC4` | 1 word: frame handler address - 1 (RTS table). | [`run_room_frame_handler`](../src/passage_open.asm#L18) [`$3A6F`](reference/modules/passage_open.md#run_room_frame_handler) | - |
@@ -110,8 +110,8 @@ The RAM variables per room:
 ### 2.1 Graphics of each room
 
 [`draw_room`](../src/draw_room.asm#L28) sets [`room_vmcsb`](../src/constants.asm#L121) [`$00F2`](reference/variables.md#room_vmcsb) (the VMCSB value that the raster interrupt writes for the play area): $38 =
-[`charset_rooms_0_9`](../src/constants.asm#L157) [`$A000`](reference/variables.md#charset_rooms_0_9) for rooms 0-9, $3C = [`charset_wizard`](../src/constants.asm#L159) [`$B000`](reference/variables.md#charset_wizard) for room 18, $3A =
-[`charset_rooms_10_19`](../src/constants.asm#L158) [`$A800`](reference/variables.md#charset_rooms_10_19) for the others. The cold start expands the charset sources [`room_charset_a`](../src/room_charset_a.asm#L12) [`$9000`](reference/graphics.md#room_charset_a),
+[`charset_rooms_0_9`](../src/constants.asm#L204) [`$A000`](reference/variables.md#charset_rooms_0_9) for rooms 0-9, $3C = [`charset_wizard`](../src/constants.asm#L206) [`$B000`](reference/variables.md#charset_wizard) for room 18, $3A =
+[`charset_rooms_10_19`](../src/constants.asm#L205) [`$A800`](reference/variables.md#charset_rooms_10_19) for the others. The cold start expands the charset sources [`room_charset_a`](../src/room_charset_a.asm#L12) [`$9000`](reference/graphics.md#room_charset_a),
 [`room_charset_b`](../src/room_charset_b.asm#L6) [`$9400`](reference/graphics.md#room_charset_b), [`room_charset_c`](../src/room_charset_c.asm#L6) [`$9800`](reference/graphics.md#room_charset_c) and [`room_charset_d`](../src/room_charset_d.asm#L8) [`$9C00`](reference/graphics.md#room_charset_d) into these charsets. The raster
 interrupt copies 12 bytes from [`room_palette_ptr`](../src/room_palettes.asm#L75) and the split list from [`room_split_list_ptr`](../src/room_palettes.asm#L82) every frame, so a
 room can have up to 4 colour bands. **Code.** The background colours in the table match the screenshots
@@ -234,7 +234,7 @@ handlers draw). **Conclusion:** these exits cannot be used.
 
 ### 2.4 Lantern counts
 
-[`room_lantern_count_init`](../src/room_tables.asm#L179) [`$4CCE`](reference/modules/room_tables.md#room_lantern_count_init): 6, 6, 10, 2, 2, 10, 8, 13, 4, 5, 3, 3, 3, 0, 4, 6, 2, 2, 1, 0 (90 lanterns).
+[`room_lantern_count_init`](../src/lantern_counts.asm#L7) [`$4CCE`](reference/modules/lantern_counts.md#room_lantern_count_init): 6, 6, 10, 2, 2, 10, 8, 13, 4, 5, 3, 3, 3, 0, 4, 6, 2, 2, 1, 0 (90 lanterns).
 [`reset_lantern_counts`](../src/game_setup.asm#L242) [`$10C5`](reference/modules/game_setup.md#reset_lantern_counts) copies them to [`room_lanterns_left`](../src/constants.asm#L33) [`$002A`](reference/variables.md#room_lanterns_left) at a game start ([`init_game_variables`](../src/game_setup.asm#L18))
 and when room 19 starts the next game loop. Each count equals the number of records in the room's lantern list.
 **Code.**
@@ -376,9 +376,9 @@ The screenshot shows room 0: the top lines are the sky and the mountains of this
 [`draw_room`](../src/draw_room.asm#L28) [`$09BC`](reference/modules/draw_room.md#draw_room). Callers: [`change_room`](../src/background_touch.asm#L234) [`$2F9A`](reference/modules/background_touch.md#change_room), [`start_new_game`](../src/title_demo_start.asm#L283) [`$070E`](reference/modules/title_demo_start.md#start_new_game), [`start_attract_demo`](../src/title_demo_start.asm#L32) [`$0531`](reference/modules/title_demo_start.md#start_attract_demo).
 **Code**, and **Observed** for all 20 rooms (the room screenshots).
 
-1. `$09BC`: screen off ([`SCROLY`](../src/constants.asm#L175) bit 4 = 0). Saves the enable bits of sprites 0-4 in [`saved_sprite_enable`](../src/constants.asm#L37) [`$0047`](reference/variables.md#saved_sprite_enable)
+1. `$09BC`: screen off ([`SCROLY`](../src/constants.asm#L222) bit 4 = 0). Saves the enable bits of sprites 0-4 in [`saved_sprite_enable`](../src/constants.asm#L37) [`$0047`](reference/variables.md#saved_sprite_enable)
    and switches all sprites off.
-2. [`draw_room_clear_top_row`](../src/draw_room.asm#L39) [`$09D4`](reference/modules/draw_room.md#draw_room_clear_top_row): 40 spaces in status line 0 of [`game_screen`](../src/game_screen.asm#L9) [`$8C00`](reference/modules/game_screen.md#game_screen).
+2. [`draw_room_clear_top_row`](../src/draw_room.asm#L39) [`$09D4`](reference/modules/draw_room.md#draw_room_clear_top_row): 40 spaces in status line 0 of [`game_screen`](../src/constants.asm#L199) [`$8C00`](reference/variables.md#game_screen).
 3. [`draw_room_fill_colours`](../src/draw_room.asm#L46) [`$09E1`](reference/modules/draw_room.md#draw_room_fill_colours): fills colour RAM `$D878-$DBFF` (screen rows 3-24) with
    [`room_colour_fill`](../src/room_palettes.asm#L13) [`$47A0`](reference/modules/room_palettes.md#room_colour_fill) + room.
 4. [`clear_fireball_sprites`](../src/wizard_fireballs.asm#L171) [`$423F`](reference/modules/wizard_fireballs.md#clear_fireball_sprites), [`stop_all_sounds`](../src/sound_request.asm#L63) [`$255E`](reference/modules/sound_request.md#stop_all_sounds).
@@ -388,14 +388,14 @@ The screenshot shows room 0: the top lines are the sky and the mountains of this
 6. **First-visit bonus** ([`draw_room_first_visit_check`](../src/draw_room.asm#L68) [`$0A0E`](reference/modules/draw_room.md#draw_room_first_visit_check)): X = room*2 + [`current_player`](../src/constants.asm#L14) [`$0003`](reference/variables.md#current_player). When
    [`room_unvisited`](../src/constants.asm#L152) [`$0300`](reference/variables.md#room_unvisited) + X is 1, it is cleared (LSR) and [`add_score`](../src/score.asm#L52) [`$3175`](reference/modules/score.md#add_score) adds $07 at byte 1 and $D0 at
    byte 2: 2000 points. [`init_game_variables`](../src/game_setup.asm#L18) marks all rooms but room 0 unvisited for both players.
-7. **Reset** ([`draw_room_reset_state`](../src/draw_room.asm#L82) [`$0A2A`](reference/modules/draw_room.md#draw_room_reset_state)): clears [`actor_move_queue`](../src/actor_workspace.asm#L94) [`$4F57`](reference/modules/actor_workspace.md#actor_move_queue) (132 bytes), [`room_time`](../src/constants.asm#L86) [`$0087`](reference/variables.md#room_time)
+7. **Reset** ([`draw_room_reset_state`](../src/draw_room.asm#L82) [`$0A2A`](reference/modules/draw_room.md#draw_room_reset_state)): clears [`actor_move_queue`](../src/constants.asm#L178) [`$4F57`](reference/variables.md#actor_move_queue) (132 bytes), [`room_time`](../src/constants.asm#L86) [`$0087`](reference/variables.md#room_time)
    , [`anim_chars_direction`](../src/constants.asm#L64) [`$0065`](reference/variables.md#anim_chars_direction); [`anim_chars_speed_step`](../src/options_and_patterns.asm#L53) [`$4321`](reference/modules/options_and_patterns.md#anim_chars_speed_step) = 7.
 8. [`room_no_enemy_flag`](../src/constants.asm#L75) [`$007A`](reference/variables.md#room_no_enemy_flag) = [`room_no_enemies`](../src/room_tables.asm#L164) + room. When it is nonzero, [`enemy_follow_x`](../src/constants.asm#L88) [`$008B`](reference/variables.md#enemy_follow_x) (both
    bytes) = 0, so no enemy follows Bruce into the room.
 9. [`draw_room_load_spawn_timers`](../src/draw_room.asm#L101) [`$0A4E`](reference/modules/draw_room.md#draw_room_load_spawn_timers): the spawn timers from [`ninja_room_delay`](../src/room_enemy_tables.asm#L75) [`$130B`](reference/modules/room_enemy_tables.md#ninja_room_delay) and [`yamo_room_delay`](../src/room_enemy_tables.asm#L94) [`$1347`](reference/modules/room_enemy_tables.md#yamo_room_delay)
    ; 3 for both when [`game_loop_count`](../src/constants.asm#L34) [`$0040`](reference/variables.md#game_loop_count) is not 0; Yamo 8 when player 2 controls Yamo.
 10. [`draw_room_reset_bruce`](../src/draw_room.asm#L119) [`$0A6B`](reference/modules/draw_room.md#draw_room_reset_bruce): Bruce's [`actor_contact`](../src/constants.asm#L102) [`$00B6`](reference/variables.md#actor_contact) = 1, [`actor_timer`](../src/constants.asm#L110) [`$00CE`](reference/variables.md#actor_timer) = 4, [`actor_state`](../src/constants.asm#L105) [`$00BF`](reference/variables.md#actor_state)
-    = 0, [`actor_step_delay`](../src/constants.asm#L136) [`$0106`](reference/variables.md#actor_step_delay) = 0; the three [`burst_trap_timer`](../src/actor_workspace.asm#L119) [`$4FDE`](reference/modules/actor_workspace.md#burst_trap_timer) slots = 0.
+    = 0, [`actor_step_delay`](../src/constants.asm#L136) [`$0106`](reference/variables.md#actor_step_delay) = 0; the three [`burst_trap_timer`](../src/constants.asm#L180) [`$4FDE`](reference/variables.md#burst_trap_timer) slots = 0.
 11. [`draw_room_copy_room_record`](../src/draw_room.asm#L140) [`$0A93`](reference/modules/draw_room.md#draw_room_copy_room_record): copies the room aux block (section 2.6).
 12. [`draw_room_set_charset`](../src/draw_room.asm#L155) [`$0AAD`](reference/modules/draw_room.md#draw_room_set_charset): [`room_vmcsb`](../src/constants.asm#L121) [`$00F2`](reference/variables.md#room_vmcsb) = $38, $3A or $3C (section 2.1).
 13. The map decoder (section 3), from [`draw_room_next_code`](../src/draw_room.asm#L178) [`$0AD7`](reference/modules/draw_room.md#draw_room_next_code) to [`draw_room_done`](../src/draw_room.asm#L222) [`$0B30`](reference/modules/draw_room.md#draw_room_done).
@@ -548,7 +548,7 @@ The room frame handlers test the state bytes and [`room_lanterns_left`](../src/c
   state bytes of all records with [`parked_lantern_flags`](../src/constants.asm#L153) [`$0340`](reference/variables.md#parked_lantern_flags) when the turn passes to the other player.
   [`fill_parked_lanterns`](../src/game_setup.asm#L83) [`$0FE2`](reference/modules/game_setup.md#fill_parked_lanterns) sets the parked flags to 1 at a game start. Not executed in the coverage.
 - **Flames.** [`flicker_lantern_flames`](../src/room_hazard_draw.asm#L96) [`$40BC`](reference/modules/room_hazard_draw.md#flicker_lantern_flames) (each pass, all rooms) writes random pixels into bytes 2-3 of the
-  flame characters $93, $94, $B1 (and $86, $E7 in [`charset_rooms_0_9`](../src/constants.asm#L157) [`$A000`](reference/variables.md#charset_rooms_0_9)) in both room charsets.
+  flame characters $93, $94, $B1 (and $86, $E7 in [`charset_rooms_0_9`](../src/constants.asm#L204) [`$A000`](reference/variables.md#charset_rooms_0_9)) in both room charsets.
 
 ### 6.4 What the lanterns open
 
@@ -602,8 +602,8 @@ down. **Code.**
 | [`open_passage_ledge_b`](../src/passage_open.asm#L61) [`$3AAA`](reference/modules/passage_open.md#open_passage_ledge_b) | $8A | tile $13 | tile $2D (code $11) | room 8 |
 | [`open_passage_dark`](../src/passage_open.asm#L69) [`$3AB4`](reference/modules/passage_open.md#open_passage_dark) | $8A | tile $63 (code $07) | tile $64 (code $0E) | rooms 10, 12, 14, 16 |
 
-Tiles $13 and $14 are drawn with [`charset_rooms_0_9`](../src/constants.asm#L157); [`open_passage_dark`](../src/passage_open.asm#L69) uses the codes of
-[`charset_rooms_10_19`](../src/constants.asm#L158). Several passages open the way to an exit marker in the map behind the wall, for example
+Tiles $13 and $14 are drawn with [`charset_rooms_0_9`](../src/constants.asm#L204); [`open_passage_dark`](../src/passage_open.asm#L69) uses the codes of
+[`charset_rooms_10_19`](../src/constants.asm#L205). Several passages open the way to an exit marker in the map behind the wall, for example
 the passage of room 10 at L4 C38 is next to marker 3 at L5 C39. **Conclusion** (from the map cells).
 
 ## 8. Hazards
@@ -719,7 +719,7 @@ A burst trap is a floor cell with character $60. Rooms 6, 7, 10, 11, 12, 14, 16 
 from their frame handler. **Code**; **Observed** (coverage: the trap stages ran).
 
 1. [`touch_trap_tile`](../src/touch_effects.asm#L101) [`$306B`](reference/modules/touch_effects.md#touch_trap_tile): an actor touches character $60 whose colour RAM (AND 7) is not 5. A free slot n gets
-   [`burst_trap_timer`](../src/actor_workspace.asm#L119) [`$4FDE`](reference/modules/actor_workspace.md#burst_trap_timer) + n = 1, [`burst_trap_row`](../src/actor_workspace.asm#L123) [`$4FE4`](reference/modules/actor_workspace.md#burst_trap_row) + n = line - 1, [`burst_trap_col`](../src/actor_workspace.asm#L121) [`$4FE1`](reference/modules/actor_workspace.md#burst_trap_col) + n =
+   [`burst_trap_timer`](../src/constants.asm#L180) [`$4FDE`](reference/variables.md#burst_trap_timer) + n = 1, [`burst_trap_row`](../src/constants.asm#L182) [`$4FE4`](reference/variables.md#burst_trap_row) + n = line - 1, [`burst_trap_col`](../src/constants.asm#L181) [`$4FE1`](reference/variables.md#burst_trap_col) + n =
    column - 1. The colour RAM of the cell becomes $FD, so the cell does not trigger again. With all 3 slots busy
    nothing happens.
 2. [`update_burst_traps`](../src/room_misc_support.asm#L33) increments each active slot every pass and acts on the value before the increment:

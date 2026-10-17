@@ -17,7 +17,7 @@ Every place where the program chooses its next code from data: the CPU vectors, 
 
 | Dispatch | Location | Index | Kind | Called by |
 |---|---|---|---|---|
-| CPU vectors | [`hw_nmi_vector`](../src/hardware_vectors.asm#L73) [`$FFFA-$FFFF`](reference/modules/hardware_vectors.md#hw_nmi_vector) | - | vectors | the CPU |
+| CPU vectors | [`hw_nmi_vector`](../src/hardware_vectors.asm#L7) [`$FFFA-$FFFF`](reference/modules/hardware_vectors.md#hw_nmi_vector) | - | vectors | the CPU |
 | IRQ handler | [`irq_vector`](../src/cold_start.asm#L31) [`$0408`](reference/modules/cold_start.md#irq_vector) | - | `JMP (ind)` at [`irq_dispatch`](../src/interrupt_entry.asm#L22) [`$1113`](reference/modules/interrupt_entry.md#irq_dispatch) | [`irq_entry`](../src/interrupt_entry.asm#L10) [`$1103`](reference/modules/interrupt_entry.md#irq_entry) |
 | Room init | [`room_init_handlers`](../src/room_dispatch.asm#L19) [`$4E9C`](reference/modules/room_dispatch.md#room_init_handlers) | [`room`](../src/constants.asm#L32) * 2 | RTS table | [`room_init_dispatch`](../src/lantern_pickup.asm#L136) [`$33BD`](reference/modules/lantern_pickup.md#room_init_dispatch) |
 | Room frame | [`room_frame_handlers`](../src/room_dispatch.asm#L28) [`$4EC4`](reference/modules/room_dispatch.md#room_frame_handlers) | [`room`](../src/constants.asm#L32) * 2 | RTS table | [`run_room_frame_handler`](../src/passage_open.asm#L18) [`$3A6F`](reference/modules/passage_open.md#run_room_frame_handler) |
@@ -27,7 +27,7 @@ Every place where the program chooses its next code from data: the CPU vectors, 
 | Demo abort | [`check_demo_abort`](../src/pause_status_line.asm#L7) [`$19B8`](reference/modules/pause_status_line.md#check_demo_abort) | fire, [`key_code`](../src/constants.asm#L137) | compare | [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop) |
 | Music API | [`music_api_stop`](../src/music_player_state.asm#L9) [`$E000-$E008`](reference/modules/music_player_state.md#music_api_stop) | entry * 3 | jump table | the game |
 | Music internal | [`music_jump_stop`](../src/music_player.asm#L6) [`$E300-$E308`](reference/modules/music_player.md#music_jump_stop) | entry * 3 | jump table | API, playlist code |
-| Music commands | [`music_cmd_jumps`](../src/music_player.asm#L446) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps) | [`music_cmd_offsets`](../src/music_player_state.asm#L163) [bits 4-6] | self-modified `BCC` into a jump table | [`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) |
+| Music commands | [`music_cmd_jumps`](../src/music_player.asm#L446) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps) | [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) [bits 4-6] | self-modified `BCC` into a jump table | [`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) |
 | Effect commands | [`sfx_voice1_cmd_jumps`](../src/sfx_voice1.asm#L52) [`$EB3A`](reference/modules/sfx_voice1.md#sfx_voice1_cmd_jumps), [`sfx_voice2_cmd_jumps`](../src/sfx_voice2.asm#L52) [`$EFAA`](reference/modules/sfx_voice2.md#sfx_voice2_cmd_jumps), [`sfx_voice3_cmd_jumps`](../src/sfx_voice3.asm#L52) [`$F0AA`](reference/modules/sfx_voice3.md#sfx_voice3_cmd_jumps) | [`sfx_cmd_offsets`](../src/sfx_data.asm#L13) [command] | self-modified `BCC` into a jump table | the three effect players |
 | Other indirect jumps | `$1110`, `$1117`, `$111A`, `$31A1` | - | `JMP (ind)` | section 9 |
 | Zero-page RTS | `$0080` | - | `JSR`/`JMP` into zero page | [`cold_start`](../src/cold_start.asm#L22) [`$0440`](../src/cold_start.asm#L68), [`build_contact_masks`](../src/frame_builder.asm#L16) [`$517B`](../src/frame_builder.asm#L85) |
@@ -38,9 +38,9 @@ The KERNAL ROM is switched out (`$01` = `$35`), so the CPU reads its vectors fro
 
 | Vector | At | Value | Target |
 |---|---|---|---|
-| NMI | [`hw_nmi_vector`](../src/hardware_vectors.asm#L73) [`$FFFA`](reference/modules/hardware_vectors.md#hw_nmi_vector) | `$1116` | [`nmi_entry`](../src/interrupt_entry.asm#L25) [`$1116`](reference/modules/interrupt_entry.md#nmi_entry): `RTI`, so RESTORE does nothing |
-| RESET | [`hw_reset_vector`](../src/hardware_vectors.asm#L75) [`$FFFC`](reference/modules/hardware_vectors.md#hw_reset_vector) | `$1116` | [`nmi_entry`](../src/interrupt_entry.asm#L25) [`$1116`](reference/modules/interrupt_entry.md#nmi_entry) |
-| IRQ | [`hw_irq_vector`](../src/hardware_vectors.asm#L77) [`$FFFE`](reference/modules/hardware_vectors.md#hw_irq_vector) | `$1103` | [`irq_entry`](../src/interrupt_entry.asm#L10) [`$1103`](reference/modules/interrupt_entry.md#irq_entry) |
+| NMI | [`hw_nmi_vector`](../src/hardware_vectors.asm#L7) [`$FFFA`](reference/modules/hardware_vectors.md#hw_nmi_vector) | `$1116` | [`nmi_entry`](../src/interrupt_entry.asm#L25) [`$1116`](reference/modules/interrupt_entry.md#nmi_entry): `RTI`, so RESTORE does nothing |
+| RESET | [`hw_reset_vector`](../src/hardware_vectors.asm#L9) [`$FFFC`](reference/modules/hardware_vectors.md#hw_reset_vector) | `$1116` | [`nmi_entry`](../src/interrupt_entry.asm#L25) [`$1116`](reference/modules/interrupt_entry.md#nmi_entry) |
+| IRQ | [`hw_irq_vector`](../src/hardware_vectors.asm#L11) [`$FFFE`](reference/modules/hardware_vectors.md#hw_irq_vector) | `$1103` | [`irq_entry`](../src/interrupt_entry.asm#L10) [`$1103`](reference/modules/interrupt_entry.md#irq_entry) |
 
 **Code.** The entries are in [the table reference](reference/tables.md#hw_nmi_vector).
 
@@ -227,7 +227,7 @@ Then [`title_menu_function_keys`](../src/title_menu.asm#L29) [`$08D2`](reference
 
 ### 8.2 Music commands (self-modified branch)
 
-[`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) takes bits 4-6 of the command byte as the index into [`music_cmd_offsets`](../src/music_player_state.asm#L163) [`$E2D6`](reference/modules/music_player_state.md#music_cmd_offsets). It stores the offset in [`music_cmd_offset`](../src/music_player.asm#L442) [`$E5E7`](reference/modules/music_player.md#music_cmd_offset), the operand of the `BCC` at [`music_cmd_branch`](../src/music_player.asm#L441) [`$E5E6`](reference/modules/music_player.md#music_cmd_branch), clears C, and executes the branch. The branch lands in [`music_cmd_jumps`](../src/music_player.asm#L446) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps). **Code**
+[`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) takes bits 4-6 of the command byte as the index into [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) [`$E2D6`](reference/modules/music_frequency_table.md#music_cmd_offsets). It stores the offset in [`music_cmd_offset`](../src/music_player.asm#L442) [`$E5E7`](reference/modules/music_player.md#music_cmd_offset), the operand of the `BCC` at [`music_cmd_branch`](../src/music_player.asm#L441) [`$E5E6`](reference/modules/music_player.md#music_cmd_branch), clears C, and executes the branch. The branch lands in [`music_cmd_jumps`](../src/music_player.asm#L446) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps). **Code**
 
 | Group | Commands | Offset | Lands at | Target |
 |---|---|---|---|---|
@@ -240,7 +240,7 @@ Then [`title_menu_function_keys`](../src/title_menu.asm#L29) [`$08D2`](reference
 | 6 | `$E0-$EF` | `$12` | `$E5FA` | [`music_cmd_tempo`](../src/music_player.asm#L700) [`$E7B2`](reference/modules/music_player.md#music_cmd_tempo) |
 | 7 | `$F0-$FE` | `$15` | `$E5FD` | [`music_cmd_length`](../src/music_player.asm#L457) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) (the first byte after the table) |
 
-[`music_cmd_offsets`](../src/music_player_state.asm#L163) has 17 entries (`$00` to `$30` in steps of 3); entries 8-16 are never used. `$FF` never reaches the dispatch: [`music_voice_read_command`](../src/music_player.asm#L421) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) handles it first. The image holds offset `$00` in the branch, a value left from the last command. **Code**
+[`music_cmd_offsets`](../src/music_frequency_table.asm#L47) has 17 entries (`$00` to `$30` in steps of 3); entries 8-16 are never used. `$FF` never reaches the dispatch: [`music_voice_read_command`](../src/music_player.asm#L421) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) handles it first. The image holds offset `$00` in the branch, a value left from the last command. **Code**
 
 ### 8.3 Effect commands (self-modified branch)
 

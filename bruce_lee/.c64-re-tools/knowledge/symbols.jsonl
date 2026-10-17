@@ -2185,6 +2185,7 @@
 {"id":"20261016T233638.073-j6oert/2513","space":"c64","address":"$fffc","name":"hw_reset_vector","kind":"vector","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
 {"id":"20261016T233638.073-j6oert/2514","space":"c64","address":"$fffe","name":"hw_irq_vector","kind":"vector","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
 {"id":"20261017T115826.518-hgdp9d/1","space":"bank1","address":"$10f8","name":"reversed_vector_install_code","kind":"data","origin":"llm","added":"20261017T115826.518-hgdp9d","closed":null}
+{"id":"20261017T120438.684-2353db/1","space":"bank1","address":"$15a8","name":"game_frame_update","kind":"label","origin":"llm","added":"20261017T120438.684-2353db","closed":null}
 {"id":"20261017T115826.518-hgdp9d/2","space":"bank1","address":"$4326","name":"zero_bytes_after_fireball_masks","kind":"data","origin":"llm","added":"20261017T115826.518-hgdp9d","closed":null}
 {"id":"20261017T115826.518-hgdp9d/3","space":"bank1","address":"$4563","name":"unused_text_bruce_lee","kind":"data","origin":"llm","added":"20261017T115826.518-hgdp9d","closed":null}
 {"id":"20261017T115826.518-hgdp9d/4","space":"bank1","address":"$456d","name":"unused_text_by","kind":"data","origin":"llm","added":"20261017T115826.518-hgdp9d","closed":null}
@@ -2464,6 +2465,10 @@
 {"id":"20261017T120132.106-3s98zw/63","space":"bank4","address":"$eed6","name":"old_lantern_stream_copy","kind":"data","origin":"llm","added":"20261017T120132.106-3s98zw","closed":null}
 {"id":"20261017T120132.106-3s98zw/68","space":"bank4","address":"$ef40","name":"old_check_fight_pair_tail","kind":"label","origin":"llm","added":"20261017T120132.106-3s98zw","closed":null}
 {"id":"20261017T120132.106-3s98zw/69","space":"bank4","address":"$ef54","name":"old_check_fight_pair_attacker","kind":"label","origin":"llm","added":"20261017T120132.106-3s98zw","closed":null}
+{"id":"20261017T120438.879-1c9er2/1","space":"bank4","address":"$ef71","name":"old_fight_target_2971","kind":"label","origin":"llm","added":"20261017T120438.879-1c9er2","closed":null}
+{"id":"20261017T120438.879-1c9er2/2","space":"bank4","address":"$ef76","name":"old_fight_target_2976","kind":"label","origin":"llm","added":"20261017T120438.879-1c9er2","closed":null}
+{"id":"20261017T120438.879-1c9er2/3","space":"bank4","address":"$efa0","name":"old_fight_target_29a0","kind":"label","origin":"llm","added":"20261017T120438.879-1c9er2","closed":null}
+{"id":"20261017T120438.879-1c9er2/4","space":"bank4","address":"$efbf","name":"old_fight_target_29bf","kind":"label","origin":"llm","added":"20261017T120438.879-1c9er2","closed":null}
 {"id":"20261017T120132.106-3s98zw/83","space":"bank4","address":"$f055","name":"old_kick_stream_bytes","kind":"data","origin":"llm","added":"20261017T120132.106-3s98zw","closed":null}
 {"id":"20261017T120132.106-3s98zw/84","space":"bank4","address":"$f061","name":"old_apply_fight_hits_pause","kind":"label","origin":"llm","added":"20261017T120132.106-3s98zw","closed":null}
 {"id":"20261017T120132.106-3s98zw/85","space":"bank4","address":"$f06d","name":"old_apply_fight_hits_strike","kind":"label","origin":"llm","added":"20261017T120132.106-3s98zw","closed":null}
@@ -2488,7 +2493,12 @@
 {"id":"20261017T120216.347-xki8w3/11","space":"bank7","address":"$0350","name":"loader_stage_decrypt","kind":"label","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
 {"id":"20261017T120216.347-xki8w3/13","space":"bank7","address":"$0354","name":"loader_stage_decrypt_byte","kind":"label","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
 {"id":"20261017T120216.347-xki8w3/14","space":"bank7","address":"$035a","name":"loader_stage_store_page","kind":"label","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
+{"id":"20261017T120438.436-fj3m21/1","space":"bank7","address":"$0366","name":"loader_stage_next_page","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}
 {"id":"20261017T120216.347-xki8w3/17","space":"bank7","address":"$036c","name":"loader_stage_start_game","kind":"label","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
 {"id":"20261017T120216.347-xki8w3/19","space":"bank7","address":"$036f","name":"loader_stage_after_game","kind":"label","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
 {"id":"20261017T120216.347-xki8w3/21","space":"bank7","address":"$0378","name":"loader_stage_self_checksum","kind":"label","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
+{"id":"20261017T120438.436-fj3m21/2","space":"bank7","address":"$037a","name":"loader_stage_checksum_loop","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}
 {"id":"20261017T120216.347-xki8w3/22","space":"bank7","address":"$0380","name":"loader_stage_wipe","kind":"label","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
+{"id":"20261017T120438.436-fj3m21/3","space":"bank7","address":"$0384","name":"loader_stage_wipe_loop","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}
+{"id":"20261017T120438.436-fj3m21/4","space":"bank7","address":"$0388","name":"loader_stage_wipe_branch","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}
+{"id":"20261017T120438.436-fj3m21/5","space":"bank7","address":"$0389","name":"loader_stage_checksum_last","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}

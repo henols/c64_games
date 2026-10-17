@@ -316,7 +316,8 @@ msg_room3_ledge_b
 msg_wizard_left_marker
         !byte $a6,$a0
 ; Message $62: "DIABOLO  PRESENTS": no code prints this index. The release changed the text (two spaces keep the
-; length 17); the residue at contact_col2+17 ($4F2C) still holds the original "DATASO...SENTS" (DATASOFT PRESENTS).
+; length 17); the original image held a copy of these bytes from the build at $4F2C (now in leftovers/, space bank1) with the
+; original "DATASO...SENTS" (DATASOFT PRESENTS). The edit is a crack trace (Diabolo); see docs/leftovers.md.
 msg_presents
         !pet "diabolo  presents"
         !byte $a0
