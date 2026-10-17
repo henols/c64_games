@@ -289,15 +289,15 @@ address.
 | `$8DE1` | YKICKL11 | 1 | `$52AE` | +$1462 | `$6710` | none: inside [`bruce_frame_07`](../src/bruce_frames_b.asm#L278) |
 | `$8DEC` | YKICKL12 | 1 | `$52C6` | +$1462 | `$6728` | none: inside [`bruce_frame_05`](../src/bruce_frames_b.asm#L284) (+3) |
 | `$8DF7` | YKICKL21 | 1 | `$52D7` | +$1462 | `$6739` | none: inside [`bruce_frame_05`](../src/bruce_frames_b.asm#L284) (+20) |
-| `$8E02` | YKICKL22 | 1 | `$52E9` | +$1462 | `$674B` | none: inside [`bruce_frame_12`](../src/bruce_frames_b.asm#L295) (+2) |
-| `$8E0D` | YKICKR11 | 1 | `$52FF` | +$1462 | `$6761` | none: inside [`bruce_frame_06`](../src/bruce_frames_b.asm#L300) (+12) |
-| `$8E18` | YKICKR12 | 1 | `$5317` | +$1462 | `$6779` | none: inside [`bruce_frame_06`](../src/bruce_frames_b.asm#L300) (+36) |
-| `$8E23` | YKICKR21 | 1 | `$5328` | +$1462 | `$678A` | none: inside [`bruce_frame_04`](../src/bruce_frames_b.asm#L309) (+11) |
-| `$8E2E` | YKICKR22 | 1 | `$5339` | +$1462 | `$679B` | none: inside [`bruce_frame_04`](../src/bruce_frames_b.asm#L309) (+28) |
-| `$8E39` | AYDOWNL11 | 1 | `$534E` | +$1462 | `$67B0` | none: inside [`bruce_frame_11`](../src/bruce_frames_b.asm#L318) (+7) |
-| `$8E45` | AYDOWNL12 | 1 | `$5366` | +$1462 | `$67C8` | none: inside [`bruce_frame_13`](../src/bruce_frames_b.asm#L324) (+10) |
-| `$8E51` | AYDOWNL21 | 1 | `$537E` | +$1462 | `$67E0` | none: inside [`bruce_frame_59`](../src/bruce_frames_b.asm#L330) (+13) |
-| `$8E5D` | AYDOWNL22 | 1 | `$5396` | +$1462 | `$67F8` | none: inside [`bruce_frame_59`](../src/bruce_frames_b.asm#L330) (+37) |
+| `$8E02` | YKICKL22 | 1 | `$52E9` | +$1462 | `$674B` | none: inside [`bruce_frame_12`](../src/bruce_frames_b.asm#L296) (+2) |
+| `$8E0D` | YKICKR11 | 1 | `$52FF` | +$1462 | `$6761` | none: inside [`bruce_frame_06`](../src/bruce_frames_b.asm#L301) (+12) |
+| `$8E18` | YKICKR12 | 1 | `$5317` | +$1462 | `$6779` | none: inside [`bruce_frame_06`](../src/bruce_frames_b.asm#L301) (+36) |
+| `$8E23` | YKICKR21 | 1 | `$5328` | +$1462 | `$678A` | none: inside [`bruce_frame_04`](../src/bruce_frames_b.asm#L311) (+11) |
+| `$8E2E` | YKICKR22 | 1 | `$5339` | +$1462 | `$679B` | none: inside [`bruce_frame_04`](../src/bruce_frames_b.asm#L311) (+28) |
+| `$8E39` | AYDOWNL11 | 1 | `$534E` | +$1462 | `$67B0` | none: inside [`bruce_frame_11`](../src/bruce_frames_b.asm#L320) (+7) |
+| `$8E45` | AYDOWNL12 | 1 | `$5366` | +$1462 | `$67C8` | none: inside [`bruce_frame_13`](../src/bruce_frames_b.asm#L326) (+10) |
+| `$8E51` | AYDOWNL21 | 1 | `$537E` | +$1462 | `$67E0` | none: inside [`bruce_frame_59`](../src/bruce_frames_b.asm#L332) (+13) |
+| `$8E5D` | AYDOWNL22 | 1 | `$5396` | +$1462 | `$67F8` | none: inside [`bruce_frame_59`](../src/bruce_frames_b.asm#L332) (+37) |
 | `$8E69` | AYDOWNR11 | 1 | `$53AE` | +$1462 | `$6810` | none: inside [`ninja_frame_00`](../src/ninja_frames_b.asm#L7) (+19) |
 | `$8E75` | AYDOWNR12 | 1 | `$53C6` (high byte lost) | +$1462 | `$6828` | none: inside [`ninja_frame_16`](../src/ninja_frames_b.asm#L19) (+1) |
 
@@ -324,9 +324,29 @@ address.
   counterpart in the final build.
 - Style: upper case, at most 9 characters, no underscores; direction and phase are letters and digits.
 
-**Conclusion (weak).** The prefix may name a frame set rather than an actor. Y could stand for Yamo, whose kick and
-fall frames could have followed Bruce's in the old build; the final build has the Yamo frames in front of
-Bruce's. The sizes of the old YKICK / AYDOWN frames match no final frame, so this stays open. The three BSH
+**Observed** (the layout of the frame sets):
+
+- In the old build the frames start right after the tables: PLSIZE `$4E36` + 210 = `$4F08` = ADOWNL11. In the
+  final build the tables end at `$5D91`, and Bruce's frames start at `$636A`.
+- The two offsets differ by `$1462` - `$E89` = `$5D9` (1497 bytes). That is the length of `$5D91-$6369`, which in
+  the final build holds the Yamo frames and the first part of the Ninja frames. So the old build had none of these
+  bytes between the tables and Bruce's frames.
+- In the old build, YKICK (8 sprites) and then AYDOWN follow Bruce's frames. The final Yamo region starts with
+  Yamo's flying kick frames (92-99) mixed with his frames on the floor (126-133), then his punch (74-77), then
+  the rest of his floor frames. That is the same two sets as YKICK and AYDOWN, in the same order: KICK, then DOWN.
+- In the final build, the old Y frames are gone from after ARUNR22. That place holds Bruce's frames 7, 5, 10, 12, 6,
+  4, 11, 13 and 59: the punch (state `$11`, poses `$04`/`$06`), the climbing poses `$0A`/`$0C`, and the moved
+  frame 59. None of these frames has a label in the part of the table that is left.
+- The old KICK labels are frames 22-29, which [`select_actor_pose`](../src/actor_poses.asm#L18) gives in the flying kick (states `$0C`/`$0D`).
+  DUCK (`$1A`) is the only move that only Bruce makes. KICK and the jumps are moves of Bruce and Yamo; the floor,
+  standing, running and climbing poses are used by all actors.
+
+**Conclusion (moderate).** Y is very probably Yamo. In the old build, Yamo's frames came after Bruce's and started with his kick
+and his floor set. Later, Yamo's frames were redrawn and moved in front of Bruce's. The old Yamo frames have other
+sizes than all the final frames. Bruce's new punch and climbing frames then took the place that the old Yamo frames
+had left. AY is then Yamo's version of the A set DOWN. The prefix names the actor of a frame set: A is the set that
+all actors share, B is Bruce alone (DUCK), Y is Yamo. This fits all 89 names, but the bytes do not prove A and B.
+In particular, the table does not show whether Yamo used the A frames in the old build. The three BSH
 objects may be an earlier three-fireball version (the final has two fireballs at
 [`fireball_active`](../src/fireball_text_score_vars.asm#L8) [`$432E`](reference/modules/fireball_text_score_vars.md#fireball_active)); the bytes do not show it.
 
@@ -335,7 +355,7 @@ objects may be an earlier three-fireball version (the final has two fireballs at
 - **Observed.** The entry at `$8C32` is ADWONL22, a typo for ADOWNL22. It is the only entry with bit 7 clear: the
   build never referenced it. Its value `$4F5F` + `$1462` = `$63C1`.
 - **Observed.** `$63C1-$63EA` holds 42 bytes in frame format (21 rows of 2 bytes). They are equal to
-  [`bruce_frame_59`](../src/bruce_frames_b.asm#L330) [`$67D3`](reference/modules/bruce_frames_b.md#bruce_frame_59). [`frame_gfx_lo`](../src/actor_frame_gfx_tables.asm#L10) [`$59BD`](reference/modules/actor_frame_gfx_tables.md#frame_gfx_lo) and
+  [`bruce_frame_59`](../src/bruce_frames_b.asm#L332) [`$67D3`](reference/modules/bruce_frames_b.md#bruce_frame_59). [`frame_gfx_lo`](../src/actor_frame_gfx_tables.asm#L10) [`$59BD`](reference/modules/actor_frame_gfx_tables.md#frame_gfx_lo) and
   [`frame_gfx_hi`](../src/actor_frame_gfx_tables.asm#L39) [`$5A8F`](reference/modules/actor_frame_gfx_tables.md#frame_gfx_hi) point frame 59 to `$67D3`; nothing points to `$63C1`.
 - **Observed.** In the ADOWN group the source order is L11, L21, R11, R21, L12, L22, R12, R22 (frames 56, 58, 60, 62,
   57, 59, 61, 63). ADWONL22 stands in the place of frame 59.
@@ -719,6 +739,11 @@ original protected loader, in encoded form.
   window at `$2160` (`tool_rle_unpack_picture`, key CTRL-D: 0 = end, bit 7 set = a run of n AND `$7F` copies, else n
   literal bytes); a window scroll left (`tool_scroll_window_left`, RETURN); a sprite cursor toggle at `$0800`
   (`tool_toggle_cursor_sprite`, S). The window is 32 cells wide and 12 character rows high in a bitmap at `$2000`.
+- **Code.** `$2160` = `$2000` + 320 + 32: the window starts at character row 1, column 4, so it is centred, columns
+  4-35 and rows 1-12 (256 x 96 pixels). RETURN rotates the window 16 times by one cell, half its width. The packed
+  picture is read from `$3040`, and the routine first calls `$C0FC` with `$2E00` and `$20` (not in the fragment).
+- **Observed.** No screen of the game has this shape: the title is a character logo in rows 2-9 of 40 columns, and
+  the rooms are character maps.
 - **Conclusion.** A C64 multicolour bitmap editor (keys 1-4 suggest four colours) with a sprite cursor, run-length
   save and load, and scrolling. Its run-length code is the inverse of the game's room maps (in the game, bit 7 clear
   = a run, `$80` = end). The game has no bitmap.
@@ -826,8 +851,8 @@ flowchart TD
 ## 17. Still open
 
 - What reversed the vector install routine at `$10F7-$1102`, and whether `$1117-$111C` was once a vector table.
-- The meaning of the prefixes A, B, Y and AY, and what the YKICK and AYDOWN frames looked like (only their sizes are
-  known).
+- The prefixes: Y is very probably Yamo (section 4.3), but A and B are not proven. What the YKICK and AYDOWN frames
+  looked like is open; only their sizes are known.
 - What NNTH*, TNTH*, REORIENT and BSH* were; whether BSH is an earlier three-fireball version.
 - Whether the game was assembled on an Apple II and transferred, or with an Apple-style assembler on the C64.
 - Who wrote the C64 bitmap tool, and what it drew.

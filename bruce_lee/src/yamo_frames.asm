@@ -2,14 +2,14 @@
 ; Yamo animation frames: 1-bit sprite graphics, 8 or 16 pixels wide
 ; $5d91-$6282
 
-; Format of every animation frame: 1 bit per pixel, row after row from the top, 1 byte per row (8 pixels) or 2 bytes
-; per row (16 pixels, left byte first) as frame_is_wide says. The game shows the sprites X-expanded, so a frame is
-; 16 or 32 screen pixels wide. The sprite builder copy_sprite_frame copies a frame into the left 1 or 2 bytes of
-; each row of a sprite block and clears the rest; it never mirrors, so each facing has its own frame. At cold start
+; Format of every animation frame: 1 bit per pixel, row after row from the top, 1 byte per row (8 pixels) or 2 bytes per
+; row (16 pixels, left byte first) as frame_is_wide says. The game shows the sprites X-expanded, so a frame is 16 or 32
+; screen pixels wide. The sprite builder copy_sprite_frame copies a frame into the left 1 or 2 bytes of each row of a
+; sprite block and clears the rest; it never mirrors, so each facing has its own frame. At cold start
 ; build_contact_masks builds a 96-byte contact mask from each pose (both sprites OR-ed, every pixel doubled) at
 ; $9000-$9FBF and contact_masks_high. The bytes between frames that no table entry covers are unused padding.
-; Yamo frame 25 (global frame 95). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour green
-; ($F5). Second sprite of pose frame 94. Picture: low kick from the floor.
+; Yamo frame 25 (global frame 95). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour green ($F5).
+; Second sprite of pose frame 94. Picture: flying kick, leg stretched out (state $0C or $0D, timer below 10).
 yamo_frame_25
         !byte $00,$0c,$00,$18,$00,$34,$00,$3c
         !byte $00,$3c,$00,$0c,$00,$04,$00,$26
@@ -17,14 +17,14 @@ yamo_frame_25
         !byte $00,$0d,$3f,$c1,$3f,$c2,$08,$06
         !byte $00,$0e,$00,$4c,$01,$fc,$01,$fc
         !byte $00,$00
-; Yamo frame 26 (global frame 96). 8 pixels wide, 21 rows of 1 byte, colour green ($F5). First sprite of the pose;
-; frame 97 is the second sprite. Picture: crouching (mirror of frame 92).
+; Yamo frame 26 (global frame 96). 8 pixels wide, 21 rows of 1 byte, colour green ($F5). First sprite of the pose; frame
+; 97 is the second sprite. Picture: flying kick, take-off crouch (mirror of frame 92).
 yamo_frame_26
         !byte $30,$18,$3c,$2c,$38,$7c,$67,$27
         !byte $7d,$fc,$fc,$f8,$b2,$03,$27,$33
         !byte $36,$1e,$3c,$0c,$1c
 ; Yamo frame 29 (global frame 99). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour green ($F5).
-; Second sprite of pose frame 98. Picture: low kick from the floor.
+; Second sprite of pose frame 98. Picture: flying kick, leg stretched out (state $0C or $0D, timer below 10).
 yamo_frame_29
         !byte $30,$00,$18,$00,$2c,$00,$3c,$00
         !byte $3c,$00,$30,$00,$20,$00,$64,$00
@@ -33,20 +33,22 @@ yamo_frame_29
         !byte $70,$00,$32,$00,$3f,$80,$3f,$80
         !byte $00,$00
 ; Yamo frame 24 (global frame 94). 16 pixels wide, 17 rows of 2 bytes (the mask builder reads 18), colour black ($F0).
-; First sprite of the pose; frame 95 is the second sprite. Picture: low kick from the floor.
+; First sprite of the pose; frame 95 is the second sprite. Picture: flying kick, leg stretched out (state $0C or $0D,
+; timer below 10).
 yamo_frame_24
         !byte $00,$01,$00,$27,$00,$0b,$00,$02
         !byte $00,$02,$00,$12,$00,$1a,$00,$18
         !byte $0c,$00,$0c,$00,$08,$00,$00,$00
         !byte $00,$32,$00,$3e,$00,$3d,$00,$19
         !byte $00,$01,$00,$00
-; Yamo frame 27 (global frame 97). 8 pixels wide, 17 rows of 1 byte, colour black ($F0). Second sprite of pose frame
-; 96. Picture: crouching (mirror of frame 92).
+; Yamo frame 27 (global frame 97). 8 pixels wide, 17 rows of 1 byte, colour black ($F0). Second sprite of pose frame 96.
+; Picture: flying kick, take-off crouch (mirror of frame 92).
 yamo_frame_27
         !byte $80,$e4,$c0,$50,$40,$00,$18,$18
         !byte $00,$01,$01,$04,$0c,$bc,$98
 ; Yamo frame 28 (global frame 98). 16 pixels wide, 16 rows of 2 bytes (the mask builder reads 17), colour black ($F0).
-; First sprite of the pose; frame 99 is the second sprite. Picture: low kick from the floor.
+; First sprite of the pose; frame 99 is the second sprite. Picture: flying kick, leg stretched out (state $0C or $0D,
+; timer below 10).
 yamo_frame_28
         !byte $80,$00,$e4,$00,$d0,$00,$40,$00
         !byte $40,$00,$48,$00,$58,$00,$18,$00
@@ -68,8 +70,8 @@ yamo_frame_63
         !byte $00,$f8,$03,$fc,$03,$fc,$02,$fc
         !byte $02,$f4,$13,$34,$13,$0c,$1f,$0c
         !byte $7c,$f0
-; Yamo frame 22 (global frame 92). 8 pixels wide, 21 rows of 1 byte, colour green ($F5). First sprite of the pose;
-; frame 93 is the second sprite. Picture: crouching.
+; Yamo frame 22 (global frame 92). 8 pixels wide, 21 rows of 1 byte, colour green ($F5). First sprite of the pose; frame
+; 93 is the second sprite. Picture: flying kick, take-off crouch (state $0C or $0D, timer 10 or more).
 yamo_frame_22
         !byte $0c,$18,$3c,$34,$1c,$3e,$e6,$e4
         !byte $be,$3f,$3f,$1f,$4d,$c0,$e4,$cc
@@ -89,13 +91,13 @@ yamo_frame_62
         !byte $00,$00,$00,$00,$00,$00,$01,$00
         !byte $01,$08,$00,$c8,$00,$f0,$00,$f0
         !byte $03,$08
-; Yamo frame 23 (global frame 93). 8 pixels wide, 17 rows of 1 byte, colour black ($F0). Second sprite of pose frame
-; 92. Picture: crouching.
+; Yamo frame 23 (global frame 93). 8 pixels wide, 17 rows of 1 byte, colour black ($F0). Second sprite of pose frame 92.
+; Picture: flying kick, take-off crouch (state $0C or $0D, timer 10 or more).
 yamo_frame_23
         !byte $01,$27,$03,$0a,$02,$00,$18,$18
         !byte $00,$80,$80,$20,$30,$3d,$19
 ; Yamo frame 5 (global frame 75). 16 pixels wide, 21 rows of 2 bytes (the mask builder reads 22), colour green ($F5).
-; Second sprite of pose frame 74. Picture: kick, leg stretched out.
+; Second sprite of pose frame 74. Picture: punch, arm stretched out at shoulder height (state $11, pose $04).
 yamo_frame_05
         !byte $00,$18,$00,$30,$00,$68,$00,$78
         !byte $00,$78,$00,$18,$00,$08,$00,$4c
@@ -104,7 +106,7 @@ yamo_frame_05
         !byte $00,$0c,$00,$18,$00,$1e,$00,$1b
         !byte $00,$3b
 ; Yamo frame 7 (global frame 77). 16 pixels wide, 21 rows of 2 bytes (the mask builder reads 22), colour green ($F5).
-; Second sprite of pose frame 76. Picture: kick (mirror of frame 74).
+; Second sprite of pose frame 76. Picture: punch (mirror of frame 74; state $11, pose $06).
 yamo_frame_07
         !byte $18,$00,$0c,$00,$16,$00,$1e,$00
         !byte $1e,$00,$18,$00,$10,$00,$32,$00
@@ -113,7 +115,8 @@ yamo_frame_07
         !byte $70,$00,$18,$00,$78,$00,$d8,$00
         !byte $dc,$00
 ; Yamo frame 4 (global frame 74). 16 pixels wide, 16 rows of 2 bytes (the mask builder reads 17), colour black ($F0).
-; First sprite of the pose; frame 75 is the second sprite. Picture: kick, leg stretched out.
+; First sprite of the pose; frame 75 is the second sprite. Picture: punch, arm stretched out at shoulder height (state
+; $11, pose $04).
 yamo_frame_04
         !byte $00,$02,$00,$4e,$00,$16,$00,$04
         !byte $00,$04,$00,$24,$00,$34,$00,$30
@@ -121,7 +124,7 @@ yamo_frame_04
         !byte $00,$04,$00,$74,$00,$7a,$00,$3a
         !byte $00,$12,$00,$00
 ; Yamo frame 6 (global frame 76). 16 pixels wide, 16 rows of 2 bytes (the mask builder reads 17), colour black ($F0).
-; First sprite of the pose; frame 77 is the second sprite. Picture: kick (mirror of frame 74).
+; First sprite of the pose; frame 77 is the second sprite. Picture: punch (mirror of frame 74; state $11, pose $06).
 yamo_frame_06
         !byte $40,$00,$72,$00,$68,$00,$20,$00
         !byte $20,$00,$24,$00,$2c,$00,$0c,$00

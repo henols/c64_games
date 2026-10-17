@@ -381,7 +381,7 @@ number (**Code**):
 | Frames | Actor | Base ([`actor_frame_base`](../src/actor_frame_tables.asm#L8) [`$59A5`](reference/modules/actor_frame_tables.md#actor_frame_base)) | Graphics |
 |---|---|---|---|
 | 0-69 | Bruce | 0 | [`bruce_frame_56`](../src/bruce_frames.asm#L8) [`$636A`](reference/modules/bruce_frames.md#bruce_frame_56) .. (region `$636A-$67FC`) |
-| 70-139 | Yamo | 70 | region `$5D91-$6282` ([`yamo_frame_00`](../src/yamo_frames.asm#L286) [`$6187`](reference/modules/yamo_frames.md#yamo_frame_00) ...) |
+| 70-139 | Yamo | 70 | region `$5D91-$6282` ([`yamo_frame_00`](../src/yamo_frames.asm#L289) [`$6187`](reference/modules/yamo_frames.md#yamo_frame_00) ...) |
 | 140-209 | Ninja | 140 | `$6283-$6369` and [`ninja_frame_00`](../src/ninja_frames_b.asm#L7) [`$67FD`](reference/modules/ninja_frames_b.md#ninja_frame_00) .. `$68F8` |
 
 [`actor_frame_base`](../src/actor_frame_tables.asm#L8) [`$59A5`](reference/modules/actor_frame_tables.md#actor_frame_base) is indexed by the actor *type* (bits 7-6 of [`actor_flags`](../src/constants.asm#L91) [`$95`](reference/variables.md#actor_flags): 0 Bruce, 1 Ninja,

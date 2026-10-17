@@ -140,13 +140,13 @@ bruce_frame_09
         !byte $00,$00,$00,$99,$99,$18,$18,$18
         !byte $18,$18,$18,$3c,$3c
 ; Bruce frame 28 (global frame 28). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
-; frame 29 is the second sprite. Picture: low kick from the floor (mirror of frame 24).
+; frame 29 is the second sprite. Picture: flying kick, leg stretched out (mirror of frame 24).
 ; Original source label AKICKR21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_28
         !byte $00,$30,$68,$58,$7e,$3f,$7f,$f9
         !byte $da,$9c,$88,$00
-; Bruce frame 29 (global frame 29). 16 pixels wide, 18 rows of 2 bytes (the mask builder reads 19), colour black
-; ($F0). Second sprite of pose frame 28. Picture: low kick from the floor (mirror of frame 24).
+; Bruce frame 29 (global frame 29). 16 pixels wide, 18 rows of 2 bytes (the mask builder reads 19), colour black ($F0).
+; Second sprite of pose frame 28. Picture: flying kick, leg stretched out (mirror of frame 24).
 ; Original source label AKICKR22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_29
         !byte $30,$00,$c0,$00,$90,$00,$a0,$00
@@ -155,22 +155,22 @@ bruce_frame_29
         !byte $cc,$00,$0c,$00,$0d,$00,$0f,$c0
         !byte $0f,$c0,$00,$00
 ; Bruce frame 27 (global frame 27). 8 pixels wide, 19 rows of 1 byte, colour black ($F0). Second sprite of pose frame
-; 26. Picture: crouching (mirror of frame 22).
+; 26. Picture: flying kick, take-off crouch (mirror of frame 22).
 ; Original source label AKICKR12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_27
         !byte $60,$c0,$90,$a0,$80,$00,$00,$00
         !byte $01,$03,$04,$0e,$1f,$5f,$7b,$33
         !byte $36,$3e,$1e,$3c,$0c
 ; Bruce frame 23 (global frame 23). 8 pixels wide, 19 rows of 1 byte, colour black ($F0). Second sprite of pose frame
-; 22. Picture: crouching.
+; 22. Picture: flying kick, take-off crouch (state $0C or $0D, timer 10 or more).
 ; Original source label AKICKL12 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_23
         !byte $06,$03,$09,$05,$01,$00,$00,$00
         !byte $80,$c0,$20,$70,$f8,$fa,$de,$cc
         !byte $6c,$7c,$78,$3c,$30
-; Bruce frame 25 (global frame 25). 16 pixels wide, 18 rows of 2 bytes (the mask builder reads 19), colour black
-; ($F0). Second sprite of pose frame 24. Picture: low kick from the floor.
-; Original source label AKICKL22 (from the assembler symbol table of the build; see docs/leftovers.md).
+; Bruce frame 25 (global frame 25). 16 pixels wide, 18 rows of 2 bytes (the mask builder reads 19), colour black ($F0).
+; Second sprite of pose frame 24. Picture: flying kick, leg stretched out (state $0C or $0D, timer below 10). Original
+; source label AKICKL22 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_25
         !byte $00,$0c,$00,$03,$00,$09,$00,$05
         !byte $00,$01,$00,$00,$00,$00,$00,$60
@@ -178,20 +178,20 @@ bruce_frame_25
         !byte $00,$33,$00,$30,$00,$b0,$03,$f0
         !byte $03,$f0,$00,$00
 ; Bruce frame 26 (global frame 26). 8 pixels wide, 15 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
-; frame 27 is the second sprite. Picture: crouching (mirror of frame 22).
+; frame 27 is the second sprite. Picture: flying kick, take-off crouch (mirror of frame 22).
 ; Original source label AKICKR11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_26
         !byte $00,$30,$68,$58,$78,$7f,$3f,$7d
         !byte $7c,$7c,$58,$50,$40,$00,$00
 ; Bruce frame 22 (global frame 22). 8 pixels wide, 15 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
-; frame 23 is the second sprite. Picture: crouching.
-; Original source label AKICKL11 (from the assembler symbol table of the build; see docs/leftovers.md).
+; frame 23 is the second sprite. Picture: flying kick, take-off crouch (state $0C or $0D, timer 10 or more). Original
+; source label AKICKL11 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_22
         !byte $00,$0c,$16,$1a,$1e,$fe,$fc,$be
         !byte $3e,$3e,$1a,$0a,$02,$00,$00
 ; Bruce frame 24 (global frame 24). 8 pixels wide, 12 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
-; frame 25 is the second sprite. Picture: low kick from the floor.
-; Original source label AKICKL21 (from the assembler symbol table of the build; see docs/leftovers.md).
+; frame 25 is the second sprite. Picture: flying kick, leg stretched out (state $0C or $0D, timer below 10). Original
+; source label AKICKL21 (from the assembler symbol table of the build; see docs/leftovers.md).
 bruce_frame_24
         !byte $00,$0c,$16,$1a,$7e,$fc,$fe,$9f
         !byte $5b,$39,$11,$00
@@ -274,29 +274,30 @@ bruce_frame_21
         !byte $00,$00,$00,$50,$59,$79,$38,$14
         !byte $36,$c2,$82,$82,$03,$00,$00
 ; Bruce frame 7 (global frame 7). 16 pixels wide, 12 rows of 2 bytes (the mask builder reads 13), colour yellow ($F7).
-; Second sprite of pose frame 6. Picture: flying kick (mirror of frame 4).
+; Second sprite of pose frame 6. Picture: punch (mirror of frame 4; state $11, pose $06).
 bruce_frame_07
         !byte $00,$00,$00,$00,$00,$00,$03,$00
         !byte $07,$00,$0f,$c0,$1c,$00,$3c,$00
         !byte $3c,$00,$38,$00,$30
 ; Bruce frame 5 (global frame 5). 16 pixels wide, 12 rows of 2 bytes (the mask builder reads 13), colour yellow ($F7).
-; Second sprite of pose frame 4. Picture: flying kick, leg stretched out.
+; Second sprite of pose frame 4. Picture: punch, arm stretched out at shoulder height (state $11, pose $04).
 bruce_frame_05
         !byte $00,$00,$00,$00,$00,$00,$00,$60
         !byte $00,$70,$01,$f8,$00,$1c,$00,$1e
         !byte $00,$1e,$00,$0e,$00,$06,$00,$00
 ; Bruce frame 10 (global frame 10). 8 pixels wide, 13 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
-; frame 11 is the second sprite. Picture: striking with an arm raised.
+; frame 11 is the second sprite. Picture: climbing, seen from behind, one arm raised (climbing poses $0A and $0C
+; alternate).
 bruce_frame_10
         !byte $00,$20,$20,$30,$b0,$98,$fc,$7e
         !byte $3e,$1e,$02,$00
 ; Bruce frame 12 (global frame 12). 8 pixels wide, 13 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
-; frame 13 is the second sprite. Picture: striking with an arm raised (mirror of frame 10).
+; frame 13 is the second sprite. Picture: climbing, the other arm raised (mirror of frame 10).
 bruce_frame_12
         !byte $00,$04,$04,$0c,$0d,$19,$3f,$7e
         !byte $7c,$78,$40,$00
 ; Bruce frame 6 (global frame 6). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour black ($F0).
-; First sprite of the pose; frame 7 is the second sprite. Picture: flying kick (mirror of frame 4).
+; First sprite of the pose; frame 7 is the second sprite. Picture: punch (mirror of frame 4; state $11, pose $06).
 bruce_frame_06
         !byte $00,$00,$06,$00,$07,$00,$0c,$00
         !byte $08,$00,$00,$30,$00,$10,$00,$00
@@ -305,7 +306,8 @@ bruce_frame_06
         !byte $50,$00,$50,$00,$90,$00,$98,$00
         !byte $9c,$00
 ; Bruce frame 4 (global frame 4). 16 pixels wide, 20 rows of 2 bytes (the mask builder reads 21), colour black ($F0).
-; First sprite of the pose; frame 5 is the second sprite. Picture: flying kick, leg stretched out.
+; First sprite of the pose; frame 5 is the second sprite. Picture: punch, arm stretched out at shoulder height (state
+; $11, pose $04).
 bruce_frame_04
         !byte $00,$00,$00,$60,$00,$e0,$00,$30
         !byte $00,$10,$0c,$00,$08,$00,$00,$00
@@ -314,13 +316,13 @@ bruce_frame_04
         !byte $00,$0a,$00,$0a,$00,$09,$00,$19
         !byte $00,$39
 ; Bruce frame 11 (global frame 11). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
-; 10. Picture: striking with an arm raised.
+; 10. Picture: climbing, seen from behind, one arm raised (climbing poses $0A and $0C alternate).
 bruce_frame_11
         !byte $98,$9c,$dc,$8c,$0c,$00,$00,$00
         !byte $00,$01,$19,$18,$18,$24,$24,$64
         !byte $64,$04,$04,$06,$06
 ; Bruce frame 13 (global frame 13). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
-; 12. Picture: striking with an arm raised (mirror of frame 10).
+; 12. Picture: climbing, the other arm raised (mirror of frame 10).
 bruce_frame_13
         !byte $19,$39,$3b,$31,$30,$00,$00,$00
         !byte $00,$80,$98,$18,$18,$24,$24,$26
