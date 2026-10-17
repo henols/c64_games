@@ -25,9 +25,9 @@ Every place where the program chooses its next code from data: the CPU vectors, 
 | Game keys | [`handle_game_keys`](../src/status_and_keys.asm#L57) [`$1B29`](reference/modules/status_and_keys.md#handle_game_keys) | [`key_code`](../src/constants.asm#L137) | compare chain | [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop) |
 | Title keys | [`title_menu_handedness_keys`](../src/title_menu.asm#L107) [`$0956`](reference/modules/title_menu.md#title_menu_handedness_keys), [`title_menu_function_keys`](../src/title_menu.asm#L29) [`$08D2`](reference/modules/title_menu.md#title_menu_function_keys) | [`key_code`](../src/constants.asm#L137) | compare chain | [`title_menu_loop`](../src/title_menu.asm#L14) [`$08B1`](reference/modules/title_menu.md#title_menu_loop) |
 | Demo abort | [`check_demo_abort`](../src/pause_status_line.asm#L7) [`$19B8`](reference/modules/pause_status_line.md#check_demo_abort) | fire, [`key_code`](../src/constants.asm#L137) | compare | [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop) |
-| Music API | [`music_api_stop`](../src/music_player_state.asm#L9) [`$E000-$E008`](reference/modules/music_player_state.md#music_api_stop) | entry * 3 | jump table | the game |
-| Music internal | [`music_jump_stop`](../src/music_player.asm#L6) [`$E300-$E308`](reference/modules/music_player.md#music_jump_stop) | entry * 3 | jump table | API, playlist code |
-| Music commands | [`music_cmd_jumps`](../src/music_player.asm#L446) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps) | [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) [bits 4-6] | self-modified `BCC` into a jump table | [`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) |
+| Music API | [`music_api_stop`](../src/music_player_state.asm#L7) [`$E000-$E008`](reference/modules/music_player_state.md#music_api_stop) | entry * 3 | jump table | the game |
+| Music internal | [`music_jump_stop`](../src/music_player.asm#L7) [`$E300-$E308`](reference/modules/music_player.md#music_jump_stop) | entry * 3 | jump table | API, playlist code |
+| Music commands | [`music_cmd_jumps`](../src/music_player.asm#L449) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps) | [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) [bits 4-6] | self-modified `BCC` into a jump table | [`music_voice_dispatch`](../src/music_player.asm#L433) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) |
 | Effect commands | [`sfx_voice1_cmd_jumps`](../src/sfx_voice1.asm#L52) [`$EB3A`](reference/modules/sfx_voice1.md#sfx_voice1_cmd_jumps), [`sfx_voice2_cmd_jumps`](../src/sfx_voice2.asm#L52) [`$EFAA`](reference/modules/sfx_voice2.md#sfx_voice2_cmd_jumps), [`sfx_voice3_cmd_jumps`](../src/sfx_voice3.asm#L52) [`$F0AA`](reference/modules/sfx_voice3.md#sfx_voice3_cmd_jumps) | [`sfx_cmd_offsets`](../src/sfx_data.asm#L13) [command] | self-modified `BCC` into a jump table | the three effect players |
 | Other indirect jumps | `$1110`, `$1117`, `$111A`, `$31A1` | - | `JMP (ind)` | section 9 |
 | Zero-page RTS | `$0080` | - | `JSR`/`JMP` into zero page | [`cold_start`](../src/cold_start.asm#L22) [`$0440`](../src/cold_start.asm#L68), [`build_contact_masks`](../src/frame_builder.asm#L16) [`$517B`](../src/frame_builder.asm#L85) |
@@ -207,40 +207,40 @@ Then [`title_menu_function_keys`](../src/title_menu.asm#L29) [`$08D2`](reference
 
 ### 8.1 Music API and internal jumps
 
-[`music_api_stop`](../src/music_player_state.asm#L9) [`$E000-$E008`](reference/modules/music_player_state.md#music_api_stop):
+[`music_api_stop`](../src/music_player_state.asm#L7) [`$E000-$E008`](reference/modules/music_player_state.md#music_api_stop):
 
 | Entry | At | Target |
 |---|---|---|
-| stop | `$E000` | [`music_jump_stop`](../src/music_player.asm#L6) [`$E300`](reference/modules/music_player.md#music_jump_stop) |
-| start the playlist | `$E003` | [`music_jump_start_playlist`](../src/music_player.asm#L10) [`$E306`](reference/modules/music_player.md#music_jump_start_playlist) |
-| play one frame | `$E006` | [`music_play_frame`](../src/music_player.asm#L279) [`$E49E`](reference/modules/music_player.md#music_play_frame) |
+| stop | `$E000` | [`music_jump_stop`](../src/music_player.asm#L7) [`$E300`](reference/modules/music_player.md#music_jump_stop) |
+| start the playlist | `$E003` | [`music_jump_start_playlist`](../src/music_player.asm#L13) [`$E306`](reference/modules/music_player.md#music_jump_start_playlist) |
+| play one frame | `$E006` | [`music_play_frame`](../src/music_player.asm#L282) [`$E49E`](reference/modules/music_player.md#music_play_frame) |
 
-[`music_jump_stop`](../src/music_player.asm#L6) [`$E300-$E308`](reference/modules/music_player.md#music_jump_stop):
+[`music_jump_stop`](../src/music_player.asm#L7) [`$E300-$E308`](reference/modules/music_player.md#music_jump_stop):
 
 | Entry | At | Target |
 |---|---|---|
-| stop | `$E300` | [`music_stop`](../src/music_player.asm#L199) [`$E434`](reference/modules/music_player.md#music_stop) |
-| start the current song | `$E303` | [`music_init_song`](../src/music_player.asm#L43) [`$E352`](reference/modules/music_player.md#music_init_song) |
-| start the playlist | `$E306` | [`music_start_playlist`](../src/music_player.asm#L253) [`$E479`](reference/modules/music_player.md#music_start_playlist) |
+| stop | `$E300` | [`music_stop`](../src/music_player.asm#L202) [`$E434`](reference/modules/music_player.md#music_stop) |
+| start the current song | `$E303` | [`music_init_song`](../src/music_player.asm#L46) [`$E352`](reference/modules/music_player.md#music_init_song) |
+| start the playlist | `$E306` | [`music_start_playlist`](../src/music_player.asm#L256) [`$E479`](reference/modules/music_player.md#music_start_playlist) |
 
-[`music_start_song_x`](../src/music_player.asm#L226) [`$E455`](reference/modules/music_player.md#music_start_song_x) jumps to [`music_jump_start_song`](../src/music_player.asm#L8) [`$E303`](reference/modules/music_player.md#music_jump_start_song). **Code**
+[`music_start_song_x`](../src/music_player.asm#L229) [`$E455`](reference/modules/music_player.md#music_start_song_x) jumps to [`music_jump_start_song`](../src/music_player.asm#L10) [`$E303`](reference/modules/music_player.md#music_jump_start_song). **Code**
 
 ### 8.2 Music commands (self-modified branch)
 
-[`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) takes bits 4-6 of the command byte as the index into [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) [`$E2D6`](reference/modules/music_frequency_table.md#music_cmd_offsets). It stores the offset in [`music_cmd_offset`](../src/music_player.asm#L442) [`$E5E7`](reference/modules/music_player.md#music_cmd_offset), the operand of the `BCC` at [`music_cmd_branch`](../src/music_player.asm#L441) [`$E5E6`](reference/modules/music_player.md#music_cmd_branch), clears C, and executes the branch. The branch lands in [`music_cmd_jumps`](../src/music_player.asm#L446) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps). **Code**
+[`music_voice_dispatch`](../src/music_player.asm#L433) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) takes bits 4-6 of the command byte as the index into [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) [`$E2D6`](reference/modules/music_frequency_table.md#music_cmd_offsets). It stores the offset in [`music_cmd_offset`](../src/music_player.asm#L445) [`$E5E7`](reference/modules/music_player.md#music_cmd_offset), the operand of the `BCC` at [`music_cmd_branch`](../src/music_player.asm#L444) [`$E5E6`](reference/modules/music_player.md#music_cmd_branch), clears C, and executes the branch. The branch lands in [`music_cmd_jumps`](../src/music_player.asm#L449) [`$E5E8`](reference/modules/music_player.md#music_cmd_jumps). **Code**
 
 | Group | Commands | Offset | Lands at | Target |
 |---|---|---|---|---|
-| 0 | `$80-$8F` | `$00` | `$E5E8` | [`music_cmd_length`](../src/music_player.asm#L457) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) |
-| 1 | `$90-$9F` | `$03` | `$E5EB` | [`music_cmd_volume`](../src/music_player.asm#L470) [`$E617`](reference/modules/music_player.md#music_cmd_volume) |
-| 2 | `$A0-$AF` | `$06` | `$E5EE` | [`music_cmd_voice_option`](../src/music_player.asm#L486) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) |
-| 3 | `$B0-$BF` | `$09` | `$E5F1` | [`music_cmd_instrument`](../src/music_player.asm#L620) [`$E720`](reference/modules/music_player.md#music_cmd_instrument) |
-| 4 | `$C0-$CF` | `$0C` | `$E5F4` | [`music_cmd_pulse_width`](../src/music_player.asm#L657) [`$E75E`](reference/modules/music_player.md#music_cmd_pulse_width) |
-| 5 | `$D0-$DF` | `$0F` | `$E5F7` | [`music_cmd_filter`](../src/music_player.asm#L670) [`$E779`](reference/modules/music_player.md#music_cmd_filter) |
-| 6 | `$E0-$EF` | `$12` | `$E5FA` | [`music_cmd_tempo`](../src/music_player.asm#L700) [`$E7B2`](reference/modules/music_player.md#music_cmd_tempo) |
-| 7 | `$F0-$FE` | `$15` | `$E5FD` | [`music_cmd_length`](../src/music_player.asm#L457) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) (the first byte after the table) |
+| 0 | `$80-$8F` | `$00` | `$E5E8` | [`music_cmd_length`](../src/music_player.asm#L460) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) |
+| 1 | `$90-$9F` | `$03` | `$E5EB` | [`music_cmd_volume`](../src/music_player.asm#L473) [`$E617`](reference/modules/music_player.md#music_cmd_volume) |
+| 2 | `$A0-$AF` | `$06` | `$E5EE` | [`music_cmd_voice_option`](../src/music_player.asm#L489) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) |
+| 3 | `$B0-$BF` | `$09` | `$E5F1` | [`music_cmd_instrument`](../src/music_player.asm#L623) [`$E720`](reference/modules/music_player.md#music_cmd_instrument) |
+| 4 | `$C0-$CF` | `$0C` | `$E5F4` | [`music_cmd_pulse_width`](../src/music_player.asm#L660) [`$E75E`](reference/modules/music_player.md#music_cmd_pulse_width) |
+| 5 | `$D0-$DF` | `$0F` | `$E5F7` | [`music_cmd_filter`](../src/music_player.asm#L673) [`$E779`](reference/modules/music_player.md#music_cmd_filter) |
+| 6 | `$E0-$EF` | `$12` | `$E5FA` | [`music_cmd_tempo`](../src/music_player.asm#L703) [`$E7B2`](reference/modules/music_player.md#music_cmd_tempo) |
+| 7 | `$F0-$FE` | `$15` | `$E5FD` | [`music_cmd_length`](../src/music_player.asm#L460) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) (the first byte after the table) |
 
-[`music_cmd_offsets`](../src/music_frequency_table.asm#L47) has 17 entries (`$00` to `$30` in steps of 3); entries 8-16 are never used. `$FF` never reaches the dispatch: [`music_voice_read_command`](../src/music_player.asm#L421) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) handles it first. The image holds offset `$00` in the branch, a value left from the last command. **Code**
+[`music_cmd_offsets`](../src/music_frequency_table.asm#L47) has 17 entries (`$00` to `$30` in steps of 3); entries 8-16 are never used. `$FF` never reaches the dispatch: [`music_voice_read_command`](../src/music_player.asm#L424) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) handles it first. The image holds offset `$00` in the branch, a value left from the last command. **Code**
 
 ### 8.3 Effect commands (self-modified branch)
 
@@ -287,7 +287,7 @@ Code that is changed at run time to jump or stop:
 
 | Place | Change | Writer |
 |---|---|---|
-| [`music_cmd_offset`](../src/music_player.asm#L442) [`$E5E7`](reference/modules/music_player.md#music_cmd_offset) | branch offset of the music command dispatch | [`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) |
+| [`music_cmd_offset`](../src/music_player.asm#L445) [`$E5E7`](reference/modules/music_player.md#music_cmd_offset) | branch offset of the music command dispatch | [`music_voice_dispatch`](../src/music_player.asm#L433) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) |
 | [`sfx_voice1_cmd_offset`](../src/sfx_voice1.asm#L48) [`$EB39`](reference/modules/sfx_voice1.md#sfx_voice1_cmd_offset), [`sfx_voice2_cmd_offset`](../src/sfx_voice2.asm#L48) [`$EFA9`](reference/modules/sfx_voice2.md#sfx_voice2_cmd_offset), [`sfx_voice3_cmd_offset`](../src/sfx_voice3.asm#L48) [`$F0A9`](reference/modules/sfx_voice3.md#sfx_voice3_cmd_offset) | branch offset of the effect command dispatch | the effect players |
 | [`random_byte`](../src/interrupt_entry.asm#L89) [`$1159`](reference/modules/interrupt_entry.md#random_byte) | first opcode LDA becomes TXS (opcode $9A) | [`actor_play_step_sound`](../src/actor_step.asm#L556) [`$1FC4`](reference/modules/actor_step.md#actor_play_step_sound), a failed protection check |
 | [`step_sound_crash_point`](../src/actor_step.asm#L606) [`$1FFE`](reference/modules/actor_step.md#step_sound_crash_point) | CLC becomes TXS (opcode $9A), with X = 4 | [`actor_play_step_sound`](../src/actor_step.asm#L556) [`$1FC4`](reference/modules/actor_step.md#actor_play_step_sound), a failed protection check |
@@ -298,7 +298,7 @@ For completeness, these instructions get their address operand at run time. They
 
 | Operand | Instruction of | Writer |
 |---|---|---|
-| [`music_fetch_voice0_src`](../src/music_player.asm#L136) [`$E3DF`](reference/modules/music_player.md#music_fetch_voice0_src), [`music_fetch_voice1_src`](../src/music_player.asm#L141) [`$E3E3`](reference/modules/music_player.md#music_fetch_voice1_src), [`music_fetch_voice2_src`](../src/music_player.asm#L146) [`$E3E7`](reference/modules/music_player.md#music_fetch_voice2_src) | `LDA abs` of the music stream fetch | [`music_set_voice_pointers`](../src/music_player.asm#L53) [`$E360`](reference/modules/music_player.md#music_set_voice_pointers), [`music_read_byte`](../src/music_player.asm#L153) [`$E3EA`](reference/modules/music_player.md#music_read_byte) |
+| [`music_fetch_voice0_src`](../src/music_player.asm#L139) [`$E3DF`](reference/modules/music_player.md#music_fetch_voice0_src), [`music_fetch_voice1_src`](../src/music_player.asm#L144) [`$E3E3`](reference/modules/music_player.md#music_fetch_voice1_src), [`music_fetch_voice2_src`](../src/music_player.asm#L149) [`$E3E7`](reference/modules/music_player.md#music_fetch_voice2_src) | `LDA abs` of the music stream fetch | [`music_set_voice_pointers`](../src/music_player.asm#L56) [`$E360`](reference/modules/music_player.md#music_set_voice_pointers), [`music_read_byte`](../src/music_player.asm#L156) [`$E3EA`](reference/modules/music_player.md#music_read_byte) |
 | [`spawn_yamo_prot_key_lo`](../src/actor_spawn.asm#L206) [`$0CD9`](reference/modules/actor_spawn.md#spawn_yamo_prot_key_lo), [`spawn_yamo_prot_pair_lo`](../src/actor_spawn.asm#L209) [`$0CDC`](reference/modules/actor_spawn.md#spawn_yamo_prot_pair_lo) | protection key read in [`spawn_yamo`](../src/actor_spawn.asm#L203) [`$0CD5`](reference/modules/actor_spawn.md#spawn_yamo) | [`actor_play_step_sound`](../src/actor_step.asm#L556) [`$1FC4`](reference/modules/actor_step.md#actor_play_step_sound) |
 | [`main_loop_prot_key_lo`](../src/game_main_loop.asm#L68) [`$1C14`](reference/modules/game_main_loop.md#main_loop_prot_key_lo), [`main_loop_prot_pair_lo`](../src/game_main_loop.asm#L70) [`$1C17`](reference/modules/game_main_loop.md#main_loop_prot_pair_lo) | protection key read in [`main_loop_protection_check`](../src/game_main_loop.asm#L67) [`$1C13`](reference/modules/game_main_loop.md#main_loop_protection_check) | [`actor_play_step_sound`](../src/actor_step.asm#L556) [`$1FC4`](reference/modules/actor_step.md#actor_play_step_sound) |
 | [`reset_yamo_timer_src`](../src/actor_spawn.asm#L288) [`$0D56`](reference/modules/actor_spawn.md#reset_yamo_timer_src), [`reset_ninja_timer_src`](../src/actor_spawn.asm#L320) [`$0D86`](reference/modules/actor_spawn.md#reset_ninja_timer_src) | spawn timer reload | the spawn code (`$0D4B`, `$0D7B`) |

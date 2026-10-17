@@ -3,10 +3,13 @@
 ; $e300-$e7bd
 
 ; Internal jump table of the music player: stop, start the current song, start the playlist.
+; music_jump_stop: stops the music (music_stop); reached from music_api_stop.
 music_jump_stop
         jmp music_stop
+; Starts the song in music_song (music_init_song); the playlist code jumps here after it sets music_song (music_start_song_x).
 music_jump_start_song
         jmp music_init_song
+; Starts the playlist (music_start_playlist); reached from music_api_start.
 music_jump_start_playlist
         jmp music_start_playlist
 music_song

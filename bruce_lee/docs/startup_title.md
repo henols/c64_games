@@ -180,7 +180,7 @@ pass. The other checks of the key page run during the game.
 of the demo by fire or F1 come here. **Code.**
 
 1. SEI, CLD, the stack pointer = `$FD`. It blanks the screen.
-2. [`music_api_stop`](../src/music_player_state.asm#L9) [`$E000`](reference/modules/music_player_state.md#music_api_stop) stops the music and silences the SID.
+2. [`music_api_stop`](../src/music_player_state.asm#L7) [`$E000`](reference/modules/music_player_state.md#music_api_stop) stops the music and silences the SID.
 3. It points [`random_ptr`](../src/constants.asm#L24) [`$0016`](reference/variables.md#random_ptr) at [`random_table`](../src/constants.asm#L151) [`$0200`](reference/variables.md#random_table) (cleared again in step 4).
 4. [`init_game_variables`](../src/game_setup.asm#L18) [`$0F72`](reference/modules/game_setup.md#init_game_variables) clears the game variables and sets [`game_mode`](../src/constants.asm#L134) [`$0104`](reference/variables.md#game_mode) = 1.
 5. [`reset_play_state`](../src/play_init.asm#L19) [`$0763`](reference/modules/play_init.md#reset_play_state) sets up the game screen and the game interrupt and spawns Bruce. The title screen
@@ -263,9 +263,9 @@ After F3, F5 and L: "2 PLAYERS" and "OPPONENT" are marked, and the message row s
 
 1. When [`title_music_off`](../src/room_enemy_tables.asm#L118) [`$1385`](reference/modules/room_enemy_tables.md#title_music_off) is nonzero, there is no tune.
 2. Else it decrements [`title_music_skip_count`](../src/title_menu.asm#L163) [`$09BB`](reference/modules/title_menu.md#title_music_skip_count). When the result is 0 or more, there is no tune.
-3. When the result is negative, it sets the count to 4, sets [`music_end_action`](../src/music_player.asm#L35) [`$E314`](reference/modules/music_player.md#music_end_action) = 3, the playlist
+3. When the result is negative, it sets the count to 4, sets [`music_end_action`](../src/music_player.asm#L38) [`$E314`](reference/modules/music_player.md#music_end_action) = 3, the playlist
    [`music_playlist`](../src/music_data.asm#L37) [`$E870`](reference/modules/music_data.md#music_playlist) = song 0 and [`music_playlist_end`](../src/music_data.asm#L39) [`$E871`](reference/modules/music_data.md#music_playlist_end) = `$FF` (so song 0 loops), and calls
-   [`music_api_start`](../src/music_player_state.asm#L11) [`$E003`](reference/modules/music_player_state.md#music_api_start).
+   [`music_api_start`](../src/music_player_state.asm#L10) [`$E003`](reference/modules/music_player_state.md#music_api_start).
 
 The count is 0 in the image. So the tune plays at the first title, then at every fifth title. Two events set the
 count to 0, so the next title plays the tune: the end of the demo by a lost fall ([`lose_fall`](../src/lose_fall_game_over.asm#L14) [`$1818`](reference/modules/lose_fall_game_over.md#lose_fall)), and the S
@@ -365,7 +365,7 @@ The title after F3: two players. **Observed.**
 
 1. SEI. It blanks the screen and turns the sprites off.
 2. [`current_player`](../src/constants.asm#L14) [`$0003`](reference/variables.md#current_player) = 0 (player 1).
-3. [`music_stop_request`](../src/music_player.asm#L14) [`$E30A`](reference/modules/music_player.md#music_stop_request) = 1, then [`music_api_stop`](../src/music_player_state.asm#L9) [`$E000`](reference/modules/music_player_state.md#music_api_stop).
+3. [`music_stop_request`](../src/music_player.asm#L17) [`$E30A`](reference/modules/music_player.md#music_stop_request) = 1, then [`music_api_stop`](../src/music_player_state.asm#L7) [`$E000`](reference/modules/music_player_state.md#music_api_stop).
 4. It copies the two options to [`option_two_players_saved`](../src/options_and_patterns.asm#L21) [`$42CB`](reference/modules/options_and_patterns.md#option_two_players_saved) and [`option_yamo_player2_saved`](../src/options_and_patterns.asm#L24) [`$42CC`](reference/modules/options_and_patterns.md#option_yamo_player2_saved).
 5. [`show_player_screen`](../src/title_player_screens.asm#L71) [`$0EA7`](reference/modules/title_player_screens.md#show_player_screen) shows PLAYER 1 (section 10).
 6. It blanks the screen again and sets the stack pointer to `$FD`.
@@ -387,7 +387,7 @@ Room 0 when the game starts: the status line shows 1UP, the score, TOP and FALLS
 [`start_attract_demo`](../src/title_demo_start.asm#L32) [`$0531`](reference/modules/title_demo_start.md#start_attract_demo) runs when [`title_countdown`](../src/constants.asm#L39) [`$0049`](reference/variables.md#title_countdown) reaches 0. **Code.**
 
 1. SEI. It blanks the screen and turns the sprites off.
-2. [`music_stop_request`](../src/music_player.asm#L14) [`$E30A`](reference/modules/music_player.md#music_stop_request) = 1, then [`music_api_stop`](../src/music_player_state.asm#L9) [`$E000`](reference/modules/music_player_state.md#music_api_stop).
+2. [`music_stop_request`](../src/music_player.asm#L17) [`$E30A`](reference/modules/music_player.md#music_stop_request) = 1, then [`music_api_stop`](../src/music_player_state.asm#L7) [`$E000`](reference/modules/music_player_state.md#music_api_stop).
 3. The stack pointer = `$FD`. [`init_game_variables`](../src/game_setup.asm#L18) [`$0F72`](reference/modules/game_setup.md#init_game_variables) and [`reset_play_state`](../src/play_init.asm#L19) [`$0763`](reference/modules/play_init.md#reset_play_state).
 4. LSR [`game_mode`](../src/constants.asm#L134) [`$0104`](reference/variables.md#game_mode): 1 becomes 0, the demo.
 5. It saves the options in the saved copies and sets both options to 0: one player, computer Yamo.

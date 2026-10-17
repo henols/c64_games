@@ -15,7 +15,7 @@ The game has two sound drivers. A third-party music player plays the title tune 
 **Conventions.**
 - Addresses are C64 addresses. Names are the names of the knowledge.
 - A *frame* is one run of the raster interrupt that calls the driver: [`irq_title_frame`](../src/screen_raster_irqs.asm#L81) [`$152C`](reference/modules/screen_raster_irqs.md#irq_title_frame) for the music, [`irq_game_bottom`](../src/game_irq.asm#L12) [`$48C1`](reference/modules/game_irq.md#irq_game_bottom) (through [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update)) for the effects. The game runs on a PAL C64: 50 frames per second.
-- A *tick* is the time step of the music player: [`music_tempo`](../src/music_player.asm#L20) frames.
+- A *tick* is the time step of the music player: [`music_tempo`](../src/music_player.asm#L23) frames.
 - A *voice* of the music player is numbered 0-2. SID voice 1-3 is the same voice: music voice 0 is SID voice 1.
 - A *note index* is an index into [`note_freq_lo`](../src/music_frequency_table.asm#L9) [`$E200`](reference/modules/music_frequency_table.md#note_freq_lo) / [`note_freq_hi`](../src/music_frequency_table.asm#L22) [`$E254`](reference/modules/music_frequency_table.md#note_freq_hi). Index n is the note n semitones above B0. Note names use the octave numbers of scientific pitch (A4 = 440 Hz).
 - An *effect* n (0-14) is started with the *request value* `$80` + n.
@@ -40,9 +40,9 @@ flowchart TB
   end
 ~~~
 
-1. On the title screen, [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) starts the title tune with [`music_api_start`](../src/music_player_state.asm#L11) [`$E003`](reference/modules/music_player_state.md#music_api_start), on the first title and then on every fifth title ([`title_music_skip_count`](../src/title_menu.asm#L163) [`$09BB`](reference/modules/title_menu.md#title_music_skip_count)), unless the S key has turned the tune off ([`title_music_off`](../src/room_enemy_tables.asm#L118) [`$1385`](reference/modules/room_enemy_tables.md#title_music_off)). **Code**
+1. On the title screen, [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) starts the title tune with [`music_api_start`](../src/music_player_state.asm#L10) [`$E003`](reference/modules/music_player_state.md#music_api_start), on the first title and then on every fifth title ([`title_music_skip_count`](../src/title_menu.asm#L163) [`$09BB`](reference/modules/title_menu.md#title_music_skip_count)), unless the S key has turned the tune off ([`title_music_off`](../src/room_enemy_tables.asm#L118) [`$1385`](reference/modules/room_enemy_tables.md#title_music_off)). **Code**
 2. The title interrupt [`irq_title_frame`](../src/screen_raster_irqs.asm#L81) [`$152C`](reference/modules/screen_raster_irqs.md#irq_title_frame) calls [`music_api_play`](../src/music_player_state.asm#L13) [`$E006`](reference/modules/music_player_state.md#music_api_play) each frame. **Code**
-3. [`restart_to_title`](../src/title_demo_start.asm#L9) [`$050F`](reference/modules/title_demo_start.md#restart_to_title), [`start_attract_demo`](../src/title_demo_start.asm#L32) [`$0531`](reference/modules/title_demo_start.md#start_attract_demo) and [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) stop the tune with [`music_api_stop`](../src/music_player_state.asm#L9) [`$E000`](reference/modules/music_player_state.md#music_api_stop). **Code**
+3. [`restart_to_title`](../src/title_demo_start.asm#L9) [`$050F`](reference/modules/title_demo_start.md#restart_to_title), [`start_attract_demo`](../src/title_demo_start.asm#L32) [`$0531`](reference/modules/title_demo_start.md#start_attract_demo) and [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) stop the tune with [`music_api_stop`](../src/music_player_state.asm#L7) [`$E000`](reference/modules/music_player_state.md#music_api_stop). **Code**
 4. In the game and in the demo, the game code calls [`play_sound`](../src/sound_request.asm#L12) [`$2509`](reference/modules/sound_request.md#play_sound) with Y = `$80` + effect number. [`play_sound`](../src/sound_request.asm#L12) writes the request into the state byte of a free effect player. **Code**
 5. [`frame_update`](../src/frame_update.asm#L20) [`$15A8`](reference/modules/frame_update.md#frame_update) calls [`sfx_voice1_update`](../src/sfx_voice1.asm#L19) [`$EB03`](reference/modules/sfx_voice1.md#sfx_voice1_update), [`sfx_voice2_update`](../src/sfx_voice2.asm#L19) [`$EF73`](reference/modules/sfx_voice2.md#sfx_voice2_update) and [`sfx_voice3_update`](../src/sfx_voice3.asm#L19) [`$F073`](reference/modules/sfx_voice3.md#sfx_voice3_update) each frame. A player that sees a request starts the effect stream. **Code**
 6. [`stop_all_sounds`](../src/sound_request.asm#L63) [`$255E`](reference/modules/sound_request.md#stop_all_sounds) frees the three effect players and writes 0 to the SID registers. [`show_title_screen`](../src/title_demo_start.asm#L83), [`draw_room`](../src/draw_room.asm#L28), [`show_player_screen`](../src/title_player_screens.asm#L71), [`init_game_variables`](../src/game_setup.asm#L18) and [`lose_fall`](../src/lose_fall_game_over.asm#L14) call it. **Code**
@@ -51,21 +51,21 @@ flowchart TB
 
 | Name | Address | Layout | Readers | Writers |
 |---|---|---|---|---|
-| [`music_api_stop`](../src/music_player_state.asm#L9) | `$E000-$E008` | 3 `JMP`: stop, start the playlist, play one frame | the game | - |
-| [`music_transpose`](../src/music_voice_state.asm#L7) .. [`music_envelopes`](../src/music_voice_state.asm#L41) | `$E100-$E12D` | voice state, 46 bytes, arrays of 3 (section 3.2) | the player | [`music_reset_state`](../src/music_player.asm#L101) [`$E3A8`](reference/modules/music_player.md#music_reset_state), the commands |
+| [`music_api_stop`](../src/music_player_state.asm#L7) | `$E000-$E008` | 3 `JMP`: stop, start the playlist, play one frame | the game | - |
+| [`music_transpose`](../src/music_voice_state.asm#L7) .. [`music_envelopes`](../src/music_voice_state.asm#L41) | `$E100-$E12D` | voice state, 46 bytes, arrays of 3 (section 3.2) | the player | [`music_reset_state`](../src/music_player.asm#L104) [`$E3A8`](reference/modules/music_player.md#music_reset_state), the commands |
 | [`note_freq_lo`](../src/music_frequency_table.asm#L9) / [`note_freq_hi`](../src/music_frequency_table.asm#L22) | `$E200` / `$E254` | 84 bytes each: SID frequency of note index 0-83 | music and effect players | - |
-| [`music_voice_init`](../src/music_frequency_table.asm#L37) | `$E2A8` | 46 bytes: reset image of `$E100-$E12D` | [`music_reset_state`](../src/music_player.asm#L101) [`$E3A8`](reference/modules/music_player.md#music_reset_state) | - |
-| [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) | `$E2D6` | 17 branch offsets, 8 used | [`music_voice_dispatch`](../src/music_player.asm#L430) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) | - |
-| [`music_jump_stop`](../src/music_player.asm#L6) | `$E300-$E308` | 3 `JMP`: stop, start song, start playlist | API, [`music_start_song_x`](../src/music_player.asm#L226) [`$E455`](reference/modules/music_player.md#music_start_song_x) | - |
-| [`music_song`](../src/music_player.asm#L12) .. [`music_end_action`](../src/music_player.asm#L35) | `$E309-$E314` | player globals (section 3.2) | the player | the player, the title code |
-| [`music_length_table`](../src/music_player.asm#L611) | `$E6F9` | 2 rows of 16 bytes: ticks of each length code | [`music_note_length`](../src/music_player.asm#L564) [`$E6B6`](reference/modules/music_player.md#music_note_length) | - |
-| [`sid_voice_offsets`](../src/music_player.asm#L614) | `$E719` | `$00`, `$07`, `$0E` | the player | - |
-| [`music_waveforms`](../src/music_player.asm#L616) | `$E71C` | `$11`, `$21`, `$41`, `$81` | [`music_cmd_voice_option`](../src/music_player.asm#L486) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) | - |
-| [`music_instruments`](../src/music_data.asm#L8) | `$E80A` | 8 instruments of 8 bytes | [`music_cmd_instrument`](../src/music_player.asm#L620) [`$E720`](reference/modules/music_player.md#music_cmd_instrument) | - |
-| [`music_filter_presets`](../src/music_data.asm#L19) | `$E84A` | 8 presets of 4 bytes | [`music_cmd_filter`](../src/music_player.asm#L670) [`$E779`](reference/modules/music_player.md#music_cmd_filter) | - |
-| [`music_playlist`](../src/music_data.asm#L37) | `$E870` | playlist entries (2 bytes used) | [`music_playlist_read`](../src/music_player.asm#L233) [`$E45E`](reference/modules/music_player.md#music_playlist_read) | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) |
-| [`music_song_table`](../src/music_songs.asm#L7) | `$E8C0` | 8 bytes per song: 3 stream addresses and an instrument table address | [`music_set_voice_pointers`](../src/music_player.asm#L53) [`$E360`](reference/modules/music_player.md#music_set_voice_pointers) | - |
-| `music_title_voice0/1/2` | `$E8D0` / `$E97D` / `$EA31` | streams of the title tune | [`music_fetch_voice0`](../src/music_player.asm#L135) .. `2` | - |
+| [`music_voice_init`](../src/music_frequency_table.asm#L37) | `$E2A8` | 46 bytes: reset image of `$E100-$E12D` | [`music_reset_state`](../src/music_player.asm#L104) [`$E3A8`](reference/modules/music_player.md#music_reset_state) | - |
+| [`music_cmd_offsets`](../src/music_frequency_table.asm#L47) | `$E2D6` | 17 branch offsets, 8 used | [`music_voice_dispatch`](../src/music_player.asm#L433) [`$E5D7`](reference/modules/music_player.md#music_voice_dispatch) | - |
+| [`music_jump_stop`](../src/music_player.asm#L7) | `$E300-$E308` | 3 `JMP`: stop, start song, start playlist | API, [`music_start_song_x`](../src/music_player.asm#L229) [`$E455`](reference/modules/music_player.md#music_start_song_x) | - |
+| [`music_song`](../src/music_player.asm#L15) .. [`music_end_action`](../src/music_player.asm#L38) | `$E309-$E314` | player globals (section 3.2) | the player | the player, the title code |
+| [`music_length_table`](../src/music_player.asm#L614) | `$E6F9` | 2 rows of 16 bytes: ticks of each length code | [`music_note_length`](../src/music_player.asm#L567) [`$E6B6`](reference/modules/music_player.md#music_note_length) | - |
+| [`sid_voice_offsets`](../src/music_player.asm#L617) | `$E719` | `$00`, `$07`, `$0E` | the player | - |
+| [`music_waveforms`](../src/music_player.asm#L619) | `$E71C` | `$11`, `$21`, `$41`, `$81` | [`music_cmd_voice_option`](../src/music_player.asm#L489) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) | - |
+| [`music_instruments`](../src/music_data.asm#L8) | `$E80A` | 8 instruments of 8 bytes | [`music_cmd_instrument`](../src/music_player.asm#L623) [`$E720`](reference/modules/music_player.md#music_cmd_instrument) | - |
+| [`music_filter_presets`](../src/music_data.asm#L19) | `$E84A` | 8 presets of 4 bytes | [`music_cmd_filter`](../src/music_player.asm#L673) [`$E779`](reference/modules/music_player.md#music_cmd_filter) | - |
+| [`music_playlist`](../src/music_data.asm#L37) | `$E870` | playlist entries (2 bytes used) | [`music_playlist_read`](../src/music_player.asm#L236) [`$E45E`](reference/modules/music_player.md#music_playlist_read) | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0584`](reference/modules/title_demo_start.md#show_title_screen) |
+| [`music_song_table`](../src/music_songs.asm#L7) | `$E8C0` | 8 bytes per song: 3 stream addresses and an instrument table address | [`music_set_voice_pointers`](../src/music_player.asm#L56) [`$E360`](reference/modules/music_player.md#music_set_voice_pointers) | - |
+| `music_title_voice0/1/2` | `$E8D0` / `$E97D` / `$EA31` | streams of the title tune | [`music_fetch_voice0`](../src/music_player.asm#L138) .. `2` | - |
 | [`sfx_voice1_state`](../src/sfx_voice1.asm#L6) .. [`sfx_voice1_timer`](../src/sfx_voice1.asm#L10) | `$EB00-$EB02` | state, stream position, timer of SID voice 1 | [`sfx_voice1_update`](../src/sfx_voice1.asm#L19) [`$EB03`](reference/modules/sfx_voice1.md#sfx_voice1_update) | the player, [`play_sound`](../src/sound_request.asm#L12) [`$2509`](reference/modules/sound_request.md#play_sound) |
 | [`sfx_voice2_state`](../src/sfx_voice2.asm#L6) / [`sfx_voice3_state`](../src/sfx_voice3.asm#L6) | `$EF70` / `$F070` | the same 3 bytes for SID voices 2 and 3 | the players | the players, [`play_sound`](../src/sound_request.asm#L12) |
 | [`sfx_voice1_stream`](../src/constants.asm#L124) / [`sfx_voice2_stream`](../src/constants.asm#L125) / [`sfx_voice3_stream`](../src/constants.asm#L126) | `$00F6` / `$00F8` / `$00FA` | zero-page pointer to the stream of each voice | the players | the players |
@@ -79,20 +79,20 @@ flowchart TB
 
 ## 3. The music player
 
-The player has a credit text at [`music_player_credit`](../src/music_player.asm#L38) [`$E315`](reference/modules/music_player.md#music_player_credit): " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". Nothing reads the text. **Code**
+The player has a credit text at [`music_player_credit`](../src/music_player.asm#L41) [`$E315`](reference/modules/music_player.md#music_player_credit): " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". Nothing reads the text. **Code**
 
 ### 3.1 Entry points
 
 | Entry | Address | Goes to | Called by |
 |---|---|---|---|
-| [`music_api_stop`](../src/music_player_state.asm#L9) | `$E000` | [`music_jump_stop`](../src/music_player.asm#L6) [`$E300`](reference/modules/music_player.md#music_jump_stop) -> [`music_stop`](../src/music_player.asm#L199) [`$E434`](reference/modules/music_player.md#music_stop) -> [`music_silence`](../src/music_player.asm#L129) [`$E3DA`](reference/modules/music_player.md#music_silence) | [`restart_to_title`](../src/title_demo_start.asm#L9) [`$051C`](../src/title_demo_start.asm#L17), [`start_attract_demo`](../src/title_demo_start.asm#L32) [`$054A`](../src/title_demo_start.asm#L45), [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0729`](../src/title_demo_start.asm#L295) |
-| [`music_api_start`](../src/music_player_state.asm#L11) | `$E003` | [`music_jump_start_playlist`](../src/music_player.asm#L10) [`$E306`](reference/modules/music_player.md#music_jump_start_playlist) -> [`music_start_playlist`](../src/music_player.asm#L253) [`$E479`](reference/modules/music_player.md#music_start_playlist) | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$06DA`](../src/title_demo_start.asm#L241) |
-| [`music_api_play`](../src/music_player_state.asm#L13) | `$E006` | [`music_play_frame`](../src/music_player.asm#L279) [`$E49E`](reference/modules/music_player.md#music_play_frame) | [`irq_title_frame`](../src/screen_raster_irqs.asm#L81) [`$154C`](../src/screen_raster_irqs.asm#L99), each frame of the title and game over screens |
-| [`music_jump_start_song`](../src/music_player.asm#L8) | `$E303` | [`music_init_song`](../src/music_player.asm#L43) [`$E352`](reference/modules/music_player.md#music_init_song) | [`music_start_song_x`](../src/music_player.asm#L226) [`$E455`](reference/modules/music_player.md#music_start_song_x) (playlist and end actions) |
+| [`music_api_stop`](../src/music_player_state.asm#L7) | `$E000` | [`music_jump_stop`](../src/music_player.asm#L7) [`$E300`](reference/modules/music_player.md#music_jump_stop) -> [`music_stop`](../src/music_player.asm#L202) [`$E434`](reference/modules/music_player.md#music_stop) -> [`music_silence`](../src/music_player.asm#L132) [`$E3DA`](reference/modules/music_player.md#music_silence) | [`restart_to_title`](../src/title_demo_start.asm#L9) [`$051C`](../src/title_demo_start.asm#L17), [`start_attract_demo`](../src/title_demo_start.asm#L32) [`$054A`](../src/title_demo_start.asm#L45), [`show_title_screen`](../src/title_demo_start.asm#L83) [`$0729`](../src/title_demo_start.asm#L295) |
+| [`music_api_start`](../src/music_player_state.asm#L10) | `$E003` | [`music_jump_start_playlist`](../src/music_player.asm#L13) [`$E306`](reference/modules/music_player.md#music_jump_start_playlist) -> [`music_start_playlist`](../src/music_player.asm#L256) [`$E479`](reference/modules/music_player.md#music_start_playlist) | [`show_title_screen`](../src/title_demo_start.asm#L83) [`$06DA`](../src/title_demo_start.asm#L241) |
+| [`music_api_play`](../src/music_player_state.asm#L13) | `$E006` | [`music_play_frame`](../src/music_player.asm#L282) [`$E49E`](reference/modules/music_player.md#music_play_frame) | [`irq_title_frame`](../src/screen_raster_irqs.asm#L81) [`$154C`](../src/screen_raster_irqs.asm#L99), each frame of the title and game over screens |
+| [`music_jump_start_song`](../src/music_player.asm#L10) | `$E303` | [`music_init_song`](../src/music_player.asm#L46) [`$E352`](reference/modules/music_player.md#music_init_song) | [`music_start_song_x`](../src/music_player.asm#L229) [`$E455`](reference/modules/music_player.md#music_start_song_x) (playlist and end actions) |
 
-The game sets [`music_stop_request`](../src/music_player.asm#L14) [`$E30A`](reference/modules/music_player.md#music_stop_request) to 1 before it calls [`music_api_stop`](../src/music_player_state.asm#L9) in [`start_attract_demo`](../src/title_demo_start.asm#L32) and [`show_title_screen`](../src/title_demo_start.asm#L83). **Code**
+The game sets [`music_stop_request`](../src/music_player.asm#L17) [`$E30A`](reference/modules/music_player.md#music_stop_request) to 1 before it calls [`music_api_stop`](../src/music_player_state.asm#L7) in [`start_attract_demo`](../src/title_demo_start.asm#L32) and [`show_title_screen`](../src/title_demo_start.asm#L83). **Code**
 
-Before [`music_api_start`](../src/music_player_state.asm#L11), [`show_title_screen`](../src/title_demo_start.asm#L83) writes the playlist: [`music_end_action`](../src/music_player.asm#L35) = 3, [`music_playlist`](../src/music_data.asm#L37) = `$00` (song 0) and [`music_playlist_end`](../src/music_data.asm#L39) = `$FF` (end of the list). So the title tune loops. **Code**
+Before [`music_api_start`](../src/music_player_state.asm#L10), [`show_title_screen`](../src/title_demo_start.asm#L83) writes the playlist: [`music_end_action`](../src/music_player.asm#L38) = 3, [`music_playlist`](../src/music_data.asm#L37) = `$00` (song 0) and [`music_playlist_end`](../src/music_data.asm#L39) = `$FF` (end of the list). So the title tune loops. **Code**
 
 ### 3.2 State
 
@@ -100,18 +100,18 @@ Globals of the player:
 
 | Name | Address | Meaning |
 |---|---|---|
-| [`music_song`](../src/music_player.asm#L12) | `$E309` | song being played (0 = the title tune) |
-| [`music_stop_request`](../src/music_player.asm#L14) | `$E30A` | nonzero: [`music_play_frame`](../src/music_player.asm#L279) silences the SID and stops |
-| [`music_song_ended`](../src/music_player.asm#L16) | `$E30B` | 1 when a voice reads its end byte `$FF`; nothing reads it |
-| [`music_playing`](../src/music_player.asm#L18) | `$E30C` | 1 = the song plays, 0 = stopped or being set up |
-| [`music_tempo`](../src/music_player.asm#L20) | `$E30D` | frames per tick (command `$Ex`) |
-| [`music_end_marker`](../src/music_player.asm#L22) | `$E30E` | `$FF` when a voice has read its end byte |
-| [`music_filter_mode`](../src/music_player.asm#L24) | `$E30F` | filter mode bits for the high nibble of [`SIGVOL`](../src/constants.asm#L271) [`$D418`](reference/variables.md#SIGVOL) (command `$Dx`) |
-| [`music_volume_voice`](../src/music_player.asm#L26) | `$E310` | voice + 1 whose next note writes `$D418`/`$D417`; 0 = nothing pending |
-| [`music_volume`](../src/music_player.asm#L28) | `$E311` | master volume (command `$9x`) |
-| [`music_temp`](../src/music_player.asm#L30) | `$E312` | scratch |
-| [`music_end_action`](../src/music_player.asm#L35) | `$E314` | what happens at the end of a song (section 4.7) |
-| [`music_long_lengths`](../src/music_frequency_table.asm#L51) | `$E2E7` | 1 = second row of [`music_length_table`](../src/music_player.asm#L611) (commands `$AC-$AF`) |
+| [`music_song`](../src/music_player.asm#L15) | `$E309` | song being played (0 = the title tune) |
+| [`music_stop_request`](../src/music_player.asm#L17) | `$E30A` | nonzero: [`music_play_frame`](../src/music_player.asm#L282) silences the SID and stops |
+| [`music_song_ended`](../src/music_player.asm#L19) | `$E30B` | 1 when a voice reads its end byte `$FF`; nothing reads it |
+| [`music_playing`](../src/music_player.asm#L21) | `$E30C` | 1 = the song plays, 0 = stopped or being set up |
+| [`music_tempo`](../src/music_player.asm#L23) | `$E30D` | frames per tick (command `$Ex`) |
+| [`music_end_marker`](../src/music_player.asm#L25) | `$E30E` | `$FF` when a voice has read its end byte |
+| [`music_filter_mode`](../src/music_player.asm#L27) | `$E30F` | filter mode bits for the high nibble of [`SIGVOL`](../src/constants.asm#L271) [`$D418`](reference/variables.md#SIGVOL) (command `$Dx`) |
+| [`music_volume_voice`](../src/music_player.asm#L29) | `$E310` | voice + 1 whose next note writes `$D418`/`$D417`; 0 = nothing pending |
+| [`music_volume`](../src/music_player.asm#L31) | `$E311` | master volume (command `$9x`) |
+| [`music_temp`](../src/music_player.asm#L33) | `$E312` | scratch |
+| [`music_end_action`](../src/music_player.asm#L38) | `$E314` | what happens at the end of a song (section 4.7) |
+| [`music_long_lengths`](../src/music_frequency_table.asm#L51) | `$E2E7` | 1 = second row of [`music_length_table`](../src/music_player.asm#L614) (commands `$AC-$AF`) |
 | [`music_resonance`](../src/music_frequency_table.asm#L53) | `$E2E8` | value for [`RESON`](../src/constants.asm#L270) [`$D417`](reference/variables.md#RESON) (command `$Dx`) |
 | [`music_voice`](../src/music_voice_state.asm#L45) | `$E12E` | voice being processed |
 | [`music_tempo_counter`](../src/music_voice_state.asm#L47) | `$E12F` | frames left in the current tick |
@@ -135,44 +135,44 @@ The voice state `$E100-$E12D` (arrays of 3 bytes, index = voice):
 | [`music_voice_articulation`](../src/music_voice_state.asm#L36) | `$E119` | 0 normal, 1 staccato, 2 legato | 0 |
 | [`music_envelopes`](../src/music_voice_state.asm#L41) | `$E11C` | 6 bytes per voice: AD/SR of articulation 0, 1, 2 of the current instrument | instrument 0 |
 
-[`music_reset_state`](../src/music_player.asm#L101) [`$E3A8`](reference/modules/music_player.md#music_reset_state) copies [`music_voice_init`](../src/music_frequency_table.asm#L37) [`$E2A8`](reference/modules/music_frequency_table.md#music_voice_init) over `$E100-$E12D` before each song. **Code**
+[`music_reset_state`](../src/music_player.asm#L104) [`$E3A8`](reference/modules/music_player.md#music_reset_state) copies [`music_voice_init`](../src/music_frequency_table.asm#L37) [`$E2A8`](reference/modules/music_frequency_table.md#music_voice_init) over `$E100-$E12D` before each song. **Code**
 
 ### 3.3 Starting a song
 
-[`music_start_playlist`](../src/music_player.asm#L253) [`$E479`](reference/modules/music_player.md#music_start_playlist) (the start entry) does these steps:
+[`music_start_playlist`](../src/music_player.asm#L256) [`$E479`](reference/modules/music_player.md#music_start_playlist) (the start entry) does these steps:
 
 1. Y = 1 (the "loop" bit). [`music_playlist_pos`](../src/music_data.asm#L31) = [`music_playlist_start`](../src/music_data.asm#L33).
-2. [`music_playlist_read`](../src/music_player.asm#L233) [`$E45E`](reference/modules/music_player.md#music_playlist_read) reads the playlist entry. Entry `$00` gives song 0. [`music_playlist_pos`](../src/music_data.asm#L31) moves on.
-3. [`music_start_song_x`](../src/music_player.asm#L226) [`$E455`](reference/modules/music_player.md#music_start_song_x) stores the song in [`music_song`](../src/music_player.asm#L12) and jumps through [`music_jump_start_song`](../src/music_player.asm#L8) [`$E303`](reference/modules/music_player.md#music_jump_start_song) to [`music_init_song`](../src/music_player.asm#L43) [`$E352`](reference/modules/music_player.md#music_init_song).
-4. [`music_init_song`](../src/music_player.asm#L43) clears [`music_playing`](../src/music_player.asm#L18), calls [`music_setup_song`](../src/music_player.asm#L85) [`$E38C`](reference/modules/music_player.md#music_setup_song) and sets [`music_playing`](../src/music_player.asm#L18) = 1.
+2. [`music_playlist_read`](../src/music_player.asm#L236) [`$E45E`](reference/modules/music_player.md#music_playlist_read) reads the playlist entry. Entry `$00` gives song 0. [`music_playlist_pos`](../src/music_data.asm#L31) moves on.
+3. [`music_start_song_x`](../src/music_player.asm#L229) [`$E455`](reference/modules/music_player.md#music_start_song_x) stores the song in [`music_song`](../src/music_player.asm#L15) and jumps through [`music_jump_start_song`](../src/music_player.asm#L10) [`$E303`](reference/modules/music_player.md#music_jump_start_song) to [`music_init_song`](../src/music_player.asm#L46) [`$E352`](reference/modules/music_player.md#music_init_song).
+4. [`music_init_song`](../src/music_player.asm#L46) clears [`music_playing`](../src/music_player.asm#L21), calls [`music_setup_song`](../src/music_player.asm#L88) [`$E38C`](reference/modules/music_player.md#music_setup_song) and sets [`music_playing`](../src/music_player.asm#L21) = 1.
 
-[`music_setup_song`](../src/music_player.asm#L85) [`$E38C`](reference/modules/music_player.md#music_setup_song):
+[`music_setup_song`](../src/music_player.asm#L88) [`$E38C`](reference/modules/music_player.md#music_setup_song):
 
-1. [`music_set_voice_pointers`](../src/music_player.asm#L53) [`$E360`](reference/modules/music_player.md#music_set_voice_pointers) copies the three stream addresses of the song from [`music_song_table`](../src/music_songs.asm#L7) [`$E8C0`](reference/modules/music_songs.md#music_song_table) into the operands of the fetch routines [`music_fetch_voice0`](../src/music_player.asm#L135) [`$E3DE`](reference/modules/music_player.md#music_fetch_voice0), [`music_fetch_voice1`](../src/music_player.asm#L140) [`$E3E2`](reference/modules/music_player.md#music_fetch_voice1) and [`music_fetch_voice2`](../src/music_player.asm#L145) [`$E3E6`](reference/modules/music_player.md#music_fetch_voice2). Each fetch routine is `LDA abs` / `RTS`. A song number above [`music_last_song`](../src/music_data.asm#L29) becomes [`music_last_song`](../src/music_data.asm#L29).
-2. [`music_reset_state`](../src/music_player.asm#L101) [`$E3A8`](reference/modules/music_player.md#music_reset_state): filter mode and resonance 0, voice state from [`music_voice_init`](../src/music_frequency_table.asm#L37), [`music_tempo_counter`](../src/music_voice_state.asm#L47) = [`music_tempo`](../src/music_player.asm#L20), then [`music_clear_and_silence`](../src/music_player.asm#L117) [`$E3C5`](reference/modules/music_player.md#music_clear_and_silence) writes 0 to `$D400-$D417` and to the player flags.
-3. For each voice: [`music_lookahead`](../src/music_voice_state.asm#L49) = `$FF`, then [`music_voice_commands`](../src/music_player.asm#L417) [`$E5BB`](reference/modules/music_player.md#music_voice_commands). This reads the commands before the first note of the voice. **Code**
+1. [`music_set_voice_pointers`](../src/music_player.asm#L56) [`$E360`](reference/modules/music_player.md#music_set_voice_pointers) copies the three stream addresses of the song from [`music_song_table`](../src/music_songs.asm#L7) [`$E8C0`](reference/modules/music_songs.md#music_song_table) into the operands of the fetch routines [`music_fetch_voice0`](../src/music_player.asm#L138) [`$E3DE`](reference/modules/music_player.md#music_fetch_voice0), [`music_fetch_voice1`](../src/music_player.asm#L143) [`$E3E2`](reference/modules/music_player.md#music_fetch_voice1) and [`music_fetch_voice2`](../src/music_player.asm#L148) [`$E3E6`](reference/modules/music_player.md#music_fetch_voice2). Each fetch routine is `LDA abs` / `RTS`. A song number above [`music_last_song`](../src/music_data.asm#L29) becomes [`music_last_song`](../src/music_data.asm#L29).
+2. [`music_reset_state`](../src/music_player.asm#L104) [`$E3A8`](reference/modules/music_player.md#music_reset_state): filter mode and resonance 0, voice state from [`music_voice_init`](../src/music_frequency_table.asm#L37), [`music_tempo_counter`](../src/music_voice_state.asm#L47) = [`music_tempo`](../src/music_player.asm#L23), then [`music_clear_and_silence`](../src/music_player.asm#L120) [`$E3C5`](reference/modules/music_player.md#music_clear_and_silence) writes 0 to `$D400-$D417` and to the player flags.
+3. For each voice: [`music_lookahead`](../src/music_voice_state.asm#L49) = `$FF`, then [`music_voice_commands`](../src/music_player.asm#L420) [`$E5BB`](reference/modules/music_player.md#music_voice_commands). This reads the commands before the first note of the voice. **Code**
 
-[`music_read_byte`](../src/music_player.asm#L153) [`$E3EA`](reference/modules/music_player.md#music_read_byte) reads a byte of the current voice with its fetch routine, increments the operand of the fetch routine (self-modified code), and reads the next byte into [`music_lookahead`](../src/music_voice_state.asm#L49). **Code**
+[`music_read_byte`](../src/music_player.asm#L156) [`$E3EA`](reference/modules/music_player.md#music_read_byte) reads a byte of the current voice with its fetch routine, increments the operand of the fetch routine (self-modified code), and reads the next byte into [`music_lookahead`](../src/music_voice_state.asm#L49). **Code**
 
 ### 3.4 Per-frame play
 
-[`music_play_frame`](../src/music_player.asm#L279) [`$E49E`](reference/modules/music_player.md#music_play_frame) runs once per frame:
+[`music_play_frame`](../src/music_player.asm#L282) [`$E49E`](reference/modules/music_player.md#music_play_frame) runs once per frame:
 
-1. When [`music_stop_request`](../src/music_player.asm#L14) is nonzero: [`music_silence`](../src/music_player.asm#L129) [`$E3DA`](reference/modules/music_player.md#music_silence), stop.
-2. When [`music_playing`](../src/music_player.asm#L18) is 0: return.
-3. When [`music_end_marker`](../src/music_player.asm#L22) = `$FF`: when [`music_end_action`](../src/music_player.asm#L35) is 0, silence and stop; else [`music_song_end_action`](../src/music_player.asm#L205) [`$E438`](reference/modules/music_player.md#music_song_end_action) chooses the next song (section 4.7), and the routine starts again.
-4. Decrement [`music_tempo_counter`](../src/music_voice_state.asm#L47). When it is not 0, return. Else reload it from [`music_tempo`](../src/music_player.asm#L20): a tick starts.
-5. For voice 0, 1, 2 (code repeated three times, from [`music_voice1_update`](../src/music_player.asm#L329) [`$E503`](reference/modules/music_player.md#music_voice1_update) and [`music_voice2_update`](../src/music_player.asm#L356) [`$E53D`](reference/modules/music_player.md#music_voice2_update) for voices 1 and 2):
+1. When [`music_stop_request`](../src/music_player.asm#L17) is nonzero: [`music_silence`](../src/music_player.asm#L132) [`$E3DA`](reference/modules/music_player.md#music_silence), stop.
+2. When [`music_playing`](../src/music_player.asm#L21) is 0: return.
+3. When [`music_end_marker`](../src/music_player.asm#L25) = `$FF`: when [`music_end_action`](../src/music_player.asm#L38) is 0, silence and stop; else [`music_song_end_action`](../src/music_player.asm#L208) [`$E438`](reference/modules/music_player.md#music_song_end_action) chooses the next song (section 4.7), and the routine starts again.
+4. Decrement [`music_tempo_counter`](../src/music_voice_state.asm#L47). When it is not 0, return. Else reload it from [`music_tempo`](../src/music_player.asm#L23): a tick starts.
+5. For voice 0, 1, 2 (code repeated three times, from [`music_voice1_update`](../src/music_player.asm#L332) [`$E503`](reference/modules/music_player.md#music_voice1_update) and [`music_voice2_update`](../src/music_player.asm#L359) [`$E53D`](reference/modules/music_player.md#music_voice2_update) for voices 1 and 2):
    1. Decrement [`music_voice_ticks`](../src/music_voice_state.asm#L14).
    2. When the counter is 0 and the voice is not tied: write [`music_voice_control`](../src/music_voice_state.asm#L32) AND `$FE` to the control register of the voice. The gate goes off and the release starts.
-   3. When the counter is negative and equals [`music_voice_end_tick`](../src/music_voice_state.asm#L17): the note has ended. Reload the counter from [`music_voice_gate_ticks`](../src/music_voice_state.asm#L20) and the end tick from [`music_voice_end_reload`](../src/music_voice_state.asm#L23). When [`music_volume_voice`](../src/music_player.asm#L26) = voice + 1, call [`music_apply_volume`](../src/music_player.asm#L266) [`$E489`](reference/modules/music_player.md#music_apply_volume). Call [`music_voice_start_note`](../src/music_player.asm#L386) [`$E578`](reference/modules/music_player.md#music_voice_start_note).
+   3. When the counter is negative and equals [`music_voice_end_tick`](../src/music_voice_state.asm#L17): the note has ended. Reload the counter from [`music_voice_gate_ticks`](../src/music_voice_state.asm#L20) and the end tick from [`music_voice_end_reload`](../src/music_voice_state.asm#L23). When [`music_volume_voice`](../src/music_player.asm#L29) = voice + 1, call [`music_apply_volume`](../src/music_player.asm#L269) [`$E489`](reference/modules/music_player.md#music_apply_volume). Call [`music_voice_start_note`](../src/music_player.asm#L389) [`$E578`](reference/modules/music_player.md#music_voice_start_note).
 
-[`music_voice_start_note`](../src/music_player.asm#L386) [`$E578`](reference/modules/music_player.md#music_voice_start_note):
+[`music_voice_start_note`](../src/music_player.asm#L389) [`$E578`](reference/modules/music_player.md#music_voice_start_note):
 
 1. Read the note byte.
 2. Note 0 is a rest: write 0 to the frequency. The gate and the envelope stay as they are.
 3. Else frequency = `note_freq_lo/hi` [note + [`music_transpose`](../src/music_voice_state.asm#L7)]. When the voice is not tied, write AD, SR and control (gate on) of the voice to the SID.
-4. [`music_voice_commands`](../src/music_player.asm#L417) [`$E5BB`](reference/modules/music_player.md#music_voice_commands) reads the command bytes that follow, until the next note byte. So commands written before a note apply to that note.
+4. [`music_voice_commands`](../src/music_player.asm#L420) [`$E5BB`](reference/modules/music_player.md#music_voice_commands) reads the command bytes that follow, until the next note byte. So commands written before a note apply to that note.
 
 ```
 music_voice_commands:
@@ -203,12 +203,12 @@ stateDiagram-v2
 
 | State | Condition | Next state | Code |
 |---|---|---|---|
-| Stopped | [`music_api_start`](../src/music_player_state.asm#L11) | Playing | [`music_start_playlist`](../src/music_player.asm#L253) [`$E479`](reference/modules/music_player.md#music_start_playlist), [`music_init_song`](../src/music_player.asm#L43) [`$E352`](reference/modules/music_player.md#music_init_song) |
-| Playing | a voice reads the end byte `$FF` | Song ended | [`music_voice_read_command`](../src/music_player.asm#L421) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) |
-| Song ended | [`music_end_action`](../src/music_player.asm#L35) chooses a song or a playlist entry | Playing | [`music_song_end_action`](../src/music_player.asm#L205) [`$E438`](reference/modules/music_player.md#music_song_end_action) |
-| Song ended | [`music_end_action`](../src/music_player.asm#L35) = 0, or end of the playlist with bit 0 clear, or after the last song with bit 0 clear | Stopped | [`music_play_frame`](../src/music_player.asm#L279) [`$E49E`](reference/modules/music_player.md#music_play_frame), [`music_silence`](../src/music_player.asm#L129) [`$E3DA`](reference/modules/music_player.md#music_silence) |
-| Playing | [`music_stop_request`](../src/music_player.asm#L14) nonzero | Stopped | [`music_play_frame`](../src/music_player.asm#L279) [`$E49E`](reference/modules/music_player.md#music_play_frame) |
-| any | [`music_api_stop`](../src/music_player_state.asm#L9) | Stopped | [`music_stop`](../src/music_player.asm#L199) [`$E434`](reference/modules/music_player.md#music_stop) |
+| Stopped | [`music_api_start`](../src/music_player_state.asm#L10) | Playing | [`music_start_playlist`](../src/music_player.asm#L256) [`$E479`](reference/modules/music_player.md#music_start_playlist), [`music_init_song`](../src/music_player.asm#L46) [`$E352`](reference/modules/music_player.md#music_init_song) |
+| Playing | a voice reads the end byte `$FF` | Song ended | [`music_voice_read_command`](../src/music_player.asm#L424) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) |
+| Song ended | [`music_end_action`](../src/music_player.asm#L38) chooses a song or a playlist entry | Playing | [`music_song_end_action`](../src/music_player.asm#L208) [`$E438`](reference/modules/music_player.md#music_song_end_action) |
+| Song ended | [`music_end_action`](../src/music_player.asm#L38) = 0, or end of the playlist with bit 0 clear, or after the last song with bit 0 clear | Stopped | [`music_play_frame`](../src/music_player.asm#L282) [`$E49E`](reference/modules/music_player.md#music_play_frame), [`music_silence`](../src/music_player.asm#L132) [`$E3DA`](reference/modules/music_player.md#music_silence) |
+| Playing | [`music_stop_request`](../src/music_player.asm#L17) nonzero | Stopped | [`music_play_frame`](../src/music_player.asm#L282) [`$E49E`](reference/modules/music_player.md#music_play_frame) |
+| any | [`music_api_stop`](../src/music_player_state.asm#L7) | Stopped | [`music_stop`](../src/music_player.asm#L202) [`$E434`](reference/modules/music_player.md#music_stop) |
 
 ## 4. The music stream format
 
@@ -217,7 +217,7 @@ stateDiagram-v2
 - [`music_song_table`](../src/music_songs.asm#L7) [`$E8C0`](reference/modules/music_songs.md#music_song_table): 8 bytes per song: the stream address of voice 0, 1, 2 and an instrument table address. The player ignores the instrument table address and uses [`music_instruments`](../src/music_data.asm#L8) [`$E80A`](reference/modules/music_data.md#music_instruments).
 - Song 0 is the title tune: [`music_title_voice0`](../src/music_songs.asm#L16) [`$E8D0`](reference/modules/music_songs.md#music_title_voice0), [`music_title_voice1`](../src/music_songs.asm#L40) [`$E97D`](reference/modules/music_songs.md#music_title_voice1), [`music_title_voice2`](../src/music_songs.asm#L65) [`$EA31`](reference/modules/music_songs.md#music_title_voice2).
 - Song 1 ([`music_song1_voices`](../src/music_songs.asm#L12) [`$E8C8`](reference/modules/music_songs.md#music_song1_voices)) points to `$EAB3`, `$EB60` and `$EC14`. Only `$EAB3` is a stream; the other two point into the effect player. No code selects song 1. **Code**
-- Readers: [`music_read_byte`](../src/music_player.asm#L153) [`$E3EA`](reference/modules/music_player.md#music_read_byte) through the self-modified fetch routines.
+- Readers: [`music_read_byte`](../src/music_player.asm#L156) [`$E3EA`](reference/modules/music_player.md#music_read_byte) through the self-modified fetch routines.
 
 ### 4.2 Byte layout
 
@@ -225,28 +225,28 @@ One stream for each voice. A byte below `$80` is a note. A byte from `$80` is a 
 
 | Byte | Arguments | Meaning | Handler |
 |---|---|---|---|
-| `$00` | - | rest: frequency 0 for one note length | [`music_voice_start_note`](../src/music_player.asm#L386) [`$E578`](reference/modules/music_player.md#music_voice_start_note) |
-| `$01-$7F` | - | note index n (+ [`music_transpose`](../src/music_voice_state.asm#L7)): frequency from `note_freq_lo/hi` | [`music_voice_set_freq`](../src/music_player.asm#L396) [`$E590`](reference/modules/music_player.md#music_voice_set_freq) |
-| `$80-$8F` | - | length code n = low nibble, for the following notes (section 4.3) | [`music_cmd_length`](../src/music_player.asm#L457) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) |
-| `$90-$9F` | - | master volume n; the next note of this voice writes `$D418` = [`music_filter_mode`](../src/music_player.asm#L24) OR n and `$D417` = [`music_resonance`](../src/music_frequency_table.asm#L53) | [`music_cmd_volume`](../src/music_player.asm#L470) [`$E617`](reference/modules/music_player.md#music_cmd_volume) |
-| `$A0-$A3` | - | waveform: triangle `$11`, sawtooth `$21`, pulse `$41`, noise `$81` (gate bit set) | [`music_cmd_voice_option`](../src/music_player.asm#L486) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) |
-| `$A4-$A6` | - | articulation 0, 1, 2; loads AD/SR of that articulation from the instrument of the voice | [`music_cmd_articulation`](../src/music_player.asm#L502) [`$E64E`](reference/modules/music_player.md#music_cmd_articulation) |
-| `$A7` / `$A8` | - | tie on / tie off | [`music_cmd_tie_or_ring`](../src/music_player.asm#L538) [`$E68E`](reference/modules/music_player.md#music_cmd_tie_or_ring) |
-| `$A9` / `$AA` | - | ring modulation bit on / off | [`music_cmd_ring_mod`](../src/music_player.asm#L546) [`$E69D`](reference/modules/music_player.md#music_cmd_ring_mod) |
-| `$AB` | - | waveform `$51` (pulse + triangle) | [`music_cmd_voice_option`](../src/music_player.asm#L486) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) |
-| `$AC`, `$AE` / `$AD`, `$AF` | - | normal / long length table, for all voices | [`music_cmd_length_set`](../src/music_player.asm#L479) [`$E627`](reference/modules/music_player.md#music_cmd_length_set) |
-| `$B0-$BF` | - | instrument n AND 7: copies its 6 envelope bytes into [`music_envelopes`](../src/music_voice_state.asm#L41) of the voice | [`music_cmd_instrument`](../src/music_player.asm#L620) [`$E720`](reference/modules/music_player.md#music_cmd_instrument) |
-| `$C0-$CF` | lo, hi | pulse width of the voice, written at once | [`music_cmd_pulse_width`](../src/music_player.asm#L657) [`$E75E`](reference/modules/music_player.md#music_cmd_pulse_width) |
-| `$D0-$DF` | routing | filter preset n AND 7: cutoff to `$D415`/`$D416` at once; mode to [`music_filter_mode`](../src/music_player.asm#L24); routing OR preset resonance to [`music_resonance`](../src/music_frequency_table.asm#L53); the next note of the voice writes `$D417`/`$D418` | [`music_cmd_filter`](../src/music_player.asm#L670) [`$E779`](reference/modules/music_player.md#music_cmd_filter) |
-| `$E0-$EF` | t | tempo: t frames per tick | [`music_cmd_tempo`](../src/music_player.asm#L700) [`$E7B2`](reference/modules/music_player.md#music_cmd_tempo) |
-| `$F0-$FE` | - | length code n, the same as `$8n` | [`music_cmd_length`](../src/music_player.asm#L457) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) |
-| `$FF` | - | end of the song. The first voice that reads it ends the song for all voices. | [`music_voice_read_command`](../src/music_player.asm#L421) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) |
+| `$00` | - | rest: frequency 0 for one note length | [`music_voice_start_note`](../src/music_player.asm#L389) [`$E578`](reference/modules/music_player.md#music_voice_start_note) |
+| `$01-$7F` | - | note index n (+ [`music_transpose`](../src/music_voice_state.asm#L7)): frequency from `note_freq_lo/hi` | [`music_voice_set_freq`](../src/music_player.asm#L399) [`$E590`](reference/modules/music_player.md#music_voice_set_freq) |
+| `$80-$8F` | - | length code n = low nibble, for the following notes (section 4.3) | [`music_cmd_length`](../src/music_player.asm#L460) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) |
+| `$90-$9F` | - | master volume n; the next note of this voice writes `$D418` = [`music_filter_mode`](../src/music_player.asm#L27) OR n and `$D417` = [`music_resonance`](../src/music_frequency_table.asm#L53) | [`music_cmd_volume`](../src/music_player.asm#L473) [`$E617`](reference/modules/music_player.md#music_cmd_volume) |
+| `$A0-$A3` | - | waveform: triangle `$11`, sawtooth `$21`, pulse `$41`, noise `$81` (gate bit set) | [`music_cmd_voice_option`](../src/music_player.asm#L489) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) |
+| `$A4-$A6` | - | articulation 0, 1, 2; loads AD/SR of that articulation from the instrument of the voice | [`music_cmd_articulation`](../src/music_player.asm#L505) [`$E64E`](reference/modules/music_player.md#music_cmd_articulation) |
+| `$A7` / `$A8` | - | tie on / tie off | [`music_cmd_tie_or_ring`](../src/music_player.asm#L541) [`$E68E`](reference/modules/music_player.md#music_cmd_tie_or_ring) |
+| `$A9` / `$AA` | - | ring modulation bit on / off | [`music_cmd_ring_mod`](../src/music_player.asm#L549) [`$E69D`](reference/modules/music_player.md#music_cmd_ring_mod) |
+| `$AB` | - | waveform `$51` (pulse + triangle) | [`music_cmd_voice_option`](../src/music_player.asm#L489) [`$E630`](reference/modules/music_player.md#music_cmd_voice_option) |
+| `$AC`, `$AE` / `$AD`, `$AF` | - | normal / long length table, for all voices | [`music_cmd_length_set`](../src/music_player.asm#L482) [`$E627`](reference/modules/music_player.md#music_cmd_length_set) |
+| `$B0-$BF` | - | instrument n AND 7: copies its 6 envelope bytes into [`music_envelopes`](../src/music_voice_state.asm#L41) of the voice | [`music_cmd_instrument`](../src/music_player.asm#L623) [`$E720`](reference/modules/music_player.md#music_cmd_instrument) |
+| `$C0-$CF` | lo, hi | pulse width of the voice, written at once | [`music_cmd_pulse_width`](../src/music_player.asm#L660) [`$E75E`](reference/modules/music_player.md#music_cmd_pulse_width) |
+| `$D0-$DF` | routing | filter preset n AND 7: cutoff to `$D415`/`$D416` at once; mode to [`music_filter_mode`](../src/music_player.asm#L27); routing OR preset resonance to [`music_resonance`](../src/music_frequency_table.asm#L53); the next note of the voice writes `$D417`/`$D418` | [`music_cmd_filter`](../src/music_player.asm#L673) [`$E779`](reference/modules/music_player.md#music_cmd_filter) |
+| `$E0-$EF` | t | tempo: t frames per tick | [`music_cmd_tempo`](../src/music_player.asm#L703) [`$E7B2`](reference/modules/music_player.md#music_cmd_tempo) |
+| `$F0-$FE` | - | length code n, the same as `$8n` | [`music_cmd_length`](../src/music_player.asm#L460) [`$E5FD`](reference/modules/music_player.md#music_cmd_length) |
+| `$FF` | - | end of the song. The first voice that reads it ends the song for all voices. | [`music_voice_read_command`](../src/music_player.asm#L424) [`$E5C3`](reference/modules/music_player.md#music_voice_read_command) |
 
-**Code** for each row. The title tune uses no ring modulation, no filter and no tie on ([`music_cmd_ring_mod`](../src/music_player.asm#L546) and [`music_cmd_filter`](../src/music_player.asm#L670) are marked not executed in the coverage). **Observed**
+**Code** for each row. The title tune uses no ring modulation, no filter and no tie on ([`music_cmd_ring_mod`](../src/music_player.asm#L549) and [`music_cmd_filter`](../src/music_player.asm#L673) are marked not executed in the coverage). **Observed**
 
 ### 4.3 Note lengths and articulation
 
-[`music_note_length`](../src/music_player.asm#L564) [`$E6B6`](reference/modules/music_player.md#music_note_length) turns a length code into L ticks with [`music_length_table`](../src/music_player.asm#L611) [`$E6F9`](reference/modules/music_player.md#music_length_table):
+[`music_note_length`](../src/music_player.asm#L567) [`$E6B6`](reference/modules/music_player.md#music_note_length) turns a length code into L ticks with [`music_length_table`](../src/music_player.asm#L614) [`$E6F9`](reference/modules/music_player.md#music_length_table):
 
 | Code | Value | Ticks, normal table | Ticks, long table |
 |---|---|---|---|
@@ -272,7 +272,7 @@ The articulation of the voice at the time of the length command splits L into ga
 | 1 staccato | `$A5` | L/2 | L/2 |
 | 2 legato | `$A6` | L - 1 | 1 |
 
-[`music_cmd_length`](../src/music_player.asm#L457) stores G in [`music_voice_gate_ticks`](../src/music_voice_state.asm#L20) and -R in [`music_voice_end_reload`](../src/music_voice_state.asm#L23). **Code**
+[`music_cmd_length`](../src/music_player.asm#L460) stores G in [`music_voice_gate_ticks`](../src/music_voice_state.asm#L20) and -R in [`music_voice_end_reload`](../src/music_voice_state.asm#L23). **Code**
 
 ### 4.4 Instruments and ADSR
 
@@ -308,7 +308,7 @@ The instrument command `$Bn` only copies the 6 bytes into [`music_envelopes`](..
 
 ### 4.6 Tempo
 
-The command `$Ex` t sets [`music_tempo`](../src/music_player.asm#L20) and [`music_tempo_counter`](../src/music_voice_state.asm#L47) to t. One tick is t frames. The title tune uses t = 2. **Code**
+The command `$Ex` t sets [`music_tempo`](../src/music_player.asm#L23) and [`music_tempo_counter`](../src/music_voice_state.asm#L47) to t. One tick is t frames. The title tune uses t = 2. **Code**
 
 ### 4.7 Playlist and end actions
 
@@ -320,9 +320,9 @@ The playlist starts at [`music_playlist`](../src/music_data.asm#L37) [`$E870`](r
 | `$40-$7F` | transpose = n AND `$3F`, then read the next entry |
 | `$80-$FF` | end of the list |
 
-A transpose entry has no effect: [`music_reset_state`](../src/music_player.asm#L101) clears [`music_transpose`](../src/music_voice_state.asm#L7) before the song starts. **Code**
+A transpose entry has no effect: [`music_reset_state`](../src/music_player.asm#L104) clears [`music_transpose`](../src/music_voice_state.asm#L7) before the song starts. **Code**
 
-[`music_end_action`](../src/music_player.asm#L35) [`$E314`](reference/modules/music_player.md#music_end_action):
+[`music_end_action`](../src/music_player.asm#L38) [`$E314`](reference/modules/music_player.md#music_end_action):
 
 | Value | At the end of a song |
 |---|---|
@@ -383,7 +383,7 @@ Song 0 is the only tune. It plays on the title screen.
 - Each voice reaches its end byte after 576 ticks: 9 bars, 1152 frames, 23.0 s on PAL (quarter note = 32 frames, about 94 beats per minute). **Code**
 - Each voice ends with two rests and `$FF`. The first voice that starts its last rest reads `$FF` at once, so the last rest is never played. **Code**
 - **Conclusion.** The tune is in B minor.
-- The setup commands of the three voices all run before the first note. Each `$9x` command overwrites [`music_volume`](../src/music_player.asm#L28) and [`music_volume_voice`](../src/music_player.asm#L26). Only the last one (voice 2, volume 15) is applied: the coverage marks the [`music_apply_volume`](../src/music_player.asm#L266) calls of voices 0 and 1 (`$E4E9`, `$E523`) as not executed. So the volume 12 of voice 0 has no effect; the master volume is 15. **Observed**
+- The setup commands of the three voices all run before the first note. Each `$9x` command overwrites [`music_volume`](../src/music_player.asm#L31) and [`music_volume_voice`](../src/music_player.asm#L29). Only the last one (voice 2, volume 15) is applied: the coverage marks the [`music_apply_volume`](../src/music_player.asm#L269) calls of voices 0 and 1 (`$E4E9`, `$E523`) as not executed. So the volume 12 of voice 0 has no effect; the master volume is 15. **Observed**
 
 ### 6.1 Worked example: the first two bars
 
@@ -605,11 +605,11 @@ The bytes `$EE83-$EED5` are an effect stream that no table entry points to. `$EE
 
 | Finding | Evidence |
 |---|---|
-| The music player is a third-party driver: MicroPearl, John A. Fitzpatrick, 1983 ([`music_player_credit`](../src/music_player.asm#L38) [`$E315`](reference/modules/music_player.md#music_player_credit)). | Code |
+| The music player is a third-party driver: MicroPearl, John A. Fitzpatrick, 1983 ([`music_player_credit`](../src/music_player.asm#L41) [`$E315`](reference/modules/music_player.md#music_player_credit)). | Code |
 | The frequency table is tuned for NTSC. On the PAL game every note is about 2/3 of a semitone flat. | Code |
 | The volume command of voice 0 of the title tune has no effect; the master volume is 15. | Observed (coverage) |
-| Playlist transpose entries have no effect: [`music_reset_state`](../src/music_player.asm#L101) clears [`music_transpose`](../src/music_voice_state.asm#L7). | Code |
-| [`music_song_ended`](../src/music_player.asm#L16) [`$E30B`](reference/modules/music_player.md#music_song_ended) is written but never read. | Code |
+| Playlist transpose entries have no effect: [`music_reset_state`](../src/music_player.asm#L104) clears [`music_transpose`](../src/music_voice_state.asm#L7). | Code |
+| [`music_song_ended`](../src/music_player.asm#L19) [`$E30B`](reference/modules/music_player.md#music_song_ended) is written but never read. | Code |
 | Song 1 points into the effect player; no code selects it. | Code |
 | Effects 3 and 8 are never requested. Effect commands 5 and 7 are not used. | Code |
 | [`sfx_adsr_table`](../src/sfx_data.asm#L18) index 10 and 12 read into [`sfx_pulse_table`](../src/sfx_data.asm#L25); effects 9 and 13 use them. | Code |

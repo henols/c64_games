@@ -532,7 +532,7 @@ final $F36D: 04 00 04 00 04 FE 03 E0 05 41 41 41 07 02 FE 00 D4 19 00 00 00 04 4
 
 ## 8. The MicroPearl music file
 
-The title tune was made with the MicroPearl music editor ([`music_player_credit`](../src/music_player.asm#L38)
+The title tune was made with the MicroPearl music editor ([`music_player_credit`](../src/music_player.asm#L41)
 `$E315`: "MICROPEARL MUSIC PLAYER COPYRIGHT 1983 JOHN A. F..."). The block `$E800-$EC8F` was the data file of that
 editor, made at `$4000` and loaded `$A800` higher. The game build then put its own tables over parts of the file.
 

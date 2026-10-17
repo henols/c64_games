@@ -4,11 +4,11 @@
 
 ; Music player entry points. The game uses only these three jumps.
 ; music_api_stop: stops the music and silences the SID (the game sets music_stop_request to 1 first).
-; music_api_start: starts the playlist at music_playlist (the title code sets it to song 0, loop).
-; music_api_play: the per-frame player, called by the title screen IRQ handler irq_title_frame.
 music_api_stop
         jmp music_jump_stop
+; Starts the playlist at music_playlist; the title code sets it to song 0, loop, and calls this from show_title_screen.
 music_api_start
         jmp music_jump_start_playlist
+; The per-frame player (music_play_frame), called by the title screen IRQ handler irq_title_frame.
 music_api_play
         jmp music_play_frame
