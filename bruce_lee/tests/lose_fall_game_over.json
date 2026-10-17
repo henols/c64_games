@@ -1,0 +1,136 @@
+{
+ "name": "Lose a fall and game over: without input the enemies take all falls; the PLAYER screen, game over and the title follow",
+ "original": {
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "src/loader.prg",
+  "symbols": "knowledge"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "frames": 100,
+   "side": "original"
+  },
+  {
+   "type": " ",
+   "side": "original"
+  },
+  {
+   "runUntil": {
+    "at": "cold_start"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "normalize": true
+  },
+  {
+   "runUntil": {
+    "at": "title_menu_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 60
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "runUntil": {
+    "at": "lose_fall"
+   },
+   "timeoutFrames": 20000
+  },
+  {
+   "observe": "first_fall",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$0002",
+     "size": 254
+    },
+    {
+     "at": "$0400",
+     "size": 39936
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "game_over"
+   },
+   "timeoutFrames": 30000
+  },
+  {
+   "frames": 100
+  },
+  {
+   "observe": "game_over",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$0002",
+     "size": 254
+    },
+    {
+     "at": "$0400",
+     "size": 39936
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "title_menu_loop"
+   },
+   "timeoutFrames": 3000
+  },
+  {
+   "frames": 50
+  },
+  {
+   "observe": "back_to_title",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$0002",
+     "size": 254
+    },
+    {
+     "at": "$0400",
+     "size": 39936
+    }
+   ]
+  }
+ ]
+}

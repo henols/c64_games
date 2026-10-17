@@ -1,0 +1,62 @@
+{
+ "name": "Title screen: the cold start builds the same title screen, menu state and memory",
+ "original": {
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "src/loader.prg",
+  "symbols": "knowledge"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "frames": 100,
+   "side": "original"
+  },
+  {
+   "type": " ",
+   "side": "original"
+  },
+  {
+   "runUntil": {
+    "at": "cold_start"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "normalize": true
+  },
+  {
+   "runUntil": {
+    "at": "title_menu_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 100
+  },
+  {
+   "observe": "title",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    "option_two_players",
+    "option_yamo_player2",
+    {
+     "at": "$0002",
+     "size": 254
+    },
+    {
+     "at": "$0400",
+     "size": 39936
+    }
+   ]
+  }
+ ]
+}
