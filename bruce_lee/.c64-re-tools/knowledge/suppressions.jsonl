@@ -1,5 +1,8 @@
+{"id":"20261017T120246.698-opl4bw/1","space":"c64","entity":"region","start":"$033c","end":"$033f","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/2","space":"c64","entity":"region","start":"$03a1","end":"$03fe","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T235207.978-8moje4/368","space":"c64","entity":"reference","start":"$0d55","end":"$0d55","to":"$e000","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/369","space":"c64","entity":"reference","start":"$0d85","end":"$0d85","to":"$e000","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
+{"id":"20261017T120246.698-opl4bw/3","space":"c64","entity":"region","start":"$10f8","end":"$1102","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T233638.073-j6oert/4804","space":"c64","entity":"reference","start":"$1113","end":"$1113","to":"$ef29","kind":"jump","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
 {"id":"20261016T233638.073-j6oert/4797","space":"c64","entity":"reference","start":"$143c","end":"$143c","to":"$149a","kind":"read","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
 {"id":"20261016T233638.073-j6oert/4798","space":"c64","entity":"reference","start":"$1445","end":"$1445","to":"$149a","kind":"read","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
@@ -61,6 +64,10 @@
 {"id":"20261016T235207.978-8moje4/413","space":"c64","entity":"reference","start":"$33c9","end":"$33c9","to":"$a321","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/414","space":"c64","entity":"reference","start":"$33c9","end":"$33c9","to":"$cfd0","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T233638.073-j6oert/4803","space":"c64","entity":"reference","start":"$33e1","end":"$33e1","to":"$1585","kind":"jump","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
+{"id":"20261017T120246.698-opl4bw/4","space":"c64","entity":"region","start":"$4326","end":"$432d","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/5","space":"c64","entity":"region","start":"$4563","end":"$457d","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/6","space":"c64","entity":"region","start":"$4598","end":"$45a9","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/7","space":"c64","entity":"region","start":"$4cba","end":"$4ccd","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T235207.978-8moje4/435","space":"c64","entity":"reference","start":"$4e50","end":"$4e50","to":"$0107","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/436","space":"c64","entity":"reference","start":"$4e58","end":"$4e58","to":"$ff0a","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/437","space":"c64","entity":"reference","start":"$4e65","end":"$4e65","to":"$0104","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
@@ -75,6 +82,7 @@
 {"id":"20261016T235207.978-8moje4/446","space":"c64","entity":"reference","start":"$4e88","end":"$4e88","to":"$000b","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/447","space":"c64","entity":"reference","start":"$4f4a","end":"$4f4a","to":"$00d0","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/448","space":"c64","entity":"reference","start":"$4f4a","end":"$4f4a","to":"$00d0","kind":"write","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
+{"id":"20261017T120246.698-opl4bw/8","space":"c64","entity":"region","start":"$4fe8","end":"$50e6","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T233638.073-j6oert/4789","space":"c64","entity":"reference","start":"$513f","end":"$513f","to":"$1308","kind":"read","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
 {"id":"20261016T233638.073-j6oert/4790","space":"c64","entity":"reference","start":"$513f","end":"$513f","to":"$130a","kind":"read","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
 {"id":"20261016T233638.073-j6oert/4787","space":"c64","entity":"reference","start":"$515d","end":"$515d","to":"$1237","kind":"read","origin":"llm","added":"20261016T233638.073-j6oert","closed":null}
@@ -86,6 +94,10 @@
 {"id":"20261016T235207.978-8moje4/376","space":"c64","entity":"reference","start":"$5380","end":"$5380","to":"$e000","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/377","space":"c64","entity":"reference","start":"$539a","end":"$539a","to":"$e000","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/378","space":"c64","entity":"reference","start":"$53b4","end":"$53b4","to":"$e000","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
+{"id":"20261017T120246.698-opl4bw/9","space":"c64","entity":"region","start":"$572d","end":"$58ff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/10","space":"c64","entity":"region","start":"$5900","end":"$59a4","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/11","space":"c64","entity":"region","start":"$59b3","end":"$59bc","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/12","space":"c64","entity":"region","start":"$63c1","end":"$63ea","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T235207.978-8moje4/449","space":"c64","entity":"reference","start":"$696a","end":"$696a","to":"$0008","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/450","space":"c64","entity":"reference","start":"$696c","end":"$696c","to":"$0012","kind":"write","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/451","space":"c64","entity":"reference","start":"$7aa1","end":"$7aa1","to":"$0848","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
@@ -93,9 +105,20 @@
 {"id":"20261016T235207.978-8moje4/453","space":"c64","entity":"reference","start":"$7aa4","end":"$7aa4","to":"$0002","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/454","space":"c64","entity":"reference","start":"$7aa4","end":"$7aa4","to":"$0002","kind":"write","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/455","space":"c64","entity":"reference","start":"$7aa6","end":"$7aa6","to":"$c581","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
+{"id":"20261017T120246.698-opl4bw/13","space":"c64","entity":"region","start":"$cf00","end":"$cf78","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/14","space":"c64","entity":"region","start":"$cfbb","end":"$cfff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T235207.978-8moje4/456","space":"c64","entity":"reference","start":"$cfd0","end":"$cfd0","to":"$f3ff","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/457","space":"c64","entity":"reference","start":"$cfd9","end":"$cfd9","to":"$ffd0","kind":"reference","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
+{"id":"20261017T120246.698-opl4bw/15","space":"c64","entity":"region","start":"$e009","end":"$e0ff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/16","space":"c64","entity":"region","start":"$e131","end":"$e1ff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/17","space":"c64","entity":"region","start":"$e2e9","end":"$e2ff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T235207.978-8moje4/469","space":"c64","entity":"reference","start":"$e45e","end":"$e45e","to":"$e872","kind":"read","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
+{"id":"20261017T120246.698-opl4bw/18","space":"c64","entity":"region","start":"$e7be","end":"$e809","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/19","space":"c64","entity":"region","start":"$e872","end":"$e8bf","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/20","space":"c64","entity":"region","start":"$eaad","end":"$eaff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/21","space":"c64","entity":"region","start":"$ee83","end":"$eed5","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/22","space":"c64","entity":"region","start":"$eed6","end":"$ef3f","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/23","space":"c64","entity":"region","start":"$ef40","end":"$ef6f","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
 {"id":"20261016T235207.978-8moje4/458","space":"c64","entity":"reference","start":"$ef42","end":"$ef42","to":"$ef2d","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/459","space":"c64","entity":"reference","start":"$ef46","end":"$ef46","to":"$ef2d","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/460","space":"c64","entity":"reference","start":"$ef4a","end":"$ef4a","to":"$ef2d","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
@@ -107,3 +130,7 @@
 {"id":"20261016T235207.978-8moje4/466","space":"c64","entity":"reference","start":"$ef63","end":"$ef63","to":"$efa0","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/467","space":"c64","entity":"reference","start":"$ef67","end":"$ef67","to":"$efbf","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
 {"id":"20261016T235207.978-8moje4/468","space":"c64","entity":"reference","start":"$ef6b","end":"$ef6b","to":"$efbf","kind":"jump","origin":"llm","added":"20261016T235207.978-8moje4","closed":null}
+{"id":"20261017T120246.698-opl4bw/24","space":"c64","entity":"region","start":"$f055","end":"$f06f","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/25","space":"c64","entity":"region","start":"$f155","end":"$f2ff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/26","space":"c64","entity":"region","start":"$f539","end":"$f5ff","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}
+{"id":"20261017T120246.698-opl4bw/27","space":"c64","entity":"region","start":"$fe00","end":"$fff9","origin":"llm","added":"20261017T120246.698-opl4bw","closed":null}

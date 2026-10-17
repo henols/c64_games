@@ -348,7 +348,7 @@
     },
     {
      "at": "$0400",
-     "size": 39936,
+     "size": 3320,
      "exclude": [
       {
        "at": "$0440",
@@ -377,7 +377,13 @@
       {
        "at": "$06f4",
        "reason": "NO_PROTECTION patch byte"
-      },
+      }
+     ]
+    },
+    {
+     "at": "$1103",
+     "size": 12835,
+     "exclude": [
       {
        "at": "$166c",
        "reason": "NO_PROTECTION patch byte"
@@ -511,6 +517,36 @@
        "reason": "NO_PROTECTION patch byte"
       },
       {
+       "at": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      },
+      {
+       "at": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      }
+     ]
+    },
+    {
+     "at": "$432e",
+     "size": 565
+    },
+    {
+     "at": "$457e",
+     "size": 26
+    },
+    {
+     "at": "$45aa",
+     "size": 1808
+    },
+    {
+     "at": "$4cce",
+     "size": 543
+    },
+    {
+     "at": "$50e7",
+     "size": 1606,
+     "exclude": [
+      {
        "at": "$5134",
        "reason": "NO_PROTECTION patch byte"
       },
@@ -537,16 +573,28 @@
       {
        "at": "$517d",
        "reason": "NO_PROTECTION patch byte"
-      },
-      {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
-      },
-      {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
       }
      ]
+    },
+    {
+     "at": "$59a5",
+     "size": 14
+    },
+    {
+     "at": "$59bd",
+     "size": 2564
+    },
+    {
+     "at": "$63eb",
+     "size": 7573
+    },
+    {
+     "at": "$8400",
+     "size": 1024
+    },
+    {
+     "at": "$9000",
+     "size": 4096
     }
    ]
   },
@@ -575,7 +623,7 @@
     },
     {
      "at": "$0400",
-     "size": 39936,
+     "size": 3320,
      "exclude": [
       {
        "at": "$0440",
@@ -604,7 +652,13 @@
       {
        "at": "$06f4",
        "reason": "NO_PROTECTION patch byte"
-      },
+      }
+     ]
+    },
+    {
+     "at": "$1103",
+     "size": 12835,
+     "exclude": [
       {
        "at": "$166c",
        "reason": "NO_PROTECTION patch byte"
@@ -738,6 +792,36 @@
        "reason": "NO_PROTECTION patch byte"
       },
       {
+       "at": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      },
+      {
+       "at": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      }
+     ]
+    },
+    {
+     "at": "$432e",
+     "size": 565
+    },
+    {
+     "at": "$457e",
+     "size": 26
+    },
+    {
+     "at": "$45aa",
+     "size": 1808
+    },
+    {
+     "at": "$4cce",
+     "size": 543
+    },
+    {
+     "at": "$50e7",
+     "size": 1606,
+     "exclude": [
+      {
        "at": "$5134",
        "reason": "NO_PROTECTION patch byte"
       },
@@ -764,16 +848,28 @@
       {
        "at": "$517d",
        "reason": "NO_PROTECTION patch byte"
-      },
-      {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
-      },
-      {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
       }
      ]
+    },
+    {
+     "at": "$59a5",
+     "size": 14
+    },
+    {
+     "at": "$59bd",
+     "size": 2564
+    },
+    {
+     "at": "$63eb",
+     "size": 7573
+    },
+    {
+     "at": "$8400",
+     "size": 1024
+    },
+    {
+     "at": "$9000",
+     "size": 4096
     }
    ]
   },
@@ -839,7 +935,7 @@
     },
     {
      "at": "$0400",
-     "size": 39936,
+     "size": 3320,
      "exclude": [
       {
        "at": "$0440",
@@ -868,7 +964,13 @@
       {
        "at": "$06f4",
        "reason": "NO_PROTECTION patch byte"
-      },
+      }
+     ]
+    },
+    {
+     "at": "$1103",
+     "size": 12835,
+     "exclude": [
       {
        "at": "$166c",
        "reason": "NO_PROTECTION patch byte"
@@ -1002,6 +1104,36 @@
        "reason": "NO_PROTECTION patch byte"
       },
       {
+       "at": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      },
+      {
+       "at": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      }
+     ]
+    },
+    {
+     "at": "$432e",
+     "size": 565
+    },
+    {
+     "at": "$457e",
+     "size": 26
+    },
+    {
+     "at": "$45aa",
+     "size": 1808
+    },
+    {
+     "at": "$4cce",
+     "size": 543
+    },
+    {
+     "at": "$50e7",
+     "size": 1606,
+     "exclude": [
+      {
        "at": "$5134",
        "reason": "NO_PROTECTION patch byte"
       },
@@ -1028,16 +1160,28 @@
       {
        "at": "$517d",
        "reason": "NO_PROTECTION patch byte"
-      },
-      {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
-      },
-      {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
       }
      ]
+    },
+    {
+     "at": "$59a5",
+     "size": 14
+    },
+    {
+     "at": "$59bd",
+     "size": 2564
+    },
+    {
+     "at": "$63eb",
+     "size": 7573
+    },
+    {
+     "at": "$8400",
+     "size": 1024
+    },
+    {
+     "at": "$9000",
+     "size": 4096
     }
    ]
   },
@@ -1089,7 +1233,7 @@
     },
     {
      "at": "$0400",
-     "size": 39936,
+     "size": 3320,
      "exclude": [
       {
        "at": "$0440",
@@ -1118,7 +1262,13 @@
       {
        "at": "$06f4",
        "reason": "NO_PROTECTION patch byte"
-      },
+      }
+     ]
+    },
+    {
+     "at": "$1103",
+     "size": 12835,
+     "exclude": [
       {
        "at": "$166c",
        "reason": "NO_PROTECTION patch byte"
@@ -1252,6 +1402,36 @@
        "reason": "NO_PROTECTION patch byte"
       },
       {
+       "at": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      },
+      {
+       "at": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      }
+     ]
+    },
+    {
+     "at": "$432e",
+     "size": 565
+    },
+    {
+     "at": "$457e",
+     "size": 26
+    },
+    {
+     "at": "$45aa",
+     "size": 1808
+    },
+    {
+     "at": "$4cce",
+     "size": 543
+    },
+    {
+     "at": "$50e7",
+     "size": 1606,
+     "exclude": [
+      {
        "at": "$5134",
        "reason": "NO_PROTECTION patch byte"
       },
@@ -1278,16 +1458,28 @@
       {
        "at": "$517d",
        "reason": "NO_PROTECTION patch byte"
-      },
-      {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
-      },
-      {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
       }
      ]
+    },
+    {
+     "at": "$59a5",
+     "size": 14
+    },
+    {
+     "at": "$59bd",
+     "size": 2564
+    },
+    {
+     "at": "$63eb",
+     "size": 7573
+    },
+    {
+     "at": "$8400",
+     "size": 1024
+    },
+    {
+     "at": "$9000",
+     "size": 4096
     }
    ]
   },
@@ -1339,7 +1531,7 @@
     },
     {
      "at": "$0400",
-     "size": 39936,
+     "size": 3320,
      "exclude": [
       {
        "at": "$0440",
@@ -1368,7 +1560,13 @@
       {
        "at": "$06f4",
        "reason": "NO_PROTECTION patch byte"
-      },
+      }
+     ]
+    },
+    {
+     "at": "$1103",
+     "size": 12835,
+     "exclude": [
       {
        "at": "$166c",
        "reason": "NO_PROTECTION patch byte"
@@ -1502,6 +1700,36 @@
        "reason": "NO_PROTECTION patch byte"
       },
       {
+       "at": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      },
+      {
+       "at": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      }
+     ]
+    },
+    {
+     "at": "$432e",
+     "size": 565
+    },
+    {
+     "at": "$457e",
+     "size": 26
+    },
+    {
+     "at": "$45aa",
+     "size": 1808
+    },
+    {
+     "at": "$4cce",
+     "size": 543
+    },
+    {
+     "at": "$50e7",
+     "size": 1606,
+     "exclude": [
+      {
        "at": "$5134",
        "reason": "NO_PROTECTION patch byte"
       },
@@ -1528,16 +1756,28 @@
       {
        "at": "$517d",
        "reason": "NO_PROTECTION patch byte"
-      },
-      {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
-      },
-      {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
       }
      ]
+    },
+    {
+     "at": "$59a5",
+     "size": 14
+    },
+    {
+     "at": "$59bd",
+     "size": 2564
+    },
+    {
+     "at": "$63eb",
+     "size": 7573
+    },
+    {
+     "at": "$8400",
+     "size": 1024
+    },
+    {
+     "at": "$9000",
+     "size": 4096
     }
    ]
   },
@@ -1589,7 +1829,7 @@
     },
     {
      "at": "$0400",
-     "size": 39936,
+     "size": 3320,
      "exclude": [
       {
        "at": "$0440",
@@ -1618,7 +1858,13 @@
       {
        "at": "$06f4",
        "reason": "NO_PROTECTION patch byte"
-      },
+      }
+     ]
+    },
+    {
+     "at": "$1103",
+     "size": 12835,
+     "exclude": [
       {
        "at": "$166c",
        "reason": "NO_PROTECTION patch byte"
@@ -1752,6 +1998,36 @@
        "reason": "NO_PROTECTION patch byte"
       },
       {
+       "at": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      },
+      {
+       "at": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      }
+     ]
+    },
+    {
+     "at": "$432e",
+     "size": 565
+    },
+    {
+     "at": "$457e",
+     "size": 26
+    },
+    {
+     "at": "$45aa",
+     "size": 1808
+    },
+    {
+     "at": "$4cce",
+     "size": 543
+    },
+    {
+     "at": "$50e7",
+     "size": 1606,
+     "exclude": [
+      {
        "at": "$5134",
        "reason": "NO_PROTECTION patch byte"
       },
@@ -1778,16 +2054,28 @@
       {
        "at": "$517d",
        "reason": "NO_PROTECTION patch byte"
-      },
-      {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
-      },
-      {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
       }
      ]
+    },
+    {
+     "at": "$59a5",
+     "size": 14
+    },
+    {
+     "at": "$59bd",
+     "size": 2564
+    },
+    {
+     "at": "$63eb",
+     "size": 7573
+    },
+    {
+     "at": "$8400",
+     "size": 1024
+    },
+    {
+     "at": "$9000",
+     "size": 4096
     }
    ]
   },
@@ -1839,7 +2127,7 @@
     },
     {
      "at": "$0400",
-     "size": 39936,
+     "size": 3320,
      "exclude": [
       {
        "at": "$0440",
@@ -1868,7 +2156,13 @@
       {
        "at": "$06f4",
        "reason": "NO_PROTECTION patch byte"
-      },
+      }
+     ]
+    },
+    {
+     "at": "$1103",
+     "size": 12835,
+     "exclude": [
       {
        "at": "$166c",
        "reason": "NO_PROTECTION patch byte"
@@ -2002,6 +2296,36 @@
        "reason": "NO_PROTECTION patch byte"
       },
       {
+       "at": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      },
+      {
+       "at": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+      }
+     ]
+    },
+    {
+     "at": "$432e",
+     "size": 565
+    },
+    {
+     "at": "$457e",
+     "size": 26
+    },
+    {
+     "at": "$45aa",
+     "size": 1808
+    },
+    {
+     "at": "$4cce",
+     "size": 543
+    },
+    {
+     "at": "$50e7",
+     "size": 1606,
+     "exclude": [
+      {
        "at": "$5134",
        "reason": "NO_PROTECTION patch byte"
       },
@@ -2028,19 +2352,31 @@
       {
        "at": "$517d",
        "reason": "NO_PROTECTION patch byte"
-      },
-      {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
-      },
-      {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
       }
      ]
+    },
+    {
+     "at": "$59a5",
+     "size": 14
+    },
+    {
+     "at": "$59bd",
+     "size": 2564
+    },
+    {
+     "at": "$63eb",
+     "size": 7573
+    },
+    {
+     "at": "$8400",
+     "size": 1024
+    },
+    {
+     "at": "$9000",
+     "size": 4096
     }
    ]
   }
  ],
- "note": "The 47 bytes that the NO_PROTECTION patches change are excluded; $0000-$0002 are not compared. Build build/bruce_lee_loader.prg from src/bruce_lee_loader.asm first."
+ "note": "The 47 bytes that the NO_PROTECTION patches change are excluded; $0000-$0002 are not compared. Build build/bruce_lee_loader.prg from src/bruce_lee_loader.asm first. The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
 }

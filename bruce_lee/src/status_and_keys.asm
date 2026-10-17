@@ -44,7 +44,7 @@ print_bcd_byte
         pla
         and #$0f
         ora #$10
-        sta game_screen+1,y
+        sta $8c01,y
         rts
 ; In-game key handler. The main loop calls it once per pass in a real game (game_mode = 1), not in the
 ; attract demo. Sets key_scan_mode (only F1, S, SPACE and V are decoded), runs scan_keyboard, and acts
@@ -133,7 +133,7 @@ print_hex_store_high
         clc
         adc #$07
 print_hex_store_low
-        sta game_screen+1,y
+        sta $8c01,y
         rts
 ; Prints message $0B "** PAUSED **" in text line 1 (the status line, screen row 1) at column 15 with
 ; print_message. The nonzero message number in text_single_height makes the text one row high

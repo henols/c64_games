@@ -49,7 +49,7 @@ reset_play_clear_top_rows
         lda #$20                        ; row 0 (status line): spaces
         sta game_screen,x
         lda #$06                        ; row 2: character 6 (separator line)
-        sta game_screen+80,x
+        sta $8c50,x
         cpx #$08                        ; only X = 0-7: sprite pointers and the solid block
         bcs reset_play_next_column
         lda #(sprite_buf_b_spr4 & $3fff) / 64

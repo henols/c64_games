@@ -83,9 +83,9 @@ show_player_screen
         lda #$dc                        ; blank glyph
 show_player_clear_loop
         sta game_screen,x
-        sta game_screen+256,x           ; the loop also fills sprite_pointers (sprites are off)
-        sta game_screen+512,x
-        sta game_screen+768,x
+        sta $8d00,x                     ; the loop also fills sprite_pointers (sprites are off)
+        sta $8e00,x
+        sta $8f00,x
         inx
         bne show_player_clear_loop
         jsr stop_all_sounds             ; silence all sound
