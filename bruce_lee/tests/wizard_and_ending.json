@@ -1,0 +1,161 @@
+{
+ "name": "Wizard and ending rooms: entering room 18 (wizard, fireballs) and room 19 (congratulations) through change_room behaves the same",
+ "original": {
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "src/loader.prg",
+  "symbols": "knowledge"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "frames": 100,
+   "side": "original"
+  },
+  {
+   "type": " ",
+   "side": "original"
+  },
+  {
+   "runUntil": {
+    "at": "cold_start"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "normalize": true
+  },
+  {
+   "runUntil": {
+    "at": "title_menu_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 60
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 300
+  },
+  {
+   "write": {
+    "at": "next_room",
+    "bytes": [
+     18
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "current_actor",
+    "bytes": [
+     0
+    ]
+   }
+  },
+  {
+   "registers": {
+    "pc": "change_room",
+    "a": 16,
+    "y": 198
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "observe": "room18_wizard",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$0002",
+     "size": 254
+    },
+    {
+     "at": "$0400",
+     "size": 39936
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 300
+  },
+  {
+   "write": {
+    "at": "next_room",
+    "bytes": [
+     19
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "current_actor",
+    "bytes": [
+     0
+    ]
+   }
+  },
+  {
+   "registers": {
+    "pc": "change_room",
+    "a": 16,
+    "y": 150
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "observe": "room19_ending",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$0002",
+     "size": 254
+    },
+    {
+     "at": "$0400",
+     "size": 39936
+    }
+   ]
+  }
+ ]
+}

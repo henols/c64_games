@@ -1,0 +1,138 @@
+{
+ "name": "Room change: Bruce walks out of room 1 on the left and enters room 0 through the exit tables",
+ "original": {
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "src/loader.prg",
+  "symbols": "knowledge"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "frames": 100,
+   "side": "original"
+  },
+  {
+   "type": " ",
+   "side": "original"
+  },
+  {
+   "runUntil": {
+    "at": "cold_start"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "normalize": true
+  },
+  {
+   "runUntil": {
+    "at": "title_menu_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 60
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 300
+  },
+  {
+   "write": {
+    "at": "next_room",
+    "bytes": [
+     1
+    ]
+   }
+  },
+  {
+   "write": {
+    "at": "current_actor",
+    "bytes": [
+     0
+    ]
+   }
+  },
+  {
+   "registers": {
+    "pc": "change_room",
+    "a": 16,
+    "y": 146
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left"
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 0
+    }
+   },
+   "timeoutFrames": 2000
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "observe": "room0_from_room1",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$0002",
+     "size": 254
+    },
+    {
+     "at": "$0400",
+     "size": 39936
+    }
+   ]
+  }
+ ]
+}
