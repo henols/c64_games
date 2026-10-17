@@ -1,0 +1,202 @@
+{
+  "name": "first rooms: game start, room 1 and back to room 0, fights with the Ninja",
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge",
+  "checkpoint": "main_loop",
+  "state": [
+    {
+      "at": "falls_left",
+      "size": 3
+    },
+    {
+      "at": "score",
+      "size": 3
+    },
+    {
+      "at": "actor_x",
+      "size": 6
+    },
+    {
+      "at": "actor_state",
+      "size": 3
+    }
+  ],
+  "pin": [
+    {
+      "at": "random_ptr",
+      "size": 2
+    }
+  ],
+  "steps": [
+    {
+      "frames": 100
+    },
+    {
+      "type": " "
+    },
+    {
+      "frames": 740
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center",
+        "fire": true
+      }
+    },
+    {
+      "frames": 30
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center"
+      }
+    },
+    {
+      "frames": 170
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "right"
+      }
+    },
+    {
+      "frames": 100
+    },
+    {
+      "runUntil": {
+        "at": "main_loop"
+      },
+      "timeoutFrames": 300
+    },
+    {
+      "write": {
+        "at": "next_room",
+        "bytes": [
+          1
+        ]
+      }
+    },
+    {
+      "write": {
+        "at": "current_actor",
+        "bytes": [
+          0
+        ]
+      }
+    },
+    {
+      "registers": {
+        "pc": "change_room",
+        "a": 16,
+        "y": 146
+      }
+    },
+    {
+      "frames": 100
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "left"
+      }
+    },
+    {
+      "frames": 800
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center"
+      }
+    },
+    {
+      "frames": 50
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "right"
+      }
+    },
+    {
+      "frames": 250
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "up-right"
+      }
+    },
+    {
+      "frames": 20
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "right"
+      }
+    },
+    {
+      "frames": 380
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "right",
+        "fire": true
+      }
+    },
+    {
+      "frames": 10
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "right"
+      }
+    },
+    {
+      "frames": 290
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "left"
+      }
+    },
+    {
+      "frames": 400
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "left",
+        "fire": true
+      }
+    },
+    {
+      "frames": 10
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "left"
+      }
+    },
+    {
+      "frames": 390
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "right"
+      }
+    },
+    {
+      "frames": 400
+    }
+  ]
+}
