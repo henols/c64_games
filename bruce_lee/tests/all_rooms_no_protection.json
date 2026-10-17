@@ -1,0 +1,1614 @@
+{
+ "name": "All rooms, default build without protection: enter each of the 20 rooms and compare the picture, the VIC-II and VIC bank 2 ($8000-$BFFF) with the original",
+ "original": {
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "build/bruce_lee_loader.prg",
+  "symbols": "knowledge"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "frames": 100,
+   "side": "original"
+  },
+  {
+   "type": " ",
+   "side": "original"
+  },
+  {
+   "runUntil": {
+    "at": "cold_start"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "normalize": true
+  },
+  {
+   "runUntil": {
+    "at": "title_menu_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 60
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 900
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 300
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 0
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 0
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room00_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room00_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 1
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 1
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room01_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room01_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 2
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 2
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room02_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room02_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 3
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 3
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room03_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room03_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 4
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 4
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room04_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room04_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 5
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 5
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room05_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room05_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 6
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 6
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room06_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room06_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 7
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 7
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room07_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room07_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 8
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 8
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room08_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room08_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 9
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 9
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room09_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room09_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 10
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 10
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room10_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room10_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 11
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 11
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room11_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room11_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 12
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 12
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room12_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room12_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 13
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 13
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room13_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room13_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 14
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 14
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room14_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room14_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 15
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 15
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room15_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room15_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 16
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 16
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room16_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room16_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 17
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 17
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room17_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room17_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 18
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 18
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room18_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room18_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "registers": {
+    "pc": "place_bruce_at_room_start",
+    "x": 19
+   }
+  },
+  {
+   "runUntil": {
+    "memory": {
+     "at": "room",
+     "equals": 19
+    }
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "runUntil": {
+    "at": "main_loop"
+   },
+   "timeoutFrames": 600
+  },
+  {
+   "frames": 20
+  },
+  {
+   "observe": "room19_drawn",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  },
+  {
+   "frames": 200
+  },
+  {
+   "observe": "room19_later",
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
+   "vicii": true,
+   "memory": [
+    {
+     "at": "$8000",
+     "size": 16384
+    },
+    {
+     "at": "room"
+    },
+    {
+     "at": "room_vmcsb"
+    },
+    {
+     "at": "room_charset_hi"
+    }
+   ]
+  }
+ ],
+ "note": "Same steps as tests/all_rooms.json, with build/bruce_lee_loader.prg (NO_PROTECTION=1). The patched protection checks change the main loop timing, so the colour splits of irq_game_colour_split (raster polling, then BGCOL0-BGCOL2 written one after the other) can land a few pixels later on one raster line. The original itself changes that line from frame to frame (room 15, raster line 169: 3 of 12 frames differ), so the screen allows 0.02 % different pixels (20 of 104448). Colour RAM is not compared here: its upper 4 bits are open bus and change with the timing; the visible colours are in the screen comparison and tests/all_rooms.json compares colour RAM byte for byte."
+}
