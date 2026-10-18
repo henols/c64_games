@@ -4,33 +4,33 @@
 
 ; Bruce frame 56 (global frame 56). 8 pixels wide, 13 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 57 is the second sprite. Picture: falling.
-; Original source label ADOWNL11 (from the assembler symbol table of the build; see docs/leftovers.md).
+; Original source label ADOWNL11 (from the assembler symbol table of the build).
 bruce_frame_56
         !byte $00,$20,$60,$50,$70,$70,$60,$e0
         !byte $f0,$f8,$dc,$54
 ; Bruce frame 58 (global frame 58). 8 pixels wide, 21 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 59 is the second sprite. Picture: lying on the floor, upper body raised.
-; Original source label ADOWNL21 (from the assembler symbol table of the build; see docs/leftovers.md).
+; Original source label ADOWNL21 (from the assembler symbol table of the build).
 bruce_frame_58
         !byte $00,$00,$00,$00,$00,$00,$00,$00
         !byte $30,$60,$58,$78,$3c,$7e,$73,$f6
         !byte $de,$9c,$88,$00,$00
 ; Bruce frame 60 (global frame 60). 8 pixels wide, 14 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 61 is the second sprite. Picture: falling.
-; Original source label ADOWNR11 (from the assembler symbol table of the build; see docs/leftovers.md).
+; Original source label ADOWNR11 (from the assembler symbol table of the build).
 bruce_frame_60
         !byte $00,$04,$06,$0a,$0e,$0e,$06,$07
         !byte $0f,$1f,$3b,$2a
 ; Bruce frame 62 (global frame 62). 8 pixels wide, 21 rows of 1 byte, colour yellow ($F7). First sprite of the pose;
 ; frame 63 is the second sprite. Picture: lying on the floor (mirror of frame 58).
-; Original source label ADOWNR21 (from the assembler symbol table of the build; see docs/leftovers.md).
+; Original source label ADOWNR21 (from the assembler symbol table of the build).
 bruce_frame_62
         !byte $00,$00,$00,$00,$00,$00,$00,$00
         !byte $0c,$06,$1a,$1e,$3c,$7e,$ce,$6f
         !byte $7b,$39,$11,$00,$00
 ; Bruce frame 57 (global frame 57). 8 pixels wide, 21 rows of 1 byte, colour black ($F0). Second sprite of pose frame
 ; 56. Picture: falling.
-; Original source label ADOWNL12 (from the assembler symbol table of the build; see docs/leftovers.md).
+; Original source label ADOWNL12 (from the assembler symbol table of the build).
 bruce_frame_57
         !byte $60,$c0,$90,$a0,$80,$00,$00,$00
         !byte $00,$00,$20,$22,$72,$70,$50,$38

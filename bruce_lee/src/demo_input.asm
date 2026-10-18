@@ -7,6 +7,8 @@
 ; 2 left, 3 right), bits 4-7 go to actor_fire (Bruce's fire flag, 0 = pressed). There is no end marker: the demo
 ; ends when Bruce loses his first fall (lose_fall goes to show_title_screen in the demo); in runs this happened
 ; after 569 bytes ($F300-$F538), demo_input_ptr = $F539 at lose_fall.
+; The DC release does not hold these bytes (its packed file ends at $F200): its attract demo reads empty RAM,
+; Bruce gets no input and the demo ends at his first lost fall.
 demo_input_stream
         !byte $17,$04,$28,$03,$08,$04,$00,$04
         !byte $28,$01,$2a,$02,$1c,$04,$18,$04

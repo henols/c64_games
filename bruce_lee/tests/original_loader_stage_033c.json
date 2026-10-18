@@ -19,260 +19,76 @@
    "frames": 100
   },
   {
-   "type": " "
+   "type": {
+    "mode": "text",
+    "text": " "
+   }
   },
   {
    "runUntil": {
-    "at": "$0400"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "$0400"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "write": {
-    "at": "$033c",
-    "bytes": [
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165,
-     165
-    ]
+    "address": "$033c",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5"
    },
    "side": "rebuild"
   },
   {
    "runUntil": {
-    "at": "$08b1"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "$08b1"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 500
   },
   {
    "runUntil": {
-    "at": "$08b1"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "$08b1"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "title",
    "memory": [
     {
-     "at": "$0000",
+     "address": "$0000",
      "size": 448,
      "exclude": [
       {
-       "at": "$0067",
+       "address": "$0067",
        "reason": "sprite_collisions: copy of the latched sprite collision register $D01E; its value depends on the raster phase of the display, not on the game state"
       }
      ]
     },
     {
-     "at": "$0200",
+     "address": "$0200",
      "size": 316
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 39936
     },
     {
-     "at": "$aa00",
+     "address": "$aa00",
      "size": 9472,
      "view": "ram"
     },
     {
-     "at": "$d000",
+     "address": "$d000",
      "size": 12288,
      "view": "ram"
     }
@@ -281,47 +97,53 @@
   },
   {
    "runUntil": {
-    "at": "$0531"
-   },
-   "timeoutFrames": 3000
+    "target": {
+     "kind": "address",
+     "address": "$0531"
+    },
+    "timeoutFrames": 3000
+   }
   },
   {
    "frames": 300
   },
   {
    "runUntil": {
-    "at": "$1bc2"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "$1bc2"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "demo",
    "memory": [
     {
-     "at": "$0000",
+     "address": "$0000",
      "size": 448,
      "exclude": [
       {
-       "at": "$0067",
+       "address": "$0067",
        "reason": "sprite_collisions: copy of the latched sprite collision register $D01E; its value depends on the raster phase of the display, not on the game state"
       }
      ]
     },
     {
-     "at": "$0200",
+     "address": "$0200",
      "size": 316
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 39936
     },
     {
-     "at": "$aa00",
+     "address": "$aa00",
      "size": 9472,
      "view": "ram"
     },
     {
-     "at": "$d000",
+     "address": "$d000",
      "size": 12288,
      "view": "ram"
     }
@@ -346,9 +168,12 @@
   },
   {
    "runUntil": {
-    "at": "$08b1"
-   },
-   "timeoutFrames": 3000
+    "target": {
+     "kind": "address",
+     "address": "$08b1"
+    },
+    "timeoutFrames": 3000
+   }
   },
   {
    "frames": 60
@@ -371,47 +196,53 @@
   },
   {
    "runUntil": {
-    "at": "$1bc2"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "$1bc2"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "frames": 300
   },
   {
    "runUntil": {
-    "at": "$1bc2"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "$1bc2"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "room0",
    "memory": [
     {
-     "at": "$0000",
+     "address": "$0000",
      "size": 448,
      "exclude": [
       {
-       "at": "$0067",
+       "address": "$0067",
        "reason": "sprite_collisions: copy of the latched sprite collision register $D01E; its value depends on the raster phase of the display, not on the game state"
       }
      ]
     },
     {
-     "at": "$0200",
+     "address": "$0200",
      "size": 316
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 39936
     },
     {
-     "at": "$aa00",
+     "address": "$aa00",
      "size": 9472,
      "view": "ram"
     },
     {
-     "at": "$d000",
+     "address": "$d000",
      "size": 12288,
      "view": "ram"
     }
@@ -429,38 +260,41 @@
   },
   {
    "runUntil": {
-    "at": "$1bc2"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "$1bc2"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "walk_right",
    "memory": [
     {
-     "at": "$0000",
+     "address": "$0000",
      "size": 448,
      "exclude": [
       {
-       "at": "$0067",
+       "address": "$0067",
        "reason": "sprite_collisions: copy of the latched sprite collision register $D01E; its value depends on the raster phase of the display, not on the game state"
       }
      ]
     },
     {
-     "at": "$0200",
+     "address": "$0200",
      "size": 316
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 39936
     },
     {
-     "at": "$aa00",
+     "address": "$aa00",
      "size": 9472,
      "view": "ram"
     },
     {
-     "at": "$d000",
+     "address": "$d000",
      "size": 12288,
      "view": "ram"
     }
@@ -479,38 +313,41 @@
   },
   {
    "runUntil": {
-    "at": "$1bc2"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "$1bc2"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "walk_left",
    "memory": [
     {
-     "at": "$0000",
+     "address": "$0000",
      "size": 448,
      "exclude": [
       {
-       "at": "$0067",
+       "address": "$0067",
        "reason": "sprite_collisions: copy of the latched sprite collision register $D01E; its value depends on the raster phase of the display, not on the game state"
       }
      ]
     },
     {
-     "at": "$0200",
+     "address": "$0200",
      "size": 316
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 39936
     },
     {
-     "at": "$aa00",
+     "address": "$aa00",
      "size": 9472,
      "view": "ram"
     },
     {
-     "at": "$d000",
+     "address": "$d000",
      "size": 12288,
      "view": "ram"
     }

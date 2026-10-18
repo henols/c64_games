@@ -5,25 +5,25 @@
   "checkpoint": "main_loop",
   "state": [
     {
-      "at": "falls_left",
+      "address": "falls_left",
       "size": 3
     },
     {
-      "at": "score",
+      "address": "score",
       "size": 3
     },
     {
-      "at": "actor_x",
+      "address": "actor_x",
       "size": 6
     },
     {
-      "at": "actor_state",
+      "address": "actor_state",
       "size": 3
     }
   ],
   "pin": [
     {
-      "at": "random_ptr",
+      "address": "random_ptr",
       "size": 2
     }
   ],
@@ -32,7 +32,10 @@
       "frames": 100
     },
     {
-      "type": " "
+      "type": {
+        "mode": "text",
+        "text": " "
+      }
     },
     {
       "frames": 740
@@ -67,24 +70,23 @@
     },
     {
       "runUntil": {
-        "at": "main_loop"
-      },
-      "timeoutFrames": 300
-    },
-    {
-      "write": {
-        "at": "next_room",
-        "bytes": [
-          1
-        ]
+        "target": {
+          "kind": "address",
+          "address": "main_loop"
+        },
+        "timeoutFrames": 300
       }
     },
     {
       "write": {
-        "at": "current_actor",
-        "bytes": [
-          0
-        ]
+        "address": "next_room",
+        "data": "01"
+      }
+    },
+    {
+      "write": {
+        "address": "current_actor",
+        "data": "00"
       }
     },
     {

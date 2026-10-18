@@ -47,15 +47,15 @@ room04_init
 ; slider_timer 0/1/2 = $FF/$FC/$F8.
 room05_init
         ldx #$00
-!zone patch_NO_PROTECTION_342a {
+!zone patch_PROTECTION_342a {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 7 bytes at $342a-$3430, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 7 bytes at $342a-$3430, NOP after the code
         ; Check 7: room 5 does not hang (A, Y and flags as on the passing path).
 lda #$32
 tay
 cpy #$32
-        !if * - .patch_start > 7 { !error "The patch NO_PROTECTION at $342a has ", * - .patch_start, " bytes; the range has 7." } else { !fill 7 - (* - .patch_start), $ea }
+        !if * - .patch_start > 7 { !error "The patch PROTECTION at $342a has ", * - .patch_start, " bytes; the range has 7." } else { !fill 7 - (* - .patch_start), $ea }
 } else {
         lda prot_loader_mark,x
         tay

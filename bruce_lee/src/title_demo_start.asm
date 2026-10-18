@@ -251,13 +251,13 @@ title_protection_check
         eor prot_signature_a_3,x
         eor prot_signature_b_2,x
 title_protection_wipe = * + 2
-!zone patch_NO_PROTECTION_06f1 {
+!zone patch_PROTECTION_06f1 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 4 bytes at $06f1-$06f4, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 4 bytes at $06f1-$06f4, NOP after the code
         ; Check 3: the title signature always passes, no memory wipe.
 jmp title_start_countdown
-        !if * - .patch_start > 4 { !error "The patch NO_PROTECTION at $06f1 has ", * - .patch_start, " bytes; the range has 4." } else { !fill 4 - (* - .patch_start), $ea }
+        !if * - .patch_start > 4 { !error "The patch PROTECTION at $06f1 has ", * - .patch_start, " bytes; the range has 4." } else { !fill 4 - (* - .patch_start), $ea }
 } else {
         beq title_start_countdown
 ; not executed $06f3-$06f9

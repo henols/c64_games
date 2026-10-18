@@ -1,0 +1,453 @@
+{
+  "entry": "$0400",
+  "segments": [
+    {
+      "start": "$03ff",
+      "end": "$10f7",
+      "writtenBy": 3,
+      "file": "segment-03ff-10f7.prg"
+    },
+    {
+      "start": "$1103",
+      "end": "$4325",
+      "writtenBy": 3,
+      "file": "segment-1103-4325.prg"
+    },
+    {
+      "start": "$432e",
+      "end": "$4562",
+      "writtenBy": 3,
+      "file": "segment-432e-4562.prg"
+    },
+    {
+      "start": "$457e",
+      "end": "$4597",
+      "writtenBy": 3,
+      "file": "segment-457e-4597.prg"
+    },
+    {
+      "start": "$45aa",
+      "end": "$4cb9",
+      "writtenBy": 3,
+      "file": "segment-45aa-4cb9.prg"
+    },
+    {
+      "start": "$4cce",
+      "end": "$4eec",
+      "writtenBy": 3,
+      "file": "segment-4cce-4eec.prg"
+    },
+    {
+      "start": "$50e7",
+      "end": "$572c",
+      "writtenBy": 3,
+      "file": "segment-50e7-572c.prg"
+    },
+    {
+      "start": "$59a5",
+      "end": "$59b2",
+      "writtenBy": 3,
+      "file": "segment-59a5-59b2.prg"
+    },
+    {
+      "start": "$59bd",
+      "end": "$63c0",
+      "writtenBy": 3,
+      "file": "segment-59bd-63c0.prg"
+    },
+    {
+      "start": "$63eb",
+      "end": "$817f",
+      "writtenBy": 3,
+      "file": "segment-63eb-817f.prg"
+    },
+    {
+      "start": "$8400",
+      "end": "$87ff",
+      "writtenBy": 3,
+      "file": "segment-8400-87ff.prg"
+    },
+    {
+      "start": "$9000",
+      "end": "$9fff",
+      "writtenBy": 3,
+      "file": "segment-9000-9fff.prg"
+    },
+    {
+      "start": "$e000",
+      "end": "$e008",
+      "writtenBy": 2,
+      "file": "segment-e000-e008.prg"
+    },
+    {
+      "start": "$e100",
+      "end": "$e130",
+      "writtenBy": 2,
+      "file": "segment-e100-e130.prg"
+    },
+    {
+      "start": "$e200",
+      "end": "$e2e8",
+      "writtenBy": 2,
+      "file": "segment-e200-e2e8.prg"
+    },
+    {
+      "start": "$e300",
+      "end": "$e7bd",
+      "writtenBy": 2,
+      "file": "segment-e300-e7bd.prg"
+    },
+    {
+      "start": "$e80a",
+      "end": "$e871",
+      "writtenBy": 2,
+      "file": "segment-e80a-e871.prg"
+    },
+    {
+      "start": "$e8c0",
+      "end": "$eaac",
+      "writtenBy": 2,
+      "file": "segment-e8c0-eaac.prg"
+    },
+    {
+      "start": "$eb00",
+      "end": "$ee82",
+      "writtenBy": 2,
+      "file": "segment-eb00-ee82.prg"
+    },
+    {
+      "start": "$ef70",
+      "end": "$f054",
+      "writtenBy": 2,
+      "file": "segment-ef70-f054.prg"
+    },
+    {
+      "start": "$f070",
+      "end": "$f154",
+      "writtenBy": 2,
+      "file": "segment-f070-f154.prg"
+    },
+    {
+      "start": "$f300",
+      "end": "$f538",
+      "writtenBy": 2,
+      "file": "segment-f300-f538.prg"
+    },
+    {
+      "start": "$fffa",
+      "end": "$ffff",
+      "writtenBy": 2,
+      "file": "segment-fffa-ffff.prg"
+    }
+  ],
+  "excluded": [
+    {
+      "start": "$033c",
+      "end": "$03fe"
+    },
+    {
+      "start": "$10f8",
+      "end": "$1102"
+    },
+    {
+      "start": "$4326",
+      "end": "$432d"
+    },
+    {
+      "start": "$4563",
+      "end": "$457d"
+    },
+    {
+      "start": "$4598",
+      "end": "$45a9"
+    },
+    {
+      "start": "$4cba",
+      "end": "$4ccd"
+    },
+    {
+      "start": "$4eed",
+      "end": "$50e6"
+    },
+    {
+      "start": "$572d",
+      "end": "$59a4"
+    },
+    {
+      "start": "$59b3",
+      "end": "$59bc"
+    },
+    {
+      "start": "$63c1",
+      "end": "$63ea"
+    },
+    {
+      "start": "$8180",
+      "end": "$83ff"
+    },
+    {
+      "start": "$8800",
+      "end": "$8fff"
+    },
+    {
+      "start": "$a000",
+      "end": "$a9ff"
+    },
+    {
+      "start": "$e009",
+      "end": "$e0ff"
+    },
+    {
+      "start": "$e131",
+      "end": "$e1ff"
+    },
+    {
+      "start": "$e2e9",
+      "end": "$e2ff"
+    },
+    {
+      "start": "$e7be",
+      "end": "$e809"
+    },
+    {
+      "start": "$e872",
+      "end": "$e8bf"
+    },
+    {
+      "start": "$eaad",
+      "end": "$eaff"
+    },
+    {
+      "start": "$ee83",
+      "end": "$ef6f"
+    },
+    {
+      "start": "$f055",
+      "end": "$f06f"
+    },
+    {
+      "start": "$f155",
+      "end": "$f2ff"
+    },
+    {
+      "start": "$f539",
+      "end": "$fff9"
+    }
+  ],
+  "vectors": {
+    "irq": "$ea31",
+    "brk": "$fe66",
+    "nmi": "$0301",
+    "ram": {
+      "nmi": "$1116",
+      "reset": "$1116",
+      "irq": "$1103"
+    },
+    "rom": {
+      "nmi": "$fe43",
+      "reset": "$fce2",
+      "irq": "$ff48"
+    }
+  },
+  "stages": [
+    {
+      "stage": 0,
+      "entry": "$0827",
+      "frames": 0,
+      "wrote": [
+        {
+          "start": "$000d",
+          "end": "$000d"
+        },
+        {
+          "start": "$0014",
+          "end": "$0015"
+        },
+        {
+          "start": "$0022",
+          "end": "$0022"
+        },
+        {
+          "start": "$004d",
+          "end": "$004d"
+        },
+        {
+          "start": "$0056",
+          "end": "$0056"
+        },
+        {
+          "start": "$005d",
+          "end": "$0070"
+        },
+        {
+          "start": "$007a",
+          "end": "$007a"
+        },
+        {
+          "start": "$0100",
+          "end": "$01ff"
+        }
+      ],
+      "next": "$0100"
+    },
+    {
+      "stage": 1,
+      "entry": "$0100",
+      "frames": 288,
+      "wrote": [
+        {
+          "start": "$0001",
+          "end": "$0001"
+        },
+        {
+          "start": "$00a2",
+          "end": "$00a2"
+        },
+        {
+          "start": "$00ac",
+          "end": "$00af"
+        },
+        {
+          "start": "$00c0",
+          "end": "$00c0"
+        },
+        {
+          "start": "$00cb",
+          "end": "$00cb"
+        },
+        {
+          "start": "$00f5",
+          "end": "$00f6"
+        },
+        {
+          "start": "$01f6",
+          "end": "$01ff"
+        },
+        {
+          "start": "$028d",
+          "end": "$028d"
+        },
+        {
+          "start": "$0800",
+          "end": "$cfff"
+        },
+        {
+          "start": "$e000",
+          "end": "$ffff"
+        }
+      ],
+      "next": "$0800"
+    },
+    {
+      "stage": 2,
+      "entry": "$0800",
+      "frames": 316,
+      "wrote": [
+        {
+          "start": "$0001",
+          "end": "$0001"
+        },
+        {
+          "start": "$00a1",
+          "end": "$00a2"
+        },
+        {
+          "start": "$00c0",
+          "end": "$00c0"
+        },
+        {
+          "start": "$00c6",
+          "end": "$00c6"
+        },
+        {
+          "start": "$00cb",
+          "end": "$00cb"
+        },
+        {
+          "start": "$00f5",
+          "end": "$00f6"
+        },
+        {
+          "start": "$00fb",
+          "end": "$00fe"
+        },
+        {
+          "start": "$01f6",
+          "end": "$01ff"
+        },
+        {
+          "start": "$028d",
+          "end": "$028d"
+        },
+        {
+          "start": "$c000",
+          "end": "$c1ff"
+        },
+        {
+          "start": "$cf00",
+          "end": "$cfff"
+        },
+        {
+          "start": "$e000",
+          "end": "$ffff"
+        }
+      ],
+      "next": "$c000"
+    },
+    {
+      "stage": 3,
+      "entry": "$c000",
+      "frames": 44,
+      "wrote": [
+        {
+          "start": "$0000",
+          "end": "$0002"
+        },
+        {
+          "start": "$0080",
+          "end": "$0080"
+        },
+        {
+          "start": "$00ba",
+          "end": "$00bb"
+        },
+        {
+          "start": "$01fe",
+          "end": "$01ff"
+        },
+        {
+          "start": "$0301",
+          "end": "$0303"
+        },
+        {
+          "start": "$0313",
+          "end": "$0313"
+        },
+        {
+          "start": "$0318",
+          "end": "$0319"
+        },
+        {
+          "start": "$033c",
+          "end": "$a9ff"
+        },
+        {
+          "start": "$c020",
+          "end": "$c020"
+        },
+        {
+          "start": "$c025",
+          "end": "$c025"
+        }
+      ],
+      "next": "$0400"
+    },
+    {
+      "stage": 4,
+      "entry": "$0400",
+      "frames": 0,
+      "wrote": []
+    }
+  ],
+  "image": "image.bin"
+}

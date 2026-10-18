@@ -15,28 +15,37 @@ music_jump_start_playlist
 music_song
         !byte $00                       ; song number being played (0 = title tune)
 music_stop_request
+music_song_ended = * + 1
+music_playing = * + 2
+music_tempo = * + 3
+music_end_marker = * + 4
+music_filter_mode = * + 5
+music_volume_voice = * + 6
+music_volume = * + 7
+music_temp = * + 8
+music_end_action = * + 10
+!zone patch_RUN_STATE_e30a {
+.patch_start
+!if RUN_STATE = 0 {
+        ; RUN_STATE off: 11 bytes at $e30a-$e314, NOP after the code
+!byte $a7,$bf,$b6,$02,$a7,$bf,$1f,$be,$16,$00,$1f
+        !if * - .patch_start > 11 { !error "The patch RUN_STATE at $e30a has ", * - .patch_start, " bytes; the range has 11." } else { !fill 11 - (* - .patch_start), $ea }
+} else {
         !byte $00                       ; nonzero: music_play_frame silences the SID and stops
-music_song_ended
         !byte $00                       ; set to 1 when a voice reaches its $FF end byte; nothing reads it
-music_playing
         !byte $01                       ; 1 = the song plays, 0 = stopped (also 0 while a song is set up)
-music_tempo
         !byte $02                       ; frames per tick, set by command $E0
-music_end_marker
         !byte $00                       ; $FF when a voice has reached its end byte; then music_end_action decides
-music_filter_mode
         !byte $00                       ; filter mode bits for the high nibble of $D418
-music_volume_voice
         !byte $00                       ; voice number + 1 whose next note writes $D418/$D417; 0 = nothing pending
-music_volume
         !byte $0f                       ; master volume (low nibble of $D418), set by command $9x
-music_temp
         !byte $01,$00                   ; scratch byte of the player
 ; What happens when the song ends (the title code sets 3): 0 = stop; bit 7 set = play song (value AND $7F);
 ; bit 1 set = take the next playlist entry (bit 0 set = restart the playlist at its end, clear = stop);
 ; else play the next song number (after music_last_song: bit 0 set = song 0, clear = stop).
-music_end_action
         !byte $03
+}
+}
 ; Text in the player: " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". Nothing reads it.
 music_player_credit
         !pet " micropearl music player  copyri"
@@ -138,17 +147,31 @@ music_silence
 music_fetch_voice0
 music_fetch_voice0_src = * + 1
 music_fetch_voice0_src_hi = * + 2
+music_fetch_voice1 = * + 4
+music_fetch_voice1_src = * + 5
+music_fetch_voice1_src_hi = * + 6
+music_fetch_voice2 = * + 8
+music_fetch_voice2_src = * + 9
+music_fetch_voice2_src_hi = * + 10
+!zone patch_RUN_STATE_e3de {
+.patch_start
+!if RUN_STATE = 0 {
+        ; RUN_STATE off: 11 bytes at $e3de-$e3e8, NOP after the code
+        ; The stream fetch operands before music_set_voice_pointers sets them: the placeholder $1234 of the assembler source.
+lda $1234
+rts
+lda $1234
+rts
+lda $1234
+        !if * - .patch_start > 11 { !error "The patch RUN_STATE at $e3de has ", * - .patch_start, " bytes; the range has 11." } else { !fill 11 - (* - .patch_start), $ea }
+} else {
         lda music_title_voice0+$10      ; operand music_fetch_voice0_src = stream pointer of voice 0: set by music_set_voice_pointers, advanced by music_read_byte
         rts
-music_fetch_voice1
-music_fetch_voice1_src = * + 1
-music_fetch_voice1_src_hi = * + 2
         lda music_title_voice1+$b       ; operand music_fetch_voice1_src = stream pointer of voice 1: set by music_set_voice_pointers, advanced by music_read_byte
         rts
-music_fetch_voice2
-music_fetch_voice2_src = * + 1
-music_fetch_voice2_src_hi = * + 2
         lda music_title_voice2+$b       ; operand music_fetch_voice2_src = stream pointer of voice 2: set by music_set_voice_pointers, advanced by music_read_byte
+}
+}
         rts
 ; Reads the next byte of the stream of voice music_voice and advances the stream.
 ; Output: A = the byte, N and Z flags from it; music_lookahead = the byte after it.
@@ -443,7 +466,17 @@ music_voice_dispatch
         clc
 music_cmd_branch
 music_cmd_offset = * + 1
+!zone patch_RUN_STATE_e5e6 {
+.patch_start
+!if RUN_STATE = 0 {
+        ; RUN_STATE off: 2 bytes at $e5e6-$e5e7, NOP after the code
+        ; BCC operand before the command dispatch sets music_cmd_offset.
+!byte $90,$fe
+        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $e5e6 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+} else {
         bcc music_cmd_jumps             ; self-modified: offset from music_cmd_offsets, always taken (C = 0)
+}
+}
 ; Command handlers: $8x length, $9x volume, $Ax voice option, $Bx instrument, $Cx pulse width,
 ; $Dx filter, $Ex tempo. Group $Fx has offset $15 and lands on music_cmd_length after the table.
 music_cmd_jumps

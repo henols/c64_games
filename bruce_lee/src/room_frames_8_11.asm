@@ -288,15 +288,15 @@ room10_frame
         jsr open_passage_dark
 room10_frame_protection_check
         ldy #$00
-!zone patch_NO_PROTECTION_3ca9 {
+!zone patch_PROTECTION_3ca9 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 6 bytes at $3ca9-$3cae, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 6 bytes at $3ca9-$3cae, NOP after the code
         ; Check 8: room 10 never damages the room maps.
 ldx #$ef
 cpx #$ef
 beq room10_frame_bursts
-        !if * - .patch_start > 6 { !error "The patch NO_PROTECTION at $3ca9 has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
+        !if * - .patch_start > 6 { !error "The patch PROTECTION at $3ca9 has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
 } else {
         ldx D6510,y
         cpx #$ef                        ; protection: D6510 must be $EF

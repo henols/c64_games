@@ -20,23 +20,32 @@
    "side": "original"
   },
   {
-   "type": " ",
+   "type": {
+    "mode": "text",
+    "text": " "
+   },
    "side": "original"
   },
   {
    "runUntil": {
-    "at": "cold_start"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "cold_start"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "normalize": true
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 60
@@ -59,15 +68,21 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "runUntil": {
-    "at": "lose_fall"
-   },
-   "timeoutFrames": 20000
+    "target": {
+     "kind": "address",
+     "address": "lose_fall"
+    },
+    "timeoutFrames": 20000
+   }
   },
   {
    "observe": "first_fall",
@@ -75,64 +90,67 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$0002",
+     "address": "$0002",
      "size": 254
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "game_over"
-   },
-   "timeoutFrames": 30000
+    "target": {
+     "kind": "address",
+     "address": "game_over"
+    },
+    "timeoutFrames": 30000
+   }
   },
   {
    "frames": 100
@@ -143,64 +161,67 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$0002",
+     "address": "$0002",
      "size": 254
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 3000
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 3000
+   }
   },
   {
    "frames": 50
@@ -211,55 +232,55 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$0002",
+     "address": "$0002",
      "size": 254
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]

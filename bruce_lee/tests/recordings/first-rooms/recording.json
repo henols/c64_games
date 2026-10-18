@@ -9,25 +9,25 @@
     "checkpoint": "main_loop",
     "state": [
       {
-        "at": "falls_left",
+        "address": "falls_left",
         "size": 3
       },
       {
-        "at": "score",
+        "address": "score",
         "size": 3
       },
       {
-        "at": "actor_x",
+        "address": "actor_x",
         "size": 6
       },
       {
-        "at": "actor_state",
+        "address": "actor_state",
         "size": 3
       }
     ],
     "pin": [
       {
-        "at": "random_ptr",
+        "address": "random_ptr",
         "size": 2
       }
     ]
@@ -43,27 +43,43 @@
   ],
   "events": [
     {
+      "step": 2,
+      "action": {
+        "type": {
+          "mode": "text",
+          "text": " "
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
       "step": 10,
       "action": {
         "runUntil": {
-          "at": "main_loop"
-        },
-        "timeoutFrames": 300
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
       },
       "key": {
         "site": "$13a3",
         "addr": "$dc00",
-        "count": 68892
+        "count": 68264
       }
     },
     {
       "step": 11,
       "action": {
         "write": {
-          "at": "next_room",
-          "bytes": [
-            1
-          ]
+          "address": "next_room",
+          "data": "01",
+          "space": "c64",
+          "view": "cpu"
         }
       },
       "key": {
@@ -74,10 +90,10 @@
       "step": 12,
       "action": {
         "write": {
-          "at": "current_actor",
-          "bytes": [
-            0
-          ]
+          "address": "current_actor",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
         }
       },
       "key": {
@@ -102,31 +118,19 @@
     {
       "site": "$f6bc",
       "addr": "$dc01",
-      "reads": 181,
+      "reads": 240,
       "rom": true
     },
     {
       "site": "$f6bf",
       "addr": "$dc01",
-      "reads": 181,
+      "reads": 240,
       "rom": true
     },
     {
       "site": "$ea93",
       "addr": "$dc01",
-      "reads": 181,
-      "rom": true
-    },
-    {
-      "site": "$eaab",
-      "addr": "$dc01",
-      "reads": 36,
-      "rom": true
-    },
-    {
-      "site": "$eaae",
-      "addr": "$dc01",
-      "reads": 36,
+      "reads": 240,
       "rom": true
     },
     {
@@ -600,37 +604,37 @@
     {
       "site": "$13a3",
       "addr": "$dc00",
-      "reads": 69900,
+      "reads": 69272,
       "rom": false
     },
     {
       "site": "$13a6",
       "addr": "$dc01",
-      "reads": 69900,
+      "reads": 69272,
       "rom": false
     },
     {
       "site": "$13bd",
       "addr": "$dc00",
-      "reads": 68874,
+      "reads": 68246,
       "rom": false
     },
     {
       "site": "$13fd",
       "addr": "$dc00",
-      "reads": 68874,
+      "reads": 68246,
       "rom": false
     },
     {
       "site": "$1400",
       "addr": "$dc01",
-      "reads": 68874,
+      "reads": 68246,
       "rom": false
     },
     {
       "site": "$08f5",
       "addr": "$dc01",
-      "reads": 68829,
+      "reads": 68201,
       "rom": false
     },
     {
@@ -852,13 +856,13 @@
     {
       "site": "$094b",
       "addr": "$dc00",
-      "reads": 41747,
+      "reads": 41820,
       "rom": false
     },
     {
       "site": "$094e",
       "addr": "$dc01",
-      "reads": 41747,
+      "reads": 41820,
       "rom": false
     },
     {
@@ -874,6 +878,6 @@
       "rom": false
     }
   ],
-  "ticks": 86503229,
-  "hash": "1712b96b"
+  "ticks": 87368093,
+  "hash": "b756101a"
 }

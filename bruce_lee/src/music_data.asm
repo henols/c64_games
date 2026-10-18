@@ -29,7 +29,16 @@ music_filter_presets
 music_last_song
         !byte $01                       ; highest song number (1); music_set_voice_pointers limits the song to it
 music_playlist_pos
+!zone patch_RUN_STATE_e86c {
+.patch_start
+!if RUN_STATE = 0 {
+        ; RUN_STATE off: 1 byte at $e86c-$e86c, NOP after the code
+!byte $00
+        !if * - .patch_start > 1 { !error "The patch RUN_STATE at $e86c has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+} else {
         !byte $01                       ; index of the next playlist entry
+}
+}
 music_playlist_start
         !byte $00                       ; index where the playlist starts
         !byte $c0,$02

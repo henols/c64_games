@@ -58,12 +58,12 @@ cold_start_random_delay
         sta random_table,x
         inx
         bne cold_start_random_loop
-!zone patch_NO_PROTECTION_0440 {
+!zone patch_PROTECTION_0440 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 3 bytes at $0440-$0442, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 3 bytes at $0440-$0442, NOP after the code
         ; Check 2: no JSR to the loader's RTS at $0080.
-        !if * - .patch_start > 3 { !error "The patch NO_PROTECTION at $0440 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if * - .patch_start > 3 { !error "The patch PROTECTION at $0440 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
 } else {
         jsr $0080                       ; JSR frame_count_256: the loader leaves an RTS there (init_game_variables clears it later)
 }

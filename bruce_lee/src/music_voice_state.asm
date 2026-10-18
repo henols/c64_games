@@ -5,46 +5,56 @@
 ; Music voice state ($E100-$E12D, 46 bytes). music_reset_state copies music_voice_init over it before
 ; each song. The arrays of 3 bytes are indexed by the voice number 0-2 (SID voice 1-3).
 music_transpose
+music_voice_tie = * + 1
+music_voice_ticks = * + 4
+music_voice_end_tick = * + 7
+music_voice_gate_ticks = * + 10
+music_voice_end_reload = * + 13
+music_voice_attack_decay = * + 16
+music_voice_sustain_release = * + 19
+music_voice_control = * + 22
+music_voice_articulation = * + 25
+music_envelopes = * + 28
+music_voice = * + 46
+music_tempo_counter = * + 47
+music_lookahead = * + 48
+!zone patch_RUN_STATE_e100 {
+.patch_start
+!if RUN_STATE = 0 {
+        ; RUN_STATE off: 49 bytes at $e100-$e130, NOP after the code
+        ; Music voice state before any song: music_reset_state writes it for each song.
+!byte $c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$c2,$7e,$b7,$af,$c2,$7e,$b7,$af,$3f,$f6,$89,$b7,$3f,$f6,$89,$b7,$3f,$f6,$8b,$b7,$3f,$f6,$8f,$b7,$c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$3f
+        !if * - .patch_start > 49 { !error "The patch RUN_STATE at $e100 has ", * - .patch_start, " bytes; the range has 49." } else { !fill 49 - (* - .patch_start), $ea }
+} else {
         !byte $00                       ; semitones added to every note; reset to 0 for each song
 ; Tie flag per voice: 1 = notes are tied (no new gate, no gate off), 0 = normal. Commands $A7/$A8.
-music_voice_tie
         !byte $00,$00,$00
 ; Tick counter per voice. It counts down from music_voice_gate_ticks; at 0 the gate goes off,
 ; and when it reaches music_voice_end_tick (a negative value) the next note starts.
-music_voice_ticks
         !byte $06,$2f,$2f
 ; Counter value that ends the note per voice: minus the number of release ticks ($FF = 1 tick).
-music_voice_end_tick
         !byte $ff,$f8,$f8
 ; Gate-on ticks per voice for the next note, set by a length command (music_note_length).
-music_voice_gate_ticks
         !byte $07,$38,$07
 ; End-tick value per voice for the next note, set by a length command (music_note_length).
-music_voice_end_reload
         !byte $ff,$f8,$ff
 ; SID attack/decay value per voice, written at each new (untied) note.
-music_voice_attack_decay
         !byte $00,$00,$11
 ; SID sustain/release value per voice, written at each new (untied) note.
-music_voice_sustain_release
         !byte $70,$f0,$97
 ; SID control value per voice (waveform, ring bit, gate bit 0 = 1), written at each new note.
-music_voice_control
         !byte $41,$41,$41
 ; Articulation per voice: 0 = normal (gate off for the last 1/8 of the note), 1 = staccato
 ; (gate off for the second half), 2 = legato (gate off for the last tick only). Commands $A4-$A6.
-music_voice_articulation
         !byte $02,$00,$00
 ; Envelopes of the current instrument, 6 bytes per voice (voice 0 at +0, 1 at +6, 2 at +12):
 ; AD and SR for articulation 0, AD and SR for articulation 1, AD and SR for articulation 2.
 ; Command $Bn copies instrument n here; commands $A4-$A6 load the pair of the chosen articulation.
-music_envelopes
         !byte $09,$00,$09,$00,$00,$70,$00,$f0
         !byte $00,$f0,$00,$f0,$11,$97,$00,$93
         !byte $22,$9b
-music_voice
         !byte $00                       ; voice the player works on now (0-2)
-music_tempo_counter
         !byte $01                       ; frames left until the next tick; reloaded from music_tempo
-music_lookahead
         !byte $1f                       ; next byte of the current voice stream; bit 7 set = a command follows
+}
+}

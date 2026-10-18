@@ -1,7 +1,7 @@
 {
  "name": "All rooms, default build without protection: enter each of the 20 rooms and compare the picture, the VIC-II and VIC bank 2 ($8000-$BFFF) with the original",
  "original": {
-  "program": "original/bruce_lee.prg",
+  "program": "original/bruce_lee_tbc.prg",
   "symbols": "knowledge"
  },
  "rebuild": {
@@ -16,27 +16,42 @@
    "autostart": true
   },
   {
-   "frames": 100,
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0872"
+    },
+    "timeoutFrames": 900
+   },
    "side": "original"
   },
   {
-   "type": " ",
+   "type": {
+    "mode": "text",
+    "text": " "
+   },
    "side": "original"
   },
   {
    "runUntil": {
-    "at": "cold_start"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "cold_start"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "normalize": true
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 60
@@ -59,21 +74,30 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 300
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 300
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -83,18 +107,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 0
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 0
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -107,17 +136,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -132,25 +161,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -160,18 +192,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 1
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 1
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -184,17 +221,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -209,25 +246,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -237,18 +277,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 2
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 2
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -261,17 +306,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -286,25 +331,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -314,18 +362,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 3
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 3
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -338,17 +391,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -363,25 +416,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -391,18 +447,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 4
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 4
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -415,17 +476,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -440,25 +501,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -468,18 +532,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 5
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 5
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -492,17 +561,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -517,25 +586,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -545,18 +617,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 6
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 6
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -569,17 +646,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -594,25 +671,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -622,18 +702,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 7
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 7
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -646,17 +731,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -671,25 +756,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -699,18 +787,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 8
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 8
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -723,17 +816,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -748,25 +841,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -776,18 +872,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 9
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 9
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -800,17 +901,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -825,25 +926,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -853,18 +957,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 10
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 10
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -877,17 +986,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -902,25 +1011,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -930,18 +1042,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 11
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 11
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -954,17 +1071,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -979,25 +1096,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1007,18 +1127,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 12
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 12
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1031,17 +1156,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1056,25 +1181,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1084,18 +1212,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 13
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 13
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1108,17 +1241,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1133,25 +1266,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1161,18 +1297,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 14
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 14
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1185,17 +1326,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1210,25 +1351,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1238,18 +1382,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 15
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 15
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1262,17 +1411,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1287,25 +1436,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1315,18 +1467,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 16
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 16
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1339,17 +1496,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1364,25 +1521,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1392,18 +1552,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 17
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 17
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1416,17 +1581,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1441,25 +1606,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1469,18 +1637,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 18
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 18
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1493,17 +1666,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1518,25 +1691,28 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1546,18 +1722,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 19
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 19
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1570,17 +1751,17 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1595,20 +1776,20 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   }
  ],
- "note": "Same steps as tests/all_rooms.json, with build/bruce_lee_loader.prg (NO_PROTECTION=1). The patched protection checks change the main loop timing, so the colour splits of irq_game_colour_split (raster polling, then BGCOL0-BGCOL2 written one after the other) can land a few pixels later on one raster line. The original itself changes that line from frame to frame (room 15, raster line 169: 3 of 12 frames differ), so the screen allows 0.02 % different pixels (20 of 104448). Colour RAM is not compared here: its upper 4 bits are open bus and change with the timing; the visible colours are in the screen comparison and tests/all_rooms.json compares colour RAM byte for byte."
+ "note": "The original is the TBC release (original/bruce_lee_tbc.prg): its game bytes are the default build without the protection patches, because the default build has the TBC state of CRACK_DIABOLO, FIX_RAM_TEST_BYTE and RUN_STATE. Its intro (the Datasoft title picture) empties the key buffer at $0870 and waits at $0872 for a key. Same steps as tests/all_rooms.json, with build/bruce_lee_loader.prg (the default build, PROTECTION = 0). The patched protection checks change the main loop timing, so the colour splits of irq_game_colour_split (raster polling, then BGCOL0-BGCOL2 written one after the other) can land a few pixels later on one raster line. The original itself changes that line from frame to frame (room 15, raster line 169: 3 of 12 frames differ), so the screen allows 0.02 % different pixels (20 of 104448). Colour RAM is not compared here: its upper 4 bits are open bus and change with the timing; the visible colours are in the screen comparison and tests/all_rooms.json compares colour RAM byte for byte."
 }

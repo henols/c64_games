@@ -100,35 +100,46 @@ room_charset_c
         !byte $a0,$aa,$aa,$aa,$aa,$fa,$0f,$a0
         !byte $0a,$aa,$aa,$af,$f0,$0a,$aa,$aa
         !byte $a0,$fa,$0f,$a0,$aa,$aa,$aa,$aa
-        !byte $55,$13,$57,$d5,$55,$04,$01,$41
-        !byte $f0,$c0,$00,$00,$3f,$a8,$a0,$01
-        !byte $ca,$fa,$fe,$fe,$fa,$3a,$ba,$aa
-        !byte $ff,$cb,$e5,$d5,$25,$e9,$af,$ec
-        !byte $ff,$83,$00,$a0,$aa,$aa,$aa,$aa
-        !byte $05,$f1,$00,$aa,$00,$03,$3c,$f2
-        !byte $55,$6a,$22,$aa,$02,$c0,$3c,$8f
-        !byte $00,$08,$0a,$02,$00,$00,$00,$03
-        !byte $00,$00,$00,$a0,$aa,$2a,$0f,$37
-        !byte $00,$00,$00,$00,$bf,$ff,$5f,$5d
-        !byte $00,$00,$00,$00,$ea,$aa,$ff,$5f
-        !byte $00,$00,$0a,$a8,$a0,$80,$fc,$ff
-        !byte $20,$80,$00,$00,$00,$00,$3c,$fc
-        !byte $0f,$03,$00,$03,$0c,$0f,$fb,$8b
-        !byte $f0,$c4,$15,$57,$55,$10,$40,$41
-        !byte $f0,$f1,$d5,$f5,$d5,$10,$00,$04
-        !byte $ff,$0f,$7f,$5d,$55,$55,$15,$54
-        !byte $ff,$eb,$5b,$57,$58,$6b,$fa,$3b
-        !byte $c0,$30,$0c,$02,$a8,$00,$80,$aa
-        !byte $af,$bc,$0f,$03,$aa,$f0,$fe,$f2
-        !byte $15,$0a,$08,$22,$a8,$00,$80,$aa
-        !byte $55,$a9,$88,$aa,$80,$03,$3c,$f2
-        !byte $50,$43,$0c,$aa,$00,$c0,$3c,$8f
-        !byte $cf,$0f,$03,$aa,$00,$00,$02,$aa
-        !byte $55,$aa,$22,$aa,$00,$03,$3c,$f2
-        !byte $00,$00,$00,$00,$fe,$ff,$f5,$75
-        !byte $00,$00,$00,$0a,$aa,$a8,$f0,$dc
-        !byte $00,$20,$a0,$80,$00,$00,$00,$c0
-        !byte $55,$a8,$20,$aa,$00,$c0,$3c,$8f
-        !byte $a0,$aa,$aa,$fa,$0f,$a0,$aa,$aa
-        !byte $0a,$af,$f0,$0a,$aa,$aa,$aa,$aa
-        !byte $0f,$4f,$57,$5f,$57,$04,$00,$10
+!zone patch_FIX_RAM_TEST_BYTE_9b00 {
+.patch_start
+!if FIX_RAM_TEST_BYTE {
+        ; FIX_RAM_TEST_BYTE on: 1 byte at $9b00-$9b00, NOP after the code
+        ; The source byte of TBC and DC. SAEGER has $55, the first test value of the KERNAL RAM test.
+!byte $0f
+        !if * - .patch_start > 1 { !error "The patch FIX_RAM_TEST_BYTE at $9b00 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+} else {
+        !byte $55
+}
+}
+        !byte $13,$57,$d5,$55,$04,$01,$41,$f0
+        !byte $c0,$00,$00,$3f,$a8,$a0,$01,$ca
+        !byte $fa,$fe,$fe,$fa,$3a,$ba,$aa,$ff
+        !byte $cb,$e5,$d5,$25,$e9,$af,$ec,$ff
+        !byte $83,$00,$a0,$aa,$aa,$aa,$aa,$05
+        !byte $f1,$00,$aa,$00,$03,$3c,$f2,$55
+        !byte $6a,$22,$aa,$02,$c0,$3c,$8f,$00
+        !byte $08,$0a,$02,$00,$00,$00,$03,$00
+        !byte $00,$00,$a0,$aa,$2a,$0f,$37,$00
+        !byte $00,$00,$00,$bf,$ff,$5f,$5d,$00
+        !byte $00,$00,$00,$ea,$aa,$ff,$5f,$00
+        !byte $00,$0a,$a8,$a0,$80,$fc,$ff,$20
+        !byte $80,$00,$00,$00,$00,$3c,$fc,$0f
+        !byte $03,$00,$03,$0c,$0f,$fb,$8b,$f0
+        !byte $c4,$15,$57,$55,$10,$40,$41,$f0
+        !byte $f1,$d5,$f5,$d5,$10,$00,$04,$ff
+        !byte $0f,$7f,$5d,$55,$55,$15,$54,$ff
+        !byte $eb,$5b,$57,$58,$6b,$fa,$3b,$c0
+        !byte $30,$0c,$02,$a8,$00,$80,$aa,$af
+        !byte $bc,$0f,$03,$aa,$f0,$fe,$f2,$15
+        !byte $0a,$08,$22,$a8,$00,$80,$aa,$55
+        !byte $a9,$88,$aa,$80,$03,$3c,$f2,$50
+        !byte $43,$0c,$aa,$00,$c0,$3c,$8f,$cf
+        !byte $0f,$03,$aa,$00,$00,$02,$aa,$55
+        !byte $aa,$22,$aa,$00,$03,$3c,$f2,$00
+        !byte $00,$00,$00,$fe,$ff,$f5,$75,$00
+        !byte $00,$00,$0a,$aa,$a8,$f0,$dc,$00
+        !byte $20,$a0,$80,$00,$00,$00,$c0,$55
+        !byte $a8,$20,$aa,$00,$c0,$3c,$8f,$a0
+        !byte $aa,$aa,$fa,$0f,$a0,$aa,$aa,$0a
+        !byte $af,$f0,$0a,$aa,$aa,$aa,$aa,$0f
+        !byte $4f,$57,$5f,$57,$04,$00,$10

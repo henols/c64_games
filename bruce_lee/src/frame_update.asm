@@ -139,14 +139,14 @@ frame_update_saver_loop
         bpl frame_update_saver_loop
 frame_update_check_ddr
         ldx #$00
-!zone patch_NO_PROTECTION_166c {
+!zone patch_PROTECTION_166c {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 6 bytes at $166c-$1671, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 6 bytes at $166c-$1671, NOP after the code
         ; Check 4: the CPU port DDR check always passes (A and flags as on the passing path).
 lda #$ef
 cmp #$ef
-        !if * - .patch_start > 6 { !error "The patch NO_PROTECTION at $166c has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
+        !if * - .patch_start > 6 { !error "The patch PROTECTION at $166c has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
 } else {
         lda D6510,x                     ; protection: the loader leaves $EF in the CPU port DDR
         cmp #$ef
@@ -243,15 +243,15 @@ frame_update_store_yamo_joy
         and #$01
         sta actor_fire+1
 frame_update_check_loader_mark
-!zone patch_NO_PROTECTION_1703 {
+!zone patch_PROTECTION_1703 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 8 bytes at $1703-$170a, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 8 bytes at $1703-$170a, NOP after the code
         ; Check 5: the loader mark check always passes, no memory wipe.
 lda #$32
 cmp #$32
 jmp frame_update_restore_ddr
-        !if * - .patch_start > 8 { !error "The patch NO_PROTECTION at $1703 has ", * - .patch_start, " bytes; the range has 8." } else { !fill 8 - (* - .patch_start), $ea }
+        !if * - .patch_start > 8 { !error "The patch PROTECTION at $1703 has ", * - .patch_start, " bytes; the range has 8." } else { !fill 8 - (* - .patch_start), $ea }
 } else {
         lda prot_loader_mark            ; the loader leaves $32 in $02
         cmp #$32

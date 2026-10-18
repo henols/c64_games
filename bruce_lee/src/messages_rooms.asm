@@ -315,11 +315,24 @@ msg_room3_ledge_b
 ; exit marker char 2 of the map, so the way back to room 17 closes when the wizard is defeated.
 msg_wizard_left_marker
         !byte $a6,$a0
-; Message $62: "DIABOLO  PRESENTS": no code prints this index. The release changed the text (two spaces keep the
-; length 17); the original image held a copy of these bytes from the build at $4F2C (now in leftovers/, space bank1) with the
-; original "DATASO...SENTS" (DATASOFT PRESENTS). The edit is a crack trace (Diabolo); see docs/leftovers.md.
+; Message $62: "DIABOLO  PRESENTS" in the SAEGER release: no code prints this index. TBC and DC have the original
+; "DATASOFT PRESENTS" here, and the original image also held a copy of these bytes from the build at $4F2C
+; (knowledge space bank1) with "DATASO...SENTS". The edit is a crack trace (Diabolo); the switch CRACK_DIABOLO
+; puts it in the build (two spaces keep the length 17).
 msg_presents
-        !pet "diabolo  presents"
+        !pet "d"
+!zone patch_CRACK_DIABOLO_4771 {
+.patch_start
+!if CRACK_DIABOLO = 0 {
+        ; CRACK_DIABOLO off: 7 bytes at $4771-$4777, NOP after the code
+        ; "ATASOFT": msg_presents reads DATASOFT PRESENTS, as in TBC and DC.
+!byte $41,$54,$41,$53,$4f,$46,$54
+        !if * - .patch_start > 7 { !error "The patch CRACK_DIABOLO at $4771 has ", * - .patch_start, " bytes; the range has 7." } else { !fill 7 - (* - .patch_start), $ea }
+} else {
+        !pet "iabolo "
+}
+}
+        !pet " presents"
         !byte $a0
 ; Message $63: Blank cell of a passage in rooms 10-17 (cell code $07): open_passage_dark draws it on the top two
 ; lines of the passage.

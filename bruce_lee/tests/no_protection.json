@@ -1,7 +1,7 @@
 {
- "name": "No protection: the default build (NO_PROTECTION = 1) runs like the original even when the protection data is destroyed ($00 = $2F, $02 = 0, $0080 = 0, $CF00 page = 0)",
+ "name": "No protection: the default build (PROTECTION = 0) runs like the original even when the protection data is destroyed ($00 = $2F, $02 = 0, $0080 = 0, $CF00 page = 0)",
  "original": {
-  "program": "original/bruce_lee.prg",
+  "program": "original/bruce_lee_tbc.prg",
   "symbols": "knowledge"
  },
  "rebuild": {
@@ -16,868 +16,632 @@
    "autostart": true
   },
   {
-   "frames": 100,
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0872"
+    },
+    "timeoutFrames": 900
+   },
    "side": "original"
   },
   {
-   "type": " ",
+   "type": {
+    "mode": "text",
+    "text": " "
+   },
    "side": "original"
   },
   {
    "runUntil": {
-    "at": "cold_start"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "cold_start"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "normalize": true
   },
   {
    "write": {
-    "at": "$0002",
-    "bytes": [
-     0
-    ]
+    "address": "$0002",
+    "data": "00"
    },
    "side": "rebuild"
   },
   {
    "write": {
-    "at": "$0080",
-    "bytes": [
-     0
-    ]
+    "address": "$0080",
+    "data": "00"
    },
    "side": "rebuild"
   },
   {
    "write": {
-    "at": "$cf00",
-    "bytes": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0
-    ]
+    "address": "$cf00",
+    "data": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
    },
    "side": "rebuild"
   },
   {
    "write": {
-    "at": "$0000",
-    "bytes": [
-     47
-    ]
+    "address": "$0000",
+    "data": "2f"
    },
    "side": "rebuild"
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 100
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "title",
    "screen": {},
    "memory": [
     {
-     "at": "$0003",
+     "address": "$0003",
      "size": 253
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320,
      "exclude": [
       {
-       "at": "$0440",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0440",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0441",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0441",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0442",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0442",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f4",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f4",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835,
      "exclude": [
       {
-       "at": "$166c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$166d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166d",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1670",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1670",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1671",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1671",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1703",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1703",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1704",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1704",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1707",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1707",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1708",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1708",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1709",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1709",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$170a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$170a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fce",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fce",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fcf",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fcf",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd0",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd0",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe5",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe5",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe6",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe6",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe7",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe7",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342f",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342f",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3430",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3430",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ac",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ac",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ad",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ad",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3ca9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3ca9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3caa",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3caa",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       }
      ]
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606,
      "exclude": [
       {
-       "at": "$5134",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5134",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5135",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5135",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5139",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5139",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$513a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$513a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517d",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "start_attract_demo"
-   },
-   "timeoutFrames": 3000
+    "target": {
+     "kind": "address",
+     "address": "start_attract_demo"
+    },
+    "timeoutFrames": 3000
+   }
   },
   {
    "frames": 600
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "demo",
    "screen": {},
    "memory": [
     {
-     "at": "$0003",
+     "address": "$0003",
      "size": 253
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320,
      "exclude": [
       {
-       "at": "$0440",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0440",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0441",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0441",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0442",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0442",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f4",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f4",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835,
      "exclude": [
       {
-       "at": "$166c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$166d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166d",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1670",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1670",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1671",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1671",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1703",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1703",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1704",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1704",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1707",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1707",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1708",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1708",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1709",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1709",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$170a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$170a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fce",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fce",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fcf",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fcf",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd0",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd0",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe5",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe5",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe6",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe6",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe7",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe7",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342f",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342f",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3430",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3430",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ac",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ac",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ad",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ad",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3ca9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3ca9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3caa",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3caa",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       }
      ]
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606,
      "exclude": [
       {
-       "at": "$5134",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5134",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5135",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5135",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5139",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5139",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$513a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$513a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517d",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 3000
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 3000
+   }
   },
   {
    "frames": 60
@@ -900,9 +664,12 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "joystick": {
@@ -921,290 +688,292 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "room0_play",
    "screen": {},
    "memory": [
     {
-     "at": "$0003",
+     "address": "$0003",
      "size": 253
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320,
      "exclude": [
       {
-       "at": "$0440",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0440",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0441",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0441",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0442",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0442",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f4",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f4",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835,
      "exclude": [
       {
-       "at": "$166c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$166d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166d",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1670",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1670",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1671",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1671",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1703",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1703",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1704",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1704",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1707",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1707",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1708",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1708",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1709",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1709",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$170a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$170a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fce",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fce",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fcf",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fcf",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd0",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd0",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe5",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe5",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe6",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe6",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe7",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe7",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342f",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342f",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3430",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3430",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ac",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ac",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ad",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ad",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3ca9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3ca9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3caa",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3caa",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       }
      ]
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606,
      "exclude": [
       {
-       "at": "$5134",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5134",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5135",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5135",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5139",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5139",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$513a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$513a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517d",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 300
-  },
-  {
-   "write": {
-    "at": "next_room",
-    "bytes": [
-     2
-    ]
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 300
    }
   },
   {
    "write": {
-    "at": "current_actor",
-    "bytes": [
-     0
-    ]
+    "address": "next_room",
+    "data": "02"
+   }
+  },
+  {
+   "write": {
+    "address": "current_actor",
+    "data": "00"
    }
   },
   {
@@ -1219,290 +988,292 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "room2",
    "screen": {},
    "memory": [
     {
-     "at": "$0003",
+     "address": "$0003",
      "size": 253
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320,
      "exclude": [
       {
-       "at": "$0440",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0440",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0441",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0441",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0442",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0442",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f4",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f4",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835,
      "exclude": [
       {
-       "at": "$166c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$166d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166d",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1670",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1670",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1671",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1671",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1703",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1703",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1704",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1704",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1707",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1707",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1708",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1708",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1709",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1709",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$170a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$170a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fce",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fce",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fcf",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fcf",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd0",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd0",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe5",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe5",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe6",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe6",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe7",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe7",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342f",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342f",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3430",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3430",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ac",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ac",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ad",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ad",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3ca9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3ca9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3caa",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3caa",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       }
      ]
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606,
      "exclude": [
       {
-       "at": "$5134",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5134",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5135",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5135",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5139",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5139",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$513a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$513a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517d",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 300
-  },
-  {
-   "write": {
-    "at": "next_room",
-    "bytes": [
-     5
-    ]
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 300
    }
   },
   {
    "write": {
-    "at": "current_actor",
-    "bytes": [
-     0
-    ]
+    "address": "next_room",
+    "data": "05"
+   }
+  },
+  {
+   "write": {
+    "address": "current_actor",
+    "data": "00"
    }
   },
   {
@@ -1517,290 +1288,292 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "room5",
    "screen": {},
    "memory": [
     {
-     "at": "$0003",
+     "address": "$0003",
      "size": 253
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320,
      "exclude": [
       {
-       "at": "$0440",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0440",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0441",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0441",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0442",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0442",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f4",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f4",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835,
      "exclude": [
       {
-       "at": "$166c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$166d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166d",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1670",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1670",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1671",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1671",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1703",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1703",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1704",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1704",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1707",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1707",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1708",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1708",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1709",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1709",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$170a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$170a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fce",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fce",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fcf",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fcf",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd0",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd0",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe5",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe5",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe6",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe6",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe7",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe7",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342f",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342f",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3430",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3430",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ac",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ac",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ad",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ad",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3ca9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3ca9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3caa",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3caa",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       }
      ]
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606,
      "exclude": [
       {
-       "at": "$5134",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5134",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5135",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5135",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5139",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5139",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$513a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$513a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517d",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 300
-  },
-  {
-   "write": {
-    "at": "next_room",
-    "bytes": [
-     10
-    ]
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 300
    }
   },
   {
    "write": {
-    "at": "current_actor",
-    "bytes": [
-     0
-    ]
+    "address": "next_room",
+    "data": "0a"
+   }
+  },
+  {
+   "write": {
+    "address": "current_actor",
+    "data": "00"
    }
   },
   {
@@ -1815,290 +1588,292 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "room10",
    "screen": {},
    "memory": [
     {
-     "at": "$0003",
+     "address": "$0003",
      "size": 253
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320,
      "exclude": [
       {
-       "at": "$0440",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0440",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0441",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0441",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0442",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0442",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f4",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f4",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835,
      "exclude": [
       {
-       "at": "$166c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$166d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166d",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1670",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1670",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1671",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1671",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1703",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1703",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1704",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1704",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1707",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1707",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1708",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1708",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1709",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1709",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$170a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$170a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fce",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fce",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fcf",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fcf",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd0",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd0",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe5",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe5",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe6",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe6",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe7",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe7",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342f",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342f",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3430",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3430",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ac",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ac",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ad",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ad",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3ca9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3ca9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3caa",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3caa",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       }
      ]
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606,
      "exclude": [
       {
-       "at": "$5134",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5134",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5135",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5135",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5139",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5139",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$513a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$513a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517d",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 300
-  },
-  {
-   "write": {
-    "at": "next_room",
-    "bytes": [
-     0
-    ]
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 300
    }
   },
   {
    "write": {
-    "at": "current_actor",
-    "bytes": [
-     0
-    ]
+    "address": "next_room",
+    "data": "00"
+   }
+  },
+  {
+   "write": {
+    "address": "current_actor",
+    "data": "00"
    }
   },
   {
@@ -2113,270 +1888,273 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 60
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 60
+   }
   },
   {
    "observe": "room0_after_room10",
    "screen": {},
    "memory": [
     {
-     "at": "$0003",
+     "address": "$0003",
      "size": 253
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320,
      "exclude": [
       {
-       "at": "$0440",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0440",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0441",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0441",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$0442",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$0442",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$06f4",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$06f4",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835,
      "exclude": [
       {
-       "at": "$166c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$166d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$166d",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1670",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1670",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1671",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1671",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1703",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1703",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1704",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1704",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1707",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1707",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1708",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1708",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1709",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1709",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$170a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$170a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fce",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fce",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fcf",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fcf",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd0",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd0",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fd2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fd2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe5",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe5",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe6",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe6",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe7",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe7",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1fe9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$1fe9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a1",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a1",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a2",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a2",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$31a3",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$31a3",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$342f",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$342f",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3430",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3430",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a8",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a8",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36a9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36a9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ac",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ac",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$36ad",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$36ad",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3ca9",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3ca9",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$3caa",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$3caa",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
-       "at": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which NO_PROTECTION ignores"
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       }
      ]
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606,
      "exclude": [
       {
-       "at": "$5134",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5134",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5135",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5135",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$5139",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$5139",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$513a",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$513a",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517b",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517b",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517c",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517c",
+       "reason": "PROTECTION patch byte"
       },
       {
-       "at": "$517d",
-       "reason": "NO_PROTECTION patch byte"
+       "address": "$517d",
+       "reason": "PROTECTION patch byte"
       }
      ]
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
   }
  ],
- "note": "The 47 bytes that the NO_PROTECTION patches change are excluded; $0000-$0002 are not compared. Build build/bruce_lee_loader.prg from src/bruce_lee_loader.asm first. The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
+ "note": "The original is the TBC release (original/bruce_lee_tbc.prg): its game bytes are the default build without the protection patches, because the default build has the TBC state of CRACK_DIABOLO, FIX_RAM_TEST_BYTE and RUN_STATE. Its intro (the Datasoft title picture) empties the key buffer at $0870 and waits at $0872 for a key. The 47 bytes that the PROTECTION patches change are excluded; $0000-$0002 are not compared. Build build/bruce_lee_loader.prg from src/loader.asm (the default build) first. The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
 }

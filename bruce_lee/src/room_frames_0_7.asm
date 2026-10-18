@@ -74,14 +74,14 @@ room01_frame_done
 ;    room_state_a).
 room02_frame
         ldy #$00
-!zone patch_NO_PROTECTION_36a8 {
+!zone patch_PROTECTION_36a8 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 6 bytes at $36a8-$36ad, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 6 bytes at $36a8-$36ad, NOP after the code
         ; Check 6: room 2 does not hang (X and flags as on the passing path).
 ldx #$ef
 cpx #$ef
-        !if * - .patch_start > 6 { !error "The patch NO_PROTECTION at $36a8 has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
+        !if * - .patch_start > 6 { !error "The patch PROTECTION at $36a8 has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
 } else {
         ldx D6510,y                     ; protection: hangs unless D6510 = $EF
         cpx #$ef

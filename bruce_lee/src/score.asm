@@ -75,13 +75,13 @@ update_high_score
         lda prot_key_trap3
         eor prot_key_trap3_pair
         bne update_high_score_compare
-!zone patch_NO_PROTECTION_31a1 {
+!zone patch_PROTECTION_31a1 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 3 bytes at $31a1-$31a3, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 3 bytes at $31a1-$31a3, NOP after the code
         ; Check 9: no crash through JMP ($DE00) when the key pairs are equal.
 jmp update_high_score_compare
-        !if * - .patch_start > 3 { !error "The patch NO_PROTECTION at $31a1 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if * - .patch_start > 3 { !error "The patch PROTECTION at $31a1 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
 } else {
         jmp (io1_dummy)                 ; all three pairs equal: crash
 }

@@ -20,23 +20,32 @@
    "side": "original"
   },
   {
-   "type": " ",
+   "type": {
+    "mode": "text",
+    "text": " "
+   },
    "side": "original"
   },
   {
    "runUntil": {
-    "at": "cold_start"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "cold_start"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "normalize": true
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 60
@@ -59,21 +68,30 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 300
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 300
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -83,18 +101,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 0
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 0
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -105,21 +128,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -132,29 +155,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -164,18 +190,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 1
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 1
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -186,21 +217,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -213,29 +244,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -245,18 +279,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 2
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 2
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -267,21 +306,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -294,29 +333,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -326,18 +368,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 3
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 3
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -348,21 +395,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -375,29 +422,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -407,18 +457,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 4
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 4
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -429,21 +484,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -456,29 +511,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -488,18 +546,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 5
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 5
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -510,21 +573,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -537,29 +600,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -569,18 +635,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 6
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 6
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -591,21 +662,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -618,29 +689,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -650,18 +724,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 7
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 7
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -672,21 +751,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -699,29 +778,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -731,18 +813,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 8
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 8
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -753,21 +840,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -780,29 +867,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -812,18 +902,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 9
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 9
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -834,21 +929,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -861,29 +956,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -893,18 +991,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 10
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 10
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -915,21 +1018,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -942,29 +1045,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -974,18 +1080,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 11
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 11
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -996,21 +1107,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1023,29 +1134,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1055,18 +1169,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 12
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 12
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1077,21 +1196,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1104,29 +1223,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1136,18 +1258,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 13
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 13
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1158,21 +1285,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1185,29 +1312,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1217,18 +1347,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 14
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 14
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1239,21 +1374,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1266,29 +1401,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1298,18 +1436,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 15
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 15
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1320,21 +1463,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1347,29 +1490,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1379,18 +1525,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 16
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 16
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1401,21 +1552,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1428,29 +1579,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1460,18 +1614,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 17
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 17
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1482,21 +1641,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1509,29 +1668,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1541,18 +1703,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 18
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 18
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1563,21 +1730,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1590,29 +1757,32 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "registers": {
@@ -1622,18 +1792,23 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 19
-    }
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 19
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 20
@@ -1644,21 +1819,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   },
@@ -1671,21 +1846,21 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$8000",
+     "address": "$8000",
      "size": 16384
     },
     {
-     "at": "$d800",
+     "address": "$d800",
      "size": 1000
     },
     {
-     "at": "room"
+     "address": "room"
     },
     {
-     "at": "room_vmcsb"
+     "address": "room_vmcsb"
     },
     {
-     "at": "room_charset_hi"
+     "address": "room_charset_hi"
     }
    ]
   }

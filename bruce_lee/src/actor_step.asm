@@ -561,13 +561,13 @@ actor_play_step_sound
         pha
         ldy #$80                        ; sound $80: step
         jsr play_sound
-!zone patch_NO_PROTECTION_1fce {
+!zone patch_PROTECTION_1fce {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 5 bytes at $1fce-$1fd2, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 5 bytes at $1fce-$1fd2, NOP after the code
         ; Check 10: the Yamo key never moves the operands or patches random_byte.
 jmp step_sound_check_protection2
-        !if * - .patch_start > 5 { !error "The patch NO_PROTECTION at $1fce has ", * - .patch_start, " bytes; the range has 5." } else { !fill 5 - (* - .patch_start), $ea }
+        !if * - .patch_start > 5 { !error "The patch PROTECTION at $1fce has ", * - .patch_start, " bytes; the range has 5." } else { !fill 5 - (* - .patch_start), $ea }
 } else {
         lda protection_result           ; first protection value (spawn_yamo)
         bne step_sound_check_protection2
@@ -582,13 +582,13 @@ jmp step_sound_check_protection2
         lda #$9a                        ; TXS opcode
         sta random_byte
 step_sound_check_protection2
-!zone patch_NO_PROTECTION_1fe5 {
+!zone patch_PROTECTION_1fe5 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 5 bytes at $1fe5-$1fe9, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 5 bytes at $1fe5-$1fe9, NOP after the code
         ; Check 11: the tick key never moves the operands or plants TXS at step_sound_crash_point.
 jmp step_sound_restore_regs
-        !if * - .patch_start > 5 { !error "The patch NO_PROTECTION at $1fe5 has ", * - .patch_start, " bytes; the range has 5." } else { !fill 5 - (* - .patch_start), $ea }
+        !if * - .patch_start > 5 { !error "The patch PROTECTION at $1fe5 has ", * - .patch_start, " bytes; the range has 5." } else { !fill 5 - (* - .patch_start), $ea }
 } else {
         lda protection_check_value      ; second protection value (main_loop)
         bne step_sound_restore_regs

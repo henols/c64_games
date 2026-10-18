@@ -16,23 +16,23 @@
 build_contact_masks
         lda prot_signature_a
         cmp #$b9
-!zone patch_NO_PROTECTION_5134 {
+!zone patch_PROTECTION_5134 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 2 bytes at $5134-$5135, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 2 bytes at $5134-$5135, NOP after the code
         ; Check 1: no hang on the $CF8F signature.
-        !if * - .patch_start > 2 { !error "The patch NO_PROTECTION at $5134 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if * - .patch_start > 2 { !error "The patch PROTECTION at $5134 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
 } else {
         bne build_contact_masks         ; hang: protection byte check
 }
 }
         eor prot_signature_b
-!zone patch_NO_PROTECTION_5139 {
+!zone patch_PROTECTION_5139 {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 2 bytes at $5139-$513a, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 2 bytes at $5139-$513a, NOP after the code
         ; Check 1: no hang on the $CFAF signature.
-        !if * - .patch_start > 2 { !error "The patch NO_PROTECTION at $5139 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if * - .patch_start > 2 { !error "The patch PROTECTION at $5139 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
 } else {
         bne build_contact_masks         ; hang unless prot_signature_b = prot_signature_a
 }
@@ -74,13 +74,13 @@ build_masks_overlay
         beq build_masks_done
         jmp build_masks_pair
 build_masks_done
-!zone patch_NO_PROTECTION_517b {
+!zone patch_PROTECTION_517b {
 .patch_start
-!if NO_PROTECTION {
-        ; NO_PROTECTION on: 3 bytes at $517b-$517d, NOP after the code
+!if PROTECTION = 0 {
+        ; PROTECTION off: 3 bytes at $517b-$517d, NOP after the code
         ; Check 2: return directly, not through the loader's RTS at $0080.
 rts
-        !if * - .patch_start > 3 { !error "The patch NO_PROTECTION at $517b has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if * - .patch_start > 3 { !error "The patch PROTECTION at $517b has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
 } else {
         jmp $0080                       ; $0080 holds an RTS
 }

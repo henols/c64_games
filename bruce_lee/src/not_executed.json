@@ -1,6 +1,6 @@
 {
-  "revision": "20261017T124710.947-seivas",
-  "instructions": 941,
+  "revision": "20261018T093012.029-a2us40",
+  "instructions": 912,
   "files": {
     "cold_start.asm": 1,
     "title_demo_start.asm": 3,
@@ -9,7 +9,7 @@
     "title_player_screens.asm": 1,
     "game_setup.asm": 2,
     "interrupt_entry.asm": 2,
-    "keyboard_scan.asm": 1,
+    "keyboard_scan.asm": 4,
     "frame_update.asm": 11,
     "actor_driver_text.asm": 1,
     "lose_fall_game_over.asm": 3,
@@ -129,10 +129,28 @@
       "routine": "nmi_entry"
     },
     {
-      "start": "$13ae",
-      "end": "$1487",
+      "start": "$13c4",
+      "end": "$13f4",
       "file": "keyboard_scan.asm",
       "routine": "scan_keyboard"
+    },
+    {
+      "start": "$1417",
+      "end": "$1418",
+      "file": "keyboard_scan.asm",
+      "routine": "scan_keyboard"
+    },
+    {
+      "start": "$1426",
+      "end": "$142a",
+      "file": "keyboard_scan.asm",
+      "routine": "scan_keyboard"
+    },
+    {
+      "start": "$142c",
+      "end": "$1487",
+      "file": "keyboard_scan.asm",
+      "routine": "decode_any_key"
     },
     {
       "start": "$15f7",

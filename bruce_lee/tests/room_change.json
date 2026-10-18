@@ -20,23 +20,32 @@
    "side": "original"
   },
   {
-   "type": " ",
+   "type": {
+    "mode": "text",
+    "text": " "
+   },
    "side": "original"
   },
   {
    "runUntil": {
-    "at": "cold_start"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "cold_start"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "normalize": true
   },
   {
    "runUntil": {
-    "at": "title_menu_loop"
-   },
-   "timeoutFrames": 600
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
   },
   {
    "frames": 60
@@ -59,30 +68,32 @@
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 900
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 900
+   }
   },
   {
    "runUntil": {
-    "at": "main_loop"
-   },
-   "timeoutFrames": 300
-  },
-  {
-   "write": {
-    "at": "next_room",
-    "bytes": [
-     1
-    ]
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 300
    }
   },
   {
    "write": {
-    "at": "current_actor",
-    "bytes": [
-     0
-    ]
+    "address": "next_room",
+    "data": "01"
+   }
+  },
+  {
+   "write": {
+    "address": "current_actor",
+    "data": "00"
    }
   },
   {
@@ -103,12 +114,14 @@
   },
   {
    "runUntil": {
-    "memory": {
-     "at": "room",
-     "equals": 0
-    }
-   },
-   "timeoutFrames": 2000
+    "target": {
+     "kind": "memory",
+     "address": "room",
+     "operator": "eq",
+     "value": 0
+    },
+    "timeoutFrames": 2000
+   }
   },
   {
    "joystick": {
@@ -125,55 +138,55 @@
    "vicii": true,
    "memory": [
     {
-     "at": "$0002",
+     "address": "$0002",
      "size": 254
     },
     {
-     "at": "$0400",
+     "address": "$0400",
      "size": 3320
     },
     {
-     "at": "$1103",
+     "address": "$1103",
      "size": 12835
     },
     {
-     "at": "$432e",
+     "address": "$432e",
      "size": 565
     },
     {
-     "at": "$457e",
+     "address": "$457e",
      "size": 26
     },
     {
-     "at": "$45aa",
+     "address": "$45aa",
      "size": 1808
     },
     {
-     "at": "$4cce",
+     "address": "$4cce",
      "size": 543
     },
     {
-     "at": "$50e7",
+     "address": "$50e7",
      "size": 1606
     },
     {
-     "at": "$59a5",
+     "address": "$59a5",
      "size": 14
     },
     {
-     "at": "$59bd",
+     "address": "$59bd",
      "size": 2564
     },
     {
-     "at": "$63eb",
+     "address": "$63eb",
      "size": 7573
     },
     {
-     "at": "$8400",
+     "address": "$8400",
      "size": 1024
     },
     {
-     "at": "$9000",
+     "address": "$9000",
      "size": 4096
     }
    ]
