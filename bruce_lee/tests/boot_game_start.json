@@ -1,0 +1,134 @@
+{
+ "name": "Boot: after the title picture and a key, the cold start builds the same title screen, menu state and memory",
+ "original": {
+  "program": "original/bruce_lee_tbc.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "build/bruce_lee_boot_TBC.prg",
+  "symbols": "knowledge"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0872"
+    },
+    "timeoutFrames": 900
+   },
+   "side": "original"
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$08bf"
+    },
+    "timeoutFrames": 300
+   },
+   "side": "rebuild"
+  },
+  {
+   "frames": 5
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": " "
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "cold_start"
+    },
+    "timeoutFrames": 900
+   }
+  },
+  {
+   "normalize": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "observe": "title",
+   "screen": {},
+   "vicii": true,
+   "memory": [
+    "option_two_players",
+    "option_yamo_player2",
+    {
+     "address": "$0002",
+     "size": 254
+    },
+    {
+     "address": "$0400",
+     "size": 3320
+    },
+    {
+     "address": "$1103",
+     "size": 12835
+    },
+    {
+     "address": "$432e",
+     "size": 565
+    },
+    {
+     "address": "$457e",
+     "size": 26
+    },
+    {
+     "address": "$45aa",
+     "size": 1808
+    },
+    {
+     "address": "$4cce",
+     "size": 543
+    },
+    {
+     "address": "$50e7",
+     "size": 1606
+    },
+    {
+     "address": "$59a5",
+     "size": 14
+    },
+    {
+     "address": "$59bd",
+     "size": 2564
+    },
+    {
+     "address": "$63eb",
+     "size": 7573
+    },
+    {
+     "address": "$8400",
+     "size": 1024
+    },
+    {
+     "address": "$9000",
+     "size": 4096
+    }
+   ]
+  }
+ ],
+ "note": "The original is the TBC release: its intro shows the Datasoft title picture and waits at $0872 for a key. The rebuild is build/bruce_lee_boot_TBC.prg (src/boot.asm built with --release TBC, so its game bytes are the TBC bytes): the clean picture, then a key starts the loader. Both sides get the same key: the original at its wait $0872, the rebuild 5 frames after boot_wait ($08BF), which empties the key queue first. Build build/bruce_lee_boot_TBC.prg first. The default build differs from TBC only in the 47 bytes of the PROTECTION patches. The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
+}

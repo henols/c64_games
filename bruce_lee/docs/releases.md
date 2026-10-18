@@ -72,6 +72,8 @@ The TBC file is not packed. It is 2,316 bytes longer than the SAEGER file. It ru
 2. The intro shows the Datasoft title picture with "CRACKED BY TBC". It waits at `$0872` for a key through the KERNAL keyboard buffer.
 3. A mover at `$089C` copies `$A500`, `$A600`, `$A700`, `$BE00` and `$BF00` to `$C000`, `$C100`, `$CF00`, `$FE00` and `$FF00`. Then it jumps to the relocator.
 
+The title picture is not crack work. It is the Datasoft title picture, and only TBC holds it. TBC changed it in two ways: it wrote "CRACKED BY TBC" into the bitmap, and it gave all cells the screen colours `$CE`. The intro plays no music: the SID volume is 0, and the IRQ vector stays at `$EA31` (**Observed**). The rebuild shows the clean picture at the start. See "The boot" in the [README](../README.md#the-rebuild).
+
 ### The DC crack
 
 The DC file is the only packed release. Its BASIC line names the packer "TCS-CRUNCH". It runs in these stages (**Observed**: the stages of the capture and a run):
@@ -93,6 +95,8 @@ The relocator is the same in the three releases (**Observed**: `$C000-$C1FF` is 
 5. It copies `$C13C-$C1FF` to `$033C-$03FF`. That is the encoded last stage of the original loader.
 6. It moves 166 pages from `$0900` down to `$0400`, so the game fills `$0400-$A9FF`.
 7. It jumps through `($C0B0)` to `cold_start`.
+
+The relocator is crack code from the first crack, not code of the original release (**Conclusion**). It starts from the layout of a single file, with the game at `$0900`, and it writes again the marks that the protected loader left. The intros and the movers differ in each release, so each group wrote its own. Two parts of the stages are original: the encoded loader stage at `$C13C` and the title picture of TBC. The other bytes outside the game and the leftovers are copies that the relocation left. In TBC, some are remains of the picture (**Observed**: a byte compare of the three captures).
 
 The relocator hides its code with `$80` bytes between the instructions. `$80` is an undocumented two-byte NOP, so a plain disassembly shows wrong instructions (**Code**).
 

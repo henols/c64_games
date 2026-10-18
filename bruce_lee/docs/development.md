@@ -16,6 +16,8 @@ The game names its author and its version in two places. The title screen shows 
 
 So the C64 game is revision 2, by Ron J. Fortier (RJF), and Datasoft published it in 1984. The image does not tell what changed from revision 1 (**Code**).
 
+The Datasoft title picture names one more person. It reads "PROGRAMMED BY RON J FORTIER" and "GRAPHIC ART BY KELLY DAY" (**Observed**: the picture in the TBC intro). The game bytes do not hold the picture or this credit. Only the TBC release holds the picture, and the rebuild shows it at the start ([releases.md](releases.md)).
+
 The title tune plays on a player by another author. [`music_player_credit` `$E315`](../src/music_player.asm#L50) holds the text " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". No code reads this text (**Code**). The section on the music file below tells how the tune came into the game.
 
 ## The tools and the computer of the development
