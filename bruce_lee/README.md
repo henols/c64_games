@@ -1,160 +1,180 @@
-# Bruce Lee: how the program works
+# Bruce Lee
 
-*Bruce Lee* (Datasoft 1984, by Ron J. Fortier, "REV.2 BY RJF") is a single-load C64 action game. Bruce goes through 20 rooms, collects lanterns and fights the Yamo (a green sumo) and the Ninja. Player 2 can control the Yamo. The way leads to the wizard in room 18 and the "CONGRATULATIONS" room 19. Then the game starts a new, faster loop. This documentation is for the game file on `original/saeger.d64`, an October 1984 crack, and compares it with two other cracks of the same image (section 6). The cracks' intros, movers and relocators are removed. The source in [src/](src/) assembles byte for byte to the clean game. The pages explain the code from the cold start to the last room and link each name to its source line.
-
-| Page | Content |
-|---|---|
-| [docs/startup_title.md](docs/startup_title.md) | **Start-up and title.** The cold start, the title screen and its menu, the attract demo, the start of a game and the PLAYER n screen. |
-| [docs/main_loop.md](docs/main_loop.md) | **The main loop.** One pass of [`main_loop`](src/game_main_loop.asm#L23) [`$1BC2`](docs/reference/modules/game_main_loop.md#main_loop), the game keys, pause and idle, the status line, the score and extra falls, the loss of a fall, the player switch and game over. |
-| [docs/interrupts.md](docs/interrupts.md) | **The interrupt chain.** [`irq_entry`](src/interrupt_entry.asm#L10) [`$1103`](docs/reference/modules/interrupt_entry.md#irq_entry), [`irq_vector`](src/cold_start.asm#L31) [`$0408`](docs/reference/modules/cold_start.md#irq_vector), every raster handler of the title, PLAYER and game screens, and the per-frame work of [`frame_update`](src/frame_update.asm#L20) [`$15A8`](docs/reference/modules/frame_update.md#frame_update). |
-| [docs/game_flow.md](docs/game_flow.md) | **The game state machine.** The whole program as one state machine, two-player turns, the next game loop, and the exit tables decoded into the map of the 20 rooms. |
-| [docs/rooms.md](docs/rooms.md) | **Rooms: data and code.** The per-room tables, the RLE map format, [`draw_room`](src/draw_room.asm#L28) [`$09BC`](docs/reference/modules/draw_room.md#draw_room), the room init and frame dispatch tables, lanterns, passages, hazards and the map overflow bug. |
-| [docs/rooms_catalogue.md](docs/rooms_catalogue.md) | **The 20 rooms, one by one.** Screenshot, table data, setup, behaviour, state machines and exits of each room. |
-| [docs/actors.md](docs/actors.md) | **The actors.** Bruce, Yamo and Ninja: the actor arrays, spawning, input, the computer AI, the action state machine, movement and poses. |
-| [docs/combat.md](docs/combat.md) | **Combat and collision.** Sprite collisions, the background contact test, hits, damage, energy, knock-outs and points. |
-| [docs/graphics.md](docs/graphics.md) | **Graphics.** The VIC bank 2 memory map, the double-height tiles, the charsets, colours and raster splits, the 1-bit sprite frame format and the double-buffered software sprites. |
-| [docs/text_messages.md](docs/text_messages.md) | **Text and messages.** [`print_message`](src/actor_driver_text.asm#L59) [`$17E2`](docs/reference/modules/actor_driver_text.md#print_message), the message format, the status line, the big banners and a catalogue of all 101 messages. |
-| [docs/sound_music.md](docs/sound_music.md) | **Sound and music.** The MicroPearl music player and its stream format, the title tune, the three sound-effect players, the request priorities and all 15 effects. |
-| [docs/dispatch_tables.md](docs/dispatch_tables.md) | **Jump and dispatch tables.** Every jump table, RTS dispatch, vector and computed jump, with all its entries. |
-| [docs/protection.md](docs/protection.md) | **Copy protection and the release.** The delayed protection checks that are still in the game, and what the release changed. |
-| [docs/releases.md](docs/releases.md) | **The three releases.** SAEGER, TBC and DC compared byte by byte: the DIABOLO edit, a byte of the KERNAL RAM test, the music state of a run and the missing demo input, and the switches that give each release. |
+*Bruce Lee* is a single-load C64 action game by Ron J. Fortier. Datasoft published it in 1984, and the title reads "REV.2 BY RJF". Bruce goes through 20 rooms, collects lanterns and fights the Yamo (a green sumo) and the Ninja. A second player can control the Yamo. The way leads to the wizard in room 18 and the "CONGRATULATIONS" room 19. Then the game starts a new, faster loop. This documentation is for the game file of `original/saeger.d64`, a crack of October 1984, and compares it with two other cracks of the same image. The source in [src/](src/) assembles byte for byte to the game without the crack.
 
 **Evidence.** **Observed** marks a fact that an emulator run or the coverage of the runs showed. **Code** marks a fact from the code or the image only. **Conclusion** marks an interpretation. A scenario is named by its file in [tests/](tests/).
 
-## 1. The layers
+## How the program works
+
+The game is one block of code and data that fills almost all of the 64 KB. The cold start builds the data that the image does not hold. It makes double-height charsets from the ROM font and from the four room charsets. It also makes a contact mask for each pose of the actors. These buffers overwrite their own sources, so the cold start can run only once. Then the title screen runs as a loop of its own. It shows a menu, and after a pause it plays an attract demo from a recorded input stream.
+
+A game is a series of rooms. The game draws each room once from a packed map. Then the code of the room changes it: lanterns disappear, passages open and traps move. The main loop sets the pace of the play. One pass reads the keys, spawns the enemies, runs the room and tests the contacts. It then moves Bruce, the Yamo and the Ninja through their action states and builds their sprites. A pass waits for 3 frames of the interrupt. So the game logic runs at most 50 / 3, about 17, times a second on PAL. The interrupts do the work of each frame. They make the raster splits for the status line, the room charset and the colour bands. They also run the timers, the joysticks and the sound effects.
 
 ```mermaid
 flowchart TB
-  subgraph DATA["Data"]
-    D1["room maps $68F9-$817F, room tables $49BD-$4E8D"]
-    D2["room charset sources $9000-$9FFF"]
-    D3["sprite frames $59A5-$68F8"]
-    D4["messages $43BE-$4785"]
-    D5["music and effects $E000-$F154"]
-    D6["demo input $F300"]
-  end
-  subgraph ONCE["Once, at the cold start"]
-    C["cold_start $0400: font copy, double-height charsets, contact masks"]
-  end
-  subgraph SCREENS["Title and between games"]
-    T["show_title_screen $0584 / title_menu_loop $08B1"]
-    S["start_new_game $070E / start_attract_demo $0531"]
-  end
-  subgraph LOOP["Every pass (3 frames or more)"]
-    M["main_loop $1BC2: keys, spawning, room handler, contact, actors, sprites"]
-    R["draw_room $09BC on each room change"]
-  end
-  subgraph IRQ["Every frame"]
-    I["irq_entry $1103 -> irq_vector $0408 -> raster handler"]
-    F["frame_update $15A8: timers, joysticks, sound effects"]
-  end
-  DATA --> ONCE --> SCREENS --> LOOP
-  LOOP -- "F1, game over" --> SCREENS
-  IRQ -- "frame_countdown" --> LOOP
+  D["Data: room maps and tables, charsets, sprite frames, messages, music, demo input"]
+  C["Cold start (once): font copy, double-height charsets, contact masks"]
+  T["Title screen and menu"]
+  A["Attract demo"]
+  M["Main loop: one pass every 3 frames or more"]
+  R["Draw the room on each room change"]
+  I["Interrupt: every frame"]
+  D --> C --> T
+  T --> A --> T
+  T --> M
+  M --> R --> M
+  M -- "F1, game over" --> T
+  I -- "raster splits, timers, joysticks, sound" --> M
 ```
 
-How the layers work together:
+1. **The cold start runs once.** [`cold_start` `$0400`](src/cold_start.asm#L22) copies the ROM font to `$8800` and expands the four room charset sources at `$9000-$9FFF` into double-height charsets. `build_contact_masks` then builds the contact masks over the charset sources, so the cold start cannot run a second time. (**Code**. [startup_title.md](docs/startup_title.md))
+2. **The title is a loop of its own.** [`title_menu_loop` `$08B1`](src/title_menu.asm#L14) reads the option keys and the fire button of port 1. After 2400 frames it starts the attract demo. F7 or fire starts a game. (**Observed** in `tests/title.json`, `tests/title_options.json` and `tests/demo.json`)
+3. **A room is drawn once and then changed by code.** [`draw_room` `$09BC`](src/draw_room.asm#L28) decodes the room map and runs the init handler of the room. Everything that moves or opens later is done by the frame handler of the room, once in each pass. ([rooms.md](docs/rooms.md))
+4. **The main loop sets the pace of the game.** One pass of [`main_loop` `$1BC2`](src/game_main_loop.asm#L23) runs the keys, the enemy spawns, the room handler and the contact tests. Then it runs the input and the action of each actor, and the sprite builder. It then waits for `frame_countdown`. The interrupt counts this variable down from 3, once in each frame. (**Observed**. [main_loop.md](docs/main_loop.md))
+5. **The interrupts set the picture in every frame.** [`irq_entry` `$1103`](src/interrupt_entry.asm#L10) jumps through `irq_vector` to the next raster handler of a chain. In a game, the chain sets the status line, the room charset and the colour bands. `frame_update` runs the timers, the joysticks and the sound effects. ([interrupts.md](docs/interrupts.md))
+6. **The actors go through a state machine.** The input of an actor picks an action. The input is a joystick, the computer AI or the demo stream. [`actor_action_step` `$1C5B`](src/actor_step.asm#L21) moves the actor through its states. `select_actor_pose` picks the pose, and `build_actor_sprites` draws the pose into the sprite buffers. ([actors.md](docs/actors.md), [graphics.md](docs/graphics.md))
 
-1. **The cold start runs once.** [`cold_start`](src/cold_start.asm#L22) [`$0400`](docs/reference/modules/cold_start.md#cold_start) copies the ROM font to `$8800` and expands the four room charset sources at `$9000-$9FFF` into double-height charsets. [`build_contact_masks`](src/frame_builder.asm#L16) [`$512F`](docs/reference/modules/frame_builder.md#build_contact_masks) then builds the background contact masks over the charset sources. So the cold start cannot run a second time (**Code**, [startup_title.md](docs/startup_title.md)).
-2. **The title is a loop of its own.** [`title_menu_loop`](src/title_menu.asm#L14) [`$08B1`](docs/reference/modules/title_menu.md#title_menu_loop) reads the option keys and the fire button of port 1. After 2400 frames it starts the attract demo through [`start_attract_demo`](src/title_demo_start.asm#L32) [`$0531`](docs/reference/modules/title_demo_start.md#start_attract_demo). F7 or fire starts a game through [`start_new_game`](src/title_demo_start.asm#L283) [`$070E`](docs/reference/modules/title_demo_start.md#start_new_game) (**Observed** in `tests/title.json`, `tests/title_options.json` and `tests/demo.json`).
-3. **A room is drawn once and then changed by code.** [`draw_room`](src/draw_room.asm#L28) [`$09BC`](docs/reference/modules/draw_room.md#draw_room) decodes the room map and runs the init handler of the room from [`room_init_handlers`](src/room_dispatch.asm#L19) [`$4E9C`](docs/reference/modules/room_dispatch.md#room_init_handlers). Everything that moves or opens later is done by the frame handler of the room from [`room_frame_handlers`](src/room_dispatch.asm#L28) [`$4EC4`](docs/reference/modules/room_dispatch.md#room_frame_handlers) ([rooms.md](docs/rooms.md)).
-4. **The main loop paces the game.** One pass of [`main_loop`](src/game_main_loop.asm#L23) [`$1BC2`](docs/reference/modules/game_main_loop.md#main_loop) runs the keys, the enemy spawning, the room handler, the contact tests, the input and actions of each actor, and the sprite builder. It then waits for [`frame_countdown`](src/constants.asm#L34) [`$48`](docs/reference/variables.md#frame_countdown), which the interrupt counts down once per frame from 3. So a pass takes at least 3 frames (**Observed**, [main_loop.md](docs/main_loop.md)).
-5. **The interrupts set the picture every frame.** [`irq_entry`](src/interrupt_entry.asm#L10) [`$1103`](docs/reference/modules/interrupt_entry.md#irq_entry) jumps through [`irq_vector`](src/cold_start.asm#L31) [`$0408`](docs/reference/modules/cold_start.md#irq_vector) to the next raster handler. In a game the chain is [`irq_game_bottom`](src/game_irq.asm#L12) [`$48C1`](docs/reference/modules/game_irq.md#irq_game_bottom), [`irq_game_playfield`](src/game_irq.asm#L62) [`$491E`](docs/reference/modules/game_irq.md#irq_game_playfield) and [`irq_game_colour_split`](src/game_irq.asm#L117) [`$4982`](docs/reference/modules/game_irq.md#irq_game_colour_split): status line, room charset and colour bands. [`frame_update`](src/frame_update.asm#L20) [`$15A8`](docs/reference/modules/frame_update.md#frame_update) runs the timers, the joysticks and the sound effects ([interrupts.md](docs/interrupts.md)).
-6. **The actors go through a state machine.** Input (joystick, computer AI or the demo stream) picks an action. [`actor_action_step`](src/actor_step.asm#L21) [`$1C5B`](docs/reference/modules/actor_step.md#actor_action_step) moves the actor through its states, [`select_actor_pose`](src/actor_poses.asm#L18) [`$2780`](docs/reference/modules/actor_poses.md#select_actor_pose) picks the pose, and [`build_actor_sprites`](src/actor_sprites.asm#L12) [`$2584`](docs/reference/modules/actor_sprites.md#build_actor_sprites) draws the pose into the sprite buffers ([actors.md](docs/actors.md), [graphics.md](docs/graphics.md)).
-
-## 2. The flow of a player
+The flow of a player through the game:
 
 ```mermaid
 stateDiagram-v2
-  state "Cold start $0400" as Cold
-  state "Title (title_menu_loop $08B1)" as Title
-  state "Attract demo (start_attract_demo $0531)" as Demo
+  state "Title screen" as Title
+  state "Attract demo" as Demo
   state "PLAYER n screen" as Turn
-  state "Room play (main_loop $1BC2)" as Play
-  state "Room change (change_room $2F9A)" as Enter
-  state "Fall lost (lose_fall $1818)" as Lose
-  state "Game over (game_over $188E)" as Over
+  state "Room play" as Play
+  state "Room change" as Enter
+  state "Fall lost" as Lose
+  state "Game over" as Over
   state "Room 19: congratulations" as End
-  [*] --> Cold
-  Cold --> Title
+  [*] --> Title: cold start
   Title --> Demo: 2400 frames
   Demo --> Title: key, fire or first lost fall
   Title --> Turn: F7 or fire on port 1
   Turn --> Play: room 0
-  Play --> Enter: exit marker touched
+  Play --> Enter: exit touched
   Enter --> Play
   Play --> Lose: Bruce dies
   Lose --> Turn: falls left
   Lose --> Over: no falls left
   Over --> Title
-  Play --> End: wizard defeated, room 18 exit
-  End --> Play: game_loop_count + 1, room 0 again
+  Play --> End: wizard defeated
+  End --> Play: next loop, room 0
   Play --> Title: F1
 ```
 
-The order of the rooms and the conditions that open each way are on [game_flow.md](docs/game_flow.md). The handler of each room is on [rooms_catalogue.md](docs/rooms_catalogue.md).
+The order of the rooms and the conditions that open each way are on [game_flow.md](docs/game_flow.md). Each room is described on [rooms_catalogue.md](docs/rooms_catalogue.md).
 
-## 3. Findings
+## The pages
+
+| Page | Content |
+|---|---|
+| [docs/startup_title.md](docs/startup_title.md) | **Start-up and title.** The cold start, the title screen and its menu, the attract demo, the start of a game and the PLAYER n screen. |
+| [docs/main_loop.md](docs/main_loop.md) | **The main loop.** One pass of the game and the game keys. Pause and idle, the status line, the score and extra falls. The loss of a fall, the player switch and game over. |
+| [docs/interrupts.md](docs/interrupts.md) | **The interrupt chain.** The IRQ entry and its vector, the raster handlers of the title, PLAYER and game screens, and the work of each frame. |
+| [docs/game_flow.md](docs/game_flow.md) | **The game state machine.** The whole program as one state machine, two-player turns, the next game loop, and the map of the 20 rooms from the exit tables. |
+| [docs/rooms.md](docs/rooms.md) | **Rooms: data and code.** The room tables, the packed map format, how a room is drawn, the room handlers, lanterns, passages, hazards and the map overflow bug. |
+| [docs/rooms_catalogue.md](docs/rooms_catalogue.md) | **The 20 rooms, one by one.** The picture, the data, the setup, the behaviour and the exits of each room. |
+| [docs/actors.md](docs/actors.md) | **The actors.** Bruce, the Yamo and the Ninja: their data, spawning, input, the computer AI, the action state machine, movement and poses. |
+| [docs/combat.md](docs/combat.md) | **Combat and collision.** Sprite collisions, the background contact test, hits, damage, energy, knock-outs and points. |
+| [docs/graphics.md](docs/graphics.md) | **Graphics.** The VIC bank, the double-height tiles, the charsets, the colours and raster splits, the sprite frame format and the double-buffered software sprites. |
+| [docs/text_messages.md](docs/text_messages.md) | **Text and messages.** The message format and its printer, the status line, the big banners and all 101 messages. |
+| [docs/sound_music.md](docs/sound_music.md) | **Sound and music.** The music player and its stream format, the title tune, the three sound-effect players, the request priorities and the 15 effects. |
+| [docs/dispatch_tables.md](docs/dispatch_tables.md) | **Dispatch.** How the program chooses code at run time: vectors, RTS tables, compare chains and computed jumps. |
+| [docs/protection.md](docs/protection.md) | **Copy protection.** The delayed protection checks that are still in the game, and the switch that turns them off. |
+| [docs/development.md](docs/development.md) | **The development.** What the leftovers in the image tell about how the game was made. |
+| [docs/releases.md](docs/releases.md) | **Releases and cracks.** The three cracks compared byte by byte, what each crack changed, and the switches that give each release. |
+
+## Findings
 
 The facts that a reader does not expect. Each page has more.
 
-| Finding | Evidence |
-|---|---|
-| **The copy protection is still in the game, and it is delayed.** Several checks compare the loader marks in zero page and pairs of bytes on the key page `$CF00`. A failed check does not stop the game at once: it changes code step by step until [`random_byte`](src/interrupt_entry.asm#L89) [`$1159`](docs/reference/modules/interrupt_entry.md#random_byte) breaks, jumps through `$DE00`, wipes memory, or damages the maps of rooms 0, 1 and 5. | **Code**; **Observed**: junk on the `$CF00` page breaks the game. [protection.md](docs/protection.md) |
-| **A knock-out by a fall attack repeats.** After the knock-out, [`apply_fight_ko`](src/fight_hits.asm#L384) [`$2C24`](docs/reference/modules/fight_hits.md#apply_fight_ko) jumps back to [`apply_fight_hits_fall`](src/fight_hits.asm#L354) [`$2BF9`](docs/reference/modules/fight_hits.md#apply_fight_hits_fall). Damage and points repeat until the energy wraps to positive. | **Observed**: in one run the score went from 2000 to 15050, and Yamo survived with 124 energy. [combat.md](docs/combat.md) |
-| **Six rooms write 2 bytes into a contact mask.** The maps of rooms 4, 7, 10, 13, 17 and 18 decode to 442 cells instead of 440. The two extra cells write `$80` to `$9010-$9011`, a mask of Bruce's frames. | **Observed** in the room runs. [rooms.md](docs/rooms.md) |
-| **A new top score moves the next extra fall to 171072 points.** [`update_high_score`](src/score.asm#L65) copies 4 bytes to [`top_score`](src/fireball_text_score_vars.asm#L56) [`$4388`](docs/reference/modules/fireball_text_score_vars.md#top_score). The 4th byte is [`raster_split_index`](src/constants.asm#L32) [`$44`](docs/reference/variables.md#raster_split_index), and it lands in [`bonus_fall_first_score`](src/fireball_text_score_vars.asm#L62) [`$438B`](docs/reference/modules/fireball_text_score_vars.md#bonus_fall_first_score). | **Observed** in 7 of 7 stores. [main_loop.md](docs/main_loop.md) |
-| **Extra falls come late.** The extra-fall test compares the score with the limit byte by byte, not as one 24-bit number. | **Code**. [main_loop.md](docs/main_loop.md) |
-| **[`random_table`](src/constants.asm#L147) [`$0200`](docs/reference/variables.md#random_table) is filled and never read.** [`init_game_variables`](src/game_setup.asm#L18) clears the pointer, so [`random_byte`](src/interrupt_entry.asm#L89) [`$1159`](docs/reference/modules/interrupt_entry.md#random_byte) reads zero page and the stack page. In the demo it returns 1. | **Observed**. [startup_title.md](docs/startup_title.md) |
-| **The right-handed key is R.** The title keys L/R and shift-L/shift-R set the joystick handedness of port 1 and port 2. | **Code**: key code `$11` is matrix column 2, row 1. [startup_title.md](docs/startup_title.md) |
-| **The S key only switches the title tune.** The sound effects of the game always play. | **Code**. [main_loop.md](docs/main_loop.md), [sound_music.md](docs/sound_music.md) |
-| **The music is tuned for NTSC.** On PAL every note is about 2/3 of a semitone flat. | **Code**. [sound_music.md](docs/sound_music.md) |
-| **The attract demo ends at its first lost fall.** It reads 569 bytes of [`demo_input_stream`](src/demo_input.asm#L12) [`$F300`](docs/reference/modules/demo_input.md#demo_input_stream). | **Observed**. [startup_title.md](docs/startup_title.md) |
-| **Unused exits and a closing exit.** Six exit-table entries have no marker in any room. After the wizard is defeated, a tile overwrites the marker of the way back to room 17. | **Code**; **Observed** for room 6. [game_flow.md](docs/game_flow.md) |
-| **The fourth charset is the wizard flash.** [`room_charset_d`](src/room_charset_d.asm#L8) [`$9C00`](docs/reference/graphics.md#room_charset_d) becomes [`charset_wizard_flash`](src/constants.asm#L203) [`$B800`](docs/reference/variables.md#charset_wizard_flash). Only the defeat of the wizard selects it. | **Code**. [graphics.md](docs/graphics.md) |
-| **Message `$62` was changed by a cracker.** [`msg_presents`](src/messages_rooms.asm#L322) [`$4770`](docs/reference/modules/messages_rooms.md#msg_presents) reads "DIABOLO  PRESENTS" in the SAEGER release and "DATASOFT PRESENTS" in the TBC and DC releases. No code prints the message. | **Observed**: byte compare of the releases. [releases.md](docs/releases.md), [text_messages.md](docs/text_messages.md) |
-| **The SAEGER image was saved from a game that had run.** It holds the music state of a tune and a `$55` of the KERNAL RAM test at `$9B00`, in the source of the wizard room charset. TBC and DC have the bytes before any run. | **Observed**: byte compare and a watchpoint on `$9B00`; **Conclusion**: a reset dump. [releases.md](docs/releases.md) |
-| **The DC release has no demo input.** Its packed file ends at `$F200`, so the attract demo gives Bruce no input and ends at his first lost fall. | **Observed**. [releases.md](docs/releases.md) |
-| **The image held leftovers of the development.** Assembler source text in Apple II format, a fragment of the assembler symbol table with the original frame names, shifted copies of tables and code, older versions of code, charsets, the title tune and the demo recording, Atari 8-bit key codes, and the encoded last stage of the original protected loader. The game image leaves them out; the knowledge keeps them in the spaces `bank1` to `bank7`. | **Code**; **Observed**: `tests/leftovers_unused.json`. |
-| **No cheat or trainer.** [`falls_left`](src/constants.asm#L27) [`$28`](docs/reference/variables.md#falls_left) goes down only in [`lose_fall`](src/lose_fall_game_over.asm#L14) [`$1818`](docs/reference/modules/lose_fall_game_over.md#lose_fall) and by 5 in [`frame_update_yamo_idle`](src/frame_update.asm#L295) [`$173F`](docs/reference/modules/frame_update.md#frame_update_yamo_idle), when a player-controlled Yamo stays idle too long. The room 16 bonus adds falls.  No release adds one. | **Code**; **Observed**: byte compare of the releases. [protection.md](docs/protection.md) |
+- **The copy protection is still in the game, and it is delayed.** Several checks compare marks of the original loader in zero page and pairs of bytes on the key page `$CF00`. A failed check does not stop the game at once. It changes code step by step. Then [`random_byte` `$1159`](src/interrupt_entry.asm#L89) breaks, the game jumps through `$DE00`, or the game wipes memory or damages the maps of rooms 0, 1 and 5. **Code**. **Observed**: junk on the `$CF00` page breaks the game. See [protection.md](docs/protection.md).
+- **A knock-out by a fall attack repeats.** After the knock-out, [`apply_fight_ko` `$2C24`](src/fight_hits.asm#L384) jumps back to `apply_fight_hits_fall`. So the damage and the points repeat until the energy wraps to a positive value. **Observed**: in one run the score went from 2000 to 15050, and the Yamo survived with 124 energy. See [combat.md](docs/combat.md).
+- **Six rooms write 2 bytes into a contact mask.** The maps of rooms 4, 7, 10, 13, 17 and 18 decode to 442 cells instead of 440. The two extra cells write `$80` to `$9010-$9011`, a mask of Bruce's frames. **Observed** in the room runs. See [rooms.md](docs/rooms.md).
+- **A new top score moves the next extra fall to 171072 points.** [`update_high_score` `$3184`](src/score.asm#L65) copies 4 bytes to `top_score`, and the 4th byte, the raster split index in `$44`, lands in `bonus_fall_first_score`. **Observed** in 7 of 7 stores. See [main_loop.md](docs/main_loop.md).
+- **Extra falls come late.** The extra-fall test compares the score with the limit byte by byte, not as one 24-bit number. **Code**. See [main_loop.md](docs/main_loop.md).
+- **The random table is filled and never read.** The game fills `random_table` at `$0200`. But `init_game_variables` clears its pointer, so `random_byte` reads zero page and the stack page instead. In the demo it returns 1. **Observed**. See [startup_title.md](docs/startup_title.md).
+- **The right-handed key is R.** The title keys L/R and shift-L/shift-R set the joystick handedness of port 1 and port 2. **Code**: key code `$11` is matrix column 2, row 1. See [startup_title.md](docs/startup_title.md).
+- **The S key only switches the title tune.** The sound effects of the game always play. **Code**. See [sound_music.md](docs/sound_music.md).
+- **The music has NTSC tuning.** On PAL every note is about 2/3 of a semitone flat. **Code**. See [sound_music.md](docs/sound_music.md).
+- **The attract demo ends at its first lost fall.** It reads 569 bytes of [`demo_input_stream` `$F300`](src/demo_input.asm#L12). **Observed**. See [startup_title.md](docs/startup_title.md).
+- **Unused exits and a closing exit.** Six entries of the exit tables have no marker in any room. After Bruce defeats the wizard, a tile overwrites the marker of the way back to room 17. **Code**. **Observed** for room 6. See [game_flow.md](docs/game_flow.md).
+- **The fourth charset is the wizard flash.** [`room_charset_d` `$9C00`](src/room_charset_d.asm#L8) becomes `charset_wizard_flash` at `$B800`. Only the defeat of the wizard selects it. **Code**. See [graphics.md](docs/graphics.md).
+- **A cracker changed message `$62`.** [`msg_presents` `$4770`](src/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in the SAEGER release and "DATASOFT PRESENTS" in the TBC and DC releases. No code prints the message. **Observed**: byte compare of the releases. See [releases.md](docs/releases.md).
+- **Someone saved the SAEGER image from a game that ran.** The image holds the music state of a tune. It also holds a `$55` of the KERNAL RAM test at `$9B00`, in the source of a room charset. TBC and DC have the bytes from before any run. **Observed**: byte compare and a watchpoint on `$9B00`. **Conclusion**: a dump after a reset. See [releases.md](docs/releases.md).
+- **The DC release has no demo input.** Its packed file ends at `$F200`, so the attract demo gives Bruce no input and ends at his first lost fall. **Observed**. See [releases.md](docs/releases.md).
+- **No cheat or trainer.** `falls_left` decreases only when Bruce loses a fall. It also decreases by 5 when a player-controlled Yamo stays idle too long. The room 16 bonus adds falls. No release adds a trainer. **Code**. **Observed**: byte compare of the releases. See [protection.md](docs/protection.md).
 
-## 4. The reference
+## The development
 
-The generated reference of every file, routine, table and variable is in [docs/reference/index.md](docs/reference/index.md). It also has the [names](docs/reference/symbols.md), the [variables](docs/reference/variables.md), the [tables](docs/reference/tables.md), the [memory map](docs/reference/memory-map.md) and the [graphics](docs/reference/graphics.md).
+The image holds many leftovers of the development, outside the parts that the game uses:
 
-## 5. Still open
+- assembler source text in the Apple II format
+- a fragment of the assembler symbol table, with the original names of the sprite frames
+- shifted copies of tables and code
+- older versions of code, charsets, the title tune and the demo recording
+- key codes of the Atari 8-bit
+- the encoded last stage of the original protected loader
 
-These questions come up on more than one page. Each page lists its own questions at its end.
+The game build leaves them out. The knowledge keeps them in the spaces `bank1` to `bank7`. The scenario `tests/leftovers_unused.json` shows that the game does not read them (**Observed**). The details and their evidence are on [development.md](docs/development.md).
 
-- **The keyboard scanner never ran.** [`scan_keyboard`](src/keyboard_scan.asm#L24) [`$139E`](docs/reference/modules/keyboard_scan.md#scan_keyboard) needs a C64 keyboard matrix, and VICE 3.10 holds bits 5-7 of the CIA 1 ports low (VICE bug #2202). The runs and the tests write the key codes into [`key_code`](src/constants.asm#L133) [`$0109`](docs/reference/variables.md#key_code) and [`key_ready`](src/constants.asm#L136) [`$010C`](docs/reference/variables.md#key_ready). A run on VICE with the fix can confirm the scanner and the R key.
-- **Some code never ran.** The coverage of all runs misses 941 instructions in 127 ranges. Examples are parts of the wizard defeat, some room events and several protection paths. The source marks each range with `; not executed`, and [src/not_executed.json](src/not_executed.json) lists them.
-- **What some room pieces are in game terms.** The sliders, the runners and some graphic messages have names that come from their place and use ([rooms.md](docs/rooms.md)).
-- **The warm-start flag.** [`warm_start_flag`](src/cold_start.asm#L7) [`$03FF`](docs/reference/modules/cold_start.md#warm_start_flag) must be 0, and nothing writes it. The original loader may have had a restart path ([protection.md](docs/protection.md)).
+## Releases, cracks and preservation
 
-## 6. The releases and the rebuild
-
-- **The releases.** Three cracks of one image ([releases.md](docs/releases.md)). Each is a capture at [`cold_start`](src/cold_start.asm#L22) [`$0400`](docs/reference/modules/cold_start.md#cold_start) in `original/releases/`.
+Three cracks of the game are in the project. All three come from the same cracked image: the game bytes are the same except for three small changes.
 
 | Label | File | Crack |
 |---|---|---|
-| SAEGER (base) | `original/saeger.d64`, file `BRUCE LEE`, extracted as `original/bruce_lee.prg` | `1984 SYS 2161 SSG`: "CRACKED IN OKTOBER 1984 BY SAEGER SOFT GROUP", an intro that waits for SPACE, a mover and a relocator. Not packed. |
-| TBC | `original/bruce_lee_tbc.prg` | `6368 SYS 2087 CRACKED BY TBC`: the Datasoft title picture as the intro, a mover and the same relocator. Not packed. |
-| DC | `original/danish.d64`, file `BRUCE LEE   (DC)`, extracted as `original/bruce_lee_dc.prg` | `1985 SYS 2073 TCS-CRUNCH!`: packed; a Danish Crackers intro "DC-011/P" and the same relocator. |
+| SAEGER (base) | `original/saeger.d64`, file `BRUCE LEE` | "CRACKED IN OKTOBER 1984 BY SAEGER SOFT GROUP": an intro that waits for SPACE, a mover and a relocator. Not packed. |
+| TBC | `original/bruce_lee_tbc.prg` | "CRACKED BY TBC": the Datasoft title picture as the intro, a mover and the same relocator. Not packed. |
+| DC | `original/danish.d64`, file `BRUCE LEE   (DC)` | Danish Crackers "DC-011/P": packed with TCS-CRUNCH, with an intro and the same relocator. |
 
-- **The crackers.** The SAEGER image carries the edit "DIABOLO  PRESENTS" and tape turbo tools at `$FE00`, and it was saved from a game that had run. So SSG re-released an image that another cracker (Diabolo) had worked on. TBC and DC have the text and the bytes before a run (**Conclusion**, [releases.md](docs/releases.md#3-what-the-differences-tell)).
-- **The clean program.** The knowledge holds the memory of SAEGER at [`cold_start`](src/cold_start.asm#L22) [`$0400`](docs/reference/modules/cold_start.md#cold_start) with only the game: 24 segments from `$03FF` to `$FFFF` (40,075 bytes). The capture leaves out the crack (`$A000-$A9FF`: a copy of the relocator and duplicated pages), the original loader stage at `$033C-$03FE`, and 28 leftover blocks of the development and the release. The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033c.json` and `tests/leftovers_unused.json` show that the game does not use any of them. The game needs the marks that the original loader left and that each crack's relocator sets again: `$00` = `$EF`, `$02` = `$32`, an RTS at `$0080`, and [`warm_start_flag`](src/cold_start.asm#L7) [`$03FF`](docs/reference/modules/cold_start.md#warm_start_flag) = 0. They stay in the entry state.
-- **The switches.** The source holds every difference of the releases as a switch (`src/switches.asm`). The default build is the clean game.
+The SAEGER image carries the edit "DIABOLO  PRESENTS". Someone saved it from a game that ran. So SSG released again an image that another cracker changed before. TBC and DC have the text and the bytes from before a run (**Conclusion**). SAEGER and TBC also hold the same tape turbo tools at `$FE00`, and DC does not hold them (**Observed**). No crack removed the copy protection checks. Each relocator sets again the marks that the original loader left. The details, the hashes of the files and each difference are on [releases.md](docs/releases.md).
+
+## The rebuild
+
+**The base release.** The knowledge holds the memory of the SAEGER release when it gets to [`cold_start` `$0400`](src/cold_start.asm#L22). It holds only the game: 24 segments from `$03FF` to `$FFFF` (40,075 bytes). The capture leaves out these parts:
+
+- the crack at `$A000-$A9FF`: a copy of the relocator and duplicated pages
+- the original loader stage at `$033C-$03FE`
+- 28 leftover blocks of the development and the release
+
+The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033c.json` and `tests/leftovers_unused.json` show that the game uses none of them (**Observed**).
+
+**The entry state.** The game needs the marks that the original loader left. The relocator of each crack sets them again: `$00` = `$EF`, `$02` = `$32`, an RTS at `$0080`, and `warm_start_flag` = 0. They stay in the entry state. `src/loader.prg` copies the segments into place, sets the entry state of the capture and jumps to `cold_start`. The emulator check of c64-source verified it.
+
+**The switches.** The source holds each difference of the releases as a switch in `src/switches.asm`. The default build is the clean game.
 
 | Switch | Kind | Default | Releases with it on | What it changes |
 |---|---|---|---|---|
-| `PROTECTION` | protection | 0 | SAEGER, TBC, DC | the 13 copy protection checks ([protection.md](docs/protection.md#7-the-switch-protection)) |
+| `PROTECTION` | protection | 0 | SAEGER, TBC, DC | the copy protection checks |
 | `CRACK_DIABOLO` | crack | 0 | SAEGER | "DIABOLO  PRESENTS" in message `$62` |
 | `FIX_RAM_TEST_BYTE` | fix | 1 | TBC, DC | `$0F` in place of the `$55` of the RAM test at `$9B00` |
 | `RUN_STATE` | change | 0 | SAEGER | the music state of a run in `$E100-$E86C` |
 
-- **The rebuild.** [src/](src/) is generated from the knowledge. The build of each release gives its capture byte for byte: SAEGER in all 24 segments, TBC and DC in their 23 segments. `src/loader.prg` is the loader of the SAEGER build: it copies the segments into place, sets the entry state of the capture and jumps to [`cold_start`](src/cold_start.asm#L22). The emulator check of c64-source verified it.
-- **The tests.** The scenarios in [tests/](tests/) run the original disk file and `src/loader.prg` side by side and compare memory, the VIC-II and the screen: `title`, `title_options`, `demo`, `game_start`, `room_change`, `game_keys`, `lose_fall_game_over`, `wizard_and_ending` and `all_rooms` (each of the 20 rooms: the picture, the VIC-II, VIC bank 2 and colour RAM). `tests/no_protection.json` and `tests/all_rooms_no_protection.json` run the TBC release and the default loader: the default build runs like the original when the protection data is destroyed, and draws all 20 rooms as the original. The recording `tests/recordings/first-rooms` replays on both loaders. [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest.
-- **Build** (from the project folder, with the c64-assembler skill):
-  - `assembler.ts build src loader.asm --out build/bruce_lee_loader.prg` gives the runnable clean game. The scenarios with the default build need it.
-  - `assembler.ts build src main.asm --out build/bruce_lee.prg` gives the clean game without a loader.
-  - `assembler.ts build src main.asm --release SAEGER --compare --out build/bruce_lee_SAEGER.prg` checks the original against the knowledge; `--release TBC` and `--release DC` check the other releases.
+**The builds.** From the project folder, with the c64-assembler skill:
+
+- `assembler.ts build src loader.asm --out build/bruce_lee_loader.prg` gives the clean game, ready to run. The scenarios of the default build need it.
+- `assembler.ts build src main.asm --out build/bruce_lee.prg` gives the clean game without a loader.
+- `assembler.ts build src main.asm --release SAEGER --compare --out build/bruce_lee_SAEGER.prg` checks the original against the knowledge. `--release TBC` and `--release DC` check the other releases. Each release build gives its capture byte for byte: SAEGER in all 24 segments, TBC and DC in their 23 segments.
+
+**The tests.** The scenarios in [tests/](tests/) run the original disk file and `src/loader.prg` side by side. They compare memory, the VIC-II and the screen:
+
+- `title`, `title_options` and `demo`
+- `game_start`, `room_change`, `game_keys` and `lose_fall_game_over`
+- `wizard_and_ending`
+- `all_rooms`: the picture, the VIC-II, VIC bank 2 and colour RAM of each of the 20 rooms
+
+`no_protection` and `all_rooms_no_protection` run the TBC release against the default loader. They destroy the protection data. The default build then runs like the original and draws all 20 rooms like the original. The recording `tests/recordings/first-rooms` replays on both loaders. [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest.
+
+## Still open
+
+These questions come up on more than one page. Each page lists its own questions at its end.
+
+- **The keyboard scanner never ran.** [`scan_keyboard` `$139E`](src/keyboard_scan.asm#L24) needs a C64 keyboard matrix, and VICE 3.10 holds bits 5-7 of the CIA 1 ports low (VICE bug #2202). The runs and the tests write the key codes into `key_code` and `key_ready`. A run on a VICE with the fix can check the scanner and the R key.
+- **Some code never ran.** The coverage of all runs misses 941 instructions in 127 ranges. Examples are parts of the wizard defeat, some room events and several protection paths. The source marks each range with `; not executed`, and [src/not_executed.json](src/not_executed.json) lists them. Runs that reach these paths can close the gaps.
+- **What some room pieces are in game terms.** The sliders, the runners and some graphic messages have names that come from their place and use. See [rooms.md](docs/rooms.md).
+- **The warm-start flag.** [`warm_start_flag` `$03FF`](src/cold_start.asm#L7) must be 0, and nothing writes it. The original loader may have had a restart path. See [protection.md](docs/protection.md).
+
+## The reference
+
+[docs/reference/index.md](docs/reference/index.md)

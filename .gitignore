@@ -11,6 +11,9 @@
 .claude/
 .ap-sdk/
 .mcp.json
+# The ASD-STE100 skill: npx skills add danyuchn/asd-ste100-skill -y
+.agents/
+skills-lock.json
 
 # Machine-local state: the knowledge index, one-time batches and step files,
 # and SQLite files of a write in progress.

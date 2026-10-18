@@ -27,8 +27,8 @@ restart_to_title
 ; Stops the music, clears the game variables and the play state, then clears game_mode (0 = demo:
 ; random_byte returns 1 and Bruce follows the recorded input at demo_input_stream). It saves the menu options
 ; in option_two_players_saved / option_yamo_player2_saved (show_title_screen restores them) and forces one
-; player with a computer Yamo, draws room 0 and enters main_loop. The demo ends when Bruce has no falls
-; left (lose_fall returns to show_title_screen) or on fire (port 1) or F1 (check_demo_abort).
+; player with a computer Yamo, draws room 0 and enters main_loop. The demo ends at the first lost fall
+; (lose_fall returns to show_title_screen in the demo, with falls left) or on fire (port 1) or F1 (check_demo_abort).
 start_attract_demo
         sei
         lda SCROLY

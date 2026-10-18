@@ -1,74 +1,183 @@
-# Bruce Lee: the three releases
+# Bruce Lee: the releases
 
-The project has three cracked releases of *Bruce Lee*. This page compares their game bytes, tells what each difference is, and shows how the switches of the source give each release and the clean default build.
-
-**Scope.** The game bytes of the three releases at [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start), the switches `CRACK_DIABOLO`, `FIX_RAM_TEST_BYTE`, `RUN_STATE` and `PROTECTION`, and the release files in `original/`.
+The project has three cracked releases of *Bruce Lee*: SAEGER, TBC and DC. No uncracked copy of the Datasoft release is in the project. This page tells where each release comes from and what each crack added. It tells what the crackers did with the copy protection, and which traces of other people the files hold. It also lists each byte where the game differs between the releases, and the switch that gives that byte in the rebuild. A preservation project can use it to identify a copy and to build each release again.
 
 **Conventions.**
 - Addresses are C64 addresses. Names are the names of the knowledge.
-- A *release* is one cracked file. Its *capture* is the memory at the jump to [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start), with the segments of the program of the knowledge.
+- A *release* is one cracked file. Its *capture* is the memory at the jump to [`cold_start` `$0400`](../src/cold_start.asm#L22), in `original/releases/<label>/`.
+- The *game bytes* are the 24 segments of the program of the knowledge, from `$03FF` to `$FFFF` (40,075 bytes).
 - The *base release* is the release whose bytes are the program of the knowledge: SAEGER.
+- A *stage* is one part of a crack that runs before the game, as c64-unpacker found it.
 - **Observed** marks a fact that a run or a byte compare showed. **Code** marks a fact from the code only. **Conclusion** marks an interpretation.
 
-## 1. The releases
+## The known releases
 
-| Label | File | Disk | Crack | Packed | Capture |
+The three releases are three cracks of one game image. The table gives the facts that identify each file. The SHA-256 is the hash of the file in `original/` (**Observed**: `sha256sum`). Each extracted file is equal to the file on its disk image (**Observed**: an extraction from each D64).
+
+| Label | Disk image | File | Group | Date | SHA-256 of the file |
 |---|---|---|---|---|---|
-| SAEGER (base) | `original/bruce_lee.prg` | `original/saeger.d64`, "BRUCE LEE", 186 blocks | "CRACKED IN OKTOBER 1984 BY SAEGER SOFT GROUP": an intro that waits for SPACE | no | `original/releases/saeger/`: the 24 segments of the program |
-| TBC | `original/bruce_lee_tbc.prg` | — (a PRG file, 49,423 bytes) | `6368 SYS 2087 CRACKED BY TBC`: the Datasoft title picture with "CRACKED BY TBC" as the intro, a wait for a key | no | `original/releases/tbc/`: 23 segments; the key bytes `$CF79-$CFBA` are in memory but not in a segment |
-| DC | `original/bruce_lee_dc.prg` | `original/danish.d64`, "BRUCE LEE   (DC)", 178 blocks | `1985 SYS 2073 TCS-CRUNCH!`: a Danish Crackers intro "DC-011/P", "hit any key" | yes | `original/releases/dc/`: 23 segments; no demo input at `$F300-$F538` |
+| SAEGER (base) | `original/saeger.d64`, disk name "XIDEX", file "BRUCE LEE", 186 blocks | `original/bruce_lee.prg`, 47,107 bytes, `$0801-$C001` | Saeger Soft Group (SSG) | October 1984 (intro text) | `032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590` |
+| TBC | unknown (only the PRG file) | `original/bruce_lee_tbc.prg`, 49,423 bytes, `$0801-$C90D` | TBC | unknown | `0ed44d52101414928872eddbe1220427f90cbaf129aa41b3d81ba18909b1d597` |
+| DC | `original/danish.d64`, no disk name, file "BRUCE LEE   (DC)", 178 blocks | `original/bruce_lee_dc.prg`, 45,074 bytes, `$0801-$B810` | Danish Crackers (DC) | unknown | `331fe97e73f8c77624242b4da3029efcb9199ffa184d6cd95220a60311efdaf4` |
 
-How each release gets to the game (**Observed**: c64-unpacker `stages`, and runs to `$0400` in the emulator):
+The disk images have these hashes: `original/saeger.d64` is `b45e53e602fe94654934beffaa483f59989a6d3973ef054afaeea4ea4bc2b8f5`, and `original/danish.d64` is `1a9d294e07f9593ba59d878423d157bacfe6c6902d3a52ef6ac96512a15fb6c5` (**Observed**).
 
-1. SAEGER: the intro, then a mover that copies parts of the file to `$C000`, `$CF00`, `$E000` and `$FE00`.
-2. TBC: a copier at `$0100` moves the file into place, the intro shows a bitmap and waits at `$0872` for a key through the KERNAL buffer, then a mover at `$089C` copies `$A500`, `$A600`, `$A700`, `$BE00` and `$BF00` to `$C000`, `$C100`, `$CF00`, `$FE00` and `$FF00`.
-3. DC: a decruncher at `$0152` unpacks `$0801-$BF35`, then the intro at `$0847` waits for a key.
-4. All three end in the same relocator at `$C000`. It moves the game down and jumps through `($C0B0)` to [`cold_start`](../src/cold_start.asm#L22) [`$0400`](reference/modules/cold_start.md#cold_start). The loader marks are the same: `$02` = `$32`, an RTS at `$0080`, and [`warm_start_flag`](../src/cold_start.asm#L7) [`$03FF`](reference/modules/cold_start.md#warm_start_flag) = 0.
+Each file starts with one BASIC line that starts the crack. The line numbers are 1984 in SAEGER, 6368 in TBC and 1985 in DC (**Observed**: the first bytes of each file).
 
-## 2. The differences
+| Label | BASIC line |
+|---|---|
+| SAEGER | `1984 SYS 2161  SSG` |
+| TBC | `6368 SYS 2087 CRACKED BY TBC` |
+| DC | `1985 SYS 2073 TCS-CRUNCH!` |
 
-The compare covers the 24 segments of the program of the knowledge (40,075 bytes), in the full memory of each capture (**Observed**: c64-provenance `compare`, and a byte compare of the three captures).
+The line number 1985 of the DC file may be the year of the crack. No other source gives a date for TBC or DC (**Conclusion**).
 
-- TBC and DC are equal in every byte, except the demo input that DC does not hold.
+The knowledge records each release with its capture and the define that builds it. The captures are `original/releases/saeger/image.json`, `original/releases/tbc/image.json` and `original/releases/dc/image.json` (**Observed**: `knowledge.ts releases`).
+
+## The original
+
+**TBC holds the game nearest to the original program.** Its game bytes have the text "DATASOFT PRESENTS", the bytes from before a run, and the demo input. DC has the same game bytes, but it lost the demo input. SAEGER holds an image that somebody saved from a game that ran, with a text edit of another cracker (**Observed**: byte compare of the captures. **Conclusion**: which release is nearest).
+
+SAEGER is the base release of the knowledge. The rebuild gives each release byte for byte. The default build is the TBC game without the protection checks (**Observed**: the byte compare of the builds).
+
+These parts of the original release are missing:
+- **The original disk or tape.** Each release in the project is a crack. So the original protection loader is not available.
+- **The earlier stages of the original loader.** Each crack file still holds the last stage, in its encoded form. The relocator copies it to `$033C-$03FE`. Decoded, it decrypts the game into `$0400-$A0FF`, writes the RTS at `$0080`, and calls `$0400`. The knowledge keeps the encoded stage in space bank6 at `$033C` and the decoded stage in space bank7 (**Code**). The game does not use these bytes (**Observed**: `tests/original_loader_stage_033c.json` writes `$A5` over the 195 bytes and gives PASS).
+- **A clean original text.** The image also holds an old copy of `msg_presents` from an earlier build, in space bank1 at `$4F2C`. That copy reads "DATASO...SENTS" (**Code**: the comment of `msg_presents`). So "DATASOFT PRESENTS" in TBC and DC is the text of the authors (**Conclusion**).
+
+## The cracks
+
+The three cracks start in a different way, but all three end in the same relocator at `$C000`. The relocator puts the game at its address and starts it. The diagram shows the stages that c64-unpacker found in each file (**Observed**: the `stages` of each `image.json`, and runs to `$0400` in the emulator).
+
+~~~mermaid
+flowchart TB
+  S["SAEGER: intro, waits for SPACE"] --> SM["SAEGER mover"]
+  T0["TBC: copier at $0100"] --> T1["TBC intro: title picture, waits for a key"]
+  T1 --> TM["TBC mover at $089C"]
+  D0["DC: decruncher at $0152"] --> D1["DC intro: DC-011/P, hit any key"]
+  SM --> R["Relocator at $C000"]
+  TM --> R
+  D1 --> R
+  R --> G["The game: cold_start"]
+~~~
+
+### The SAEGER crack
+
+The SAEGER file is not packed. Its intro shows "CRACKED IN OKTOBER 1984 BY SAEGER SOFT GROUP" and waits for SPACE. Then a mover copies parts of the file to `$C000-$C1FF`, `$CF00-$CFFF`, `$E000-$F5FF` and `$FE00-$FFFF`. The mover then jumps to the relocator at `$C000` (**Observed**: stage 0 starts at `$0871`, runs 604 frames, and writes these ranges).
+
+### The TBC crack
+
+The TBC file is not packed. It is 2,316 bytes longer than the SAEGER file. It runs in three stages (**Observed**: the stages of the capture and a run):
+1. A copier at `$0100` moves the file into place in 288 frames.
+2. The intro shows the Datasoft title picture with "CRACKED BY TBC". It waits at `$0872` for a key through the KERNAL keyboard buffer.
+3. A mover at `$089C` copies `$A500`, `$A600`, `$A700`, `$BE00` and `$BF00` to `$C000`, `$C100`, `$CF00`, `$FE00` and `$FF00`. Then it jumps to the relocator.
+
+### The DC crack
+
+The DC file is the only packed release. Its BASIC line names the packer "TCS-CRUNCH". It runs in these stages (**Observed**: the stages of the capture and a run):
+1. A decruncher at `$0152` unpacks `$0801-$BF35` in 240 frames.
+2. The intro at `$0847` shows "DC-011/P" and "hit any key". It waits for a key.
+3. The intro copies the game parts to `$C000-$C200`, `$CF00-$CFFF`, `$E000-$F200` and `$FFFA-$FFFF`. A stage at `$033C` then runs the relocator.
+
+**DC lost the demo input.** The packed file holds the game only up to `$F200`. So [`demo_input_stream` `$F300`](../src/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF`. The DC file also does not hold the tape tools at `$FE00-$FFF9` (**Observed**: byte compare of the captures).
+
+In the DC release, the attract demo gives Bruce no input. The demo ends at his first lost fall and then shows the title. **Observed**: a run of the DC release went from [`start_attract_demo` `$0531`](../src/title_demo_start.asm#L32) to [`lose_fall` `$1818`](../src/lose_fall_game_over.asm#L14) and then to the title.
+
+### The relocator at `$C000`
+
+The relocator is the same in the three releases (**Observed**: `$C000-$C1FF` is equal in the three captures). It does these steps (**Code**: a disassembly of the capture):
+1. It blanks the screen.
+2. It sets the CPU port `$01` = `$36`.
+3. It writes the loader marks of the original loader: an RTS at `$0080`, `$02` = `$32`, `$03FF` = 0 and `$00` = `$EF`.
+4. It sets the NMI vector to an RTI at `$0301`, so the RESTORE key does nothing. It sets the BASIC main vector at `$0302` to `$0400`.
+5. It copies `$C13C-$C1FF` to `$033C-$03FF`. That is the encoded last stage of the original loader.
+6. It moves 166 pages from `$0900` down to `$0400`, so the game fills `$0400-$A9FF`.
+7. It jumps through `($C0B0)` to `cold_start`.
+
+The relocator hides its code with `$80` bytes between the instructions. `$80` is an undocumented two-byte NOP, so a plain disassembly shows wrong instructions (**Code**).
+
+The relocator and the copies in `$A000-$A9FF` are almost the same in TBC and SAEGER. They differ only in the copies of the music state and in 49 bytes at `$A400-$A430` (**Observed**: byte compare of the captures). DC holds other bytes at `$A000`, where its decruncher worked. The game does not need `$A000-$A9FF` (**Observed**: `tests/crack_leftover_a000.json` writes `$A5` over the 2,560 bytes and gives PASS).
+
+### Trainers and changed texts
+
+**No release has a trainer or a cheat.** None of the differences of the game bytes is code that acts as a cheat (**Observed**: the byte compare). The only changed text in the game bytes is the DIABOLO edit in SAEGER (see "Traces of other people"). TBC and DC change no text of the game. Each crack shows its own texts only in its intro.
+
+### How the cracks dealt with the protection
+
+**No crack removed a protection check.** The checks are equal in the three releases. Each crack copies the key page to `$CF00`, and its relocator writes the marks that the original loader left. So the game passes every check (**Observed**: the byte compare, and runs of the title, the demo and the game).
+
+## The copy protection
+
+The original game holds eleven checks of three loader marks and of a key page. The marks are `$00` = `$EF`, `$02` = `$32` and an RTS at `$0080`. The key bytes are at `$CF79-$CFBA`. A failed check hangs the game, wipes memory, or crashes the game after 32 footsteps (**Code**). [protection.md](protection.md) tells about each check.
+
+All three releases still have every check. The switch `PROTECTION` is on in the three releases and off in the default build (**Observed**: `knowledge.ts switches`).
+
+## Traces of other people
+
+The files hold traces of people other than the authors and the three named groups. The traces show that the cracks did not start from a fresh copy of the original.
+
+### The DIABOLO edit
+
+**A cracker changed message `$62`.** [`msg_presents` `$4770`](../src/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in SAEGER and "DATASOFT PRESENTS" in TBC and DC. Two spaces keep the length of 17 characters. No code prints this message (**Observed**: byte compare. **Code**: no code prints the index). The edit is only in SAEGER. So a cracker who signed as Diabolo edited a copy of the image, and SSG packed that copy later (**Conclusion**).
+
+### The image of a game that ran
+
+**Somebody saved the SAEGER image from a game that ran.** The music variables of SAEGER hold the state after a tune. The self-modified operands of the music player point into the songs. TBC and DC hold the values from before any run. One of them is `$1234`, a placeholder of the assembler source (**Observed**: byte compare. **Conclusion**: the origin of the values).
+
+**A reset left `$55` at `$9B00`.** The KERNAL RAM test at `$FD6E-$FD83` reads each byte and writes `$55`. It compares, writes `$AA` and compares again. Then it writes the old byte back (**Code**: the KERNAL). A reset that stopped the test after the write of `$55` at `$9B00` leaves `$55` there. A cracker who resets a running game to save its memory can get this byte (**Conclusion**).
+
+**The game reads the damaged byte.** At the cold start, [`build_double_height_font` `$4892`](../src/draw_helpers.asm#L51) reads `$9B00` in [`room_charset_c` `$9800`](../src/room_charset_c.asm#L6) as source data (**Observed**: a watchpoint on `$9B00` in the TBC release). So SAEGER builds character `$60` of `charset_wizard` with a different top row. Nobody checked if room 18 shows character `$60`.
+
+**The game writes each music byte before it reads it.** So the run state does not change the game (**Code**). In the TBC release, a watchpoint on `$E3DF-$E3E8` stops first at the store of [`music_set_voice_pointers` `$E376`](../src/music_player.asm#L81), 83 frames after the entry (**Observed**). In SAEGER and DC, the first access of the voice state and the flags is a write. A compare of the first 900 frames of each release shows it (**Observed**: c64-provenance `compare --frames`).
+
+### The tape tools at `$FE00`
+
+**SAEGER and TBC hold tape tools at `$FE00-$FFF9`.** The bytes are equal in the two captures. DC does not hold them (**Observed**: byte compare). The game does not use them (**Observed**: `tests/leftovers_unused.json` writes `$A5` over all leftover blocks and gives PASS). The knowledge keeps them as `tape_turbo_install` in bank5 at `$FE00`.
+
+The code at `$FE00` installs a tape turbo loader (**Code**: a disassembly of space bank5):
+1. It copies a loader to `$02A7-$02FF` and an interrupt routine to `$0334-$03FF`.
+2. It points the KERNAL LOAD vector at `$0330` to `$02A7`.
+3. The loader takes the normal LOAD for each device other than the tape. For the tape, it calls the KERNAL routine that waits for the PLAY key.
+4. The interrupt routine reads CIA 1 timer A on each pulse of the tape. It changes the border colour on each pulse, and it builds the bytes from the pulse lengths.
+
+Next to the loader, `$FF00` holds the bytes of a BASIC line `SYS 2061` and small routines. These routines copy 7 pages from `$0800` to `$F900`, and they swap 6 pages of `$CA00` and `$F900` (**Code**).
+
+The tools are not part of the game or of the relocator. They were in the memory of the machine when somebody saved the image that TBC and SAEGER share. So that image probably went through a machine with a tape turbo (**Conclusion**).
+
+## The differences
+
+The compare covers the game bytes in the full memory of each capture (**Observed**: c64-provenance `compare`, and a byte compare of the three captures):
+- TBC and DC are equal in every game byte, except the demo input that DC does not hold (529 bytes in `$F300-$F538`).
 - SAEGER differs from TBC in 76 bytes, in 12 ranges.
 
-| Range | SAEGER | TBC and DC | What it is | Switch |
+The table lists the 76 bytes by variable. The byte compare splits `$E30A-$E314` and `$E3DF-$E3E8` into smaller ranges.
+
+| Bytes | SAEGER | TBC and DC | What the difference does | Switch |
 |---|---|---|---|---|
-| [`msg_presents`](../src/messages_rooms.asm#L322) [`$4771-$4777`](../src/messages_rooms.asm#L332) | `IABOLO ` | `ATASOFT` | Message `$62`: `DIABOLO  PRESENTS` against `DATASOFT PRESENTS`. No code prints it. | `CRACK_DIABOLO` |
-| `$9B00` in [`room_charset_c`](../src/room_charset_c.asm#L6) [`$9800`](reference/graphics.md#room_charset_c) | `$55` | `$0F` | The top row of character `$60`. [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) copies it into [`charset_wizard`](../src/constants.asm#L202) [`$B000`](reference/variables.md#charset_wizard) at the cold start. | `FIX_RAM_TEST_BYTE` |
-| [`music_transpose`](../src/music_voice_state.asm#L7) [`$E100-$E130`](reference/modules/music_voice_state.md#music_transpose) | voice state of a tune | other bytes | The workspace of the music voices. [`music_reset_state`](../src/music_player.asm#L113) [`$E3A8`](reference/modules/music_player.md#music_reset_state) writes it for each song. | `RUN_STATE` |
-| [`music_long_lengths`](../src/music_frequency_table.asm#L51) [`$E2E7-$E2E8`](reference/modules/music_frequency_table.md#music_long_lengths) | `$01 $00` | `$B7 $DE` | Written by the length commands of a song. | `RUN_STATE` |
-| [`music_stop_request`](../src/music_player.asm#L17) [`$E30A-$E314`](reference/modules/music_player.md#music_stop_request) | flags of a tune | other bytes | The stop request and the other flags of the player. [`music_reset_state`](../src/music_player.asm#L113) and the song setup write them. | `RUN_STATE` |
-| [`music_fetch_voice0`](../src/music_player.asm#L147) [`$E3DE`](reference/modules/music_player.md#music_fetch_voice0), [`music_fetch_voice1`](../src/music_player.asm#L150) [`$E3E2`](reference/modules/music_player.md#music_fetch_voice1), [`music_fetch_voice2`](../src/music_player.asm#L153) [`$E3E6`](reference/modules/music_player.md#music_fetch_voice2): the operands `$E3DF-$E3E8` | `LDA $E8E0`, `LDA $E988`, `LDA $EA3C` | `LDA $1234` three times | The stream pointers of the three voices, in the operands of the fetch routines. [`music_set_voice_pointers`](../src/music_player.asm#L65) writes them for each song. `$1234` is a placeholder of the assembler source. | `RUN_STATE` |
-| [`music_cmd_offset`](../src/music_player.asm#L468) [`$E5E7`](reference/modules/music_player.md#music_cmd_offset) | `$00` | `$FE` | The operand of a branch into the command table. The command dispatch writes it before the branch. | `RUN_STATE` |
-| [`music_playlist_pos`](../src/music_data.asm#L31) [`$E86C`](reference/modules/music_data.md#music_playlist_pos) | `$01` | `$00` | The index of the next playlist entry. | `RUN_STATE` |
+| `$4771-$4777` in `msg_presents` | `IABOLO ` | `ATASOFT` | Message `$62` reads "DIABOLO  PRESENTS" against "DATASOFT PRESENTS". No code prints it. | `CRACK_DIABOLO` |
+| `$9B00` in `room_charset_c` | `$55` | `$0F` | The top row of character `$60`. `build_double_height_font` copies it into `charset_wizard` at the cold start. | `FIX_RAM_TEST_BYTE` |
+| `$E100-$E130`, `music_transpose` | voice state of a tune | other bytes | The workspace of the music voices. `music_reset_state` writes it for each song. | `RUN_STATE` |
+| `$E2E7-$E2E8`, `music_long_lengths` | `$01 $00` | `$B7 $DE` | The length commands of a song write these bytes. | `RUN_STATE` |
+| `$E30A-$E314`, `music_stop_request` | flags of a tune | other bytes | The stop request and the other flags of the player. `music_reset_state` and the song setup write them. | `RUN_STATE` |
+| `$E3DF-$E3E8`, the operands of `music_fetch_voice0`, `music_fetch_voice1` and `music_fetch_voice2` | `LDA $E8E0`, `LDA $E988`, `LDA $EA3C` | `LDA $1234` three times | The stream pointers of the three voices. `music_set_voice_pointers` writes them for each song. `$1234` is a placeholder of the assembler source. | `RUN_STATE` |
+| `$E5E7`, `music_cmd_offset` | `$00` | `$FE` | The operand of a branch into the command table. The command dispatch writes it before the branch. | `RUN_STATE` |
+| `$E86C`, `music_playlist_pos` | `$01` | `$00` | The index of the next playlist entry. | `RUN_STATE` |
+| `$F300-$F538`, `demo_input_stream` | the demo input | TBC: the demo input. DC: zeros and `$FF` | The input of Bruce in the attract demo. | none: DC has no segment there |
 
-The table lists the ranges by variable; the byte compare splits `$E30A-$E314` and `$E3DF-$E3E8` into the bytes that differ.
+### The switches and the builds
 
-**Code**: the game writes each `RUN_STATE` byte before it reads it. **Observed**: in the TBC release, a watchpoint on `$E3DF-$E3E8` stops first at the store of [`music_set_voice_pointers`](../src/music_player.asm#L65) [`$E376`](../src/music_player.asm#L81), 83 frames after the entry. A compare with 900 frames from the entry of each release (c64-provenance `--frames`) shows a write as the first access of the voice state and the flags in SAEGER and DC.
-
-## 3. What the differences tell
-
-- **The SAEGER image was saved from a game that had run.** The music state is the state after a tune, and the self-modified operands point into the songs. TBC and DC have the values before any run: `$1234` is what the assembler source wrote (**Conclusion**).
-- **A reset left `$55` at `$9B00`.** The KERNAL RAM test at `$FD6E-$FD83` reads each byte, writes `$55`, compares, writes `$AA`, compares, and writes the old byte back. A reset that stops the test after the write of `$55` at `$9B00` leaves `$55` there (**Code**: the KERNAL; **Conclusion**: how the byte got into the image). A cracker who resets a running game to save its memory can get this byte.
-- **The game reads the damaged byte.** At the cold start, [`build_double_height_font`](../src/draw_helpers.asm#L51) [`$4892`](reference/modules/draw_helpers.md#build_double_height_font) reads `$9B00` as source data (**Observed**: a watchpoint on `$9B00` in the TBC release). So SAEGER builds character `$60` of the wizard room charset with a different top row. Whether room 18 shows character `$60` is not checked.
-- **The DIABOLO edit is only in SAEGER.** TBC and DC have the original text. So a cracker who signed as Diabolo edited a copy of the image that SAEGER packed later (**Conclusion**).
-- **All three come from one crack.** The relocator at `$C000` and the copies at `$A000-$A9FF` are the same in TBC and SAEGER, except for the copies of the music state (**Observed**: byte compare of the captures). DC holds other bytes at `$A000`, where its decruncher worked.
-- **DC lost the demo input.** The packed file ends at `$F200`. [`demo_input_stream`](../src/demo_input.asm#L12) [`$F300`](reference/modules/demo_input.md#demo_input_stream) holds whatever RAM held: zeros and `$FF`. The attract demo then gives Bruce no input, and it ends at his first lost fall (**Observed**: the DC release from [`start_attract_demo`](../src/title_demo_start.asm#L32) [`$0531`](reference/modules/title_demo_start.md#start_attract_demo) to [`lose_fall`](../src/lose_fall_game_over.asm#L14) [`$1818`](reference/modules/lose_fall_game_over.md#lose_fall) and the title).
-- **No release has a trainer or a cheat.** None of the differences is code that the game runs as a cheat, and the protection checks are equal in the three releases (**Observed**: the byte compare).
-
-## 4. The switches
+The source holds each difference as a switch in `src/switches.asm`. The default build is the clean game. It has no protection, the original text, the clean charset byte, and the music bytes from before a run (**Observed**: `knowledge.ts switches`).
 
 | Switch | Kind | Default | Releases with it on | Patches |
 |---|---|---|---|---|
-| `PROTECTION` | protection | 0 | SAEGER, TBC, DC | 13 patches, 47 bytes ([protection.md](protection.md#7-the-switch-protection)) |
+| `PROTECTION` | protection | 0 | SAEGER, TBC, DC | 13 patches, 47 bytes |
 | `CRACK_DIABOLO` | crack | 0 | SAEGER | `$4771-$4777` |
 | `FIX_RAM_TEST_BYTE` | fix | 1 | TBC, DC | `$9B00` |
 | `RUN_STATE` | change | 0 | SAEGER | `$E100-$E130`, `$E2E7-$E2E8`, `$E30A-$E314`, `$E3DE-$E3E8`, `$E5E6-$E5E7`, `$E86C` |
 
-The default build is the clean game: no protection, the original text, the clean charset byte, and the music bytes before a run. It is the TBC game without the protection checks (**Observed**: the byte compare of the builds).
+These commands of c64-assembler build the game and each release. Run them from the project folder.
 
-| Build | Command (c64-assembler, from the project folder) | Result |
+| Build | Command | Result |
 |---|---|---|
 | Default game | `assembler.ts build src main.asm --out build/bruce_lee.prg` | the clean game |
 | Default runnable loader | `assembler.ts build src loader.asm --out build/bruce_lee_loader.prg` | a PRG with `10 SYS 2061` |
@@ -76,15 +185,17 @@ The default build is the clean game: no protection, the original text, the clean
 | TBC | `... --release TBC --compare` | identical to `original/releases/tbc/` in each of its 23 segments |
 | DC | `... --release DC --compare` | identical to `original/releases/dc/` in each of its 23 segments |
 
-`src/loader.prg` is the loader of the SAEGER build. c64-source checks it in the emulator against the entry state of the capture.
+The TBC capture has no segment for the key bytes `$CF79-$CFBA`, but the bytes are in its memory. The DC capture has no segment for the demo input (**Observed**: the segments of the captures). `src/loader.prg` is the loader of the SAEGER build. c64-source checks it in the emulator against the entry state of the capture.
 
-## 5. The tests
+### The tests of the releases
 
 - `tests/no_protection.json` and `tests/all_rooms_no_protection.json` compare the default loader with the TBC release.
 - The other scenarios in [tests/](../tests/) compare the SAEGER release with `src/loader.prg`.
-- The recording `tests/recordings/first-rooms` replays on `src/loader.prg` and on the default loader: PASS at 1075 checkpoints of [`main_loop`](../src/game_main_loop.asm#L23) [`$1BC2`](reference/modules/game_main_loop.md#main_loop) each (**Observed**).
+- The recording `tests/recordings/first-rooms` replays on `src/loader.prg` and on the default loader. Each replay gives PASS at 1075 checkpoints of [`main_loop` `$1BC2`](../src/game_main_loop.asm#L23) (**Observed**).
 
-## 6. Still open
+## Still open
 
-- Whether room 18 draws character `$60` of [`charset_wizard`](../src/constants.asm#L202) [`$B000`](reference/variables.md#charset_wizard). A run of `tests/all_rooms.json` on the SAEGER and TBC releases, with a compare of the screen of room 18, can show it.
-- The order of the cracks. TBC and DC could come from the same clean copy, or one from the other.
+- Does room 18 draw character `$60` of [`charset_wizard` `$B000`](../src/constants.asm#L202)? A run of `tests/all_rooms.json` on the SAEGER and TBC releases, with a compare of the screen of room 18, can show it.
+- What is the order of the cracks? TBC and DC can come from the same clean copy, or one can come from the other.
+- What are the 49 bytes at `$A400-$A430` that differ between the SAEGER and TBC captures? A compare of the file offsets that the relocator moves there can show it.
+- Who added the tape tools at `$FE00`? A tape version of another crack with the same bytes can show it.

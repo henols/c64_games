@@ -16,5 +16,5 @@
 		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
 		"NVM_SYMLINK_CURRENT": "false"
 	},
-	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude"
+	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && sudo apt-get update && sudo apt-get install -y --no-install-recommends python3"
 }
