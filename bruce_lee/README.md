@@ -124,7 +124,7 @@ The order of the rooms and the conditions that open each way are on [game_flow.m
 
 | Page | Content |
 |---|---|
-| [docs/startup_title.md](docs/startup_title.md) | **Start-up and title.** The cold start, the title screen and its menu, the attract demo, the start of a game and the PLAYER n screen. |
+| [docs/startup_title.md](docs/startup_title.md) | **Start-up and title.** The title picture of the boot and the cold start. The title screen and its menu, the attract demo, the start of a game and the PLAYER n screen. |
 | [docs/main_loop.md](docs/main_loop.md) | **The main loop.** One pass of the game and the game keys. Pause and idle, the status line, the score and extra falls. The loss of a fall, the player switch and game over. |
 | [docs/interrupts.md](docs/interrupts.md) | **The interrupt chain.** The IRQ entry and its vector, the raster handlers of the title, PLAYER and game screens, and the work of each frame. |
 | [docs/game_flow.md](docs/game_flow.md) | **The game state machine.** The whole program as one state machine, two-player turns, the next game loop, and the map of the 20 rooms from the exit tables. |
@@ -159,6 +159,14 @@ The SAEGER image carries the edit "DIABOLO  PRESENTS". Someone saved it from a g
 - TBC shows the picture in its intro. It writes "CRACKED BY TBC" into the bitmap. It gives each cell the same screen colours (`$CE`), so the Chinese name shows in light blue. The intro plays no music. **Observed**: a run of the TBC intro.
 - SAEGER and DC do not hold the picture. DC does not hold it after its decruncher either. **Observed**: a search of the files, the disk images, the captures and the memory of the DC intro.
 - The picture is in the TBC file at `$C000-$DFFF`. The intro copies it to `$E000`, and the game then writes over it. Thus the game does not show it again. **Code**.
+
+The clean picture, as the rebuild shows it at the start (**Observed**: `tests/boot_title_picture.json`):
+
+![The Datasoft title picture of the rebuild](docs/images/screens/title_picture.png)
+
+The same picture in the TBC intro has "CRACKED BY TBC" under the blocks. The Chinese name is light blue (**Observed**: a run of the TBC intro):
+
+![The title picture in the TBC intro](docs/images/screens/title_picture_tbc.png)
 
 The details, the hashes of the files and each difference are on [releases.md](docs/releases.md).
 

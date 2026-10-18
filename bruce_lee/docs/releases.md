@@ -74,6 +74,12 @@ The TBC file is not packed. It is 2,316 bytes longer than the SAEGER file. It ru
 
 The title picture is not crack work. It is the Datasoft title picture, and only TBC holds it. TBC changed it in two ways: it wrote "CRACKED BY TBC" into the bitmap, and it gave all cells the screen colours `$CE`. The intro plays no music: the SID volume is 0, and the IRQ vector stays at `$EA31` (**Observed**). The rebuild shows the clean picture at the start. See "The boot" in the [README](../README.md#the-rebuild).
 
+![The title picture in the TBC intro](images/screens/title_picture_tbc.png)
+
+The picture of the rebuild, with the TBC text removed and the colours of the original screen:
+
+![The clean title picture of the rebuild](images/screens/title_picture.png)
+
 ### The DC crack
 
 The DC file is the only packed release. Its BASIC line names the packer "TCS-CRUNCH". It runs in these stages (**Observed**: the stages of the capture and a run):

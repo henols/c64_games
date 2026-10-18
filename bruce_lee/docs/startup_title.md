@@ -1,6 +1,6 @@
 # Bruce Lee: cold start, title screen and game start
 
-When the loader gives control to the program, the program prepares its fonts and room charsets one time. Then it shows the title screen: the DATASOFT logo, the big BRUCE LEE and a menu. In the menu, the player chooses one or two players, a computer or a human Yamo, and the handedness of each joystick. F7 or fire starts a game: the PLAYER 1 screen shows, then Bruce stands in room 0. When nobody touches the menu for 48 seconds, the attract demo plays room 0 from a recorded input. The demo continues until Bruce loses a fall or someone presses fire.
+Before the program starts, the boot of the rebuild shows the Datasoft title picture. When the loader gives control to the program, the program prepares its fonts and room charsets one time. Then it shows the title screen: the DATASOFT logo, the big BRUCE LEE and a menu. In the menu, the player chooses one or two players, a computer or a human Yamo, and the handedness of each joystick. F7 or fire starts a game: the PLAYER 1 screen shows, then Bruce stands in room 0. When nobody touches the menu for 48 seconds, the attract demo plays room 0 from a recorded input. The demo continues until Bruce loses a fall or someone presses fire.
 
 This page follows the program from its entry to the first pass of the main loop. The main loop, the keys of a game, the score and the turns are on the page [main_loop.md](main_loop.md).
 
@@ -38,6 +38,20 @@ flowchart TB
 4. **The menu waits for the player.** [`title_menu_loop` `$08B1`](../src/title_menu.asm#L14) reads the keys and the fire button of port 1. It returns when the player starts a game, and it jumps to the demo when the 48 seconds run out. (**Code**)
 5. **A game starts.** When the menu returns, the code continues into [`start_new_game` `$070E`](../src/title_demo_start.asm#L283). It shows the PLAYER 1 screen ([`show_player_screen` `$0EA7`](../src/title_player_screens.asm#L71)), draws room 0 and enters the main loop. (**Code**)
 6. **The demo is the game with one flag cleared.** [`start_attract_demo` `$0531`](../src/title_demo_start.asm#L32) sets `game_mode` = 0. Bruce then follows a recorded input, and `random_byte` always gives 1. So the demo plays the same way each time. (**Code**)
+
+## The title picture before the entry
+
+The Datasoft release showed a title picture while it loaded the game. The picture shows Bruce Lee and the title, and it names the programmer Ron J. Fortier and the graphic artist Kelly Day. The Chinese name of Bruce Lee is on the right. The game bytes do not hold the picture, and no code of the game shows it. Only the TBC crack keeps the picture, in its intro (**Observed**: see [releases.md](releases.md)).
+
+![The Datasoft title picture](images/screens/title_picture.png)
+
+The rebuild shows a clean copy of the picture before the loader starts the game. [src/boot.asm](../src/boot.asm) is a source that a person wrote, not a source of the knowledge. It does these steps (**Observed**: `tests/boot_title_picture.json`, `tests/boot_fire.json` and `tests/boot_timeout.json`):
+
+1. It unpacks the picture from `src/title_picture.rle` into VIC bank 3: the multicolour bitmap at `$E000`, the screen at `$CC00` and the colour RAM at `$D800`. The background is black and the border light blue.
+2. It waits for a key, for the fire button of port 1 or port 2, or for 500 frames (10 seconds on PAL).
+3. It moves the loader to `$0801` and starts it. The loader writes the entry state and jumps to `cold_start`.
+
+The picture uses four colours: black, white, grey and light blue. 53 cells around the Chinese name have white in place of light blue (screen value `$C1`). All other cells have the screen value `$CE` (**Code**: `src/title_picture.kla`). The switch `TITLE_PICTURE` in `src/config.asm` turns the picture off.
 
 ## The cold start
 
