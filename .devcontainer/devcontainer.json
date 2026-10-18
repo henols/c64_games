@@ -3,7 +3,7 @@
 	"image": "mcr.microsoft.com/devcontainers/base:trixie",
 	"features": {
 		"ghcr.io/anthropics/devcontainer-features/claude-code:1": {},
-		"https://github.com/henols/c64-re-tools/releases/download/v2.0.0-rc.4/devcontainer-feature-c64-re-tools.tgz": {
+		"https://github.com/henols/c64-re-tools/releases/latest/download/devcontainer-feature-c64-re-tools.tgz": {
 			"target": "claude",
 			"channel": "next"
 		}
