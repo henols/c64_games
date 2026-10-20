@@ -9,6 +9,7 @@
 		}
 	},
 	"runArgs": ["--add-host=host.docker.internal:host-gateway"],
+	"appPort": ["127.0.0.1:6465:6465"],
 	"mounts": [
 		"source=claude-code-config-${devcontainerId},target=/home/vscode/.claude,type=volume"
 	],
