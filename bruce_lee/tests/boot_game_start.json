@@ -66,7 +66,25 @@
    }
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
   },
   {
    "observe": "title",
@@ -129,6 +147,5 @@
     }
    ]
   }
- ],
- "note": "The original is the TBC release: its intro shows the Datasoft title picture and waits at $0872 for a key. The rebuild is build/bruce_lee_boot_TBC.prg (src/boot.asm built with --release TBC, so its game bytes are the TBC bytes): the clean picture, then a key starts the loader. Both sides get the same key: the original at its wait $0872, the rebuild 5 frames after boot_wait ($08BF), which empties the key queue first. Build build/bruce_lee_boot_TBC.prg first. The default build differs from TBC only in the 47 bytes of the PROTECTION patches. The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
+ ]
 }

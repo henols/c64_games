@@ -354,6 +354,5 @@
    ],
    "screen": {}
   }
- ],
- "note": "The stack area $01C0-$01FF is not compared: below the stack pointer it holds stale return addresses from the crack intro, whose timing depends on when the host types SPACE."
+ ]
 }

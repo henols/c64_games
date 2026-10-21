@@ -51,6 +51,15 @@
    "frames": 60
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$08c2"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
    "write": {
     "address": "key_code",
     "data": "05"
@@ -123,6 +132,15 @@
      "size": 4096
     }
    ]
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$08c2"
+    },
+    "timeoutFrames": 300
+   }
   },
   {
    "write": {
@@ -199,6 +217,15 @@
    ]
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$08c2"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
    "write": {
     "address": "key_code",
     "data": "2a"
@@ -212,6 +239,15 @@
   },
   {
    "frames": 80
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$08c2"
+    },
+    "timeoutFrames": 300
+   }
   },
   {
    "write": {
@@ -288,6 +324,15 @@
    ]
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$08c2"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
    "write": {
     "address": "key_code",
     "data": "aa"
@@ -301,6 +346,15 @@
   },
   {
    "frames": 80
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$08c2"
+    },
+    "timeoutFrames": 300
+   }
   },
   {
    "write": {
@@ -376,6 +430,5 @@
     }
    ]
   }
- ],
- "note": "The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
+ ]
 }

@@ -401,6 +401,5 @@
     }
    ]
   }
- ],
- "note": "The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
+ ]
 }

@@ -101,6 +101,5 @@
   {
    "screen": "title"
   }
- ],
- "note": "Build build/bruce_lee_boot.prg from src/boot.asm (the default build) first. The picture is the clean Datasoft title picture of src/title_picture.kla. A key in the KERNAL queue ends the wait before the 10 seconds."
+ ]
 }

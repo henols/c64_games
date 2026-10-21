@@ -82,15 +82,24 @@
    }
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "frames": 100
   },
   {
    "runUntil": {
     "target": {
-     "kind": "address",
-     "address": "title_menu_loop"
+     "kind": "raster",
+     "line": 0
     },
-    "timeoutFrames": 60
+    "timeoutFrames": 2
    }
   },
   {
@@ -2155,6 +2164,5 @@
     }
    ]
   }
- ],
- "note": "The original is the TBC release (original/bruce_lee_tbc.prg): its game bytes are the default build without the protection patches, because the default build has the TBC state of CRACK_DIABOLO, FIX_RAM_TEST_BYTE and RUN_STATE. Its intro (the Datasoft title picture) empties the key buffer at $0870 and waits at $0872 for a key. The 47 bytes that the PROTECTION patches change are excluded; $0000-$0002 are not compared. Build build/bruce_lee_loader.prg from src/loader.asm (the default build) first. The leftover blocks that the game image leaves out are not compared (tests/leftovers_unused.json covers them)."
+ ]
 }

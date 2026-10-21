@@ -8,7 +8,6 @@
   "program": "original/bruce_lee.prg",
   "symbols": "knowledge"
  },
- "note": "Both sides run the original file; the rebuild side fills the leftover blocks with $A5 at the game entry. The filled blocks, the stack tail $01C0-$01FF and the I/O area are not compared.",
  "steps": [
   {
    "frames": 150

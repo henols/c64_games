@@ -1,6 +1,6 @@
 # Bruce Lee: the releases
 
-The project has three cracked releases of *Bruce Lee*: SAEGER, TBC and DC. No uncracked copy of the Datasoft release is in the project. This page tells where each release comes from and what each crack added. It tells what the crackers did with the copy protection, and which traces of other people the files hold. It also lists each byte where the game differs between the releases, and the switch that gives that byte in the rebuild. A preservation project can use it to identify a copy and to build each release again.
+The project has three cracked releases of *Bruce Lee*: SAEGER, TBC and DC. No uncracked copy of the Datasoft release is in the project. This page tells where each release comes from and what each crack added. It tells what the crackers did with the copy protection, and which traces the cracks and other people left in the program. It also lists each byte where the game differs between the releases, and the switch that gives that byte in the rebuild. A preservation project can use it to identify a copy and to build each release again.
 
 **Conventions.**
 - Addresses are C64 addresses. Names are the names of the knowledge.
@@ -47,32 +47,19 @@ These parts of the original release are missing:
 
 ## The cracks
 
-The three cracks start in a different way, but all three end in the same relocator at `$C000`. The relocator puts the game at its address and starts it. The diagram shows the stages that c64-unpacker found in each file (**Observed**: the `stages` of each `image.json`, and runs to `$0400` in the emulator).
+Each crack adds an intro and a mover in front of the game. The intros and the movers are different in each release, so each group wrote its own. All three cracks end in the same relocator at `$C000`. It moves the game into place and starts it (**Observed**: the stages of each `image.json`, and runs to `$0400` in the emulator). This page does not describe the crack code, because it is not part of the program.
 
-~~~mermaid
-flowchart TB
-  S["SAEGER: intro, waits for SPACE"] --> SM["SAEGER mover"]
-  T0["TBC: copier at $0100"] --> T1["TBC intro: title picture, waits for a key"]
-  T1 --> TM["TBC mover at $089C"]
-  D0["DC: decruncher at $0152"] --> D1["DC intro: DC-011/P, hit any key"]
-  SM --> R["Relocator at $C000"]
-  TM --> R
-  D1 --> R
-  R --> G["The game: cold_start"]
-~~~
+- **SAEGER.** The file is not packed. The intro shows "CRACKED IN OKTOBER 1984 BY SAEGER SOFT GROUP" and waits for SPACE.
+- **TBC.** The file is not packed. The intro shows the Datasoft title picture with "CRACKED BY TBC" and waits for a key.
+- **DC.** TCS-CRUNCH packs the file. The intro shows "DC-011/P" and "hit any key", and waits for a key.
 
-### The SAEGER crack
+**The relocator is crack code.** It is the same in the three releases (**Observed**: `$C000-$C1FF` is equal in the three captures). It starts from the layout of a single file, with the game at `$0900`. It writes again the marks that the protected loader left. Thus it comes from the first crack, the image that the three releases share (**Conclusion**).
 
-The SAEGER file is not packed. Its intro shows "CRACKED IN OKTOBER 1984 BY SAEGER SOFT GROUP" and waits for SPACE. Then a mover copies parts of the file to `$C000-$C1FF`, `$CF00-$CFFF`, `$E000-$F5FF` and `$FE00-$FFFF`. The mover then jumps to the relocator at `$C000` (**Observed**: stage 0 starts at `$0871`, runs 604 frames, and writes these ranges).
+**Two parts outside the game are original.** These parts are the encoded last stage of the protected loader at `$C13C` and the title picture of TBC. The relocator copies the loader stage to `$033C-$03FE` (see "The original"). The other bytes outside the game and the leftovers are copies that the relocation left (**Observed**: a byte compare of the three captures). The game does not need `$A000-$A9FF` (**Observed**: `tests/crack_leftover_a000.json` writes `$A5` over the 2,560 bytes and gives PASS).
 
-### The TBC crack
+### The title picture
 
-The TBC file is not packed. It is 2,316 bytes longer than the SAEGER file. It runs in three stages (**Observed**: the stages of the capture and a run):
-1. A copier at `$0100` moves the file into place in 288 frames.
-2. The intro shows the Datasoft title picture with "CRACKED BY TBC". It waits at `$0872` for a key through the KERNAL keyboard buffer.
-3. A mover at `$089C` copies `$A500`, `$A600`, `$A700`, `$BE00` and `$BF00` to `$C000`, `$C100`, `$CF00`, `$FE00` and `$FF00`. Then it jumps to the relocator.
-
-The title picture is not crack work. It is the Datasoft title picture, and only TBC holds it. TBC changed it in two ways: it wrote "CRACKED BY TBC" into the bitmap, and it gave all cells the screen colours `$CE`. The intro plays no music: the SID volume is 0, and the IRQ vector stays at `$EA31` (**Observed**). The rebuild shows the clean picture at the start. See "The boot" in the [README](../README.md#the-rebuild).
+The title picture is not crack work. It is the Datasoft title picture, and only TBC holds it. TBC changed it in two ways. It wrote "CRACKED BY TBC" into the bitmap, and it gave all cells the screen colours `$CE`. The intro plays no music (**Observed**). The rebuild shows the clean picture at the start. See "The boot" in the [README](../README.md#the-rebuild).
 
 ![The title picture in the TBC intro](images/screens/title_picture_tbc.png)
 
@@ -80,37 +67,9 @@ The picture of the rebuild, with the TBC text removed and the colours of the ori
 
 ![The clean title picture of the rebuild](images/screens/title_picture.png)
 
-### The DC crack
-
-The DC file is the only packed release. Its BASIC line names the packer "TCS-CRUNCH". It runs in these stages (**Observed**: the stages of the capture and a run):
-1. A decruncher at `$0152` unpacks `$0801-$BF35` in 240 frames.
-2. The intro at `$0847` shows "DC-011/P" and "hit any key". It waits for a key.
-3. The intro copies the game parts to `$C000-$C200`, `$CF00-$CFFF`, `$E000-$F200` and `$FFFA-$FFFF`. A stage at `$033C` then runs the relocator.
-
-**DC lost the demo input.** The packed file holds the game only up to `$F200`. So [`demo_input_stream` `$F300`](../src/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF`. The DC file also does not hold the tape tools at `$FE00-$FFF9` (**Observed**: byte compare of the captures).
-
-In the DC release, the attract demo gives Bruce no input. The demo ends at his first lost fall and then shows the title. **Observed**: a run of the DC release went from [`start_attract_demo` `$0531`](../src/title_demo_start.asm#L32) to [`lose_fall` `$1818`](../src/lose_fall_game_over.asm#L14) and then to the title.
-
-### The relocator at `$C000`
-
-The relocator is the same in the three releases (**Observed**: `$C000-$C1FF` is equal in the three captures). It does these steps (**Code**: a disassembly of the capture):
-1. It blanks the screen.
-2. It sets the CPU port `$01` = `$36`.
-3. It writes the loader marks of the original loader: an RTS at `$0080`, `$02` = `$32`, `$03FF` = 0 and `$00` = `$EF`.
-4. It sets the NMI vector to an RTI at `$0301`, so the RESTORE key does nothing. It sets the BASIC main vector at `$0302` to `$0400`.
-5. It copies `$C13C-$C1FF` to `$033C-$03FF`. That is the encoded last stage of the original loader.
-6. It moves 166 pages from `$0900` down to `$0400`, so the game fills `$0400-$A9FF`.
-7. It jumps through `($C0B0)` to `cold_start`.
-
-The relocator is crack code from the first crack, not code of the original release (**Conclusion**). It starts from the layout of a single file, with the game at `$0900`, and it writes again the marks that the protected loader left. The intros and the movers differ in each release, so each group wrote its own. Two parts of the stages are original: the encoded loader stage at `$C13C` and the title picture of TBC. The other bytes outside the game and the leftovers are copies that the relocation left. In TBC, some are remains of the picture (**Observed**: a byte compare of the three captures).
-
-The relocator hides its code with `$80` bytes between the instructions. `$80` is an undocumented two-byte NOP, so a plain disassembly shows wrong instructions (**Code**).
-
-The relocator and the copies in `$A000-$A9FF` are almost the same in TBC and SAEGER. They differ only in the copies of the music state and in 49 bytes at `$A400-$A430` (**Observed**: byte compare of the captures). DC holds other bytes at `$A000`, where its decruncher worked. The game does not need `$A000-$A9FF` (**Observed**: `tests/crack_leftover_a000.json` writes `$A5` over the 2,560 bytes and gives PASS).
-
 ### Trainers and changed texts
 
-**No release has a trainer or a cheat.** None of the differences of the game bytes is code that acts as a cheat (**Observed**: the byte compare). The only changed text in the game bytes is the DIABOLO edit in SAEGER (see "Traces of other people"). TBC and DC change no text of the game. Each crack shows its own texts only in its intro.
+**No release has a trainer or a cheat.** None of the differences of the game bytes is code that acts as a cheat (**Observed**: the byte compare). The only changed text in the game bytes is the DIABOLO edit in SAEGER (see "The traces in the program"). TBC and DC change no text of the game. Each crack shows its own texts only in its intro.
 
 ### How the cracks dealt with the protection
 
@@ -122,9 +81,9 @@ The original game holds eleven checks of three loader marks and of a key page. T
 
 All three releases still have every check. The switch `PROTECTION` is on in the three releases and off in the default build (**Observed**: `knowledge.ts switches`).
 
-## Traces of other people
+## The traces in the program
 
-The files hold traces of people other than the authors and the three named groups. The traces show that the cracks did not start from a fresh copy of the original.
+The files hold traces of the cracks in the program, and traces of people other than the authors and the three named groups. The traces show that the cracks did not start from a fresh copy of the original.
 
 ### The DIABOLO edit
 
@@ -142,17 +101,15 @@ The files hold traces of people other than the authors and the three named group
 
 ### The tape tools at `$FE00`
 
-**SAEGER and TBC hold tape tools at `$FE00-$FFF9`.** The bytes are equal in the two captures. DC does not hold them (**Observed**: byte compare). The game does not use them (**Observed**: `tests/leftovers_unused.json` writes `$A5` over all leftover blocks and gives PASS). The knowledge keeps them as `tape_turbo_install` in bank5 at `$FE00`.
+**SAEGER and TBC hold tape tools at `$FE00-$FFF9`.** The bytes are equal in the two captures. DC does not hold them (**Observed**: byte compare). The game does not use them (**Observed**: `tests/leftovers_unused.json` writes `$A5` over all leftover blocks and gives PASS). The code installs a tape turbo loader through the KERNAL LOAD vector (**Code**: a disassembly of space bank5). The knowledge keeps it as `tape_turbo_install` in bank5 at `$FE00`.
 
-The code at `$FE00` installs a tape turbo loader (**Code**: a disassembly of space bank5):
-1. It copies a loader to `$02A7-$02FF` and an interrupt routine to `$0334-$03FF`.
-2. It points the KERNAL LOAD vector at `$0330` to `$02A7`.
-3. The loader takes the normal LOAD for each device other than the tape. For the tape, it calls the KERNAL routine that waits for the PLAY key.
-4. The interrupt routine reads CIA 1 timer A on each pulse of the tape. It changes the border colour on each pulse, and it builds the bytes from the pulse lengths.
+The tools are not part of the game or of the relocator. They were in the memory of the machine when somebody saved the image that TBC and SAEGER share. Thus that image probably went through a machine with a tape turbo (**Conclusion**).
 
-Next to the loader, `$FF00` holds the bytes of a BASIC line `SYS 2061` and small routines. These routines copy 7 pages from `$0800` to `$F900`, and they swap 6 pages of `$CA00` and `$F900` (**Code**).
+### The lost demo input of DC
 
-The tools are not part of the game or of the relocator. They were in the memory of the machine when somebody saved the image that TBC and SAEGER share. So that image probably went through a machine with a tape turbo (**Conclusion**).
+**DC lost the demo input.** The packed file holds the game only up to `$F200`. Thus [`demo_input_stream` `$F300`](../src/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF` (**Observed**: byte compare of the captures).
+
+In the DC release, the attract demo gives Bruce no input. The demo stops at his first lost fall and then shows the title. **Observed**: a run of the DC release went from [`start_attract_demo` `$0531`](../src/title_demo_start.asm#L32) to [`lose_fall` `$1818`](../src/lose_fall_game_over.asm#L14) and then to the title. Thus a preservation project must not use the DC file as the source of the demo input.
 
 ## The differences
 

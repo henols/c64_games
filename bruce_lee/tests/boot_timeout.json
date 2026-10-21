@@ -42,6 +42,5 @@
   {
    "screen": "title"
   }
- ],
- "note": "Build build/bruce_lee_boot.prg from src/boot.asm (the default build) first. The boot waits 500 frames (PAL) from the start of the wait; 450 frames after the autostart the picture still shows."
+ ]
 }

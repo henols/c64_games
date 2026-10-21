@@ -1864,6 +1864,5 @@
     }
    ]
   }
- ],
- "note": "Each room is entered from the main loop at its start point (spawn_a_x/spawn_a_y). Checkpoint _drawn is 20 frames after the draw, _later 200 frames after that, when the room frame handler and the enemies have run."
+ ]
 }

@@ -142,33 +142,31 @@ The order of the rooms and the conditions that open each way are on [game_flow.m
 
 ## Releases and cracks
 
-Three cracks of the game are in the project. All three come from the same cracked image: the game bytes are the same except for three small changes.
+Three cracks of the game are in the project. All three come from one cracked image. Their game bytes are the same, except for the traces below.
 
-| Label | File | Crack |
+| Label | File | SHA-256 of the file |
 |---|---|---|
-| SAEGER (base) | `original/saeger.d64`, file `BRUCE LEE` | "CRACKED IN OKTOBER 1984 BY SAEGER SOFT GROUP": an intro that waits for SPACE, a mover and a relocator. Not packed. |
-| TBC | `original/bruce_lee_tbc.prg` | "CRACKED BY TBC": the Datasoft title picture as the intro, a mover and the same relocator. Not packed. |
-| DC | `original/danish.d64`, file `BRUCE LEE   (DC)` | Danish Crackers "DC-011/P": packed with TCS-CRUNCH, with an intro and the same relocator. |
+| SAEGER (base) | `original/saeger.d64`, file `BRUCE LEE` (`original/bruce_lee.prg`) | `032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590` |
+| TBC | `original/bruce_lee_tbc.prg` | `0ed44d52101414928872eddbe1220427f90cbaf129aa41b3d81ba18909b1d597` |
+| DC | `original/danish.d64`, file `BRUCE LEE   (DC)` (`original/bruce_lee_dc.prg`) | `331fe97e73f8c77624242b4da3029efcb9199ffa184d6cd95220a60311efdaf4` |
 
-The SAEGER image carries the edit "DIABOLO  PRESENTS". Someone saved it from a game that ran. So SSG released again an image that another cracker changed before. TBC and DC have the text and the bytes from before a run (**Conclusion**). SAEGER and TBC also hold the same tape turbo tools at `$FE00`, and DC does not hold them (**Observed**). No crack removed the copy protection checks. Each relocator sets again the marks that the original loader left.
+- **SAEGER.** Saeger Soft Group, October 1984. It adds an intro that waits for SPACE, a mover and a relocator. The file is not packed. Its game bytes are different from TBC in 76 bytes: message `$62`, the byte at `$9B00` and the music state.
+- **TBC.** It adds an intro with the Datasoft title picture, a mover and the same relocator. The file is not packed. It changed no byte of the game.
+- **DC.** Danish Crackers, "DC-011/P". It adds an intro and the same relocator, and TCS-CRUNCH packs the file. It changed no byte of the game, but the file does not hold the demo input.
 
-**The stages before the game are crack code, with two original parts.** The intro and the mover are different in each release, so each group wrote them. The relocator at `$C000` is the same in all three releases. It starts from the layout of a single file, with the game at `$0900`. It turns off the RESTORE key and writes the marks of the protected loader again. So it comes from the first crack, the image that the three releases share (**Conclusion**). Two parts are original: the encoded last stage of the protected loader at `$C13C`, and the title picture. The other bytes outside the game and the leftovers are copies that the relocation left. In TBC, some are remains of the picture (**Observed**: a byte compare of the three captures).
+No crack removed a copy protection check. The common relocator writes again the marks of the original loader (**Observed**: the byte compare, and runs of the title, the demo and the game).
 
-**The title picture.** The Datasoft release showed a title picture before the game. It shows Bruce Lee, the name of the game, "PROGRAMMED BY RON J FORTIER", "GRAPHIC ART BY KELLY DAY", the Chinese name and "Datasoft Inc.". Only TBC holds it:
+**SAEGER: the edit of another cracker.** [`msg_presents` `$4770`](src/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in SAEGER and "DATASOFT PRESENTS" in TBC and DC (**Observed**: a byte compare of the releases). No code prints this message (**Code**). Thus a cracker who signed as Diabolo edited the image first, and SSG released that copy later (**Conclusion**). The text identifies a copy of the SAEGER line. The switch `CRACK_DIABOLO` gives the text in the rebuild.
 
-- TBC shows the picture in its intro. It writes "CRACKED BY TBC" into the bitmap. It gives each cell the same screen colours (`$CE`), so the Chinese name shows in light blue. The intro plays no music. **Observed**: a run of the TBC intro.
-- SAEGER and DC do not hold the picture. DC does not hold it after its decruncher either. **Observed**: a search of the files, the disk images, the captures and the memory of the DC intro.
-- The picture is in the TBC file at `$C000-$DFFF`. The intro copies it to `$E000`, and the game then writes over it. Thus the game does not show it again. **Code**.
+**SAEGER: a dump of a game that ran.** The music variables of SAEGER hold the state after a tune. TBC and DC hold the values from before a run (**Observed**: a byte compare). `$9B00` holds the `$55` of the KERNAL RAM test. Thus somebody reset a running game and saved its memory (**Conclusion**). The game writes each music byte before it reads it, so the music state changes nothing (**Code**. **Observed**: a compare of 900 frames). But [`build_double_height_font` `$4892`](src/draw_helpers.asm#L51) reads `$9B00` at the cold start (**Observed**: a watchpoint). Thus SAEGER builds character `$60` of the wizard charset with a different top row. The switch `FIX_RAM_TEST_BYTE` gives the clean byte.
 
-The clean picture, as the rebuild shows it at the start (**Observed**: `tests/boot_title_picture.json`):
+**SAEGER and TBC: tape tools in memory.** The two captures hold the same tape turbo tools at `$FE00-$FFF9`, and DC does not hold them (**Observed**: a byte compare). The game does not use them (**Observed**: `tests/leftovers_unused.json`). Thus the image of SAEGER and TBC went through a machine with a tape turbo (**Conclusion**).
 
-![The Datasoft title picture of the rebuild](docs/images/screens/title_picture.png)
+**DC: the demo input is lost.** The packed DC file holds the game only up to `$F200`. Thus [`demo_input_stream` `$F300`](src/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF` (**Observed**: a byte compare). In the DC release, the attract demo gives Bruce no input. The demo stops at his first lost fall (**Observed**: a run of the DC release). Do not use the DC file as the source of the demo input.
 
-The same picture in the TBC intro has "CRACKED BY TBC" under the blocks. The Chinese name is light blue (**Observed**: a run of the TBC intro):
+**TBC: the title picture.** Only the TBC intro holds the Datasoft title picture. TBC wrote "CRACKED BY TBC" into the bitmap and gave each cell the same screen colours (**Observed**: a run of the TBC intro). The game itself never shows the picture. A preservation project needs the TBC file for the picture. The rebuild shows a clean copy of it at the start (see "The boot" below).
 
-![The title picture in the TBC intro](docs/images/screens/title_picture_tbc.png)
-
-The details, the hashes of the files and each difference are on [releases.md](docs/releases.md).
+The details, the hashes of the disk images and each different byte are on [releases.md](docs/releases.md).
 
 ## The rebuild
 
@@ -205,6 +203,10 @@ The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033
 2. It waits for a key, for the fire button of port 1 or port 2, or for 10 seconds. The original release showed the picture while it loaded the game, so the game also starts with no input.
 3. It moves the loader to `$0801` and starts it. The mover runs at `$033C`, and the loader then writes its entry state there.
 
+The clean picture, as the rebuild shows it at the start (**Observed**: `tests/boot_title_picture.json`):
+
+![The Datasoft title picture of the rebuild](docs/images/screens/title_picture.png)
+
 With `TITLE_PICTURE` = 0, the boot only starts the loader.
 
 **The tests.** The scenarios in [tests/](tests/) run the original disk file and `src/loader.prg` side by side. They compare memory, the VIC-II and the screen:
@@ -214,7 +216,7 @@ With `TITLE_PICTURE` = 0, the boot only starts the loader.
 - `wizard_and_ending`
 - `all_rooms`: the picture, the VIC-II, VIC bank 2 and colour RAM of each of the 20 rooms
 
-`no_protection` and `all_rooms_no_protection` run the TBC release against the default loader. They destroy the protection data. The default build then runs like the original and draws all 20 rooms like the original. The recording `tests/recordings/first-rooms` replays on both loaders. [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest.
+`no_protection` and `all_rooms_no_protection` run the TBC release against the default loader. They destroy the protection data. The default build then runs like the original and draws all 20 rooms like the original. The recording `tests/recordings/first-rooms` replays on both loaders. [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest. [tests/README.md](tests/README.md) gives the conditions of each test and the parts that it does not compare.
 
 The boot has four tests. `boot_title_picture`, `boot_fire` and `boot_timeout` are runs with expected values on `build/bruce_lee_boot.prg`. They check the bitmap, the screen, the colour RAM and the VIC-II registers of the picture. Then they start the game with a key, with the fire button of port 2, or with no input. `boot_game_start` runs the TBC release against `build/bruce_lee_boot_TBC.prg` (`--release TBC`). After the picture and a key, the title screen, the menu state and the memory are the same.
 
