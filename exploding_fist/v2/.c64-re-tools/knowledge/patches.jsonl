@@ -1,0 +1,1 @@
+{"id":"20261021T004949.631-358f1v/1","space":"c64","start":"$2cae","end":"$2cb0","switch":"PROTECTION","code":"lda #$00","comment":"The check passes: A = 0 and Z set, as with $dd0e = 0.","origin":"llm","added":"20261021T004949.631-358f1v","closed":null}

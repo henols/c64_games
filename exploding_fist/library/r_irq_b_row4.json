@@ -1,0 +1,34 @@
+{
+  "name": "r_irq_b_row4",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$28eb"},
+  "length": 57,
+  "bytes": [
+    "2c19d030034cc82948a9da8d07d08d09",
+    "d08d0bd0a94a8dfbcfa94b8dfccfa94c",
+    "8dfdcfa9018d19d0a9ff8d12d0a9948d",
+    "feffa9298dffff6840"
+  ],
+  "instructions": [0,3,5,8,9,11,14,17,20,22,25,27,30,32,35,37,40,42,45,47,50,52,55,56],
+  "relocations": [],
+  "variable": [1,2,6,7,12,13,15,16,18,19,23,24,28,29,33,34,38,39,43,44,48,49,53,54],
+  "symbols": [
+    {"at":0,"name":"irq_b_row4","kind":"routine"},
+    {"at":8,"name":"irq_b_row4_vic","kind":"label"},
+    {"at":21,"name":"irq_b_row4_ptr_left","kind":"variable"},
+    {"at":26,"name":"irq_b_row4_ptr_mid","kind":"variable"},
+    {"at":31,"name":"irq_b_row4_ptr_right","kind":"variable"}
+  ],
+  "regions": [
+    {"start":0,"end":56,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Raster IRQ at line $d9 that shows a 4th sprite row for group B at Y $da. row4_irq_vector selects it when only group B is not at Y $a0. The pointers come from row4_ptr_* (patched at $2b20)."},
+    {"at":5,"placement":"side","text":"Not a VIC IRQ: a CIA1 IRQ for the sample player"},
+    {"at":9,"placement":"side","text":"Fixed Y of the 4th sprite row"},
+    {"at":20,"placement":"side","text":"Patched: row4_ptr_left of the group B fighter"},
+    {"at":25,"placement":"side","text":"Patched: row4_ptr_mid of the group B fighter"},
+    {"at":30,"placement":"side","text":"Patched: row4_ptr_right of the group B fighter"}
+  ],
+  "references": [],
+  "operands": []
+}

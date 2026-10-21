@@ -1,0 +1,52 @@
+{
+  "name": "dev_bull_test",
+  "title": "Unreferenced development code: a single-fighter loop with a charging bull",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1354"},
+  "length": 192,
+  "bytes": [
+    "a011a9009902008810fa60205f22b558",
+    "20252420b72220382420812360a93e85",
+    "5fa9508561a900854885408569853ca9",
+    "01853a8556a20020263060a9408552a9",
+    "508562a9b08560a91c853ba900853d85",
+    "418549a9098523a201202630ad1ed0ad",
+    "12d0c9fe90f9a53bc91df007ad1ed029",
+    "18d020a2008652205f13a9408552e820",
+    "2630a54ff008a91c853ba900853da560",
+    "d0cd60a546c90dd021a56038e55fc91a",
+    "9018c91fb014a01ea20920431b88d0f8",
+    "a91d853ba900853df0b9a9168554d0b3"
+  ],
+  "instructions": [0,2,4,7,8,10,11,14,16,19,22,25,28,29,31,33,35,37,39,41,43,45,47,49,51,53,55,58,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,92,95,98,100,102,104,106,108,111,113,115,117,119,122,124,126,127,130,132,134,136,138,140,142,144,146,147,149,151,153,155,156,158,160,162,164,166,168,170,173,174,176,178,180,182,184,186,188,190],
+  "relocations": [
+    {"at":120,"size":"word","value":11}
+  ],
+  "variable": [5,6,12,13,15,17,18,20,21,23,24,26,27,32,36,40,42,44,46,50,52,56,57,62,66,70,74,78,80,82,86,90,91,93,94,96,97,103,109,110,118,125,128,129,131,137,141,143,148,154,157,171,172,179,183,189],
+  "symbols": [
+    {"at":0,"name":"dev_clear_part_ptrs","kind":"routine"},
+    {"at":4,"name":"dev_clear_loop","kind":"label"},
+    {"at":11,"name":"dev_update_fighter","kind":"routine"},
+    {"at":29,"name":"dev_setup_fighter0","kind":"routine"},
+    {"at":59,"name":"dev_bull_test","kind":"routine"},
+    {"at":95,"name":"dev_bull_frame_loop","kind":"label"},
+    {"at":115,"name":"dev_bull_update","kind":"label"},
+    {"at":142,"name":"dev_bull_check_end","kind":"label"},
+    {"at":147,"name":"dev_bull_contact","kind":"label"},
+    {"at":168,"name":"dev_bull_score_loop","kind":"label"},
+    {"at":186,"name":"dev_bull_knockdown","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":191,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Unused development code, $1354-$1413. No code references it. Here: LDY #$11 loop that clears fighter_part_ptrs $02-$13, so both fighters show the blank sprite."},
+    {"at":11,"placement":"line","text":"Development code: fighter update without the hit test, the back input fix-up and the front fighter choice. JSR $225f, $2425, $22b7, $2438, $2381."},
+    {"at":29,"placement":"line","text":"Development code: puts fighter 0 alone at x $3e on the ground, facing right, in move and animation 1 (stand), and steps it once."},
+    {"at":59,"placement":"line","text":"Development code: a bull (animation $1c, frames $3b-$3f, shape_page_offset $40) walks in from x $b0 as fighter 1. A hit with frame $0d at distance $1a-$1e scores 3000."},
+    {"at":95,"placement":"line","text":"Development code: frame loop of the bull test. It waits for raster line $fe and tests the sprite collision of sprites 3 and 4."},
+    {"at":115,"placement":"line","text":"Development code: updates fighter 0 with offset 0 and steps the bull with offset $40. It ends when the bull reaches x 0."},
+    {"at":147,"placement":"line","text":"Development code: a contact. Fighter 0 in frame $0d at distance $1a-$1e scores 30 x 100 and stops the bull (animation $1d); else hit reaction $16."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,1320 @@
+{
+  "registers": {
+    "pc": "$115a",
+    "a": 0,
+    "x": 3,
+    "y": 0,
+    "sp": 250,
+    "flags": {
+      "n": false,
+      "v": true,
+      "b": false,
+      "d": false,
+      "i": false,
+      "z": true,
+      "c": false
+    }
+  },
+  "cpuPort": {
+    "$00": 47,
+    "$01": 55
+  },
+  "pages": {
+    "$0000": "00370faab191b3222200004c00ff00020000000000001916000a76a30000000000000108b3bd0000000000010868036803680300a000a000a000ff000000000000000800000000240008000000000000190000034c0000000000000000000000000a76a31900000000000000000000760080a3e67ad002e67bad0008c93ab00ac920f0ef38e93038e9d060804fc7525840ff000055ff0000000003000000000000d6b955ff000000000000000000680300003c03000000050868085c020000000000a001084000000b000b400c0c2000000004000027009300848484848484848585858585858686868686868687878787878700d8000000000000f0fff0ff20",
+    "$0100": "3338393131003030303000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7d7dea1c050ea8eda8ed0fa8ed0fee42f35302f34c03a779a69ce3",
+    "$0200": "a25ca002a90520bdffeaeaeaeaa908aaa820baff20c0ffa20820c6ff20e4ff85fb20e4ff85fc20e4ff85fd20e4ff85feee20d0a00020e4ff91fbe6fbd002e6fca5fcc5fed0eaa5fbc5fdd0e4a90820c3ff20ccff684cb302000800004a2c502c520000080000000000000000006800000000000000000000000000000000000000000800a0000ec6040a80040a000048eb00000000000000000000000000000000000000000001ad20d048a9008d20d04c00028d20d0ee5c026000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "$0300": "8be350037ca51aa70d8386ae000000004c48b20031eac49947fe4af391f20ef250f233f357f1caf1edf63ef12ff366fea5f4edf5000000000000000020a702ad11d029ef8d11d020a70220a7024c6003a900859d20a7022088c020a7024c00c0a9008d0edd4c5a110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "io": {
+    "vic": {
+      "from": "$d000",
+      "bytes": "00000000000000000000000000000000002b8f000000d8003971f00000000000f3f1f1f2f3f4f0f1f2f3f4f5f6f7fc"
+    },
+    "sid": {
+      "from": "$d400",
+      "bytes": "0000000000000000000000000000000000000000000000000f00000000"
+    },
+    "cia1": {
+      "from": "$dc00",
+      "bytes": "7fffff0007004b030000000100014109"
+    },
+    "cia2": {
+      "from": "$dd00",
+      "bytes": "c0ff3f00ffffffff0000000100000008"
+    }
+  },
+  "cia": {
+    "cia1": {
+      "latchA": 8,
+      "latchB": 1089,
+      "interruptMask": 2
+    },
+    "cia2": {
+      "latchA": 65535,
+      "latchB": 65535,
+      "interruptMask": 0
+    }
+  },
+  "vectors": {
+    "irq": "$ea31",
+    "brk": "$99c4",
+    "nmi": "$fe47",
+    "ram": {
+      "nmi": "$0333",
+      "reset": "$3730",
+      "irq": "$3737"
+    },
+    "rom": {
+      "nmi": "$fe43",
+      "reset": "$fce2",
+      "irq": "$ff48"
+    }
+  },
+  "differsFromReset": [
+    {
+      "address": "$0002",
+      "entry": 15,
+      "reset": 0
+    },
+    {
+      "address": "$000b",
+      "entry": 76,
+      "reset": 0
+    },
+    {
+      "address": "$000f",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$0022",
+      "entry": 1,
+      "reset": 118
+    },
+    {
+      "address": "$0023",
+      "entry": 8,
+      "reset": 163
+    },
+    {
+      "address": "$002d",
+      "entry": 104,
+      "reset": 3
+    },
+    {
+      "address": "$002e",
+      "entry": 3,
+      "reset": 8
+    },
+    {
+      "address": "$002f",
+      "entry": 104,
+      "reset": 3
+    },
+    {
+      "address": "$0030",
+      "entry": 3,
+      "reset": 8
+    },
+    {
+      "address": "$0031",
+      "entry": 104,
+      "reset": 3
+    },
+    {
+      "address": "$0032",
+      "entry": 3,
+      "reset": 8
+    },
+    {
+      "address": "$0036",
+      "entry": 160,
+      "reset": 0
+    },
+    {
+      "address": "$003a",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0049",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$0050",
+      "entry": 25,
+      "reset": 0
+    },
+    {
+      "address": "$005d",
+      "entry": 0,
+      "reset": 252
+    },
+    {
+      "address": "$0066",
+      "entry": 0,
+      "reset": 32
+    },
+    {
+      "address": "$0069",
+      "entry": 0,
+      "reset": 128
+    },
+    {
+      "address": "$006d",
+      "entry": 0,
+      "reset": 4
+    },
+    {
+      "address": "$0090",
+      "entry": 64,
+      "reset": 0
+    },
+    {
+      "address": "$0094",
+      "entry": 85,
+      "reset": 0
+    },
+    {
+      "address": "$0095",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$009d",
+      "entry": 0,
+      "reset": 128
+    },
+    {
+      "address": "$00a1",
+      "entry": 214,
+      "reset": 0
+    },
+    {
+      "address": "$00a2",
+      "entry": 185,
+      "reset": 117
+    },
+    {
+      "address": "$00a3",
+      "entry": 85,
+      "reset": 0
+    },
+    {
+      "address": "$00a4",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$00ae",
+      "entry": 104,
+      "reset": 0
+    },
+    {
+      "address": "$00af",
+      "entry": 3,
+      "reset": 0
+    },
+    {
+      "address": "$00b7",
+      "entry": 5,
+      "reset": 0
+    },
+    {
+      "address": "$00b8",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$00b9",
+      "entry": 104,
+      "reset": 0
+    },
+    {
+      "address": "$00ba",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$00bb",
+      "entry": 92,
+      "reset": 0
+    },
+    {
+      "address": "$00bc",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$00c3",
+      "entry": 1,
+      "reset": 48
+    },
+    {
+      "address": "$00c4",
+      "entry": 8,
+      "reset": 253
+    },
+    {
+      "address": "$00c8",
+      "entry": 11,
+      "reset": 0
+    },
+    {
+      "address": "$00c9",
+      "entry": 0,
+      "reset": 6
+    },
+    {
+      "address": "$00ca",
+      "entry": 11,
+      "reset": 0
+    },
+    {
+      "address": "$00cc",
+      "entry": 12,
+      "reset": 0
+    },
+    {
+      "address": "$00cd",
+      "entry": 12,
+      "reset": 10
+    },
+    {
+      "address": "$00d1",
+      "entry": 0,
+      "reset": 240
+    },
+    {
+      "address": "$00d6",
+      "entry": 0,
+      "reset": 6
+    },
+    {
+      "address": "$00d7",
+      "entry": 147,
+      "reset": 10
+    },
+    {
+      "address": "$00f3",
+      "entry": 0,
+      "reset": 240
+    },
+    {
+      "address": "$00fb",
+      "entry": 240,
+      "reset": 0
+    },
+    {
+      "address": "$00fc",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$00fd",
+      "entry": 240,
+      "reset": 0
+    },
+    {
+      "address": "$00fe",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$01e6",
+      "entry": 125,
+      "reset": 234
+    },
+    {
+      "address": "$01e7",
+      "entry": 234,
+      "reset": 125
+    },
+    {
+      "address": "$01e8",
+      "entry": 28,
+      "reset": 234
+    },
+    {
+      "address": "$01e9",
+      "entry": 5,
+      "reset": 125
+    },
+    {
+      "address": "$01ea",
+      "entry": 14,
+      "reset": 234
+    },
+    {
+      "address": "$01eb",
+      "entry": 168,
+      "reset": 32
+    },
+    {
+      "address": "$01ec",
+      "entry": 237,
+      "reset": 125
+    },
+    {
+      "address": "$01ed",
+      "entry": 168,
+      "reset": 234
+    },
+    {
+      "address": "$01ee",
+      "entry": 237,
+      "reset": 10
+    },
+    {
+      "address": "$01ef",
+      "entry": 15,
+      "reset": 0
+    },
+    {
+      "address": "$01f0",
+      "entry": 168,
+      "reset": 0
+    },
+    {
+      "address": "$01f1",
+      "entry": 237,
+      "reset": 34
+    },
+    {
+      "address": "$01f2",
+      "entry": 15,
+      "reset": 205
+    },
+    {
+      "address": "$01f3",
+      "entry": 238,
+      "reset": 229
+    },
+    {
+      "address": "$01f4",
+      "entry": 66,
+      "reset": 0
+    },
+    {
+      "address": "$01f5",
+      "entry": 243,
+      "reset": 10
+    },
+    {
+      "address": "$01f6",
+      "entry": 83,
+      "reset": 20
+    },
+    {
+      "address": "$01f7",
+      "entry": 2,
+      "reset": 225
+    },
+    {
+      "address": "$01f8",
+      "entry": 243,
+      "reset": 100
+    },
+    {
+      "address": "$01f9",
+      "entry": 76,
+      "reset": 165
+    },
+    {
+      "address": "$01fa",
+      "entry": 3,
+      "reset": 133
+    },
+    {
+      "address": "$01fb",
+      "entry": 167,
+      "reset": 164
+    },
+    {
+      "address": "$0200",
+      "entry": 162,
+      "reset": 0
+    },
+    {
+      "address": "$0201",
+      "entry": 92,
+      "reset": 0
+    },
+    {
+      "address": "$0202",
+      "entry": 160,
+      "reset": 0
+    },
+    {
+      "address": "$0203",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$0204",
+      "entry": 169,
+      "reset": 0
+    },
+    {
+      "address": "$0205",
+      "entry": 5,
+      "reset": 0
+    },
+    {
+      "address": "$0206",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0207",
+      "entry": 189,
+      "reset": 0
+    },
+    {
+      "address": "$0208",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0209",
+      "entry": 234,
+      "reset": 0
+    },
+    {
+      "address": "$020a",
+      "entry": 234,
+      "reset": 0
+    },
+    {
+      "address": "$020b",
+      "entry": 234,
+      "reset": 0
+    },
+    {
+      "address": "$020c",
+      "entry": 234,
+      "reset": 0
+    },
+    {
+      "address": "$020d",
+      "entry": 169,
+      "reset": 0
+    },
+    {
+      "address": "$020e",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$020f",
+      "entry": 170,
+      "reset": 0
+    },
+    {
+      "address": "$0210",
+      "entry": 168,
+      "reset": 0
+    },
+    {
+      "address": "$0211",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0212",
+      "entry": 186,
+      "reset": 0
+    },
+    {
+      "address": "$0213",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0214",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0215",
+      "entry": 192,
+      "reset": 0
+    },
+    {
+      "address": "$0216",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0217",
+      "entry": 162,
+      "reset": 0
+    },
+    {
+      "address": "$0218",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$0219",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$021a",
+      "entry": 198,
+      "reset": 0
+    },
+    {
+      "address": "$021b",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$021c",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$021d",
+      "entry": 228,
+      "reset": 0
+    },
+    {
+      "address": "$021e",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$021f",
+      "entry": 133,
+      "reset": 0
+    },
+    {
+      "address": "$0220",
+      "entry": 251,
+      "reset": 0
+    },
+    {
+      "address": "$0221",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0222",
+      "entry": 228,
+      "reset": 0
+    },
+    {
+      "address": "$0223",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0224",
+      "entry": 133,
+      "reset": 0
+    },
+    {
+      "address": "$0225",
+      "entry": 252,
+      "reset": 0
+    },
+    {
+      "address": "$0226",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0227",
+      "entry": 228,
+      "reset": 0
+    },
+    {
+      "address": "$0228",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0229",
+      "entry": 133,
+      "reset": 0
+    },
+    {
+      "address": "$022a",
+      "entry": 253,
+      "reset": 0
+    },
+    {
+      "address": "$022b",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$022c",
+      "entry": 228,
+      "reset": 0
+    },
+    {
+      "address": "$022d",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$022e",
+      "entry": 133,
+      "reset": 0
+    },
+    {
+      "address": "$022f",
+      "entry": 254,
+      "reset": 0
+    },
+    {
+      "address": "$0230",
+      "entry": 238,
+      "reset": 0
+    },
+    {
+      "address": "$0231",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0232",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$0233",
+      "entry": 160,
+      "reset": 0
+    },
+    {
+      "address": "$0235",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0236",
+      "entry": 228,
+      "reset": 0
+    },
+    {
+      "address": "$0237",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0238",
+      "entry": 145,
+      "reset": 0
+    },
+    {
+      "address": "$0239",
+      "entry": 251,
+      "reset": 0
+    },
+    {
+      "address": "$023a",
+      "entry": 230,
+      "reset": 0
+    },
+    {
+      "address": "$023b",
+      "entry": 251,
+      "reset": 0
+    },
+    {
+      "address": "$023c",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$023d",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$023e",
+      "entry": 230,
+      "reset": 0
+    },
+    {
+      "address": "$023f",
+      "entry": 252,
+      "reset": 0
+    },
+    {
+      "address": "$0240",
+      "entry": 165,
+      "reset": 0
+    },
+    {
+      "address": "$0241",
+      "entry": 252,
+      "reset": 0
+    },
+    {
+      "address": "$0242",
+      "entry": 197,
+      "reset": 0
+    },
+    {
+      "address": "$0243",
+      "entry": 254,
+      "reset": 0
+    },
+    {
+      "address": "$0244",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$0245",
+      "entry": 234,
+      "reset": 0
+    },
+    {
+      "address": "$0246",
+      "entry": 165,
+      "reset": 0
+    },
+    {
+      "address": "$0247",
+      "entry": 251,
+      "reset": 0
+    },
+    {
+      "address": "$0248",
+      "entry": 197,
+      "reset": 0
+    },
+    {
+      "address": "$0249",
+      "entry": 253,
+      "reset": 0
+    },
+    {
+      "address": "$024a",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$024b",
+      "entry": 228,
+      "reset": 0
+    },
+    {
+      "address": "$024c",
+      "entry": 169,
+      "reset": 0
+    },
+    {
+      "address": "$024d",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$024e",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$024f",
+      "entry": 195,
+      "reset": 0
+    },
+    {
+      "address": "$0250",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0251",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0252",
+      "entry": 204,
+      "reset": 0
+    },
+    {
+      "address": "$0253",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$0254",
+      "entry": 104,
+      "reset": 0
+    },
+    {
+      "address": "$0255",
+      "entry": 76,
+      "reset": 0
+    },
+    {
+      "address": "$0256",
+      "entry": 179,
+      "reset": 0
+    },
+    {
+      "address": "$0257",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$0259",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$025c",
+      "entry": 74,
+      "reset": 0
+    },
+    {
+      "address": "$025d",
+      "entry": 44,
+      "reset": 0
+    },
+    {
+      "address": "$025e",
+      "entry": 80,
+      "reset": 0
+    },
+    {
+      "address": "$025f",
+      "entry": 44,
+      "reset": 0
+    },
+    {
+      "address": "$0260",
+      "entry": 82,
+      "reset": 0
+    },
+    {
+      "address": "$0263",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$026d",
+      "entry": 104,
+      "reset": 0
+    },
+    {
+      "address": "$0287",
+      "entry": 198,
+      "reset": 14
+    },
+    {
+      "address": "$028a",
+      "entry": 128,
+      "reset": 0
+    },
+    {
+      "address": "$02a7",
+      "entry": 173,
+      "reset": 0
+    },
+    {
+      "address": "$02a8",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$02a9",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$02aa",
+      "entry": 72,
+      "reset": 0
+    },
+    {
+      "address": "$02ab",
+      "entry": 169,
+      "reset": 0
+    },
+    {
+      "address": "$02ad",
+      "entry": 141,
+      "reset": 0
+    },
+    {
+      "address": "$02ae",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$02af",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$02b0",
+      "entry": 76,
+      "reset": 0
+    },
+    {
+      "address": "$02b2",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$02b3",
+      "entry": 141,
+      "reset": 0
+    },
+    {
+      "address": "$02b4",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$02b5",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$02b6",
+      "entry": 238,
+      "reset": 0
+    },
+    {
+      "address": "$02b7",
+      "entry": 92,
+      "reset": 0
+    },
+    {
+      "address": "$02b8",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$02b9",
+      "entry": 96,
+      "reset": 0
+    },
+    {
+      "address": "$0302",
+      "entry": 80,
+      "reset": 131
+    },
+    {
+      "address": "$0303",
+      "entry": 3,
+      "reset": 164
+    },
+    {
+      "address": "$0308",
+      "entry": 13,
+      "reset": 228
+    },
+    {
+      "address": "$0309",
+      "entry": 131,
+      "reset": 167
+    },
+    {
+      "address": "$0316",
+      "entry": 196,
+      "reset": 102
+    },
+    {
+      "address": "$0317",
+      "entry": 153,
+      "reset": 254
+    },
+    {
+      "address": "$033c",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$033d",
+      "entry": 167,
+      "reset": 0
+    },
+    {
+      "address": "$033e",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$033f",
+      "entry": 173,
+      "reset": 0
+    },
+    {
+      "address": "$0340",
+      "entry": 17,
+      "reset": 0
+    },
+    {
+      "address": "$0341",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$0342",
+      "entry": 41,
+      "reset": 0
+    },
+    {
+      "address": "$0343",
+      "entry": 239,
+      "reset": 0
+    },
+    {
+      "address": "$0344",
+      "entry": 141,
+      "reset": 0
+    },
+    {
+      "address": "$0345",
+      "entry": 17,
+      "reset": 0
+    },
+    {
+      "address": "$0346",
+      "entry": 208,
+      "reset": 0
+    },
+    {
+      "address": "$0347",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0348",
+      "entry": 167,
+      "reset": 0
+    },
+    {
+      "address": "$0349",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$034a",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$034b",
+      "entry": 167,
+      "reset": 0
+    },
+    {
+      "address": "$034c",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$034d",
+      "entry": 76,
+      "reset": 0
+    },
+    {
+      "address": "$034e",
+      "entry": 96,
+      "reset": 0
+    },
+    {
+      "address": "$034f",
+      "entry": 3,
+      "reset": 0
+    },
+    {
+      "address": "$0350",
+      "entry": 169,
+      "reset": 0
+    },
+    {
+      "address": "$0352",
+      "entry": 133,
+      "reset": 0
+    },
+    {
+      "address": "$0353",
+      "entry": 157,
+      "reset": 0
+    },
+    {
+      "address": "$0354",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0355",
+      "entry": 167,
+      "reset": 0
+    },
+    {
+      "address": "$0356",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$0357",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0358",
+      "entry": 136,
+      "reset": 0
+    },
+    {
+      "address": "$0359",
+      "entry": 192,
+      "reset": 0
+    },
+    {
+      "address": "$035a",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$035b",
+      "entry": 167,
+      "reset": 0
+    },
+    {
+      "address": "$035c",
+      "entry": 2,
+      "reset": 0
+    },
+    {
+      "address": "$035d",
+      "entry": 76,
+      "reset": 0
+    },
+    {
+      "address": "$035f",
+      "entry": 192,
+      "reset": 0
+    },
+    {
+      "address": "$0360",
+      "entry": 169,
+      "reset": 0
+    },
+    {
+      "address": "$0362",
+      "entry": 141,
+      "reset": 0
+    },
+    {
+      "address": "$0363",
+      "entry": 14,
+      "reset": 0
+    },
+    {
+      "address": "$0364",
+      "entry": 221,
+      "reset": 0
+    },
+    {
+      "address": "$0365",
+      "entry": 76,
+      "reset": 0
+    },
+    {
+      "address": "$0366",
+      "entry": 90,
+      "reset": 0
+    },
+    {
+      "address": "$0367",
+      "entry": 17,
+      "reset": 0
+    },
+    {
+      "address": "$d011",
+      "entry": 43,
+      "reset": 27
+    },
+    {
+      "address": "$d012",
+      "entry": 143,
+      "reset": 0
+    },
+    {
+      "address": "$d016",
+      "entry": 216,
+      "reset": 200
+    },
+    {
+      "address": "$d018",
+      "entry": 57,
+      "reset": 21
+    },
+    {
+      "address": "$d020",
+      "entry": 243,
+      "reset": 254
+    },
+    {
+      "address": "$d021",
+      "entry": 241,
+      "reset": 246
+    },
+    {
+      "address": "$d418",
+      "entry": 15,
+      "reset": 0
+    },
+    {
+      "address": "$dc04",
+      "entry": 7,
+      "reset": 5
+    },
+    {
+      "address": "$dc05",
+      "entry": 0,
+      "reset": 44
+    },
+    {
+      "address": "$dc06",
+      "entry": 75,
+      "reset": 255
+    },
+    {
+      "address": "$dc07",
+      "entry": 3,
+      "reset": 255
+    },
+    {
+      "address": "$dc0d",
+      "entry": 1,
+      "reset": 0
+    },
+    {
+      "address": "$dc0e",
+      "entry": 65,
+      "reset": 1
+    },
+    {
+      "address": "$dc0f",
+      "entry": 9,
+      "reset": 8
+    },
+    {
+      "address": "$dd00",
+      "entry": 192,
+      "reset": 151
+    },
+    {
+      "address": "$dd0e",
+      "entry": 0,
+      "reset": 8
+    }
+  ]
+}

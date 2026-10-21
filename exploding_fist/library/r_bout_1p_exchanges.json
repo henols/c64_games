@@ -1,0 +1,41 @@
+{
+  "name": "r_bout_1p_exchanges",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$175f"},
+  "length": 96,
+  "bytes": [
+    "209015304ca55445552910f020a554f0",
+    "0da20120171c204318b03c4c8c17a209",
+    "201a1ba20020171c204318b01ca5b1f0",
+    "cfa57fc580901bf0034ca317a5b2c5b3",
+    "9010f019a20020b71a201619208e1ca9",
+    "0160a20120b71a201619a90060a98160"
+  ],
+  "instructions": [0,3,5,7,9,11,13,15,17,19,22,25,27,30,32,35,37,40,43,45,47,49,51,53,55,57,60,62,64,66,68,70,73,76,79,81,82,84,87,90,92,93,95],
+  "relocations": [
+    {"at":28,"size":"word","value":45},
+    {"at":58,"size":"word","value":68}
+  ],
+  "variable": [1,2,6,8,14,20,21,23,24,33,34,38,39,41,42,46,50,52,61,63,71,72,74,75,77,78,85,86,88,89],
+  "symbols": [
+    {"at":0,"name":"bout_1p_exchanges","kind":"routine"},
+    {"at":13,"name":"bout_1p_one_hit","kind":"label"},
+    {"at":30,"name":"bout_1p_p1_scores","kind":"label"},
+    {"at":45,"name":"bout_1p_check_time","kind":"label"},
+    {"at":60,"name":"bout_1p_tie_break","kind":"label"},
+    {"at":68,"name":"bout_1p_won_decision","kind":"label"},
+    {"at":73,"name":"bout_1p_won","kind":"label"},
+    {"at":81,"name":"bout_1p_exit","kind":"label"},
+    {"at":82,"name":"bout_1p_lost_decision","kind":"label"},
+    {"at":87,"name":"bout_1p_lost","kind":"label"},
+    {"at":93,"name":"bout_1p_draw","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":95,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"One-player bout: exchanges until a fighter has 4 half points or the time ends. Returns A: 1 won, 0 lost, $81 draw, $80 key."},
+    {"at":19,"placement":"side","text":"Tie-break value of fighter 1, with the hit points of fighter 0."}
+  ],
+  "references": [],
+  "operands": []
+}

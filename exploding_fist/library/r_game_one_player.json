@@ -1,0 +1,34 @@
+{
+  "name": "r_game_one_player",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$16a9"},
+  "length": 116,
+  "bytes": [
+    "a90085a4855a85a920221da901855b85",
+    "a5a90285aaa20920811aa21920811aa9",
+    "209d2dcca58e858da9a085b4a9cc85b5",
+    "a20020aa1ca90285ffa900857f858085",
+    "b285b3a00020ec18a01d20ec18a93285",
+    "a6a91e85a7a90085b120291c20631a20",
+    "5f173027f02fc6aad0cfa90285aaa5a4",
+    "c916b02c"
+  ],
+  "instructions": [0,2,4,6,8,11,13,15,17,19,21,23,26,28,31,33,36,38,40,42,44,46,48,50,53,55,57,59,61,63,65,67,69,72,74,77,79,81,83,85,87,89,92,95,98,100,102,104,106,108,110,112,114],
+  "relocations": [],
+  "variable": [3,5,7,9,10,14,16,20,24,25,29,30,34,35,37,39,43,47,51,52,56,60,62,64,66,70,71,75,76,80,84,88,90,91,93,94,96,97,103,109,111],
+  "symbols": [
+    {"at":0,"name":"game_one_player","kind":"routine"},
+    {"at":57,"name":"game_1p_bout_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":115,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"One-player game against the computer from NOVICE up. Two won bouts give the next rank and a stronger opponent. Returns A = 0 after the lost bout."},
+    {"at":6,"placement":"side","text":"Rank index, also cpu_skill of fighter 1."},
+    {"at":31,"placement":"side","text":"Clears the last digit of the player 2 score."},
+    {"at":36,"placement":"side","text":"Seeds ai_random from the frame counter."},
+    {"at":112,"placement":"side","text":"The only rank limit: stage_counter $16, after 22 promotions."}
+  ],
+  "references": [],
+  "operands": []
+}

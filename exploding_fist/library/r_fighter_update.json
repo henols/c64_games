@@ -1,0 +1,31 @@
+{
+  "name": "r_fighter_update",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2233"},
+  "length": 44,
+  "bytes": [
+    "205924205f2220e42320b72220382420",
+    "8123ad1ed02907d00db456c011f008b9",
+    "7411f002862460a45e842460"
+  ],
+  "instructions": [0,3,6,9,12,15,18,21,23,25,27,29,31,34,36,38,39,41,43],
+  "relocations": [],
+  "variable": [1,2,4,5,7,8,10,11,13,14,16,17,19,20,26,32,33,37,40,42],
+  "symbols": [
+    {"at":0,"name":"fighter_update","kind":"routine"},
+    {"at":25,"name":"fighter_set_priority","kind":"label"},
+    {"at":38,"name":"fighter_update_done","kind":"label"},
+    {"at":39,"name":"fighter_opponent_in_front","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":43,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Updates fighter X for one frame: hit test, input, input fix-ups, move state, animation, end of animation, sprite priority. Called from the bout loop."},
+    {"at":18,"placement":"side","text":"Reading $d01e also clears it"},
+    {"at":23,"placement":"side","text":"Sprites touch: keep the priority"},
+    {"at":27,"placement":"side","text":"Move $11: the opponent goes in front"},
+    {"at":31,"placement":"side","text":"Attack move: this fighter goes in front"}
+  ],
+  "references": [],
+  "operands": []
+}

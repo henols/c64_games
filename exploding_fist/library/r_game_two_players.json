@@ -1,0 +1,37 @@
+{
+  "name": "r_game_two_players",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$161d"},
+  "length": 95,
+  "bytes": [
+    "a90085a4855a855b20221da00020ec18",
+    "a01d20ec18a90185a5a20920811aa219",
+    "20811aa90385ffa93285a6a91e85a7a9",
+    "0085b120291c20631a207c163020e6a4",
+    "a5a4c904d0e120981a1008202819a200",
+    "4c761620b71a20161920b81aa90060"
+  ],
+  "instructions": [0,2,4,6,8,11,13,16,18,21,23,25,27,30,32,35,37,39,41,43,45,47,49,51,54,57,60,62,64,66,68,70,73,75,78,80,83,86,89,92,94],
+  "relocations": [
+    {"at":81,"size":"word","value":89}
+  ],
+  "variable": [3,5,7,9,10,14,15,19,20,24,28,29,33,34,38,42,46,50,52,53,55,56,58,59,63,65,71,72,76,77,84,85,87,88,90,91],
+  "symbols": [
+    {"at":0,"name":"game_two_players","kind":"routine"},
+    {"at":39,"name":"game_2p_bout_loop","kind":"label"},
+    {"at":75,"name":"game_2p_draw","kind":"label"},
+    {"at":83,"name":"game_2p_winner","kind":"label"},
+    {"at":89,"name":"game_2p_high_score","kind":"label"},
+    {"at":94,"name":"game_2p_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":94,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Two-player game: 4 bouts of 30 seconds, one per scene, points only as score. The higher score wins and can set high_score_2p. Called by the title loop."},
+    {"at":70,"placement":"side","text":"Compares the score digits; X = winner, $80 = equal."},
+    {"at":75,"placement":"side","text":"Equal scores: both bow, and player 1's score goes to the high score test."},
+    {"at":83,"placement":"side","text":"Lone RTS with the winner in X."}
+  ],
+  "references": [],
+  "operands": []
+}

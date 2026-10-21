@@ -1,0 +1,23 @@
+{
+  "name": "r_dev_setup_fighter0",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1371"},
+  "length": 30,
+  "bytes": [
+    "a93e855fa9508561a900854885408569",
+    "853ca901853a8556a20020263060"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,29],
+  "relocations": [],
+  "variable": [3,7,11,13,15,17,21,23,27,28],
+  "symbols": [
+    {"at":0,"name":"dev_setup_fighter0","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":29,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Development code: puts fighter 0 alone at x $3e on the ground, facing right, in move and animation 1 (stand), and steps it once."}
+  ],
+  "references": [],
+  "operands": []
+}

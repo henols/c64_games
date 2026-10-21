@@ -1,0 +1,23 @@
+{
+  "name": "r_draw_yin_yang_half",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$18d7"},
+  "length": 21,
+  "bytes": [
+    "a9059903cca9069904cca907992bcca9",
+    "08992ccc60"
+  ],
+  "instructions": [0,2,5,7,10,12,15,17,20],
+  "relocations": [],
+  "variable": [3,4,8,9,13,14,18,19],
+  "symbols": [
+    {"at":0,"name":"draw_yin_yang_half","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":20,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Draws a half yin-yang symbol (characters 5-8, 2 x 2) at $cc03+Y. Called by add_half_points."}
+  ],
+  "references": [],
+  "operands": []
+}

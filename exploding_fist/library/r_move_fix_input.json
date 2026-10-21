@@ -1,0 +1,36 @@
+{
+  "name": "r_move_fix_input",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$23e4"},
+  "length": 84,
+  "bytes": [
+    "b558c903d03bb556c913f004c914d003",
+    "955860a45eb94000d026b96900d021b9",
+    "5600a8c910f019c90af015b97411f010",
+    "20d325f00ba45eb95600a8b98d119558",
+    "60c907d00eb556c904f008c907f004a9",
+    "18955860"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,19,21,24,26,29,31,34,35,37,39,41,43,46,48,51,53,55,58,59,62,64,65,67,69,71,73,75,77,79,81,83],
+  "relocations": [],
+  "variable": [1,7,17,20,22,23,27,28,32,33,44,45,49,50,54,56,57,60,61,63,70,82],
+  "symbols": [
+    {"at":0,"name":"move_fix_input","kind":"routine"},
+    {"at":16,"name":"fix_keep_block","kind":"label"},
+    {"at":19,"name":"fix_check_block","kind":"label"},
+    {"at":64,"name":"fix_input_done","kind":"label"},
+    {"at":65,"name":"fix_check_low_punch","kind":"label"},
+    {"at":83,"name":"fix_low_punch_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":83,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Changes fighter_input,x before the state machine. Back during an opponent attack in range becomes the matching block; down-forward from a stand becomes move $18."},
+    {"at":8,"placement":"side","text":"Already blocking: keep the block"},
+    {"at":35,"placement":"side","text":"Sweeps are not blocked"},
+    {"at":59,"placement":"side","text":"Block $13 or $14 for the opponent move"},
+    {"at":79,"placement":"side","text":"Down-forward outside a crouch: move $18"}
+  ],
+  "references": [],
+  "operands": []
+}

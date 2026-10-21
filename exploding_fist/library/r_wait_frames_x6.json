@@ -1,0 +1,25 @@
+{
+  "name": "r_wait_frames_x6",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1c77"},
+  "length": 23,
+  "bytes": [
+    "a006ad12d0c9fed0f9ad12d0c9fef0f9",
+    "88d0efcad0ea60"
+  ],
+  "instructions": [0,2,5,7,9,12,14,16,17,19,20,22],
+  "relocations": [],
+  "variable": [3,4,10,11],
+  "symbols": [
+    {"at":0,"name":"wait_frames_x6","kind":"routine"},
+    {"at":2,"name":"wait_line_reach","kind":"label"},
+    {"at":9,"name":"wait_line_leave","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":22,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Waits X times 6 frames: it counts passes of raster line $fe. Called by time_bonus_count."}
+  ],
+  "references": [],
+  "operands": []
+}

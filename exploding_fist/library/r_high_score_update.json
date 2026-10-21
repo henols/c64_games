@@ -1,0 +1,32 @@
+{
+  "name": "r_high_score_update",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1ab8"},
+  "length": 63,
+  "bytes": [
+    "a5a3d015a99785b4a91285b5a20920f7",
+    "1ab005a209200c1b60a99d85b4a91285",
+    "b5e000d00da20920f71ab0eca209200c",
+    "1b60a21920f71ab0dfa219200c1b60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,17,19,21,24,25,27,29,31,33,35,37,39,42,44,46,49,50,52,55,57,59,62],
+  "relocations": [],
+  "variable": [1,7,11,15,16,22,23,28,32,40,41,47,48,53,54,60,61],
+  "symbols": [
+    {"at":0,"name":"high_score_update","kind":"routine"},
+    {"at":19,"name":"high_score_set_1p","kind":"label"},
+    {"at":24,"name":"high_score_exit","kind":"label"},
+    {"at":25,"name":"high_score_2p_mode","kind":"label"},
+    {"at":37,"name":"high_score_2p_p1","kind":"label"},
+    {"at":44,"name":"high_score_set_2p_p1","kind":"label"},
+    {"at":50,"name":"high_score_2p_p2","kind":"label"},
+    {"at":57,"name":"high_score_set_2p_p2","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":62,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies the score of the player in X to the high score of the mode when it is higher. Called at the end of a game."}
+  ],
+  "references": [],
+  "operands": []
+}

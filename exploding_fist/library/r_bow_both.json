@@ -1,0 +1,25 @@
+{
+  "name": "r_bow_both",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1928"},
+  "length": 32,
+  "bytes": [
+    "a200200719a201200719a200202630a2",
+    "01202630ad12d0c9fe90f9b54ef0eb60"
+  ],
+  "instructions": [0,2,5,7,10,12,15,17,20,23,25,27,29,31],
+  "relocations": [],
+  "variable": [3,4,8,9,13,14,18,19,21,22,28],
+  "symbols": [
+    {"at":0,"name":"bow_both","kind":"routine"},
+    {"at":10,"name":"bow_both_step","kind":"label"},
+    {"at":20,"name":"bow_both_wait","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":31,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Both fighters bow; waits for the end of the bow of fighter 1. Called after a draw."}
+  ],
+  "references": [],
+  "operands": []
+}

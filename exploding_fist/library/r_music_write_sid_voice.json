@@ -1,0 +1,26 @@
+{
+  "name": "r_music_write_sid_voice",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$0bb3"},
+  "length": 43,
+  "bytes": [
+    "bdf20c9900d4bdf50c9901d4bdec0c99",
+    "02d4bdef0c9903d4bd9b0c9905d4bd9e",
+    "0c9906d4bd980c9904d460"
+  ],
+  "instructions": [0,3,6,9,12,15,18,21,24,27,30,33,36,39,42],
+  "relocations": [],
+  "variable": [1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40,41],
+  "symbols": [
+    {"at":0,"name":"music_write_sid_voice","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":42,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Writes frequency, pulse width, ADSR and control of voice X to the SID voice at $d400+Y. Called from $0aba with Y = 14, 7 and 0."}
+  ],
+  "references": [],
+  "operands": [
+    {"at":3,"select":"value","symbol":"FRELO1"}
+  ]
+}

@@ -1,0 +1,75 @@
+{
+ "name": "The unused bull test of version I: a stub at $0200 calls dev_clear_part_ptrs, dev_setup_fighter0 and dev_bull_test from a running demo bout",
+ "start": {
+  "program": "original/fist_v1_2010.prg"
+ },
+ "symbols": "knowledge",
+ "steps": [
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "bout_frame_loop"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "write": {
+    "address": "$0200",
+    "data": "205413207113208f134c0902"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$0200"
+   }
+  },
+  {
+   "frames": 90
+  },
+  {
+   "screen": "bull_charge"
+  },
+  {
+   "observe": "charge",
+   "memory": [
+    {
+     "address": "shape_page_offset",
+     "size": 1
+    },
+    {
+     "address": "anim_number",
+     "size": 2
+    },
+    {
+     "address": "fighter_x",
+     "size": 2
+    }
+   ]
+  },
+  {
+   "frames": 310
+  },
+  {
+   "screen": "bull_knockdown"
+  },
+  {
+   "observe": "knockdown",
+   "memory": [
+    {
+     "address": "hit_reaction",
+     "size": 2
+    },
+    {
+     "address": "anim_number",
+     "size": 2
+    },
+    {
+     "address": "fighter_x",
+     "size": 2
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "r_irq_ab_row4",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2924"},
+  "length": 81,
+  "bytes": [
+    "2c19d030034cc82948a9da8d01d08d03",
+    "d08d05d08d07d08d09d08d0bd0a94a8d",
+    "f8cfa94b8df9cfa94c8dfacfa94a8dfb",
+    "cfa94b8dfccfa94c8dfdcfa9018d19d0",
+    "a9ff8d12d0a9948dfeffa9298dffff68",
+    "40"
+  ],
+  "instructions": [0,3,5,8,9,11,14,17,20,23,26,29,31,34,36,39,41,44,46,49,51,54,56,59,61,64,66,69,71,74,76,79,80],
+  "relocations": [],
+  "variable": [1,2,6,7,12,13,15,16,18,19,21,22,24,25,27,28,32,33,37,38,42,43,47,48,52,53,57,58,62,63,67,68,72,73,77,78],
+  "symbols": [
+    {"at":0,"name":"irq_ab_row4","kind":"routine"},
+    {"at":8,"name":"irq_ab_row4_vic","kind":"label"},
+    {"at":30,"name":"irq_ab_row4_a_ptr_left","kind":"variable"},
+    {"at":35,"name":"irq_ab_row4_a_ptr_mid","kind":"variable"},
+    {"at":40,"name":"irq_ab_row4_a_ptr_right","kind":"variable"},
+    {"at":45,"name":"irq_ab_row4_b_ptr_left","kind":"variable"},
+    {"at":50,"name":"irq_ab_row4_b_ptr_mid","kind":"variable"},
+    {"at":55,"name":"irq_ab_row4_b_ptr_right","kind":"variable"}
+  ],
+  "regions": [
+    {"start":0,"end":80,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Raster IRQ at line $d9 that shows a 4th sprite row for both groups at Y $da. row4_irq_vector selects it when neither group is at Y $a0. The pointers come from row4_ptr_* (patched at $2b00)."},
+    {"at":5,"placement":"side","text":"Not a VIC IRQ: a CIA1 IRQ for the sample player"},
+    {"at":9,"placement":"side","text":"Fixed Y of the 4th sprite row"},
+    {"at":29,"placement":"side","text":"Patched: row4_ptr_left of the group A fighter"},
+    {"at":34,"placement":"side","text":"Patched: row4_ptr_mid of the group A fighter"},
+    {"at":39,"placement":"side","text":"Patched: row4_ptr_right of the group A fighter"},
+    {"at":44,"placement":"side","text":"Patched: row4_ptr_left of the group B fighter"},
+    {"at":49,"placement":"side","text":"Patched: row4_ptr_mid of the group B fighter"},
+    {"at":54,"placement":"side","text":"Patched: row4_ptr_right of the group B fighter"}
+  ],
+  "references": [],
+  "operands": []
+}

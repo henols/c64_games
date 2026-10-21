@@ -1,0 +1,24 @@
+{
+  "name": "r_ai_spec_foot_sweep",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$20e1"},
+  "length": 18,
+  "bytes": [
+    "b556c90af007a90a9558958560a90095",
+    "9260"
+  ],
+  "instructions": [0,2,4,6,8,10,12,13,15,17],
+  "relocations": [],
+  "variable": [1,9,11,16],
+  "symbols": [
+    {"at":0,"name":"ai_spec_foot_sweep","kind":"routine"},
+    {"at":13,"name":"ai_spec_sweep_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Special action 2, against moves $07, $0c and $11: foot sweep $0a. The action ends when the move $0a starts."}
+  ],
+  "references": [],
+  "operands": []
+}

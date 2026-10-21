@@ -1,0 +1,27 @@
+{
+  "name": "r_ai_spec_random_punch",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$20b7"},
+  "length": 20,
+  "bytes": [
+    "20f31f3004a906d002a91895859558a9",
+    "00959260"
+  ],
+  "instructions": [0,3,5,7,9,11,13,15,17,19],
+  "relocations": [],
+  "variable": [1,2,12,14,18],
+  "symbols": [
+    {"at":0,"name":"ai_spec_random_punch","kind":"routine"},
+    {"at":3,"name":"ai_spec_pick_punch","kind":"label"},
+    {"at":5,"name":"ai_spec_high_punch","kind":"label"},
+    {"at":9,"name":"ai_spec_low_punch","kind":"label"},
+    {"at":11,"name":"ai_spec_store_punch","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":19,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Special action 6, against move $18: move $06 or move $18, half the time each."}
+  ],
+  "references": [],
+  "operands": []
+}

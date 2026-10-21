@@ -1,0 +1,58 @@
+{
+ "name": "Protection trap, original: CIA2 control A holds $08 (as after a KERNAL reset) during the demo",
+ "start": {
+  "program": "original/fist_v2_scc.prg"
+ },
+ "steps": [
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$115a"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "write": {
+    "address": "$dd0e",
+    "data": "08"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$2cae"
+    },
+    "timeoutFrames": 6000
+   }
+  },
+  {
+   "observe": "first_point",
+   "registers": true,
+   "memory": [
+    {
+     "address": "$dd0e",
+     "size": 1
+    }
+   ]
+  },
+  {
+   "frames": 600
+  },
+  {
+   "observe": "after",
+   "registers": true,
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    }
+   ]
+  },
+  {
+   "screen": "after"
+  }
+ ]
+}

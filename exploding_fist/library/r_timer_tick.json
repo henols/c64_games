@@ -1,0 +1,37 @@
+{
+  "name": "r_timer_tick",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1bdd"},
+  "length": 58,
+  "bytes": [
+    "c6a6d035a93285a6ad3cccc930d01fad",
+    "3bccc931f00bce3bcca9398d3ccc4c0e",
+    "1ca9208d3bcca9398d3ccc4c0e1cce3c",
+    "ccc6a7d004a90185b160"
+  ],
+  "instructions": [0,2,4,6,8,11,13,15,18,20,22,25,27,30,33,35,38,40,43,46,49,51,53,55,57],
+  "relocations": [
+    {"at":31,"size":"word","value":49},
+    {"at":44,"size":"word","value":49}
+  ],
+  "variable": [1,7,9,10,16,17,23,24,28,29,36,37,41,42,47,48,50,56],
+  "symbols": [
+    {"at":0,"name":"timer_tick","kind":"routine"},
+    {"at":4,"name":"timer_next_second","kind":"label"},
+    {"at":15,"name":"timer_units_zero","kind":"label"},
+    {"at":22,"name":"timer_dec_tens","kind":"label"},
+    {"at":33,"name":"timer_tens_blank","kind":"label"},
+    {"at":46,"name":"timer_dec_units","kind":"label"},
+    {"at":49,"name":"timer_dec_seconds","kind":"label"},
+    {"at":53,"name":"timer_set_time_up","kind":"label"},
+    {"at":57,"name":"timer_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":57,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Counts one frame of the bout clock. Each 50 frames it decrements the digits at $cc3b and timer_seconds; at 0 it sets time_up. Called by bout_loop and time_bonus_count."},
+    {"at":33,"placement":"side","text":"From 10 to 9: the tens digit becomes a space."}
+  ],
+  "references": [],
+  "operands": []
+}

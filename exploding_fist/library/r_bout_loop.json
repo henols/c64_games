@@ -1,0 +1,40 @@
+{
+  "name": "r_bout_loop",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1590"},
+  "length": 119,
+  "bytes": [
+    "a9008552203615a200202630a2012026",
+    "3058ad15d0093f8d15d0ad12d0c9fd90",
+    "f9a201a900855e203322a200e65e2033",
+    "222013162048193037a553d033a554d0",
+    "0da555d009a556c917f00320dd1ba5b1",
+    "f0c8a93785468547a95085618562a9a0",
+    "85168517a200206d31a201206d31a901",
+    "602014144ca719"
+  ],
+  "instructions": [0,2,4,7,9,12,14,17,18,21,23,26,29,31,33,35,37,39,42,44,46,49,52,55,57,59,61,63,65,67,69,71,73,75,78,80,82,84,86,88,90,92,94,96,98,100,102,105,107,110,112,113,116],
+  "relocations": [],
+  "variable": [3,5,6,10,11,15,16,19,20,24,25,27,28,38,40,41,45,47,48,50,51,53,54,58,62,66,70,76,77,79,85,87,91,93,97,99,103,104,108,109,114,115,117,118],
+  "symbols": [
+    {"at":0,"name":"bout_loop","kind":"routine"},
+    {"at":26,"name":"bout_frame_loop","kind":"label"},
+    {"at":78,"name":"bout_check_time_up","kind":"label"},
+    {"at":112,"name":"bout_loop_exit","kind":"label"},
+    {"at":113,"name":"cold_start","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":118,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Plays one exchange from the start positions until a fighter falls, the time ends or a start key comes. Returns A: $80 key, the reaction move, or 1 time up."},
+    {"at":0,"placement":"side","text":"Only the bull test sets the offset nonzero."},
+    {"at":29,"placement":"side","text":"Waits for raster line $fd, then does one frame."},
+    {"at":55,"placement":"side","text":"A start key in the demo ends the bout with A = $80."},
+    {"at":57,"placement":"side","text":"A fall ends the exchange."},
+    {"at":69,"placement":"side","text":"The clock runs only after fighter 0 leaves the starting move $17."},
+    {"at":82,"placement":"side","text":"Time up: both fighters show frame $37 on the ground."},
+    {"at":113,"placement":"line","text":"Cold start: initialises the machine and enters the title loop."}
+  ],
+  "references": [],
+  "operands": []
+}

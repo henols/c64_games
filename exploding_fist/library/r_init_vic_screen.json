@@ -1,0 +1,34 @@
+{
+  "name": "r_init_vic_screen",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$14a7"},
+  "length": 143,
+  "bytes": [
+    "a9008d00dda9388d18d0200816a9018d",
+    "21d0a9038d20d0a90385a2a93b8d11d0",
+    "a9ff8d12d0a9188d16d0a9008d25d0a9",
+    "0a8d26d0a9018522a9028523a9ff8d1c",
+    "d08d15d0204514202b14203814a9008d",
+    "1bd0a9008d22d0a9018d23d0a90e8d03",
+    "d88d04d88d06d88d07d88d2bd88d2cd8",
+    "8d2ed88d2fd88d20d88d21d88d23d88d",
+    "24d88d48d88d49d88d4bd88d4cd860"
+  ],
+  "instructions": [0,2,5,7,10,13,15,18,20,23,25,27,29,32,34,37,39,42,44,47,49,52,54,56,58,60,62,65,68,71,74,77,79,82,84,87,89,92,94,97,100,103,106,109,112,115,118,121,124,127,130,133,136,139,142],
+  "relocations": [],
+  "variable": [3,4,8,9,11,12,16,17,21,22,26,30,31,35,36,40,41,45,46,50,51,55,59,63,64,66,67,69,70,72,73,75,76,80,81,85,86,90,91,95,96,98,99,101,102,104,105,107,108,110,111,113,114,116,117,119,120,122,123,125,126,128,129,131,132,134,135,137,138,140,141],
+  "symbols": [
+    {"at":0,"name":"init_vic_screen","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":142,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets VIC bank 3, screen $cc00 with bitmap and characters at $e000, colours, multicolour sprites and the panel. Called by init_game_state."},
+    {"at":5,"placement":"side","text":"Screen $cc00, bitmap and character set $e000."},
+    {"at":27,"placement":"side","text":"Bitmap mode; the raster IRQs switch to text for the panel."},
+    {"at":37,"placement":"side","text":"Multicolour mode for the bitmap and the panel characters."},
+    {"at":92,"placement":"side","text":"Colour $0e (multicolour) on the 16 cells of the four yin-yang symbols."}
+  ],
+  "references": [],
+  "operands": []
+}

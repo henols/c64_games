@@ -1,0 +1,65 @@
+{
+  "capture": "tune_start",
+  "entry": "$9000",
+  "segments": [
+    {
+      "start": "$2000",
+      "end": "$35ff",
+      "file": "segment-2000-35ff.prg"
+    },
+    {
+      "start": "$6000",
+      "end": "$870f",
+      "file": "segment-6000-870f.prg"
+    },
+    {
+      "start": "$9000",
+      "end": "$910f",
+      "file": "segment-9000-910f.prg"
+    },
+    {
+      "start": "$9800",
+      "end": "$9aff",
+      "file": "segment-9800-9aff.prg"
+    },
+    {
+      "start": "$c400",
+      "end": "$c435",
+      "file": "segment-c400-c435.prg"
+    }
+  ],
+  "excluded": [
+    {
+      "start": "$0400",
+      "end": "$08ff"
+    },
+    {
+      "start": "$c000",
+      "end": "$c3ff"
+    },
+    {
+      "start": "$cc00",
+      "end": "$cfff"
+    },
+    {
+      "start": "$e000",
+      "end": "$ffff"
+    }
+  ],
+  "vectors": {
+    "irq": "$ea31",
+    "brk": "$fe66",
+    "nmi": "$fe47",
+    "ram": {
+      "nmi": "$ffff",
+      "reset": "$ffff",
+      "irq": "$0000"
+    },
+    "rom": {
+      "nmi": "$fe43",
+      "reset": "$fce2",
+      "irq": "$ff48"
+    }
+  },
+  "image": "image.bin"
+}

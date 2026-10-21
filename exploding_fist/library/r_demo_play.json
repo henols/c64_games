@@ -1,0 +1,29 @@
+{
+  "name": "r_demo_play",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$17bf"},
+  "length": 88,
+  "bytes": [
+    "a90085a420f31f2907690385a820f31f",
+    "2907690385a920221d20621ca901855a",
+    "855b85ffa900857f858085b285b3a000",
+    "20ec18a01d20ec18a93285a6a91e85a7",
+    "a90085b120291c20631a2017183008e6",
+    "a4a5a4c904d0cd60"
+  ],
+  "instructions": [0,2,4,7,9,11,13,16,18,20,22,25,28,30,32,34,36,38,40,42,44,46,48,51,53,56,58,60,62,64,66,68,71,74,77,79,81,83,85,87],
+  "relocations": [],
+  "variable": [3,5,6,12,14,15,21,23,24,26,27,31,33,35,39,41,43,45,49,50,54,55,59,63,67,69,70,72,73,75,76,80,82],
+  "symbols": [
+    {"at":0,"name":"demo_play","kind":"routine"},
+    {"at":36,"name":"demo_bout_loop","kind":"label"},
+    {"at":87,"name":"demo_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":87,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Attract demo: two computer fighters with random levels 3-11 fight 4 bouts, one per scene. Returns N set when a start key or fire ends it."}
+  ],
+  "references": [],
+  "operands": []
+}

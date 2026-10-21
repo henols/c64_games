@@ -1,0 +1,36 @@
+{
+  "name": "r_fighter_get_input",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$225f"},
+  "length": 56,
+  "bytes": [
+    "b554f003955860b55ad0034c70224c48",
+    "1da9008d02dcbd00dc48a9ff8d02dc68",
+    "291fa8b548f00b98290cc90cf0049849",
+    "0ca8b99722955860"
+  ],
+  "instructions": [0,2,4,6,7,9,11,14,17,19,22,25,26,28,31,32,34,35,37,39,40,42,44,46,47,49,50,53,55],
+  "relocations": [
+    {"at":12,"size":"word","value":17}
+  ],
+  "variable": [1,5,8,15,16,20,21,23,24,29,30,36,51,52,54],
+  "symbols": [
+    {"at":0,"name":"fighter_get_input","kind":"routine"},
+    {"at":7,"name":"input_check_cpu","kind":"label"},
+    {"at":14,"name":"input_from_ai","kind":"label"},
+    {"at":17,"name":"joystick_read_move","kind":"label"},
+    {"at":46,"name":"joystick_swap_sides","kind":"label"},
+    {"at":50,"name":"joystick_table_lookup","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":55,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets fighter_input,x: the hit reaction when the fighter is hit, else the AI or the joystick. Called from fighter_update."},
+    {"at":19,"placement":"side","text":"Port A as input for the read"},
+    {"at":22,"placement":"side","text":"$dc00 port 2 for fighter 0, $dc01 port 1 for fighter 1"},
+    {"at":28,"placement":"side","text":"Port A as output again (keyboard scan)"},
+    {"at":35,"placement":"side","text":"Facing left: swap left and right"}
+  ],
+  "references": [],
+  "operands": []
+}

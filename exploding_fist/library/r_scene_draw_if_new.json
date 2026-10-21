@@ -1,0 +1,25 @@
+{
+  "name": "r_scene_draw_if_new",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1a63"},
+  "length": 30,
+  "bytes": [
+    "a5a42903c5abf01585aba9038d902820",
+    "e21920ce1220f619a9018d902860"
+  ],
+  "instructions": [0,2,4,6,8,10,12,15,18,21,24,26,29],
+  "relocations": [],
+  "variable": [1,5,9,13,14,16,17,19,20,22,23,27,28],
+  "symbols": [
+    {"at":0,"name":"scene_draw_if_new","kind":"routine"},
+    {"at":29,"name":"scene_draw_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":29,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Draws scene stage_counter AND 3 when it is not on the screen: blank, unpack, maps. Called before each bout."},
+    {"at":10,"placement":"side","text":"Background 3 hides the bitmap area while it changes."}
+  ],
+  "references": [],
+  "operands": []
+}

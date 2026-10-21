@@ -1,0 +1,39 @@
+{
+  "name": "r_dev_bull_test",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$138f"},
+  "length": 133,
+  "bytes": [
+    "a9408552a9508562a9b08560a91c853b",
+    "a900853d85418549a9098523a2012026",
+    "30ad1ed0ad12d0c9fe90f9a53bc91df0",
+    "07ad1ed02918d020a2008652205f13a9",
+    "408552e8202630a54ff008a91c853ba9",
+    "00853da560d0cd60a546c90dd021a560",
+    "38e55fc91a9018c91fb014a01ea20920",
+    "431b88d0f8a91d853ba900853df0b9a9",
+    "168554d0b3"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,33,36,39,41,43,45,47,49,52,54,56,58,60,63,65,67,68,71,73,75,77,79,81,83,85,87,88,90,92,94,96,97,99,101,103,105,107,109,111,114,115,117,119,121,123,125,127,129,131],
+  "relocations": [],
+  "variable": [3,7,11,15,19,21,23,27,31,32,34,35,37,38,44,50,51,59,61,62,66,69,70,72,78,82,84,89,95,98,112,113,120,124,130],
+  "symbols": [
+    {"at":0,"name":"dev_bull_test","kind":"routine"},
+    {"at":36,"name":"dev_bull_frame_loop","kind":"label"},
+    {"at":56,"name":"dev_bull_update","kind":"label"},
+    {"at":83,"name":"dev_bull_check_end","kind":"label"},
+    {"at":88,"name":"dev_bull_contact","kind":"label"},
+    {"at":109,"name":"dev_bull_score_loop","kind":"label"},
+    {"at":127,"name":"dev_bull_knockdown","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":132,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Development code: a bull (animation $1c, frames $3b-$3f, shape_page_offset $40) walks in from x $b0 as fighter 1. A hit with frame $0d at distance $1a-$1e scores 3000."},
+    {"at":36,"placement":"line","text":"Development code: frame loop of the bull test. It waits for raster line $fe and tests the sprite collision of sprites 3 and 4."},
+    {"at":56,"placement":"line","text":"Development code: updates fighter 0 with offset 0 and steps the bull with offset $40. It ends when the bull reaches x 0."},
+    {"at":88,"placement":"line","text":"Development code: a contact. Fighter 0 in frame $0d at distance $1a-$1e scores 30 x 100 and stops the bull (animation $1d); else hit reaction $16."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "name": "demo, then a 1-player game with all 16 joystick moves until the game is over",
+  "program": "original/fist_v1_2010.prg",
+  "sha256": "e1e24e0537791191bccc6945205d512ee00b7d4315b3176bae2ab1dc5609579f",
+  "symbols": "none",
+  "load": false,
+  "compare": {
+    "checkpoint": "$1613",
+    "state": [
+      {
+        "address": "$5f",
+        "size": 4
+      },
+      {
+        "address": "$56",
+        "size": 2
+      },
+      {
+        "address": "$7f",
+        "size": 2
+      },
+      {
+        "address": "$a4",
+        "size": 6
+      }
+    ]
+  },
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$1957",
+      "addr": "$dc01",
+      "reads": 9603,
+      "rom": false
+    },
+    {
+      "site": "$1974",
+      "addr": "$dc00",
+      "reads": 2507,
+      "rom": false
+    },
+    {
+      "site": "$0dfc",
+      "addr": "$d41c",
+      "reads": 11025,
+      "rom": false
+    },
+    {
+      "site": "$0e02",
+      "addr": "$d41b",
+      "reads": 11025,
+      "rom": false
+    },
+    {
+      "site": "$2275",
+      "addr": "$dc00",
+      "reads": 6344,
+      "rom": false
+    },
+    {
+      "site": "$19d0",
+      "addr": "$dc00",
+      "reads": 2,
+      "rom": false
+    }
+  ],
+  "ticks": 227577168,
+  "hash": "0e5f4cb4"
+}

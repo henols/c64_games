@@ -1,0 +1,23 @@
+{
+  "name": "r_mux_patch_a_row2",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2f0c"},
+  "length": 18,
+  "bytes": [
+    "a620b5088d5926b50a8d5e26b50c8d63",
+    "2660"
+  ],
+  "instructions": [0,2,4,7,9,12,14,17],
+  "relocations": [],
+  "variable": [1,3,5,6,8,10,11,13,15,16],
+  "symbols": [
+    {"at":0,"name":"mux_patch_a_row2","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies the pointers of parts 3-5 (row 2) of the group A fighter into handler $2635 (sprites 0-2). Called from the layout code of irq_frame_start."}
+  ],
+  "references": [],
+  "operands": []
+}

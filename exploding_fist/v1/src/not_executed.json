@@ -1,0 +1,275 @@
+{
+  "revision": "20261021T021734.611-6rf0n2",
+  "instructions": 297,
+  "files": {
+    "music_driver.asm": 5,
+    "music_effects.asm": 1,
+    "dev_bull_test.asm": 1,
+    "init_bout_loop.asm": 1,
+    "game_modes.asm": 2,
+    "title_and_scene.asm": 3,
+    "score_and_timer.asm": 4,
+    "panel_texts.asm": 2,
+    "ai_opponent.asm": 2,
+    "fighter_moves.asm": 2,
+    "hit_test.asm": 3,
+    "irq_sprite_rows.asm": 8,
+    "irq_screen_split.asm": 6,
+    "sfx_sample_player.asm": 1,
+    "sprite_mux_plan.asm": 1
+  },
+  "ranges": [
+    {
+      "start": "$09a9",
+      "end": "$09ae",
+      "file": "music_driver.asm",
+      "routine": "music_play_frame"
+    },
+    {
+      "start": "$0a29",
+      "end": "$0a2b",
+      "file": "music_driver.asm",
+      "routine": "music_play_frame"
+    },
+    {
+      "start": "$0b89",
+      "end": "$0b8b",
+      "file": "music_driver.asm",
+      "routine": "music_play_frame"
+    },
+    {
+      "start": "$0c58",
+      "end": "$0c5d",
+      "file": "music_driver.asm",
+      "routine": "music_reset_voices"
+    },
+    {
+      "start": "$0c77",
+      "end": "$0c7f",
+      "file": "music_driver.asm",
+      "routine": "music_reset_voices"
+    },
+    {
+      "start": "$0ea0",
+      "end": "$0eb1",
+      "file": "music_effects.asm",
+      "routine": "music_update_filter"
+    },
+    {
+      "start": "$1354",
+      "end": "$1413",
+      "file": "dev_bull_test.asm",
+      "routine": "dev_clear_part_ptrs"
+    },
+    {
+      "start": "$14a6",
+      "end": "$14a6",
+      "file": "init_bout_loop.asm",
+      "routine": "reset_vector_rti"
+    },
+    {
+      "start": "$1668",
+      "end": "$166f",
+      "file": "game_modes.asm",
+      "routine": "game_two_players"
+    },
+    {
+      "start": "$1749",
+      "end": "$175e",
+      "file": "game_modes.asm",
+      "routine": "game_one_player"
+    },
+    {
+      "start": "$1981",
+      "end": "$19a0",
+      "file": "title_and_scene.asm",
+      "routine": "read_title_keys"
+    },
+    {
+      "start": "$19a4",
+      "end": "$19a6",
+      "file": "title_and_scene.asm",
+      "routine": "read_title_keys"
+    },
+    {
+      "start": "$19cc",
+      "end": "$19cc",
+      "file": "title_and_scene.asm",
+      "routine": "read_title_keys"
+    },
+    {
+      "start": "$1aae",
+      "end": "$1ab3",
+      "file": "score_and_timer.asm",
+      "routine": "score_compare_players"
+    },
+    {
+      "start": "$1add",
+      "end": "$1ae9",
+      "file": "score_and_timer.asm",
+      "routine": "high_score_update"
+    },
+    {
+      "start": "$1b0a",
+      "end": "$1b0a",
+      "file": "score_and_timer.asm",
+      "routine": "high_score_compare"
+    },
+    {
+      "start": "$1ba4",
+      "end": "$1bc1",
+      "file": "score_and_timer.asm",
+      "routine": "score_add_100"
+    },
+    {
+      "start": "$1c3e",
+      "end": "$1c3e",
+      "file": "panel_texts.asm",
+      "routine": "show_mode_text"
+    },
+    {
+      "start": "$1c53",
+      "end": "$1c61",
+      "file": "panel_texts.asm",
+      "routine": "show_mode_text"
+    },
+    {
+      "start": "$1f4f",
+      "end": "$1f5c",
+      "file": "ai_opponent.asm",
+      "routine": "ai_update"
+    },
+    {
+      "start": "$20cb",
+      "end": "$20e0",
+      "file": "ai_opponent.asm",
+      "routine": "ai_spec_sweep_by_facing"
+    },
+    {
+      "start": "$232d",
+      "end": "$2331",
+      "file": "fighter_moves.asm",
+      "routine": "move_update_state"
+    },
+    {
+      "start": "$237c",
+      "end": "$237d",
+      "file": "fighter_moves.asm",
+      "routine": "move_update_state"
+    },
+    {
+      "start": "$2580",
+      "end": "$2590",
+      "file": "hit_test.asm",
+      "routine": "hit_test"
+    },
+    {
+      "start": "$25d0",
+      "end": "$25d2",
+      "file": "hit_test.asm",
+      "routine": "hit_test"
+    },
+    {
+      "start": "$2632",
+      "end": "$2634",
+      "file": "hit_test.asm",
+      "routine": "hit_range_test"
+    },
+    {
+      "start": "$263a",
+      "end": "$263c",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_a_row2"
+    },
+    {
+      "start": "$2673",
+      "end": "$2675",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_a_row3"
+    },
+    {
+      "start": "$26ac",
+      "end": "$26ae",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_b_row2"
+    },
+    {
+      "start": "$26e6",
+      "end": "$26e8",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_b_row3"
+    },
+    {
+      "start": "$2720",
+      "end": "$2722",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_ab_row2"
+    },
+    {
+      "start": "$2771",
+      "end": "$2773",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_ab_row3"
+    },
+    {
+      "start": "$27c2",
+      "end": "$27c4",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_b2_a3"
+    },
+    {
+      "start": "$2818",
+      "end": "$281a",
+      "file": "irq_sprite_rows.asm",
+      "routine": "irq_a2_b3"
+    },
+    {
+      "start": "$286e",
+      "end": "$2870",
+      "file": "irq_screen_split.asm",
+      "routine": "irq_bitmap_on"
+    },
+    {
+      "start": "$28b7",
+      "end": "$28b9",
+      "file": "irq_screen_split.asm",
+      "routine": "irq_a_row4"
+    },
+    {
+      "start": "$28f0",
+      "end": "$28f2",
+      "file": "irq_screen_split.asm",
+      "routine": "irq_b_row4"
+    },
+    {
+      "start": "$2929",
+      "end": "$292b",
+      "file": "irq_screen_split.asm",
+      "routine": "irq_ab_row4"
+    },
+    {
+      "start": "$297a",
+      "end": "$297c",
+      "file": "irq_screen_split.asm",
+      "routine": "irq_no_row4"
+    },
+    {
+      "start": "$2999",
+      "end": "$299b",
+      "file": "irq_screen_split.asm",
+      "routine": "irq_frame_end"
+    },
+    {
+      "start": "$29c8",
+      "end": "$2a65",
+      "file": "sfx_sample_player.asm",
+      "routine": "sfx_sample_irq"
+    },
+    {
+      "start": "$2a6b",
+      "end": "$2a6d",
+      "file": "sprite_mux_plan.asm",
+      "routine": "irq_frame_start"
+    }
+  ]
+}

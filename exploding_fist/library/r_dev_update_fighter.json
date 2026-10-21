@@ -1,0 +1,23 @@
+{
+  "name": "r_dev_update_fighter",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$135f"},
+  "length": 18,
+  "bytes": [
+    "205f22b55820252420b7222038242081",
+    "2360"
+  ],
+  "instructions": [0,3,5,8,11,14,17],
+  "relocations": [],
+  "variable": [1,2,4,6,7,9,10,12,13,15,16],
+  "symbols": [
+    {"at":0,"name":"dev_update_fighter","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Development code: fighter update without the hit test, the back input fix-up and the front fighter choice. JSR $225f, $2425, $22b7, $2438, $2381."}
+  ],
+  "references": [],
+  "operands": []
+}

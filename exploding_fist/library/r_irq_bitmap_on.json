@@ -1,0 +1,39 @@
+{
+  "name": "r_irq_bitmap_on",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2869"},
+  "length": 60,
+  "bytes": [
+    "2c19d030034cc82948a9018d19d0a900",
+    "8d12d0a9008dfeffa9008dffffeaeaea",
+    "eaa93b8d11d0a9018d21d0a9bc8d06dd",
+    "a9168d07dda9098d0fdd6840"
+  ],
+  "instructions": [0,3,5,8,9,11,14,16,19,21,24,26,29,30,31,32,33,35,38,40,43,45,48,50,53,55,58,59],
+  "relocations": [],
+  "variable": [1,2,6,7,12,13,17,18,22,23,27,28,36,37,41,42,46,47,51,52,56,57],
+  "symbols": [
+    {"at":0,"name":"irq_bitmap_on","kind":"routine"},
+    {"at":8,"name":"irq_bitmap_on_vic","kind":"label"},
+    {"at":15,"name":"irq_bitmap_on_next_line","kind":"variable"},
+    {"at":20,"name":"irq_bitmap_on_next_lo","kind":"variable"},
+    {"at":25,"name":"irq_bitmap_on_next_hi","kind":"variable"},
+    {"at":39,"name":"irq_bitmap_on_bg_colour","kind":"variable"}
+  ],
+  "regions": [
+    {"start":0,"end":59,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Raster IRQ at line $5a, under the text rows of the score panel. It sets the first sprite row handler (patched). Then it switches to bitmap mode ($d011=$3b), sets the scene background colour and starts CIA2 timer B for the floor NMI."},
+    {"at":5,"placement":"side","text":"Not a VIC IRQ: a CIA1 IRQ for the sample player"},
+    {"at":14,"placement":"side","text":"Patched: raster line of the first row handler (first group_y + $14)"},
+    {"at":19,"placement":"side","text":"Patched: first row handler, low byte"},
+    {"at":24,"placement":"side","text":"Patched: first row handler, high byte"},
+    {"at":29,"placement":"side","text":"Four NOPs: delay before the $d011 write"},
+    {"at":33,"placement":"side","text":"Bitmap mode for the scene, from text row 5"},
+    {"at":38,"placement":"side","text":"Patched at $1a6f/$1a7d: 1 white, 3 while a scene is drawn"},
+    {"at":43,"placement":"side","text":"CIA2 timer B = $16bc (5820 cycles)"},
+    {"at":53,"placement":"side","text":"Start timer B, one-shot: NMI at the floor"}
+  ],
+  "references": [],
+  "operands": []
+}

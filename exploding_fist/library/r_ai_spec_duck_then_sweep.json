@@ -1,0 +1,29 @@
+{
+  "name": "r_ai_spec_duck_then_sweep",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2052"},
+  "length": 42,
+  "bytes": [
+    "a45eb5a8c9079019b94600c919f007a9",
+    "049558958560a90a95589585a9009592",
+    "60b95600c901d0e7f0ec"
+  ],
+  "instructions": [0,2,4,6,8,11,13,15,17,19,21,22,24,26,28,30,32,33,36,38,40],
+  "relocations": [],
+  "variable": [1,3,9,10,18,20,25,27,31,34,35],
+  "symbols": [
+    {"at":0,"name":"ai_spec_duck_then_sweep","kind":"routine"},
+    {"at":8,"name":"ai_spec_wait_frame","kind":"label"},
+    {"at":15,"name":"ai_spec_crouch_wait","kind":"label"},
+    {"at":22,"name":"ai_spec_sweep_now","kind":"label"},
+    {"at":33,"name":"ai_spec_wait_stand","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":41,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Special action 1, against a flying kick: crouch, then foot sweep. Level 7 and up sweeps at frame $19 of the opponent, lower levels when it stands again."},
+    {"at":40,"placement":"side","text":"Always taken"}
+  ],
+  "references": [],
+  "operands": []
+}

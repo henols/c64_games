@@ -1,0 +1,29 @@
+{
+  "name": "r_bout_demo_exchanges",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1817"},
+  "length": 44,
+  "bytes": [
+    "2090153018a55445552910f018a554f0",
+    "0da201204318900d201619a90060a200",
+    "204318b0f3a5b1f0d7a90060"
+  ],
+  "instructions": [0,3,5,7,9,11,13,15,17,19,22,24,27,29,30,32,35,37,39,41,43],
+  "relocations": [],
+  "variable": [1,2,6,8,14,20,21,25,26,33,34,38],
+  "symbols": [
+    {"at":0,"name":"bout_demo_exchanges","kind":"routine"},
+    {"at":13,"name":"bout_demo_one_hit","kind":"label"},
+    {"at":24,"name":"bout_demo_bow","kind":"label"},
+    {"at":29,"name":"bout_demo_exit","kind":"label"},
+    {"at":30,"name":"bout_demo_p1_scores","kind":"label"},
+    {"at":37,"name":"bout_demo_check_time","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":43,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"One demo bout: exchanges until a fighter has 4 half points or the time ends. No score. Returns A = 0, or $80 with N set on a start key."}
+  ],
+  "references": [],
+  "operands": []
+}

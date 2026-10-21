@@ -1,0 +1,45 @@
+{
+  "name": "r_print_rank_text",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1caa"},
+  "length": 120,
+  "bytes": [
+    "e000d00ba006b92d1d91b48810f860e0",
+    "0af05aa0008a18693091b4e001d00dc8",
+    "a95391b4a954c891b44c021de002d00d",
+    "c8a94e91b4c8a94491b44c021de003d0",
+    "0dc8a95291b4c8a94491b44c021da954",
+    "c891b4c8a94891b4a920c891b4c8a944",
+    "91b4c8a94191b4c8a94e91b460a007b9",
+    "341d91b48810f860"
+  ],
+  "instructions": [0,2,4,6,9,11,12,14,15,17,19,21,22,23,25,27,29,31,32,34,36,38,39,41,44,46,48,49,51,53,54,56,58,61,63,65,66,68,70,71,73,75,78,80,81,83,84,86,88,90,91,93,94,96,98,99,101,103,104,106,108,109,111,114,116,117,119],
+  "relocations": [
+    {"at":42,"size":"word","value":88},
+    {"at":59,"size":"word","value":88},
+    {"at":76,"size":"word","value":88}
+  ],
+  "variable": [7,8,10,26,35,40,52,57,69,74,82,87,92,97,102,107,112,113,115],
+  "symbols": [
+    {"at":0,"name":"print_rank_text","kind":"routine"},
+    {"at":6,"name":"rank_novice_loop","kind":"label"},
+    {"at":15,"name":"rank_number_text","kind":"label"},
+    {"at":31,"name":"rank_suffix_st","kind":"label"},
+    {"at":44,"name":"rank_test_2nd","kind":"label"},
+    {"at":48,"name":"rank_suffix_nd","kind":"label"},
+    {"at":61,"name":"rank_test_3rd","kind":"label"},
+    {"at":65,"name":"rank_suffix_rd","kind":"label"},
+    {"at":78,"name":"rank_suffix_th","kind":"label"},
+    {"at":88,"name":"rank_suffix_dan","kind":"label"},
+    {"at":109,"name":"rank_10th_dan","kind":"label"},
+    {"at":111,"name":"rank_10th_dan_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":119,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Writes the rank X at text_dest_ptr: 0 NOVICE, 1-9 the digit with ST, ND, RD or TH and DAN, 10 the text 10TH DAN. Called by game_one_player."},
+    {"at":23,"placement":"side","text":"Digit = rank + $30; a rank above 9 gives another character."}
+  ],
+  "references": [],
+  "operands": []
+}

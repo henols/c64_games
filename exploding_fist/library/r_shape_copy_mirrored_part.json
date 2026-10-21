@@ -1,0 +1,49 @@
+{
+  "name": "r_shape_copy_mirrored_part",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$365f"},
+  "length": 67,
+  "bytes": [
+    "a8b9007f1865528d83368d8d368d9736",
+    "982903a8b909318d82368d8c368d9636",
+    "a23ebc0080b9007e9d0080cabc0080b9",
+    "007e9d0080cabc0080b9007e9d0080ca",
+    "10e060"
+  ],
+  "instructions": [0,1,4,5,7,10,13,16,17,19,20,23,26,29,32,34,37,40,43,44,47,50,53,54,57,60,63,64,66],
+  "relocations": [
+    {"at":8,"size":"word","value":36},
+    {"at":11,"size":"word","value":46},
+    {"at":14,"size":"word","value":56},
+    {"at":24,"size":"word","value":35},
+    {"at":27,"size":"word","value":45},
+    {"at":30,"size":"word","value":55}
+  ],
+  "variable": [2,3,6,21,22,35,36,38,39,41,42,45,46,48,49,51,52,55,56,58,59,61,62],
+  "symbols": [
+    {"at":0,"name":"shape_copy_mirrored_part","kind":"routine"},
+    {"at":34,"name":"shape_mirror_loop","kind":"label"},
+    {"at":35,"name":"shape_msrc0_lo","kind":"variable"},
+    {"at":36,"name":"shape_msrc0_hi","kind":"variable"},
+    {"at":41,"name":"shape_mdst0_lo","kind":"variable"},
+    {"at":42,"name":"shape_mdst0_hi","kind":"variable"},
+    {"at":45,"name":"shape_msrc1_lo","kind":"variable"},
+    {"at":46,"name":"shape_msrc1_hi","kind":"variable"},
+    {"at":51,"name":"shape_mdst1_lo","kind":"variable"},
+    {"at":52,"name":"shape_mdst1_hi","kind":"variable"},
+    {"at":55,"name":"shape_msrc2_lo","kind":"variable"},
+    {"at":56,"name":"shape_msrc2_hi","kind":"variable"},
+    {"at":61,"name":"shape_mdst2_lo","kind":"variable"},
+    {"at":62,"name":"shape_mdst2_hi","kind":"variable"}
+  ],
+  "regions": [
+    {"start":0,"end":66,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies part A mirrored: source $8000 + part*64 via $7f00 and shape_part_lo. For each of the 21 lines it exchanges bytes 0 and 2 and mirrors each byte with $7e00 (pixel pairs reversed). It copies 63 bytes. Called 9 times from shape_build_mirrored."},
+    {"at":40,"placement":"side","text":"Base destination-2: source byte 2 goes to byte 0"},
+    {"at":50,"placement":"side","text":"Base destination: byte 1 stays"},
+    {"at":60,"placement":"side","text":"Base destination+2: source byte 0 goes to byte 2"}
+  ],
+  "references": [],
+  "operands": []
+}

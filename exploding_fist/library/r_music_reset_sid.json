@@ -1,0 +1,26 @@
+{
+  "name": "r_music_reset_sid",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$0bde"},
+  "length": 31,
+  "bytes": [
+    "a900a2189d00d4ca10fa8d3b0d8d390d",
+    "8dc50c8dc60c8dc20ca9648dc30c60"
+  ],
+  "instructions": [0,2,4,7,8,10,13,16,19,22,25,27,30],
+  "relocations": [],
+  "variable": [5,6,11,12,14,15,17,18,20,21,23,24,28,29],
+  "symbols": [
+    {"at":0,"name":"music_reset_sid","kind":"routine"},
+    {"at":4,"name":"music_clear_sid_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":30,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Clears the SID registers, the volume, the resonance and the filter sweep values, and sets the cutoff base to $6400. Called at tune start ($09d4)."}
+  ],
+  "references": [],
+  "operands": [
+    {"at":4,"select":"value","symbol":"FRELO1"}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "r_ai_spec_sweep_by_facing",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$20cb"},
+  "length": 22,
+  "bytes": [
+    "b548d94800f004a910d002a90a958595",
+    "58a900959260"
+  ],
+  "instructions": [0,2,5,7,9,11,13,15,17,19,21],
+  "relocations": [],
+  "variable": [1,3,4,14,16,20],
+  "symbols": [
+    {"at":0,"name":"ai_spec_sweep_by_facing","kind":"routine"},
+    {"at":11,"name":"ai_spec_same_facing_sweep","kind":"label"},
+    {"at":13,"name":"ai_spec_store_sweep","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":21,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Special action 7, against a back sweep: back sweep $10 when the facings differ, else foot sweep $0a. No run executed it. Bug: Y is 14 from the dispatch, not the opponent index, so the compare reads fighter_move of fighter 0."},
+    {"at":2,"placement":"side","text":"Reads $56 = fighter_move of fighter 0"}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,60 @@
+{
+  "capture": "entry",
+  "entry": "$1158",
+  "segments": [
+    {
+      "start": "$0400",
+      "end": "$bfff",
+      "file": "segment-0400-bfff.prg"
+    },
+    {
+      "start": "$c900",
+      "end": "$cbff",
+      "file": "segment-c900-cbff.prg"
+    },
+    {
+      "start": "$d000",
+      "end": "$e5ff",
+      "file": "segment-d000-e5ff.prg"
+    },
+    {
+      "start": "$f540",
+      "end": "$ffef",
+      "file": "segment-f540-ffef.prg"
+    }
+  ],
+  "excluded": [
+    {
+      "start": "$c000",
+      "end": "$c8ff"
+    },
+    {
+      "start": "$cc00",
+      "end": "$cfff"
+    },
+    {
+      "start": "$e600",
+      "end": "$f53f"
+    },
+    {
+      "start": "$fff0",
+      "end": "$ffff"
+    }
+  ],
+  "vectors": {
+    "irq": "$ea31",
+    "brk": "$fe66",
+    "nmi": "$fe47",
+    "ram": {
+      "nmi": "$28a5",
+      "reset": "$14a6",
+      "irq": "$1c1b"
+    },
+    "rom": {
+      "nmi": "$fe43",
+      "reset": "$fce2",
+      "irq": "$ff48"
+    }
+  },
+  "image": "image.bin"
+}

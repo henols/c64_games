@@ -1,0 +1,50 @@
+{
+  "name": "r_add_half_points",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1843"},
+  "length": 127,
+  "bytes": [
+    "b57f187563957fe000d039c901f00bc9",
+    "02f00fc903f0134c7a18a00320d7184c",
+    "bd18a00320c2184cbd18a00320c218a0",
+    "0020d7184cbd18a00320c218a00020c2",
+    "184cbd18c901f00bc902f00fc903f013",
+    "4cb318a01d20d7184cbd18a01d20c218",
+    "4cbd18a01d20c218a02020d7184cbd18",
+    "a01d20c218a02020c218b57fc90460"
+  ],
+  "instructions": [0,2,3,5,7,9,11,13,15,17,19,21,23,26,28,31,34,36,39,42,44,47,49,52,55,57,60,62,65,68,70,72,74,76,78,80,83,85,88,91,93,96,99,101,104,106,109,112,114,117,119,122,124,126],
+  "relocations": [
+    {"at":24,"size":"word","value":55},
+    {"at":32,"size":"word","value":122},
+    {"at":40,"size":"word","value":122},
+    {"at":53,"size":"word","value":122},
+    {"at":66,"size":"word","value":122},
+    {"at":81,"size":"word","value":112},
+    {"at":89,"size":"word","value":122},
+    {"at":97,"size":"word","value":122},
+    {"at":110,"size":"word","value":122}
+  ],
+  "variable": [1,4,6,29,30,37,38,45,46,50,51,58,59,63,64,86,87,94,95,102,103,107,108,115,116,120,121,123],
+  "symbols": [
+    {"at":0,"name":"add_half_points","kind":"routine"},
+    {"at":11,"name":"points_p1_test","kind":"label"},
+    {"at":26,"name":"points_p1_one","kind":"label"},
+    {"at":34,"name":"points_p1_two","kind":"label"},
+    {"at":42,"name":"points_p1_three","kind":"label"},
+    {"at":55,"name":"points_p1_four","kind":"label"},
+    {"at":68,"name":"points_p2_test","kind":"label"},
+    {"at":83,"name":"points_p2_one","kind":"label"},
+    {"at":91,"name":"points_p2_two","kind":"label"},
+    {"at":99,"name":"points_p2_three","kind":"label"},
+    {"at":112,"name":"points_p2_four","kind":"label"},
+    {"at":122,"name":"points_test_won","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":126,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Adds hit_points of fighter X to half_points and draws the yin-yang symbols for 1-4 half points. Returns C set when the fighter has 4."}
+  ],
+  "references": [],
+  "operands": []
+}

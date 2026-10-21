@@ -1,0 +1,106 @@
+{
+ "name": "2-player game: four bouts of two computer-controlled fighters, then the winner",
+ "original": {
+  "program": "original/fist_v1_2010.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "build/fist_v1_loader.prg",
+  "symbols": "build/fist_v1.json"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_main_loop"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_keys_fire"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "two_player_mode",
+    "data": "01"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$197b"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "bout_loop"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "cpu_controlled",
+    "data": "0101"
+   }
+  },
+  {
+   "frames": 500
+  },
+  {
+   "observe": "bout1",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "game_mode",
+    {
+     "address": "half_points",
+     "size": 2
+    }
+   ],
+   "screen": {}
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "game_mode",
+     "operator": "eq",
+     "value": 1
+    },
+    "timeoutFrames": 30000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "observe": "after_game",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "game_mode"
+   ],
+   "screen": {}
+  }
+ ]
+}

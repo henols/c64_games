@@ -1,0 +1,7 @@
+{"id":"20261021T004933.863-2cr2in/10","space":"c64","entity":"reference","start":"$0a7e","end":"$0a7e","to":"$0e2f","kind":"read","origin":"llm","added":"20261021T004933.863-2cr2in","closed":null}
+{"id":"20261021T004933.863-2cr2in/11","space":"c64","entity":"reference","start":"$0a83","end":"$0a83","to":"$0e30","kind":"read","origin":"llm","added":"20261021T004933.863-2cr2in","closed":null}
+{"id":"20261021T004933.863-2cr2in/8","space":"c64","entity":"reference","start":"$0e4a","end":"$0e4a","to":"$0dda","kind":"read","origin":"llm","added":"20261021T004933.863-2cr2in","closed":null}
+{"id":"20261021T004933.863-2cr2in/9","space":"c64","entity":"reference","start":"$0e77","end":"$0e77","to":"$0dda","kind":"read","origin":"llm","added":"20261021T004933.863-2cr2in","closed":null}
+{"id":"20261021T004832.929-5fj3qx/3062","space":"c64","entity":"reference","start":"$1bcc","end":"$1bcc","to":"$2d9d","kind":"call","origin":"llm","added":"20261021T004832.929-5fj3qx","closed":null}
+{"id":"20261021T004933.863-2cr2in/12","space":"c64","entity":"reference","start":"$206e","end":"$206e","to":"$12f4","kind":"read","origin":"llm","added":"20261021T004933.863-2cr2in","closed":null}
+{"id":"20261021T004933.863-2cr2in/13","space":"c64","entity":"reference","start":"$216b","end":"$216b","to":"$12f4","kind":"read","origin":"llm","added":"20261021T004933.863-2cr2in","closed":null}

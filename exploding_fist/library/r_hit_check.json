@@ -1,0 +1,28 @@
+{
+  "name": "r_hit_check",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2459"},
+  "length": 30,
+  "bytes": [
+    "b456b97411f016b57df012b540d00eb5",
+    "69d00ab90212d546d00320772460"
+  ],
+  "instructions": [0,2,5,7,9,11,13,15,17,19,22,24,26,29],
+  "relocations": [],
+  "variable": [1,3,4,8,12,16,20,21,23,27,28],
+  "symbols": [
+    {"at":0,"name":"hit_check","kind":"routine"},
+    {"at":29,"name":"hit_check_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":29,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Starts the hit test for fighter X when its attack move shows the hit frame. The move must have the attack flag ($1174), the animation must step forward in this frame, and $69,x must be 0. Called from the fighter update at $2233."},
+    {"at":2,"placement":"side","text":"Attack flag of the move: 0 = no hit test"},
+    {"at":7,"placement":"side","text":"Only in a frame with a new animation step"},
+    {"at":11,"placement":"side","text":"Not while the animation runs backwards"},
+    {"at":19,"placement":"side","text":"Hit frame of the move"}
+  ],
+  "references": [],
+  "operands": []
+}

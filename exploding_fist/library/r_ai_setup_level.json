@@ -1,0 +1,35 @@
+{
+  "name": "r_ai_setup_level",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1ffd"},
+  "length": 85,
+  "bytes": [
+    "b4a8b9d421858285968597b9e0218589",
+    "b90f228598a98085838584a901858585",
+    "86b9ec21858ca980858a858ba900858f",
+    "859085928593b91b228591b9f821959d",
+    "b90322959ba9018599859aa980959fb9",
+    "272285a160"
+  ],
+  "instructions": [0,2,5,7,9,11,14,16,19,21,23,25,27,29,31,33,36,38,40,42,44,46,48,50,52,54,57,59,62,64,67,69,71,73,75,77,79,82,84],
+  "relocations": [],
+  "variable": [1,3,4,6,8,10,12,13,15,17,18,20,24,26,30,32,34,35,37,41,43,47,49,51,53,55,56,58,60,61,63,65,66,68,72,74,78,80,81,83],
+  "symbols": [
+    {"at":0,"name":"ai_setup_level","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":84,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies the parameters of skill level cpu_skill,x and resets the AI state of both fighters. Called for fighter 0, then fighter 1, at bout set-up ($157a, $157f). Bug: the masks $82, $89, $8c, $91, $98, $a1 and the release times $96/$97 are written without X. The level of fighter 1 wins for both."},
+    {"at":7,"placement":"side","text":"Both fighters get this release time"},
+    {"at":23,"placement":"side","text":"Both fighters: reload the hold timer"},
+    {"at":29,"placement":"side","text":"Both fighters: command stand"},
+    {"at":40,"placement":"side","text":"Both fighters: reload the attack timer"},
+    {"at":44,"placement":"side","text":"Both fighters: no turn, no special action"},
+    {"at":62,"placement":"side","text":"Only walk and stop masks use X"},
+    {"at":71,"placement":"side","text":"Both fighters: walk decision next frame"},
+    {"at":77,"placement":"side","text":"Reload the reaction delay"}
+  ],
+  "references": [],
+  "operands": []
+}

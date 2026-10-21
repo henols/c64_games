@@ -1,0 +1,43 @@
+{
+  "name": "r_score_add_100",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1b43"},
+  "length": 128,
+  "bytes": [
+    "bd2bccc920d006a9319d2bcc60fe2bcc",
+    "bd2bccc93ad068a9309d2bccbd2accc9",
+    "20d006a9319d2acc60fe2accbd2accc9",
+    "3ad04ca9309d2accbd29ccc920d006a9",
+    "319d29cc60fe29ccbd29ccc93ad030a9",
+    "309d29ccbd28ccc920d006a9319d28cc",
+    "60fe28ccbd28ccc93ad014a9309d28cc",
+    "9d29cc9d2acc9d2bcc9d2ccc9d2dcc60"
+  ],
+  "instructions": [0,3,5,7,9,12,13,16,19,21,23,25,28,31,33,35,37,40,41,44,47,49,51,53,56,59,61,63,65,68,69,72,75,77,79,81,84,87,89,91,93,96,97,100,103,105,107,109,112,115,118,121,124,127],
+  "relocations": [],
+  "variable": [1,2,10,11,14,15,17,18,26,27,29,30,38,39,42,43,45,46,54,55,57,58,66,67,70,71,73,74,82,83,85,86,94,95,98,99,101,102,110,111,113,114,116,117,119,120,122,123,125,126],
+  "symbols": [
+    {"at":0,"name":"score_add_100","kind":"routine"},
+    {"at":7,"name":"score_new_100s","kind":"label"},
+    {"at":13,"name":"score_inc_100s","kind":"label"},
+    {"at":23,"name":"score_carry_1000s","kind":"label"},
+    {"at":35,"name":"score_new_1000s","kind":"label"},
+    {"at":41,"name":"score_inc_1000s","kind":"label"},
+    {"at":51,"name":"score_carry_10000s","kind":"label"},
+    {"at":63,"name":"score_new_10000s","kind":"label"},
+    {"at":69,"name":"score_inc_10000s","kind":"label"},
+    {"at":79,"name":"score_carry_100000s","kind":"label"},
+    {"at":91,"name":"score_new_100000s","kind":"label"},
+    {"at":97,"name":"score_inc_100000s","kind":"label"},
+    {"at":107,"name":"score_overflow","kind":"label"},
+    {"at":127,"name":"score_add_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":127,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Adds 100 points to the score at $cc28+X: increments the hundreds digit with carry. A space digit becomes 1. Called by score_add_move, time_bonus_count and the bull test."},
+    {"at":107,"placement":"side","text":"Above 999900 the score becomes 000000."}
+  ],
+  "references": [],
+  "operands": []
+}

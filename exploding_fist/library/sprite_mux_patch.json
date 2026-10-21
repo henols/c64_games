@@ -1,0 +1,61 @@
+{
+  "name": "sprite_mux_patch",
+  "title": "Sprite multiplexer: copy the row 2/3 pointers of the fighters into the raster handler operands",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2f0c"},
+  "length": 282,
+  "bytes": [
+    "a620b5088d5926b50a8d5e26b50c8d63",
+    "2660a620b50e8d9226b5108d9726b512",
+    "8d9c2660a621b5088dcc26b50a8dd126",
+    "b50c8dd62660a621b50e8d0627b5108d",
+    "0b27b5128d102760a620b5088d3e27b5",
+    "0a8d4327b50c8d4827a621b5088d4d27",
+    "b50a8d5227b50c8d572760a620b50e8d",
+    "8f27b5108d9427b5128d9927a621b50e",
+    "8d9e27b5108da327b5128da82760a620",
+    "b50e8d0328b5108d0828b5128d0d28a6",
+    "21b5088df127b50a8df627b50c8dfb27",
+    "60a620b5088d0328b50a8d0828b50c8d",
+    "0d28a621b50e8df127b5108df627b512",
+    "8dfb2760a620b5088d4728b50a8d4c28",
+    "b50c8d5128a621b50e8d5928b5108d5e",
+    "28b5128d632860a620b50e8d4728b510",
+    "8d4c28b5128d5128a621b5088d5928b5",
+    "0a8d5e28b50c8d632860"
+  ],
+  "instructions": [0,2,4,7,9,12,14,17,18,20,22,25,27,30,32,35,36,38,40,43,45,48,50,53,54,56,58,61,63,66,68,71,72,74,76,79,81,84,86,89,91,93,96,98,101,103,106,107,109,111,114,116,119,121,124,126,128,131,133,136,138,141,142,144,146,149,151,154,156,159,161,163,166,168,171,173,176,212,214,216,219,221,224,226,229,231,233,236,238,241,243,246],
+  "relocations": [],
+  "variable": [1,3,5,6,8,10,11,13,15,16,19,21,23,24,26,28,29,31,33,34,37,39,41,42,44,46,47,49,51,52,55,57,59,60,62,64,65,67,69,70,73,75,77,78,80,82,83,85,87,88,90,92,94,95,97,99,100,102,104,105,108,110,112,113,115,117,118,120,122,123,125,127,129,130,132,134,135,137,139,140,143,145,147,148,150,152,153,155,157,158,160,162,164,165,167,169,170,172,174,175,213,215,217,218,220,222,223,225,227,228,230,232,234,235,237,239,240,242,244,245],
+  "symbols": [
+    {"at":0,"name":"mux_patch_a_row2","kind":"routine"},
+    {"at":18,"name":"mux_patch_a_row3","kind":"routine"},
+    {"at":36,"name":"mux_patch_b_row2","kind":"routine"},
+    {"at":54,"name":"mux_patch_b_row3","kind":"routine"},
+    {"at":72,"name":"mux_patch_ab_row2","kind":"routine"},
+    {"at":107,"name":"mux_patch_ab_row3","kind":"routine"},
+    {"at":142,"name":"mux_patch_b2_a3","kind":"routine"},
+    {"at":177,"name":"mux_unused_patch_b3_a2","kind":"data"},
+    {"at":212,"name":"mux_patch_a2_b3","kind":"routine"},
+    {"at":247,"name":"mux_unused_patch_a3_b2","kind":"data"}
+  ],
+  "regions": [
+    {"start":0,"end":176,"type":"code"},
+    {"start":177,"end":211,"type":"unused"},
+    {"start":212,"end":246,"type":"code"},
+    {"start":247,"end":281,"type":"unused"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies the pointers of parts 3-5 (row 2) of the group A fighter into handler $2635 (sprites 0-2). Called from the layout code of irq_frame_start."},
+    {"at":18,"placement":"line","text":"Copies the pointers of parts 6-8 (row 3) of the group A fighter into handler $266e (sprites 0-2). Called from the layout code of irq_frame_start."},
+    {"at":36,"placement":"line","text":"Copies the pointers of parts 3-5 (row 2) of the group B fighter into handler $26a7 (sprites 3-5). Called from the layout code of irq_frame_start."},
+    {"at":54,"placement":"line","text":"Copies the pointers of parts 6-8 (row 3) of the group B fighter into handler $26e1 (sprites 3-5). Called from the layout code of irq_frame_start."},
+    {"at":72,"placement":"line","text":"Copies the row 2 pointers (parts 3-5) of both group fighters into the combined handler $271b. Layout 1 only. Called from the layout code of irq_frame_start."},
+    {"at":107,"placement":"line","text":"Copies the row 3 pointers (parts 6-8) of both group fighters into the combined handler $276c. Layout 1 only. Called from the layout code of irq_frame_start."},
+    {"at":142,"placement":"line","text":"Copies row 2 of the group B fighter and row 3 of the group A fighter into the combined handler $27bd. Layout 4 only. Called from the layout code of irq_frame_start."},
+    {"at":177,"placement":"line","text":"Unused code, never called: row 2 of group A into the second set of $27bd, row 3 of group B into the first set. It is mux_patch_b2_a3 with the rows exchanged."},
+    {"at":212,"placement":"line","text":"Copies row 2 of the group A fighter and row 3 of the group B fighter into the combined handler $2813. Layout 5 only. Called from the layout code of irq_frame_start."},
+    {"at":247,"placement":"line","text":"Unused code, never called: row 3 of group A into the first set of $2813, row 2 of group B into the second set, RTS. It is mux_patch_a2_b3 with the rows exchanged."}
+  ],
+  "references": [],
+  "operands": []
+}

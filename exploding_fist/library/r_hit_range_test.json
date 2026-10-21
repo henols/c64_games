@@ -1,0 +1,34 @@
+{
+  "name": "r_hit_range_test",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$25d3"},
+  "length": 55,
+  "bytes": [
+    "b548a45ed94800f02eb548d009b95f00",
+    "38f55f4cef25b55f38f95f008568b956",
+    "00a8b9a611d00aa568c9efb007c91490",
+    "03a90060a90160"
+  ],
+  "instructions": [0,2,4,7,9,11,13,16,17,19,22,24,25,28,30,33,34,37,39,41,43,45,47,49,51,52,54],
+  "relocations": [
+    {"at":20,"size":"word","value":28}
+  ],
+  "variable": [1,3,5,6,10,14,15,18,23,26,27,29,31,32,35,36,40],
+  "symbols": [
+    {"at":0,"name":"hit_range_test","kind":"routine"},
+    {"at":22,"name":"range_dist_facing_left","kind":"label"},
+    {"at":28,"name":"range_dist_store","kind":"label"},
+    {"at":49,"name":"range_out","kind":"label"},
+    {"at":52,"name":"range_in","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":54,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Tests the distance to the opponent against the reach type of the opponent's move. Facing each other: in range when the reach type is 0 and the distance is -17 to 19. Facing the same way: reach type not 0 and distance 3 to 31. Returns A=1 (Z clear) in range, else A=0. Called from the AI at $1dec and the input fix-up at $2414."},
+    {"at":34,"placement":"side","text":"Reach type of the opponent's move"},
+    {"at":41,"placement":"side","text":"Distance $ef-$ff (-17 to -1) is in range"},
+    {"at":45,"placement":"side","text":"Distance 0-19 is in range"}
+  ],
+  "references": [],
+  "operands": []
+}

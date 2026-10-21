@@ -1,0 +1,23 @@
+{
+  "name": "r_score_clear",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1a81"},
+  "length": 23,
+  "bytes": [
+    "a9209d28cc9d29cc9d2acc9d2bcc9d2c",
+    "cca9309d2dcc60"
+  ],
+  "instructions": [0,2,5,8,11,14,17,19,22],
+  "relocations": [],
+  "variable": [3,4,6,7,9,10,12,13,15,16,20,21],
+  "symbols": [
+    {"at":0,"name":"score_clear","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":22,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets the score of the player at $cc28+X to five spaces and a 0. X = 9 for player 1, $19 for player 2."}
+  ],
+  "references": [],
+  "operands": []
+}

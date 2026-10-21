@@ -1,0 +1,164 @@
+{
+  "format": 1,
+  "name": "1-player game where the computer plays for player 1 against an idle opponent: all ranks and the bull rounds",
+  "program": "original/fist_v2_scc.prg",
+  "sha256": "f83c459a59f4bbdb7835e03ff32a6b8b9c8a2f81993b78489feaf22abe2a3d14",
+  "symbols": "none",
+  "load": false,
+  "compare": {
+    "checkpoint": "$1aff",
+    "state": [
+      {
+        "address": "$6a",
+        "size": 4
+      },
+      {
+        "address": "$61",
+        "size": 2
+      },
+      {
+        "address": "$8a",
+        "size": 2
+      },
+      {
+        "address": "$af",
+        "size": 6
+      }
+    ]
+  },
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$1e64",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$1bbd",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "site": "$1e73",
+        "addr": "$dc01",
+        "count": 52
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "write": {
+          "address": "$65",
+          "data": "0100",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$1e73",
+      "addr": "$dc01",
+      "reads": 53312,
+      "rom": false
+    },
+    {
+      "site": "$1e94",
+      "addr": "$dc00",
+      "reads": 52,
+      "rom": false
+    },
+    {
+      "site": "$0dfc",
+      "addr": "$d41c",
+      "reads": 80059,
+      "rom": false
+    },
+    {
+      "site": "$0e02",
+      "addr": "$d41b",
+      "reads": 80059,
+      "rom": false
+    },
+    {
+      "site": "$2851",
+      "addr": "$dc01",
+      "reads": 31899,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41c",
+      "reads": 771,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41b",
+      "reads": 771,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41a",
+      "reads": 771,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d419",
+      "reads": 771,
+      "rom": false
+    }
+  ],
+  "ticks": 1584518448,
+  "hash": "8714a356"
+}

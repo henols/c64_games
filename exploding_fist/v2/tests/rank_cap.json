@@ -1,0 +1,108 @@
+{
+ "name": "Rank cap: after 10TH DAN the rank stays 10TH DAN (version I overflows here)",
+ "original": {
+  "program": "original/fist_v2_scc.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "build/fist_v2_loader.prg",
+  "symbols": "build/fist_v2.json"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_main_loop"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_keys_fire"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "registers": {
+    "pc": "$1e9b"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$1bbd"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "cpu_controlled",
+    "data": "0100"
+   }
+  },
+  {
+   "write": {
+    "address": "$b4",
+    "data": "0a"
+   }
+  },
+  {
+   "write": {
+    "address": "stage_counter",
+    "data": "09"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "print_rank_text"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 5
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "print_rank_text"
+    },
+    "timeoutFrames": 30000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "observe": "rank11",
+   "memory": [
+    {
+     "address": "$cca0",
+     "size": 8
+    },
+    {
+     "address": "$b3",
+     "size": 2
+    },
+    "stage_counter"
+   ],
+   "screen": {}
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "r_scene_blank_rows",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$19e2"},
+  "length": 20,
+  "bytes": [
+    "a933a00099c8d899a8d999c8cc99a8cd",
+    "88d0f160"
+  ],
+  "instructions": [0,2,4,7,10,13,16,17,19],
+  "relocations": [],
+  "variable": [5,6,8,9,11,12,14,15],
+  "symbols": [
+    {"at":0,"name":"scene_blank_rows","kind":"routine"},
+    {"at":4,"name":"scene_blank_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":19,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Fills screen and colour RAM of rows 5-16 with $33, so the scene area shows one colour while it is drawn. Called by scene_draw_if_new."}
+  ],
+  "references": [],
+  "operands": []
+}

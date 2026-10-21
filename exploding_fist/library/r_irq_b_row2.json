@@ -1,0 +1,42 @@
+{
+  "name": "r_irq_b_row2",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$26a7"},
+  "length": 58,
+  "bytes": [
+    "2c19d030034cc82948a9008d07d08d09",
+    "d08d0bd0a9018d19d0a9008d12d0a900",
+    "8dfeffeaa9008dfbcfa9008dfccfa900",
+    "8dfdcfa9008dffff6840"
+  ],
+  "instructions": [0,3,5,8,9,11,14,17,20,22,25,27,30,32,35,36,38,41,43,46,48,51,53,56,57],
+  "relocations": [],
+  "variable": [1,2,6,7,12,13,15,16,18,19,23,24,28,29,33,34,39,40,44,45,49,50,54,55],
+  "symbols": [
+    {"at":0,"name":"irq_b_row2","kind":"routine"},
+    {"at":8,"name":"irq_b_row2_vic","kind":"label"},
+    {"at":10,"name":"irq_b_row2_y","kind":"variable"},
+    {"at":26,"name":"irq_b_row2_next_line","kind":"variable"},
+    {"at":31,"name":"irq_b_row2_next_lo","kind":"variable"},
+    {"at":37,"name":"irq_b_row2_ptr_left","kind":"variable"},
+    {"at":42,"name":"irq_b_row2_ptr_mid","kind":"variable"},
+    {"at":47,"name":"irq_b_row2_ptr_right","kind":"variable"},
+    {"at":52,"name":"irq_b_row2_next_hi","kind":"variable"}
+  ],
+  "regions": [
+    {"start":0,"end":57,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Raster IRQ one line above sprite row 2 of group B (sprites 3-5). It moves sprites 3-5 down to row 2 and sets their row 2 pointers. The planner at $2b40 patches every operand each frame."},
+    {"at":5,"placement":"side","text":"Not a VIC IRQ: a CIA1 IRQ for the sample player"},
+    {"at":9,"placement":"side","text":"Patched: row 2 Y of group B ($1d + $15)"},
+    {"at":25,"placement":"side","text":"Patched: raster line of the next handler"},
+    {"at":30,"placement":"side","text":"Patched: next handler, low byte"},
+    {"at":35,"placement":"side","text":"Delay before the group B pointer writes"},
+    {"at":36,"placement":"side","text":"Patched: sprite pointer, part 3 of the group B fighter"},
+    {"at":41,"placement":"side","text":"Patched: sprite pointer, part 4 of the group B fighter"},
+    {"at":46,"placement":"side","text":"Patched: sprite pointer, part 5 of the group B fighter"},
+    {"at":51,"placement":"side","text":"Patched: next handler, high byte"}
+  ],
+  "references": [],
+  "operands": []
+}

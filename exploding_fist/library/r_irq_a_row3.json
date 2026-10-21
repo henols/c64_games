@@ -1,0 +1,41 @@
+{
+  "name": "r_irq_a_row3",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$266e"},
+  "length": 57,
+  "bytes": [
+    "2c19d030034cc82948a9008d01d08d03",
+    "d08d05d0a9018d19d0a9008d12d0a900",
+    "8dfeffa9008df8cfa9008df9cfa9008d",
+    "facfa9008dffff6840"
+  ],
+  "instructions": [0,3,5,8,9,11,14,17,20,22,25,27,30,32,35,37,40,42,45,47,50,52,55,56],
+  "relocations": [],
+  "variable": [1,2,6,7,12,13,15,16,18,19,23,24,28,29,33,34,38,39,43,44,48,49,53,54],
+  "symbols": [
+    {"at":0,"name":"irq_a_row3","kind":"routine"},
+    {"at":8,"name":"irq_a_row3_vic","kind":"label"},
+    {"at":10,"name":"irq_a_row3_y","kind":"variable"},
+    {"at":26,"name":"irq_a_row3_next_line","kind":"variable"},
+    {"at":31,"name":"irq_a_row3_next_lo","kind":"variable"},
+    {"at":36,"name":"irq_a_row3_ptr_left","kind":"variable"},
+    {"at":41,"name":"irq_a_row3_ptr_mid","kind":"variable"},
+    {"at":46,"name":"irq_a_row3_ptr_right","kind":"variable"},
+    {"at":51,"name":"irq_a_row3_next_hi","kind":"variable"}
+  ],
+  "regions": [
+    {"start":0,"end":56,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Raster IRQ one line above sprite row 3 of group A (sprites 0-2). It moves sprites 0-2 down to row 3 and sets their row 3 pointers. The planner at $2b40 patches every operand each frame."},
+    {"at":5,"placement":"side","text":"Not a VIC IRQ: a CIA1 IRQ for the sample player"},
+    {"at":9,"placement":"side","text":"Patched: row 3 Y of group A (group_y + $2a)"},
+    {"at":25,"placement":"side","text":"Patched: raster line of the next handler"},
+    {"at":30,"placement":"side","text":"Patched: next handler, low byte"},
+    {"at":35,"placement":"side","text":"Patched: sprite pointer, part 6 of the group A fighter"},
+    {"at":40,"placement":"side","text":"Patched: sprite pointer, part 7 of the group A fighter"},
+    {"at":45,"placement":"side","text":"Patched: sprite pointer, part 8 of the group A fighter"},
+    {"at":50,"placement":"side","text":"Patched: next handler, high byte"}
+  ],
+  "references": [],
+  "operands": []
+}

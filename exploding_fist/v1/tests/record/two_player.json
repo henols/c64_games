@@ -1,0 +1,10313 @@
+{
+ "name": "2-player game: both joysticks move and attack",
+ "program": "original/fist_v1_2010.prg",
+ "symbols": "none",
+ "coverage": "$1158",
+ "checkpoint": "$1613",
+ "state": [
+  {
+   "address": "$5f",
+   "size": 4
+  },
+  {
+   "address": "$56",
+   "size": 2
+  },
+  {
+   "address": "$7f",
+   "size": 2
+  },
+  {
+   "address": "$a4",
+   "size": 6
+  }
+ ],
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$1948"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "write": {
+    "address": "$a3",
+    "data": "01"
+   }
+  },
+  {
+   "frames": 5
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "frames": 1500
+  }
+ ]
+}

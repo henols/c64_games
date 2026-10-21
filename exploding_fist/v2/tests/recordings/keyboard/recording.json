@@ -1,0 +1,190 @@
+{
+  "format": 1,
+  "name": "Keyboard control: F7 option set, a 1-player game with the keys of player 1 (Q W E A D Z X C, S = fire)",
+  "program": "original/fist_v2_scc.prg",
+  "sha256": "f83c459a59f4bbdb7835e03ff32a6b8b9c8a2f81993b78489feaf22abe2a3d14",
+  "symbols": "none",
+  "load": false,
+  "compare": {
+    "checkpoint": "$1aff",
+    "state": [
+      {
+        "address": "$6a",
+        "size": 4
+      },
+      {
+        "address": "$61",
+        "size": 2
+      },
+      {
+        "address": "$8a",
+        "size": 2
+      },
+      {
+        "address": "$af",
+        "size": 6
+      }
+    ]
+  },
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$1e64",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "write": {
+          "address": "$c6",
+          "data": "01",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$1e73",
+        "addr": "$dc01",
+        "count": 52
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$1e73",
+      "addr": "$dc01",
+      "reads": 6763,
+      "rom": false
+    },
+    {
+      "site": "$1e94",
+      "addr": "$dc00",
+      "reads": 5057,
+      "rom": false
+    },
+    {
+      "site": "$0dfc",
+      "addr": "$d41c",
+      "reads": 7559,
+      "rom": false
+    },
+    {
+      "site": "$0e02",
+      "addr": "$d41b",
+      "reads": 7559,
+      "rom": false
+    },
+    {
+      "site": "$28b7",
+      "addr": "$dc01",
+      "reads": 1368,
+      "rom": false
+    },
+    {
+      "site": "$28cf",
+      "addr": "$dc01",
+      "reads": 1368,
+      "rom": false
+    },
+    {
+      "site": "$28de",
+      "addr": "$dc01",
+      "reads": 1310,
+      "rom": false
+    },
+    {
+      "site": "$2901",
+      "addr": "$dc01",
+      "reads": 1128,
+      "rom": false
+    },
+    {
+      "site": "$2924",
+      "addr": "$dc01",
+      "reads": 947,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41c",
+      "reads": 93,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41b",
+      "reads": 93,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41a",
+      "reads": 93,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d419",
+      "reads": 93,
+      "rom": false
+    },
+    {
+      "site": "$1472",
+      "addr": "$dc00",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$14f3",
+      "addr": "$dc00",
+      "reads": 250,
+      "rom": false
+    },
+    {
+      "site": "$1504",
+      "addr": "$dc01",
+      "reads": 250,
+      "rom": false
+    }
+  ],
+  "ticks": 159477740,
+  "hash": "a0f97c14"
+}

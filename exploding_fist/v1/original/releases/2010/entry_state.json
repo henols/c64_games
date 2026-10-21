@@ -1,0 +1,630 @@
+{
+  "registers": {
+    "pc": "$1158",
+    "a": 187,
+    "x": 240,
+    "y": 255,
+    "sp": 246,
+    "flags": {
+      "n": true,
+      "v": true,
+      "b": false,
+      "d": false,
+      "i": false,
+      "z": false,
+      "c": false
+    }
+  },
+  "cpuPort": {
+    "$00": 47,
+    "$01": 54
+  },
+  "pages": {
+    "$0000": "00000faab191b3220000004c000000040000000020081916000a76a30000000000004008b3bd00000000000108fd08fd08fd0800a000a000a0da07000000080000000800000000240008000000000000190000034c0000000000000000000000008c000008200000008c8200000000000005a3e67ad002e67bad0a08c93ab00ac920f0ef38e93038e9d060804fc752584000000055ff0000000003000000000000e844559f000000000000000000f0ff00003c030000000a01600843c30000000000a040f53f00000300033f01022000001805270027072900848484848484848585858585858686868686868687878787878718d981eb00000000d835000020",
+    "$0100": "3338393131003030303000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff0000ff00ff00ff7deaa8ed0fee56f62df559c346e1e9a7a779a69ce3",
+    "$0200": "8a004e002c382c31002c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800a000010e040a000410030348eb000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "$0300": "8be383a47ca51aa7e4a786ae000000004c48b20031ea66fe47fe4af391f20ef250f233f357f1caf1edf63ef12ff366fea5f4edf5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "io": {
+    "vic": {
+      "from": "$d000",
+      "bytes": "0000000000000000000000000000000000bb2d000000d8003971f00000000000f3f1f1f2f3f4f0f1f2f3f4f5f6f7fc"
+    },
+    "sid": {
+      "from": "$d400",
+      "bytes": "0000000000000000000000000000000000000000000000000f00000000"
+    },
+    "cia1": {
+      "from": "$dc00",
+      "bytes": "1f1fff00040038030000000100014109"
+    },
+    "cia2": {
+      "from": "$dd00",
+      "bytes": "40ff3f00ffffffff0000000100000808"
+    }
+  },
+  "cia": {
+    "cia1": {
+      "latchA": 8,
+      "latchB": 1089,
+      "interruptMask": 2
+    },
+    "cia2": {
+      "latchA": 65535,
+      "latchB": 65535,
+      "interruptMask": 0
+    }
+  },
+  "vectors": {
+    "irq": "$ea31",
+    "brk": "$fe66",
+    "nmi": "$fe47",
+    "ram": {
+      "nmi": "$ffff",
+      "reset": "$ffff",
+      "irq": "$0000"
+    },
+    "rom": {
+      "nmi": "$fe43",
+      "reset": "$fce2",
+      "irq": "$ff48"
+    }
+  },
+  "differsFromReset": [
+    {
+      "address": "$0001",
+      "entry": 54,
+      "reset": 55
+    },
+    {
+      "address": "$0002",
+      "entry": 15,
+      "reset": 0
+    },
+    {
+      "address": "$0008",
+      "entry": 0,
+      "reset": 34
+    },
+    {
+      "address": "$000b",
+      "entry": 76,
+      "reset": 0
+    },
+    {
+      "address": "$000d",
+      "entry": 0,
+      "reset": 255
+    },
+    {
+      "address": "$000f",
+      "entry": 4,
+      "reset": 0
+    },
+    {
+      "address": "$0014",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0015",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$0022",
+      "entry": 64,
+      "reset": 118
+    },
+    {
+      "address": "$0023",
+      "entry": 8,
+      "reset": 163
+    },
+    {
+      "address": "$002d",
+      "entry": 253,
+      "reset": 3
+    },
+    {
+      "address": "$002f",
+      "entry": 253,
+      "reset": 3
+    },
+    {
+      "address": "$0031",
+      "entry": 253,
+      "reset": 3
+    },
+    {
+      "address": "$0036",
+      "entry": 160,
+      "reset": 0
+    },
+    {
+      "address": "$0039",
+      "entry": 218,
+      "reset": 0
+    },
+    {
+      "address": "$003a",
+      "entry": 7,
+      "reset": 0
+    },
+    {
+      "address": "$003e",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$0049",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$0050",
+      "entry": 25,
+      "reset": 0
+    },
+    {
+      "address": "$005d",
+      "entry": 0,
+      "reset": 252
+    },
+    {
+      "address": "$0061",
+      "entry": 140,
+      "reset": 10
+    },
+    {
+      "address": "$0062",
+      "entry": 0,
+      "reset": 118
+    },
+    {
+      "address": "$0063",
+      "entry": 0,
+      "reset": 163
+    },
+    {
+      "address": "$0064",
+      "entry": 8,
+      "reset": 25
+    },
+    {
+      "address": "$0065",
+      "entry": 32,
+      "reset": 0
+    },
+    {
+      "address": "$0066",
+      "entry": 0,
+      "reset": 32
+    },
+    {
+      "address": "$0069",
+      "entry": 140,
+      "reset": 128
+    },
+    {
+      "address": "$006a",
+      "entry": 130,
+      "reset": 0
+    },
+    {
+      "address": "$006d",
+      "entry": 0,
+      "reset": 4
+    },
+    {
+      "address": "$006f",
+      "entry": 0,
+      "reset": 118
+    },
+    {
+      "address": "$0071",
+      "entry": 5,
+      "reset": 128
+    },
+    {
+      "address": "$007a",
+      "entry": 10,
+      "reset": 0
+    },
+    {
+      "address": "$0090",
+      "entry": 64,
+      "reset": 0
+    },
+    {
+      "address": "$0094",
+      "entry": 85,
+      "reset": 0
+    },
+    {
+      "address": "$0095",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$009d",
+      "entry": 0,
+      "reset": 128
+    },
+    {
+      "address": "$00a1",
+      "entry": 232,
+      "reset": 0
+    },
+    {
+      "address": "$00a2",
+      "entry": 68,
+      "reset": 117
+    },
+    {
+      "address": "$00a3",
+      "entry": 85,
+      "reset": 0
+    },
+    {
+      "address": "$00a4",
+      "entry": 159,
+      "reset": 0
+    },
+    {
+      "address": "$00ae",
+      "entry": 240,
+      "reset": 0
+    },
+    {
+      "address": "$00af",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$00b7",
+      "entry": 10,
+      "reset": 0
+    },
+    {
+      "address": "$00b8",
+      "entry": 1,
+      "reset": 0
+    },
+    {
+      "address": "$00b9",
+      "entry": 96,
+      "reset": 0
+    },
+    {
+      "address": "$00ba",
+      "entry": 8,
+      "reset": 0
+    },
+    {
+      "address": "$00bb",
+      "entry": 67,
+      "reset": 0
+    },
+    {
+      "address": "$00bc",
+      "entry": 195,
+      "reset": 0
+    },
+    {
+      "address": "$00c3",
+      "entry": 64,
+      "reset": 48
+    },
+    {
+      "address": "$00c4",
+      "entry": 245,
+      "reset": 253
+    },
+    {
+      "address": "$00c8",
+      "entry": 3,
+      "reset": 0
+    },
+    {
+      "address": "$00c9",
+      "entry": 0,
+      "reset": 6
+    },
+    {
+      "address": "$00ca",
+      "entry": 3,
+      "reset": 0
+    },
+    {
+      "address": "$00cc",
+      "entry": 1,
+      "reset": 0
+    },
+    {
+      "address": "$00cd",
+      "entry": 2,
+      "reset": 11
+    },
+    {
+      "address": "$00d1",
+      "entry": 24,
+      "reset": 240
+    },
+    {
+      "address": "$00d2",
+      "entry": 5,
+      "reset": 4
+    },
+    {
+      "address": "$00d3",
+      "entry": 39,
+      "reset": 0
+    },
+    {
+      "address": "$00d6",
+      "entry": 7,
+      "reset": 6
+    },
+    {
+      "address": "$00d7",
+      "entry": 41,
+      "reset": 3
+    },
+    {
+      "address": "$00f3",
+      "entry": 24,
+      "reset": 240
+    },
+    {
+      "address": "$00f4",
+      "entry": 217,
+      "reset": 216
+    },
+    {
+      "address": "$00fb",
+      "entry": 216,
+      "reset": 0
+    },
+    {
+      "address": "$00fc",
+      "entry": 53,
+      "reset": 0
+    },
+    {
+      "address": "$01e2",
+      "entry": 0,
+      "reset": 255
+    },
+    {
+      "address": "$01e3",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$01e4",
+      "entry": 0,
+      "reset": 255
+    },
+    {
+      "address": "$01e7",
+      "entry": 0,
+      "reset": 125
+    },
+    {
+      "address": "$01e8",
+      "entry": 255,
+      "reset": 234
+    },
+    {
+      "address": "$01e9",
+      "entry": 0,
+      "reset": 26
+    },
+    {
+      "address": "$01ea",
+      "entry": 255,
+      "reset": 0
+    },
+    {
+      "address": "$01eb",
+      "entry": 125,
+      "reset": 255
+    },
+    {
+      "address": "$01ec",
+      "entry": 234,
+      "reset": 125
+    },
+    {
+      "address": "$01ed",
+      "entry": 168,
+      "reset": 234
+    },
+    {
+      "address": "$01ee",
+      "entry": 237,
+      "reset": 3
+    },
+    {
+      "address": "$01ef",
+      "entry": 15,
+      "reset": 1
+    },
+    {
+      "address": "$01f0",
+      "entry": 238,
+      "reset": 0
+    },
+    {
+      "address": "$01f1",
+      "entry": 86,
+      "reset": 34
+    },
+    {
+      "address": "$01f2",
+      "entry": 246,
+      "reset": 209
+    },
+    {
+      "address": "$01f3",
+      "entry": 45,
+      "reset": 229
+    },
+    {
+      "address": "$01f4",
+      "entry": 245,
+      "reset": 0
+    },
+    {
+      "address": "$01f5",
+      "entry": 89,
+      "reset": 10
+    },
+    {
+      "address": "$01f6",
+      "entry": 195,
+      "reset": 20
+    },
+    {
+      "address": "$01f7",
+      "entry": 70,
+      "reset": 225
+    },
+    {
+      "address": "$01f8",
+      "entry": 225,
+      "reset": 100
+    },
+    {
+      "address": "$01f9",
+      "entry": 233,
+      "reset": 165
+    },
+    {
+      "address": "$01fa",
+      "entry": 167,
+      "reset": 133
+    },
+    {
+      "address": "$01fb",
+      "entry": 167,
+      "reset": 164
+    },
+    {
+      "address": "$0200",
+      "entry": 138,
+      "reset": 0
+    },
+    {
+      "address": "$0202",
+      "entry": 78,
+      "reset": 0
+    },
+    {
+      "address": "$0204",
+      "entry": 44,
+      "reset": 0
+    },
+    {
+      "address": "$0205",
+      "entry": 56,
+      "reset": 0
+    },
+    {
+      "address": "$0206",
+      "entry": 44,
+      "reset": 0
+    },
+    {
+      "address": "$0207",
+      "entry": 49,
+      "reset": 0
+    },
+    {
+      "address": "$0209",
+      "entry": 44,
+      "reset": 0
+    },
+    {
+      "address": "$0286",
+      "entry": 1,
+      "reset": 14
+    },
+    {
+      "address": "$d011",
+      "entry": 187,
+      "reset": 27
+    },
+    {
+      "address": "$d012",
+      "entry": 45,
+      "reset": 0
+    },
+    {
+      "address": "$d016",
+      "entry": 216,
+      "reset": 200
+    },
+    {
+      "address": "$d018",
+      "entry": 57,
+      "reset": 23
+    },
+    {
+      "address": "$d020",
+      "entry": 243,
+      "reset": 254
+    },
+    {
+      "address": "$d021",
+      "entry": 241,
+      "reset": 246
+    },
+    {
+      "address": "$d418",
+      "entry": 15,
+      "reset": 0
+    },
+    {
+      "address": "$dc04",
+      "entry": 4,
+      "reset": 5
+    },
+    {
+      "address": "$dc05",
+      "entry": 0,
+      "reset": 44
+    },
+    {
+      "address": "$dc06",
+      "entry": 56,
+      "reset": 255
+    },
+    {
+      "address": "$dc07",
+      "entry": 3,
+      "reset": 255
+    },
+    {
+      "address": "$dc0d",
+      "entry": 1,
+      "reset": 0
+    },
+    {
+      "address": "$dc0e",
+      "entry": 65,
+      "reset": 1
+    },
+    {
+      "address": "$dc0f",
+      "entry": 9,
+      "reset": 8
+    },
+    {
+      "address": "$dd00",
+      "entry": 64,
+      "reset": 151
+    }
+  ]
+}

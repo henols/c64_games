@@ -1,0 +1,48 @@
+{
+  "name": "sfx_sample_player",
+  "title": "Unused 1-bit sample player on the CIA1 timer B IRQ, and its unused set-up",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$29c8"},
+  "length": 158,
+  "bytes": [
+    "2c0ddc58489848a52f490f8d18d4852f",
+    "a000b12da8b9000e8d06dcb9000f8d07",
+    "dce62dd002e62ea531c52da532e52eb0",
+    "08a97f853368a86840a9598d0fdc68a8",
+    "6840a97f8d0ddca9008d0edc8d0fdca9",
+    "04852da908852ea9048531a90a8532a9",
+    "7f8d0ddca9828d0ddca9088d04dca900",
+    "8d05dca01ca90085339900d48810faa9",
+    "0f852fa9518d0edca0018c06dc8c07dc",
+    "a9598d0fdca9008533ad0ddc5860"
+  ],
+  "instructions": [0,3,4,5,6,7,9,11,14,16,18,20,21,24,27,30,33,35,37,39,41,43,45,47,49,51,53,54,55,56,57,59,62,63,64,65,66,68,71,73,76,79,81,83,85,87,89,91,93,95,97,100,102,105,107,110,112,115,117,119,121,124,125,127,129,131,133,136,138,141,144,146,149,151,153,156,157],
+  "relocations": [],
+  "variable": [1,2,8,12,13,15,19,22,23,25,26,28,29,31,32,34,38,40,42,44,46,52,60,61,69,70,74,75,77,78,82,86,90,94,98,99,103,104,108,109,113,114,120,122,123,130,134,135,139,140,142,143,147,148,152,154,155],
+  "symbols": [
+    {"at":0,"name":"sfx_sample_irq","kind":"routine"},
+    {"at":39,"name":"sfx_check_end","kind":"label"},
+    {"at":57,"name":"sfx_next_period","kind":"label"},
+    {"at":66,"name":"sfx_sample_start","kind":"routine"},
+    {"at":121,"name":"sfx_clear_sid_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":65,"type":"code"},
+    {"start":66,"end":157,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Unreachable CIA1 timer B IRQ of a 1-bit sample player: CIA1 IRQs are off and nothing calls sfx_sample_start. Each IRQ toggles the SID volume between 0 and 15, then reads one sample byte through sfx_sample_ptr. The byte selects the timer B count to the next toggle from $0e00 (low) and $0f00 (high). Every raster handler jumps here on a non-VIC IRQ."},
+    {"at":0,"placement":"side","text":"Acknowledge CIA1"},
+    {"at":3,"placement":"side","text":"Raster IRQs can interrupt the sample IRQ"},
+    {"at":9,"placement":"side","text":"Toggle the volume 0 <-> 15: one click per IRQ"},
+    {"at":21,"placement":"side","text":"Count low byte; $0e00 now holds music driver code"},
+    {"at":27,"placement":"side","text":"Count high byte; $0f00 now holds music driver code"},
+    {"at":39,"placement":"side","text":"Continue while sfx_sample_end >= sfx_sample_ptr"},
+    {"at":49,"placement":"side","text":"End of the sample: timer B stays stopped"},
+    {"at":57,"placement":"side","text":"Timer B: start, one-shot, load the latch, count timer A underflows"},
+    {"at":66,"placement":"line","text":"Unused set-up routine of the sample player: nothing calls it. It stops the CIA1 timers, sets sfx_sample_ptr = $0804 and sfx_sample_end = $0a04, clears the SID registers and sets sfx_volume = 15. Then it starts timer A (latch 8, continuous) and timer B (latch $0101, one-shot, counts timer A), with the timer B IRQ on."}
+  ],
+  "references": [],
+  "operands": [
+    {"at":121,"select":"value","symbol":"FRELO1"}
+  ]
+}

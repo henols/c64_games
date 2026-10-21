@@ -1,0 +1,25 @@
+{
+  "name": "r_floor_colour_fill",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1445"},
+  "length": 20,
+  "bytes": [
+    "a977a2009da8da9d00db9da8ce9d00cf",
+    "cad0f160"
+  ],
+  "instructions": [0,2,4,7,10,13,16,17,19],
+  "relocations": [],
+  "variable": [5,6,8,9,11,12,14,15],
+  "symbols": [
+    {"at":0,"name":"floor_colour_fill","kind":"routine"},
+    {"at":4,"name":"floor_colour_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":19,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Fills screen and colour RAM of rows 17-24 with $77, so the floor bitmap shows yellow only. Called by init_vic_screen."},
+    {"at":13,"placement":"side","text":"Also writes $77 into the sprite pointers $cff8-$cfff; the IRQ sets them again."}
+  ],
+  "references": [],
+  "operands": []
+}

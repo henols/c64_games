@@ -1,0 +1,66 @@
+{
+  "name": "r_irq_frame_start",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2a66"},
+  "length": 254,
+  "bytes": [
+    "2c19d030034cc82948a9018d19d0a969",
+    "8dfeffa9288dffffa95a8d12d098488a",
+    "485878a9008d25d0a90a8d26d0a524d0",
+    "0ba9008520a90185214caa2aa9018520",
+    "a9008521a620b516851cb514851ab518",
+    "851ea621b516851db514851bb518851f",
+    "a9a0c51cd00fc51df025a9eb8525a928",
+    "85264c002bc51df00ba9248525a92985",
+    "264c002ba9b28525a92885264c002ba9",
+    "758525a92985264c402ba620b5278dc7",
+    "28b5298dcc28b52b8dd128b5278d4229",
+    "b5298d4729b52b8d4c29a621b5278d51",
+    "29b5298d5629b52b8d5b29b5278d0029",
+    "b5298d0529b52b8d0a2938a51ce51dd0",
+    "034c7a2b90034c672b38a51de51cc916",
+    "d00090034c6e2dc914d0034caa2c"
+  ],
+  "instructions": [0,3,5,8,9,11,14,16,19,21,24,26,29,30,31,32,33,34,35,37,40,42,45,47,49,51,53,55,57,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,117,119,121,123,125,127,129,132,134,136,138,140,143,145,147,149,151,154,156,158,161,163,166,168,171,173,176,178,181,183,186,188,190,193,195,198,200,203,205,208,210,213,215,218,219,221,223,225,228,230,233,234,236,238,240,242,244,247,249,251],
+  "relocations": [
+    {"at":58,"size":"word","value":68},
+    {"at":115,"size":"word","value":154},
+    {"at":130,"size":"word","value":154},
+    {"at":141,"size":"word","value":154},
+    {"at":152,"size":"word","value":218}
+  ],
+  "variable": [1,2,6,7,12,13,17,18,22,23,27,28,38,39,43,44,46,52,56,63,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,99,103,109,113,118,124,128,135,139,146,150,155,157,159,160,162,164,165,167,169,170,172,174,175,177,179,180,182,184,185,187,189,191,192,194,196,197,199,201,202,204,206,207,209,211,212,214,216,217,220,222,226,227,231,232,235,237,245,246,252,253],
+  "symbols": [
+    {"at":0,"name":"irq_frame_start","kind":"routine"},
+    {"at":8,"name":"irq_frame_start_vic","kind":"label"},
+    {"at":60,"name":"mux_front_is_fighter1","kind":"label"},
+    {"at":68,"name":"mux_copy_group_pos","kind":"label"},
+    {"at":117,"name":"mux_a_off_ground","kind":"label"},
+    {"at":132,"name":"mux_row4_a_only","kind":"label"},
+    {"at":143,"name":"mux_no_row4","kind":"label"},
+    {"at":154,"name":"mux_patch_row4_ptrs","kind":"label"},
+    {"at":218,"name":"mux_choose_layout","kind":"label"},
+    {"at":228,"name":"mux_y_differ","kind":"label"},
+    {"at":233,"name":"mux_a_above_b","kind":"label"},
+    {"at":242,"name":"mux_a_above_gap_test","kind":"label"},
+    {"at":247,"name":"mux_a_above_near","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":253,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Raster IRQ at line 0, the start of the sprite multiplexer. It acknowledges the VIC, sets the next IRQ to $2869 at line $5a and sets the sprite multicolours. It puts front_fighter in group A (sprites 0-2, in front) and the other fighter in group B (sprites 3-5). It selects the shadow handler, patches the row handlers for one of 7 layouts, sets sprite row 1 and returns with RTI."},
+    {"at":5,"placement":"side","text":"Not a VIC IRQ: the sample player handler"},
+    {"at":33,"placement":"side","text":"A pending IRQ can start between CLI and SEI"},
+    {"at":37,"placement":"side","text":"Sprite multicolour 0 = black"},
+    {"at":42,"placement":"side","text":"Sprite multicolour 1 = light red"},
+    {"at":68,"placement":"line","text":"Copies sprite_y, sprite_x_lo and sprite_x_msb of the group A fighter to $1c/$1a/$1e and of the group B fighter to $1d/$1b/$1f."},
+    {"at":96,"placement":"line","text":"Selects row4_irq_vector, the handler after the last fighter row. A group whose Y is not $a0 (not on the ground) gets its shadow sprites at Y $da."},
+    {"at":96,"placement":"side","text":"$a0 = sprite Y of a fighter on the ground"},
+    {"at":151,"placement":"side","text":"No row 4: skip the row 4 pointer patch"},
+    {"at":154,"placement":"line","text":"Copies the row 4 (floor shadow) pointers row4_ptr_left/mid/right of group A into handlers $28b2 and $2924, and of group B into $2924 and $28eb."},
+    {"at":218,"placement":"line","text":"Selects one of 7 layouts from the Y gap between group A ($1c) and group B ($1d). Sprite Y is fighter_y*2 and all script dy values are even, thus the gap is a multiple of 4. Of these gaps, only $14 puts two row IRQs one raster line apart; it gets a combined handler."},
+    {"at":240,"placement":"side","text":"Branch offset 0: does nothing"}
+  ],
+  "references": [],
+  "operands": []
+}

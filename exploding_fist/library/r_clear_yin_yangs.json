@@ -1,0 +1,23 @@
+{
+  "name": "r_clear_yin_yangs",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$18ec"},
+  "length": 27,
+  "bytes": [
+    "a9209903cc992bcc9904cc992ccc9906",
+    "cc9907cc992ecc992fcc60"
+  ],
+  "instructions": [0,2,5,8,11,14,17,20,23,26],
+  "relocations": [],
+  "variable": [3,4,6,7,9,10,12,13,15,16,18,19,21,22,24,25],
+  "symbols": [
+    {"at":0,"name":"clear_yin_yangs","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":26,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Clears both yin-yang symbols of a fighter, Y = 0 for fighter 0 or $1d for fighter 1. Called at the start of each bout and by bout_2p_exchanges."}
+  ],
+  "references": [],
+  "operands": []
+}

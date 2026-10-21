@@ -1,0 +1,27 @@
+{
+  "name": "r_bout_setup_fighters",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1536"},
+  "length": 77,
+  "bytes": [
+    "a93e855fa95a8560a95085618562a900",
+    "854085418548a9018549a917853a853b",
+    "a900853c853d8553a200208315a20120",
+    "8315a900856ba902856c8523a908857b",
+    "857ca20020fd1fa20120fd1f60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,45,47,50,52,54,56,58,60,62,64,66,68,71,73,76],
+  "relocations": [],
+  "variable": [3,7,11,13,17,19,21,25,29,31,35,37,39,43,44,48,49,53,57,59,63,65,69,70,74,75],
+  "symbols": [
+    {"at":0,"name":"bout_setup_fighters","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":76,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Puts both fighters at the start: x $3e and $5a, on the ground, facing each other, move and animation $17. Also red for fighter 1 and the AI set-up. Called by bout_loop."},
+    {"at":58,"placement":"side","text":"Fighter 1 red again; the bull test sets colour 9."}
+  ],
+  "references": [],
+  "operands": []
+}

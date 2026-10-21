@@ -1,0 +1,43 @@
+{
+  "name": "r_move_anim_end",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2381"},
+  "length": 99,
+  "bytes": [
+    "b54ef00aa900954eb554f003855360b5",
+    "40f029b556c911d006b54849019548a9",
+    "0095409569955c953cb556c90af026c9",
+    "10f022c907f01ea901955660b456b95b",
+    "11d005a901956960a90195569585a900",
+    "955c953c60a9019540a9049556953a20",
+    "de3060"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,60,62,65,67,69,71,72,74,76,78,80,82,84,85,87,89,91,93,95,98],
+  "relocations": [],
+  "variable": [1,7,9,13,16,20,26,30,34,36,38,40,42,58,61,63,64,70,75,77,81,83,88,92,94,96,97],
+  "symbols": [
+    {"at":0,"name":"move_anim_end","kind":"routine"},
+    {"at":4,"name":"anim_end_clear","kind":"label"},
+    {"at":14,"name":"anim_end_done","kind":"label"},
+    {"at":15,"name":"anim_end_check_reverse","kind":"label"},
+    {"at":19,"name":"anim_end_after_retract","kind":"label"},
+    {"at":31,"name":"anim_end_reverse_done","kind":"label"},
+    {"at":55,"name":"anim_end_stand","kind":"label"},
+    {"at":60,"name":"anim_end_forward","kind":"label"},
+    {"at":67,"name":"anim_end_hold","kind":"label"},
+    {"at":72,"name":"anim_end_to_stand","kind":"label"},
+    {"at":85,"name":"anim_end_rise_crouch","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":98,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Acts when the animation of fighter X ended: a hit reaction ends the bout, a retract returns to stand or crouch, a hold move keeps its end pose ($69)."},
+    {"at":12,"placement":"side","text":"Ends the bout loop"},
+    {"at":21,"placement":"side","text":"Back kick retracted: the fighter now faces the other way"},
+    {"at":43,"placement":"side","text":"Low moves retract into the crouch, then rise"},
+    {"at":62,"placement":"side","text":"0 = hold the end pose"},
+    {"at":95,"placement":"side","text":"Start the crouch animation backwards"}
+  ],
+  "references": [],
+  "operands": []
+}

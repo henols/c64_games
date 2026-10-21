@@ -1,0 +1,28 @@
+{
+  "name": "r_high_score_compare",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1af7"},
+  "length": 21,
+  "bytes": [
+    "a000b1b4dd28cc900bf0023860c8e8c0",
+    "06d0ef3860"
+  ],
+  "instructions": [0,2,4,7,9,11,12,13,14,15,17,19,20],
+  "relocations": [],
+  "variable": [3,5,6],
+  "symbols": [
+    {"at":0,"name":"high_score_compare","kind":"routine"},
+    {"at":2,"name":"high_score_cmp_loop","kind":"label"},
+    {"at":9,"name":"high_score_cmp_differ","kind":"label"},
+    {"at":13,"name":"high_score_cmp_next","kind":"label"},
+    {"at":19,"name":"high_score_cmp_equal","kind":"label"},
+    {"at":20,"name":"high_score_cmp_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":20,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Compares the high score at text_dest_ptr with the score at $cc28+X. Returns C clear when the score is higher. Called by high_score_update."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,95 @@
+{
+ "name": "Attract demo: four bouts of two computer fighters, scene changes and the score panel",
+ "original": {
+  "program": "original/fist_v1_2010.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "build/fist_v1_loader.prg",
+  "symbols": "build/fist_v1.json"
+ },
+ "steps": [
+  {
+   "frames": 150
+  },
+  {
+   "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_main_loop"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "observe": "title",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "game_mode",
+    "two_player_mode"
+   ],
+   "screen": {},
+   "vicii": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "stage_counter",
+     "operator": "eq",
+     "value": 1
+    },
+    "timeoutFrames": 20000
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "observe": "bout2",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "fighter_x",
+    {
+     "address": "fighter_move",
+     "size": 2
+    },
+    "half_points"
+   ],
+   "screen": {}
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "stage_counter",
+     "operator": "eq",
+     "value": 2
+    },
+    "timeoutFrames": 20000
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "observe": "bout3",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    }
+   ],
+   "screen": {}
+  }
+ ]
+}

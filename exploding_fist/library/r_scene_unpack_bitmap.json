@@ -1,0 +1,38 @@
+{
+  "name": "r_scene_unpack_bitmap",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$12ce"},
+  "length": 98,
+  "bytes": [
+    "a5a429030aa8b94c138534b94d138535",
+    "a00018b134653448c8b1346535853568",
+    "8534a93f8536a9f58537a000b134f031",
+    "30138538203013203e13a438b1349136",
+    "88d0f9f0e5297faaa9018538203e1386",
+    "38203013a001b134a438913688d0fbf0",
+    "c960"
+  ],
+  "instructions": [0,2,4,5,6,9,11,14,16,18,19,21,23,24,25,27,29,31,32,34,36,38,40,42,44,46,48,50,52,55,58,60,62,64,65,67,69,71,72,74,76,79,81,84,86,88,90,92,93,95,97],
+  "relocations": [],
+  "variable": [1,7,8,10,12,13,15,20,22,26,28,30,33,37,41,45,51,53,54,56,57,59,61,63,75,77,78,80,82,83,87,89,91],
+  "symbols": [
+    {"at":0,"name":"scene_unpack_bitmap","kind":"routine"},
+    {"at":42,"name":"scene_unpack_loop","kind":"label"},
+    {"at":60,"name":"scene_unpack_copy","kind":"label"},
+    {"at":69,"name":"scene_unpack_run","kind":"label"},
+    {"at":90,"name":"scene_unpack_fill","kind":"label"},
+    {"at":97,"name":"scene_unpack_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":97,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Unpacks the bitmap of scene stage_counter AND 3 backwards into $e640-$f53f. The data starts with its length. Called by scene_draw_if_new."},
+    {"at":19,"placement":"side","text":"Adds the stored length: the unpacker reads from the end of the data."},
+    {"at":34,"placement":"side","text":"The bitmap rows 5-16 end at $f53f."},
+    {"at":46,"placement":"side","text":"A zero control byte ends the data."},
+    {"at":48,"placement":"side","text":"Bit 7 set: a run of one value."},
+    {"at":50,"placement":"side","text":"Bit 7 clear: a block of literal bytes."}
+  ],
+  "references": [],
+  "operands": []
+}

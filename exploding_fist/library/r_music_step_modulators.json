@@ -1,0 +1,33 @@
+{
+  "name": "r_music_step_modulators",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$0dfc"},
+  "length": 66,
+  "bytes": [
+    "ad1cd48dde0cad1bd48ddf0ca002b9e3",
+    "0cd017b9db0c1879e00c99db0c901fa9",
+    "ff99db0c99e30c4c3a0eb9db0c38f9e0",
+    "0c99db0cb008a90099db0c99e30c8810",
+    "cd60"
+  ],
+  "instructions": [0,3,6,9,12,14,17,19,22,23,26,29,31,33,36,39,42,45,46,49,52,54,56,59,62,63,65],
+  "relocations": [
+    {"at":40,"size":"word","value":62}
+  ],
+  "variable": [1,2,4,5,7,8,10,11,15,16,20,21,24,25,27,28,34,35,37,38,43,44,47,48,50,51,57,58,60,61],
+  "symbols": [
+    {"at":0,"name":"music_step_modulators","kind":"routine"},
+    {"at":4,"name":"sfx_period_lo_old","kind":"label"},
+    {"at":14,"name":"music_modulator_loop","kind":"label"},
+    {"at":42,"name":"music_modulator_down","kind":"label"},
+    {"at":62,"name":"music_modulator_next","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":65,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Steps the three triangle LFOs in music_mod_values between 0 and $ff, and copies ENV3 and OSC3 into slots 3 and 4. Called each frame from $0aa8."},
+    {"at":9,"placement":"side","text":"Slot 4: no instrument selects it"}
+  ],
+  "references": [],
+  "operands": []
+}

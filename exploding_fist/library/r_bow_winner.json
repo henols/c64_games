@@ -1,0 +1,25 @@
+{
+  "name": "r_bow_winner",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1916"},
+  "length": 18,
+  "bytes": [
+    "200719202630ad12d0c9fe90f9b54ef0",
+    "f260"
+  ],
+  "instructions": [0,3,6,9,11,13,15,17],
+  "relocations": [],
+  "variable": [1,2,4,5,7,8,14],
+  "symbols": [
+    {"at":0,"name":"bow_winner","kind":"routine"},
+    {"at":3,"name":"bow_winner_step","kind":"label"},
+    {"at":6,"name":"bow_winner_wait","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Plays the bow of fighter X frame by frame until it ends. Called after a won bout in each mode."}
+  ],
+  "references": [],
+  "operands": []
+}

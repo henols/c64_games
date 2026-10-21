@@ -1,0 +1,721 @@
+{
+ "program": "original/fist_v2_scc.prg",
+ "symbols": "none",
+ "coverage": "$115a",
+ "checkpoint": "$1aff",
+ "state": [
+  {
+   "address": "$6a",
+   "size": 4
+  },
+  {
+   "address": "$61",
+   "size": 2
+  },
+  {
+   "address": "$8a",
+   "size": 2
+  },
+  {
+   "address": "$af",
+   "size": 6
+  }
+ ],
+ "name": "Keyboard control: F7 option set, a 1-player game with the keys of player 1 (Q W E A D Z X C, S = fire)",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$1e64"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "write": {
+    "address": "$c6",
+    "data": "01"
+   }
+  },
+  {
+   "frames": 5
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "S"
+  },
+  {
+   "press": "W"
+  },
+  {
+   "press": "D"
+  },
+  {
+   "press": "X"
+  },
+  {
+   "press": "A"
+  },
+  {
+   "press": "Q"
+  },
+  {
+   "press": "E"
+  },
+  {
+   "press": "Z"
+  },
+  {
+   "press": "C"
+  },
+  {
+   "frames": 6000
+  }
+ ]
+}

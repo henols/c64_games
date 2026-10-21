@@ -1,0 +1,31 @@
+{
+  "name": "r_bout_2p_exchanges",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$167c"},
+  "length": 45,
+  "bytes": [
+    "2090153027a55445552910f011a554d0",
+    "08a209201a1b4c9a16a219201a1ba000",
+    "20ec18a01d20ec18a5b1f0d460"
+  ],
+  "instructions": [0,3,5,7,9,11,13,15,17,19,22,25,27,30,32,35,37,40,42,44],
+  "relocations": [
+    {"at":23,"size":"word","value":30}
+  ],
+  "variable": [1,2,6,8,14,20,21,28,29,33,34,38,39,41],
+  "symbols": [
+    {"at":0,"name":"bout_2p_exchanges","kind":"routine"},
+    {"at":13,"name":"bout_2p_one_hit","kind":"label"},
+    {"at":25,"name":"bout_2p_score_p2","kind":"label"},
+    {"at":30,"name":"bout_2p_clear_symbols","kind":"label"},
+    {"at":44,"name":"bout_2p_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":44,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"One two-player bout: exchanges until the time ends. Each hit gives score points to the other player and clears the yin-yang cells. Called by game_two_players."},
+    {"at":5,"placement":"side","text":"Each reaction move has bit 4 set: the EOR finds a hit of exactly one fighter."}
+  ],
+  "references": [],
+  "operands": []
+}

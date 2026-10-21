@@ -1,0 +1,29 @@
+{
+  "name": "r_move_start_anim",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2438"},
+  "length": 33,
+  "bytes": [
+    "b556d53cf00a953aa900953c9569f00e",
+    "b569f006a900953af004b53c953a4c26",
+    "30"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30],
+  "relocations": [],
+  "variable": [1,3,7,11,13,17,23,27,29,31,32],
+  "symbols": [
+    {"at":0,"name":"move_start_anim","kind":"routine"},
+    {"at":6,"name":"anim_start_new_move","kind":"label"},
+    {"at":16,"name":"anim_start_same_move","kind":"label"},
+    {"at":20,"name":"anim_start_freeze","kind":"label"},
+    {"at":26,"name":"anim_start_continue","kind":"label"},
+    {"at":30,"name":"anim_start_step","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":32,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Selects anim_number,x from fighter_move,x: a new move starts its animation, a held pose stops it, else it runs on. Then steps the animation at $3026."}
+  ],
+  "references": [],
+  "operands": []
+}

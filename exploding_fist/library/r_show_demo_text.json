@@ -1,0 +1,23 @@
+{
+  "name": "r_show_demo_text",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1c62"},
+  "length": 21,
+  "bytes": [
+    "a9448da0cca9458da1cca94d8da2cca9",
+    "4f8da3cc60"
+  ],
+  "instructions": [0,2,5,7,10,12,15,17,20],
+  "relocations": [],
+  "variable": [3,4,8,9,13,14,18,19],
+  "symbols": [
+    {"at":0,"name":"show_demo_text","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":20,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Writes DEMO at $cca0, the place of the rank text. Called by demo_play."}
+  ],
+  "references": [],
+  "operands": []
+}

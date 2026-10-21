@@ -1,0 +1,29 @@
+{
+  "name": "r_score_compare_players",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1a98"},
+  "length": 31,
+  "bytes": [
+    "a209a019bd28ccd928ccf004b00b900c",
+    "c8e8e00fd0eea28060a20060a20160"
+  ],
+  "instructions": [0,2,4,7,10,12,14,16,17,18,20,22,24,25,27,28,30],
+  "relocations": [],
+  "variable": [5,6,8,9],
+  "symbols": [
+    {"at":0,"name":"score_compare_players","kind":"routine"},
+    {"at":4,"name":"score_compare_loop","kind":"label"},
+    {"at":12,"name":"score_compare_differ","kind":"label"},
+    {"at":16,"name":"score_compare_next","kind":"label"},
+    {"at":22,"name":"score_compare_equal","kind":"label"},
+    {"at":25,"name":"score_p1_higher","kind":"label"},
+    {"at":28,"name":"score_p2_higher","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":30,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Compares the six score digits of both players. Returns X = 0 when player 1 is higher, 1 when player 2 is higher, $80 when equal. Called by game_two_players."}
+  ],
+  "references": [],
+  "operands": []
+}

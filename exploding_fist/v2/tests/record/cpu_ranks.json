@@ -1,0 +1,82 @@
+{
+ "program": "original/fist_v2_scc.prg",
+ "symbols": "none",
+ "coverage": "$115a",
+ "checkpoint": "$1aff",
+ "state": [
+  {
+   "address": "$6a",
+   "size": 4
+  },
+  {
+   "address": "$61",
+   "size": 2
+  },
+  {
+   "address": "$8a",
+   "size": 2
+  },
+  {
+   "address": "$af",
+   "size": 6
+  }
+ ],
+ "name": "1-player game where the computer plays for player 1 against an idle opponent: all ranks and the bull rounds",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$1e64"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$1bbd"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "$65",
+    "data": "0100"
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 30000
+  },
+  {
+   "frames": 30000
+  },
+  {
+   "frames": 20000
+  }
+ ]
+}

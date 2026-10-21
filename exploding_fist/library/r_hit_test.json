@@ -1,0 +1,25 @@
+{
+  "name": "r_hit_test",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$2477"},
+  "length": 26,
+  "bytes": [
+    "a45eb548d94800f011b5560aa8b91b12",
+    "8565b91c1285664ca224"
+  ],
+  "instructions": [0,2,4,7,9,11,12,13,16,18,21,23],
+  "relocations": [],
+  "variable": [1,3,5,6,10,14,15,17,19,20,22,24,25],
+  "symbols": [
+    {"at":0,"name":"hit_test","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":25,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Tests if the attack of fighter X hits the opponent (opponent_index). The hit-zone table of the move gives a target extent for the opponent frame; fighter_distance must lie in the reach window ($11bb full, $11d4 half). A hit sets hit_points,x to 2 or 1, then scoring_move and the hit_reaction of the opponent. A miss changes nothing."},
+    {"at":7,"placement":"side","text":"Same facing: the attacker faces the back of the opponent, or turns its back"},
+    {"at":13,"placement":"side","text":"Hit-zone table of the move when the fighters face each other"}
+  ],
+  "references": [],
+  "operands": []
+}

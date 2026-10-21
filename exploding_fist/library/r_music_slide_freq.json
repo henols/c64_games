@@ -1,0 +1,44 @@
+{
+  "name": "r_music_slide_freq",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$0eb3"},
+  "length": 159,
+  "bytes": [
+    "bdf50cdd8f0c900dd04dbdf20cdd8c0c",
+    "9003d04360bdfe0c8dd60cbdfb0cbcca",
+    "0cf0070a2ed60c88d0f9187df20c9df2",
+    "0cbdf50c6dd60c9df50cdd8f0cf003b0",
+    "0960bdf20cdd8c0c90f7bd8c0c9df20c",
+    "bd8f0c9df50c60bdfe0c8dd60cbdfb0c",
+    "bcca0cf0070a2ed60c88d0f98dd70cbd",
+    "f20c38edd70c9df20cbdf50cedd60c9d",
+    "f50cdd8f0c900bf00160bdf20cdd8c0c",
+    "b0f7bd8c0c9df20cbd8f0c9df50c60"
+  ],
+  "instructions": [0,3,6,8,10,13,16,18,20,21,24,27,30,33,35,36,39,40,42,43,46,49,52,55,58,61,63,65,66,69,72,74,77,80,83,86,87,90,93,96,99,101,102,105,106,108,111,114,115,118,121,124,127,130,133,135,137,138,141,144,146,149,152,155,158],
+  "relocations": [],
+  "variable": [1,2,4,5,11,12,14,15,22,23,25,26,28,29,31,32,37,38,44,45,47,48,50,51,53,54,56,57,59,60,67,68,70,71,75,76,78,79,81,82,84,85,88,89,91,92,94,95,97,98,103,104,109,110,112,113,116,117,119,120,122,123,125,126,128,129,131,132,139,140,142,143,147,148,150,151,153,154,156,157],
+  "symbols": [
+    {"at":0,"name":"music_slide_freq","kind":"routine"},
+    {"at":21,"name":"music_slide_up","kind":"label"},
+    {"at":35,"name":"music_slide_up_shift","kind":"label"},
+    {"at":42,"name":"music_slide_up_add","kind":"label"},
+    {"at":65,"name":"music_slide_up_exit","kind":"label"},
+    {"at":66,"name":"music_slide_up_check_lo","kind":"label"},
+    {"at":74,"name":"music_slide_up_clamp","kind":"label"},
+    {"at":77,"name":"sfx_period_hi_old","kind":"label"},
+    {"at":87,"name":"music_slide_down","kind":"label"},
+    {"at":101,"name":"music_slide_down_shift","kind":"label"},
+    {"at":108,"name":"music_slide_down_sub","kind":"label"},
+    {"at":137,"name":"music_slide_down_exit","kind":"label"},
+    {"at":138,"name":"music_slide_down_check_lo","kind":"label"},
+    {"at":146,"name":"music_slide_down_clamp","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":158,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Moves the current frequency of voice X toward the note frequency by (slide step << note octave) and stops at the note. Called from $0a93."}
+  ],
+  "references": [],
+  "operands": []
+}

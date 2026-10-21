@@ -1,0 +1,24 @@
+{
+  "name": "r_init_game_state",
+  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1414"},
+  "length": 23,
+  "bytes": [
+    "a90085ff8524855220591420a714a953",
+    "858ea90185ab60"
+  ],
+  "instructions": [0,2,4,6,8,11,14,16,18,20,22],
+  "relocations": [],
+  "variable": [3,5,7,9,10,12,13,17,21],
+  "symbols": [
+    {"at":0,"name":"init_game_state","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":22,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Start-up: sets game_mode, front_fighter and shape_page_offset to 0, sets the vectors and the VIC, seeds frame_random with $53, scene_shown 1. Called by cold_start."},
+    {"at":18,"placement":"side","text":"Scene 1 is not on the screen, so the first bout draws scene 0."}
+  ],
+  "references": [],
+  "operands": []
+}
