@@ -30,11 +30,11 @@ flowchart TB
 
 The fighter update calls the hit test first, before it reads the input. Thus a hit in a pass comes before the move of that pass. The steps of one hit are these, in the order of the code:
 
-1. **The hit frame.** [`hit_check` `$2B70`](../src/hit_test.asm#L6) tests the move of fighter X. The move must have the attack flag, a new forward animation step, no held pose, and the hit frame of the move. Thus the test runs one time for each attack, in the frame where the attack shows its hit frame. (**Code**)
-2. **The target extent.** [`hit_test` `$2B8E`](../src/hit_test.asm#L23) selects the hit-zone table of the move. One table is for fighters that face each other. A second table is for fighters that face the same way. The byte for the frame of the opponent is the extent. `$80` means that the attack cannot hit this frame. (**Code**)
+1. **The hit frame.** [`hit_check` `$2B70`](../src/fighter/hit_test.asm#L6) tests the move of fighter X. The move must have the attack flag, a new forward animation step, no held pose, and the hit frame of the move. Thus the test runs one time for each attack, in the frame where the attack shows its hit frame. (**Code**)
+2. **The target extent.** [`hit_test` `$2B8E`](../src/fighter/hit_test.asm#L23) selects the hit-zone table of the move. One table is for fighters that face each other. A second table is for fighters that face the same way. The byte for the frame of the opponent is the extent. `$80` means that the attack cannot hit this frame. (**Code**)
 3. **The reach window.** The routine compares the distance with the extent and the two reach values of the move. A distance near the extent gives a full point. A distance a little farther from the extent gives a half point. Each other distance is a miss, also a distance that is too short. (**Code**)
 4. **The point.** `hit_full_point` and `hit_half_point` write 2 or 1 into `hit_points` of the attacker. In the two-player game, they also draw the yin-yang symbol at once. (**Code**)
-5. **The record.** [`hit_record` `$2CA8`](../src/hit_test.asm#L175) writes the move into `scoring_move`. Then the CIA2 check runs (see the section below). Then the routine selects the hit reaction of the opponent and starts its sample. (**Code**)
+5. **The record.** [`hit_record` `$2CA8`](../src/fighter/hit_test.asm#L175) writes the move into `scoring_move`. Then the CIA2 check runs (see the section below). Then the routine selects the hit reaction of the opponent and starts its sample. (**Code**)
 
 Version I has the same code for the hit test. The hit-zone tables are the same 1298 bytes. The full description of the hit-zone tables and of the reach window is on [../../v1/docs/combat.md](../../v1/docs/combat.md). (**Code**)
 
@@ -61,7 +61,7 @@ The reach type also selects the reaction. Only the roundhouse `$0F` and the back
 | `$1A` | Facing each other: reach type not 0. Same facing: reach type 0. | 1 (0.46 s) | 3 at frame `$28` |
 | `$1B` | Facing each other: the moves `$07`, `$0C` and `$18`. | 1 (0.46 s) | none |
 
-[`sfx_play_sample_0` `$3158`](../src/sfx_sample_player.asm#L44) and [`sfx_play_sample_1` `$315E`](../src/sfx_sample_player.asm#L49) start the samples. [`move_start_hit_reaction` `$29CD`](../src/fighter_moves.asm#L21) starts sample 3 when the fall reaches frame `$2C` or `$28`. A new sample stops the sample that plays, because the start code stops the CIA1 timers first. The start code also clears all SID registers. The DEL key on the title screen sets `samples_off`, and then no sample starts. (**Code**)
+[`sfx_play_sample_0` `$3158`](../src/sfx/sfx_sample_player.asm#L42) and [`sfx_play_sample_1` `$315E`](../src/sfx/sfx_sample_player.asm#L47) start the samples. [`move_start_hit_reaction` `$29CD`](../src/fighter/fighter_moves.asm#L21) starts sample 3 when the fall reaches frame `$2C` or `$28`. A new sample stops the sample that plays, because the start code stops the CIA1 timers first. The start code also clears all SID registers. The DEL key on the title screen sets `samples_off`, and then no sample starts. (**Code**)
 
 The samples are in the assets: [sample 0](assets/sample0_knockdown.wav), [sample 1](assets/sample1_hit.wav) and [sample 3](assets/sample3_floor.wav). The start of an attack plays [sample 2](assets/sample2_attack.wav). The sample player is on [sound_music.md](sound_music.md). (**Observed**, render)
 
@@ -69,9 +69,9 @@ The bull round plays sample 1 for the reaction `$16`, not sample 0. The bull use
 
 ## The CIA2 check in hit_record
 
-Version II has a copy-protection check in the middle of `hit_record`. [`protect_cia2_check` `$2CAE`](../src/hit_test.asm#L180) reads `CI2CRA`, the control register A of CIA2 at `$DD0E`. The game never writes this register. The original loader leaves the value 0 there. A load through the KERNAL leaves `$08` there. (**Code**)
+Version II has a copy-protection check in the middle of `hit_record`. [`protect_cia2_check` `$2CAE`](../src/fighter/hit_test.asm#L180) reads `CI2CRA`, the control register A of CIA2 at `$DD0E`. The game never writes this register. The original loader leaves the value 0 there. A load through the KERNAL leaves `$08` there. (**Code**)
 
-The check runs on each scoring hit, after the write of `scoring_move` and before the reaction. When the value is 0, the hit continues as normal. When the register has any bit at 1, [`protect_cia2_trap` `$2CB3`](../src/hit_test.asm#L194) pushes the value and `opponent_index` on the stack. Then it jumps into `anim_update` with X = `$4E`. The last RTS of `anim_update` pulls the two bytes. The CPU then continues at the register value * 256 + `opponent_index` + 1, for example `$0801`. (**Code**)
+The check runs on each scoring hit, after the write of `scoring_move` and before the reaction. When the value is 0, the hit continues as normal. When the register has any bit at 1, [`protect_cia2_trap` `$2CB3`](../src/fighter/hit_test.asm#L194) pushes the value and `opponent_index` on the stack. Then it jumps into `anim_update` with X = `$4E`. The last RTS of `anim_update` pulls the two bytes. The CPU then continues at the register value * 256 + `opponent_index` + 1, for example `$0801`. (**Code**)
 
 A test started the original with `$DD0E` = `$08`. At the first scoring hit of the demo, the CPU executed graphics data as code, at `$902C` after 600 frames. The panel showed no yin-yang, and the clock stopped at 27. The rebuild with `PROTECTION` = 0 continued to play, with yin-yangs and the clock at 21. The scenarios are [protection_trap_original.json](../tests/protection_trap_original.json) and [protection_trap_rebuild.json](../tests/protection_trap_rebuild.json). (**Observed**)
 
@@ -81,7 +81,7 @@ The check is late and the failure is far from the check. Thus a cracker sees a c
 
 ## The end of an exchange
 
-The hit freezes the opponent before the fall. [`move_update_state` `$29B4`](../src/fighter_moves.asm#L6) decrements `knockdown_delay` from 8 to 0 and holds the pose. Then it starts the reaction animation. When the animation ends, `move_anim_end` copies the reaction into `bout_knockdown`, and `bout_loop` stops. (**Code**)
+The hit freezes the opponent before the fall. [`move_update_state` `$29B4`](../src/fighter/fighter_moves.asm#L6) decrements `knockdown_delay` from 8 to 0 and holds the pose. Then it starts the reaction animation. When the animation ends, `move_anim_end` copies the reaction into `bout_knockdown`, and `bout_loop` stops. (**Code**)
 
 The clock does not run while a fighter has a hit reaction. `bout_loop` calls `timer_tick` only when both `hit_reaction` bytes are 0. Thus the fall takes no time from the bout. (**Code**)
 
@@ -99,9 +99,9 @@ Each game mode has its own exchange handler. The three handlers use the same hit
 | One player | `bout_1p_exchanges` | Both fighters | Player 1 only | 4 half points, or the end of the time |
 | Demo | `bout_demo_exchanges` | Both fighters | None | 4 half points, or the end of the time |
 
-[`score_add_move` `$206C`](../src/score_and_judge.asm#L173) reads the value of `scoring_move` in `move_score_values`. The value is in hundreds. A half point gives half of the value. The routine then calls `score_add_100` one time for each hundred. (**Code**)
+[`score_add_move` `$206C`](../src/game/score_and_judge.asm#L167) reads the value of `scoring_move` in `move_score_values`. The value is in hundreds. A half point gives half of the value. The routine then calls `score_add_100` one time for each hundred. (**Code**)
 
-[`add_half_points` `$1D5F`](../src/game_modes.asm#L321) adds `hit_points` to `half_points` and draws the yin-yang symbols for 1 to 4 half points. At 4 half points the fighter wins the bout and bows. A win before the end of the time adds 100 points for each second that remains (`time_bonus_count`). (**Code**)
+[`add_half_points` `$1D5F`](../src/game/game_modes.asm#L315) adds `hit_points` to `half_points` and draws the yin-yang symbols for 1 to 4 half points. At 4 half points the fighter wins the bout and bows. A win before the end of the time adds 100 points for each second that remains (`time_bonus_count`). (**Code**)
 
 In the one-player game, the hits of the computer give half points but no score. Only the score of player 1 goes to the high score table. (**Code**)
 
@@ -109,7 +109,7 @@ In the one-player game, the hits of the computer give half points but no score. 
 
 At the end of the time, the one-player game compares the half points. When they are equal, it compares `bout_hit_value` of the two fighters. Each hit adds the value of its move to this sum, and a half point adds half of the value. The higher sum wins, and the judge shows the winner. Equal sums give a draw: both fighters bow, and the bout starts again in the same scene. The recordings executed the tie break and the draw. (**Code**, **Observed** coverage)
 
-[`bout_hit_value_add` `$2169`](../src/timer_and_texts.asm#L59) has a bug from version I. It reads `hit_points` without X, so it uses the last hit of fighter 0 for both fighters. For fighter 1 the code makes these errors (**Code**):
+[`bout_hit_value_add` `$2169`](../src/game/timer_and_texts.asm#L59) has a bug from version I. It reads `hit_points` without X, so it uses the last hit of fighter 0 for both fighters. For fighter 1 the code makes these errors (**Code**):
 
 - When the last hit of fighter 0 was a full point, a half point of the computer counts the full value.
 - When the last hit of fighter 0 was a half point, a full point of the computer counts half of the value.
@@ -120,7 +120,7 @@ Only `hit_test` writes `hit_points`. Thus the value of fighter 0 can come from a
 
 ## The bull has its own reach test
 
-The bull round does not call the fighter update, and thus no hit test, no `hit_record` and no CIA2 check run there. [`bull_reach_test` `$139D`](../src/bull_round.asm#L105) compares the distance from fighter 0 to the bull with `bull_reach_by_frame`, one byte for each frame of fighter 0. A hit forces the reaction `$16` on fighter 0, with sample 1. The fighter stops the bull with frame `$0D` of the crouch punch at a distance of `$19` to `$1D`. The details are on [bull_round.md](bull_round.md). (**Code**)
+The bull round does not call the fighter update, and thus no hit test, no `hit_record` and no CIA2 check run there. [`bull_reach_test` `$139D`](../src/game/bull_round_12f8.asm#L95) compares the distance from fighter 0 to the bull with `bull_reach_by_frame`, one byte for each frame of fighter 0. A hit forces the reaction `$16` on fighter 0, with sample 1. The fighter stops the bull with frame `$0D` of the crouch punch at a distance of `$19` to `$1D`. The details are on [bull_round.md](bull_round.md). (**Code**)
 
 ## The data
 
@@ -144,7 +144,7 @@ The table `move_reach_types` has only 21 bytes. The move `$18` reads its reach t
 
 ## The worked example
 
-The low kick `$0B` hits an opponent that stands in frame `$00` and faces the attacker. The values come from the tables in [`entry_and_tables.asm`](../src/entry_and_tables.asm) and [`hit_zone_tables.asm`](../src/hit_zone_tables.asm). (**Code**)
+The low kick `$0B` hits an opponent that stands in frame `$00` and faces the attacker. The values come from the tables in [`entry_and_tables.asm`](../src/game/entry_and_tables.asm) and [`hit_zone_tables.asm`](../src/fighter/hit_zone_tables.asm). (**Code**)
 
 1. `move_hit_zone_facing` for `$0B` points to `hitzone_fire_down_fwd`. Its byte for frame `$00` is `$0B`. Thus e = `$0B` + `$80` = `$8B`.
 2. The reach type of `$0B` is 0. The full reach is 1, and the half reach is 6.

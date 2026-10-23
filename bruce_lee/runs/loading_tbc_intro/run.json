@@ -1,0 +1,10 @@
+{
+  "name": "loading_tbc_intro",
+  "start": { "program": "original/bruce_lee_tbc.prg" },
+  "steps": [
+    { "runUntil": { "target": { "kind": "address", "address": "$0872" }, "timeoutFrames": 3000 } },
+    { "observe": "at_0872", "vicii": true, "registers": true },
+    { "frames": 2 },
+    { "screen": "tbc_picture_0872" }
+  ]
+}

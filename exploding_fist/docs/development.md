@@ -31,7 +31,7 @@ The order of the versions is clear from five kinds of evidence:
 2. **Version II contains version I.** An opcode alignment matches 4378 of the 4737 instructions of version I in version II. The music driver `$09A5-$0F51` has the same bytes in both versions. **Code**.
 3. **Version II corrects the bugs of version I.** The rank cap, the tune 1 order list and the X limits are bugs in version I and correct code in version II. The sections below give the bytes. **Observed** / **Code**.
 4. **Version II finishes what version I prepared.** The bull test, the sample player, the judge stub and tune 4 are complete but unused in version I. Version II calls each of them from the game. **Code**.
-5. **Version II has edits inside version I code.** In the AI, new code made a branch too long. At [`v2:ai_choose_attack` `$24B8`](../v2/src/ai_opponent.asm#L288) the author inverted the v1 `BEQ` and added a `JMP`, because the new distance is $87 bytes and a branch reaches only $7F. **Code**.
+5. **Version II has edits inside version I code.** In the AI, new code made a branch too long. At [`v2:ai_choose_attack` `$24B8`](../v2/src/ai/ai_opponent.asm#L288) the author inverted the v1 `BEQ` and added a `JMP`, because the new distance is $87 bytes and a branch reaches only $7F. **Code**.
 
 Version II also keeps the dead code of version I with the new addresses in its operands. For example, the unused patch routines of the multiplexer write to the v2 handler addresses. Thus the authors assembled version II again from the source text of version I. They did not patch a memory image of version I. **Code** / **Conclusion**.
 
@@ -39,25 +39,25 @@ Each version has a different RAM pattern in its gaps (see [The RAM in the gaps](
 
 ### The rank cap
 
-In version I a one-player game has no upper rank. [`v1:game_one_player` `$16A9`](../v1/src/game_modes.asm#L81) stops the promotions only at `stage_counter` $16, after 22 promotions. The rank table `v1:rank_number_table` has 12 entries, so ranks 12 to 22 read code bytes from `$1D48` as rank numbers. The panel then shows texts such as "|||TH DANN", and the AI level of the opponent reads the next tables. **Observed** in [rank_overflow.json](../v1/tests/rank_overflow.json) and the recording `cpu_ranks`.
+In version I a one-player game has no upper rank. [`v1:game_one_player` `$16A9`](../v1/src/game/game_modes.asm#L81) stops the promotions only at `stage_counter` $16, after 22 promotions. The rank table `v1:rank_number_table` has 12 entries, so ranks 12 to 22 read code bytes from `$1D48` as rank numbers. The panel then shows texts such as "|||TH DANN", and the AI level of the opponent reads the next tables. **Observed** in [rank_overflow.json](../v1/tests/rank_overflow.json) and the recording `cpu_ranks`.
 
-Version II compares with 10 at [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game_modes.asm#L149). The rank stays "10TH DAN", and the AI level after the cap is 7 to 10. **Observed** in [rank_cap.json](../v2/tests/rank_cap.json). The details are on [../v1/docs/game_flow.md](../v1/docs/game_flow.md) and [../v2/docs/game_flow.md](../v2/docs/game_flow.md).
+Version II compares with 10 at [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game/game_modes.asm#L146). The rank stays "10TH DAN", and the AI level after the cap is 7 to 10. **Observed** in [rank_cap.json](../v2/tests/rank_cap.json). The details are on [../v1/docs/game_flow.md](../v1/docs/game_flow.md) and [../v2/docs/game_flow.md](../v2/docs/game_flow.md).
 
 ### The tune 1 order list
 
-Tune 1 is the music of the demo. Its voice 0 order list in version I, [`v1:music_t1_order_v0` `$0FC2`](../v1/src/music_tables.asm#L52), has 19 bytes: `01 00 01 00 01 01 01 01 01 01 01 01 03 13 01 01 02 02 00`. The repeat command `03 13 01` jumps to position 19, but the list ends at position 18. Voice 0 thus continues in the list of voice 1, and pattern 2 never plays. **Code**. The coverage of version I has no read of pattern 2 or of its instrument 2. **Observed**.
+Tune 1 is the music of the demo. Its voice 0 order list in version I, [`v1:music_t1_order_v0` `$0FC2`](../v1/src/music/music_tables.asm#L52), has 19 bytes: `01 00 01 00 01 01 01 01 01 01 01 01 03 13 01 01 02 02 00`. The repeat command `03 13 01` jumps to position 19, but the list ends at position 18. Voice 0 thus continues in the list of voice 1, and pattern 2 never plays. **Code**. The coverage of version I has no read of pattern 2 or of its instrument 2. **Observed**.
 
-Voices 1 and 2 loop after 2130 ticks. Voice 0 needs one more pattern entry of 192 ticks before the repeat to give the same loop. Version II has exactly this entry. [`v2:music_t1_order_v0` `$0FC2`](../v2/src/music_tables.asm#L43) has `01 00` at `$0FCE`, and the repeat target 19 is now the jump at `$0FD5`. The coverage of version II reads pattern 2 and instrument 2. **Code** / **Observed**.
+Voices 1 and 2 loop after 2130 ticks. Voice 0 needs one more pattern entry of 192 ticks before the repeat to give the same loop. Version II has exactly this entry. [`v2:music_t1_order_v0` `$0FC2`](../v2/src/music/music_tables.asm#L43) has `01 00` at `$0FCE`, and the repeat target 19 is now the jump at `$0FD5`. The coverage of version II reads pattern 2 and instrument 2. **Code** / **Observed**.
 
 Conclusion: one entry was lost in version I, and version II put it back. The two new bytes moved all later music data by 2. Each order list pointer after it and all 25 instrument pointers are the v1 value plus 2. The game entry moved with them from `$1158` to `$115A`. **Code**. See [../v2/docs/sound_music.md](../v2/docs/sound_music.md).
 
 ### The X limits and the somersault steps
 
-In version I the frames $16, $17 and $20 of the somersaults sit one column (12 units) to the right in their 72-pixel frame. The scripts compensate with one-frame steps of dx -11 and +11. [`v1:script_down_back` `$7832`](../v1/src/anim_scripts.asm#L83) has the steps `01 17 F5 FE` and `01 15 0B 00`, and `v1:script_up_back` has a pair of the same kind. **Code**.
+In version I the frames $16, $17 and $20 of the somersaults sit one column (12 units) to the right in their 72-pixel frame. The scripts compensate with one-frame steps of dx -11 and +11. [`v1:script_down_back` `$7832`](../v1/src/fighter/anim_scripts.asm#L83) has the steps `01 17 F5 FE` and `01 15 0B 00`, and `v1:script_up_back` has a pair of the same kind. **Code**.
 
-[`v1:anim_check_x_limits` `$30B5`](../v1/src/anim_step.asm#L95) refuses a move out of $0C to $94 and keeps the old X. Near an edge it can refuse the -11 step and then accept the +11 step. The fighter then moves 11 units with no reason. **Code** / **Conclusion**.
+[`v1:anim_check_x_limits` `$30B5`](../v1/src/fighter/anim_step_3041.asm#L74) refuses a move out of $0C to $94 and keeps the old X. Near an edge it can refuse the -11 step and then accept the +11 step. The fighter then moves 11 units with no reason. **Code** / **Conclusion**.
 
-Version II moves the three frames and their shadows one column to the left in the part tables. It removes the compensation steps, so `v2:script_down_back` has 7 steps (v1 9). [`v2:anim_check_x_limits` `$384C`](../v2/src/anim_step.asm#L95) clamps X to limits by facing from `v2:fighter_x_min` and `v2:fighter_x_max`: $0C-$95 for facing 0 and $00-$89 for facing 1. **Code**. See [../v2/docs/fighters.md](../v2/docs/fighters.md).
+Version II moves the three frames and their shadows one column to the left in the part tables. It removes the compensation steps, so `v2:script_down_back` has 7 steps (v1 9). [`v2:anim_check_x_limits` `$384C`](../v2/src/fighter/anim_step_37d8.asm#L74) clamps X to limits by facing from `v2:fighter_x_min` and `v2:fighter_x_max`: $0C-$95 for facing 0 and $00-$89 for facing 1. **Code**. See [../v2/docs/fighters.md](../v2/docs/fighters.md).
 
 ### Two more corrections
 
@@ -81,7 +81,7 @@ The bull round is a bonus stage: the player must stop a charging bull with a low
 
 ### The prototype in version I
 
-[`v1:dev_bull_test` `$138F`](../v1/src/dev_bull_test.asm#L42) and its three helpers fill `$1354-$1413`. No instruction refers to this range, and no run of the game executes it. **Code** / **Observed** (coverage).
+[`v1:dev_bull_test` `$138F`](../v1/src/dev/dev_bull_test_138f.asm#L6) and its three helpers fill `$1354-$1413`. No instruction refers to this range, and no run of the game executes it. **Code** / **Observed** (coverage).
 
 1. `v1:dev_clear_part_ptrs` writes 0 to the part pointers of both fighters.
 2. `v1:dev_update_fighter` updates one fighter without the hit test and without the choice of the front fighter. It is `v1:fighter_update` without the parts that need an opponent.
@@ -92,13 +92,13 @@ The bull round is a bonus stage: the player must stop a charging bull with a low
 
 **Code**.
 
-The bull graphics are in M.XSPRITES, which the loader puts at [`v1:bull_parts` `$F540`](../v1/src/bull_sprites_run.asm#L6). The frames $3B-$42 use the parts $D5-$FD. With `shape_page_offset` $40 the part pages become $F5-$FF, that is `$F540-$FF7F`. This area is also the floor of the screen, bitmap rows 17-24. The floor colours are all yellow, so the bull graphics hide in the floor bitmap. **Code**.
+The bull graphics are in M.XSPRITES, which the loader puts at [`v1:bull_parts` `$F540`](../v1/src/graphics/bull_sprites_run.asm#L6). The frames $3B-$42 use the parts $D5-$FD. With `shape_page_offset` $40 the part pages become $F5-$FF, that is `$F540-$FF7F`. This area is also the floor of the screen, bitmap rows 17-24. The floor colours are all yellow, so the bull graphics hide in the floor bitmap. **Code**.
 
-The scripts are [`v1:script_bull_charge` `$797E`](../v1/src/anim_scripts.asm#L206) (animation $1C: 9 steps, dx -22 for each cycle of 54 frames) and `v1:script_bull_hit` (animation $1D, frames $42, $40, $41). They are the last two entries of the script table. The numbers fit together: $B0 = 176 = 8 x 22, so the bull reaches X 0 after exactly 8 cycles. **Code**.
+The scripts are [`v1:script_bull_charge` `$797E`](../v1/src/fighter/anim_scripts.asm#L206) (animation $1C: 9 steps, dx -22 for each cycle of 54 frames) and `v1:script_bull_hit` (animation $1D, frames $42, $40, $41). They are the last two entries of the script table. The numbers fit together: $B0 = 176 = 8 x 22, so the bull reaches X 0 after exactly 8 cycles. **Code**.
 
 The final code of version I has traces of the test:
 
-- [`v1:anim_check_x_limits` `$30B7`](../v1/src/anim_step.asm#L97) skips the X limits for frames $3B and up. No fighter script uses such a frame. Only the bull needs to run past the edge. **Code**.
+- [`v1:anim_check_x_limits` `$30B7`](../v1/src/fighter/anim_step_3041.asm#L76) skips the X limits for frames $3B and up. No fighter script uses such a frame. Only the bull needs to run past the edge. **Code**.
 - The bout set-up writes 0 to `shape_page_offset` and sets fighter 1 to red again before each bout. Only the test makes them different. **Code**.
 - The hit-zone tables cover only frames $00-$3A. Thus the bull frames never reach the hit test. **Code**.
 
@@ -116,7 +116,7 @@ The second capture shows the fighter on the floor with hit reaction $16. The bul
 
 ### The round in version II
 
-[`v2:bull_bonus_round` `$132C`](../v2/src/bull_round.asm#L46) is `v1:dev_bull_test` with corrections. `v2:game_one_player` calls it after the two wins of each scene 3 stage. `v2:solo_fighter_update` has the same body as `v1:dev_update_fighter`, and `v2:bull_setup_fighter0` is `v1:dev_setup_fighter0`. Even `v2:dev_clear_part_ptrs` is still there with the same 11 bytes, and nothing calls it. **Code**.
+[`v2:bull_bonus_round` `$132C`](../v2/src/game/bull_round_12f8.asm#L36) is `v1:dev_bull_test` with corrections. `v2:game_one_player` calls it after the two wins of each scene 3 stage. `v2:solo_fighter_update` has the same body as `v1:dev_update_fighter`, and `v2:bull_setup_fighter0` is `v1:dev_setup_fighter0`. Even `v2:dev_clear_part_ptrs` is still there with the same 11 bytes, and nothing calls it. **Code**.
 
 | Point | Version I test | Version II round |
 |---|---|---|
@@ -130,7 +130,7 @@ The second capture shows the fighter on the floor with hit reaction $16. The bul
 | Speed | 54 frames for each run cycle | 24 frames for each run cycle |
 | Graphics | CPU copy from `$F540` with offset $40 | direct sprite pointers, blocks at `$C940-$E5BF` |
 
-The bull graphics had to leave `$F540`, because version II puts its samples in the floor bitmap there. All 41 bull blocks are byte copies of the v1 blocks. With offset $40, the v1 copy source of part p was `$C000` + p x 64, that is the address of sprite pointer p. Version II uses this fact. [`v2:shape_build` `$3914`](../v2/src/shape_build.asm#L37) sends a non-zero `shape_page_offset` to `v2:shape_direct_ptrs`, which writes the part numbers as sprite pointers. **Code** / **Observed** (byte compare).
+The bull graphics had to leave `$F540`, because version II puts its samples in the floor bitmap there. All 41 bull blocks are byte copies of the v1 blocks. With offset $40, the v1 copy source of part p was `$C000` + p x 64, that is the address of sprite pointer p. Version II uses this fact. [`v2:shape_build` `$3914`](../v2/src/shapes/shape_build_390c.asm#L11) sends a non-zero `shape_page_offset` to `v2:shape_direct_ptrs`, which writes the part numbers as sprite pointers. **Code** / **Observed** (byte compare).
 
 The old method still shows in version II. The copy code still adds `shape_page_offset` in 10 places, but it runs only with offset 0. **Code**.
 
@@ -152,7 +152,7 @@ The method is the same in all three players. CIA1 timer A counts with a latch of
 
 ### The dead player in version I
 
-[`v1:sfx_sample_irq` `$29C8`](../v1/src/sfx_sample_player.asm#L6) and `v1:sfx_sample_start` are this player inside the game. No code calls the start routine, and CIA1 IRQs are off. Still, all 15 raster handlers start with `BIT $D019 / BMI / JMP $29C8` to send a non-VIC IRQ to the player. **Code** / **Observed** (coverage: no execution).
+[`v1:sfx_sample_irq` `$29C8`](../v1/src/sfx/sfx_sample_player.asm#L6) and `v1:sfx_sample_start` are this player inside the game. No code calls the start routine, and CIA1 IRQs are off. Still, all 15 raster handlers start with `BIT $D019 / BMI / JMP $29C8` to send a non-VIC IRQ to the player. **Code** / **Observed** (coverage: no execution).
 
 The start routine is the start code of M.MYTINY with changes for the game. Both set timer A to 8, timer A control to $51, timer B to $0101, and clear the SID with a loop from $1C down. The game version uses its own IRQ vector, a one-shot timer B ($59) and an end value of $7F (M.MYTINY: 1). It writes `$DC0D` = $7F twice and `sfx_done` = 0 twice, which are signs of edits. **Code** / **Conclusion**.
 
@@ -162,7 +162,7 @@ Conclusion: an earlier build of version I had a game sample with its tables in t
 
 ### The live samples of version II
 
-[`v2:sfx_sample_irq` `$311A`](../v2/src/sfx_sample_player.asm#L6) is the same player, now live. Each raster handler now tests `BIT $DC0D` first and sends a CIA1 IRQ to the player with a `CLI`. `v2:init_game_state` copies the period tables from `$C700-$C8FF` to `$0200-$03FF`, out of the music area. DEL on the title switches the samples on or off. **Code**.
+[`v2:sfx_sample_irq` `$311A`](../v2/src/sfx/sfx_sample_player.asm#L6) is the same player, now live. Each raster handler now tests `BIT $DC0D` first and sends a CIA1 IRQ to the player with a `CLI`. `v2:init_game_state` copies the period tables from `$C700-$C8FF` to `$0200-$03FF`, out of the music area. DEL on the title switches the samples on or off. **Code**.
 
 The period tables of version II are the first two pages of M.SPCHTBL, with 0 different bytes. Sample 1 is a part of the loading speech: its 790 bytes `$F663-$F978` are equal to M.TSOUND `$3214-$3529`. Thus the authors took the hit sound from the speech recording of the loading stage. **Observed** (byte compare).
 
@@ -189,11 +189,11 @@ Version II shows a judge (sprite 6) with a flag in the colour of the winner (spr
 
 The evidence in version I:
 
-- [`v1:winner_stub` `$1AB7`](../v1/src/score_and_timer.asm#L43) is a lone `RTS`. Three places call it with the winner in X: the end of a two-player game, a won decision and a lost decision. **Code**.
+- [`v1:winner_stub` `$1AB7`](../v1/src/game/score_and_timer.asm#L43) is a lone `RTS`. Three places call it with the winner in X: the end of a two-player game, a won decision and a lost decision. **Code**.
 - The multiplexer keeps the X bit 8 of sprites 6 and 7 with `AND #$C0` at `v1:mux_a_set_msb`. The bout loop keeps sprites 6 and 7 with `ORA #$3F` on the sprite enable register, and the start enables all 8 sprites. Nothing in version I writes the pointers or the positions of sprites 6 and 7. **Code**.
 - The flag block of the v2 judge is already in version I: v1 `$D500` in `v1:figure_parts_unused` is equal to `v2:judge_flag_sprite` at `$D440`. **Observed** (byte compare).
 
-[`v2:judge_show_winner` `$1F93`](../v2/src/score_and_judge.asm#L43) replaces the stub at the same three call sites. It reads the place of the judge from four tables by scene. Version II also patches the two-player game with a `DEC stage_counter` after bout 4, so that the table index matches the scene on the screen. The judge sprite at `$D400` and `$D700` is new. **Code**.
+[`v2:judge_show_winner` `$1F93`](../v2/src/game/score_and_judge.asm#L43) replaces the stub at the same three call sites. It reads the place of the judge from four tables by scene. Version II also patches the two-player game with a `DEC stage_counter` after bout 4, so that the table index matches the scene on the screen. The judge sprite at `$D400` and `$D700` is new. **Code**.
 
 ![An old small figure of version I](../v1/docs/reference/images/figure_f68_parts-multicolour.png)
 
@@ -205,11 +205,11 @@ The judge sprite of version II for scenes 2 and 3, a new single sprite.
 
 ## Tune 4
 
-Version I holds a fourth tune that nothing plays: patterns at `$08D6-$0956`, the order lists at [`v1:music_t4_order_v0` `$1053`](../v1/src/music_tables.asm#L143) and instruments 19-21. Only tune 4 uses the stop command, the sharp notes and the subtracting filter sweep of the driver. No code writes 4 to `game_mode`, and the coverage has no read of the tune. **Code** / **Observed** (coverage).
+Version I holds a fourth tune that nothing plays: patterns at `$08D6-$0956`, the order lists at [`v1:music_t4_order_v0` `$1053`](../v1/src/music/music_tables_0fd5.asm#L84) and instruments 19-21. Only tune 4 uses the stop command, the sharp notes and the subtracting filter sweep of the driver. No code writes 4 to `game_mode`, and the coverage has no read of the tune. **Code** / **Observed** (coverage).
 
 A trace with `game_mode` = 4 plays the tune: a short fanfare of 384 ticks (7.7 seconds), then all voices stop. **Observed** (SID writes in a trace). The driver tables have entries for 5 tunes (0-4), with tune 0 as an empty placeholder. **Code**.
 
-Version II plays tune 4 at the name entry of its new high score table. [`v2:hs_name_entry` `$1762`](../v2/src/high_score_table.asm#L400) writes 4 to `game_mode`. The tune data is the same as in version I. The name entry run read all of tune 4 and executed the stop command. **Code** / **Observed** (coverage). Conclusion: the jingle was ready in version I, and version II gave it an event.
+Version II plays tune 4 at the name entry of its new high score table. [`v2:hs_name_entry` `$1762`](../v2/src/game/high_score_table.asm#L382) writes 4 to `game_mode`. The tune data is the same as in version I. The name entry run read all of tune 4 and executed the stop command. **Code** / **Observed** (coverage). Conclusion: the jingle was ready in version I, and version II gave it an event.
 
 ## The scene data
 
@@ -217,15 +217,15 @@ The four scenes are multicolour bitmaps of rows 5-16, $F00 bytes each, with a co
 
 ### The older layout in version I
 
-[`v1:old_scene_bitmap_ptrs` `$127F`](../v1/src/entry_and_tables.asm#L73) holds the words `$E640`, `$3600`, `$4500` and `$5400`. Nothing reads them. **Code** / **Observed** (coverage).
+[`v1:old_scene_bitmap_ptrs` `$127F`](../v1/src/leftovers/leftover_127f.asm#L6) holds the words `$E640`, `$3600`, `$4500` and `$5400`. Nothing reads them. **Code** / **Observed** (coverage).
 
 The numbers make a layout: $3600 + $F00 = $4500, + $F00 = $5400, and + $F00 = $6300, the first colour map. $F00 is 3840, the size of an unpacked bitmap of rows 5-16. `$E640` is that area on the screen. Thus an older build stored three scenes unpacked at `$3600-$62FF` and kept scene 0 at its screen place. **Conclusion**.
 
-The final version I packs the four bitmaps with a backward RLE. [`v1:scene_unpack_bitmap` `$12CE`](../v1/src/scene_unpack.asm#L6) unpacks them, and the packed data ends at `$62FF`, just below the maps. The code grew to `$36A1`, over the start of the old scene 1 area. The table of the old layout stayed in the tables file. **Code** / **Conclusion**.
+The final version I packs the four bitmaps with a backward RLE. [`v1:scene_unpack_bitmap` `$12CE`](../v1/src/scenes/scene_unpack.asm#L6) unpacks them, and the packed data ends at `$62FF`, just below the maps. The code grew to `$36A1`, over the start of the old scene 1 area. The table of the old layout stayed in the tables file. **Code** / **Conclusion**.
 
 ### The map packer of version II
 
-Version II packs the maps too. [`v2:scene_unpack_maps` `$1849`](../v2/src/scene_unpack.asm#L90) is a new nybble RLE unpacker, and the packed maps fill `$68CB-$71FF`. Unpacked, the screen maps of all 4 scenes are equal to version I. The colour maps are equal to the low nybbles of version I. The random high nybbles of version I are gone. **Code** (a model of the unpacker on the file bytes).
+Version II packs the maps too. [`v2:scene_unpack_maps` `$1849`](../v2/src/scenes/scene_unpack.asm#L87) is a new nybble RLE unpacker, and the packed maps fill `$68CB-$71FF`. Unpacked, the screen maps of all 4 scenes are equal to version I. The colour maps are equal to the low nybbles of version I. The random high nybbles of version I are gone. **Code** (a model of the unpacker on the file bytes).
 
 The numbers show why the authors did it:
 
@@ -264,7 +264,7 @@ Version II has two more unused bull leftovers. `v2:bull_part_copy_unused` at `$E
 
 These parts are in version I, and most of them are still in version II with new addresses. None of them changes the game. **Code**, with the coverage of all runs as **Observed**.
 
-- **The gap-$16 patch routines.** `v1:mux_unused_patch_b3_a2` (`$2FBD`) and `v1:mux_unused_patch_a3_b2` (`$3003`) are the patch routines of two sprite row layouts with the rows exchanged. The planner still has `CMP #$16 / BNE` to the next instruction at [`v1:mux_a_above_b` `$2B54`](../v1/src/sprite_mux_plan.asm#L132) and `v1:mux_b_above_a`. The gap between the sprite groups is always a multiple of 4, so $16 cannot occur. The authors removed the layouts but not the tests or the routines. Version II has both routines at `$3754` and `$379A`, with the v2 handler addresses. See [../v1/docs/interrupts.md](../v1/docs/interrupts.md).
+- **The gap-$16 patch routines.** `v1:mux_unused_patch_b3_a2` (`$2FBD`) and `v1:mux_unused_patch_a3_b2` (`$3003`) are the patch routines of two sprite row layouts with the rows exchanged. The planner still has `CMP #$16 / BNE` to the next instruction at [`v1:mux_a_above_b` `$2B54`](../v1/src/irq/sprite_mux_plan.asm#L117) and `v1:mux_b_above_a`. The gap between the sprite groups is always a multiple of 4, so $16 cannot occur. The authors removed the layouts but not the tests or the routines. Version II has both routines at `$3754` and `$379A`, with the v2 handler addresses. See [../v1/docs/interrupts.md](../v1/docs/interrupts.md).
 - **The mirrored pointer lists.** `v1:shape_unused_mirror_lists` (`$3131`) holds the 4 sprite pointer lists with columns 1 and 3 exchanged, and `v1:shape_unused_mlist_lo` holds their addresses. No run reads them. Conclusion: an older mirror method exchanged the pointers, and the final method changes the part order. Version II has the lists at `$38D8`, with the v2 addresses.
 - **The old clear-demo routine.** `v1:clear_demo_text_old` (`$1C53`) clears the 4 cells of "DEMO". The final code clears 8 cells, the width of "10TH DAN". Version II rewrote this dead routine in the same place as `v2:clear_panel_texts` (`$21A5`), a loop for the new control text. See [../v1/docs/game_flow.md](../v1/docs/game_flow.md).
 - **Dead jumps and returns.** `v1:ai_dead_repeat_jump` (`$1F8C`) is a `JMP` just after an `RTS`, an old exit of the attack timing. The `RTS` at `$1607` after the `JMP` of `v1:cold_start` is the end of an older `JSR` to the title. `v1:anim_unused_rts` (`$3040`) follows a `JMP`. All three are in version II (`$251E`, `$1AF3`, `$37D7`). See [../v1/docs/ai.md](../v1/docs/ai.md).
@@ -278,7 +278,7 @@ These parts are in version I, and most of them are still in version II with new 
 
 The tables of both versions start at the same addresses, for example the scripts at `$7720` and the part tables at `$7AE0`. The gaps between them hold bytes that no code reads. **Code**.
 
-These bytes repeat one 256-byte pattern that the low address byte selects. In version I, before the scenes ([`v1:ram_noise_before_scenes` `$36A2`](../v1/src/unused_ram_pattern.asm#L6)), the even bytes are mostly $00 or $80 and the odd bytes mostly $3F or $BF. In version II ([`v2:ram_noise_before_scenes` `$3E80`](../v2/src/unused_ram_pattern.asm#L6)) the even bytes are mostly $80 or $00 and the odd bytes mostly $FF. **Observed** (byte compare).
+These bytes repeat one 256-byte pattern that the low address byte selects. In version I, before the scenes ([`v1:ram_noise_before_scenes` `$36A2`](../v1/src/scenes/unused_ram_pattern.asm#L6)), the even bytes are mostly $00 or $80 and the odd bytes mostly $3F or $BF. In version II ([`v2:ram_noise_before_scenes` `$3E80`](../v2/src/scenes/unused_ram_pattern.asm#L6)) the even bytes are mostly $80 or $00 and the odd bytes mostly $FF. **Observed** (byte compare).
 
 Inside one version the pattern repeats: v2 `$3E80-$3EDF` is equal to v2 `$7A80-$7ADF` in 93 of 96 bytes. Between the versions it does not: v1 and v2 have 13 of 96 equal bytes at `$7A80`. No gap byte of version I survives in version II. The music workspace at `$0C8C-$0D03` shows the same: both files have runs of $00 and $FF, but 23 stray bytes differ. **Observed** (byte compare).
 
@@ -288,7 +288,7 @@ The colour data has a second kind of RAM trace. The colour maps of version I and
 
 ## The code style of the high score table
 
-The top-5 table of version II, from [`v2:hs_table_update` `$146A`](../v2/src/high_score_table.asm#L6), looks different from the code of version I. See [../v2/docs/high_scores.md](../v2/docs/high_scores.md). **Code**:
+The top-5 table of version II, from [`v2:hs_table_update` `$146A`](../v2/src/game/high_score_table.asm#L6), looks different from the code of version I. See [../v2/docs/high_scores.md](../v2/docs/high_scores.md). **Code**:
 
 - Loops end with `DEX / CPX #$FF / BNE` or with a `JMP` back. The older code uses `DEX / BPL` or `DEY / BPL`, for example `v1:dev_clear_part_ptrs`.
 - `v2:hs_shift_names` and `v2:hs_shift_scores` unroll the shift of the entries. Each entry has its own `LDA / STA` pair and its own `CPY` test.

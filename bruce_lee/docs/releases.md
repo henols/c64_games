@@ -4,7 +4,7 @@ The project has three cracked releases of *Bruce Lee*: SAEGER, TBC and DC. No un
 
 **Conventions.**
 - Addresses are C64 addresses. Names are the names of the knowledge.
-- A *release* is one cracked file. Its *capture* is the memory at the jump to [`cold_start` `$0400`](../src/cold_start.asm#L22), in `original/releases/<label>/`.
+- A *release* is one cracked file. Its *capture* is the memory at the jump to [`cold_start` `$0400`](../src/game/cold_start.asm#L22). The project knowledge keeps the bytes of each capture.
 - The *game bytes* are the 24 segments of the program of the knowledge, from `$03FF` to `$FFFF` (40,075 bytes).
 - The *base release* is the release whose bytes are the program of the knowledge: SAEGER.
 - A *stage* is one part of a crack that runs before the game, as c64-unpacker found it.
@@ -32,7 +32,7 @@ Each file starts with one BASIC line that starts the crack. The line numbers are
 
 The line number 1985 of the DC file may be the year of the crack. No other source gives a date for TBC or DC (**Conclusion**).
 
-The knowledge records each release with its capture and the define that builds it. The captures are `original/releases/saeger/image.json`, `original/releases/tbc/image.json` and `original/releases/dc/image.json` (**Observed**: `knowledge.ts releases`).
+The knowledge records each release with its bytes and the define that builds it. The bytes of each release are in the project knowledge. They come from the captures of the three files at the jump to `cold_start` (**Observed**: `knowledge.ts releases`).
 
 ## The original
 
@@ -59,13 +59,9 @@ Each crack adds an intro and a mover in front of the game. The intros and the mo
 
 ### The title picture
 
-The title picture is not crack work. It is the Datasoft title picture, and only TBC holds it. TBC changed it in two ways. It wrote "CRACKED BY TBC" into the bitmap, and it gave all cells the screen colours `$CE`. The intro plays no music (**Observed**). The rebuild shows the clean picture at the start. See "The boot" in the [README](../README.md#the-rebuild).
+The title picture is not crack work. It is the Datasoft title picture, and only TBC holds it. TBC changed it in two ways. It wrote "CRACKED BY TBC" into the bitmap, and it gave all cells the screen colours `$CE`. The intro plays no music (**Observed**). The rebuild shows the clean picture as its start screen. The switch `CRACK_TBC_PICTURE` of space bank8 holds the changes of TBC, and its default is 0. [startup_title.md](startup_title.md#the-title-picture-before-the-entry) tells how the loader shows it.
 
 ![The title picture in the TBC intro](images/screens/title_picture_tbc.png)
-
-The picture of the rebuild, with the TBC text removed and the colours of the original screen:
-
-![The clean title picture of the rebuild](images/screens/title_picture.png)
 
 ### Trainers and changed texts
 
@@ -87,7 +83,7 @@ The files hold traces of the cracks in the program, and traces of people other t
 
 ### The DIABOLO edit
 
-**A cracker changed message `$62`.** [`msg_presents` `$4770`](../src/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in SAEGER and "DATASOFT PRESENTS" in TBC and DC. Two spaces keep the length of 17 characters. No code prints this message (**Observed**: byte compare. **Code**: no code prints the index). The edit is only in SAEGER. So a cracker who signed as Diabolo edited a copy of the image, and SSG packed that copy later (**Conclusion**).
+**A cracker changed message `$62`.** [`msg_presents` `$4770`](../src/text/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in SAEGER and "DATASOFT PRESENTS" in TBC and DC. Two spaces keep the length of 17 characters. No code prints this message (**Observed**: byte compare. **Code**: no code prints the index). The edit is only in SAEGER. So a cracker who signed as Diabolo edited a copy of the image, and SSG packed that copy later (**Conclusion**).
 
 ### The image of a game that ran
 
@@ -95,9 +91,9 @@ The files hold traces of the cracks in the program, and traces of people other t
 
 **A reset left `$55` at `$9B00`.** The KERNAL RAM test at `$FD6E-$FD83` reads each byte and writes `$55`. It compares, writes `$AA` and compares again. Then it writes the old byte back (**Code**: the KERNAL). A reset that stopped the test after the write of `$55` at `$9B00` leaves `$55` there. A cracker who resets a running game to save its memory can get this byte (**Conclusion**).
 
-**The game reads the damaged byte.** At the cold start, [`build_double_height_font` `$4892`](../src/draw_helpers.asm#L51) reads `$9B00` in [`room_charset_c` `$9800`](../src/room_charset_c.asm#L6) as source data (**Observed**: a watchpoint on `$9B00` in the TBC release). So SAEGER builds character `$60` of `charset_wizard` with a different top row. Nobody checked if room 18 shows character `$60`.
+**The game reads the damaged byte.** At the cold start, [`build_double_height_font` `$4892`](../src/room/draw_helpers.asm#L51) reads `$9B00` in [`room_charset_c` `$9800`](../src/graphics/room_charset_c.asm#L6) as source data (**Observed**: a watchpoint on `$9B00` in the TBC release). So SAEGER builds character `$60` of `charset_wizard` with a different top row. Nobody checked if room 18 shows character `$60`.
 
-**The game writes each music byte before it reads it.** So the run state does not change the game (**Code**). In the TBC release, a watchpoint on `$E3DF-$E3E8` stops first at the store of [`music_set_voice_pointers` `$E376`](../src/music_player.asm#L81), 83 frames after the entry (**Observed**). In SAEGER and DC, the first access of the voice state and the flags is a write. A compare of the first 900 frames of each release shows it (**Observed**: c64-provenance `compare --frames`).
+**The game writes each music byte before it reads it.** So the run state does not change the game (**Code**). In the TBC release, a watchpoint on `$E3DF-$E3E8` stops first at the store of [`music_set_voice_pointers` `$E376`](../src/music/music_player.asm#L81), 83 frames after the entry (**Observed**). In SAEGER and DC, the first access of the voice state and the flags is a write. A compare of the first 900 frames of each release shows it (**Observed**: c64-provenance `compare --frames`).
 
 ### The tape tools at `$FE00`
 
@@ -107,9 +103,9 @@ The tools are not part of the game or of the relocator. They were in the memory 
 
 ### The lost demo input of DC
 
-**DC lost the demo input.** The packed file holds the game only up to `$F200`. Thus [`demo_input_stream` `$F300`](../src/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF` (**Observed**: byte compare of the captures).
+**DC lost the demo input.** The packed file holds the game only up to `$F200`. Thus [`demo_input_stream` `$F300`](../src/input/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF` (**Observed**: byte compare of the captures).
 
-In the DC release, the attract demo gives Bruce no input. The demo stops at his first lost fall and then shows the title. **Observed**: a run of the DC release went from [`start_attract_demo` `$0531`](../src/title_demo_start.asm#L32) to [`lose_fall` `$1818`](../src/lose_fall_game_over.asm#L14) and then to the title. Thus a preservation project must not use the DC file as the source of the demo input.
+In the DC release, the attract demo gives Bruce no input. The demo stops at his first lost fall and then shows the title. **Observed**: a run of the DC release went from [`start_attract_demo` `$0531`](../src/game/title_demo_start.asm#L32) to [`lose_fall` `$1818`](../src/game/lose_fall_game_over.asm#L14) and then to the title. Thus a preservation project must not use the DC file as the source of the demo input.
 
 ## The differences
 
@@ -147,18 +143,18 @@ These commands of c64-assembler build the game and each release. Run them from t
 | Build | Command | Result |
 |---|---|---|
 | Default game | `assembler.ts build src main.asm --out build/bruce_lee.prg` | the clean game |
-| Default runnable loader | `assembler.ts build src loader.asm --out build/bruce_lee_loader.prg` | a PRG with `10 SYS 2061` |
+| Default runnable loader | `source.ts generate --out src --loader` | `build/clean_loader.prg`, a PRG with `10 SYS 2061` and the start screen |
 | SAEGER | `assembler.ts build src main.asm --release SAEGER --compare --out build/bruce_lee_SAEGER.prg` | identical to the program of the knowledge |
-| TBC | `... --release TBC --compare` | identical to `original/releases/tbc/` in each of its 23 segments |
-| DC | `... --release DC --compare` | identical to `original/releases/dc/` in each of its 23 segments |
+| TBC | `... --release TBC --compare` | identical to the TBC bytes of the knowledge in each of its 23 segments |
+| DC | `... --release DC --compare` | identical to the DC bytes of the knowledge in each of its 23 segments |
 
-The TBC capture has no segment for the key bytes `$CF79-$CFBA`, but the bytes are in its memory. The DC capture has no segment for the demo input (**Observed**: the segments of the captures). `src/loader.prg` is the loader of the SAEGER build. c64-source checks it in the emulator against the entry state of the capture.
+The TBC capture has no segment for the key bytes `$CF79-$CFBA`, but the bytes are in its memory. The DC capture has no segment for the demo input (**Observed**: the segments of the captures). `build/clean_loader.prg` is the loader of the SAEGER build. c64-source checks it in the emulator against the entry state of the capture.
 
 ### The tests of the releases
 
 - `tests/no_protection.json` and `tests/all_rooms_no_protection.json` compare the default loader with the TBC release.
-- The other scenarios in [tests/](../tests/) compare the SAEGER release with `src/loader.prg`.
-- The recording `tests/recordings/first-rooms` replays on `src/loader.prg` and on the default loader. Each replay gives PASS at 1075 checkpoints of [`main_loop` `$1BC2`](../src/game_main_loop.asm#L23) (**Observed**).
+- The other scenarios in [tests/](../tests/) compare the SAEGER release with `build/clean_loader.prg`.
+- The recording `tests/recordings/first-rooms` replays on `build/clean_loader.prg` with the symbols of `build/symbols/clean_loader.json`. The replay runs the rebuild to `loader_start_screen_wait` and sets the PC to `loader_start_screen_continue`. Each replay gives PASS at 1075 checkpoints of [`main_loop` `$1BC2`](../src/game/game_main_loop.asm#L23) (**Observed**).
 
 ## Still open
 

@@ -28,18 +28,18 @@ flowchart TB
   E --> B
 ~~~
 
-[`cold_start` `$1AED`](../src/bout_loop.asm#L110) calls the start-up routine and jumps into the title loop. The title loop never returns. Version I has the same structure, but it has no judge, no top-5 table and no F7 or DEL key. See [../../v1/docs/game_flow.md](../../v1/docs/game_flow.md), and [../../docs/versions.md](../../docs/versions.md) for the full list of changes. (**Code**)
+[`cold_start` `$1AED`](../src/game/bout_loop.asm#L110) calls the start-up routine and jumps into the title loop. The title loop never returns. Version I has the same structure, but it has no judge, no top-5 table and no F7 or DEL key. See [../../v1/docs/game_flow.md](../../v1/docs/game_flow.md), and [../../docs/versions.md](../../docs/versions.md) for the full list of changes. (**Code**)
 
 ### The cold start and the start-up
 
-[`program_entry` `$115A`](../src/entry_and_tables.asm#L6) jumps to `cold_start`. `cold_start` calls [`init_game_state` `$18E8`](../src/init_machine.asm#L6) and then jumps to `title_main_loop`. After the JMP, `cold_start_unused_rts` holds an RTS that no code reaches. Version I has the same byte. (**Code**) This byte is a trace of an older cold start that called the title loop with a JSR (**Conclusion**).
+[`program_entry` `$115A`](../src/game/entry_and_tables.asm#L6) jumps to `cold_start`. `cold_start` calls [`init_game_state` `$18E8`](../src/game/init_machine.asm#L6) and then jumps to `title_main_loop`. After the JMP, `cold_start_unused_rts` holds an RTS that no code reaches. Version I has the same byte. (**Code**) This byte is a trace of an older cold start that called the title loop with a JSR (**Conclusion**).
 
 `init_game_state` does these steps in this order:
 
 1. It disables the interrupts with SEI. Version I has no SEI here.
 2. It writes 0 to `samples_off`, `game_mode`, `front_fighter`, `shape_page_offset` and `keyboard_control`. Thus each power-on starts with the samples on and the joystick control.
 3. It calls `init_vectors_cias`. This routine switches the ROMs out (`$01` = `$05`) and sets the raster IRQ and the IRQ, NMI and RESET vectors. It also sets the CIA 2 timer B for the NMI of the floor colour. See [interrupts.md](interrupts.md).
-4. It copies the two sample period tables, 256 bytes each, from [`sfx_period_lo_init` `$C700`](../src/sfx_period_tables.asm#L103) and `sfx_period_hi_init` at `$C800` to `sfx_period_lo` at `$0200` and `sfx_period_hi` at `$0300`. The loop is `init_copy_periods`.
+4. It copies the two sample period tables, 256 bytes each, from [`sfx_period_lo_init` `$C700`](../src/sfx/sfx_period_tables.asm#L103) and `sfx_period_hi_init` at `$C800` to `sfx_period_lo` at `$0200` and `sfx_period_hi` at `$0300`. The loop is `init_copy_periods`.
 5. It calls `init_vic_screen`. This routine sets VIC bank 3, the screen at `$CC00`, the bitmap and the panel characters at `$E000`, the colours and the panel. It enables sprites 0-5 only. Version I enabled all 8 sprites.
 6. It writes `$53` to `frame_random` and 1 to `scene_shown`. The value 1 makes sure that the first bout draws scene 0.
 
@@ -51,7 +51,7 @@ The seed of step 6 is a constant. The first demo after the power-on reads `frame
 
 ### The title loop and its keys
 
-[`title_main_loop` `$1EE1`](../src/title_and_scene.asm#L82) writes 0 to `two_player_mode`. The loop at `title_demo_loop` then does these steps again and again:
+[`title_main_loop` `$1EE1`](../src/game/title_and_scene.asm#L82) writes 0 to `two_player_mode`. The loop at `title_demo_loop` then does these steps again and again:
 
 1. It shows the single high score of the mode, with `high_score_show`.
 2. It writes 1 PLAYER or 2 PLAYER, with `show_mode_text`.
@@ -68,7 +68,7 @@ Step 6 does not go through `title_main_loop`, so `two_player_mode` keeps its val
 
 The image shows the title panel during the demo after F7. KEYBOARD is on row 3, and DEMO, the high score and 1 PLAYER are on row 4 (**Observed**).
 
-[`read_title_keys` `$1E64`](../src/title_and_scene.asm#L6) reads the keyboard column 0 and the fire button of port 2. The bout loop calls it in each frame. The routine acts on a key only when the row value is different from `last_key_row`. It compares the full row value, so it finds a key only when the player presses no other key of column 0. (**Code**)
+[`read_title_keys` `$1E64`](../src/game/title_and_scene.asm#L6) reads the keyboard column 0 and the fire button of port 2. The bout loop calls it in each frame. The routine acts on a key only when the row value is different from `last_key_row`. It compares the full row value, so it finds a key only when the player presses no other key of column 0. (**Code**)
 
 | Key | Row value | Effect | With `in_game` = 1 |
 |---|---|---|---|
@@ -83,19 +83,19 @@ The image shows the title panel during the demo after F7. KEYBOARD is on row 3, 
 
 F7 and DEL are new in version II. F7 selects the keyboard control of the fighters, see [fighters.md](fighters.md). DEL stops all samples, because `sfx_sample_start` starts no sample while `samples_off` is not 0. The v1 F7 code, `LDA #$00` and RTS, stays as the last two instructions of the v2 F7 handler. (**Code**) The test `tests/keyboard_option.json` enters the F7 and the DEL handler with a register step. The panel then shows KEYBOARD, and `keyboard_control` and `samples_off` change to 1 (**Observed**).
 
-[`title_key_f5` `$1ED1`](../src/title_and_scene.asm#L69) does not test `in_game`. Thus F5 stops a game at any time and returns to the title. The JMP does not reset the stack, so each F5 leaves 8 bytes of return addresses on the stack. (**Code**) The 6502 stack pointer wraps in page 1, and the memory map gives page 1 only to the stack. Thus many F5 presses do no damage (**Conclusion**).
+[`title_key_f5` `$1ED1`](../src/game/title_and_scene.asm#L69) does not test `in_game`. Thus F5 stops a game at any time and returns to the title. The JMP does not reset the stack, so each F5 leaves 8 bytes of return addresses on the stack. (**Code**) The 6502 stack pointer wraps in page 1, and the memory map gives page 1 only to the stack. Thus many F5 presses do no damage (**Conclusion**).
 
 A start key returns A = `$80` only while `in_game` is 0. In a game, F1 and fire have no effect, so the `BMI` tests after each exchange of a game never branch (**Conclusion**).
 
 ### The demo
 
-[`demo_play` `$1CD2`](../src/game_modes.asm#L245) shows DEMO at the place of the rank text and gives both fighters to the computer. It writes 1 to `game_mode`, so the music driver plays tune 1. It plays 4 bouts, one in each scene, from scene 0 to scene 3. A bout ends when a fighter has 4 half points or when the time ends. The demo shows half points as yin-yang symbols, but it gives no score and calls no judge. (**Code**) The test `tests/demo.json` shows the four bouts and the scene changes (**Observed**).
+[`demo_play` `$1CD2`](../src/game/game_modes.asm#L239) shows DEMO at the place of the rank text and gives both fighters to the computer. It writes 1 to `game_mode`, so the music driver plays tune 1. It plays 4 bouts, one in each scene, from scene 0 to scene 3. A bout ends when a fighter has 4 half points or when the time ends. The demo shows half points as yin-yang symbols, but it gives no score and calls no judge. (**Code**) The test `tests/demo.json` shows the four bouts and the scene changes (**Observed**).
 
 The demo gives each fighter a random AI level from 3 to 11. New in version II, it seeds `ai_random` from `frame_random` first. It also writes `$FF` to `music_t1_p4_end` at `$04F0`, the end mark of a music pattern. The file already holds `$FF` there, and no other instruction writes this byte. (**Code**) The store is a leftover of a removed change to the music data, or a test (**Conclusion**).
 
 ### The one-player game
 
-[`game_one_player` `$1BA7`](../src/game_modes.asm#L89) gives fighter 0 to the player and fighter 1 to the computer. It clears the panel texts and both scores, and it blanks the score of player 2. It seeds `ai_random` from `frame_random`, writes NOVICE at `$CCA0` and writes 2 to `game_mode` for tune 2. (**Code**)
+[`game_one_player` `$1BA7`](../src/game/game_modes.asm#L89) gives fighter 0 to the player and fighter 1 to the computer. It clears the panel texts and both scores, and it blanks the score of player 2. It seeds `ai_random` from `frame_random`, writes NOVICE at `$CCA0` and writes 2 to `game_mode` for tune 2. (**Code**)
 
 Each bout starts with the clock at 30 and the scene of the stage. `bout_1p_exchanges` returns one of four results:
 
@@ -110,10 +110,10 @@ Each bout starts with the clock at 30 and the scene of the stage. `bout_1p_excha
 
 One lost bout ends the game. Thus a one-player game is a series of wins, and the first loss sends the player to the high score table (**Code**).
 
-After two won bouts, the game tests the stage. When `stage_counter` AND 3 = 3, it calls [`bull_bonus_round` `$132C`](../src/bull_round.asm#L46) first. That is after each clear in scene 3. See [bull_round.md](bull_round.md). Then [`game_1p_rank_cap_test` `$1C27`](../src/game_modes.asm#L149) compares `stage_counter` with 10. (**Code**)
+After two won bouts, the game tests the stage. When `stage_counter` AND 3 = 3, it calls [`bull_bonus_round` `$132C`](../src/game/bull_round_12f8.asm#L36) first. That is after each clear in scene 3. See [bull_round.md](bull_round.md). Then [`game_1p_rank_cap_test` `$1C27`](../src/game/game_modes.asm#L146) compares `stage_counter` with 10. (**Code**)
 
 - **Below 10, a promotion.** The game increments the rank index in `cpu_skill+1` and `stage_counter`. It reads `rank_number_table`, keeps the rank in `player_rank` and prints the new rank text. The rank index is also the AI level of the computer, so the opponent gets stronger with each rank. (**Code**)
-- **10 or more, the wrap.** [`game_1p_rank_wrap` `$1C5B`](../src/game_modes.asm#L176) increments `stage_counter` and keeps only the scene: the value becomes `$20` + (n AND 3). The AI level of the computer becomes 7 + a random value 0-3. The rank text stays 10TH DAN. (**Code**)
+- **10 or more, the wrap.** [`game_1p_rank_wrap` `$1C5B`](../src/game/game_modes.asm#L170) increments `stage_counter` and keeps only the scene: the value becomes `$20` + (n AND 3). The AI level of the computer becomes 7 + a random value 0-3. The rank text stays 10TH DAN. (**Code**)
 
 The rank cap corrects the rank overflow of version I. Version I compared `stage_counter` with `$16`. Its rank index went past the 12 entries of the rank table into code bytes, and the rank text broke, for example "|||TH DANN". See [../../v1/docs/game_flow.md](../../v1/docs/game_flow.md). (**Observed** in v1 `tests/rank_overflow.json`) In version II, `tests/rank_cap.json` sets the stage 9 and wins the next clear. The rank text stays 10TH DAN (**Observed**). That test sets the rank index to 10 at stage 9, so its promotion reads entry 11 of the table. Entry 11 also holds 10. In a normal game the rank index equals `stage_counter`, so the game never reads entry 11 (**Code**).
 
@@ -121,23 +121,23 @@ The wrap also gives a weaker opponent. At 10TH DAN the computer has AI level 10,
 
 ### The two-player game
 
-[`game_two_players` `$1B09`](../src/game_modes.asm#L6) gives both fighters to the players. It writes 3 to `game_mode` for tune 3. It plays 4 bouts, one in each scene, and each bout lasts the full 30 seconds. No fighter wins a bout. Each hit gives score points to the player who hits. The hit code draws a yin-yang symbol at the moment of the hit, and `bout_2p_exchanges` clears it after the exchange. (**Code**)
+[`game_two_players` `$1B09`](../src/game/game_modes.asm#L6) gives both fighters to the players. It writes 3 to `game_mode` for tune 3. It plays 4 bouts, one in each scene, and each bout lasts the full 30 seconds. No fighter wins a bout. Each hit gives score points to the player who hits. The hit code draws a yin-yang symbol at the moment of the hit, and `bout_2p_exchanges` clears it after the exchange. (**Code**)
 
 The two-player game has two pauses that version I does not have. Between two bouts, `wait_frames_x6` waits 90 frames, about 1.8 seconds. After the high score test at the end, it waits 120 frames, about 2.4 seconds. (**Code**)
 
-After the fourth bout, [`game_2p_last_bout` `$1B5A`](../src/game_modes.asm#L43) decrements `stage_counter` from 4 to 3. Thus the judge stands at the place of scene 3, the scene on the screen. `score_compare_players` compares the six digits of both scores. The winner gets the judge and the bow. Equal scores give a bow of both fighters and no judge. Then `high_score_update` tests the score of the winner against the two-player high score. (**Code**) This decrement is a patch for the judge, in place of a change of the bout loop (**Conclusion**).
+After the fourth bout, [`game_2p_last_bout` `$1B5A`](../src/game/game_modes.asm#L43) decrements `stage_counter` from 4 to 3. Thus the judge stands at the place of scene 3, the scene on the screen. `score_compare_players` compares the six digits of both scores. The winner gets the judge and the bow. Equal scores give a bow of both fighters and no judge. Then `high_score_update` tests the score of the winner against the two-player high score. (**Code**) This decrement is a patch for the judge, in place of a change of the bout loop (**Conclusion**).
 
 The recording `tests/record/two_player.json` plays a two-player game with both joysticks to the judge at the end (**Observed**). No run reached equal scores (**Observed**: the coverage shows no run of `$1B61-$1B68`).
 
 ### The judge
 
-[`judge_show_winner` `$1F93`](../src/score_and_judge.asm#L43) shows the winner of a decision with two sprites. Sprite 6 is the judge, in grey (colour `$0C`). Sprite 7 is the flag of the judge, in the colour of the winner: 1 (white) for fighter 0, 2 (red) for fighter 1. The scene selects the judge sprite and its place from four tables. Then the routine enables sprites 6 and 7. (**Code**)
+[`judge_show_winner` `$1F93`](../src/game/score_and_judge.asm#L43) shows the winner of a decision with two sprites. Sprite 6 is the judge, in grey (colour `$0C`). Sprite 7 is the flag of the judge, in the colour of the winner: 1 (white) for fighter 0, 2 (red) for fighter 1. The scene selects the judge sprite and its place from four tables. Then the routine enables sprites 6 and 7. (**Code**)
 
 The judge comes at three places: a one-player decision for player 1, a one-player decision for the computer, and the end of a two-player game. The demo calls no judge. (**Code**) The runs executed all three calls (**Observed**: coverage).
 
 In version I, these three calls go to `winner_stub`, a lone RTS. The v1 sprite multiplexer already keeps the X bit 8 of sprites 6 and 7. The v1 bout loop also keeps sprites 6 and 7 in the enable register. (**Code**) Thus the authors planned the judge in version I and completed it in version II (**Conclusion**). See [../../docs/versions.md](../../docs/versions.md).
 
-The judge sprites stay on after the decision. [`bout_prepare_scene` `$1F3A`](../src/title_and_scene.asm#L134) switches them off with `SPENA` = `$3F` before each bout. No other code writes `SPENA` between the end of a game and the first bout of the demo. (**Code**) Thus the judge is visible during the end pause of a two-player game. After a one-player loss by decision, the judge stays visible during the high score table too (**Conclusion**).
+The judge sprites stay on after the decision. [`bout_prepare_scene` `$1F3A`](../src/game/title_and_scene.asm#L131) switches them off with `SPENA` = `$3F` before each bout. No other code writes `SPENA` between the end of a game and the first bout of the demo. (**Code**) Thus the judge is visible during the end pause of a two-player game. After a one-player loss by decision, the judge stays visible during the high score table too (**Conclusion**).
 
 ![The judge sprite of scenes 2 and 3 at $D400, in multicolour](reference/images/judge_sprite_scene23-multicolour.png)
 
@@ -145,7 +145,7 @@ The image shows the judge sprite `judge_sprite_scene23`, decoded from the bytes 
 
 ### The bout loop
 
-[`bout_loop` `$1A7C`](../src/bout_loop.asm#L54) plays one exchange. It puts both fighters at the start positions, x `$3E` and `$5A`. Then it waits for raster line `$FD` in each frame and does these steps:
+[`bout_loop` `$1A7C`](../src/game/bout_loop.asm#L54) plays one exchange. It puts both fighters at the start positions, x `$3E` and `$5A`. Then it waits for raster line `$FD` in each frame and does these steps:
 
 1. It updates fighter 1 and then fighter 0, with `fighter_update`.
 2. It steps `frame_random` once.
@@ -162,21 +162,21 @@ The mode handlers call `bout_loop` again and again. After each exchange, they lo
 
 ### Points, scores and the clock
 
-A full-point hit gives 2 half points, and a half-point hit gives 1. [`add_half_points` `$1D5F`](../src/game_modes.asm#L321) adds them and draws the symbols. One half point is a half yin-yang, and two are a full yin-yang. The symbols of player 1 grow from column 6 to column 3, and the symbols of player 2 from column 32 to column 35. (**Code**)
+A full-point hit gives 2 half points, and a half-point hit gives 1. [`add_half_points` `$1D5F`](../src/game/game_modes.asm#L315) adds them and draws the symbols. One half point is a half yin-yang, and two are a full yin-yang. The symbols of player 1 grow from column 6 to column 3, and the symbols of player 2 from column 32 to column 35. (**Code**)
 
-[`score_add_move` `$206C`](../src/score_and_judge.asm#L173) adds the value of the scoring move from `move_score_values`. A full point gives 200, 400, 600, 800 or 1000 points by the move. A half point gives half of that. The routine adds the points as steps of 100 with `score_add_100`. A score above 999900 becomes 000000, but no run reached this. (**Code**) In a one-player game, only player 1 gets score points. The computer gets only half points (**Code**).
+[`score_add_move` `$206C`](../src/game/score_and_judge.asm#L167) adds the value of the scoring move from `move_score_values`. A full point gives 200, 400, 600, 800 or 1000 points by the move. A half point gives half of that. The routine adds the points as steps of 100 with `score_add_100`. A score above 999900 becomes 000000, but no run reached this. (**Code**) In a one-player game, only player 1 gets score points. The computer gets only half points (**Code**).
 
 At a time-up decision of a one-player bout, the fighter with more half points wins. With equal half points, the larger `bout_hit_value` wins, the sum of the move values of the hits. `bout_hit_value_add` reads `hit_points` of fighter 0 also for fighter 1, a bug of version I that stays. (**Code**) See [combat.md](combat.md).
 
-[`timer_tick` `$212F`](../src/timer_and_texts.asm#L24) counts 50 frames for each second. It decrements the clock digits at `$CC3B` and `timer_seconds`, and it writes a space for the tens digit below 10. At 0 it sets `time_up`. (**Code**)
+[`timer_tick` `$212F`](../src/game/timer_and_texts.asm#L24) counts 50 frames for each second. It decrements the clock digits at `$CC3B` and `timer_seconds`, and it writes a space for the tens digit below 10. At 0 it sets `time_up`. (**Code**)
 
-When player 1 wins a bout with 4 half points, [`time_bonus_count` `$21DF`](../src/timer_and_texts.asm#L140) counts the clock to 0. It adds 100 points for each second, with a pause of 6 frames each. Thus the bonus is 100 times the number on the clock. A win by decision gives no bonus, because the clock is already at 0. (**Code**)
+When player 1 wins a bout with 4 half points, [`time_bonus_count` `$21DF`](../src/game/timer_and_texts.asm#L140) counts the clock to 0. It adds 100 points for each second, with a pause of 6 frames each. Thus the bonus is 100 times the number on the clock. A win by decision gives no bonus, because the clock is already at 0. (**Code**)
 
 ### The high score at the end of a game
 
-The program keeps two single high scores, `high_score_1p` and `high_score_2p`, and shows the score of the mode on row 4 of the panel. [`high_score_update` `$200A`](../src/score_and_judge.asm#L102) copies the score of a player when it is higher. (**Code**)
+The program keeps two single high scores, `high_score_1p` and `high_score_2p`, and shows the score of the mode on row 4 of the panel. [`high_score_update` `$200A`](../src/game/score_and_judge.asm#L102) copies the score of a player when it is higher. (**Code**)
 
-At the end of a one-player game, `game_1p_over` updates and shows the one-player high score. The title loop then calls [`hs_table_update` `$146A`](../src/high_score_table.asm#L6), the top-5 table with the rank and a name of 6 letters. This table is new in version II. A held fire button skips the table, and the new entry keeps the name "......". See [high_scores.md](high_scores.md). (**Code**) A two-player game updates only the single two-player high score (**Code**).
+At the end of a one-player game, `game_1p_over` updates and shows the one-player high score. The title loop then calls [`hs_table_update` `$146A`](../src/game/high_score_table.asm#L6), the top-5 table with the rank and a name of 6 letters. This table is new in version II. A held fire button skips the table, and the new entry keeps the name "......". See [high_scores.md](high_scores.md). (**Code**) A two-player game updates only the single two-player high score (**Code**).
 
 ## The data
 
@@ -200,7 +200,7 @@ The panel is the text rows 0-4 of the screen at `$CC00`, with the characters of 
 
 ### The rank texts
 
-[`print_rank_text` `$21FB`](../src/timer_and_texts.asm#L157) writes the rank X at `text_dest_ptr` + `rank_text_offset`. Rank 0 is NOVICE. Ranks 1-9 are the digit and ST, ND, RD or TH and DAN, for example 2ND DAN. Rank 10 is the text 10TH DAN. The panel uses the offset 0. The high score table uses the offset 1, and then the three forms end in the same column. (**Code**) The 1ST, 2ND and 3RD suffixes are also in version I (**Code**).
+[`print_rank_text` `$21FB`](../src/game/timer_and_texts.asm#L157) writes the rank X at `text_dest_ptr` + `rank_text_offset`. Rank 0 is NOVICE. Ranks 1-9 are the digit and ST, ND, RD or TH and DAN, for example 2ND DAN. Rank 10 is the text 10TH DAN. The panel uses the offset 0. The high score table uses the offset 1, and then the three forms end in the same column. (**Code**) The 1ST, 2ND and 3RD suffixes are also in version I (**Code**).
 
 `rank_number_table` holds 0, 1-9, 10, 10. The game reads it with the rank index. (**Code**)
 
@@ -219,7 +219,7 @@ The flag uses pointer `$51`, `judge_flag_sprite` at `$D440`, in each scene. The 
 
 ## The state machine of the game modes
 
-`game_mode` holds the mode: 0 at the start-up, 1 demo, 2 one player, 3 two players, 4 name entry. The music driver also plays the tune of this number. [`demo_play` `$1CD2`](../src/game_modes.asm#L245), the two game routines and the name entry make the changes. (**Code**)
+`game_mode` holds the mode: 0 at the start-up, 1 demo, 2 one player, 3 two players, 4 name entry. The music driver also plays the tune of this number. [`demo_play` `$1CD2`](../src/game/game_modes.asm#L239), the two game routines and the name entry make the changes. (**Code**)
 
 ~~~mermaid
 stateDiagram-v2
@@ -255,7 +255,7 @@ stateDiagram-v2
 
 ## The state machine of a one-player bout
 
-A one-player bout is a loop of exchanges. The clock and the half points stay from one exchange to the next. [`bout_1p_exchanges` `$1C72`](../src/game_modes.asm#L189) makes each change. The demo has the same states without the score, the judge and the time bonus. The two-player bout has only the exchange and the score, until time up. (**Code**)
+A one-player bout is a loop of exchanges. The clock and the half points stay from one exchange to the next. [`bout_1p_exchanges` `$1C72`](../src/game/game_modes.asm#L183) makes each change. The demo has the same states without the score, the judge and the time bonus. The two-player bout has only the exchange and the score, until time up. (**Code**)
 
 ~~~mermaid
 stateDiagram-v2

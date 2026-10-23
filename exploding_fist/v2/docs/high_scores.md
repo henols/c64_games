@@ -13,7 +13,7 @@ Version II adds a table of the 5 best scores of the 1-player game. Each entry ha
 
 ## When the table shows
 
-The table shows only at the end of a 1-player game. The title loop calls `game_one_player` and then [`hs_table_update` `$146A`](../src/high_score_table.asm#L6) at [`title_start_1p` `$1F0A`](../src/title_and_scene.asm#L105). After the table, the loop clears the panel with `hs_clear_panel` and starts the demo again. (**Code**)
+The table shows only at the end of a 1-player game. The title loop calls `game_one_player` and then [`hs_table_update` `$146A`](../src/game/high_score_table.asm#L6) at [`title_start_1p` `$1F0A`](../src/game/title_and_scene.asm#L105). After the table, the loop clears the panel with `hs_clear_panel` and starts the demo again. (**Code**)
 
 A 2-player game does not show the table. `game_two_players` calls only `high_score_update`, the code of version I that keeps one high score for each mode at `$1299` and `$129F`. The 1-player game also updates its single high score before it returns. Thus a 1-player score goes into two places: the single high score of the title and the table. (**Code**)
 
@@ -75,24 +75,24 @@ The table puts each field in a fixed column of the panel rows 0-4:
 
 ## The finder and the shifts
 
-[`hs_find_place` `$163A`](../src/high_score_table.asm#L243) starts at place 4 and moves up. At each place it calls [`high_score_compare` `$2049`](../src/score_and_judge.asm#L141), the compare routine of version I, with the score of player 1. When the new score is not higher than the entry, the search stops. The new place is one place below that entry. When the new score is higher than all entries, the place is 0. (**Code**)
+[`hs_find_place` `$163A`](../src/game/high_score_table.asm#L228) starts at place 4 and moves up. At each place it calls [`high_score_compare` `$2049`](../src/game/score_and_judge.asm#L135), the compare routine of version I, with the score of player 1. When the new score is not higher than the entry, the search stops. The new place is one place below that entry. When the new score is higher than all entries, the place is 0. (**Code**)
 
 A new score that is equal to an entry goes below it. `high_score_compare` gives "not higher" for two equal scores. Thus a score of 0 never goes into the empty table, because each empty entry holds "     0". (**Code**)
 
 The place goes into `hs_new_position`. The value 5 means "not in the table". For places 0-3, three routines move the lower entries down by one place. The entry of place 4 is lost. (**Code**)
 
-- [`hs_shift_names` `$1692`](../src/high_score_table.asm#L298) and `hs_shift_scores` have no loop over the places. Each one copies place 3 to place 4. Then it copies place 2 to 3, place 1 to 2 and place 0 to 1, but only down to the new place. (**Code**)
+- [`hs_shift_names` `$1692`](../src/game/high_score_table.asm#L280) and `hs_shift_scores` have no loop over the places. Each one copies place 3 to place 4. Then it copies place 2 to 3, place 1 to 2 and place 0 to 1, but only down to the new place. (**Code**)
 - `hs_shift_ranks` uses a loop. It also writes `player_rank` into the new place. For place 4, it writes only the rank. (**Code**)
 
 After the shifts, `high_score_copy` writes the score, and `hs_put_dots` writes "......" as the name. (**Code**)
 
 ## How the table shows
 
-[`hs_show_ranks` `$15AF`](../src/high_score_table.asm#L159) clears the panel and writes the place numbers 1-5 in column 8. Then it writes the rank text of each entry that is not empty, from place 4 up to place 0. `hs_show_names` and `hs_show_scores` copy the two arrays to the screen through [`hs_copy_column` `$15F1`](../src/high_score_table.asm#L196). That routine reads the table through an operand that the two callers write. The file holds `$8000` there. (**Code**)
+[`hs_show_ranks` `$15AF`](../src/game/high_score_table.asm#L159) clears the panel and writes the place numbers 1-5 in column 8. Then it writes the rank text of each entry that is not empty, from place 4 up to place 0. `hs_show_names` and `hs_show_scores` copy the two arrays to the screen through [`hs_copy_column` `$15F1`](../src/game/high_score_table.asm#L193). That routine reads the table through an operand that the two callers write. The file holds `$8000` there. (**Code**)
 
 ### The rank text aligned at the right
 
-The table uses [`print_rank_text` `$21FB`](../src/timer_and_texts.asm#L157), the rank printer of the game panel. Version II gave it a new variable, `rank_text_offset`. In the game panel it is 0, and each text starts at cell 0. The table sets it to 1. Then the three forms of the text end in the same cell. (**Code**)
+The table uses [`print_rank_text` `$21FB`](../src/game/timer_and_texts.asm#L157), the rank printer of the game panel. Version II gave it a new variable, `rank_text_offset`. In the game panel it is 0, and each text starts at cell 0. The table sets it to 1. Then the three forms of the text end in the same cell. (**Code**)
 
 | Rank | Text | Cells with offset 0 (panel) | Cells with offset 1 (table) |
 |---|---|---|---|
@@ -110,7 +110,7 @@ The table at the end of a 1-player game, at the start of the name entry. Places 
 
 ## The name entry
 
-[`hs_name_entry` `$1762`](../src/high_score_table.asm#L400) lets the player type a name of up to 6 characters. It sets `game_mode` to 4, and the music driver starts tune 4. Version I has no code that sets `game_mode` to 4. Thus version II is the first version that plays tune 4. The music is on [sound_music.md](sound_music.md). (**Code**)
+[`hs_name_entry` `$1762`](../src/game/high_score_table.asm#L382) lets the player type a name of up to 6 characters. It sets `game_mode` to 4, and the music driver starts tune 4. Version I has no code that sets `game_mode` to 4. Thus version II is the first version that plays tune 4. The music is on [sound_music.md](sound_music.md). (**Code**)
 
 The routine repeats these steps until the name is complete:
 
@@ -154,9 +154,9 @@ stateDiagram-v2
 
 The name entry has its own keyboard reader. It reads all 8 columns of the keyboard matrix and gives one character for each key press. (**Code**)
 
-[`key_scan` `$150F`](../src/high_score_table.asm#L94) scans the 8 columns of the keyboard matrix from 7 down to 0. For each column it writes a value of `key_column_masks` to `$DC00` and reads the rows at `$DC01`. Then it sets the bits of [`key_row_ignore` `$1552`](../src/high_score_table.asm#L131) for that column, so the masked keys read as "not pressed". At the first key down, it returns the key code. Without a key, it returns `$40`. (**Code**)
+[`key_scan` `$150F`](../src/game/high_score_table.asm#L94) scans the 8 columns of the keyboard matrix from 7 down to 0. For each column it writes a value of `key_column_masks` to `$DC00` and reads the rows at `$DC01`. Then it sets the bits of [`key_row_ignore` `$1552`](../src/game/high_score_table.asm#L131) for that column, so the masked keys read as "not pressed". At the first key down, it returns the key code. Without a key, it returns `$40`. (**Code**)
 
-[`key_get_char` `$155A`](../src/high_score_table.asm#L134) changes the key code to a character with `key_chars`. When the character is the same as `last_key_char`, the key is still held, and the routine gives `$40`. Thus a held key gives one character only. (**Code**)
+[`key_get_char` `$155A`](../src/game/high_score_table.asm#L134) changes the key code to a character with `key_chars`. When the character is the same as `last_key_char`, the key is still held, and the routine gives `$40`. Thus a held key gives one character only. (**Code**)
 
 The four tables of the scanner:
 
@@ -193,7 +193,7 @@ The code of `$146A-$17BA` is different from the other code of the game. (**Code*
 - Two loops end with `CPX #$FF` and `BNE` (`$1609` in `hs_copy_column`, `$16EE` in `hs_clear_panel`). No other module of version II has `CPX #$FF`. The code of version I uses `DEX` and `BPL` for such loops.
 - `hs_shift_ranks` ends its loop with a `JMP` back.
 - The shifts of the names and the scores have one copy of the code for each place, not a loop.
-- [`hs_clear_panel` `$16E6`](../src/high_score_table.asm#L342) does the same job as `panel_clear_text`, the clear routine of the game, with a loop that counts down. The table code does not call the routine that exists.
+- [`hs_clear_panel` `$16E6`](../src/game/high_score_table.asm#L324) does the same job as `panel_clear_text`, the clear routine of the game, with a loop that counts down. The table code does not call the routine that exists.
 - The name entry borrows `fighter_distance`, a variable of the fighters, to keep its index.
 
 **Conclusion**: another programmer perhaps wrote the high score module, apart from the rest of the game. The module uses only a few routines of the game: `high_score_compare`, `high_score_copy`, `print_rank_text` and the frame wait.
@@ -204,7 +204,7 @@ The image above shows the table after a 1-player game with 5800 points and the r
 
 1. `hs_find_place` compares "  5800" with "     0" at place 4. The new score is higher, so it compares again at places 3, 2, 1 and 0. Each time it is higher, so the place is 0.
 2. The shifts copy places 3 to 4, 2 to 3, 1 to 2 and 0 to 1. All these entries are empty.
-3. The table bytes are now: [`hs_scores` `$1733-$1738`](../src/high_score_table.asm#L380) = `$20 $20 $35 $38 $30 $30` ("  5800"), [`hs_ranks` `$1751`](../src/high_score_table.asm#L387) = `$01`, [`hs_names` `$1715-$171A`](../src/high_score_table.asm#L373) = `$2E` x 6.
+3. The table bytes are now: [`hs_scores` `$1733-$1738`](../src/game/high_score_table.asm#L362) = `$20 $20 $35 $38 $30 $30` ("  5800"), [`hs_ranks` `$1751`](../src/game/high_score_table.asm#L369) = `$01`, [`hs_names` `$1715-$171A`](../src/game/high_score_table.asm#L355) = `$2E` x 6.
 4. The table code writes "1" at `$CC08`, "1ST DAN" at `$CC0B-$CC11` (column 10 + offset 1), "......" at `$CC13-$CC18` and "  5800" at `$CC1A-$CC1F`.
 5. The colour pointer is `$CC13 - $0B + $0C00` = `$D808`. The code writes black into `$D808-$D81F`, columns 8-31 of row 0.
 

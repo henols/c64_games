@@ -18,16 +18,16 @@ group_a_fighter      = $20   ; Fighter index shown with sprites 0-2 (front prior
 group_b_fighter      = $21   ; Fighter index shown with sprites 3-5 Used: read 10, written 2.
 fighter_colour       = $22   ; Sprite colour of fighter x (pair $22/$23): 1 white, 2 red (set at $14dd/$14e1) Used: read 2, written 4.
 front_fighter        = $24   ; Fighter that gets sprites 0-2: the fighter in an attack move ($2257) or the opponent of a fighter in move $11 ($225c) Used: read 1, written 3.
-row4_irq_vector      = $25   ; Address of the IRQ handler after the 3 fighter rows ($28b2/$28eb/$2924/$2975), chosen at $2ac6 and patched into the row handlers Used: read 14, written 8.
+row4_irq_vector      = $25   ; Address of the IRQ handler after the 3 fighter rows ($28b2/$28eb/$2924/$2975), chosen at $2ac6 and patched into the row handlers Used: read 14, written 4, macro argument 4.
 row4_ptr_left        = $27   ; Sprite pointer of the left column of a 4th sprite row, fighter x (pair $27/$28); set at $33a2 for the 8 frames listed at $33af Used: read 4, written 1.
 row4_ptr_mid         = $29   ; Sprite pointer of the middle column of the 4th sprite row, fighter x (pair $29/$2a) Used: read 4, written 1.
 row4_ptr_right       = $2b   ; Sprite pointer of the right column of the 4th sprite row, fighter x (pair $2b/$2c) Used: read 4, written 1.
-sfx_sample_ptr       = $2d   ; $2d-$33 belong to the CIA1 timer IRQ sample player at $29c8 and its set-up at $2a0a. No code calls $2a0a, CIA1 IRQs stay off ($1460), so the coverage shows no use. Read pointer ($2d/$2e) of the sample player at $29c8 (never executed) Used: read 2, written 2, modified 2, pointer 1.
+sfx_sample_ptr       = $2d   ; $2d-$33 belong to the CIA1 timer IRQ sample player at $29c8 and its set-up at $2a0a. No code calls $2a0a, CIA1 IRQs stay off ($1460), so the coverage shows no use. Read pointer ($2d/$2e) of the sample player at $29c8 (never executed) Used: read 2, written 1, modified 1, pointer 1, macro argument 2.
 sfx_volume           = $2f   ; Volume value that $29c8 toggles with EOR #$0f and writes to $d418 Used: read 1, written 2.
-sfx_sample_end       = $31   ; End address ($31/$32) of the sample data for $29c8 ($0a04 in $2a0a) Used: read 2, written 2.
+sfx_sample_end       = $31   ; End address ($31/$32) of the sample data for $29c8 ($0a04 in $2a0a) Used: read 2, written 1, macro argument 1.
 sfx_done             = $33   ; $7f when the sample player at $29c8 reached the end, 0 at start Used: written 3.
 scene_src_ptr        = $34   ; Read pointer ($34/$35) of the backward RLE unpacker at $12ce (scene bitmap data) Used: read 4, written 6, pointer 5.
-scene_dest_ptr       = $36   ; Write pointer ($36/$37) of the unpacker at $12ce, starts at $f53f and goes down Used: read 2, written 4, pointer 2.
+scene_dest_ptr       = $36   ; Write pointer ($36/$37) of the unpacker at $12ce, starts at $f53f and goes down Used: read 2, written 3, pointer 2, macro argument 1.
 scene_run_length     = $38   ; Run length of the current RLE block at $12ce Used: read 4, written 3.
 anim_number          = $3a   ; Animation to play for fighter x (pair $3a/$3b), index into the script table $7720; 0 = none Used: read 5, written 13.
 anim_started         = $3c   ; Animation that $30de set up for fighter x (pair $3c/$3d); 0 forces a new set-up Used: read 3, written 12.
@@ -94,11 +94,11 @@ cpu_skill            = $a8   ; Skill level of the AI of fighter x (pair $a8/$a9)
 wins_to_promotion    = $aa   ; 1 player: bouts to win before the next rank (2) Used: written 2, modified 1.
 scene_shown          = $ab   ; Scene (0-3) on the screen now; 1 at start so that scene 0 is drawn Used: read 3, written 2.
 copy_src_ptr         = $ac   ; Read pointer ($ac/$ad) of the scene screen and colour map copy at $19f6 Used: written 4, modified 2, pointer 6.
-copy_dest_ptr        = $ae   ; Write pointer ($ae/$af) of the copy at $19f6 ($d8c8, then $ccc8) Used: read 2, written 4, modified 2, pointer 6.
+copy_dest_ptr        = $ae   ; Write pointer ($ae/$af) of the copy at $19f6 ($d8c8, then $ccc8) Used: read 2, written 2, modified 2, pointer 6, macro argument 2.
 last_key_row         = $b0   ; Last value read from keyboard row port $dc01 with column 0 selected Used: read 1, written 1.
 time_up              = $b1   ; 1 when the bout timer reached 0 ($1c14) Used: read 6, written 4.
 bout_hit_value       = $b2   ; Sum of the score table values of the hits of fighter x in the bout (pair $b2/$b3); tie break Used: read 3, written 5.
-text_dest_ptr        = $b4   ; Pointer ($b4/$b5) for rank text ($cca0) or high score copy ($1297/$129d) Used: written 8, pointer 17.
+text_dest_ptr        = $b4   ; Pointer ($b4/$b5) for rank text ($cca0) or high score copy ($1297/$129d) Used: written 4, pointer 17, macro argument 4.
 music_order_ptr      = $f9   ; Music: order list pointer ($f9/$fa) of the current voice Used: written 2, pointer 6.
 music_pattern_ptr    = $fb   ; Music: pattern pointer ($fb/$fc) of the current voice Used: written 4, pointer 2.
 music_work_ptr       = $fd   ; Music: command jump vector at $0a8b, instrument pointer at $0d41, filter work byte at $0e86 Used: read 2, written 5, jumped through 1, pointer 18.
@@ -111,10 +111,10 @@ shape_buffers        = $c040 ; Four shape buffers of 9 sprite blocks each, VIC p
 screen_ram           = $cc00 ; Screen RAM: rows 0-4 are the text panel ($1438 fills them with spaces), rows 5-24 hold the colours of the scene bitmap ($19f6, $1445). Used: written 1.
 panel_row1           = $cc28 ; Panel row 1: score digits at +X+0..5 (X=9 player 1, X=$19 player 2) and the lower yin-yang chars at +3/+4. Used: read 6, written 3, modified 1.
 panel_timer_digits   = $cc3b ; Two timer digits (seconds left). Used: read 1, written 2, modified 1.
-panel_row4           = $cca0 ; Panel row 4: rank or DEMO text at columns 0-7. Used: written 3.
+panel_row4           = $cca0 ; Panel row 4: rank or DEMO text at columns 0-7. Used: written 3, macro argument 2.
 panel_hiscore_digits = $ccb1 ; Six high score characters ($1bc3). Used: written 2.
 panel_mode_text      = $ccbf ; "1 PLAYER" or "2 PLAYER" ($1c34), 8 characters. Used: written 2.
-screen_scene_rows    = $ccc8 ; Row 5: first screen row of the scene bitmap colours. Used: written 1.
+screen_scene_rows    = $ccc8 ; Row 5: first screen row of the scene bitmap colours. Used: written 1, macro argument 1.
 sprite_pointers      = $cff8 ; Sprite pointers 0-7. The raster IRQ handlers write pointers 0-5 for each sprite row; nothing writes 6 and 7. Used: written 9.
 
 ; VIC-II registers $d000-$d3ff
@@ -162,8 +162,8 @@ PWHI1                = $d403 ; SID voice 1 pulse width, high nybble. Write only.
 VCREG1               = $d404 ; SID voice 1 control: gate (bit 0), sync (bit 1), ring modulation (bit 2), test (bit 3), waveform triangle/saw/pulse/noise (bits 4-7). Write only. Used: written 1.
 ATDCY1               = $d405 ; SID voice 1 attack (bits 4-7) and decay (bits 0-3). Write only. Used: written 1.
 SUREL1               = $d406 ; SID voice 1 sustain (bits 4-7) and release (bits 0-3). Write only. Used: written 1.
-CUTLO                = $d415 ; SID filter cutoff, bits 0-2. Write only. Used: written 4.
-CUTHI                = $d416 ; SID filter cutoff, bits 3-10. Write only. Used: written 4.
+CUTLO                = $d415 ; SID filter cutoff, bits 0-2. Write only. Used: written 3, macro argument 1.
+CUTHI                = $d416 ; SID filter cutoff, bits 3-10. Write only. Used: written 3.
 RESON                = $d417 ; SID filter resonance (bits 4-7) and the voices through the filter (bits 0-3). Write only. Used: written 3.
 SIGVOL               = $d418 ; SID volume (bits 0-3) and filter mode (bits 4-7). Write only. Used: written 5.
 RANDOM               = $d41b ; Voice 3 oscillator output, often a random number source. Read only. Used: read 1.
@@ -174,8 +174,7 @@ CIAPRA               = $dc00 ; CIA 1: Port A: keyboard columns (write) and joyst
 CIAPRB               = $dc01 ; CIA 1: Port B: keyboard rows (read) and joystick 1 (read). Used: read 1.
 CIADDRA              = $dc02 ; CIA 1: Data direction of port A (1 = output). Used: written 4.
 CIADDRB              = $dc03 ; CIA 1: Data direction of port B (1 = output). Used: written 1.
-CIATALO              = $dc04 ; CIA 1: Timer A, low byte. Used: written 1.
-CIATAHI              = $dc05 ; CIA 1: Timer A, high byte. Used: written 1.
+CIATALO              = $dc04 ; CIA 1: Timer A, low byte. Used: macro argument 1.
 CIATBLO              = $dc06 ; CIA 1: Timer B, low byte. Used: written 2.
 CIATBHI              = $dc07 ; CIA 1: Timer B, high byte. Used: written 2.
 CIAICR               = $dc0d ; CIA 1: Interrupt control: read gives the sources and clears them; write sets (bit 7 = 1) or clears (bit 7 = 0) the enable bits. Its interrupt goes to the IRQ line. Used: read 2, written 4.
@@ -184,13 +183,12 @@ CIACRB               = $dc0f ; CIA 1: Control B: start (bit 0), PB7 output (bit 
 
 ; CIA 2 registers $dd00-$ddff
 CI2PRA               = $dd00 ; CIA 2: Port A: VIC-II bank (bits 0-1, inverted), serial bus and RS-232. Used: written 1.
-CI2TBLO              = $dd06 ; CIA 2: Timer B, low byte. Used: written 2.
-CI2TBHI              = $dd07 ; CIA 2: Timer B, high byte. Used: written 2.
+CI2TBLO              = $dd06 ; CIA 2: Timer B, low byte. Used: macro argument 2.
 CI2ICR               = $dd0d ; CIA 2: Interrupt control: read gives the sources and clears them; write sets (bit 7 = 1) or clears (bit 7 = 0) the enable bits. Its interrupt goes to the NMI line. Used: read 1, written 2.
 CI2CRB               = $dd0f ; CIA 2: Control B: start (bit 0), PB7 output (bit 1), toggle (bit 2), one-shot (bit 3), force load (bit 4), input (bits 5-6), TOD alarm write (bit 7). Used: written 1.
 
 ; KERNAL ROM or RAM $e000-$ffff
 ; KERNAL ROM when $01 bit 1 is set, else RAM.
-hw_nmi_vector        = $fffa ; CPU vectors in RAM (the KERNAL ROM is off). $1459 writes NMI $28a5, RESET $14a6 and IRQ $2a66; each raster handler then writes the next IRQ handler to $fffe/$ffff. NMI handler $28a5 (CIA2 timer B, floor colour). Used: written 1.
-hw_reset_vector      = $fffc ; $14a6, an RTI byte. A reset maps the KERNAL ROM in, so the CPU never uses this value. Used: written 1.
-hw_irq_vector        = $fffe ; Current raster IRQ handler. Used: written 16.
+hw_nmi_vector        = $fffa ; CPU vectors in RAM (the KERNAL ROM is off). $1459 writes NMI $28a5, RESET $14a6 and IRQ $2a66; each raster handler then writes the next IRQ handler to $fffe/$ffff. NMI handler $28a5 (CIA2 timer B, floor colour). Used: macro argument 1.
+hw_reset_vector      = $fffc ; $14a6, an RTI byte. A reset maps the KERNAL ROM in, so the CPU never uses this value. Used: macro argument 1.
+hw_irq_vector        = $fffe ; Current raster IRQ handler. Used: written 9, macro argument 7.

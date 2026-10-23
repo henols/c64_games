@@ -1,0 +1,9 @@
+{
+  "name": "loading_space_tune",
+  "start": { "snapshot": "runs/loading_space_tune/stage_9000.vsf" },
+  "steps": [
+    { "runUntil": { "target": { "kind": "address", "address": "$c1c9" }, "timeoutFrames": 3000 } },
+    { "coverage": "tune" },
+    { "observe": "after_tune", "vicii": true, "registers": true }
+  ]
+}

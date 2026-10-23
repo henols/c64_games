@@ -17,7 +17,7 @@ Most of the chain is the same as in version I. This page tells how version II wo
 
 ## How it works
 
-The raster chain starts at line 0 with [`irq_frame_start` `$31F2`](../src/sprite_mux_plan.asm#L6). Each handler sets the line and the address of the next handler. Then the CPU reads the next handler from `$FFFE` at the next raster IRQ. The KERNAL ROM is off, so the CPU vectors at `$FFFA-$FFFF` are in RAM. **Code**.
+The raster chain starts at line 0 with [`irq_frame_start` `$31F2`](../src/irq/sprite_mux_plan.asm#L6). Each handler sets the line and the address of the next handler. Then the CPU reads the next handler from `$FFFE` at the next raster IRQ. The KERNAL ROM is off, so the CPU vectors at `$FFFA-$FFFF` are in RAM. **Code**.
 
 ### The new dispatch at the start of each handler
 
@@ -41,7 +41,7 @@ flowchart TD
   E -. "VIC IRQ pending" .-> A
 ```
 
-The BIT instruction reads `$DC0D`, and the read also clears the CIA1 flags. When the BIT finds bit 7 at 1, the handler does CLI and jumps to [`sfx_sample_irq` `$311A`](../src/sfx_sample_player.asm#L6). The sample IRQ itself does not touch `$DC0D` or the I flag. **Code**.
+The BIT instruction reads `$DC0D`, and the read also clears the CIA1 flags. When the BIT finds bit 7 at 1, the handler does CLI and jumps to [`sfx_sample_irq` `$311A`](../src/sfx/sfx_sample_player.asm#L6). The sample IRQ itself does not touch `$DC0D` or the I flag. **Code**.
 
 In version I, the four instructions were `BIT $D019 / BMI / JMP`, and the JMP never ran. In version II, the CIA1 path is live. The coverage marks the CLI and the JMP of each handler as executed. **Observed** (coverage).
 
@@ -51,7 +51,7 @@ The raster path costs the same time as in version I. `BIT` and a taken branch ta
 
 ### The sample IRQ
 
-The sample player makes a 1-bit square wave on the SID volume. Each sample byte is one half-wave. [`sfx_sample_irq` `$311A`](../src/sfx_sample_player.asm#L6) does these steps:
+The sample player makes a 1-bit square wave on the SID volume. Each sample byte is one half-wave. [`sfx_sample_irq` `$311A`](../src/sfx/sfx_sample_player.asm#L6) does these steps:
 
 1. It toggles `sfx_volume` between 0 and 15 with `EOR #$0F` and writes it to `$D418`. The filter bits are 0.
 2. It reads the next sample byte at `sfx_sample_ptr`.
@@ -64,7 +64,7 @@ The sample player makes a 1-bit square wave on the SID volume. Each sample byte 
 
 Timer A runs all the time with the latch 8, so it underflows every 9 cycles. Timer B counts these underflows and gives the IRQ. A count of 1 gives a half-wave of 9 cycles. **Code**.
 
-A game event starts a sample with one of the entries `sfx_play_sample_0` to `sfx_play_sample_3`. The common part at [`sfx_sample_start` `$3186`](../src/sfx_sample_player.asm#L84) clears all SID registers `$D400-$D41C` and sets `$DC0D` = `$82` (timer B IRQ on). When `samples_off` is not 0, it starts nothing. The DEL key on the title toggles `samples_off`. For the samples, the events and the four sound files, see [the sound and the music](sound_music.md). **Code**.
+A game event starts a sample with one of the entries `sfx_play_sample_0` to `sfx_play_sample_3`. The common part at [`sfx_sample_start` `$3186`](../src/sfx/sfx_sample_player.asm#L82) clears all SID registers `$D400-$D41C` and sets `$DC0D` = `$82` (timer B IRQ on). When `samples_off` is not 0, it starts nothing. The DEL key on the title toggles `samples_off`. For the samples, the events and the four sound files, see [the sound and the music](sound_music.md). **Code**.
 
 The sample IRQ runs with the I flag clear, so a raster IRQ can interrupt it. A raster handler runs with the I flag set, so a sample IRQ waits until the RTI of that handler. The planner in `irq_frame_start` runs for a long time with the I flag set. It opens five short windows with `CLI / SEI`, and a waiting sample IRQ can run there. Version I had the same windows, but in version I no CIA1 IRQ used them. **Code**.
 
@@ -72,7 +72,7 @@ The sample IRQ runs with the I flag clear, so a raster IRQ can interrupt it. A r
 
 ### The row handlers
 
-The planner selects one of 7 layouts from the gap between the two `group_y` values. Then it writes the lines, the Y values, the sprite pointers and the next vectors into the operands of the row handlers. The layout code starts at [`mux_choose_layout` `$32CD`](../src/sprite_mux_plan.asm#L119). A row handler gets its IRQ on the last line of the row above. It writes the new Y and the three pointers of the next row. **Code**.
+The planner selects one of 7 layouts from the gap between the two `group_y` values. Then it writes the lines, the Y values, the sprite pointers and the next vectors into the operands of the row handlers. The layout code starts at [`mux_choose_layout` `$32CD`](../src/irq/sprite_mux_plan.asm#L104). A row handler gets its IRQ on the last line of the row above. It writes the new Y and the three pointers of the next row. **Code**.
 
 | Layout | Condition | Handlers after the bitmap IRQ |
 |---|---|---|
@@ -88,7 +88,7 @@ Layouts 2 to 7 are the same as in version I. Only the start of each handler chan
 
 ### The changed equal-Y layout
 
-When both fighters have the same Y, one handler sets the row of both groups: 6 Y values and 6 pointers. In version I, the IRQ of [`irq_ab_row2` `$2E4C`](../src/irq_sprite_rows.asm#L148) came at `group_y + $14`. In version II, it comes 2 lines earlier, at `group_y + $12`. Then the handler waits in a loop until `$D012` is `group_y + $14`. **Code**.
+When both fighters have the same Y, one handler sets the row of both groups: 6 Y values and 6 pointers. In version I, the IRQ of [`irq_ab_row2` `$2E4C`](../src/irq/irq_sprite_rows.asm#L148) came at `group_y + $14`. In version II, it comes 2 lines earlier, at `group_y + $12`. Then the handler waits in a loop until `$D012` is `group_y + $14`. **Code**.
 
 ```
         lda #<wait line>    ; patched: group_y + $14 (row 2) or group_y + $29 (row 3)
@@ -96,7 +96,7 @@ wait    cmp RASTER          ; $D012
         bne wait
 ```
 
-`irq_ab_row3` does the same: IRQ at `group_y + $27`, wait for `group_y + $29`, row 3 Y `group_y + $2A`. [`mux_layout_same_y` `$3307`](../src/sprite_mux_plan.asm#L156) writes the two wait lines into `irq_ab_row2_wait_line` and `irq_ab_row3_wait_line`. The two handlers also have a new order. They write the Y values, the acknowledge and the next line first. Then two NOPs, the 6 pointers and the vector follow. **Code**.
+`irq_ab_row3` does the same: IRQ at `group_y + $27`, wait for `group_y + $29`, row 3 Y `group_y + $2A`. [`mux_layout_same_y` `$3307`](../src/irq/sprite_mux_plan.asm#L141) writes the two wait lines into `irq_ab_row2_wait_line` and `irq_ab_row3_wait_line`. The two handlers also have a new order. They write the Y values, the acknowledge and the next line first. Then two NOPs, the 6 pointers and the vector follow. **Code**.
 
 The wait gives the 12 writes a fixed start line. Without the wait, a sample IRQ before the raster IRQ can move the writes into the sprites of the row. **Conclusion**.
 
@@ -104,7 +104,7 @@ The wait compares for equality. Suppose that the handler starts after its wait l
 
 ### The bitmap IRQ and the floor NMI
 
-The frame-start IRQ sets the next IRQ at line `$59`. In version I, it was line `$5A`. [`irq_bitmap_on` `$2FB0`](../src/irq_screen_split.asm#L6) then waits for line `$5A` with `LDA #$5A / CMP $D012 / BNE`. After the wait, it does these steps:
+The frame-start IRQ sets the next IRQ at line `$59`. In version I, it was line `$5A`. [`irq_bitmap_on` `$2FB0`](../src/irq/irq_screen_split.asm#L6) then waits for line `$5A` with `LDA #$5A / CMP $D012 / BNE`. After the wait, it does these steps:
 
 1. It sets the line and the vector of the first row handler.
 2. It loads CIA2 timer B with `$16BC` (5820 cycles) and starts it one-shot (`$DD0F` = `$09`).
@@ -116,13 +116,13 @@ The frame-start IRQ sets the next IRQ at line `$59`. In version I, it was line `
 
 Version I started the timer after the background write. Version II starts it at a fixed point after the wait. Thus the floor NMI does not change with the IRQ delay. **Code** / **Conclusion**.
 
-The timer gives the NMI [`nmi_floor_colour` `$2FF2`](../src/irq_screen_split.asm#L44) about 92 lines later. The NMI tests bit 7 of `$DD0D` and sets `$D021` = 7 (yellow) for the floor. An NMI from RESTORE only returns. The NMI code is the same as in version I. **Code**. An NMI can interrupt any IRQ handler, also a row handler. **Conclusion**.
+The timer gives the NMI [`nmi_floor_colour` `$2FF2`](../src/irq/irq_screen_split.asm#L44) about 92 lines later. The NMI tests bit 7 of `$DD0D` and sets `$D021` = 7 (yellow) for the floor. An NMI from RESTORE only returns. The NMI code is the same as in version I. **Code**. An NMI can interrupt any IRQ handler, also a row handler. **Conclusion**.
 
 ### The row-4 handlers and the frame end
 
-At line `$D9`, one of four handlers runs. `row4_irq_vector` selects it. [`irq_a_row4` `$2FFF`](../src/irq_screen_split.asm#L54), `irq_b_row4` and `irq_ab_row4` move the sprites of a fighter in the air to Y `$DA` and show his shadow. `irq_no_row4` runs when both fighters are on the ground, and it shows no shadow. All four set the next IRQ at line `$FF`. **Code**.
+At line `$D9`, one of four handlers runs. `row4_irq_vector` selects it. [`irq_a_row4` `$2FFF`](../src/irq/irq_screen_split.asm#L54), `irq_b_row4` and `irq_ab_row4` move the sprites of a fighter in the air to Y `$DA` and show his shadow. `irq_no_row4` runs when both fighters are on the ground, and it shows no shadow. All four set the next IRQ at line `$FF`. **Code**.
 
-At line `$FF`, [`irq_frame_end` `$30E5`](../src/irq_screen_split.asm#L177) sets the next IRQ to `irq_frame_start` at line 0. It sets text mode (`$D011` = `$1B`) and `panel_bg_colour` for the score panel. Then it calls [`music_play_frame` `$09A5`](../src/music_driver.asm#L6) one time. The row-4 handlers and the frame end are the same as in version I, except the first four instructions. **Code**.
+At line `$FF`, [`irq_frame_end` `$30E5`](../src/irq/irq_screen_split.asm#L165) sets the next IRQ to `irq_frame_start` at line 0. It sets text mode (`$D011` = `$1B`) and `panel_bg_colour` for the score panel. Then it calls [`music_play_frame` `$09A5`](../src/music/music_driver.asm#L6) one time. The row-4 handlers and the frame end are the same as in version I, except the first four instructions. **Code**.
 
 ## The timeline of a frame
 
@@ -175,7 +175,7 @@ A sample IRQ is not a state of the chain. It does not change `$FFFE` or `$D012`.
 
 ### The vectors
 
-[`init_vectors_cias` `$1943`](../src/init_machine.asm#L62) sets the vectors and the chips. `init_game_state` calls it at the start of the game. **Code**.
+[`init_vectors_cias` `$1943`](../src/game/init_machine.asm#L62) sets the vectors and the chips. `init_game_state` calls it at the start of the game. **Code**.
 
 | Address | Value | Meaning |
 |---|---|---|
@@ -183,7 +183,7 @@ A sample IRQ is not a state of the chain. It does not change `$FFFE` or `$D012`.
 | `$FFFC-$FFFD` | `$1990` | RESET: `reset_vector_rti`, one RTI byte |
 | `$FFFE-$FFFF` | `$31F2` at the start | IRQ: the current handler of the chain. 16 places in the code write it. |
 
-The RESET vector points to [`reset_vector_rti` `$1990`](../src/init_machine.asm#L98), one RTI byte, as in version I (there `$14A6`). A real reset switches the KERNAL ROM in, so the CPU never reads this vector. No run executes `$1990`. **Code** / **Observed** (coverage).
+The RESET vector points to [`reset_vector_rti` `$1990`](../src/game/init_machine.asm#L86), one RTI byte, as in version I (there `$14A6`). A real reset switches the KERNAL ROM in, so the CPU never reads this vector. No run executes `$1990`. **Code** / **Observed** (coverage).
 
 ### The chip settings
 

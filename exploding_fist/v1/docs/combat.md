@@ -29,7 +29,7 @@ flowchart TB
   H --> I["Reaction move for the opponent (hit_record)"]
 ~~~
 
-[`hit_check` `$2459`](../src/hit_test.asm#L6) runs at the start of [`fighter_update` `$2233`](../src/fighter_moves.asm#L6), before the fighter reads its input. It starts the test only when all of these conditions are true (**Code**):
+[`hit_check` `$2459`](../src/fighter/hit_test.asm#L6) runs at the start of [`fighter_update` `$2233`](../src/fighter/fighter_moves.asm#L6), before the fighter reads its input. It starts the test only when all of these conditions are true (**Code**):
 
 1. The move has the attack flag in `move_attack_flags`. Walks, jumps, blocks and somersaults never hit.
 2. `anim_frame_tick` is 1: the animation started a new step in the last frame. Thus the test runs one time for each step, not in each frame that the pose shows.
@@ -39,14 +39,14 @@ flowchart TB
 
 The hit frame is in the last step of ten attack scripts. Moves $0E and $10 show the hit frame in two steps in a row, so their test can run two times, at two positions (**Code**). The flying kick $0E holds its kick after the hit frame $0A in shape frame $3A. Frame $3A is a copy of frame $0A with other hit zones, so the held pose does not start more tests (**Code**).
 
-Then [`hit_test` `$2477`](../src/hit_test.asm#L23) does the test itself:
+Then [`hit_test` `$2477`](../src/fighter/hit_test.asm#L23) does the test itself:
 
 1. It compares `fighter_facing` of the two fighters. When the facings differ, it takes the word of the move in `move_hit_zone_facing`. When they are the same, it takes the word in `move_hit_zone_same_facing`. The pointer goes into `hit_zone_ptr`.
 2. It reads E from the table with the target frame as the index. The value $80 means that this pose cannot be hit by this attack. The test ends without a hit.
 3. It calculates d. For facing 0 (the fighter looks right), d = opponent x - own x. For facing 1, d = own x - opponent x. It adds $80 to E and to d, so that one unsigned compare can test signed values.
 4. It compares d with the reach window of the move (see the next section). A full point sets `hit_points` of the attacker to 2. A half point sets it to 1.
 5. In the two-player game, `hit_full_point` and `hit_half_point` draw the yin-yang of the attacker at once.
-6. [`hit_record` `$2591`](../src/hit_test.asm#L175) writes the move into `scoring_move` and the reaction move into `hit_reaction` of the opponent.
+6. [`hit_record` `$2591`](../src/fighter/hit_test.asm#L175) writes the move into `scoring_move` and the reaction move into `hit_reaction` of the opponent.
 
 A miss changes nothing, and the attacker gets no penalty (**Code**).
 
@@ -67,7 +67,7 @@ For reach type 1, the extents of the facing tables are negative, from -35 to -9.
 
 ### The same-facing path
 
-When both fighters look the same way, the attacker looks at the back of the opponent, or the opponent stands behind the attacker. [`hit_same_facing_zone` `$252D`](../src/hit_test.asm#L120) is a mirror of the normal test. It changes the sign of d, and it uses the window of reach type 1 for reach type 0, and the other way. The 11 same-facing tables agree with this: their extents are negative for the forward attacks and positive for $0F and $10 (**Code**).
+When both fighters look the same way, the attacker looks at the back of the opponent, or the opponent stands behind the attacker. [`hit_same_facing_zone` `$252D`](../src/fighter/hit_test.asm#L120) is a mirror of the normal test. It changes the sign of d, and it uses the window of reach type 1 for reach type 0, and the other way. The 11 same-facing tables agree with this: their extents are negative for the forward attacks and positive for $0F and $10 (**Code**).
 
 The first four study runs did not reach this path. The coverage of the recordings `one_player_moves`, `two_player` and `cpu_ranks` shows that `hit_test_same_facing` and `hit_same_facing_zone` ran, so the game read the same-facing tables (**Observed**). A same-facing hit landed in `one_player_moves` and `two_player`: `hit_reaction_same_facing` ran (**Observed**). The window of reach type 1 in this path (`$2580-$2590`) never ran. The source comment "No run executed this path" at `hit_test_same_facing` is older than the recordings. The recordings are in [tests/record](../tests/record).
 
@@ -83,13 +83,13 @@ The first four study runs did not reach this path. The coverage of the recording
 
 The same-facing path gives $16 for reach type 1, but that branch never ran (**Observed**). The length is the sum of the step delays of the animation scripts $16, $1A and $1B (**Code**).
 
-The reaction does not start at once. [`fighter_get_input` `$225F`](../src/fighter_moves.asm#L30) puts `hit_reaction` into the input of the hit fighter. Then `move_update_state` freezes the pose with `pose_held` for 8 frames (`knockdown_delay`, 8 for each exchange). After that, the fighter changes to the reaction move. When the reaction animation ends, `move_anim_end` writes the move into `bout_knockdown`, and the exchange ends (**Code**). The bout clock stops while a fighter has a hit reaction (**Code**).
+The reaction does not start at once. [`fighter_get_input` `$225F`](../src/fighter/fighter_moves.asm#L30) puts `hit_reaction` into the input of the hit fighter. Then `move_update_state` freezes the pose with `pose_held` for 8 frames (`knockdown_delay`, 8 for each exchange). After that, the fighter changes to the reaction move. When the reaction animation ends, `move_anim_end` writes the move into `bout_knockdown`, and the exchange ends (**Code**). The bout clock stops while a fighter has a hit reaction (**Code**).
 
 **Conclusion:** both fighters can hit in one exchange. `bout_loop` updates fighter 1 first, and `hit_check` of fighter 0 runs before fighter 0 reads its reaction input. In that case the scoring code gives no point to either fighter (see below).
 
 ### The range test and the blocks
 
-[`hit_range_test` `$25D3`](../src/hit_test.asm#L213) answers a different question: is the attack of the opponent near enough to block? `move_fix_input` and `ai_update` call it. A human blocks with "back" while the opponent attacks. The computer uses the same test (**Code**). Details of the blocks are on [fighters.md](fighters.md) and [ai.md](ai.md).
+[`hit_range_test` `$25D3`](../src/fighter/hit_test.asm#L213) answers a different question: is the attack of the opponent near enough to block? `move_fix_input` and `ai_update` call it. A human blocks with "back" while the opponent attacks. The computer uses the same test (**Code**). Details of the blocks are on [fighters.md](fighters.md) and [ai.md](ai.md).
 
 The test uses d without the $80 offset, measured in the facing direction of the defender (**Code**):
 
@@ -104,19 +104,19 @@ A block works only through the hit-zone tables. The counter move in `move_counte
 
 The game adds the points after the exchange, not at the hit. Each mode handler calls `bout_loop` and then tests `hit_reaction` of both fighters. It takes the EOR of bit 4: the result is 1 only when exactly one fighter was hit. When both fighters were hit, nobody gets a point (**Code**).
 
-- **One player** ([`bout_1p_exchanges` `$175F`](../src/game_modes.asm#L171)): the fighter that hit gets `hit_points` added to `half_points`. A half point adds 1, a full point adds 2. At 4 half points the bout ends at once with a win. Only player 1 gets score: `score_add_move`. Both fighters get the tie-break value: `bout_hit_value_add` (**Code**).
+- **One player** ([`bout_1p_exchanges` `$175F`](../src/game/game_modes.asm#L165)): the fighter that hit gets `hit_points` added to `half_points`. A half point adds 1, a full point adds 2. At 4 half points the bout ends at once with a win. Only player 1 gets score: `score_add_move`. Both fighters get the tie-break value: `bout_hit_value_add` (**Code**).
 - **Demo** (`bout_demo_exchanges`): the same half points, but no score and no tie break (**Code**).
 - **Two players** (`bout_2p_exchanges`): no half points. Each exchange gives score to the fighter that hit. The yin-yang shows from the hit until the end of the exchange. Then the code clears the yin-yang cells. A bout always lasts 30 seconds, and after 4 bouts the higher score wins (**Code**).
 
-[`add_half_points` `$1843`](../src/game_modes.asm#L298) draws the symbols: a whole yin-yang for 2 half points, a half yin-yang for 1. It returns carry set at 4 or more. A full point at 3 half points gives 5, which also wins (**Code**).
+[`add_half_points` `$1843`](../src/game/game_modes.asm#L292) draws the symbols: a whole yin-yang for 2 half points, a half yin-yang for 1. It returns carry set at 4 or more. A full point at 3 half points gives 5, which also wins (**Code**).
 
-[`score_add_move` `$1B1A`](../src/score_and_timer.asm#L118) reads `move_score_values` at `scoring_move`. The value is in hundreds of points. For a half point, it halves the value with LSR. All values are even, so the half is exact. Then it calls `score_add_100` that number of times. The first points change the tens digit from a space to 0 (**Code**). After a one-player win, `time_bonus_count` adds 100 points for each second that remains on the clock (**Code**).
+[`score_add_move` `$1B1A`](../src/game/score_and_timer.asm#L112) reads `move_score_values` at `scoring_move`. The value is in hundreds of points. For a half point, it halves the value with LSR. All values are even, so the half is exact. Then it calls `score_add_100` that number of times. The first points change the tens digit from a space to 0 (**Code**). After a one-player win, `time_bonus_count` adds 100 points for each second that remains on the clock (**Code**).
 
 ### The tie break and its bug
 
 When the clock reaches 0 in the one-player game, `bout_1p_exchanges` compares the half points. More half points win. With the same half points, the higher `bout_hit_value` wins. With the same value, the bout is a draw: both fighters bow and the bout starts again (**Code**).
 
-`bout_hit_value` is the sum of the score values of the hits of a fighter in the bout, in hundreds, with half for a half point. [`bout_hit_value_add` `$1C1C`](../src/panel_texts.asm#L9) has a bug here: `LDY hit_points` has no `,X`. Thus the value of fighter 1 (the computer) uses the hit points of fighter 0 to select full or half (**Code**).
+`bout_hit_value` is the sum of the score values of the hits of a fighter in the bout, in hundreds, with half for a half point. [`bout_hit_value_add` `$1C1C`](../src/game/panel_texts.asm#L9) has a bug here: `LDY hit_points` has no `,X`. Thus the value of fighter 1 (the computer) uses the hit points of fighter 0 to select full or half (**Code**).
 
 `hit_points` of fighter 0 keeps the result of the last hit of fighter 0. Only the hit test writes it, so the value can come from an earlier exchange, bout or game (**Code**). **Conclusion:** the bug can change the result of a time-up. An example from the tables:
 
@@ -146,11 +146,11 @@ The reverse also occurs: after a half point of player 1, a full point of the com
 | $11 | fire + back, after the turn | $24 | 0 | 3 | 8 | 1000 / 500 | $16 | $14 |
 | $18 | down + forward from a stand | $13 | 0 | 2 | 8 | 600 / 300 | $1B | $13 |
 
-The pointer words of the hit-zone tables, [`move_hit_zone_facing` `$121B`](../src/entry_and_tables.asm#L55) and `move_hit_zone_same_facing`, have 25 entries. The entries of the moves without an attack point to `$0000`, but `hit_check` never reaches the test for those moves (**Code**).
+The pointer words of the hit-zone tables, [`move_hit_zone_facing` `$121B`](../src/game/entry_and_tables.asm#L55) and `move_hit_zone_same_facing`, have 25 entries. The entries of the moves without an attack point to `$0000`, but `hit_check` never reaches the test for those moves (**Code**).
 
 ### The hit-zone tables
 
-The 22 tables are at [`hitzone_up_fwd` `$7200`](../src/hit_zone_tables.asm#L6). Each table has 59 bytes, one for each target frame $00-$3A (**Code**):
+The 22 tables are at [`hitzone_up_fwd` `$7200`](../src/fighter/hit_zone_tables.asm#L6). Each table has 59 bytes, one for each target frame $00-$3A (**Code**):
 
 | Byte | Meaning |
 |---|---|
@@ -211,7 +211,7 @@ The mid kick, move $0C (fire + forward), against an opponent in the stance, shap
 | `$1199` | `move_counter_moves` | $0C | $13 | the low block answers this kick |
 | `$12AF` | `move_score_values` | $0C | $02 | 200 points |
 
-[`hitzone_fire_fwd` `$72EC`](../src/hit_zone_tables.asm#L46) gives E = 14 for the stance. With F = 2 and H = 8, the windows are:
+[`hitzone_fire_fwd` `$72EC`](../src/fighter/hit_zone_tables.asm#L46) gives E = 14 for the stance. With F = 2 and H = 8, the windows are:
 
 | d | Result | Score |
 |---|---|---|

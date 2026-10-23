@@ -1,0 +1,68 @@
+{
+ "name": "Start screen: the fire button of port 2 ends the wait of loader.prg and starts the game",
+ "start": {
+  "program": "build/clean_loader.prg"
+ },
+ "symbols": "build/symbols/clean_loader.json",
+ "steps": [
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "loader_start_screen_wait"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 5
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "cold_start"
+    },
+    "timeoutFrames": 900
+   }
+  },
+  {
+   "expect": "entry",
+   "registers": {
+    "pc": "cold_start"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "screen": "title"
+  }
+ ]
+}

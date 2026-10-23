@@ -1030,3 +1030,5 @@
 {"id":"20261017T120216.347-xki8w3/2","space":"bank7","start":"$033c","end":"$038b","type":"code","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
 {"id":"20261017T120216.347-xki8w3/1","space":"bank7","start":"$038c","end":"$038c","type":"code","origin":"ghidra","added":"20261017T120216.347-xki8w3","closed":"20261017T120216.347-xki8w3"}
 {"id":"20261017T120216.347-xki8w3/3","space":"bank7","start":"$038c","end":"$038e","type":"bytes","origin":"llm","added":"20261017T120216.347-xki8w3","closed":null}
+{"id":"20261021T125024.196-fcz7dw/4","space":"bank8","start":"$dc00","end":"$dfe7","type":"screen","origin":"llm","added":"20261021T125024.196-fcz7dw","closed":null}
+{"id":"20261021T125024.196-fcz7dw/1","space":"bank8","start":"$e000","end":"$ff3f","type":"bitmap","origin":"llm","added":"20261021T125024.196-fcz7dw","closed":null}

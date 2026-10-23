@@ -20,7 +20,7 @@ The release image is a memory dump of the development machine, not a clean assem
 
 **Older screens.** The image holds plain-text versions of "BRUCE LEE", "BY", "RON J FORTIER", "GAME OVER" and "PLAYER" in the message format. No pointer goes to them. The final title and game over screens use logo characters and big letters (**Code**).
 
-**The graphic artist.** The game names only Ron J. Fortier ("REV.2 BY RJF"). The Datasoft title picture also names the graphic artist: "GRAPHIC ART BY KELLY DAY" (**Observed**: the picture of the TBC intro). Only the TBC release holds the picture (see Releases and cracks).
+**The graphic artist.** The game names only Ron J. Fortier ("REV.2 BY RJF"). The Datasoft title picture also names the graphic artist: "GRAPHIC ART BY KELLY DAY" (**Observed**: the picture of the TBC intro). Only the TBC release holds the picture. The rebuild shows it at the start, without the changes of TBC (see Releases and cracks).
 
 The details and their evidence are on [docs/development.md](docs/development.md).
 
@@ -42,22 +42,22 @@ All three releases keep every check. Their relocator sets the loader marks again
 
 The facts that a reader does not expect. Each page has more.
 
-- **The copy protection is still in the game, and it is delayed.** Several checks compare marks of the original loader in zero page and pairs of bytes on the key page `$CF00`. A failed check does not stop the game at once. It changes code step by step. Then [`random_byte` `$1159`](src/interrupt_entry.asm#L89) breaks, the game jumps through `$DE00`, or the game wipes memory or damages the maps of rooms 0, 1 and 5. **Code**. **Observed**: junk on the `$CF00` page breaks the game. See [protection.md](docs/protection.md).
-- **A knock-out by a fall attack repeats.** After the knock-out, [`apply_fight_ko` `$2C24`](src/fight_hits.asm#L384) jumps back to `apply_fight_hits_fall`. So the damage and the points repeat until the energy wraps to a positive value. **Observed**: in one run the score went from 2000 to 15050, and the Yamo survived with 124 energy. See [combat.md](docs/combat.md).
+- **The copy protection is still in the game, and it is delayed.** Several checks compare marks of the original loader in zero page and pairs of bytes on the key page `$CF00`. A failed check does not stop the game at once. It changes code step by step. Then [`random_byte` `$1159`](src/irq/interrupt_entry_1131.asm#L45) breaks, the game jumps through `$DE00`, or the game wipes memory or damages the maps of rooms 0, 1 and 5. **Code**. **Observed**: junk on the `$CF00` page breaks the game. See [protection.md](docs/protection.md).
+- **A knock-out by a fall attack repeats.** After the knock-out, [`apply_fight_ko` `$2C24`](src/actor/fight_hits.asm#L384) jumps back to `apply_fight_hits_fall`. So the damage and the points repeat until the energy wraps to a positive value. **Observed**: in one run the score went from 2000 to 15050, and the Yamo survived with 124 energy. See [combat.md](docs/combat.md).
 - **Six rooms write 2 bytes into a contact mask.** The maps of rooms 4, 7, 10, 13, 17 and 18 decode to 442 cells instead of 440. The two extra cells write `$80` to `$9010-$9011`, a mask of Bruce's frames. **Observed** in the room runs. See [rooms.md](docs/rooms.md).
-- **A new top score moves the next extra fall to 171072 points.** [`update_high_score` `$3184`](src/score.asm#L65) copies 4 bytes to `top_score`, and the 4th byte, the raster split index in `$44`, lands in `bonus_fall_first_score`. **Observed** in 7 of 7 stores. See [main_loop.md](docs/main_loop.md).
+- **A new top score moves the next extra fall to 171072 points.** [`update_high_score` `$3184`](src/game/score.asm#L65) copies 4 bytes to `top_score`, and the 4th byte, the raster split index in `$44`, lands in `bonus_fall_first_score`. **Observed** in 7 of 7 stores. See [main_loop.md](docs/main_loop.md).
 - **Extra falls come late.** The extra-fall test compares the score with the limit byte by byte, not as one 24-bit number. **Code**. See [main_loop.md](docs/main_loop.md).
 - **The random table is filled and never read.** The game fills `random_table` at `$0200`. But `init_game_variables` clears its pointer, so `random_byte` reads zero page and the stack page instead. In the demo it returns 1. **Observed**. See [startup_title.md](docs/startup_title.md).
 - **The right-handed key is R.** The title keys L/R and shift-L/shift-R set the joystick handedness of port 1 and port 2. **Code**: key code `$11` is matrix column 2, row 1. See [startup_title.md](docs/startup_title.md).
 - **The S key only switches the title tune.** The sound effects of the game always play. **Code**. See [sound_music.md](docs/sound_music.md).
 - **The music has NTSC tuning.** On PAL every note is about 2/3 of a semitone flat. **Code**. See [sound_music.md](docs/sound_music.md).
-- **The attract demo ends at its first lost fall.** It reads 569 bytes of [`demo_input_stream` `$F300`](src/demo_input.asm#L12). **Observed**. See [startup_title.md](docs/startup_title.md).
+- **The attract demo ends at its first lost fall.** It reads 569 bytes of [`demo_input_stream` `$F300`](src/input/demo_input.asm#L12). **Observed**. See [startup_title.md](docs/startup_title.md).
 - **Unused exits and a closing exit.** Six entries of the exit tables have no marker in any room. After Bruce defeats the wizard, a tile overwrites the marker of the way back to room 17. **Code**. **Observed** for room 6. See [game_flow.md](docs/game_flow.md).
-- **The fourth charset is the wizard flash.** [`room_charset_d` `$9C00`](src/room_charset_d.asm#L8) becomes `charset_wizard_flash` at `$B800`. Only the defeat of the wizard selects it. **Code**. See [graphics.md](docs/graphics.md).
-- **A cracker changed message `$62`.** [`msg_presents` `$4770`](src/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in the SAEGER release and "DATASOFT PRESENTS" in the TBC and DC releases. No code prints the message. **Observed**: byte compare of the releases. See [releases.md](docs/releases.md).
+- **The fourth charset is the wizard flash.** [`room_charset_d` `$9C00`](src/graphics/room_charset_d.asm#L8) becomes `charset_wizard_flash` at `$B800`. Only the defeat of the wizard selects it. **Code**. See [graphics.md](docs/graphics.md).
+- **A cracker changed message `$62`.** [`msg_presents` `$4770`](src/text/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in the SAEGER release and "DATASOFT PRESENTS" in the TBC and DC releases. No code prints the message. **Observed**: byte compare of the releases. See [releases.md](docs/releases.md).
 - **Someone saved the SAEGER image from a game that ran.** The image holds the music state of a tune. It also holds a `$55` of the KERNAL RAM test at `$9B00`, in the source of a room charset. TBC and DC have the bytes from before any run. **Observed**: byte compare and a watchpoint on `$9B00`. **Conclusion**: a dump after a reset. See [releases.md](docs/releases.md).
 - **The DC release has no demo input.** Its packed file ends at `$F200`, so the attract demo gives Bruce no input and ends at his first lost fall. **Observed**. See [releases.md](docs/releases.md).
-- **Only one crack kept the title picture.** The Datasoft title picture is only in the TBC release, with a crack text in it and simplified colours. The game itself never shows it. **Observed**. A preservation project needs the TBC file for the picture, and the rebuild shows a clean copy of it. See [releases.md](docs/releases.md).
+- **Only one crack kept the title picture.** The Datasoft title picture is only in the TBC release, with a crack text in it and simplified colours. The game itself never shows it. **Observed**. A preservation project needs the TBC file for the picture. See [releases.md](docs/releases.md).
 - **No cheat or trainer.** `falls_left` decreases only when Bruce loses a fall. It also decreases by 5 when a player-controlled Yamo stays idle too long. The room 16 bonus adds falls. No release adds a trainer. **Code**. **Observed**: byte compare of the releases. See [protection.md](docs/protection.md).
 
 ## How the program works
@@ -83,12 +83,12 @@ flowchart TB
   I -- "raster splits, timers, joysticks, sound" --> M
 ```
 
-1. **The cold start runs once.** [`cold_start` `$0400`](src/cold_start.asm#L22) copies the ROM font to `$8800` and expands the four room charset sources at `$9000-$9FFF` into double-height charsets. `build_contact_masks` then builds the contact masks over the charset sources, so the cold start cannot run a second time. (**Code**. [startup_title.md](docs/startup_title.md))
-2. **The title is a loop of its own.** [`title_menu_loop` `$08B1`](src/title_menu.asm#L14) reads the option keys and the fire button of port 1. After 2400 frames it starts the attract demo. F7 or fire starts a game. (**Observed** in `tests/title.json`, `tests/title_options.json` and `tests/demo.json`)
-3. **A room is drawn once and then changed by code.** [`draw_room` `$09BC`](src/draw_room.asm#L28) decodes the room map and runs the init handler of the room. Everything that moves or opens later is done by the frame handler of the room, once in each pass. ([rooms.md](docs/rooms.md))
-4. **The main loop sets the pace of the game.** One pass of [`main_loop` `$1BC2`](src/game_main_loop.asm#L23) runs the keys, the enemy spawns, the room handler and the contact tests. Then it runs the input and the action of each actor, and the sprite builder. It then waits for `frame_countdown`. The interrupt counts this variable down from 3, once in each frame. (**Observed**. [main_loop.md](docs/main_loop.md))
-5. **The interrupts set the picture in every frame.** [`irq_entry` `$1103`](src/interrupt_entry.asm#L10) jumps through `irq_vector` to the next raster handler of a chain. In a game, the chain sets the status line, the room charset and the colour bands. `frame_update` runs the timers, the joysticks and the sound effects. ([interrupts.md](docs/interrupts.md))
-6. **The actors go through a state machine.** The input of an actor picks an action. The input is a joystick, the computer AI or the demo stream. [`actor_action_step` `$1C5B`](src/actor_step.asm#L21) moves the actor through its states. `select_actor_pose` picks the pose, and `build_actor_sprites` draws the pose into the sprite buffers. ([actors.md](docs/actors.md), [graphics.md](docs/graphics.md))
+1. **The cold start runs once.** [`cold_start` `$0400`](src/game/cold_start.asm#L22) copies the ROM font to `$8800` and expands the four room charset sources at `$9000-$9FFF` into double-height charsets. `build_contact_masks` then builds the contact masks over the charset sources, so the cold start cannot run a second time. (**Code**. [startup_title.md](docs/startup_title.md))
+2. **The title is a loop of its own.** [`title_menu_loop` `$08B1`](src/game/title_menu.asm#L14) reads the option keys and the fire button of port 1. After 2400 frames it starts the attract demo. F7 or fire starts a game. (**Observed** in `tests/title.json`, `tests/title_options.json` and `tests/demo.json`)
+3. **A room is drawn once and then changed by code.** [`draw_room` `$09BC`](src/room/draw_room.asm#L28) decodes the room map and runs the init handler of the room. Everything that moves or opens later is done by the frame handler of the room, once in each pass. ([rooms.md](docs/rooms.md))
+4. **The main loop sets the pace of the game.** One pass of [`main_loop` `$1BC2`](src/game/game_main_loop.asm#L23) runs the keys, the enemy spawns, the room handler and the contact tests. Then it runs the input and the action of each actor, and the sprite builder. It then waits for `frame_countdown`. The interrupt counts this variable down from 3, once in each frame. (**Observed**. [main_loop.md](docs/main_loop.md))
+5. **The interrupts set the picture in every frame.** [`irq_entry` `$1103`](src/irq/interrupt_entry.asm#L10) jumps through `irq_vector` to the next raster handler of a chain. In a game, the chain sets the status line, the room charset and the colour bands. `frame_update` runs the timers, the joysticks and the sound effects. ([interrupts.md](docs/interrupts.md))
+6. **The actors go through a state machine.** The input of an actor picks an action. The input is a joystick, the computer AI or the demo stream. [`actor_action_step` `$1C5B`](src/actor/actor_step.asm#L21) moves the actor through its states. `select_actor_pose` picks the pose, and `build_actor_sprites` draws the pose into the sprite buffers. ([actors.md](docs/actors.md), [graphics.md](docs/graphics.md))
 
 The flow of a player through the game:
 
@@ -124,7 +124,7 @@ The order of the rooms and the conditions that open each way are on [game_flow.m
 
 | Page | Content |
 |---|---|
-| [docs/startup_title.md](docs/startup_title.md) | **Start-up and title.** The title picture of the boot and the cold start. The title screen and its menu, the attract demo, the start of a game and the PLAYER n screen. |
+| [docs/startup_title.md](docs/startup_title.md) | **Start-up and title.** The start screen with the title picture, and the cold start. The title screen and its menu, the attract demo, the start of a game and the PLAYER n screen. |
 | [docs/main_loop.md](docs/main_loop.md) | **The main loop.** One pass of the game and the game keys. Pause and idle, the status line, the score and extra falls. The loss of a fall, the player switch and game over. |
 | [docs/interrupts.md](docs/interrupts.md) | **The interrupt chain.** The IRQ entry and its vector, the raster handlers of the title, PLAYER and game screens, and the work of each frame. |
 | [docs/game_flow.md](docs/game_flow.md) | **The game state machine.** The whole program as one state machine, two-player turns, the next game loop, and the map of the 20 rooms from the exit tables. |
@@ -156,31 +156,35 @@ Three cracks of the game are in the project. All three come from one cracked ima
 
 No crack removed a copy protection check. The common relocator writes again the marks of the original loader (**Observed**: the byte compare, and runs of the title, the demo and the game).
 
-**SAEGER: the edit of another cracker.** [`msg_presents` `$4770`](src/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in SAEGER and "DATASOFT PRESENTS" in TBC and DC (**Observed**: a byte compare of the releases). No code prints this message (**Code**). Thus a cracker who signed as Diabolo edited the image first, and SSG released that copy later (**Conclusion**). The text identifies a copy of the SAEGER line. The switch `CRACK_DIABOLO` gives the text in the rebuild.
+**SAEGER: the edit of another cracker.** [`msg_presents` `$4770`](src/text/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in SAEGER and "DATASOFT PRESENTS" in TBC and DC (**Observed**: a byte compare of the releases). No code prints this message (**Code**). Thus a cracker who signed as Diabolo edited the image first, and SSG released that copy later (**Conclusion**). The text identifies a copy of the SAEGER line. The switch `CRACK_DIABOLO` gives the text in the rebuild.
 
-**SAEGER: a dump of a game that ran.** The music variables of SAEGER hold the state after a tune. TBC and DC hold the values from before a run (**Observed**: a byte compare). `$9B00` holds the `$55` of the KERNAL RAM test. Thus somebody reset a running game and saved its memory (**Conclusion**). The game writes each music byte before it reads it, so the music state changes nothing (**Code**. **Observed**: a compare of 900 frames). But [`build_double_height_font` `$4892`](src/draw_helpers.asm#L51) reads `$9B00` at the cold start (**Observed**: a watchpoint). Thus SAEGER builds character `$60` of the wizard charset with a different top row. The switch `FIX_RAM_TEST_BYTE` gives the clean byte.
+**SAEGER: a dump of a game that ran.** The music variables of SAEGER hold the state after a tune. TBC and DC hold the values from before a run (**Observed**: a byte compare). `$9B00` holds the `$55` of the KERNAL RAM test. Thus somebody reset a running game and saved its memory (**Conclusion**). The game writes each music byte before it reads it, so the music state changes nothing (**Code**. **Observed**: a compare of 900 frames). But [`build_double_height_font` `$4892`](src/room/draw_helpers.asm#L51) reads `$9B00` at the cold start (**Observed**: a watchpoint). Thus SAEGER builds character `$60` of the wizard charset with a different top row. The switch `FIX_RAM_TEST_BYTE` gives the clean byte.
 
 **SAEGER and TBC: tape tools in memory.** The two captures hold the same tape turbo tools at `$FE00-$FFF9`, and DC does not hold them (**Observed**: a byte compare). The game does not use them (**Observed**: `tests/leftovers_unused.json`). Thus the image of SAEGER and TBC went through a machine with a tape turbo (**Conclusion**).
 
-**DC: the demo input is lost.** The packed DC file holds the game only up to `$F200`. Thus [`demo_input_stream` `$F300`](src/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF` (**Observed**: a byte compare). In the DC release, the attract demo gives Bruce no input. The demo stops at his first lost fall (**Observed**: a run of the DC release). Do not use the DC file as the source of the demo input.
+**DC: the demo input is lost.** The packed DC file holds the game only up to `$F200`. Thus [`demo_input_stream` `$F300`](src/input/demo_input.asm#L12) holds the RAM content of the machine: zeros and `$FF` (**Observed**: a byte compare). In the DC release, the attract demo gives Bruce no input. The demo stops at his first lost fall (**Observed**: a run of the DC release). Do not use the DC file as the source of the demo input.
 
-**TBC: the title picture.** Only the TBC intro holds the Datasoft title picture. TBC wrote "CRACKED BY TBC" into the bitmap and gave each cell the same screen colours (**Observed**: a run of the TBC intro). The game itself never shows the picture. A preservation project needs the TBC file for the picture. The rebuild shows a clean copy of it at the start (see "The boot" below).
+**TBC: the title picture.** Only the TBC intro holds the Datasoft title picture. TBC wrote "CRACKED BY TBC" into the bitmap and gave each cell the same screen colours (**Observed**: a run of the TBC intro). The game itself never shows the picture. A preservation project needs the TBC file for the picture. The rebuild shows the picture as its start screen, without the changes of TBC (see "The start screen" below).
 
 The details, the hashes of the disk images and each different byte are on [releases.md](docs/releases.md).
 
 ## The rebuild
 
-**The base release.** The knowledge holds the memory of the SAEGER release when it gets to [`cold_start` `$0400`](src/cold_start.asm#L22). It holds only the game: 24 segments from `$03FF` to `$FFFF` (40,075 bytes). The capture leaves out these parts:
+**The base release.** The knowledge holds the memory of the SAEGER release when it gets to [`cold_start` `$0400`](src/game/cold_start.asm#L22). It holds only the game: 24 segments from `$03FF` to `$FFFF` (40,075 bytes). The capture leaves out these parts:
 
 - the crack at `$A000-$A9FF`: a copy of the relocator and duplicated pages
 - the original loader stage at `$033C-$03FE`
-- 28 leftover blocks of the development and the release
+- 28 leftover blocks of the development and the release, and the 10 leftover ranges of the source
 
 The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033c.json` and `tests/leftovers_unused.json` show that the game uses none of them (**Observed**).
 
-**The entry state.** The game needs the marks that the original loader left. The relocator of each crack sets them again: `$00` = `$EF`, `$02` = `$32`, an RTS at `$0080`, and `warm_start_flag` = 0. They stay in the entry state. `src/loader.prg` copies the segments into place, sets the entry state of the capture and jumps to `cold_start`. The emulator check of c64-source verified it.
+**The entry state.** The game needs the marks that the original loader left. The relocator of each crack sets them again: `$00` = `$EF`, `$02` = `$32`, an RTS at `$0080`, and `warm_start_flag` = 0. They stay in the entry state. `build/clean_loader.prg` copies the segments into place, sets the entry state of the capture and jumps to `cold_start`. The emulator check of c64-source verified it.
 
-**The switches.** `src/config.asm` holds the value of each switch. Change a value there, then build again. `src/switches.asm` holds the value of each switch for each release. The default build is the clean game with the title picture.
+**The start screen.** `build/clean_loader.prg` first shows the Datasoft title picture. Then it waits for a key, or for the fire button of joystick port 1 or 2. The picture comes from the TBC intro: the knowledge holds a capture of the intro at `$0872` in the space `loading`. The switch `CRACK_TBC_PICTURE` of that space holds the changes of TBC: the text "CRACKED BY TBC" and the light blue Chinese name. Its default is 0, so the loader shows the clean picture. The clean cells come from a reference screenshot of the original picture, through `src/title_picture.kla` of commit a67158a. No original Datasoft file holds them (**Observed**: the loader check and a byte compare in memory). An older capture of the same intro stays in space bank8 as history. The loader does not use it. Set `START_SCREEN = 0` in `src/config.asm` to start the game at once.
+
+**The leftovers.** No code uses 114 bytes of code and data in 13 ranges (**Observed**: `generate` of c64-re-tools 2.6.0-rc.3 and the test `leftovers_unused`). Examples are an RTS that no code reaches, the unused copy `inc_pointer_06_copy` and the unreachable `unused_jump_reset_vector`. The source keeps them in the files `src/leftovers/leftover_xxxx.asm`. The default build and `build/clean_loader.prg` do not have them, and each release build has them. The switch `LEFTOVERS` in `src/config.asm` puts them in.
+
+**The switches.** `src/config.asm` holds the value of each switch. Change a value there, then build again. `src/switches.asm` holds the value of each switch for each release. The default build is the clean game.
 
 | Switch | Kind | Default | Releases with it on | What it changes |
 |---|---|---|---|---|
@@ -188,46 +192,30 @@ The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033
 | `CRACK_DIABOLO` | crack | 0 | SAEGER | "DIABOLO  PRESENTS" in message `$62` |
 | `FIX_RAM_TEST_BYTE` | fix | 1 | TBC, DC | `$0F` in place of the `$55` of the RAM test at `$9B00` |
 | `RUN_STATE` | change | 0 | SAEGER | the music state of a run in `$E100-$E86C` |
-| `TITLE_PICTURE` | change | 1 | TBC | the title picture of `src/boot.asm`. It has no patch: the game bytes do not change. |
 
 **The builds.** From the project folder, with the c64-assembler skill:
 
-- `assembler.ts build src boot.asm --out build/bruce_lee_boot.prg` gives the clean game with the Datasoft title picture at the start. Start the game with this file.
-- `assembler.ts build src loader.asm --out build/bruce_lee_loader.prg` gives the clean game without the picture, ready to run. The scenarios of the default build need it.
+- `build/clean_loader.prg` is the clean game with the start screen, ready to run. Start the game with this file. `source.ts generate --out src --loader` makes it again. `src/loader.asm` is the packed form, so do not build it alone.
 - `assembler.ts build src main.asm --out build/bruce_lee.prg` gives the clean game without a loader.
 - `assembler.ts build src main.asm --release SAEGER --compare --out build/bruce_lee_SAEGER.prg` checks the original against the knowledge. `--release TBC` and `--release DC` check the other releases. Each release build gives its capture byte for byte: SAEGER in all 24 segments, TBC and DC in their 23 segments.
 
-**The boot.** [src/boot.asm](src/boot.asm) is a source that a person wrote. `source.ts generate` keeps it. It includes the generated `loader.asm`, so each switch and each release applies to the boot too. [src/title_picture.kla](src/title_picture.kla) is the clean picture in the Koala format. It is the TBC bitmap, with the cells of the TBC text set back to the grey of the panel. The cell colours come from a screenshot of the original screen. The file and the screenshot are equal in each pixel except 4 corner pixels. 53 cells have the screen colours `$C1`, and all other cells have `$CE`. The colour RAM is white, the background is black, and the border is light blue as in TBC. [tools/pack_title_picture.py](tools/pack_title_picture.py) packs it to `src/title_picture.rle` (4,213 bytes). The boot does these steps:
-
-1. It unpacks the picture to VIC bank 3: bitmap `$E000`, screen `$CC00`, colour RAM `$D800`.
-2. It waits for a key, for the fire button of port 1 or port 2, or for 10 seconds. The original release showed the picture while it loaded the game, so the game also starts with no input.
-3. It moves the loader to `$0801` and starts it. The mover runs at `$033C`, and the loader then writes its entry state there.
-
-The clean picture, as the rebuild shows it at the start (**Observed**: `tests/boot_title_picture.json`):
-
-![The Datasoft title picture of the rebuild](docs/images/screens/title_picture.png)
-
-With `TITLE_PICTURE` = 0, the boot only starts the loader.
-
-**The tests.** The scenarios in [tests/](tests/) run the original disk file and `src/loader.prg` side by side. They compare memory, the VIC-II and the screen:
+**The tests.** The scenarios in [tests/](tests/) run the original disk file and `build/clean_loader.prg` side by side. They compare memory, the VIC-II and the screen. The emulator cannot press a key on the start screen. Thus the rebuild side of each scenario runs to `loader_start_screen_wait`, and then sets the PC to `loader_start_screen_continue`. The scenarios are:
 
 - `title`, `title_options` and `demo`
 - `game_start`, `room_change`, `game_keys` and `lose_fall_game_over`
 - `wizard_and_ending`
-- `all_rooms`: the picture, the VIC-II, VIC bank 2 and colour RAM of each of the 20 rooms
+- `all_rooms`: the picture, the VIC-II and VIC bank 2 of each of the 20 rooms
 
-`no_protection` and `all_rooms_no_protection` run the TBC release against the default loader. They destroy the protection data. The default build then runs like the original and draws all 20 rooms like the original. The recording `tests/recordings/first-rooms` replays on both loaders. [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest. [tests/README.md](tests/README.md) gives the conditions of each test and the parts that it does not compare.
-
-The boot has four tests. `boot_title_picture`, `boot_fire` and `boot_timeout` are runs with expected values on `build/bruce_lee_boot.prg`. They check the bitmap, the screen, the colour RAM and the VIC-II registers of the picture. Then they start the game with a key, with the fire button of port 2, or with no input. `boot_game_start` runs the TBC release against `build/bruce_lee_boot_TBC.prg` (`--release TBC`). After the picture and a key, the title screen, the menu state and the memory are the same.
+`no_protection` and `all_rooms_no_protection` run the TBC release against `build/clean_loader.prg`. They destroy the protection data. The default build then runs like the original and draws all 20 rooms like the original. The recording `tests/recordings/first-rooms` replays on `build/clean_loader.prg` with the symbols of `build/symbols/clean_loader.json`. The replay runs the rebuild to `loader_start_screen_wait` and sets the PC to `loader_start_screen_continue`. It passes 1075 checkpoints of `main_loop` (**Observed**). [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest. [tests/README.md](tests/README.md) gives the conditions of each test and the parts that it does not compare.
 
 ## Still open
 
 These questions come up on more than one page. Each page lists its own questions at its end.
 
-- **The keyboard scanner never ran.** [`scan_keyboard` `$139E`](src/keyboard_scan.asm#L24) needs a C64 keyboard matrix, and VICE 3.10 holds bits 5-7 of the CIA 1 ports low (VICE bug #2202). The runs and the tests write the key codes into `key_code` and `key_ready`. A run on a VICE with the fix can check the scanner and the R key.
-- **Some code never ran.** The coverage of all runs misses 912 instructions in 130 ranges. Examples are parts of the wizard defeat, some room events and several protection paths. The source marks each range with `; not executed`, and [src/not_executed.json](src/not_executed.json) lists them. Runs that reach these paths can close the gaps.
+- **The keyboard scanner never ran.** [`scan_keyboard` `$139E`](src/input/keyboard_scan.asm#L24) needs a C64 keyboard matrix, and VICE 3.10 holds bits 5-7 of the CIA 1 ports low (VICE bug #2202). The runs and the tests write the key codes into `key_code` and `key_ready`. A run on a VICE with the fix can check the scanner and the R key.
+- **Some code never ran.** The coverage of all runs misses 912 instructions in 132 ranges. Examples are parts of the wizard defeat, some room events and several protection paths. The source marks each range with `; not executed`, and `.c64-re-tools/local/generated/src/not_executed.json` lists them. Git does not keep that file: `generate` writes it again. Runs that reach these paths can close the gaps.
 - **What some room pieces are in game terms.** The sliders, the runners and some graphic messages have names that come from their place and use. See [rooms.md](docs/rooms.md).
-- **The warm-start flag.** [`warm_start_flag` `$03FF`](src/cold_start.asm#L7) must be 0, and nothing writes it. The original loader may have had a restart path. See [protection.md](docs/protection.md).
+- **The warm-start flag.** [`warm_start_flag` `$03FF`](src/game/cold_start.asm#L7) must be 0, and nothing writes it. The original loader may have had a restart path. See [protection.md](docs/protection.md).
 
 ## The reference
 

@@ -5,8 +5,8 @@
   "symbols": "knowledge"
  },
  "rebuild": {
-  "program": "build/bruce_lee_loader.prg",
-  "symbols": "knowledge"
+  "program": "build/clean_loader.prg",
+  "symbols": "build/symbols/clean_loader.json"
  },
  "steps": [
   {
@@ -14,6 +14,22 @@
   },
   {
    "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "loader_start_screen_wait"
+    },
+    "timeoutFrames": 1500
+   },
+   "side": "rebuild"
+  },
+  {
+   "registers": {
+    "pc": "loader_start_screen_continue"
+   },
+   "side": "rebuild"
   },
   {
    "runUntil": {
@@ -141,6 +157,178 @@
       {
        "address": "$06f4",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$0b4a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b50",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b70",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b71",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b72",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b73",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b74",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b75",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b76",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b77",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b78",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b79",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b80",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b81",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b82",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b83",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b84",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b85",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b86",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b87",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b88",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b89",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
@@ -148,6 +336,114 @@
      "address": "$1103",
      "size": 12835,
      "exclude": [
+      {
+       "address": "$1117",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1118",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1119",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1120",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1121",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1122",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1123",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1124",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1125",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1126",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1127",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1128",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1129",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1130",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+      },
       {
        "address": "$166c",
        "reason": "PROTECTION patch byte"
@@ -189,6 +485,122 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$1ad0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ada",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adc",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1add",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ade",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adf",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aea",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aec",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$1fce",
        "reason": "PROTECTION patch byte"
       },
@@ -227,6 +639,10 @@
       {
        "address": "$1fe9",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
        "address": "$31a1",
@@ -273,6 +689,10 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$3a62",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$3ca9",
        "reason": "PROTECTION patch byte"
       },
@@ -281,18 +701,40 @@
        "reason": "PROTECTION patch byte"
       },
       {
-       "address": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40aa",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       },
       {
-       "address": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40ab",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40ba",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40bb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
     {
      "address": "$432e",
-     "size": 565
+     "size": 565,
+     "exclude": [
+      {
+       "address": "$4391",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$457e",
@@ -300,7 +742,13 @@
     },
     {
      "address": "$45aa",
-     "size": 1808
+     "size": 1808,
+     "exclude": [
+      {
+       "address": "$479f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$4cce",
@@ -422,6 +870,178 @@
       {
        "address": "$06f4",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$0b4a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b50",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b70",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b71",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b72",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b73",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b74",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b75",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b76",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b77",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b78",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b79",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b80",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b81",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b82",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b83",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b84",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b85",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b86",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b87",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b88",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b89",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
@@ -429,6 +1049,114 @@
      "address": "$1103",
      "size": 12835,
      "exclude": [
+      {
+       "address": "$1117",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1118",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1119",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1120",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1121",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1122",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1123",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1124",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1125",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1126",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1127",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1128",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1129",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1130",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+      },
       {
        "address": "$166c",
        "reason": "PROTECTION patch byte"
@@ -470,6 +1198,122 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$1ad0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ada",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adc",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1add",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ade",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adf",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aea",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aec",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$1fce",
        "reason": "PROTECTION patch byte"
       },
@@ -508,6 +1352,10 @@
       {
        "address": "$1fe9",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
        "address": "$31a1",
@@ -554,6 +1402,10 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$3a62",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$3ca9",
        "reason": "PROTECTION patch byte"
       },
@@ -562,18 +1414,40 @@
        "reason": "PROTECTION patch byte"
       },
       {
-       "address": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40aa",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       },
       {
-       "address": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40ab",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40ba",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40bb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
     {
      "address": "$432e",
-     "size": 565
+     "size": 565,
+     "exclude": [
+      {
+       "address": "$4391",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$457e",
@@ -581,7 +1455,13 @@
     },
     {
      "address": "$45aa",
-     "size": 1808
+     "size": 1808,
+     "exclude": [
+      {
+       "address": "$479f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$4cce",
@@ -743,6 +1623,178 @@
       {
        "address": "$06f4",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$0b4a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b50",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b70",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b71",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b72",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b73",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b74",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b75",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b76",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b77",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b78",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b79",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b80",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b81",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b82",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b83",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b84",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b85",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b86",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b87",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b88",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b89",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
@@ -750,6 +1802,114 @@
      "address": "$1103",
      "size": 12835,
      "exclude": [
+      {
+       "address": "$1117",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1118",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1119",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1120",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1121",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1122",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1123",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1124",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1125",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1126",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1127",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1128",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1129",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1130",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+      },
       {
        "address": "$166c",
        "reason": "PROTECTION patch byte"
@@ -791,6 +1951,122 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$1ad0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ada",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adc",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1add",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ade",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adf",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aea",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aec",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$1fce",
        "reason": "PROTECTION patch byte"
       },
@@ -829,6 +2105,10 @@
       {
        "address": "$1fe9",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
        "address": "$31a1",
@@ -875,6 +2155,10 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$3a62",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$3ca9",
        "reason": "PROTECTION patch byte"
       },
@@ -883,18 +2167,40 @@
        "reason": "PROTECTION patch byte"
       },
       {
-       "address": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40aa",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       },
       {
-       "address": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40ab",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40ba",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40bb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
     {
      "address": "$432e",
-     "size": 565
+     "size": 565,
+     "exclude": [
+      {
+       "address": "$4391",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$457e",
@@ -902,7 +2208,13 @@
     },
     {
      "address": "$45aa",
-     "size": 1808
+     "size": 1808,
+     "exclude": [
+      {
+       "address": "$479f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$4cce",
@@ -1043,6 +2355,178 @@
       {
        "address": "$06f4",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$0b4a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b50",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b70",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b71",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b72",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b73",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b74",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b75",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b76",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b77",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b78",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b79",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b80",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b81",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b82",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b83",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b84",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b85",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b86",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b87",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b88",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b89",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
@@ -1050,6 +2534,114 @@
      "address": "$1103",
      "size": 12835,
      "exclude": [
+      {
+       "address": "$1117",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1118",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1119",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1120",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1121",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1122",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1123",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1124",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1125",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1126",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1127",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1128",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1129",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1130",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+      },
       {
        "address": "$166c",
        "reason": "PROTECTION patch byte"
@@ -1091,6 +2683,122 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$1ad0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ada",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adc",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1add",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ade",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adf",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aea",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aec",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$1fce",
        "reason": "PROTECTION patch byte"
       },
@@ -1129,6 +2837,10 @@
       {
        "address": "$1fe9",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
        "address": "$31a1",
@@ -1175,6 +2887,10 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$3a62",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$3ca9",
        "reason": "PROTECTION patch byte"
       },
@@ -1183,18 +2899,40 @@
        "reason": "PROTECTION patch byte"
       },
       {
-       "address": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40aa",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       },
       {
-       "address": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40ab",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40ba",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40bb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
     {
      "address": "$432e",
-     "size": 565
+     "size": 565,
+     "exclude": [
+      {
+       "address": "$4391",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$457e",
@@ -1202,7 +2940,13 @@
     },
     {
      "address": "$45aa",
-     "size": 1808
+     "size": 1808,
+     "exclude": [
+      {
+       "address": "$479f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$4cce",
@@ -1343,6 +3087,178 @@
       {
        "address": "$06f4",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$0b4a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b50",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b70",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b71",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b72",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b73",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b74",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b75",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b76",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b77",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b78",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b79",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b80",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b81",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b82",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b83",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b84",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b85",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b86",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b87",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b88",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b89",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
@@ -1350,6 +3266,114 @@
      "address": "$1103",
      "size": 12835,
      "exclude": [
+      {
+       "address": "$1117",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1118",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1119",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1120",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1121",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1122",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1123",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1124",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1125",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1126",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1127",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1128",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1129",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1130",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+      },
       {
        "address": "$166c",
        "reason": "PROTECTION patch byte"
@@ -1391,6 +3415,122 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$1ad0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ada",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adc",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1add",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ade",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adf",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aea",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aec",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$1fce",
        "reason": "PROTECTION patch byte"
       },
@@ -1429,6 +3569,10 @@
       {
        "address": "$1fe9",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
        "address": "$31a1",
@@ -1475,6 +3619,10 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$3a62",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$3ca9",
        "reason": "PROTECTION patch byte"
       },
@@ -1483,18 +3631,40 @@
        "reason": "PROTECTION patch byte"
       },
       {
-       "address": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40aa",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       },
       {
-       "address": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40ab",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40ba",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40bb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
     {
      "address": "$432e",
-     "size": 565
+     "size": 565,
+     "exclude": [
+      {
+       "address": "$4391",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$457e",
@@ -1502,7 +3672,13 @@
     },
     {
      "address": "$45aa",
-     "size": 1808
+     "size": 1808,
+     "exclude": [
+      {
+       "address": "$479f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$4cce",
@@ -1643,6 +3819,178 @@
       {
        "address": "$06f4",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$0b4a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b50",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b70",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b71",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b72",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b73",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b74",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b75",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b76",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b77",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b78",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b79",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b80",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b81",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b82",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b83",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b84",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b85",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b86",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b87",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b88",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b89",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
@@ -1650,6 +3998,114 @@
      "address": "$1103",
      "size": 12835,
      "exclude": [
+      {
+       "address": "$1117",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1118",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1119",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1120",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1121",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1122",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1123",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1124",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1125",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1126",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1127",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1128",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1129",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1130",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+      },
       {
        "address": "$166c",
        "reason": "PROTECTION patch byte"
@@ -1691,6 +4147,122 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$1ad0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ada",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adc",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1add",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ade",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adf",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aea",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aec",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$1fce",
        "reason": "PROTECTION patch byte"
       },
@@ -1729,6 +4301,10 @@
       {
        "address": "$1fe9",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
        "address": "$31a1",
@@ -1775,6 +4351,10 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$3a62",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$3ca9",
        "reason": "PROTECTION patch byte"
       },
@@ -1783,18 +4363,40 @@
        "reason": "PROTECTION patch byte"
       },
       {
-       "address": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40aa",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       },
       {
-       "address": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40ab",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40ba",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40bb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
     {
      "address": "$432e",
-     "size": 565
+     "size": 565,
+     "exclude": [
+      {
+       "address": "$4391",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$457e",
@@ -1802,7 +4404,13 @@
     },
     {
      "address": "$45aa",
-     "size": 1808
+     "size": 1808,
+     "exclude": [
+      {
+       "address": "$479f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$4cce",
@@ -1943,6 +4551,178 @@
       {
        "address": "$06f4",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$0b4a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b50",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b70",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b71",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b72",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b73",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b74",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b75",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b76",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b77",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b78",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b79",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b80",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b81",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b82",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b83",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b84",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b85",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b86",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b87",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b88",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b89",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
@@ -1950,6 +4730,114 @@
      "address": "$1103",
      "size": 12835,
      "exclude": [
+      {
+       "address": "$1117",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1118",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1119",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$111f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1120",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1121",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1122",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1123",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1124",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1125",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1126",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1127",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1128",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1129",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112a",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112b",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112c",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112d",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112e",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$112f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1130",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1166",
+       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+      },
       {
        "address": "$166c",
        "reason": "PROTECTION patch byte"
@@ -1991,6 +4879,122 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$1ad0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ada",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adc",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1add",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ade",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1adf",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aea",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$1aec",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$1fce",
        "reason": "PROTECTION patch byte"
       },
@@ -2029,6 +5033,10 @@
       {
        "address": "$1fe9",
        "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$2007",
+       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
       },
       {
        "address": "$31a1",
@@ -2075,6 +5083,10 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$3a62",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
        "address": "$3ca9",
        "reason": "PROTECTION patch byte"
       },
@@ -2083,18 +5095,40 @@
        "reason": "PROTECTION patch byte"
       },
       {
-       "address": "$1166",
-       "reason": "protection_result: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40aa",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       },
       {
-       "address": "$2007",
-       "reason": "protection_check_value: XOR of the key page; the destroyed page gives 0 (failed), which the default build ignores"
+       "address": "$40ab",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b2",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40b3",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40ba",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      },
+      {
+       "address": "$40bb",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
       }
      ]
     },
     {
      "address": "$432e",
-     "size": 565
+     "size": 565,
+     "exclude": [
+      {
+       "address": "$4391",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$457e",
@@ -2102,7 +5136,13 @@
     },
     {
      "address": "$45aa",
-     "size": 1808
+     "size": 1808,
+     "exclude": [
+      {
+       "address": "$479f",
+       "reason": "Leftover byte: loader.prg does not load it, and nothing uses it"
+      }
+     ]
     },
     {
      "address": "$4cce",

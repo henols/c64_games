@@ -24,9 +24,9 @@ flowchart TB
   F --> G
 ~~~
 
-1. **The new entry selects the path.** [`shape_build` `$3914`](../src/shape_build.asm#L37) is 7 new bytes. Version I started the builder with the buffer toggle. Now `shape_build` tests `shape_page_offset` first. (**Code**)
-2. **The fighters use the copy of version I.** [`shape_build_copy` `$391B`](../src/shape_build.asm#L42) toggles `draw_buffer`, copies the 9 parts into the hidden buffer and publishes the pointers. Facing 1 uses the mirrored copy through `shape_mirror_table`. The code is the same as in version I, with new addresses. (**Code**)
-3. **The bull uses direct pointers.** [`shape_direct_ptrs` `$3B95`](../src/shape_build.asm#L407) reads the 9 part tables at `fighter_frame` and writes the values straight into `fighter_part_ptrs`. There is no copy, no buffer toggle, no mirror and no shadow. (**Code**)
+1. **The new entry selects the path.** [`shape_build` `$3914`](../src/shapes/shape_build_390c.asm#L11) is 7 new bytes. Version I started the builder with the buffer toggle. Now `shape_build` tests `shape_page_offset` first. (**Code**)
+2. **The fighters use the copy of version I.** [`shape_build_copy` `$391B`](../src/shapes/shape_build_390c.asm#L16) toggles `draw_buffer`, copies the 9 parts into the hidden buffer and publishes the pointers. Facing 1 uses the mirrored copy through `shape_mirror_table`. The code is the same as in version I, with new addresses. (**Code**)
+3. **The bull uses direct pointers.** [`shape_direct_ptrs` `$3B95`](../src/shapes/shape_build_390c.asm#L381) reads the 9 part tables at `fighter_frame` and writes the values straight into `fighter_part_ptrs`. There is no copy, no buffer toggle, no mirror and no shadow. (**Code**)
 
 The direct path is the main change. A value in a part table is a part number for a fighter, but a VIC pointer for the bull. Version I showed the bull through the normal copy with the source page `$7F00[part] + $40`, that is `$C000 + part*64`. That source is the block of pointer `part` in VIC bank 3. Version II shows the same picture and saves the copy of 9 x 64 bytes in each new bull frame. (**Code**, and the equivalence is a **Conclusion**)
 
@@ -34,7 +34,7 @@ The copy code still adds `shape_page_offset` to the source page in each of the 9
 
 ### The frame tables: 79 frames
 
-The 9 part tables start at [`frame_parts_top_left` `$7AE0`](../src/frame_part_tables.asm#L6), one table for each slot. Each table now has 79 frames, so slot n is at `$7AE0 + n*$4F`. Version I had 72 frames with the stride `$48`. Each of the three paths reads the tables with the new stride. The tables end at `$7DA6`, and `$7DA7-$7DFF` holds a RAM pattern. (**Code**)
+The 9 part tables start at [`frame_parts_top_left` `$7AE0`](../src/shapes/frame_part_tables.asm#L6), one table for each slot. Each table now has 79 frames, so slot n is at `$7AE0 + n*$4F`. Version I had 72 frames with the stride `$48`. Each of the three paths reads the tables with the new stride. The tables end at `$7DA6`, and `$7DA7-$7DFF` holds a RAM pattern. (**Code**)
 
 | Frames | What they show | Animation |
 |---|---|---|
@@ -53,7 +53,7 @@ Frames `$16`, `$17` and `$20` are somersault frames. Version I drew them one col
 
 ### The bull: direct sprite pointers
 
-The bull round [`bull_bonus_round` `$132C`](../src/bull_round.asm#L46) sets `shape_page_offset` to `$40` and makes the bull fighter 1. The bull gets the front sprites 0-2 and the colour 9, brown. The rules of the round are on [the bull round](bull_round.md). (**Code**)
+The bull round [`bull_bonus_round` `$132C`](../src/game/bull_round_12f8.asm#L36) sets `shape_page_offset` to `$40` and makes the bull fighter 1. The bull gets the front sprites 0-2 and the colour 9, brown. The rules of the round are on [the bull round](bull_round.md). (**Code**)
 
 ![The bull round in scene 3: the bull runs at the white fighter](images/bull_round.png)
 
@@ -70,9 +70,9 @@ Version I kept the bull in M.XSPRITES at `$F540-$FF7F`. Version II puts the 4 sa
 
 Each range fills a space that no other graphic uses:
 
-- [`bull_f62_parts` `$C940`](../src/bull_sprites_c900.asm#L16) starts just after shape buffer 3, which ends at `$C93F`. In version I, buffer 3 overwrote the first block of the `$C900` segment.
-- [`bull_f59_parts` `$DC40`](../src/bull_sprites_dc40.asm#L6) is in the RAM under the I/O area. The CPU cannot read it while I/O is on, but the VIC always reads the RAM.
-- [`bull_f66_parts` `$E000`](../src/bull_sprites_e000.asm#L6) and [`bull_f63_parts_b` `$E300`](../src/bull_sprites_e300.asm#L6) are in the charset area of the panel. The panel uses only the characters `$20-$5F` (`$E100-$E2FF`). The characters `$00-$1F` and `$60-$B7` hold bull parts.
+- [`bull_f62_parts` `$C940`](../src/graphics/bull_sprites_c900.asm#L16) starts just after shape buffer 3, which ends at `$C93F`. In version I, buffer 3 overwrote the first block of the `$C900` segment.
+- [`bull_f59_parts` `$DC40`](../src/graphics/bull_sprites_dc40.asm#L6) is in the RAM under the I/O area. The CPU cannot read it while I/O is on, but the VIC always reads the RAM.
+- [`bull_f66_parts` `$E000`](../src/graphics/bull_sprites_e000.asm#L6) and [`bull_f63_parts_b` `$E300`](../src/graphics/bull_sprites_e300.asm#L6) are in the charset area of the panel. The panel uses only the characters `$20-$5F` (`$E100-$E2FF`). The characters `$00-$1F` and `$60-$B7` hold bull parts.
 
 (**Code**) The direct pointers make these places possible: the CPU never reads the bull blocks. (**Conclusion**)
 
@@ -90,9 +90,9 @@ The direct path never sets the shadow pointers of the fourth sprite row. The bul
 
 ### The judge
 
-Version I enabled sprites 6 and 7 but never set them. Version II shows a judge with a flag. [`judge_show_winner` `$1F93`](../src/score_and_judge.asm#L43) runs at a decision when the time is up in a one-player bout, and at the end of a two-player game with a winner. (**Code**)
+Version I enabled sprites 6 and 7 but never set them. Version II shows a judge with a flag. [`judge_show_winner` `$1F93`](../src/game/score_and_judge.asm#L43) runs at a decision when the time is up in a one-player bout, and at the end of a two-player game with a winner. (**Code**)
 
-1. Sprite 6 is the judge, colour `$0C` grey. Its pointer comes from [`judge_ptr_by_scene` `$1FFA`](../src/score_and_judge.asm#L90): `$5C` in scenes 0 and 1, `$50` in scenes 2 and 3.
+1. Sprite 6 is the judge, colour `$0C` grey. Its pointer comes from [`judge_ptr_by_scene` `$1FFA`](../src/game/score_and_judge.asm#L90): `$5C` in scenes 0 and 1, `$50` in scenes 2 and 3.
 2. Sprite 7 is the flag, pointer `$51`. Its colour is the winner colour: 1 white for fighter 0, 2 red for fighter 1.
 3. The X and Y of the judge come from three more tables by scene. The judge stands at a different place in each picture.
 4. With pointer `$5C` the flag goes 2 pixels left and 6 lines down from the judge. With pointer `$50` it goes 4 pixels right.
@@ -105,7 +105,7 @@ Version I enabled sprites 6 and 7 but never set them. Version II shows a judge w
 | `$51` | `$D440-$D47F` | `judge_flag_sprite` | The flag. Version I had the same block, unused, at `$D500`. |
 | `$5C` | `$D700-$D73F` | `judge_sprite_scene01` | A smaller judge in scenes 0 and 1. New in version II. |
 
-[`judge_sprite_scene23` `$D400`](../src/judge_sprites_d000.asm#L250), [`judge_flag_sprite` `$D440`](../src/judge_sprites_d000.asm#L274) and [`judge_sprite_scene01` `$D700`](../src/shadow_sprites_d480.asm#L222) are the three blocks. No block of version I matches the two judge blocks. The block `$D700` is in the run of the floor shadows. (**Code**)
+[`judge_sprite_scene23` `$D400`](../src/graphics/judge_sprites_d000_d3c0.asm#L30), [`judge_flag_sprite` `$D440`](../src/graphics/judge_sprites_d000_d3c0.asm#L54) and [`judge_sprite_scene01` `$D700`](../src/graphics/shadow_sprites_d480.asm#L222) are the three blocks. No block of version I matches the two judge blocks. The block `$D700` is in the run of the floor shadows. (**Code**)
 
 ![The judge of scenes 2 and 3 and the flag, multicolour](reference/images/judge_sprite_scene23-multicolour.png)
 
@@ -115,7 +115,7 @@ The image shows the judge at `$D400` and the flag at `$D440`.
 
 ### The floor shadows
 
-A jump or a somersault shows a shadow on the floor in the fourth sprite row. [`shape_row4_frames` `$3B5D`](../src/shape_build.asm#L393) lists the 8 frames with a shadow, as in version I. [`shape_row4_left` `$3B65`](../src/shape_build.asm#L396) and the two tables after it give the pointers of the left, middle and right column. (**Code**)
+A jump or a somersault shows a shadow on the floor in the fourth sprite row. [`shape_row4_frames` `$3B5D`](../src/shapes/shape_build_390c.asm#L367) lists the 8 frames with a shadow, as in version I. [`shape_row4_left` `$3B65`](../src/shapes/shape_build_390c.asm#L370) and the two tables after it give the pointers of the left, middle and right column. (**Code**)
 
 The 30 shadow blocks are the same graphics as in version I. They moved from the pointers `$55-$7B` (`$D540-$DEFF`) to `$52-$70` (`$D480-$DC3F`). The judge block `$5C` sits between the shadows of facing 0. (**Code**)
 
@@ -134,9 +134,9 @@ The image shows the shadow blocks of both facings and the small judge at pointer
 
 ### The panel charset
 
-The score panel uses text mode with the character base `$E000`. Version I loaded 128 characters at `$E000-$E3FF`. Version II keeps only the characters `$20-$5F` at [`panel_font` `$E100`](../src/panel_charset.asm#L6). The other character places hold bull parts. (**Code**)
+The score panel uses text mode with the character base `$E000`. Version I loaded 128 characters at `$E000-$E3FF`. Version II keeps only the characters `$20-$5F` at [`panel_font` `$E100`](../src/graphics/panel_charset.asm#L6). The other character places hold bull parts. (**Code**)
 
-The yin-yang symbols moved from the characters `$01-$08` to [`panel_yinyang_chars` `$E108`](../src/panel_charset.asm#L9), the characters `$21-$28`. They are in the place of the characters `! " # $ % & ' (`. [`draw_yin_yang_full` `$1DDE`](../src/game_modes.asm#L388) draws the full symbol with `$21-$24`. `draw_yin_yang_half` draws the half symbol with `$25-$28`. The characters `$29-$5F` are the same bytes as in version I. (**Code**)
+The yin-yang symbols moved from the characters `$01-$08` to [`panel_yinyang_chars` `$E108`](../src/graphics/panel_charset.asm#L9), the characters `$21-$28`. They are in the place of the characters `! " # $ % & ' (`. [`draw_yin_yang_full` `$1DDE`](../src/game/game_modes.asm#L382) draws the full symbol with `$21-$24`. `draw_yin_yang_half` draws the half symbol with `$25-$28`. The characters `$29-$5F` are the same bytes as in version I. (**Code**)
 
 ![The panel font, characters $20-$5F, hires](reference/images/panel_font-hires.png)
 
@@ -146,10 +146,10 @@ No text of the game can show a character outside `$20-$5F`. The rank stops at 10
 
 ### The scene pictures
 
-[`scene_draw_if_new` `$1F3F`](../src/title_and_scene.asm#L138) draws the scene `stage_counter AND 3` when it is not on the screen. It clears the bitmap, unpacks the colour and screen maps, and then unpacks the bitmap. Version I copied the maps after the bitmap. (**Code**)
+[`scene_draw_if_new` `$1F3F`](../src/game/title_and_scene.asm#L135) draws the scene `stage_counter AND 3` when it is not on the screen. It clears the bitmap, unpacks the colour and screen maps, and then unpacks the bitmap. Version I copied the maps after the bitmap. (**Code**)
 
-1. **The bitmap.** [`scene_unpack_bitmap` `$17BB`](../src/scene_unpack.asm#L6) is the code of version I without a change. It unpacks backward from `$F53F` down to `$E640`, the bitmap rows 5-16. The format is on [the graphics of version I](../../v1/docs/graphics.md). (**Code**)
-2. **The colour and screen maps.** [`scene_unpack_maps` `$1849`](../src/scene_unpack.asm#L90) is new. It unpacks a nibble RLE stream into the colour RAM and the screen of rows 5-16. The format is in [the packed scene maps](#the-packed-scene-maps). (**Code**)
+1. **The bitmap.** [`scene_unpack_bitmap` `$17BB`](../src/scenes/scene_unpack.asm#L6) is the code of version I without a change. It unpacks backward from `$F53F` down to `$E640`, the bitmap rows 5-16. The format is on [the graphics of version I](../../v1/docs/graphics.md). (**Code**)
+2. **The colour and screen maps.** [`scene_unpack_maps` `$1849`](../src/scenes/scene_unpack.asm#L87) is new. It unpacks a nibble RLE stream into the colour RAM and the screen of rows 5-16. The format is in [the packed scene maps](#the-packed-scene-maps). (**Code**)
 
 The four packed bitmaps are byte for byte the bitmaps of version I. They moved up by `$5CB` bytes, from `$3994-$62FF` to `$3F5F-$68CA`. `scene_packed_ptrs` holds the new addresses. Unpacked, the four colour maps and the four screen maps are the maps of version I. (**Observed** in a byte compare and a model of the unpackers)
 
@@ -162,13 +162,13 @@ The packed maps are 3840 - 2357 = 1483 bytes smaller. 1483 is `$5CB`, exactly th
 
 The authors packed the maps to make room for the larger code. The code of version II ends at `$3E7F`. The free bytes `$3E80-$3F5E` hold a RAM pattern. (**Conclusion**)
 
-The old pointer words [`old_scene_colour_ptrs` `$1289`](../src/entry_and_tables.asm#L76) and `old_scene_screen_ptrs` still hold the version I addresses `$6300` to `$7020`. Nothing reads them in version II. In version II these addresses point into the packed bitmap of scene 3 and into the packed maps. (**Code**)
+The old pointer words [`old_scene_colour_ptrs` `$1289`](../src/leftovers/leftover_1281.asm#L9) and `old_scene_screen_ptrs` still hold the version I addresses `$6300` to `$7020`. Nothing reads them in version II. In version II these addresses point into the packed bitmap of scene 3 and into the packed maps. (**Code**)
 
 ## The packed scene maps
 
 ### Where the data is
 
-[`scene_map_packed_ptrs` `$1841`](../src/scene_unpack.asm#L87) holds one address for each scene. [`scene_unpack_maps` `$1849`](../src/scene_unpack.asm#L90) reads the data of the scene `stage_counter AND 3`. (**Code**)
+[`scene_map_packed_ptrs` `$1841`](../src/scenes/scene_unpack.asm#L84) holds one address for each scene. [`scene_unpack_maps` `$1849`](../src/scenes/scene_unpack.asm#L87) reads the data of the scene `stage_counter AND 3`. (**Code**)
 
 | Scene | Picture | Data | Bytes |
 |---|---|---|---|
@@ -207,7 +207,7 @@ The colour maps of version I had random high nibbles in most bytes, for example 
 
 ### The decoder
 
-[`map_unpack_pass` `$188B`](../src/scene_unpack.asm#L124) unpacks one pass. [`map_read_nibble` `$18AE`](../src/scene_unpack.asm#L147) gives the next nibble. [`map_write_nibble` `$18CB`](../src/scene_unpack.asm#L167) merges a nibble into the destination byte and steps the pointer. (**Code**)
+[`map_unpack_pass` `$188B`](../src/scenes/scene_unpack.asm#L112) unpacks one pass. [`map_read_nibble` `$18AE`](../src/scenes/scene_unpack.asm#L135) gives the next nibble. [`map_write_nibble` `$18CB`](../src/scenes/scene_unpack.asm#L153) merges a nibble into the destination byte and steps the pointer. (**Code**)
 
 ~~~text
 src = scene_map_packed_ptrs[stage_counter AND 3]

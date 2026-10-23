@@ -147,7 +147,7 @@ The table gives the routines of version I with their addresses in version II, in
 
 The pages: [v1 game flow](../v1/docs/game_flow.md) and [v2 game flow](../v2/docs/game_flow.md).
 
-The game flow of version II has the same modes as version I: the demo, one player and two players. The title loop [`v1:title_main_loop` `$19A7`](../v1/src/title_and_scene.asm#L64) is [`v2:title_main_loop` `$1EE1`](../v2/src/title_and_scene.asm#L82) in version II. After a one-player game, version II shows the high score table. Version I started a new game at once when fire was still down. In the one-player game [`v2:game_one_player` `$1BA7`](../v2/src/game_modes.asm#L89), the test [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game_modes.asm#L149) stops the promotions at stage 10 (**Code**).
+The game flow of version II has the same modes as version I: the demo, one player and two players. The title loop [`v1:title_main_loop` `$19A7`](../v1/src/game/title_and_scene.asm#L64) is [`v2:title_main_loop` `$1EE1`](../v2/src/game/title_and_scene.asm#L82) in version II. After a one-player game, version II shows the high score table. Version I started a new game at once when fire was still down. In the one-player game [`v2:game_one_player` `$1BA7`](../v2/src/game/game_modes.asm#L89), the test [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game/game_modes.asm#L146) stops the promotions at stage 10 (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -174,7 +174,7 @@ The image shows KEYBOARD above "1 PLAYER" on the title of version II.
 
 The page: [v2 high scores](../v2/docs/high_scores.md). Version I has no table. Its two high scores stay in version II at `$1299` and `$129F`.
 
-After each one-player game, [`v2:hs_table_update` `$146A`](../v2/src/high_score_table.asm#L6) puts the score into a table of 5 entries. A new entry gets a name entry [`v2:hs_name_entry` `$1762`](../v2/src/high_score_table.asm#L400). The name entry sets game_mode to 4, and the music driver then plays tune 4. Tune 4 is in version I too, but no event plays it (**Code**).
+After each one-player game, [`v2:hs_table_update` `$146A`](../v2/src/game/high_score_table.asm#L6) puts the score into a table of 5 entries. A new entry gets a name entry [`v2:hs_name_entry` `$1762`](../v2/src/game/high_score_table.asm#L382). The name entry sets game_mode to 4, and the music driver then plays tune 4. Tune 4 is in version I too, but no event plays it (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -189,7 +189,7 @@ After each one-player game, [`v2:hs_table_update` `$146A`](../v2/src/high_score_
 
 The pages: [v2 bull round](../v2/docs/bull_round.md) and, for the test code of version I, [development.md](development.md).
 
-Version I has a complete test of a bull run, [`v1:dev_bull_test` `$138F`](../v1/src/dev_bull_test.asm#L42), but nothing calls it. **Observed** in the test [bull_test.json](../v1/tests/bull_test.json): a stub starts it, and the bull runs at the white fighter. Version II makes it the bonus round [`v2:bull_bonus_round` `$132C`](../v2/src/bull_round.asm#L46). The one-player game calls it after the two wins of each stage in scene 3. A new table [`v2:bull_reach_by_frame` `$142F`](../v2/src/bull_round.asm#L195) replaces the sprite collision test (**Code**).
+Version I has a complete test of a bull run, [`v1:dev_bull_test` `$138F`](../v1/src/dev/dev_bull_test_138f.asm#L6), but nothing calls it. **Observed** in the test [bull_test.json](../v1/tests/bull_test.json): a stub starts it, and the bull runs at the white fighter. Version II makes it the bonus round [`v2:bull_bonus_round` `$132C`](../v2/src/game/bull_round_12f8.asm#L36). The one-player game calls it after the two wins of each stage in scene 3. A new table [`v2:bull_reach_by_frame` `$142F`](../v2/src/game/bull_round_12f8.asm#L185) replaces the sprite collision test (**Code**).
 
 | Point | v1 `$138F-$1413` | v2 `$132C-$1469` |
 |---|---|---|
@@ -210,7 +210,7 @@ Version I has a complete test of a bull run, [`v1:dev_bull_test` `$138F`](../v1/
 
 The page: [v2 game flow](../v2/docs/game_flow.md).
 
-Version I calls [`v1:winner_stub` `$1AB7`](../v1/src/score_and_timer.asm#L43) at a decision by time and at the end of a two-player game. It is a lone RTS. Version II calls [`v2:judge_show_winner` `$1F93`](../v2/src/score_and_judge.asm#L43) at the same three places. Sprite 6 shows the judge in grey. Sprite 7 shows a flag in the colour of the winner. The position comes from 4 tables by scene (**Code**).
+Version I calls [`v1:winner_stub` `$1AB7`](../v1/src/game/score_and_timer.asm#L43) at a decision by time and at the end of a two-player game. It is a lone RTS. Version II calls [`v2:judge_show_winner` `$1F93`](../v2/src/game/score_and_judge.asm#L43) at the same three places. Sprite 6 shows the judge in grey. Sprite 7 shows a flag in the colour of the winner. The position comes from 4 tables by scene (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -223,7 +223,7 @@ Version I calls [`v1:winner_stub` `$1AB7`](../v1/src/score_and_timer.asm#L43) at
 
 The pages: [v1 fighters](../v1/docs/fighters.md) and [v2 fighters](../v2/docs/fighters.md).
 
-The fighter update of version II is the same as in version I, with three additions. [`v2:fighter_get_input` `$2834`](../v2/src/fighter_input.asm#L30) reads the keyboard when keyboard_control is not 0. The new path [`v2:kbd_read_move` `$288C`](../v2/src/fighter_input.asm#L75) gives a direction and a fire bit, and the joystick table makes the move from them. The move code starts samples 2 and 3 (**Code**).
+The fighter update of version II is the same as in version I, with three additions. [`v2:fighter_get_input` `$2834`](../v2/src/fighter/fighter_input.asm#L30) reads the keyboard when keyboard_control is not 0. The new path [`v2:kbd_read_move` `$288C`](../v2/src/fighter/fighter_input.asm#L75) gives a direction and a fire bit, and the joystick table makes the move from them. The move code starts samples 2 and 3 (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -246,7 +246,7 @@ The fighter update of version II is the same as in version I, with three additio
 
 The pages: [v1 AI](../v1/docs/ai.md) and [v2 AI](../v2/docs/ai.md).
 
-The AI of version II starts at [`v2:ai_update` `$22CF`](../v2/src/ai_opponent.asm#L6). It has the same structure as [`v1:ai_update` `$1D48`](../v1/src/ai_opponent.asm#L6), but more rules. The response choice has a fourth kind: a random low kick or somersault. The new routine [`v2:ai_substitute_move` `$2698`](../v2/src/ai_opponent.asm#L586) changes a high attack into a low attack against a low opponent (**Code**).
+The AI of version II starts at [`v2:ai_update` `$22CF`](../v2/src/ai/ai_opponent.asm#L6). It has the same structure as [`v1:ai_update` `$1D48`](../v1/src/ai/ai_opponent.asm#L6), but more rules. The response choice has a fourth kind: a random low kick or somersault. The new routine [`v2:ai_substitute_move` `$2698`](../v2/src/ai/ai_opponent_2521.asm#L244) changes a high attack into a low attack against a low opponent (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -279,7 +279,7 @@ The game flow also changes the AI. The demo seeds ai_random from frame_random, a
 
 The pages: [v1 combat](../v1/docs/combat.md), [v2 combat](../v2/docs/combat.md) and [protection.md](protection.md).
 
-The hit test of version II is the same code as in version I. The hit-zone tables keep their bytes and their address. Two additions go into [`v2:hit_record` `$2CA8`](../v2/src/hit_test.asm#L175). The first is the protection check [`v2:protect_cia2_check` `$2CAE`](../v2/src/hit_test.asm#L180). The second is a sample call for each hit reaction (**Code**).
+The hit test of version II is the same code as in version I. The hit-zone tables keep their bytes and their address. Two additions go into [`v2:hit_record` `$2CA8`](../v2/src/fighter/hit_test.asm#L175). The first is the protection check [`v2:protect_cia2_check` `$2CAE`](../v2/src/fighter/hit_test.asm#L180). The second is a sample call for each hit reaction (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -296,7 +296,7 @@ The switch PROTECTION of version II (default 0) replaces the read of `$DD0E` wit
 
 The pages: [v1 graphics](../v1/docs/graphics.md) and [v2 graphics](../v2/docs/graphics.md).
 
-The four scenes look the same in both versions. Version II unpacks the colour and screen maps with the new routine [`v2:scene_unpack_maps` `$1849`](../v2/src/scene_unpack.asm#L90). Version I copies them with [`v1:scene_copy_maps` `$19F6`](../v1/src/title_and_scene.asm#L110). The bitmap unpacker is the same code at a new address. The sprite graphics change where the bull and the samples need space (**Code**).
+The four scenes look the same in both versions. Version II unpacks the colour and screen maps with the new routine [`v2:scene_unpack_maps` `$1849`](../v2/src/scenes/scene_unpack.asm#L87). Version I copies them with [`v1:scene_copy_maps` `$19F6`](../v1/src/game/title_and_scene.asm#L110). The bitmap unpacker is the same code at a new address. The sprite graphics change where the bull and the samples need space (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -320,7 +320,7 @@ The four scenes look the same in both versions. Version II unpacks the colour an
 
 The pages: [v1 interrupts](../v1/docs/interrupts.md), [v2 interrupts](../v2/docs/interrupts.md), [v1 sound and music](../v1/docs/sound_music.md) and [v2 sound and music](../v2/docs/sound_music.md).
 
-Version I has the sample player [`v1:sfx_sample_irq` `$29C8`](../v1/src/sfx_sample_player.asm#L6), but no code starts a sample. Its period tables at `$0E00` and `$0F00` hold music code. Version II plays 4 samples with [`v2:sfx_sample_irq` `$311A`](../v2/src/sfx_sample_player.asm#L6). It copies the period tables to `$0200-$03FF` and keeps the samples in the floor bitmap at `$F580-$FFDD`. The floor colour $77 hides these bytes on the screen (**Code**).
+Version I has the sample player [`v1:sfx_sample_irq` `$29C8`](../v1/src/sfx/sfx_sample_player.asm#L6), but no code starts a sample. Its period tables at `$0E00` and `$0F00` hold music code. Version II plays 4 samples with [`v2:sfx_sample_irq` `$311A`](../v2/src/sfx/sfx_sample_player.asm#L6). It copies the period tables to `$0200-$03FF` and keeps the samples in the floor bitmap at `$F580-$FFDD`. The floor colour $77 hides these bytes on the screen (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -342,7 +342,7 @@ The renders of the 4 samples are WAV files: [knockdown](../v2/docs/assets/sample
 
 The pages: [v1 sound and music](../v1/docs/sound_music.md) and [v2 sound and music](../v2/docs/sound_music.md).
 
-The music driver is the same code at the same addresses in both versions. The tune data is the same, with one correction. In the order list [`v2:music_t1_order_v0` `$0FC2`](../v2/src/music_tables.asm#L43), version II adds the entry P0 at `$0FCE`. The repeat target 19 then falls on the jump to 0 in the same list (**Code**).
+The music driver is the same code at the same addresses in both versions. The tune data is the same, with one correction. In the order list [`v2:music_t1_order_v0` `$0FC2`](../v2/src/music/music_tables.asm#L43), version II adds the entry P0 at `$0FCE`. The repeat target 19 then falls on the jump to 0 in the same list (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -359,14 +359,14 @@ The music driver is the same code at the same addresses in both versions. The tu
 
 Version II corrects the rank overflow, the order list of tune 1 and the X limit test. These bugs of version I stay in version II (**Code**):
 
-- **The shared AI parameters.** [`v2:ai_setup_level` `$2593`](../v2/src/ai_opponent.asm#L424) writes most AI masks without the index X. Thus the level of fighter 1 sets the values of both fighters. Only the demo shows it, because both fighters are computer players there.
-- **A store without X in special action 8.** [`v2:ai_spec_set_crouch_punch` `$2646`](../v2/src/ai_opponent.asm#L527) writes ai_special_action of fighter 0 also for fighter 1.
-- **A compare with the wrong register in special action 7.** [`v2:ai_spec_sweep_by_facing` `$2661`](../v2/src/ai_opponent.asm#L548) compares the facing with `fighter_facing,Y` and Y = 14. It reads fighter_move of fighter 0. No run executed this code.
-- **The tie break of fighter 1.** [`v2:bout_hit_value_add` `$2169`](../v2/src/timer_and_texts.asm#L59) reads hit_points without X. The value of fighter 1 uses the hit points of fighter 0.
-- **F5 during a game.** [`v2:title_key_f5` `$1ED1`](../v2/src/title_and_scene.asm#L69) jumps to the title loop from inside the bout loop and does not reset the stack. The stack wraps, so the game does not crash.
-- **A two-player draw.** [`v2:game_2p_draw` `$1B61`](../v2/src/game_modes.asm#L47) calls high_score_update with X = 0. The scores are equal, so this has no effect. No run executed this code.
-- **The collision latch.** [`v2:fighter_update` `$2808`](../v2/src/fighter_input.asm#L6) reads `$D01E` for each fighter. The first read clears the latch, so the second read sees only new collisions.
-- **No negative dy in reverse play.** [`v2:anim_apply_move` `$3837`](../v2/src/anim_step.asm#L82) subtracts dx for a reversed animation, but it always adds dy.
+- **The shared AI parameters.** [`v2:ai_setup_level` `$2593`](../v2/src/ai/ai_opponent_2521.asm#L82) writes most AI masks without the index X. Thus the level of fighter 1 sets the values of both fighters. Only the demo shows it, because both fighters are computer players there.
+- **A store without X in special action 8.** [`v2:ai_spec_set_crouch_punch` `$2646`](../v2/src/ai/ai_opponent_2521.asm#L185) writes ai_special_action of fighter 0 also for fighter 1.
+- **A compare with the wrong register in special action 7.** [`v2:ai_spec_sweep_by_facing` `$2661`](../v2/src/ai/ai_opponent_2521.asm#L206) compares the facing with `fighter_facing,Y` and Y = 14. It reads fighter_move of fighter 0. No run executed this code.
+- **The tie break of fighter 1.** [`v2:bout_hit_value_add` `$2169`](../v2/src/game/timer_and_texts.asm#L59) reads hit_points without X. The value of fighter 1 uses the hit points of fighter 0.
+- **F5 during a game.** [`v2:title_key_f5` `$1ED1`](../v2/src/game/title_and_scene.asm#L69) jumps to the title loop from inside the bout loop and does not reset the stack. The stack wraps, so the game does not crash.
+- **A two-player draw.** [`v2:game_2p_draw` `$1B61`](../v2/src/game/game_modes.asm#L47) calls high_score_update with X = 0. The scores are equal, so this has no effect. No run executed this code.
+- **The collision latch.** [`v2:fighter_update` `$2808`](../v2/src/fighter/fighter_input.asm#L6) reads `$D01E` for each fighter. The first read clears the latch, so the second read sees only new collisions.
+- **No negative dy in reverse play.** [`v2:anim_apply_move` `$3837`](../v2/src/fighter/anim_step_37d8.asm#L61) subtracts dx for a reversed animation, but it always adds dy.
 - **Old row-4 pointers.** When a frame is not in the list of the shadow frames, the shape builder keeps the old pointers of the 4th sprite row.
 - **The music on a PAL machine.** The note table music_note_freqs at `$0D14` has the NTSC values. On PAL, each note is about 3.7 % low (**Conclusion**).
 - **A weak filter sweep.** The sweep code at `$0E8D-$0E9C` moves the 11-bit cutoff by very few steps. Version II uses it also for instrument 21 of tune 4.

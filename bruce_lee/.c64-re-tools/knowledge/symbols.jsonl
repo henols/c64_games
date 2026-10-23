@@ -2503,3 +2503,5 @@
 {"id":"20261017T120438.436-fj3m21/3","space":"bank7","address":"$0384","name":"loader_stage_wipe_loop","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}
 {"id":"20261017T120438.436-fj3m21/4","space":"bank7","address":"$0388","name":"loader_stage_wipe_branch","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}
 {"id":"20261017T120438.436-fj3m21/5","space":"bank7","address":"$0389","name":"loader_stage_checksum_last","kind":"label","origin":"llm","added":"20261017T120438.436-fj3m21","closed":null}
+{"id":"20261021T125024.196-fcz7dw/5","space":"bank8","address":"$dc00","name":"title_picture_screen","kind":"data","origin":"llm","added":"20261021T125024.196-fcz7dw","closed":null}
+{"id":"20261021T125024.196-fcz7dw/2","space":"bank8","address":"$e000","name":"title_picture_bitmap","kind":"data","origin":"llm","added":"20261021T125024.196-fcz7dw","closed":null}

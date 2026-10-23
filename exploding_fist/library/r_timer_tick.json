@@ -1,6 +1,6 @@
 {
   "name": "r_timer_tick",
-  "from": {"program":"v1","image":"knowledge revision 20261021T001024.012-0npciz","start":"$1bdd"},
+  "from": {"program":"v1","image":"knowledge revision 20261021T230030.310-6cpb3v","start":"$1bdd"},
   "length": 58,
   "bytes": [
     "c6a6d035a93285a6ad3cccc930d01fad",

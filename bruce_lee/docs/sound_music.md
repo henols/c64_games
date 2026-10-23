@@ -29,22 +29,22 @@ flowchart TB
 
 The title tune and the effects never share the SID. The title screen starts the tune, and the title interrupt plays it. Each exit from the title stops the tune. In the game and in the attract demo, the code that makes a sound only writes a request for a free voice. The game interrupt then plays the requests.
 
-1. On the title screen, [`show_title_screen` `$0584`](../src/title_demo_start.asm#L83) starts the title tune with [`music_api_start` `$E003`](../src/music_player_state.asm#L10). It starts the tune on the first title and then on every fifth title (the count is `title_music_skip_count`). It does not start the tune when the S key disabled it. **Code**
-2. The title interrupt [`irq_title_frame` `$152C`](../src/screen_raster_irqs.asm#L81) calls [`music_api_play` `$E006`](../src/music_player_state.asm#L13) each frame. **Code**
-3. `restart_to_title`, `start_attract_demo` and `show_title_screen` stop the tune with [`music_api_stop` `$E000`](../src/music_player_state.asm#L7). **Code**
-4. In the game and in the demo, the game code calls [`play_sound` `$2509`](../src/sound_request.asm#L12) with Y = `$80` + effect number. `play_sound` writes the request into the state byte of a free effect player. **Code**
-5. [`frame_update` `$15A8`](../src/frame_update.asm#L20) calls the three effect players each frame, from [`sfx_voice1_update` `$EB03`](../src/sfx_voice1.asm#L19) for SID voice 1 to `sfx_voice3_update` for SID voice 3. A player that sees a request starts the effect stream. **Code**
-6. [`stop_all_sounds` `$255E`](../src/sound_request.asm#L63) frees the three effect players and writes 0 to the SID registers. The title screen, the room drawing (`draw_room`), the player screen, `init_game_variables` and `lose_fall` call it. **Code**
+1. On the title screen, [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83) starts the title tune with [`music_api_start` `$E003`](../src/music/music_player_state.asm#L10). It starts the tune on the first title and then on every fifth title (the count is `title_music_skip_count`). It does not start the tune when the S key disabled it. **Code**
+2. The title interrupt [`irq_title_frame` `$152C`](../src/irq/screen_raster_irqs.asm#L81) calls [`music_api_play` `$E006`](../src/music/music_player_state.asm#L13) each frame. **Code**
+3. `restart_to_title`, `start_attract_demo` and `show_title_screen` stop the tune with [`music_api_stop` `$E000`](../src/music/music_player_state.asm#L7). **Code**
+4. In the game and in the demo, the game code calls [`play_sound` `$2509`](../src/sfx/sound_request.asm#L12) with Y = `$80` + effect number. `play_sound` writes the request into the state byte of a free effect player. **Code**
+5. [`frame_update` `$15A8`](../src/game/frame_update.asm#L20) calls the three effect players each frame, from [`sfx_voice1_update` `$EB03`](../src/sfx/sfx_voice1.asm#L19) for SID voice 1 to `sfx_voice3_update` for SID voice 3. A player that sees a request starts the effect stream. **Code**
+6. [`stop_all_sounds` `$255E`](../src/sfx/sound_request.asm#L63) frees the three effect players and writes 0 to the SID registers. The title screen, the room drawing (`draw_room`), the player screen, `init_game_variables` and `lose_fall` call it. **Code**
 
-**The S key only switches the title tune.** In the game, the S key toggles [`title_music_off` `$1385`](../src/room_enemy_tables.asm#L118) and sets `title_music_skip_count` to 0 ([`handle_game_keys_check_s` `$1B4A`](../src/status_and_keys.asm#L73)). The only code that reads `title_music_off` is the tune check of the title screen, [`title_music_check` `$06BD`](../src/title_demo_start.asm#L228). `play_sound` and the effect players never read it, so the sound effects of the game always play. S only decides whether the next title screen plays the tune. Because S also clears the count, the next title plays the tune when the tune is on. **Code**
+**The S key only switches the title tune.** In the game, the S key toggles [`title_music_off` `$1385`](../src/room/room_enemy_tables.asm#L118) and sets `title_music_skip_count` to 0 ([`handle_game_keys_check_s` `$1B4A`](../src/game/status_and_keys.asm#L73)). The only code that reads `title_music_off` is the tune check of the title screen, [`title_music_check` `$06BD`](../src/game/title_demo_start.asm#L228). `play_sound` and the effect players never read it, so the sound effects of the game always play. S only decides whether the next title screen plays the tune. Because S also clears the count, the next title plays the tune when the tune is on. **Code**
 
 ## The music player
 
 The music player plays one song. A song is three streams of notes and commands, one for each voice, and the three voices use one tempo. Each frame, the player decrements the tick counter. At each tick, each voice decrements the counter of its note. The voice clears the gate bit when the release must start. At the end of the note, the voice reads the next note and the commands before it. The game uses only one song, the title tune.
 
-**The music player is a third-party driver.** The player has a credit text at [`music_player_credit` `$E315`](../src/music_player.asm#L50): " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". Nothing reads the text. **Code**
+**The music player is a third-party driver.** The player has a credit text at [`music_player_credit` `$E315`](../src/music/music_player.asm#L50): " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". Nothing reads the text. **Code**
 
-The game calls the player through three `JMP` at `$E000-$E008`: stop, start the playlist, play one frame. A second set of three `JMP` at [`music_jump_stop` `$E300`](../src/music_player.asm#L7) is the inner interface: stop, start a song, start the playlist. The playlist and the end actions start a song through it.
+The game calls the player through three `JMP` at `$E000-$E008`: stop, start the playlist, play one frame. A second set of three `JMP` at [`music_jump_stop` `$E300`](../src/music/music_player.asm#L7) is the inner interface: stop, start a song, start the playlist. The playlist and the end actions start a song through it.
 
 | Entry | Goes to | Called by |
 |---|---|---|
@@ -91,18 +91,18 @@ Each voice has its own state at `$E100-$E12D`. The state is a set of arrays of 3
 | `music_voice_articulation` | 0 normal, 1 staccato, 2 legato | 0 |
 | `music_envelopes` | 6 bytes per voice: AD/SR of articulation 0, 1, 2 of the current instrument | instrument 0 |
 
-[`music_reset_state` `$E3A8`](../src/music_player.asm#L113) copies the 46 bytes of [`music_voice_init` `$E2A8`](../src/music_frequency_table.asm#L37) over `$E100-$E12D` before each song. **Code**
+[`music_reset_state` `$E3A8`](../src/music/music_player_e38c.asm#L23) copies the 46 bytes of [`music_voice_init` `$E2A8`](../src/music/music_frequency_table.asm#L37) over `$E100-$E12D` before each song. **Code**
 
 ### Starting the title tune
 
 Before it starts the tune, `show_title_screen` writes a playlist of one song. It sets `music_end_action` = 3, `music_playlist` = `$00` (song 0) and `music_playlist_end` = `$FF` (end of the list). Thus the title tune plays again and again while the title screen shows. **Code**
 
-[`music_start_playlist` `$E479`](../src/music_player.asm#L279) is the routine behind the start entry. It does these steps:
+[`music_start_playlist` `$E479`](../src/music/music_player_e38c.asm#L189) is the routine behind the start entry. It does these steps:
 
 1. Y = 1 (the "loop" bit). `music_playlist_pos` = `music_playlist_start`.
 2. `music_playlist_read` reads the playlist entry. Entry `$00` gives song 0. `music_playlist_pos` increments.
-3. `music_start_song_x` stores the song in `music_song`. It jumps through `music_jump_start_song` to [`music_init_song` `$E352`](../src/music_player.asm#L55).
-4. `music_init_song` clears `music_playing`, calls [`music_setup_song` `$E38C`](../src/music_player.asm#L97) and sets `music_playing` = 1.
+3. `music_start_song_x` stores the song in `music_song`. It jumps through `music_jump_start_song` to [`music_init_song` `$E352`](../src/music/music_player.asm#L55).
+4. `music_init_song` clears `music_playing`, calls [`music_setup_song` `$E38C`](../src/music/music_player_e38c.asm#L7) and sets `music_playing` = 1.
 
 `music_setup_song` prepares the three voices:
 
@@ -114,28 +114,28 @@ Before it starts the tune, `show_title_screen` writes a playlist of one song. It
    4. `music_clear_and_silence` writes 0 to `$D400-$D417` and to the player flags.
 3. For each voice: `music_lookahead` = `$FF`. Then `music_voice_commands` reads the commands before the first note of the voice. **Code**
 
-[`music_read_byte` `$E3EA`](../src/music_player.asm#L179) reads a byte of the current voice with its fetch routine. It increments the operand of the fetch routine (self-modified code). Then it reads the next byte into `music_lookahead`. **Code**
+[`music_read_byte` `$E3EA`](../src/music/music_player_e38c.asm#L89) reads a byte of the current voice with its fetch routine. It increments the operand of the fetch routine (self-modified code). Then it reads the next byte into `music_lookahead`. **Code**
 
 ### One frame of the music
 
-[`music_play_frame` `$E49E`](../src/music_player.asm#L305) runs once per frame:
+[`music_play_frame` `$E49E`](../src/music/music_player_e38c.asm#L215) runs once per frame:
 
 1. When `music_stop_request` is nonzero: `music_silence`, stop.
 2. When `music_playing` is 0: return.
 3. When `music_end_marker` = `$FF` and `music_end_action` is 0: silence and stop.
-4. When `music_end_marker` = `$FF` and `music_end_action` is not 0: [`music_song_end_action` `$E438`](../src/music_player.asm#L231) chooses the next song (see "Playlist and end actions"). The routine then starts again.
+4. When `music_end_marker` = `$FF` and `music_end_action` is not 0: [`music_song_end_action` `$E438`](../src/music/music_player_e38c.asm#L141) chooses the next song (see "Playlist and end actions"). The routine then starts again.
 5. Decrement `music_tempo_counter`. When it is not 0, return. Else reload it from `music_tempo`: a tick starts.
 6. Do these steps for voice 0, 1 and 2. The code has three copies. The copies for voices 1 and 2 start at `music_voice1_update` and `music_voice2_update`.
    1. Decrement `music_voice_ticks`.
    2. When the counter is 0 and the voice is not tied: write `music_voice_control` AND `$FE` to the control register of the voice. The gate goes off and the release starts.
    3. When the counter is negative and equals `music_voice_end_tick`: the note is at its end. Reload the counter from `music_voice_gate_ticks` and the end tick from `music_voice_end_reload`. When `music_volume_voice` = voice + 1, call `music_apply_volume`. Call `music_voice_start_note`.
 
-[`music_voice_start_note` `$E578`](../src/music_player.asm#L412) starts the next note:
+[`music_voice_start_note` `$E578`](../src/music/music_player_e38c.asm#L322) starts the next note:
 
 1. Read the note byte.
 2. Note 0 is a rest: write 0 to the frequency. The gate and the envelope stay as they are.
 3. Else frequency = `note_freq_lo/hi` [note + `music_transpose`]. When the voice is not tied, write AD, SR and control (gate on) of the voice to the SID.
-4. [`music_voice_commands` `$E5BB`](../src/music_player.asm#L443) reads the command bytes that follow, until the next note byte. Thus the commands before a note apply to that note.
+4. [`music_voice_commands` `$E5BB`](../src/music/music_player_e38c.asm#L353) reads the command bytes that follow, until the next note byte. Thus the commands before a note apply to that note.
 
 The command loop jumps to the handler through a branch. The loop writes the offset of the branch into the code:
 
@@ -185,9 +185,9 @@ A song is three streams, one for each voice. Each stream is a list of notes. The
 
 ### Where the data is
 
-[`music_song_table` `$E8C0`](../src/music_songs.asm#L7) has 8 bytes per song: the stream address of voice 0, 1, 2 and an instrument table address. The player ignores the instrument table address and always uses `music_instruments`. Song 0 is the title tune. Its streams are [`music_title_voice0` `$E8D0`](../src/music_songs.asm#L16), `music_title_voice1` at `$E97D` and `music_title_voice2` at `$EA31`. `music_read_byte` reads the streams through the self-modified fetch routines.
+[`music_song_table` `$E8C0`](../src/music/music_songs.asm#L7) has 8 bytes per song: the stream address of voice 0, 1, 2 and an instrument table address. The player ignores the instrument table address and always uses `music_instruments`. Song 0 is the title tune. Its streams are [`music_title_voice0` `$E8D0`](../src/music/music_songs_e8d0.asm#L7), `music_title_voice1` at `$E97D` and `music_title_voice2` at `$EA31`. `music_read_byte` reads the streams through the self-modified fetch routines.
 
-**Song 1 points into the effect player.** Song 1 ([`music_song1_voices` `$E8C8`](../src/music_songs.asm#L12)) points to `$EAB3`, `$EB60` and `$EC14`. Only `$EAB3` is a stream. The other two addresses point into the effect player. No code selects song 1. **Code**
+**Song 1 points into the effect player.** Song 1 ([`music_song1_voices` `$E8C8`](../src/leftovers/leftover_e8c8.asm#L8)) points to `$EAB3`, `$EB60` and `$EC14`. Only `$EAB3` is a stream. The other two addresses point into the effect player. No code selects song 1. **Code**
 
 ### The byte layout
 
@@ -216,7 +216,7 @@ A byte below `$80` is a note. A byte from `$80` is a command. Bits 4-6 of a comm
 
 ### Note lengths and articulation
 
-A length command sets the length of the notes that follow. [`music_note_length` `$E6B6`](../src/music_player.asm#L600) changes the length code into L ticks with `music_length_table`. The table has two rows of 16 bytes:
+A length command sets the length of the notes that follow. [`music_note_length` `$E6B6`](../src/music/music_player_e38c.asm#L510) changes the length code into L ticks with `music_length_table`. The table has two rows of 16 bytes:
 
 | Code | Value | Ticks, normal table | Ticks, long table |
 |---|---|---|---|
@@ -242,11 +242,11 @@ The length command uses the current articulation of the voice. The articulation 
 | 1 staccato | `$A5` | L/2 | L/2 |
 | 2 legato | `$A6` | L - 1 | 1 |
 
-[`music_cmd_length` `$E5FD`](../src/music_player.asm#L493) stores G in `music_voice_gate_ticks` and -R in `music_voice_end_reload`. **Code**
+[`music_cmd_length` `$E5FD`](../src/music/music_player_e38c.asm#L403) stores G in `music_voice_gate_ticks` and -R in `music_voice_end_reload`. **Code**
 
 ### Instruments
 
-An instrument is a set of three envelopes, one for each articulation. [`music_instruments` `$E80A`](../src/music_data.asm#L8) holds 8 instruments of 8 bytes. The bytes are AD and SR for articulation 0, 1 and 2, and 2 unused bytes.
+An instrument is a set of three envelopes, one for each articulation. [`music_instruments` `$E80A`](../src/music/music_data.asm#L8) holds 8 instruments of 8 bytes. The bytes are AD and SR for articulation 0, 1 and 2, and 2 unused bytes.
 
 | n | Articulation 0 (AD SR) | Articulation 1 | Articulation 2 | Used by the title tune |
 |---|---|---|---|---|
@@ -263,7 +263,7 @@ The instrument command `$Bn` only copies the 6 bytes into `music_envelopes`. The
 
 ### Filter presets
 
-[`music_filter_presets` `$E84A`](../src/music_data.asm#L19) holds 8 presets of 4 bytes. The bytes are:
+[`music_filter_presets` `$E84A`](../src/music/music_data.asm#L19) holds 8 presets of 4 bytes. The bytes are:
 
 - cutoff low (`$D415`)
 - cutoff high (`$D416`)
@@ -289,7 +289,7 @@ The command `$Ex` t sets `music_tempo` and `music_tempo_counter` to t. One tick 
 
 ### Playlist and end actions
 
-The playlist is a list of songs that play one after the other. It starts at [`music_playlist` `$E870`](../src/music_data.asm#L46). `music_playlist_start` is the first index.
+The playlist is a list of songs that play one after the other. It starts at [`music_playlist` `$E870`](../src/music/music_data_e870.asm#L6). `music_playlist_start` is the first index.
 
 | Entry | Meaning |
 |---|---|
@@ -299,7 +299,7 @@ The playlist is a list of songs that play one after the other. It starts at [`mu
 
 **Playlist transpose entries have no effect.** `music_reset_state` clears `music_transpose` before the song starts. **Code**
 
-[`music_end_action` `$E314`](../src/music_player.asm#L26) tells what happens at the end of a song:
+[`music_end_action` `$E314`](../src/music/music_player.asm#L26) tells what happens at the end of a song:
 
 | Value | At the end of a song |
 |---|---|
@@ -332,7 +332,7 @@ read_stream(voice):
 
 ## The frequency table
 
-The two drivers read the pitch of a note from one table. [`note_freq_lo` `$E200`](../src/music_frequency_table.asm#L9) and [`note_freq_hi` `$E254`](../src/music_frequency_table.asm#L22) hold 84 SID frequency values, for the note indexes 0-83. Index n is the note n semitones above B0. The music player uses index 0 as a rest. The effect players play index 0 as B0. **Code**
+The two drivers read the pitch of a note from one table. [`note_freq_lo` `$E200`](../src/music/music_frequency_table.asm#L9) and [`note_freq_hi` `$E254`](../src/music/music_frequency_table.asm#L22) hold 84 SID frequency values, for the note indexes 0-83. Index n is the note n semitones above B0. The music player uses index 0 as a rest. The effect players play index 0 as B0. **Code**
 
 **The music is tuned for NTSC.** The values give the correct pitch on an NTSC C64 (CPU clock 1022727 Hz). Hz = value * clock / 2^24. On NTSC the notes are 4 to 8 cents flat. A PAL C64 has a CPU clock of 985248 Hz, 64.6 cents lower. Thus on PAL every note is about 69 cents (2/3 of a semitone) flat. Music and effects keep their intervals. **Code** (computed from the table)
 
@@ -361,7 +361,7 @@ Song 0 is the only tune. It plays on the title screen. Voice 0 plays a bass osti
 - Each voice ends with two rests and `$FF`. The first voice that starts its last rest reads `$FF` at once. Thus the player never plays the last rest. **Code**
 - **Conclusion.** The tune is in B minor.
 
-**The volume of voice 0 has no effect.** The setup commands of the three voices all run before the first note. Each `$9x` command overwrites `music_volume` and `music_volume_voice`. The player applies only the last one (voice 2, volume 15). The coverage marks the calls of [`music_apply_volume` `$E489`](../src/music_player.asm#L292) for voices 0 and 1 (`$E4E9`, `$E523`) as not executed. Thus the volume 12 of voice 0 has no effect, and the master volume is 15. **Observed**
+**The volume of voice 0 has no effect.** The setup commands of the three voices all run before the first note. Each `$9x` command overwrites `music_volume` and `music_volume_voice`. The player applies only the last one (voice 2, volume 15). The coverage marks the calls of [`music_apply_volume` `$E489`](../src/music/music_player_e38c.asm#L202) for voices 0 and 1 (`$E4E9`, `$E523`) as not executed. Thus the volume 12 of voice 0 has no effect, and the master volume is 15. **Observed**
 
 ### Worked example: the first two bars
 
@@ -428,15 +428,15 @@ Each SID voice has its own effect player, so three effects can sound at the same
 | `sfx_voice2_update` | `sfx_voice2_state` | `sfx_voice2_pos` | `sfx_voice2_timer` | `sfx_voice2_stream` (`$F8`) | `$D407-$D40D` |
 | `sfx_voice3_update` | `sfx_voice3_state` | `sfx_voice3_pos` | `sfx_voice3_timer` | `sfx_voice3_stream` (`$FA`) | `$D40E-$D414` |
 
-[`frame_update` `$15A8`](../src/frame_update.asm#L20) calls the three players at `$15AF`, `$15B2` and `$15B5`, each frame of the game screen (game and demo). [`cold_start` `$0400`](../src/cold_start.asm#L22) and `stop_all_sounds` clear the three state bytes. **Code**
+[`frame_update` `$15A8`](../src/game/frame_update.asm#L20) calls the three players at `$15AF`, `$15B2` and `$15B5`, each frame of the game screen (game and demo). [`cold_start` `$0400`](../src/game/cold_start.asm#L22) and `stop_all_sounds` clear the three state bytes. **Code**
 
-[`sfx_voice1_update` `$EB03`](../src/sfx_voice1.asm#L19) does these steps each frame:
+[`sfx_voice1_update` `$EB03`](../src/sfx/sfx_voice1.asm#L19) does these steps each frame:
 
 1. State 0: return.
 2. State `$80` + n (a request): `ASL` gives 2n. `sfx_voice1_stream` = `sfx_stream_table` [2n]. Timer = 1, state = 1, control register = 0 (gate off), position = 0.
 3. `sfx_voice1_tick`: decrement the timer. When it is not 0, return.
 4. Read the command byte at the position. Store `sfx_cmd_offsets` [command] into the branch offset `sfx_voice1_cmd_offset`.
-5. The `BCC` at [`sfx_voice1_cmd_branch` `$EB38`](../src/sfx_voice1.asm#L47) jumps into the handlers at `sfx_voice1_cmd_jumps`.
+5. The `BCC` at [`sfx_voice1_cmd_branch` `$EB38`](../src/sfx/sfx_voice1.asm#L47) jumps into the handlers at `sfx_voice1_cmd_jumps`.
 6. The handler reads the arguments and writes the SID. It sets the timer to the duration and stores the new position.
 
 Thus the first command of an effect runs in the frame in which the player sees the request. A new request on a busy voice restarts that voice with the new effect. **Code**
@@ -474,7 +474,7 @@ An effect is a short list of notes, each with its duration in frames. The first 
 
 ### Where the data is
 
-[`sfx_stream_table` `$EBE5`](../src/sfx_data.asm#L6) holds the stream address of each effect 0-14 (the entries are in [the table reference](reference/tables.md#sfx_stream_table)). The streams are at `$EC31-$EE82`, from `sfx_footstep_stream` to `sfx_lantern_stream`. The three players share the streams and the tables.
+[`sfx_stream_table` `$EBE5`](../src/sfx/sfx_data.asm#L6) holds the stream address of each effect 0-14 (the entries are in [the table reference](reference/tables.md#sfx_stream_table)). The streams are at `$EC31-$EE82`, from `sfx_footstep_stream` to `sfx_lantern_stream`. The three players share the streams and the tables.
 
 ### The byte layout
 
@@ -494,7 +494,7 @@ Each command is a command byte 0-7 and its arguments. The duration is in frames 
 
 **Effect commands 5 and 7 are not used.** No stream uses commands 5 and 7. The coverage marks their table entries as not executed. Streams use command 6. **Observed**
 
-The envelopes come from [`sfx_adsr_table` `$EC11`](../src/sfx_data.asm#L18), with an even index:
+The envelopes come from [`sfx_adsr_table` `$EC11`](../src/sfx/sfx_data.asm#L18), with an even index:
 
 | Index | AD | SR | Used by effects |
 |---|---|---|---|
@@ -506,7 +506,7 @@ The envelopes come from [`sfx_adsr_table` `$EC11`](../src/sfx_data.asm#L18), wit
 | 10 | `$0C` | `$07` | 13 (reads the first bytes of `sfx_pulse_table`) |
 | 12 | `$02` | `$08` | 9 (reads `sfx_pulse_table+2`) |
 
-**Two envelopes are pulse widths.** `sfx_adsr_table` has space for 5 pairs only. Index 10 and 12 read into [`sfx_pulse_table` `$EC1B`](../src/sfx_data.asm#L25). Effects 9 and 13 use them. **Code**
+**Two envelopes are pulse widths.** `sfx_adsr_table` has space for 5 pairs only. Index 10 and 12 read into [`sfx_pulse_table` `$EC1B`](../src/sfx/sfx_data.asm#L25). Effects 9 and 13 use them. **Code**
 
 `sfx_pulse_table` holds 11 pulse widths (words, even index):
 
@@ -533,7 +533,7 @@ each frame:    if state == 0: return
 
 ### Worked example: effect 1
 
-Effect 1 sounds when the Yamo arrives. Its stream [`sfx_yamo_arrives_stream` `$EC37`](../src/sfx_data.asm#L39) is `04 08 0B 04 00 41  01 10 0D  01 04 0C  01 04 0B  00`.
+Effect 1 sounds when the Yamo arrives. Its stream [`sfx_yamo_arrives_stream` `$EC37`](../src/sfx/sfx_data.asm#L39) is `04 08 0B 04 00 41  01 10 0D  01 04 0C  01 04 0B  00`.
 
 | Bytes | Command | Decoded | Frames |
 |---|---|---|---|
@@ -547,12 +547,12 @@ The effect lasts 32 frames. AD `$89` is attack 8 (100 ms) and decay 9 (750 ms). 
 
 ## Sound requests and priorities
 
-The game code asks for an effect, and it does not choose the voice. [`play_sound` `$2509`](../src/sound_request.asm#L12) finds a free voice. When all three voices are busy, the effect with the higher priority wins. The input is Y = `$80` + n:
+The game code asks for an effect, and it does not choose the voice. [`play_sound` `$2509`](../src/sfx/sound_request.asm#L12) finds a free voice. When all three voices are busy, the effect with the higher priority wins. The input is Y = `$80` + n:
 
 1. Write `$15` to `SIGVOL` (`$D418`): volume 5 and the low-pass mode bit. No voice goes through the filter, because `stop_all_sounds` writes 0 to `RESON` (`$D417`).
 2. When `sfx_voice1_state` is 0: store Y there, and store `sound_priority_table` [Y AND `$0F`] in `voice1_sound_priority`. Return.
 3. Else do the same with voice 2, then with voice 3.
-4. All three voices are busy ([`play_sound_by_priority` `$2547`](../src/sound_request.asm#L48)). Let p be the priority of the new effect. Then:
+4. All three voices are busy ([`play_sound_by_priority` `$2547`](../src/sfx/sound_request.asm#L48)). Let p be the priority of the new effect. Then:
    - When p >= `voice1_sound_priority`, take voice 1.
    - Else, when p >= `voice2_sound_priority`, take voice 2.
    - Else, when p >= `voice3_sound_priority`, take voice 3.
@@ -560,9 +560,9 @@ The game code asks for an effect, and it does not choose the voice. [`play_sound
 
 The request stays in the state byte until the player sees it in the next frame. **Code**
 
-[`stop_all_sounds` `$255E`](../src/sound_request.asm#L63) writes 0 to the three state bytes and to `$D400-$D420` (33 bytes). The SID has no registers at `$D41D-$D41F`, and `$D420` mirrors `$D400`. **Code**
+[`stop_all_sounds` `$255E`](../src/sfx/sound_request.asm#L63) writes 0 to the three state bytes and to `$D400-$D420` (33 bytes). The SID has no registers at `$D41D-$D41F`, and `$D420` mirrors `$D400`. **Code**
 
-The priorities are in [`sound_priority_table` `$2572`](../src/sound_request.asm#L76), one byte per effect. A higher value wins:
+The priorities are in [`sound_priority_table` `$2572`](../src/sfx/sound_request.asm#L76), one byte per effect. A higher value wins:
 
 | Effect | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -594,9 +594,9 @@ The priorities are in [`sound_priority_table` `$2572`](../src/sound_request.asm#
 
 The runs that traced `play_sound` are the runs `a8-sfx1`, `a8-demo` and `a8-rooms` of the naming analysis. They are room 0 with the joystick, the attract demo, and each room snapshot. They saw the requests `$80`, `$81`, `$82`, `$84`, `$85`, `$86`, `$87`, `$89`, `$8C`, `$8D` and `$8E`.
 
-**Effects 3 and 8 are never requested.** No code loads `$83` or `$88` for `play_sound`. Thus [`sfx_unused_3_stream` `$EC7A`](../src/sfx_data.asm#L53) and [`sfx_unused_8_stream` `$ED0E`](../src/sfx_data.asm#L88) never play. Their priority is 0. **Code**
+**Effects 3 and 8 are never requested.** No code loads `$83` or `$88` for `play_sound`. Thus [`sfx_unused_3_stream` `$EC7A`](../src/sfx/sfx_data.asm#L53) and [`sfx_unused_8_stream` `$ED0E`](../src/sfx/sfx_data.asm#L88) never play. Their priority is 0. **Code**
 
-**The punch swing sound at step 8 never plays.** [`act_check_punch` `$226A`](../src/actor_timed_actions.asm#L349) requests the swing sound when a punch reaches step 8. But a punch starts with timer 4, so that request (at `$227C`) never runs. The Ninja strike in `act_strike_phase` plays the same sound. **Code**, **Observed** (the coverage marks the request as not executed)
+**The punch swing sound at step 8 never plays.** [`act_check_punch` `$226A`](../src/actor/actor_timed_actions.asm#L349) requests the swing sound when a punch reaches step 8. But a punch starts with timer 4, so that request (at `$227C`) never runs. The Ninja strike in `act_strike_phase` plays the same sound. **Code**, **Observed** (the coverage marks the request as not executed)
 
 The bytes `$EE83-$EED5` are an effect stream, but no table entry points to it. `$EED6-$EF3F` is a copy of `sfx_lantern_stream`. **Code**
 
@@ -604,4 +604,4 @@ The bytes `$EE83-$EED5` are an effect stream, but no table entry points to it. `
 
 - The title tune does not use the routing byte of the filter command. Its bit layout (`$D417` bits 0-3) follows from the SID. No run checked it.
 - `room02_frame_mouth` and `room00_frame` request effect 1 with the statue mouth animation. A run with a trace of `$3656` and `$36DF` in rooms 0 and 2 would check the timing.
-- No run reached the second request of effect 14 ([`collect_room16_bonus_check_y` `$2FEC`](../src/touch_effects.asm#L23)). A run in room 16 that walks over the bonus tile can show it.
+- No run reached the second request of effect 14 ([`collect_room16_bonus_check_y` `$2FEC`](../src/actor/touch_effects.asm#L23)). A run in room 16 that walks over the bonus tile can show it.

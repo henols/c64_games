@@ -1,0 +1,87 @@
+{
+  "name": "matrix keys: L, R and L on the title, a game start, V in room 0",
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge",
+  "checkpoint": "main_loop",
+  "state": [
+    {
+      "address": "joystick_right_handed",
+      "size": 2
+    },
+    {
+      "address": "game_screen",
+      "size": 40
+    },
+    {
+      "address": "falls_left",
+      "size": 3
+    },
+    {
+      "address": "actor_state",
+      "size": 3
+    }
+  ],
+  "pin": [
+    {
+      "address": "random_ptr",
+      "size": 2
+    }
+  ],
+  "steps": [
+    {
+      "frames": 100
+    },
+    {
+      "type": {
+        "mode": "text",
+        "text": " "
+      }
+    },
+    {
+      "frames": 740
+    },
+    {
+      "press": "L"
+    },
+    {
+      "frames": 60
+    },
+    {
+      "press": "R"
+    },
+    {
+      "frames": 60
+    },
+    {
+      "press": "L"
+    },
+    {
+      "frames": 60
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center",
+        "fire": true
+      }
+    },
+    {
+      "frames": 30
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center"
+      }
+    },
+    {
+      "frames": 300
+    },
+    {
+      "press": "V"
+    },
+    {
+      "frames": 100
+    }
+  ]
+}

@@ -1,9 +1,23 @@
 {
  "name": "Protection trap, rebuild: CIA2 control A holds $08 (as after a KERNAL reset) during the demo",
  "start": {
-  "program": "build/fist_v2_loader.prg"
+  "program": "build/clean_loader.prg"
  },
  "steps": [
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "loader_start_screen_wait"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "registers": {
+    "pc": "loader_start_screen_continue"
+   }
+  },
   {
    "runUntil": {
     "target": {
@@ -54,5 +68,6 @@
   {
    "screen": "after"
   }
- ]
+ ],
+ "symbols": "build/symbols/clean_loader.json"
 }

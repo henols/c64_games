@@ -1,0 +1,110 @@
+{
+  "name": "title screen, then fire on port 1 and the first seconds of play in room 0",
+  "program": "original/bruce_lee.prg",
+  "symbols": "knowledge",
+  "checkpoint": "main_loop",
+  "state": [
+    {
+      "address": "falls_left",
+      "size": 3
+    },
+    {
+      "address": "score",
+      "size": 3
+    },
+    {
+      "address": "actor_x",
+      "size": 6
+    },
+    {
+      "address": "actor_state",
+      "size": 3
+    }
+  ],
+  "pin": [
+    {
+      "address": "random_ptr",
+      "size": 2
+    }
+  ],
+  "coverage": "$0400",
+  "steps": [
+    {
+      "frames": 100
+    },
+    {
+      "type": {
+        "mode": "text",
+        "text": " "
+      }
+    },
+    {
+      "runUntil": {
+        "target": {
+          "kind": "address",
+          "address": "title_menu_loop"
+        },
+        "timeoutFrames": 1500
+      }
+    },
+    {
+      "frames": 150
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center",
+        "fire": true
+      }
+    },
+    {
+      "frames": 30
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center"
+      }
+    },
+    {
+      "runUntil": {
+        "target": {
+          "kind": "address",
+          "address": "main_loop"
+        },
+        "timeoutFrames": 600
+      }
+    },
+    {
+      "frames": 50
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "right"
+      }
+    },
+    {
+      "frames": 100
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center",
+        "fire": true
+      }
+    },
+    {
+      "frames": 20
+    },
+    {
+      "joystick": {
+        "port": 1,
+        "direction": "center"
+      }
+    },
+    {
+      "frames": 80
+    }
+  ]
+}

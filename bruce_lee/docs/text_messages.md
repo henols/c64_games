@@ -1,6 +1,6 @@
 # Bruce Lee: text and messages
 
-Most text of the game and most small changes in a room go through one printer, [`print_message` `$17E2`](../src/actor_driver_text.asm#L59). The printer writes the 1UP label, TOP and FALLS on the status line. It also writes the PAUSED message, the menu of the title and the joystick messages. In a room, the same printer draws the pieces that change while Bruce plays. Examples are a trapdoor that opens, a lantern that goes dark, a slider and the face of the wizard. The game keeps 101 such messages in one table, [`message_ptrs` `$43BE`](../src/messages.asm#L11).
+Most text of the game and most small changes in a room go through one printer, [`print_message` `$17E2`](../src/actor/actor_driver_text.asm#L59). The printer writes the 1UP label, TOP and FALLS on the status line. It also writes the PAUSED message, the menu of the title and the joystick messages. In a room, the same printer draws the pieces that change while Bruce plays. Examples are a trapdoor that opens, a lantern that goes dark, a slider and the face of the wizard. The game keeps 101 such messages in one table, [`message_ptrs` `$43BE`](../src/text/messages.asm#L11).
 
 The PLAYER n screen, the GAME OVER screen and the title logo do not use the printer. Their big letters come from a charset of big glyphs. This page explains the printer, the message format, the status line, the title texts and the big banners. It ends with a catalogue of all 101 messages. The charsets and the set-up of the VIC are on the page [graphics.md](graphics.md).
 
@@ -28,9 +28,9 @@ flowchart TB
   LOOP --> END["Stop at byte $A0"]
 ~~~
 
-[`print_message` `$17E2`](../src/actor_driver_text.asm#L59) takes the message number in A, the text line in X and the offset in Y. In the order of the code:
+[`print_message` `$17E2`](../src/actor/actor_driver_text.asm#L59) takes the message number in A, the text line in X and the offset in Y. In the order of the code:
 
-1. It calls [`set_text_row_pointers` `$1A67`](../src/pause_status_line.asm#L117), which reads the addresses of the two screen rows of text line X into `row_ptr_top` and `row_ptr_bottom`. When the text must be one row high, the lower pointer goes to `io1_dummy` instead.
+1. It calls [`set_text_row_pointers` `$1A67`](../src/game/pause_status_line.asm#L117), which reads the addresses of the two screen rows of text line X into `row_ptr_top` and `row_ptr_bottom`. When the text must be one row high, the lower pointer goes to `io1_dummy` instead.
 2. It reads the address of the message from `message_ptrs` and subtracts Y from it. Then `(data_ptr),Y` is the first byte of the message and `(row_ptr_top),Y` is the first cell on the screen, so one index register serves both.
 3. For each byte it subtracts `$20`. The result `$80` (the byte `$A0`) ends the message. Else it writes the result AND `$7F` to the upper row and the result OR `$80` to the lower row. Then it increments Y.
 
@@ -43,7 +43,7 @@ There are four other writers of text, and they write to the screen directly (**C
 
 ### The text lines
 
-The text lines are pairs of screen rows of the game screen at `$8C00`. [`reset_play_state` `$0763`](../src/play_init.asm#L19) calls [`build_screen_row_tables` `$0869`](../src/play_init.asm#L144) with the address of the game screen - 40. Entry n gets the upper row `$8BD8` + 80n and the lower row `$8C00` + 80n. Then `reset_play_state` patches the first two entries. Thus the status line in screen rows 0 and 1 becomes two text lines of one row each (**Code**):
+The text lines are pairs of screen rows of the game screen at `$8C00`. [`reset_play_state` `$0763`](../src/game/play_init.asm#L19) calls [`build_screen_row_tables` `$0869`](../src/game/play_init.asm#L144) with the address of the game screen - 40. Entry n gets the upper row `$8BD8` + 80n and the lower row `$8C00` + 80n. Then `reset_play_state` patches the first two entries. Thus the status line in screen rows 0 and 1 becomes two text lines of one row each (**Code**):
 
 | Text line | Upper row | Lower row | Use |
 |---|---|---|---|
@@ -72,7 +72,7 @@ Text in a room is two rows high, as the tiles are. The status line and the menu 
 | `show_paused_message` / `clear_paused_message` | `$0B` / `$0C` (the message number) | one row |
 | `print_status_row_message` (after the print) | 0 | back to double height |
 
-`start_new_game` and `start_attract_demo` call `reset_play_state`, which calls [`clear_text_screen` `$1A56`](../src/pause_status_line.asm#L104): the game starts with double height (**Code**).
+`start_new_game` and `start_attract_demo` call `reset_play_state`, which calls [`clear_text_screen` `$1A56`](../src/game/pause_status_line.asm#L104): the game starts with double height (**Code**).
 
 ## The message format
 
@@ -122,11 +122,11 @@ print_message(A = message, X = text line, Y = offset):
         if Y == 0: increment the high bytes of the three pointers   ; never executed
 ```
 
-The subtraction of the start offset is at [`print_message` `$17E9`](../src/actor_driver_text.asm#L65) (**Code**). The code for a message that crosses a page, at [`print_message` `$180E`](../src/actor_driver_text.asm#L86), never ran in the coverage (**Observed**: coverage).
+The subtraction of the start offset is at [`print_message` `$17E9`](../src/actor/actor_driver_text.asm#L65) (**Code**). The code for a message that crosses a page, at [`print_message` `$180E`](../src/actor/actor_driver_text.asm#L86), never ran in the coverage (**Observed**: coverage).
 
 ### Worked example: the pause message
 
-Message `$0B` is [`msg_paused` `$457E`](../src/messages_paused.asm#L6). The routine [`show_paused_message` `$1BA4`](../src/status_and_keys.asm#L141) prints it with X = 1, Y = `$0F` and `text_single_height` = `$0B`.
+Message `$0B` is [`msg_paused` `$457E`](../src/text/messages_paused.asm#L6). The routine [`show_paused_message` `$1BA4`](../src/game/status_and_keys.asm#L141) prints it with X = 1, Y = `$0F` and `text_single_height` = `$0B`.
 
 | Byte | `$2A` | `$2A` | `$20` | `$50` | `$41` | `$55` | `$53` | `$45` | `$44` | `$20` | `$2A` | `$2A` | `$A0` |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -141,11 +141,11 @@ The pause message covers TOP and the top score. 1UP stays on.
 
 ### Worked example: the mouth of the statue
 
-Message `$1D` is [`msg_statue_mouth_a` `$45E4`](../src/messages_rooms.asm#L64). The routine [`room00_frame` `$3642`](../src/room_frames_0_7.asm#L9) prints it with X = 9, Y = 7. The byte `$E6` gives c = (`$E6` - `$20`) AND `$7F` = `$46`. Text line 9 has its upper row at `$8BD8` + 9 x 80 = `$8EA8` (screen row 17). The printer writes `$46` to `$8EAF` (row 17, column 7) and `$C6` to `$8ED7` (row 18, column 7). The result is tile `$46` of [`charset_rooms_0_9` `$A000`](../src/constants.asm#L200), the open mouth of the statue (**Code**).
+Message `$1D` is [`msg_statue_mouth_a` `$45E4`](../src/text/messages_rooms.asm#L64). The routine [`room00_frame` `$3642`](../src/room/room_frames_0_7.asm#L9) prints it with X = 9, Y = 7. The byte `$E6` gives c = (`$E6` - `$20`) AND `$7F` = `$46`. Text line 9 has its upper row at `$8BD8` + 9 x 80 = `$8EA8` (screen row 17). The printer writes `$46` to `$8EAF` (row 17, column 7) and `$C6` to `$8ED7` (row 18, column 7). The result is tile `$46` of [`charset_rooms_0_9` `$A000`](../src/constants.asm#L200), the open mouth of the statue (**Code**).
 
 ## The status line
 
-The status line at the top of the game screen shows who plays (1UP or 2UP), the score, the top score and the remaining falls. It is screen rows 0 and 1, drawn with [`text_font` `$8800`](../src/constants.asm#L189): `$D018` = `$32` from raster `$FD` to raster `$42`. The colour RAM of rows 0-1 is black with bit 3 clear. So the characters are hires black on the grey background `$FC` (**Code**: `reset_play_state`, [`irq_game_bottom` `$48C1`](../src/game_irq.asm#L12)).
+The status line at the top of the game screen shows who plays (1UP or 2UP), the score, the top score and the remaining falls. It is screen rows 0 and 1, drawn with [`text_font` `$8800`](../src/constants.asm#L189): `$D018` = `$32` from raster `$FD` to raster `$42`. The colour RAM of rows 0-1 is black with bit 3 clear. So the characters are hires black on the grey background `$FC` (**Code**: `reset_play_state`, [`irq_game_bottom` `$48C1`](../src/irq/game_irq.asm#L12)).
 
 | Row | Columns | Content | Writer |
 |---|---|---|---|
@@ -162,11 +162,11 @@ The status line at the top of the game screen shows who plays (1UP or 2UP), the 
 | 1 | 37 | `L` when joystick 2 is in use and left-handed | `frame_update` |
 | 1 | 15-26 | `** PAUSED **` (message `$0B`), erased with message `$0C` | `show_paused_message`, `clear_paused_message` |
 
-A digit is the code `$10` + digit, from [`print_bcd_byte` `$1B17`](../src/status_and_keys.asm#L39). [`print_hex_byte` `$1B84`](../src/status_and_keys.asm#L116) adds 7 for the nibbles A-F. Only the unused [`debug_show_values` `$1AD1`](../src/pause_status_line.asm#L187) would need that (**Code**).
+A digit is the code `$10` + digit, from [`print_bcd_byte` `$1B17`](../src/game/status_and_keys.asm#L39). [`print_hex_byte` `$1B84`](../src/game/status_and_keys.asm#L116) adds 7 for the nibbles A-F. Only the unused [`debug_show_values` `$1AD1`](../src/leftovers/leftover_1ad0.asm#L10) would need that (**Code**).
 
-The pause message covers TOP and the top score, so [`toggle_pause` `$1A22`](../src/pause_status_line.asm#L69) draws them again when the pause ends (**Code**).
+The pause message covers TOP and the top score, so [`toggle_pause` `$1A22`](../src/game/pause_status_line.asm#L69) draws them again when the pause ends (**Code**).
 
-The V key shows the version line in row 0. [`toggle_credit_line` `$1B68`](../src/status_and_keys.asm#L94) copies it from `version_banner`, which holds 40 screen codes, not the message format (**Code**).
+The V key shows the version line in row 0. [`toggle_credit_line` `$1B68`](../src/game/status_and_keys.asm#L94) copies it from `version_banner`, which holds 40 screen codes, not the message format (**Code**).
 
 ![The status line with the version line](images/screens/status_line_v.png)
 
@@ -178,7 +178,7 @@ Room 19: message `$04` in row 0. The 1UP mark is in its blank phase.
 
 ## The blink of 1UP and 2UP
 
-The label of the player who plays blinks on the status line. [`blink_player_label` `$1A96`](../src/pause_status_line.asm#L147) runs once per pass from `main_loop`, but not during the pause. It counts [`up_blink_timer` `$43BD`](../src/fireball_text_score_vars.asm#L103) down and prints the label or three spaces over it.
+The label of the player who plays blinks on the status line. [`blink_player_label` `$1A96`](../src/game/pause_status_line.asm#L147) runs once per pass from `main_loop`, but not during the pause. It counts [`up_blink_timer` `$43BD`](../src/game/fireball_text_score_vars_4392.asm#L38) down and prints the label or three spaces over it.
 
 ~~~mermaid
 stateDiagram-v2
@@ -194,7 +194,7 @@ stateDiagram-v2
 | Shown | `up_blink_timer` - 1 = 0 | Blank: timer = `$20`, print message `$00` at line 0, offset `$2C` | `blink_player_label` |
 | Blank | `up_blink_timer` - 1 = `$10` | Shown: print message 1 + `current_player` at line 0, offset `$2C` | `blink_player_label_show` |
 
-The period is 32 passes, 96 frames. The routine [`show_paused` `$1A42`](../src/pause_status_line.asm#L88) sets the timer to `$11` and calls `blink_player_label`. Thus the label appears and stays on during the pause (**Code**, **Observed**: the paused screenshot shows 1UP).
+The period is 32 passes, 96 frames. The routine [`show_paused` `$1A42`](../src/game/pause_status_line.asm#L88) sets the timer to `$11` and calls `blink_player_label`. Thus the label appears and stays on during the pause (**Code**, **Observed**: the paused screenshot shows 1UP).
 
 ## The title texts
 
@@ -204,7 +204,7 @@ The title shows the logo in big letters and a menu of three options under it. Th
 
 The title: three logo rows from `title_logo_chars`, the menu from messages `$4F-$51` in the text font.
 
-[`show_title_screen` `$0584`](../src/title_demo_start.asm#L83) draws these parts (**Code**, **Observed**: title screenshots):
+[`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83) draws these parts (**Code**, **Observed**: title screenshots):
 
 | Screen rows | Content | Source |
 |---|---|---|
@@ -220,8 +220,8 @@ The title: three logo rows from `title_logo_chars`, the menu from messages `$4F-
 The menu marks the keys and the chosen options with inverted text in boxes (**Code**):
 
 - The menu messages draw the key caps with the bytes `$62` (code `$42`, left end) and `$76` (code `$56`, right end).
-- [`title_highlight_defaults` `$066D`](../src/title_demo_start.asm#L188) adds `$40` to the key names (columns 11-12 of rows 12, 14, 16). It also adds `$40` to columns 16-25 of rows 12 and 14. The result is inverted text for `F3`, `F5`, `F7`, `1 PLAYER` and `COMPUTER`.
-- F3 or F5 changes an option. Then [`title_show_players_choice` `$0E65`](../src/title_player_screens.asm#L27) or `title_show_opponent_choice` toggles bit 6 of columns 16-35 (except the code `$4D`). It also moves the ends of the box.
+- [`title_highlight_defaults` `$066D`](../src/game/title_demo_start.asm#L188) adds `$40` to the key names (columns 11-12 of rows 12, 14, 16). It also adds `$40` to columns 16-25 of rows 12 and 14. The result is inverted text for `F3`, `F5`, `F7`, `1 PLAYER` and `COMPUTER`.
+- F3 or F5 changes an option. Then [`title_show_players_choice` `$0E65`](../src/game/title_player_screens.asm#L27) or `title_show_opponent_choice` toggles bit 6 of columns 16-35 (except the code `$4D`). It also moves the ends of the box.
 
 On the title, four keys set the joystick ports for left-handed or right-handed play, and each prints its message on row 19 (**Code**):
 
@@ -232,7 +232,7 @@ On the title, four keys set the joystick ports for left-handed or right-handed p
 | shift-L | `title_set_joy2_left_handed` | `$0A` |
 | shift-D | `title_set_joy2_right_handed` | `$0D` |
 
-[`title_menu_check_message_timeout` `$08E0`](../src/title_menu.asm#L37) erases the message with message `$0E` (36 spaces). It does this when `title_countdown` reaches `$08xx` with a low byte below 2. That is about 350 frames after the last change of an option (**Code**).
+[`title_menu_check_message_timeout` `$08E0`](../src/game/title_menu.asm#L37) erases the message with message `$0E` (36 spaces). It does this when `title_countdown` reaches `$08xx` with a low byte below 2. That is about 350 frames after the last change of an option (**Code**).
 
 ![The title with two players and a human opponent](images/screens/title_two_players_opponent_left_handed.png)
 
@@ -248,7 +248,7 @@ The screens between the turns show big letters: PLAYER n before each turn, and G
 
 ### The big glyphs
 
-The PLAYER n screen, the GAME OVER screen and the title logo use [`title_logo_chars` `$8400`](../src/title_logo_charset.asm#L9): the characters `$80-$FF` of the charset at `$8000`, with `$D018` = `$30`. The program writes a table byte g as g OR `$80`. A big glyph is 2 x 2 characters (**Code**):
+The PLAYER n screen, the GAME OVER screen and the title logo use [`title_logo_chars` `$8400`](../src/graphics/title_logo_charset.asm#L9): the characters `$80-$FF` of the charset at `$8000`, with `$D018` = `$30`. The program writes a table byte g as g OR `$80`. A big glyph is 2 x 2 characters (**Code**):
 
 | Position | Character |
 |---|---|
@@ -261,16 +261,16 @@ The PLAYER n screen, the GAME OVER screen and the title logo use [`title_logo_ch
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | g | `$00` | `$04` | `$08` | `$0C` | `$10` | `$14` | `$18` | `$1C` | `$20` | `$24` | `$28` | `$2C` | `$30` | `$34` + 4d | `$5C` |
 
-The set holds only the letters that the program needs (**Code**: the bytes of `title_logo_row5`, `player_banner_top`, `game_over_letters_top` and [`draw_big_digit` `$1984`](../src/lose_fall_game_over.asm#L214)).
+The set holds only the letters that the program needs (**Code**: the bytes of `title_logo_row5`, `player_banner_top`, `game_over_letters_top` and [`draw_big_digit` `$1984`](../src/game/lose_fall_game_over.asm#L214)).
 
 ### PLAYER n
 
-[`show_player_screen` `$0EA7`](../src/title_player_screens.asm#L71) shows the PLAYER n screen at the start of a game and of each turn:
+[`show_player_screen` `$0EA7`](../src/game/title_player_screens.asm#L71) shows the PLAYER n screen at the start of a game and of each turn:
 
 1. It blanks the screen, turns the sprites off, sets a blue border and background, and fills `$8C00-$8FFF` with `$DC`.
-2. It copies 2 bytes of `player_banner_digit_top` / `player_banner_digit_bottom` (index `current_player` x 2) into the digit of the banner, [`player_banner_top+14` `$4A6B`](../src/banners.asm#L38) / `player_banner_bottom+14`.
+2. It copies 2 bytes of `player_banner_digit_top` / `player_banner_digit_bottom` (index `current_player` x 2) into the digit of the banner, [`player_banner_top+14` `$4A6B`](../src/graphics/banners.asm#L38) / `player_banner_bottom+14`.
 3. It copies the 16 bytes of `player_banner_top` / `player_banner_bottom`, OR `$80`, to screen rows 7 and 8, columns 12-27.
-4. It installs [`irq_player_screen` `$14A4`](../src/screen_raster_irqs.asm#L10) (line `$63`), which shades the letters with `BGCOL1`, and waits 64 frames (128 with two players).
+4. It installs [`irq_player_screen` `$14A4`](../src/irq/screen_raster_irqs.asm#L10) (line `$63`), which shades the letters with `BGCOL1`, and waits 64 frames (128 with two players).
 
 Worked example: `player_banner_top` = `20 22 14 16 00 02 30 32 0C 0E 24 26 5C 5C 38 3A`. The pairs give P (`$20`), L (`$14`), A (`$00`) and Y (`$30`). Then come E (`$0C`), R (`$24`), blank (`$5C`) and 1 (`$38` = `$34` + 4). Row 7 gets `$A0 $A2 $94 $96 ...`. Row 8 gets `$A1 $A3 $95 $97 ...` from `player_banner_bottom` (**Observed**: the PLAYER 1 screenshot).
 
@@ -280,7 +280,7 @@ The PLAYER 1 screen before the first turn.
 
 ### GAME OVER
 
-[`game_over` `$188E`](../src/lose_fall_game_over.asm#L82) uses the title interrupts (`irq_title_frame`) and a blue screen, and draws:
+[`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82) uses the title interrupts (`irq_title_frame`) and a blue screen, and draws:
 
 | Screen rows | Columns | Content | Source |
 |---|---|---|---|
@@ -294,11 +294,11 @@ Then it waits 254 frames, and 64 more before `show_title_screen` (**Code**).
 
 The GAME OVER screen of player 1 with the score 000000.
 
-**The GAME OVER screen copies only half of the player digit.** [`game_over_digit_loop` `$1909`](../src/lose_fall_game_over.asm#L144) runs one time only (`DEY` / `BPL` from Y = 0). It copies only the left half of the player digit into the banner. The right half keeps the value of the last PLAYER n screen (**Code**). The bug has no visible effect. [`lose_fall` `$1818`](../src/lose_fall_game_over.asm#L14) shows the PLAYER n screen of the current player at the start of each fall. So the last PLAYER n screen before a game over is always for the same player (**Conclusion**).
+**The GAME OVER screen copies only half of the player digit.** [`game_over_digit_loop` `$1909`](../src/game/lose_fall_game_over.asm#L144) runs one time only (`DEY` / `BPL` from Y = 0). It copies only the left half of the player digit into the banner. The right half keeps the value of the last PLAYER n screen (**Code**). The bug has no visible effect. [`lose_fall` `$1818`](../src/game/lose_fall_game_over.asm#L14) shows the PLAYER n screen of the current player at the start of each fall. So the last PLAYER n screen before a game over is always for the same player (**Conclusion**).
 
 ## The catalogue of the messages
 
-The message number is the index in [`message_ptrs` `$43BE`](../src/messages.asm#L11). "Line / offset" are the X and Y of the call. For a text line n >= 2, an offset y < 40 is screen row 2n-1, column y. The table of graphic messages gives the cell codes of the upper row. The lower row gets each code OR `$80`.
+The message number is the index in [`message_ptrs` `$43BE`](../src/text/messages.asm#L11). "Line / offset" are the X and Y of the call. For a text line n >= 2, an offset y < 40 is screen row 2n-1, column y. The table of graphic messages gives the cell codes of the upper row. The lower row gets each code OR `$80`.
 
 ### Text messages
 
@@ -407,7 +407,7 @@ The message number is the index in [`message_ptrs` `$43BE`](../src/messages.asm#
 | `$63` | `msg_passage_dark_cell` | `$07` | passage cell, rooms 10-17 | `open_passage_dark` (rooms 10, 12, 14, 16, two cells) | passage |
 | `$64` | `msg_passage_dark_base` | `$0E` | passage bottom cell, rooms 10-17 | `open_passage_dark` | passage + 2 |
 
-The passage helpers print a passage one cell at a time. They take the top line in A and the column in Y. [`draw_passage_cell` `$3ACA`](../src/passage_open.asm#L80) prints each cell and moves [`passage_row` `$006C`](../src/constants.asm#L63) one line down (**Code**). The room pages describe the room handlers.
+The passage helpers print a passage one cell at a time. They take the top line in A and the column in Y. [`draw_passage_cell` `$3ACA`](../src/room/passage_open.asm#L80) prints each cell and moves [`passage_row` `$006C`](../src/constants.asm#L63) one line down (**Code**). The room pages describe the room handlers.
 
 ### Unused messages
 
@@ -420,7 +420,7 @@ These entries of `message_ptrs` have no caller. No code loads their number befor
 | `$53` | `msg_unused_player_2` | `PLAYER 2` |
 | `$62` | `msg_presents` | `DATASOFT PRESENTS`, but `DIABOLO  PRESENTS` (two spaces) in the SAEGER release |
 
-**Message `$62` was changed by a cracker.** Message `$62`, [`msg_presents` `$4770`](../src/messages_rooms.asm#L322), reads `DIABOLO  PRESENTS` in the SAEGER release and `DATASOFT PRESENTS` in the TBC and DC releases (**Observed**: [releases.md](releases.md)). In the SAEGER image, the actor workspace also held an older copy of the end of the message area. This copy is a development leftover, and the knowledge keeps it in space `bank1`. The 81 bytes `contact_col0` .. `contact_count_c10` (`$4EED-$4F3D`) held a copy of the bytes `$4731-$4781`. That range goes from the second byte of [`msg_blank2` `$472F`](../src/messages_rooms.asm#L273) to the end of `msg_presents`. The copy agrees with the message area, except in the text of message `$62` (**Observed**: the bytes of the original image):
+**Message `$62` was changed by a cracker.** Message `$62`, [`msg_presents` `$4770`](../src/text/messages_rooms.asm#L322), reads `DIABOLO  PRESENTS` in the SAEGER release and `DATASOFT PRESENTS` in the TBC and DC releases (**Observed**: [releases.md](releases.md)). In the SAEGER image, the actor workspace also held an older copy of the end of the message area. This copy is a development leftover, and the knowledge keeps it in space `bank1`. The 81 bytes `contact_col0` .. `contact_count_c10` (`$4EED-$4F3D`) held a copy of the bytes `$4731-$4781`. That range goes from the second byte of [`msg_blank2` `$472F`](../src/text/messages_rooms.asm#L273) to the end of `msg_presents`. The copy agrees with the message area, except in the text of message `$62` (**Observed**: the bytes of the original image):
 
 | Bytes | Message `$62` now (`msg_presents`) | The copy (`contact_col2+17`) |
 |---|---|---|
@@ -431,7 +431,7 @@ These entries of `message_ptrs` have no caller. No code loads their number befor
 
 The original text of message `$62` was `DATASOFT PRESENTS`, 17 characters. The six zero bytes held `FT PRE`. The TBC and DC releases still have this text. A cracker, Diabolo, changed it to `DIABOLO  PRESENTS`, with two spaces to keep the length (**Conclusion**).
 
-The change has no visible effect. No code prints message `$62`, and the title shows `DATASOFT PRESENTS` from [`title_logo_row2` `$4A0D`](../src/banners.asm#L20) in logo letters (**Observed**: the title screenshot). [`init_game_variables` `$0F72`](../src/game_setup.asm#L18) clears the copy at the first game start. So the copy is image residue only, and the rebuild leaves it out of the image. The switch `CRACK_DIABOLO` puts the edit into a build. The default build has `DATASOFT PRESENTS` ([releases.md](releases.md)).
+The change has no visible effect. No code prints message `$62`, and the title shows `DATASOFT PRESENTS` from [`title_logo_row2` `$4A0D`](../src/graphics/banners.asm#L20) in logo letters (**Observed**: the title screenshot). [`init_game_variables` `$0F72`](../src/game/game_setup.asm#L18) clears the copy at the first game start. So the copy is image residue only, and the rebuild leaves it out of the image. The switch `CRACK_DIABOLO` puts the edit into a build. The default build has `DATASOFT PRESENTS` ([releases.md](releases.md)).
 
 ### Texts without a pointer
 
@@ -442,6 +442,6 @@ With messages `$52`, `$53` and `$62`, they are the texts of the title, PLAYER n 
 ## Still open
 
 - The names of the room pieces come from their place and use. A screen capture before and after each opening (rooms 2, 3, 5, 9, 15, 17) would show what each piece looks like.
-- [`msg_unused_j` `$4610`](../src/messages_rooms.asm#L118) (`J`): its purpose is unknown.
-- [`room18_wizard_gone` `$3D9B`](../src/wizard_room.asm#L115) and [`open_passage_ledge_b` `$3AAA`](../src/passage_open.asm#L61) never ran in the coverage. A run that defeats the wizard can show messages `$5E` and `$5F`.
+- [`msg_unused_j` `$4610`](../src/text/messages_rooms.asm#L118) (`J`): its purpose is unknown.
+- [`room18_wizard_gone` `$3D9B`](../src/room/wizard_room.asm#L115) and [`open_passage_ledge_b` `$3AAA`](../src/room/passage_open.asm#L61) never ran in the coverage. A run that defeats the wizard can show messages `$5E` and `$5F`.
 - A two-player game over run can confirm that the `game_over_digit_loop` bug has no visible effect.

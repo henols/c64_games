@@ -22,13 +22,13 @@ The screen has three bands. Each band has its own mode and its own memory. The r
 | 5-16 | 91-186 | Multicolour bitmap | Bitmap `$E640-$F53F`, screen `$CCC8-$CEA7`, colour RAM `$D8C8-$DAA7` | From the scene maps, background 1 (white) |
 | 17-24 | 187-250 | Multicolour bitmap | Bitmap `$F540-$FF3F`, screen and colour RAM `$77` | All four pixel values yellow |
 
-[`init_vic_screen` `$14A7`](../src/init_bout_loop.asm#L91) sets the VIC-II one time at the start. It writes 0 to `$DD00`, which selects VIC bank 3 (`$C000-$FFFF`). It writes `$38` to `$D018`, so the screen is at `$CC00` and the charset and the bitmap both start at `$E000`. It writes `$18` to `$D016` (multicolour) and enables all 8 sprites in multicolour. **Code**.
+[`init_vic_screen` `$14A7`](../src/game/init_bout_loop.asm#L79) sets the VIC-II one time at the start. It writes 0 to `$DD00`, which selects VIC bank 3 (`$C000-$FFFF`). It writes `$38` to `$D018`, so the screen is at `$CC00` and the charset and the bitmap both start at `$E000`. It writes `$18` to `$D016` (multicolour) and enables all 8 sprites in multicolour. **Code**.
 
 ### One base address for the charset and the bitmap
 
 The charset and the bitmap use the same base address `$E000`. In text mode, the VIC reads the characters of the panel from `$E000-$E7FF`. In bitmap mode, the VIC reads rows 0-4 of the bitmap from `$E000-$E63F`, but the screen never shows bitmap rows 0-4. The program thus puts its font into the bitmap memory of rows 0-4. The scene starts at `$E640`, the first byte of bitmap row 5. **Code**.
 
-[`panel_charset` `$E000`](../src/panel_charset.asm#L6) holds 128 characters in ASCII order. Characters `$01-$08` are the full and the half yin-yang symbols. The panel uses only a few of them: the yin-yang characters, the space, the digits and 16 capital letters. Characters `$C8-$FF` are not font data: they are the first bytes of the scene bitmap. A character code in this range thus shows a part of the scene as a character. The rank overflow of [game_flow.md](game_flow.md) prints codes from `$C0` up, so the panel then shows such bytes. **Code**.
+[`panel_charset` `$E000`](../src/graphics/panel_charset.asm#L6) holds 128 characters in ASCII order. Characters `$01-$08` are the full and the half yin-yang symbols. The panel uses only a few of them: the yin-yang characters, the space, the digits and 16 capital letters. Characters `$C8-$FF` are not font data: they are the first bytes of the scene bitmap. A character code in this range thus shows a part of the scene as a character. The rank overflow of [game_flow.md](game_flow.md) prints codes from `$C0` up, so the panel then shows such bytes. **Code**.
 
 ![The panel charset at $E000 in hires](reference/images/panel_charset-hires.png)
 
@@ -38,7 +38,7 @@ The panel text uses colour RAM value 6. This value is below 8, so the VIC shows 
 
 ### The floor
 
-[`floor_colour_fill` `$1445`](../src/init_bout_loop.asm#L39) writes `$77` into the screen and the colour RAM of rows 17-24. Then the pixel values %01, %10 and %11 all give colour 7 (yellow). A CIA2 timer NMI, [`nmi_floor_colour` `$28A5`](../src/irq_screen_split.asm#L69), sets the background (%00) to 7 near the floor. Thus each pixel of the floor is yellow, whatever bitmap bytes are in `$F540-$FF3F`. **Code**.
+[`floor_colour_fill` `$1445`](../src/game/init_bout_loop.asm#L39) writes `$77` into the screen and the colour RAM of rows 17-24. Then the pixel values %01, %10 and %11 all give colour 7 (yellow). A CIA2 timer NMI, [`nmi_floor_colour` `$28A5`](../src/irq/irq_screen_split.asm#L66), sets the background (%00) to 7 near the floor. Thus each pixel of the floor is yellow, whatever bitmap bytes are in `$F540-$FF3F`. **Code**.
 
 M.XSPRITES fills `$F540-$FFEF` and thus starts at the first byte of bitmap row 17. The VIC thus reads the bull sprites of the unused bonus test as floor bitmap, but the floor colours hide them. The fill loop also writes `$77` into the sprite pointers `$CFF8-$CFFF`. The raster handlers write pointers 0-5 again in each frame. **Code**. **Conclusion**: the authors used the hidden floor bitmap as free memory for sprite data.
 
@@ -79,12 +79,12 @@ The sprite colours are the same for both fighters, except one:
 
 ### Shape frames and parts
 
-The animation scripts give a shape frame for each step (see [fighters.md](fighters.md)). A shape frame is 9 part numbers, one for each slot. Nine tables of `$48` bytes hold them: the table of slot n starts at `$7AE0` + n * `$48`, and the shape frame is the index. [`frame_parts_top_left` `$7AE0`](../src/frame_part_tables.asm#L6) is the table of slot 0. Part number 0 means an empty slot. **Code**.
+The animation scripts give a shape frame for each step (see [fighters.md](fighters.md)). A shape frame is 9 part numbers, one for each slot. Nine tables of `$48` bytes hold them: the table of slot n starts at `$7AE0` + n * `$48`, and the shape frame is the index. [`frame_parts_top_left` `$7AE0`](../src/shapes/frame_part_tables.asm#L6) is the table of slot 0. Part number 0 means an empty slot. **Code**.
 
 A part number p gives the address of its 64 bytes in two steps:
 
-1. The page is [`shape_part_page_table` `$7F00`](../src/shape_lookup_tables.asm#L24) entry p, plus `shape_page_offset`. Each entry is `$80` + p / 4.
-2. The low byte is [`shape_part_lo` `$3109`](../src/shape_build.asm#L6) entry p AND 3: `$00`, `$40`, `$80` or `$C0`.
+1. The page is [`shape_part_page_table` `$7F00`](../src/shapes/shape_lookup_tables.asm#L24) entry p, plus `shape_page_offset`. Each entry is `$80` + p / 4.
+2. The low byte is [`shape_part_lo` `$3109`](../src/shapes/shape_build.asm#L6) entry p AND 3: `$00`, `$40`, `$80` or `$C0`.
 
 With `shape_page_offset` = 0, part p is thus at `$8000` + p * 64. Parts `$01-$FF` fill `$8040-$BFFF` (`shape_parts`). Part 0 is never read, and `$8000-$803F` holds zeros. The part tables name all 255 parts. **Code**.
 
@@ -96,13 +96,13 @@ M.SHAPES is one file of 21248 bytes. In the game, its bytes fill three ranges: `
 
 ### The build and the double buffer
 
-[`shape_build` `$316D`](../src/shape_build.asm#L37) copies the 9 parts of `fighter_frame` into a sprite buffer. Each fighter has two buffers of 9 x 64 bytes. The screen shows one buffer while the program writes the other one. These are the steps:
+[`shape_build` `$316D`](../src/shapes/shape_build_3165.asm#L11) copies the 9 parts of `fighter_frame` into a sprite buffer. Each fighter has two buffers of 9 x 64 bytes. The screen shows one buffer while the program writes the other one. These are the steps:
 
 1. It toggles `draw_buffer` with EOR #1. Fighter 0 uses buffers 0 and 1, fighter 1 uses buffers 2 and 3. The four buffers start at `$C040`, `$C280`, `$C4C0` and `$C700`, with sprite pointers `$01-$09`, `$0A-$12`, `$13-$1B` and `$1C-$24`.
 2. When `fighter_facing` is 1, it jumps to the mirrored copy (next section).
 3. It copies the 9 sprite pointers of the new buffer into `part_ptr_build`.
 4. For each slot 0-8, it reads the part number from the table of the slot. For part 0, it sets the pointer of the slot to 0, the blank sprite at `$C000`. For another part, it copies 64 bytes into the buffer. The destination moves 64 bytes for each slot, also for an empty slot.
-5. [`shape_publish_ptrs` `$3365`](../src/shape_build.asm#L435) copies the 9 new pointers into `fighter_part_ptrs`. The raster IRQ at line 0 reads the pointers from there.
+5. [`shape_publish_ptrs` `$3365`](../src/shapes/shape_build_3165.asm#L409) copies the 9 new pointers into `fighter_part_ptrs`. The raster IRQ at line 0 reads the pointers from there.
 6. It looks for `fighter_frame` in the list of the frames with a floor shadow, and sets the shadow pointers (see below).
 
 The new pointers go into `fighter_part_ptrs` only after the last copy. Until then, the screen shows the complete old shape frame from the other buffer. Thus a fighter never shows half of a new pose. **Code**.
@@ -129,11 +129,11 @@ Part `$03` has page `$7F00`+3 = `$80` and low byte `$3109`+3 = `$C0`, thus `$80C
 
 ### Mirroring
 
-The parts show a fighter that looks to the right. For `fighter_facing` = 1, [`shape_build_mirrored` `$33E7`](../src/shape_build_mirror.asm#L6) makes the mirror image during the copy. It changes three things:
+The parts show a fighter that looks to the right. For `fighter_facing` = 1, [`shape_build_mirrored` `$33E7`](../src/shapes/shape_build_mirror.asm#L6) makes the mirror image during the copy. It changes three things:
 
 1. **The columns.** Slot 0 takes the part of the top-right table, slot 2 the part of the top-left table. The same change applies to the middle and the bottom sprite row. The pointer lists stay the same.
-2. **The bytes of a line.** [`shape_copy_mirrored_part` `$365F`](../src/shape_build_mirror.asm#L297) copies 3 bytes for each of the 21 lines. Source byte 2 goes to byte 0, byte 1 stays, and source byte 0 goes to byte 2. Three store instructions with the bases destination-2, destination and destination+2 do this in one loop.
-3. **The pixels of a byte.** Each byte goes through [`shape_mirror_table` `$7E00`](../src/shape_lookup_tables.asm#L6). Entry b is b with its four 2-bit pixels in the opposite order.
+2. **The bytes of a line.** [`shape_copy_mirrored_part` `$365F`](../src/shapes/shape_build_mirror.asm#L297) copies 3 bytes for each of the 21 lines. Source byte 2 goes to byte 0, byte 1 stays, and source byte 0 goes to byte 2. Three store instructions with the bases destination-2, destination and destination+2 do this in one loop.
+3. **The pixels of a byte.** Each byte goes through [`shape_mirror_table` `$7E00`](../src/shapes/shape_lookup_tables.asm#L6). Entry b is b with its four 2-bit pixels in the opposite order.
 
 For example, `$1B` is %00 01 10 11 and entry `$1B` is `$E4`, %11 10 01 00. A mirror of the single bits would give `$D8`, %11 01 10 00. That byte exchanges the colours %01 and %10, so a hires mirror would draw the outline in the gi colour and the gi in black. The table keeps each pixel pair intact. **Code**.
 
@@ -143,7 +143,7 @@ The mirrored copy writes 63 bytes for each part, and the normal copy writes 64. 
 
 Some moves lift the fighter off the floor, for example the jump and the flying kick. Then a fourth sprite row shows a black shadow on the floor under him. The shadow sprites are 5 to 8 lines high and use only pixel value %01 (black). **Code**.
 
-The program does not copy the shadow parts. They stay at `$D540-$DEFF` (pointers `$55-$7B`), and the VIC reads them directly. After the build, `shape_build` looks for `fighter_frame` in [`shape_row4_frames` `$33AF`](../src/shape_build.asm#L478). This list has the 8 air frames `$0A`, `$3A`, `$09`, `$20`, `$15`, `$17`, `$16` and `$14` of the animations 5, 8, 9 and `$0E`. Three tables give the pointers for the left, the middle and the right sprite: entries 0-7 for facing 0, entries 8-15 for facing 1. They go into `row4_ptr_left`, `row4_ptr_mid` and `row4_ptr_right`. **Code**.
+The program does not copy the shadow parts. They stay at `$D540-$DEFF` (pointers `$55-$7B`), and the VIC reads them directly. After the build, `shape_build` looks for `fighter_frame` in [`shape_row4_frames` `$33AF`](../src/shapes/shape_build_3165.asm#L452). This list has the 8 air frames `$0A`, `$3A`, `$09`, `$20`, `$15`, `$17`, `$16` and `$14` of the animations 5, 8, 9 and `$0E`. Three tables give the pointers for the left, the middle and the right sprite: entries 0-7 for facing 0, entries 8-15 for facing 1. They go into `row4_ptr_left`, `row4_ptr_mid` and `row4_ptr_right`. **Code**.
 
 There is no mirror at run time for the shadows. Each facing-1 shadow is a second copy of a facing-0 shadow, already mirrored through the table `$7E00`. A byte compare finds 15 such pairs. **Code**.
 
@@ -159,7 +159,7 @@ The frame-start IRQ shows the fourth sprite row for each group with a sprite Y o
 
 ## The sprite multiplexer
 
-A frame shows 2 fighters x 4 sprite rows x 3 sprites, thus 24 sprite images, with only 6 hardware sprites. Each group of 3 sprites starts the frame with sprite row 1 of its fighter. At the last line of the sprite row, a raster IRQ moves the 3 sprites 21 lines down. It also sets the pointers of the next sprite row. [`irq_frame_start` `$2A66`](../src/sprite_mux_plan.asm#L6) plans this chain at line 0 of each frame. **Code**.
+A frame shows 2 fighters x 4 sprite rows x 3 sprites, thus 24 sprite images, with only 6 hardware sprites. Each group of 3 sprites starts the frame with sprite row 1 of its fighter. At the last line of the sprite row, a raster IRQ moves the 3 sprites 21 lines down. It also sets the pointers of the next sprite row. [`irq_frame_start` `$2A66`](../src/irq/sprite_mux_plan.asm#L6) plans this chain at line 0 of each frame. **Code**.
 
 ```mermaid
 flowchart TD
@@ -175,8 +175,8 @@ The planner does these steps in each frame:
 
 1. It puts `front_fighter` into group A and the other fighter into group B. It copies the position of each fighter into `group_y`, `group_x_lo` and `group_x_msb`.
 2. It selects the shadow handler. A group with a `group_y` other than `$A0` gets its shadow at Y `$DA`. It then writes the shadow pointers into the handlers.
-3. [`mux_choose_layout` `$2B40`](../src/sprite_mux_plan.asm#L119) selects one of 7 layouts from the Y gap g between the groups. It writes the lines, the next handlers and the pointers into the operands of the row handlers.
-4. [`mux_set_row1` `$2E5A`](../src/sprite_mux_plan.asm#L500) sets sprite row 1 of both groups: pointers, Y, colours, X and the X bit 8.
+3. [`mux_choose_layout` `$2B40`](../src/irq/sprite_mux_plan.asm#L104) selects one of 7 layouts from the Y gap g between the groups. It writes the lines, the next handlers and the pointers into the operands of the row handlers.
+4. [`mux_set_row1` `$2E5A`](../src/irq/sprite_mux_plan.asm#L485) sets sprite row 1 of both groups: pointers, Y, colours, X and the X bit 8.
 
 The sprite Y is `fighter_y` * 2, and the dy values of the scripts are 0, ±2 and ±8 (see [fighters.md](fighters.md)). Thus g = |`group_y` A - `group_y` B| is always a multiple of 4. **Code**.
 
@@ -192,7 +192,7 @@ The sprite Y is `fighter_y` * 2, and the dy values of the scripts are 0, ±2 and
 
 Each chain ends with the shadow handler at line `$D9` and `irq_frame_end` at line `$FF`. With g = `$14`, sprite row 2 of the lower group starts at line A+`$29`. Sprite row 3 of the upper group starts one line later, at A+`$2A`. One combined handler sets both sprite rows. **Code**. **Conclusion**: one line gives too little time for two separate handlers.
 
-The planner also compares g with `$16` and then branches to the next instruction (`$2B54` and `$2B67`). Two patch routines for combined handlers, [`mux_unused_patch_b3_a2` `$2FBD`](../src/sprite_mux_patch.asm#L97) and `mux_unused_patch_a3_b2`, have no caller. With g = `$16`, the two sprite rows would also start one line apart. **Conclusion**: the authors first had two more layouts for g = `$16`. Because g is always a multiple of 4, g = `$16` cannot occur. The authors removed the two layouts, but kept the compares and the routines. See [the development](../../docs/development.md).
+The planner also compares g with `$16` and then branches to the next instruction (`$2B54` and `$2B67`). Two patch routines for combined handlers, [`mux_unused_patch_b3_a2` `$2FBD`](../src/leftovers/leftover_2fbd.asm#L6) and `mux_unused_patch_a3_b2`, have no caller. With g = `$16`, the two sprite rows would also start one line apart. **Conclusion**: the authors first had two more layouts for g = `$16`. Because g is always a multiple of 4, g = `$16` cannot occur. The authors removed the two layouts, but kept the compares and the routines. See [the development](../../docs/development.md).
 
 ## The scenes
 
@@ -216,12 +216,12 @@ Scene 3: a Buddha statue and a temple.
 
 ### Drawing a scene
 
-[`scene_draw_if_new` `$1A63`](../src/title_and_scene.asm#L173) runs before each bout. It draws the scene only when the scene number differs from `scene_shown`. At the start, `scene_shown` is 1, so the first bout draws scene 0. The routine does these steps:
+[`scene_draw_if_new` `$1A63`](../src/game/title_and_scene.asm#L167) runs before each bout. It draws the scene only when the scene number differs from `scene_shown`. At the start, `scene_shown` is 1, so the first bout draws scene 0. The routine does these steps:
 
 1. It writes 3 into the operand of the background colour of `irq_bitmap_on`. The bitmap rows now have a cyan background.
 2. `scene_blank_rows` fills the screen RAM and the colour RAM of rows 5-16 with `$33`. All four pixel values now give cyan, so the player sees a cyan area and not a half-drawn scene.
 3. `scene_unpack_bitmap` unpacks the bitmap into `$E640-$F53F` (see the data format below).
-4. [`scene_copy_maps` `$19F6`](../src/title_and_scene.asm#L110) copies the 480-byte colour map to `$D8C8` and the 480-byte screen map to `$CCC8`.
+4. [`scene_copy_maps` `$19F6`](../src/game/title_and_scene.asm#L110) copies the 480-byte colour map to `$D8C8` and the 480-byte screen map to `$CCC8`.
 5. It writes 1 into the operand again, and the scene shows on a white background.
 
 **Code**.
@@ -237,17 +237,17 @@ A multicolour bitmap cell takes its colours from three places. Each scene has on
 | %10 | Low nybble of the screen RAM | Screen map, `$6A80` + 480 * scene |
 | %11 | Low nybble of the colour RAM | Colour map, `$6300` + 480 * scene |
 
-`scene_colour_map_ptrs` and `scene_screen_map_ptrs` give the address of each map. [`scene0_colour_map` `$6300`](../src/scene_colour_maps.asm#L6) and [`scene0_screen_map` `$6A80`](../src/scene_screen_maps.asm#L6) are the maps of scene 0. The four colour maps fill `$6300-$6A7F` and the four screen maps fill `$6A80-$71FF`. **Code**.
+`scene_colour_map_ptrs` and `scene_screen_map_ptrs` give the address of each map. [`scene0_colour_map` `$6300`](../src/scenes/scene_colour_maps.asm#L6) and [`scene0_screen_map` `$6A80`](../src/scenes/scene_screen_maps.asm#L6) are the maps of scene 0. The four colour maps fill `$6300-$6A7F` and the four screen maps fill `$6A80-$71FF`. **Code**.
 
 The high nybbles of the colour maps vary, for example `$F0`, `$E3`, `$56`. Colour RAM keeps only the low nybble, so the high nybbles have no effect. **Code**. **Conclusion**: the authors saved the maps from the colour RAM of a running C64, where the high nybbles read as random bits.
 
-The four packed scenes end at `$62FF`, just before the first colour map. The unused table [`old_scene_bitmap_ptrs` `$127F`](../src/entry_and_tables.asm#L73) holds the words `$E640`, `$3600`, `$4500` and `$5400`. The gaps are `$F00` bytes, the size of one unpacked scene, and `$5400` + `$F00` is `$6300`. **Conclusion**: an earlier version kept three unpacked scene bitmaps at `$3600-$62FF` and one at its screen place. See [the development](../../docs/development.md).
+The four packed scenes end at `$62FF`, just before the first colour map. The unused table [`old_scene_bitmap_ptrs` `$127F`](../src/leftovers/leftover_127f.asm#L6) holds the words `$E640`, `$3600`, `$4500` and `$5400`. The gaps are `$F00` bytes, the size of one unpacked scene, and `$5400` + `$F00` is `$6300`. **Conclusion**: an earlier version kept three unpacked scene bitmaps at `$3600-$62FF` and one at its screen place. See [the development](../../docs/development.md).
 
 ## Data format: the packed scene bitmaps
 
 ### Where the data is
 
-[`scene_unpack_bitmap` `$12CE`](../src/scene_unpack.asm#L6) unpacks scene `stage_counter` AND 3. It takes the start of the packed block from [`scene_packed_ptrs` `$134C`](../src/scene_unpack.asm#L84). The four blocks follow one after the other and end at `$62FF`. **Code**.
+[`scene_unpack_bitmap` `$12CE`](../src/scenes/scene_unpack.asm#L6) unpacks scene `stage_counter` AND 3. It takes the start of the packed block from [`scene_packed_ptrs` `$134C`](../src/scenes/scene_unpack.asm#L81). The four blocks follow one after the other and end at `$62FF`. **Code**.
 
 | Scene | Block | Packed | Unpacked | Packed / unpacked |
 |---|---|---|---|---|

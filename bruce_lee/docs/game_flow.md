@@ -5,7 +5,7 @@ In Bruce Lee, the title screen plays the attract demo when nobody plays, and F7 
 **Conventions.**
 
 - Addresses are C64 addresses. Names are the names of the knowledge.
-- A *frame* is one PAL frame (1/50 s). A *pass* is one run of [`main_loop` `$1BC2`](../src/game_main_loop.asm#L23) (at least 3 frames).
+- A *frame* is one PAL frame (1/50 s). A *pass* is one run of [`main_loop` `$1BC2`](../src/game/game_main_loop.asm#L23) (at least 3 frames).
 - *Room play* is `main_loop` with [`game_mode` `$0104`](../src/constants.asm#L130) = 1. The *demo* is the same loop with `game_mode` = 0.
 - A *fall* is a life. [`falls_left` `$0028`](../src/constants.asm#L27) counts them ("FALLS" on the status line).
 - A room is *cleared* when it has no lanterns left: [`room_lanterns_left` `$002A`](../src/constants.asm#L29) + room = 0.
@@ -32,19 +32,19 @@ flowchart TB
   H -->|"next game loop, room 0"| E
 ~~~
 
-The cold start runs one time. [`cold_start` `$0400`](../src/cold_start.asm#L22) builds the random table, the fonts, the charsets and the contact masks. Then it continues into [`restart_to_title` `$050F`](../src/title_demo_start.asm#L9). The restart is also the way back to the title when the player presses F1 in a game. It resets the stack, stops the music and prepares the game variables. Then it goes to the title screen of [`show_title_screen` `$0584`](../src/title_demo_start.asm#L83). **Code**
+The cold start runs one time. [`cold_start` `$0400`](../src/game/cold_start.asm#L22) builds the random table, the fonts, the charsets and the contact masks. Then it continues into [`restart_to_title` `$050F`](../src/game/title_demo_start.asm#L9). The restart is also the way back to the title when the player presses F1 in a game. It resets the stack, stops the music and prepares the game variables. Then it goes to the title screen of [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83). **Code**
 
-The title has a countdown, [`title_countdown` `$0049`](../src/constants.asm#L35), of 2400 frames. Each option key (F3, F5, L, R, shift-L, shift-R) starts the countdown again. When the countdown reaches 0, [`start_attract_demo` `$0531`](../src/title_demo_start.asm#L32) saves the options and starts the demo. **Code**
+The title has a countdown, [`title_countdown` `$0049`](../src/constants.asm#L35), of 2400 frames. Each option key (F3, F5, L, R, shift-L, shift-R) starts the countdown again. When the countdown reaches 0, [`start_attract_demo` `$0531`](../src/game/title_demo_start.asm#L32) saves the options and starts the demo. **Code**
 
-The demo plays room 0 with one player against a computer Yamo, and `game_mode` = 0. Bruce moves by the joystick input of a recording, [`demo_input_stream` `$F300`](../src/demo_input.asm#L12). Fire on port 1 or F1 stops the demo and goes to the restart. When Bruce loses a fall in the demo, the title shows again with its tune. **Code**
+The demo plays room 0 with one player against a computer Yamo, and `game_mode` = 0. Bruce moves by the joystick input of a recording, [`demo_input_stream` `$F300`](../src/input/demo_input.asm#L12). Fire on port 1 or F1 stops the demo and goes to the restart. When Bruce loses a fall in the demo, the title shows again with its tune. **Code**
 
-F7 or fire on port 1 starts a game. `title_menu_start_game` waits until the player releases fire, waits 16 more frames and returns. Then `show_title_screen` continues into [`start_new_game` `$070E`](../src/title_demo_start.asm#L283). It sets player 1, shows the PLAYER 1 screen, draws room 0 with [`draw_room` `$09BC`](../src/draw_room.asm#L28) and starts the main loop. From here the game is room play, one pass after another. Room play stops when Bruce leaves the room or loses a fall, or when the player presses F1. **Code**
+F7 or fire on port 1 starts a game. `title_menu_start_game` waits until the player releases fire, waits 16 more frames and returns. Then `show_title_screen` continues into [`start_new_game` `$070E`](../src/game/title_demo_start.asm#L283). It sets player 1, shows the PLAYER 1 screen, draws room 0 with [`draw_room` `$09BC`](../src/room/draw_room.asm#L28) and starts the main loop. From here the game is room play, one pass after another. Room play stops when Bruce leaves the room or loses a fall, or when the player presses F1. **Code**
 
 A run from the cold start snapshot (PAL) showed the timing of these steps. **Observed**
 
 - `restart_to_title` ran 79 frames after `cold_start`, and `show_title_screen` 2 frames later.
 - `start_attract_demo` ran 2394 frames after a `title_countdown` of `$095C`.
-- The demo ended about 1714 frames after `start_attract_demo`: Bruce was knocked out (`actor_state` = `$13`) and [`check_actor_knockouts_bruce` `$2D79`](../src/actor_helpers.asm#L33) jumped to `lose_fall`. At that time `demo_input_ptr` was `$F539`: the demo read 569 bytes of `demo_input_stream`.
+- The demo ended about 1714 frames after `start_attract_demo`: Bruce was knocked out (`actor_state` = `$13`) and [`check_actor_knockouts_bruce` `$2D79`](../src/actor/actor_helpers.asm#L33) jumped to `lose_fall`. At that time `demo_input_ptr` was `$F539`: the demo read 569 bytes of `demo_input_stream`.
 - With F7 written into `key_code` (`key_ready` = 1) on the title, `start_new_game` ran after 15 frames. The PLAYER 1 screen lasted 64 frames, `draw_room` followed, and the first pass of `main_loop` came 5 frames later.
 
 ![The attract demo](images/screens/demo.png)
@@ -53,15 +53,15 @@ The attract demo in room 0. It plays with the recorded input of `demo_input_stre
 
 ### A lost fall and two players
 
-When Bruce dies or is knocked out, the current player loses a fall. In a two-player game the turn then passes to the other player, so the players take turns after every lost fall, not after every game. Each player has his own block of variables, which the game swaps on each change of the player. [`lose_fall` `$1818`](../src/lose_fall_game_over.asm#L14) does the work in this order:
+When Bruce dies or is knocked out, the current player loses a fall. In a two-player game the turn then passes to the other player, so the players take turns after every lost fall, not after every game. Each player has his own block of variables, which the game swaps on each change of the player. [`lose_fall` `$1818`](../src/game/lose_fall_game_over.asm#L14) does the work in this order:
 
 1. It silences the sound. In the demo it goes to the title.
-2. It decrements `falls_left`. Below 0, it goes to [`game_over` `$188E`](../src/lose_fall_game_over.asm#L82).
-3. [`next_turn` `$182A`](../src/lose_fall_game_over.asm#L23) sets `actor_energy` of all three actors to `$24`, and clears `enemy_follow_x` and the fireball sprites.
-4. With two players (`option_two_players` = 1) and the other player not out ([`inactive_player_state` `$439F`](../src/fireball_text_score_vars.asm#L89), the parked `falls_left`, >= 0), `current_player` changes. **Code**
+2. It decrements `falls_left`. Below 0, it goes to [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82).
+3. [`next_turn` `$182A`](../src/game/lose_fall_game_over.asm#L23) sets `actor_energy` of all three actors to `$24`, and clears `enemy_follow_x` and the fireball sprites.
+4. With two players (`option_two_players` = 1) and the other player not out ([`inactive_player_state` `$439F`](../src/game/fireball_text_score_vars_4392.asm#L24), the parked `falls_left`, >= 0), `current_player` changes. **Code**
 5. `show_player_screen` shows PLAYER 1 or PLAYER 2.
-6. On a change of the player, [`next_turn_swap_block_loop` `$1862`](../src/lose_fall_game_over.asm#L52) swaps the player block `$0028-$0043` with `inactive_player_state`. The block holds `falls_left`, `room`, `room_lanterns_left`, `game_loop_count` and the score. `swap_player_lanterns` swaps the lantern flags of all rooms. The swap also includes `bonus_fall_next_score`.
-7. `reset_play_state` draws the game screen and spawns Bruce. [`place_bruce_at_room_start` `$3217`](../src/room_misc_support.asm#L11) puts him at the start point of his room (`spawn_a_x`, `spawn_a_y`) and enters the room.
+6. On a change of the player, [`next_turn_swap_block_loop` `$1862`](../src/game/lose_fall_game_over.asm#L52) swaps the player block `$0028-$0043` with `inactive_player_state`. The block holds `falls_left`, `room`, `room_lanterns_left`, `game_loop_count` and the score. `swap_player_lanterns` swaps the lantern flags of all rooms. The swap also includes `bonus_fall_next_score`.
+7. `reset_play_state` draws the game screen and spawns Bruce. [`place_bruce_at_room_start` `$3217`](../src/room/room_misc_support.asm#L11) puts him at the start point of his room (`spawn_a_x`, `spawn_a_y`) and enters the room.
 
 ![The PLAYER 2 screen](images/screens/player2_screen.png)
 
@@ -75,7 +75,7 @@ The game over screen of `game_over`: GAME OVER, PLAYER 1 and the score in big di
 
 ### The next game loop
 
-Room 19 is the congratulations room. When its countdown ends, [`room19_frame` `$4272`](../src/ending_room.asm#L27) adds 1 to [`game_loop_count` `$0040`](../src/constants.asm#L30), puts all lanterns back and sends Bruce to room 0 for the next loop. A `game_loop_count` above 0 makes the game harder in these places. **Code**
+Room 19 is the congratulations room. When its countdown ends, [`room19_frame` `$4272`](../src/room/ending_room.asm#L27) adds 1 to [`game_loop_count` `$0040`](../src/constants.asm#L30), puts all lanterns back and sends Bruce to room 0 for the next loop. A `game_loop_count` above 0 makes the game harder in these places. **Code**
 
 | Effect | Code |
 |---|---|
@@ -89,7 +89,7 @@ Room 19 is the congratulations room. When its countdown ends, [`room19_frame` `$
 
 ### How Bruce leaves a room
 
-An exit is not a line at the edge of the screen. It is an exit marker in the room map that Bruce must touch while he stands at an edge and moves outward. The marker number selects one of four sets of exit tables, and the current room selects the entry in the set. [`handle_touched_tile` `$2E89`](../src/background_touch.asm#L61) checks the 3 characters under and beside each actor, on two cell rows. A character 2, 3, 4 or 5 jumps to `take_exit2`, `take_exit3`, `take_exit4` or `take_exit5`. Each one first asks [`check_exit_edge` `$30D4`](../src/touch_effects.asm#L154) whether the actor may leave. **Code**
+An exit is not a line at the edge of the screen. It is an exit marker in the room map that Bruce must touch while he stands at an edge and moves outward. The marker number selects one of four sets of exit tables, and the current room selects the entry in the set. [`handle_touched_tile` `$2E89`](../src/actor/background_touch.asm#L61) checks the 3 characters under and beside each actor, on two cell rows. A character 2, 3, 4 or 5 jumps to `take_exit2`, `take_exit3`, `take_exit4` or `take_exit5`. Each one first asks [`check_exit_edge` `$30D4`](../src/actor/touch_effects.asm#L154) whether the actor may leave. **Code**
 
 | Edge | Condition of `check_exit_edge` |
 |---|---|
@@ -111,7 +111,7 @@ loop:
   enter_room(x, y)                           ; Bruce: change_room; enemy: remove_actor
 ~~~
 
-When an enemy takes an exit, `enter_room` only removes the enemy. When Bruce takes an exit, [`change_room` `$2F9A`](../src/background_touch.asm#L234) stores his entry position and the new room. Each enemy that was in the room keeps its energy and gets Bruce's entry position in `enemy_follow_x` and `enemy_follow_y`, so it can follow him. Then the game resets the stack, `draw_room` draws the new room and the main loop starts again. **Code**
+When an enemy takes an exit, `enter_room` only removes the enemy. When Bruce takes an exit, [`change_room` `$2F9A`](../src/actor/background_touch.asm#L234) stores his entry position and the new room. Each enemy that was in the room keeps its energy and gets Bruce's entry position in `enemy_follow_x` and `enemy_follow_y`, so it can follow him. Then the game resets the stack, `draw_room` draws the new room and the main loop starts again. **Code**
 
 Two other ways change the room without an exit. When Bruce hits a wall and has no move history left, `act_wall_bump_still_in` enters the same room again at its start point. When Bruce enters room 11 and rooms 12, 14 and 16 are clear, `draw_room` sends him to room 13. **Code**
 
@@ -154,7 +154,7 @@ Each cell gives the new room (entry X, entry Y). "-" means that the entry X is 0
 
 ### The exits in play
 
-A table entry counts only when its marker is on the screen. Most markers are in the room map (decoded from [`room_map_ptr_lo` `$4B34`](../src/room_tables.asm#L69) and `room_map_ptr_hi`). The frame handler of the room ([`room_frame_handlers` `$4EC4`](../src/room_dispatch.asm#L28)) draws the other markers later. Many map markers stand behind a wall. A passage that the room code opens makes them reachable.
+A table entry counts only when its marker is on the screen. Most markers are in the room map (decoded from [`room_map_ptr_lo` `$4B34`](../src/room/room_tables.asm#L69) and `room_map_ptr_hi`). The frame handler of the room ([`room_frame_handlers` `$4EC4`](../src/room/room_dispatch.asm#L28)) draws the other markers later. Many map markers stand behind a wall. A passage that the room code opens makes them reachable.
 
 The map decode and the handler code give the table below. **Code** The screen of room 6 in a run (`rooms/room06.vsf`) showed only marker 2, at cell row 6, column 0. **Observed** The handler of each room is on [rooms_catalogue.md](rooms_catalogue.md).
 
@@ -211,9 +211,9 @@ The map decode and the handler code give the table below. **Code** The screen of
 
 **Unused exits.** Six entries of the exit tables have no marker in any room map, and no room code draws their marker. They are marker 5 in room 3, markers 3, 4 and 5 in room 6, and markers 2 and 5 in room 7. The map decode and the room code show this. **Code** The screen of room 6 in a run showed only its marker 2. **Observed** So the game never uses these six entries. **Conclusion**
 
-**The way back from the wizard closes.** Room 18 has two exits. Marker 2 at the left edge (cell row 11, column 0) goes to room 17. Marker 3 at the right edge goes to room 19. When Bruce takes the lantern of the wizard, [`room18_frame` `$3CDC`](../src/wizard_room.asm#L13) draws message `$61`, `msg_wizard_left_marker`, at row 11, column 0. Its cell code `$06` replaces marker 2, so the way back to room 17 closes.
+**The way back from the wizard closes.** Room 18 has two exits. Marker 2 at the left edge (cell row 11, column 0) goes to room 17. Marker 3 at the right edge goes to room 19. When Bruce takes the lantern of the wizard, [`room18_frame` `$3CDC`](../src/room/wizard_room.asm#L13) draws message `$61`, `msg_wizard_left_marker`, at row 11, column 0. Its cell code `$06` replaces marker 2, so the way back to room 17 closes.
 
-The way forward opens only after the defeat sequence of `$50` passes. Then [`room18_wizard_gone` `$3D9B`](../src/wizard_room.asm#L115) draws `msg_wizard_exit_top`, with marker 3 at column 39, on every pass. **Code** (the runs did not reach this code). After the defeat of the wizard, Bruce can leave room 18 only to room 19. **Conclusion**
+The way forward opens only after the defeat sequence of `$50` passes. Then [`room18_wizard_gone` `$3D9B`](../src/room/wizard_room.asm#L115) draws `msg_wizard_exit_top`, with marker 3 at column 39, on every pass. **Code** (the runs did not reach this code). After the defeat of the wizard, Bruce can leave room 18 only to room 19. **Conclusion**
 
 ### The map of the rooms
 
@@ -344,7 +344,7 @@ stateDiagram-v2
   Play --> [*]: F1, restart
 ~~~
 
-The table has more transitions than the diagrams. Examples are the restart of a room after a wall bump, the room 11 shortcut and the protection check of room 10. In room play and in the pause, F1 restarts the program through [`handle_game_keys` `$1B29`](../src/status_and_keys.asm#L57). The protection check of [`room10_frame_protection_check` `$3CA7`](../src/room_frames_8_11.asm#L289) is on [protection.md](protection.md), and the pause is on [interrupts.md](interrupts.md). **Code**
+The table has more transitions than the diagrams. Examples are the restart of a room after a wall bump, the room 11 shortcut and the protection check of room 10. In room play and in the pause, F1 restarts the program through [`handle_game_keys` `$1B29`](../src/game/status_and_keys.asm#L57). The protection check of [`room10_frame_protection_check` `$3CA7`](../src/room/room_frames_8_11.asm#L289) is on [protection.md](protection.md), and the pause is on [interrupts.md](interrupts.md). **Code**
 
 | State | Condition | Next state | Code |
 |---|---|---|---|
@@ -379,12 +379,12 @@ The table has more transitions than the diagrams. Examples are the restart of a 
 
 Room 0 has its marker 2 at cell row 8, column 39, at the right edge of the floor. This is the way that Bruce takes when he walks right from the start of a game. **Code**
 
-1. Bruce walks right. When the characters beside him include the marker, `handle_touched_tile` jumps to [`take_exit2` `$2F3C`](../src/background_touch.asm#L178).
+1. Bruce walks right. When the characters beside him include the marker, `handle_touched_tile` jumps to [`take_exit2` `$2F3C`](../src/actor/background_touch.asm#L178).
 2. `check_exit_edge` finds that room 0 is not room 11, that `actor_x` is above `$A1` and that Bruce moves right. It returns with carry clear: he may leave.
 3. With X = `room` = 0, the handler reads the first byte of each table of set 2 (below).
 4. The entry X is not 0, so `enter_room` runs. Bruce is actor 0, so it goes to `change_room`: `actor_x` = `$10`, `actor_y` = `$92`, `room` = 1. In sprite units that is X = 2 * `$10` = `$20` and Y = `$92` + `$1D` = `$AF`, at the left edge of room 1.
 
-The bytes come from [`exit2_dest_room` `$4B5E`](../src/room_tables.asm#L78), [`exit2_entry_x` `$4BFE`](../src/room_tables.asm#L121) and [`exit2_entry_y` `$4C12`](../src/room_tables.asm#L126), each at offset 0 for room 0. The way back is the marker 2 of room 1, at cell row 8, column 0, at offset 1 of the same tables.
+The bytes come from [`exit2_dest_room` `$4B5E`](../src/room/room_tables.asm#L78), [`exit2_entry_x` `$4BFE`](../src/room/room_tables.asm#L121) and [`exit2_entry_y` `$4C12`](../src/room/room_tables.asm#L126), each at offset 0 for room 0. The way back is the marker 2 of room 1, at cell row 8, column 0, at offset 1 of the same tables.
 
 | Address | Table | Byte | Meaning |
 |---|---|---|---|
@@ -399,5 +399,5 @@ The entry positions are just inside the edge limits of `check_exit_edge`. X = `$
 
 ## Still open
 
-- How does Bruce reach the marker 3 of room 17 at cell row 3, column 39 (top right)? Are the tiles of [`room17_frame` `$3F71`](../src/room_frames_12_17.asm#L188) (row 10, columns 24 and 37) part of that way? A playthrough run of room 17 with the lanterns taken can answer it.
-- Room 18 has the characters 4 and 5 in the picture of the wizard (cell rows 2-9). Its marker 4 and 5 entries are 0, so [`take_exit5` `$2F7B`](../src/background_touch.asm#L210) would enter room 0 at X = 0, Y = 0. [`check_exit_edge` `$30D4`](../src/touch_effects.asm#L154) probably never allows it there. A run with Bruce at the top edge of room 18 can check it.
+- How does Bruce reach the marker 3 of room 17 at cell row 3, column 39 (top right)? Are the tiles of [`room17_frame` `$3F71`](../src/room/room_frames_12_17.asm#L188) (row 10, columns 24 and 37) part of that way? A playthrough run of room 17 with the lanterns taken can answer it.
+- Room 18 has the characters 4 and 5 in the picture of the wizard (cell rows 2-9). Its marker 4 and 5 entries are 0, so [`take_exit5` `$2F7B`](../src/actor/background_touch.asm#L210) would enter room 0 at X = 0, Y = 0. [`check_exit_edge` `$30D4`](../src/actor/touch_effects.asm#L154) probably never allows it there. A run with Bruce at the top edge of room 18 can check it.

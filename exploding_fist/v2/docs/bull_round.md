@@ -18,7 +18,7 @@ The image shows a round at 3RD DAN, with the score 24700. The scenario [one_play
 
 ## When the round comes
 
-The round comes after the second won bout of each stage with `stage_counter` AND 3 = 3. [`game_one_player` `$1C24`](../src/game_modes.asm#L148) makes the test and calls the round. After the round, the game promotes the player as after each other stage. The value that the round returns in A has no effect. (**Code**)
+The round comes after the second won bout of each stage with `stage_counter` AND 3 = 3. [`game_one_player` `$1C24`](../src/game/game_modes.asm#L145) makes the test and calls the round. After the round, the game promotes the player as after each other stage. The value that the round returns in A has no effect. (**Code**)
 
 The scene of a stage is `stage_counter` AND 3. Thus the round always comes in scene 3, the scene with the Buddha statue. The round draws no scene of its own. The bull runs over the bitmap of the last bout. (**Code**) The image above shows scene 3. (**Observed**)
 
@@ -42,7 +42,7 @@ flowchart TB
   I -- "at its end" --> J["500 points when no hit, return"]
 ~~~
 
-[`bull_bonus_round` `$132C`](../src/bull_round.asm#L46) is the round. It does these steps in this order:
+[`bull_bonus_round` `$132C`](../src/game/bull_round_12f8.asm#L36) is the round. It does these steps in this order:
 
 1. **It shows only the six sprites of the fighters.** It writes `$3F` to `SPENA`, so the sprites 6 and 7 of the judge are off. (**Code**)
 2. **It puts the fighter alone at the left.** `bull_setup_fighter0` puts the fighter at x `$3E`, on the ground, facing right, in the stance. (**Code**)
@@ -59,7 +59,7 @@ The fighter update of the round has no hit test and no choice of the front fight
 
 The only way to stop the bull is frame `$0D`, the single frame of animation 7. Move 7 is joystick down and forward from a crouch. From the stance, down and forward gives move `$18` instead. Thus the player must pull the joystick down first and then push it down and forward. (**Code**)
 
-The test at [`bull_bonus_round` `$136C`](../src/bull_round.asm#L78) needs three conditions in the same frame. (**Code**)
+The test at [`bull_bonus_round` `$136C`](../src/game/bull_round_12f8.asm#L68) needs three conditions in the same frame. (**Code**)
 
 1. `fighter_frame` is `$0D`.
 2. `anim_frame_tick` is not 0: the animation stepper showed frame `$0D` in this frame. A held crouching attack keeps frame `$0D`, but `anim_frame_tick` is then 0. Thus the attack must start in the frame of the right distance.
@@ -67,15 +67,15 @@ The test at [`bull_bonus_round` `$136C`](../src/bull_round.asm#L78) needs three 
 
 When the three conditions are true, the round adds 30 times 100 points to the score of player 1 with `score_add_100`. Then it writes `$80` to `bull_state` and starts animation `$1D` for the bull: the bull falls and lies on the ground. When that animation ends, `bull_stopped_step` returns 0 and the round ends at once. The bull does not run to the left edge after a stop. (**Code**)
 
-No run reached the stop. The code from `$1372` to `$139C` and `bull_stopped_step` at `$1425-$142E` are in the list of code that no run executed. (**Observed**: `src/not_executed.json`)
+No run reached the stop. The code from `$1372` to `$139C` and `bull_stopped_step` at `$1425-$142E` are in the list of code that no run executed. (**Observed**: `.c64-re-tools/local/generated/src/not_executed.json`)
 
 ### The hit: the reach table at `$142F`
 
 When there is no stop, the round tests whether the bull reaches the fighter. The test at `$139D` first compares the x values. When the x of the bull is less than the x of the fighter, the bull is past the fighter and nothing happens. Else the distance goes to `fighter_distance`. (**Code**)
 
-[`bull_reach_by_frame` `$142F`](../src/bull_round.asm#L195) gives the reach of the bull for each frame of the fighter, `$00-$3A`. A value of `$80` means that the bull cannot reach the fighter in that frame. Else the bull hits when the reach is not less than the distance. The table replaces the sprite collision test of version I. (**Code**)
+[`bull_reach_by_frame` `$142F`](../src/game/bull_round_12f8.asm#L185) gives the reach of the bull for each frame of the fighter, `$00-$3A`. A value of `$80` means that the bull cannot reach the fighter in that frame. Else the bull hits when the reach is not less than the distance. The table replaces the sprite collision test of version I. (**Code**)
 
-The hit writes `$16` to `hit_reaction`, the hit reaction of a fall. It plays sample 1 and writes 1 to `bull_state`. The fighter falls with animation `$16`. At the end of the fall, `move_anim_end` sets `bout_knockdown`, and the round stops the fighter update. The bull continues its runs and leaves at the left edge. (**Code**) In each round of the scenarios and the recordings, the bull hit the fighter. No run executed the 500 points at `$1402-$140F`. (**Observed**: `src/not_executed.json`)
+The hit writes `$16` to `hit_reaction`, the hit reaction of a fall. It plays sample 1 and writes 1 to `bull_state`. The fighter falls with animation `$16`. At the end of the fall, `move_anim_end` sets `bout_knockdown`, and the round stops the fighter update. The bull continues its runs and leaves at the left edge. (**Code**) In each round of the scenarios and the recordings, the bull hit the fighter. No run executed the 500 points at `$1402-$140F`. (**Observed**: `.c64-re-tools/local/generated/src/not_executed.json`)
 
 **Conclusion**: the fall starts about 8 frames after the hit. `bout_setup_fighters` writes 8 to `knockdown_delay` at each exchange, and only a hit of the fighter in the bout counts it down.
 
@@ -92,7 +92,7 @@ The hit writes `$16` to `hit_reaction`, the hit reaction of a fall. It plays sam
 
 The numbers fit exactly. A run moves 22 units, and `$B0` is 176 = 8 x 22. Thus the bull reaches x 0 at the end of the 8th run. Animation `$1E` from x `$0C` ends at x 2. Animation `$1F` from x `$0E` ends at x 1, and the round ends. The frames of the exits show only the right part of the bull, so the bull leaves the screen at the left edge. Frames from `$3B` on skip the x limits of the fighters, so the bull can go below x `$0C`. (**Code**) The runs executed both exits at `$13EA` and `$13F2` and the end at `$13FA`. (**Observed**: coverage of the source)
 
-At x 1, [`bull_step` `$13FA`](../src/bull_round.asm#L158) gives 500 points when `hit_reaction` of the fighter and `bout_knockdown` are 0. Before that, it writes 0 to `group_x_lo+1`. The interrupt at the start of the frame writes `group_x_lo` again before a read, so this store has no effect. (**Code**) **Conclusion**: a leftover, perhaps for another variable.
+At x 1, [`bull_step` `$13FA`](../src/game/bull_round_12f8.asm#L148) gives 500 points when `hit_reaction` of the fighter and `bout_knockdown` are 0. Before that, it writes 0 to `group_x_lo+1`. The interrupt at the start of the frame writes `group_x_lo` again before a read, so this store has no effect. (**Code**) **Conclusion**: a leftover, perhaps for another variable.
 
 ### The sound
 
@@ -138,7 +138,7 @@ These values tell the player what helps. (**Code**)
 
 The bull is a fighter with other frames. The run uses frames `$3B-$3F`, the fall after a stop `$40-$42`, and the exits `$44-$46`, `$48` and `$4C`. The part tables hold sprite pointers for these frames. (**Code**)
 
-When `shape_page_offset` is not 0, [`shape_build` `$3914`](../src/shape_build.asm#L37) jumps to `shape_direct_ptrs`. That routine writes the 9 part values of the frame directly into `fighter_part_ptrs`. It makes no copy into a shape buffer, no mirror and no shadow. The fighters use the copy path instead. (**Code**)
+When `shape_page_offset` is not 0, [`shape_build` `$3914`](../src/shapes/shape_build_390c.asm#L11) jumps to `shape_direct_ptrs`. That routine writes the 9 part values of the frame directly into `fighter_part_ptrs`. It makes no copy into a shape buffer, no mirror and no shadow. The fighters use the copy path instead. (**Code**)
 
 The bull blocks are at `$C940-$CBFF`, `$DC40-$DFFF`, `$E000-$E0FF` and `$E300-$E5BF`, VIC pointers `$25-$2F`, `$71-$7F`, `$80-$83` and `$8C-$96`. The VIC reads them directly, so blocks under the I/O area and in the charset are possible. The blocks are the bull of version I, byte for byte. The images of the blocks are on [graphics.md](reference/graphics.md), for example `bull_f59_parts`. (**Code**) The sprite layout is on [graphics.md](graphics.md).
 
@@ -201,7 +201,7 @@ When the fighter misses the window and stays in the crouch, frame `$0C` has reac
 
 ## From the bull test of version I to the bull round
 
-Version I already has the bull. [`v1:dev_bull_test` `$138F`](../../v1/src/dev_bull_test.asm#L42) is a frame loop that lets a brown bull run at fighter 0. No code of version I calls it. The M.XSPRITES file at `$F540` holds the bull graphics, and the animation table has the scripts `$1C` and `$1D`. The details of this leftover are on [development.md](../../docs/development.md). (**Code**)
+Version I already has the bull. [`v1:dev_bull_test` `$138F`](../../v1/src/dev/dev_bull_test_138f.asm#L6) is a frame loop that lets a brown bull run at fighter 0. No code of version I calls it. The M.XSPRITES file at `$F540` holds the bull graphics, and the animation table has the scripts `$1C` and `$1D`. The details of this leftover are on [development.md](../../docs/development.md). (**Code**)
 
 A test calls the code from a stub at `$0200` while a demo bout runs: [bull_test.json](../../v1/tests/bull_test.json). The stub calls `v1:dev_clear_part_ptrs`, `v1:dev_setup_fighter0` and `v1:dev_bull_test`. The brown bull runs at the white fighter, hits him with hit reaction `$16` and runs over him. (**Observed**)
 
@@ -240,9 +240,9 @@ The table below lists each change of the bull loop. The sections after it explai
 
 ### A caller and a complete preparation
 
-In version I, nothing calls the test. The stub of the test must call three routines, and the bull loop prepares only the bull. Version II calls the round at `$1C24`. `bull_bonus_round` calls [`bull_setup_fighter0` `$130E`](../src/bull_round.asm#L29) itself at `$1331`. It also writes `SPENA`, `front_fighter`, `bout_knockdown`, `bull_state` and `sfx_done`. Version I has none of these stores. (**Code**)
+In version I, nothing calls the test. The stub of the test must call three routines, and the bull loop prepares only the bull. Version II calls the round at `$1C24`. `bull_bonus_round` calls [`bull_setup_fighter0` `$130E`](../src/game/bull_round_12f8.asm#L19) itself at `$1331`. It also writes `SPENA`, `front_fighter`, `bout_knockdown`, `bull_state` and `sfx_done`. Version I has none of these stores. (**Code**)
 
-The fighter update changed in one place only. Version I writes 0 to `shape_page_offset` at the call, at [`v1:dev_bull_test` `$13C7`](../../v1/src/dev_bull_test.asm#L73). Version II moved these two instructions into the routine: [`bull_fighter0_update` `$12F8`](../src/bull_round.asm#L16) writes 0, and `solo_fighter_update` at `$12FC` is the body of [`v1:dev_update_fighter` `$135F`](../../v1/src/dev_bull_test.asm#L16). (**Code**)
+The fighter update changed in one place only. Version I writes 0 to `shape_page_offset` at the call, at [`v1:dev_bull_test` `$13C7`](../../v1/src/dev/dev_bull_test_138f.asm#L38). Version II moved these two instructions into the routine: [`bull_fighter0_update` `$12F8`](../src/game/bull_round_12f8.asm#L6) writes 0, and `solo_fighter_update` at `$12FC` is the body of [`v1:dev_update_fighter` `$135F`](../../v1/src/dev/dev_bull_test_135f.asm#L6). (**Code**)
 
 ### The contact: from the sprite collision to the reach table
 
@@ -264,7 +264,7 @@ Version II writes `$80` to `bull_state` at `$138D`, and `bull_step` sends the bu
 
 ### The hit
 
-Version I writes `$16` to `hit_reaction` in each frame of a contact, at [`v1:dev_bull_test` `$140E`](../../v1/src/dev_bull_test.asm#L114). It has no test of `bout_knockdown`, so the update of the fighter continues after the fall. (**Code**) The test run shows the fall and the bull, which runs over the fighter. (**Observed**)
+Version I writes `$16` to `hit_reaction` in each frame of a contact, at [`v1:dev_bull_test` `$140E`](../../v1/src/dev/dev_bull_test_138f.asm#L79). It has no test of `bout_knockdown`, so the update of the fighter continues after the fall. (**Code**) The test run shows the fall and the bull, which runs over the fighter. (**Observed**)
 
 Version II gives the hit once, with sample 1 and `bull_state` 1, at `$13B3-$13BC`. After the fall, `$13BE` stops the fighter update. The fighter stays on the ground until the bull leaves. (**Code**)
 

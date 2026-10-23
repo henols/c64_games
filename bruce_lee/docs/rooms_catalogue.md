@@ -4,14 +4,14 @@ The game has 20 rooms. Rooms 0-3 are the garden, rooms 4-9 are the caves and roo
 
 This page gives each room one section of the same form. The section tells what the room does in the game and shows its screenshot. Then it gives the entries of the room in the per-room tables, the setup, the behaviour and the exits. The page ends with the conditions by which one room changes another room.
 
-The handlers come from the RTS tables [`room_init_handlers` `$4E9C`](../src/room_dispatch.asm#L19) and [`room_frame_handlers` `$4EC4`](../src/room_dispatch.asm#L28). The page [rooms.md](rooms.md) explains what all rooms share: the tables, the map format, `draw_room`, the lanterns, the passages and the hazards.
+The handlers come from the RTS tables [`room_init_handlers` `$4E9C`](../src/room/room_dispatch.asm#L19) and [`room_frame_handlers` `$4EC4`](../src/room/room_dispatch.asm#L28). The page [rooms.md](rooms.md) explains what all rooms share: the tables, the map format, `draw_room`, the lanterns, the passages and the hazards.
 
 **Conventions.**
 
 - Addresses are C64 addresses. Names are the names of the knowledge.
 - A *pass* is one run of `main_loop` (3 frames). An *even pass* has `pass_parity` = 0.
 - "L7 C31" is the cell at text line 7, column 31. Text line L uses screen rows 2L-1 and 2L. The map fills lines 2-12.
-- A *tile* is a message of [`print_message` `$17E2`](../src/actor_driver_text.asm#L59). "Tile $13" is message $13. A *code* is the character code of the upper row of a cell.
+- A *tile* is a message of [`print_message` `$17E2`](../src/actor/actor_driver_text.asm#L59). "Tile $13" is message $13. A *code* is the character code of the upper row of a cell.
 - An *exit marker N* is a cell with code N (2-5). It uses the exit tables of set N ([exits](rooms.md#exits)). An example is "marker 3 at L12 C19-21 to room 5 at ($2C, $32)". The destination is room 5, Bruce's entry X is $2C and his entry Y is $32.
 - A room is *cleared* when its [`room_lanterns_left` `$002A`](../src/constants.asm#L29) + room is 0. "Lantern L4 C11" is the lantern record with that position. The first byte of the record is its state: 1 = present, 0 = taken.
 - The *room state bytes* `room_state_a` to `room_state_e` (`$4E97-$4E9B`) are five scratch bytes. Each room uses them for its own timers, counters and flags. `room_init_clear_vars` sets them to 0 at each room entry, before the init handler runs.
@@ -40,7 +40,7 @@ The screenshot shows snow mountains and an ox statue on a pedestal at the left. 
 
 **The setup.** None (`room_init_none`).
 
-**The behaviour.** [`room00_frame` `$3642`](../src/room_frames_0_7.asm#L9) waits until room 6 is cleared. Then it moves the mouth of the statue at L9 C7 on even passes. It shows tile $1D with sound $81 for one step, then tile $1E for 6 steps. `room_state_a` is the timer. `room_state_b` tells which tile is on the screen. **Code**. This code never ran in the coverage.
+**The behaviour.** [`room00_frame` `$3642`](../src/room/room_frames_0_7.asm#L9) waits until room 6 is cleared. Then it moves the mouth of the statue at L9 C7 on even passes. It shows tile $1D with sound $81 for one step, then tile $1E for 6 steps. `room_state_a` is the timer. `room_state_b` tells which tile is on the screen. **Code**. This code never ran in the coverage.
 
 ~~~mermaid
 stateDiagram-v2
@@ -66,7 +66,7 @@ stateDiagram-v2
 | 2 | L8 C39 | room 1 at ($10, $92) | - |
 | 5 | L5 C39 | room 1 at ($0F, $62) | - |
 
-Bruce enters from room 1 (markers 2 and 4). He also enters from room 19, where [`place_bruce_at_room_start` `$3217`](../src/room_misc_support.asm#L11) with X = 0 starts the next game loop.
+Bruce enters from room 1 (markers 2 and 4). He also enters from room 19, where [`place_bruce_at_room_start` `$3217`](../src/room/room_misc_support.asm#L11) with X = 0 starts the next game loop.
 
 ## Room 1: the pagodas and the first trapdoor
 
@@ -87,14 +87,14 @@ The screenshot shows two pagoda buildings at the left and the right, and a blue 
 | Lanterns | 6, `lantern_list_room1` |
 | Handlers | `room01_init`, `room01_frame` |
 
-**The setup.** [`room01_init` `$33F6`](../src/room_specific_init.asm#L9) sets `room_state_a` = 3. This byte counts the steps of the trapdoor.
+**The setup.** [`room01_init` `$33F6`](../src/room/room_specific_init.asm#L9) sets `room_state_a` = 3. This byte counts the steps of the trapdoor.
 
-**The behaviour.** [`room01_frame` `$3679`](../src/room_frames_0_7.asm#L42) opens the trapdoor at L12 C17-21 in 4 steps. It does a step on an even pass when these conditions are true:
+**The behaviour.** [`room01_frame` `$3679`](../src/room/room_frames_0_7.asm#L42) opens the trapdoor at L12 C17-21 in 4 steps. It does a step on an even pass when these conditions are true:
 
 - Rooms 0, 1 and 2 are cleared.
 - Room 6 still has lanterns.
 
-At each step the handler decrements `room_state_a` and draws tile $10 + `room_state_a`. So it draws tiles $12, $11, $10 and $0F. [`play_open_sound` `$424F`](../src/wizard_fireballs.asm#L183) plays at the first step. The open trapdoor (tile $0F, codes $22 $22 $03 $03 $03) holds exit marker 3 at C19-21. **Code**. This code never ran in the coverage.
+At each step the handler decrements `room_state_a` and draws tile $10 + `room_state_a`. So it draws tiles $12, $11, $10 and $0F. [`play_open_sound` `$424F`](../src/room/wizard_fireballs.asm#L183) plays at the first step. The open trapdoor (tile $0F, codes $22 $22 $03 $03 $03) holds exit marker 3 at C19-21. **Code**. This code never ran in the coverage.
 
 ~~~mermaid
 stateDiagram-v2
@@ -149,7 +149,7 @@ The screenshot shows pagoda roofs with a ladder at the left, a blue lattice in t
 
 **The setup.** None (`room_init_none`).
 
-**The behaviour.** [`room02_frame` `$36A6`](../src/room_frames_0_7.asm#L75) does three things on each pass:
+**The behaviour.** [`room02_frame` `$36A6`](../src/room/room_frames_0_7.asm#L75) does three things on each pass:
 
 1. **The copy protection check.** The handler loops forever if [`D6510` `$0000`](../src/constants.asm#L7) does not hold $EF. The original loader leaves this value there. The check passed in all runs of the coverage. **Observed.** It is check 6 of [protection.md](protection.md). The default build (`PROTECTION` = 0) replaces it with code that always passes. **Code.**
 2. **The right wall opens.** When room 6 is cleared, the handler opens the wall one time (`room_state_b`). It calls `play_open_sound`, then draws tile $1A (codes $00 $00 $05) at L11 C37 and tile $07 (codes $11 $11 $11) at L12 C37. Exit marker 5 then shows at L11 C39. **Code.**
@@ -204,9 +204,9 @@ The screenshot shows white towers with blue vines, a lattice in the middle and s
 | Lanterns | 2, `lantern_list_room3`: L10 C29, L10 C38 |
 | Handlers | `room03_init`, `room03_frame` |
 
-**The setup.** [`room03_init` `$33FC`](../src/room_specific_init.asm#L14) sets `room_state_a` = 3. This byte counts the steps of the trapdoor.
+**The setup.** [`room03_init` `$33FC`](../src/room/room_specific_init.asm#L14) sets `room_state_a` = 3. This byte counts the steps of the trapdoor.
 
-**The behaviour.** [`room03_frame` `$3702`](../src/room_frames_0_7.asm#L136) runs two machines:
+**The behaviour.** [`room03_frame` `$3702`](../src/room/room_frames_0_7.asm#L136) runs two machines:
 
 1. **The trapdoor** at L12 C29-33. When room 3 is cleared ([`room_lanterns_left+3` `$002D`](../src/constants.asm#L29) = 0), the trapdoor opens in 4 steps on even passes. The steps are the same as in room 1: tiles $12, $11, $10 and $0F, with sound $8A at the first step. The open trapdoor holds marker 3 at C31-33. **Code**. This code never ran in the coverage.
 2. **The ledges** of line 6. `room_state_c` counts 33 passes. Then `room_state_b` toggles, and two tiles change places between C9-15 and C21-27. Tile $06 has 7 cells of code $4B, and tile $60 has 7 cells of code $09. **Observed** (coverage).
@@ -259,16 +259,16 @@ The screenshot shows a dark blue cave with a moving purple column in the middle 
 
 The map decodes to two cells more than the play area holds. This is [the map overflow](rooms.md#map-sizes-and-the-overflow).
 
-**The setup.** [`room04_init` `$3402`](../src/room_specific_init.asm#L22) sets `room_state_d` = $1F. So lantern 2 blinks half a period after lantern 1. The handler puts slider 0 at L11 C1, slider 1 at L7 C11 and slider 2 at L7 C26. It sets [`slider_timer` `$0077`](../src/constants.asm#L70) = $FF, $FF and $F4.
+**The setup.** [`room04_init` `$3402`](../src/room/room_specific_init.asm#L22) sets `room_state_d` = $1F. So lantern 2 blinks half a period after lantern 1. The handler puts slider 0 at L11 C1, slider 1 at L7 C11 and slider 2 at L7 C26. It sets [`slider_timer` `$0077`](../src/constants.asm#L70) = $FF, $FF and $F4.
 
-**The behaviour.** [`room04_frame` `$3760`](../src/room_frames_0_7.asm#L195) runs on each pass. **Observed** (coverage), but not the steps after Bruce takes a lantern.
+**The behaviour.** [`room04_frame` `$3760`](../src/room/room_frames_0_7.asm#L195) runs on each pass. **Observed** (coverage), but not the steps after Bruce takes a lantern.
 
 1. **Lantern 1 blinks** while it is present. `room_state_c` increments. At 32 the handler draws tile $34 (lit, code $13, Bruce can take it) at L4 C11. At 64 it draws tile $36 (dark, code $66, Bruce cannot take it), and the counter starts again at 0.
 2. **Lantern 1 taken.** One time (`room_state_a`), the handler plays sound $8A. It draws tile $16 (4 blanks) at L8 C11 and L9 C11, and it erases slider 1 (frame 6).
 3. **Lantern 2 blinks** in the same way, with `room_state_d` and tiles $35 / $37 at L4 C28.
-4. **Lantern 2 taken.** One time (`room_state_b`), the handler sets `anim_chars_direction` = 0 and [`anim_chars_speed_step` `$4321`](../src/options_and_patterns.asm#L53) = 7. So the moving column starts again. Then it plays sound $8A, draws tile $16 at L8 C25 and L9 C25, and erases slider 2.
+4. **Lantern 2 taken.** One time (`room_state_b`), the handler sets `anim_chars_direction` = 0 and [`anim_chars_speed_step` `$4321`](../src/game/options_and_patterns.asm#L53) = 7. So the moving column starts again. Then it plays sound $8A, draws tile $16 at L8 C25 and L9 C25, and erases slider 2.
 5. **The sliders** run: slider 0 (look B), slider 1 while lantern 1 is present, and slider 2 while lantern 2 is present. See [sliders](rooms.md#sliders).
-6. [`animate_scrolling_chars` `$2C70`](../src/animated_chars.asm#L12) moves the purple column.
+6. [`animate_scrolling_chars` `$2C70`](../src/room/animated_chars.asm#L12) moves the purple column.
 
 ~~~mermaid
 stateDiagram-v2
@@ -324,13 +324,13 @@ The screenshot shows a blue cave with lattice towers in the middle and a moving 
 | Lanterns | 10, `lantern_list_room5` |
 | Handlers | `room05_init`, `room05_frame` |
 
-**The setup.** [`room05_init` `$3428`](../src/room_specific_init.asm#L48) does three things:
+**The setup.** [`room05_init` `$3428`](../src/room/room_specific_init.asm#L48) does three things:
 
 1. **The copy protection check.** The handler loops forever if [`prot_loader_mark` `$0002`](../src/constants.asm#L9) does not hold $32. The original loader leaves this value there. The check passed in the coverage. **Observed.** It is check 7 of [protection.md](protection.md). The default build (`PROTECTION` = 0) replaces it. **Code.**
 2. It sets colour RAM $FC (colour 12) for L2 C34-36. Tile $19 shows there later.
 3. It puts slider 0 at L9 C27, slider 1 at L10 C27 and slider 2 at L5 C1. It sets `slider_timer` = $FF, $FC and $F8.
 
-**The behaviour.** [`room05_frame` `$38AB`](../src/room_frames_0_7.asm#L378) runs three one-shot events. Then it runs the sliders and `animate_scrolling_chars`. **Code**. The event of lantern L10 C2 ran in the coverage. **Observed.**
+**The behaviour.** [`room05_frame` `$38AB`](../src/room/room_frames_0_7.asm#L378) runs three one-shot events. Then it runs the sliders and `animate_scrolling_chars`. **Code**. The event of lantern L10 C2 ran in the coverage. **Observed.**
 
 | Event | Flag | Condition | Action |
 |---|---|---|---|
@@ -383,7 +383,7 @@ The screenshot shows a blue room with a big temple building, a striped wall at t
 
 **The setup.** None (`room_init_none`).
 
-**The behaviour.** When room 6 is cleared, [`room06_frame` `$39AA`](../src/room_frames_0_7.asm#L519) opens a passage at L5 C1 one time. It uses `room_state_a` as the flag and [`open_passage_ledge` `$3AA0`](../src/passage_open.asm#L54) to draw. Then it runs [`update_burst_traps` `$3228`](../src/room_misc_support.asm#L33) and `animate_scrolling_chars`. **Code.**
+**The behaviour.** When room 6 is cleared, [`room06_frame` `$39AA`](../src/room/room_frames_0_7.asm#L519) opens a passage at L5 C1 one time. It uses `room_state_a` as the flag and [`open_passage_ledge` `$3AA0`](../src/room/passage_open.asm#L54) to draw. Then it runs [`update_burst_traps` `$3228`](../src/room/room_misc_support.asm#L33) and `animate_scrolling_chars`. **Code.**
 
 **The links to other rooms.**
 
@@ -415,15 +415,15 @@ The screenshot shows an orange cave with two levels of buildings and a long floo
 
 The map decodes to two cells more than the play area holds. This is [the map overflow](rooms.md#map-sizes-and-the-overflow).
 
-**The setup.** [`room07_init` `$3461`](../src/room_specific_init.asm#L93) puts the runner at L11 C5 (`runner_col` = `runner_old_col` = 5, `runner_row` = 11). It puts slider 0 at L4 C34 with `slider_timer` = $FF.
+**The setup.** [`room07_init` `$3461`](../src/room/room_specific_init.asm#L93) puts the runner at L11 C5 (`runner_col` = `runner_old_col` = 5, `runner_row` = 11). It puts slider 0 at L4 C34 with `slider_timer` = $FF.
 
-**The behaviour.** [`room07_frame` `$39C3`](../src/room_frames_0_7.asm#L542) runs on each pass. **Observed** (coverage), but not the second passage and not the runner to the left.
+**The behaviour.** [`room07_frame` `$39C3`](../src/room/room_frames_0_7.asm#L542) runs on each pass. **Observed** (coverage), but not the second passage and not the runner to the left.
 
 1. `update_burst_traps` moves the burst traps.
-2. When Bruce has the 5 lanterns of line 2, one time (`room_state_a`): [`open_passage_ledge` `$3AA0`](../src/passage_open.asm#L54) at L2 C33. The handler then stops for this pass.
+2. When Bruce has the 5 lanterns of line 2, one time (`room_state_a`): [`open_passage_ledge` `$3AA0`](../src/room/passage_open.asm#L54) at L2 C33. The handler then stops for this pass.
 3. When Bruce has the 6 lanterns of line 5, one time (`room_state_b`): `open_passage_ledge` at L5 C38. The handler then stops for this pass.
 4. Slider 0 runs at L4 C34-36 (look B).
-5. The runner of line 11 moves right (C5-35) while lantern L9 C2 (`lantern_list_room7+$2C`) or L9 C3 (`lantern_list_room7+$30`) is present. When Bruce has both, [`room07_frame_runner_left` `$3A51`](../src/room_frames_0_7.asm#L614) moves it left (C36-5).
+5. The runner of line 11 moves right (C5-35) while lantern L9 C2 (`lantern_list_room7+$2C`) or L9 C3 (`lantern_list_room7+$30`) is present. When Bruce has both, [`room07_frame_runner_left` `$3A51`](../src/room/room_frames_0_7.asm#L614) moves it left (C36-5).
 
 **The links to other rooms.**
 
@@ -454,9 +454,9 @@ The screenshot shows an orange cave with two moving purple columns. **Observed.*
 | Lanterns | 4, `lantern_list_room8`: L3 C15, L3 C24, L7 C6 (+8), L7 C33 (+12) |
 | Handlers | `room08_init`, `room08_frame` |
 
-**The setup.** [`room08_init` `$3478`](../src/room_specific_init.asm#L107) puts slider 0 at L5 C6 (timer $FF) and slider 1 at L5 C27 (timer $F2).
+**The setup.** [`room08_init` `$3478`](../src/room/room_specific_init.asm#L107) puts slider 0 at L5 C6 (timer $FF) and slider 1 at L5 C27 (timer $F2).
 
-**The behaviour.** [`room08_frame` `$3AD4`](../src/room_frames_8_11.asm#L16) runs five one-shot events. Then it runs slider 0 (L5 C6-11), slider 1 (L5 C27-32) and `animate_scrolling_chars`. **Code**. The events never ran in the coverage.
+**The behaviour.** [`room08_frame` `$3AD4`](../src/room/room_frames_8_11.asm#L16) runs five one-shot events. Then it runs slider 0 (L5 C6-11), slider 1 (L5 C27-32) and `animate_scrolling_chars`. **Code**. The events never ran in the coverage.
 
 | Event | Flag | Condition | Action |
 |---|---|---|---|
@@ -496,9 +496,9 @@ The screenshot shows an orange cave with purple slopes and a moving column at th
 | Lanterns | 5, `lantern_list_room9`: L2 C32, L7 C15 (+4), L10 C27 (+8), L10 C28 (+12), L10 C32 |
 | Handlers | `room09_init`, `room09_frame` |
 
-**The setup.** [`room09_init` `$348F`](../src/room_specific_init.asm#L123) sets colour RAM $FA (colour 10) for L2 C35-38. Tile $18 shows there later. The handler puts the runner at L12 C4. It puts slider 0 at L5 C16 (timer $FC) and slider 1 at L6 C16 (timer $FF).
+**The setup.** [`room09_init` `$348F`](../src/room/room_specific_init.asm#L123) sets colour RAM $FA (colour 10) for L2 C35-38. Tile $18 shows there later. The handler puts the runner at L12 C4. It puts slider 0 at L5 C16 (timer $FC) and slider 1 at L6 C16 (timer $FF).
 
-**The behaviour.** [`room09_frame` `$3BB2`](../src/room_frames_8_11.asm#L149) runs three one-shot events. **Code**. The events never ran in the coverage. The runner to the right and the sliders ran. **Observed.**
+**The behaviour.** [`room09_frame` `$3BB2`](../src/room/room_frames_8_11.asm#L149) runs three one-shot events. **Code**. The events never ran in the coverage. The runner to the right and the sliders ran. **Observed.**
 
 | Event | Flag | Condition | Action |
 |---|---|---|---|
@@ -545,10 +545,10 @@ The map decodes to two cells more than the play area holds. This is [the map ove
 
 **The setup.** None (`room_init_none`).
 
-**The behaviour.** [`room10_frame` `$3C90`](../src/room_frames_8_11.asm#L278) does three things on each pass:
+**The behaviour.** [`room10_frame` `$3C90`](../src/room/room_frames_8_11.asm#L278) does three things on each pass:
 
-1. When Bruce has lanterns L4 C1 and L7 C30, one time (`room_state_a`): [`open_passage_dark` `$3AB4`](../src/passage_open.asm#L69) at L4 C38. **Code.**
-2. **The copy protection check** ([`room10_frame_protection_check` `$3CA7`](../src/room_frames_8_11.asm#L289)). If `D6510` does not hold $EF, the handler writes $80 to the first byte of `room_map_00`, `room_map_05` and `room_map_01`. Then it jumps to `show_title_screen`. After that, those three rooms show as empty. The check passed in the coverage. **Observed.** It is check 8 of [protection.md](protection.md). The default build (`PROTECTION` = 0) never damages the maps. **Code.**
+1. When Bruce has lanterns L4 C1 and L7 C30, one time (`room_state_a`): [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) at L4 C38. **Code.**
+2. **The copy protection check** ([`room10_frame_protection_check` `$3CA7`](../src/room/room_frames_8_11.asm#L289)). If `D6510` does not hold $EF, the handler writes $80 to the first byte of `room_map_00`, `room_map_05` and `room_map_01`. Then it jumps to `show_title_screen`. After that, those three rooms show as empty. The check passed in the coverage. **Observed.** It is check 8 of [protection.md](protection.md). The default build (`PROTECTION` = 0) never damages the maps. **Code.**
 3. `update_burst_traps` moves the burst traps.
 
 **The links to other rooms.**
@@ -579,11 +579,11 @@ The screenshot shows a purple room with a climbing column at the left and three 
 | Lanterns | 3, `lantern_list_room11`: L3 C18, L3 C21, L10 C7 (+8) |
 | Handlers | `room_init_none`, `room11_frame` |
 
-**The setup.** None (`room_init_none`). But [`draw_room` `$09BC`](../src/draw_room.asm#L28) has a rule for room 11. When rooms 12, 14 and 16 are cleared, it sends Bruce to the start of room 13 (`place_bruce_at_room_start` with X = 13). **Code**. This code never ran in the coverage.
+**The setup.** None (`room_init_none`). But [`draw_room` `$09BC`](../src/room/draw_room.asm#L28) has a rule for room 11. When rooms 12, 14 and 16 are cleared, it sends Bruce to the start of room 13 (`place_bruce_at_room_start` with X = 13). **Code**. This code never ran in the coverage.
 
-**The behaviour.** When Bruce takes lantern L10 C7 (`lantern_list_room11+8`), [`room11_frame` `$3CC0`](../src/room_frames_8_11.asm#L318) starts the moving column again, one time (`room_state_a`). It sets `anim_chars_direction` = 0 and starts the speed curve again. Then it runs `update_burst_traps` and `animate_scrolling_chars`. **Code.**
+**The behaviour.** When Bruce takes lantern L10 C7 (`lantern_list_room11+8`), [`room11_frame` `$3CC0`](../src/room/room_frames_8_11.asm#L318) starts the moving column again, one time (`room_state_a`). It sets `anim_chars_direction` = 0 and starts the speed curve again. Then it runs `update_burst_traps` and `animate_scrolling_chars`. **Code.**
 
-**The links to other rooms.** In room 11, [`check_exit_edge` `$30D4`](../src/touch_effects.asm#L154) allows an exit at all places, not only at a screen edge. So the three pits of line 7 are exits. **Code.**
+**The links to other rooms.** In room 11, [`check_exit_edge` `$30D4`](../src/actor/touch_effects.asm#L154) allows an exit at all places, not only at a screen edge. So the three pits of line 7 are exits. **Code.**
 
 | Marker | Place | To | Condition |
 |---|---|---|---|
@@ -614,11 +614,11 @@ The screenshot shows a grey hall with three floors and blue ramps. **Observed.**
 | Lanterns | 3, `lantern_list_room12`: L4 C36, L7 C36, L10 C36 (+8) |
 | Handlers | `room12_init`, `room12_frame` |
 
-**The setup.** [`room12_init` `$34BD`](../src/room_specific_init.asm#L149) sets `room_state_a` = 1. So the handler draws the first passage on two passes.
+**The setup.** [`room12_init` `$34BD`](../src/room/room_specific_init.asm#L149) sets `room_state_a` = 1. So the handler draws the first passage on two passes.
 
-**The behaviour.** [`room12_frame` `$3E4C`](../src/room_frames_12_17.asm#L11) does three things on each pass. **Code.**
+**The behaviour.** [`room12_frame` `$3E4C`](../src/room/room_frames_12_17.asm#L11) does three things on each pass. **Code.**
 
-1. When Bruce has lantern L10 C36 (`lantern_list_room12+8`), the handler calls [`open_passage_dark` `$3AB4`](../src/passage_open.asm#L69) at L10 C38. The flag is `room_state_a`.
+1. When Bruce has lantern L10 C36 (`lantern_list_room12+8`), the handler calls [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) at L10 C38. The flag is `room_state_a`.
 2. The second passage needs two conditions. Room 12 must be cleared, and the room 14 lanterns L10 C9 (`lantern_list_room14+8`) and L10 C30 (`lantern_list_room14+$C`) must be taken. Then, one time (`room_state_b`), the handler calls `open_passage_dark` at L7 C38.
 3. `update_burst_traps` moves the burst traps.
 
@@ -652,14 +652,14 @@ The screenshot shows a blue room with four long floors. **Observed.**
 
 The map decodes to two cells more than the play area holds. This is [the map overflow](rooms.md#map-sizes-and-the-overflow).
 
-**The setup.** [`room13_init` `$34C3`](../src/room_specific_init.asm#L159) fills the 10 slots of the floor movers ([hazards](rooms.md#hazards)). Some values depend on `game_loop_count`, so the later game loops have longer tracks. Also, [`actor_calc_tile_pos` `$1C39`](../src/game_main_loop.asm#L91) adds 4 to the Y of the actors in room 13 before it calculates the line. **Code.**
+**The setup.** [`room13_init` `$34C3`](../src/room/room_specific_init.asm#L159) fills the 10 slots of the floor movers ([hazards](rooms.md#hazards)). Some values depend on `game_loop_count`, so the later game loops have longer tracks. Also, [`actor_calc_tile_pos` `$1C39`](../src/game/game_main_loop.asm#L91) adds 4 to the Y of the actors in room 13 before it calculates the line. **Code.**
 
-**The behaviour.** [`room13_frame` `$3E7C`](../src/room_frames_12_17.asm#L41) runs on each pass. **Observed** (coverage: the lowest band and the movers ran).
+**The behaviour.** [`room13_frame` `$3E7C`](../src/room/room_frames_12_17.asm#L41) runs on each pass. **Observed** (coverage: the lowest band and the movers ran).
 
 1. The handler sets X = `current_player` * 4.
 2. Bruce's `actor_y` selects a band: $64-$89 is band 0, $8A-$B5 is band 1, and $B6 or more is band 2. Above $64, the handler does nothing.
-3. If [`room13_band_bonus` `$014B`](../src/constants.asm#L145) + X + band is 1, the handler sets it to 0. The player gets 500 points ([`add_score` `$3175`](../src/score.asm#L52) with $01 at byte 1 and $F4 at byte 2). The pass stops there.
-4. Else [`update_floor_movers` `$104B`](../src/game_setup.asm#L169) moves the movers on even passes. Only sprites 0 and 1 (Bruce) stay on.
+3. If [`room13_band_bonus` `$014B`](../src/constants.asm#L145) + X + band is 1, the handler sets it to 0. The player gets 500 points ([`add_score` `$3175`](../src/game/score.asm#L52) with $01 at byte 1 and $F4 at byte 2). The pass stops there.
+4. Else [`update_floor_movers` `$104B`](../src/game/game_setup.asm#L169) moves the movers on even passes. Only sprites 0 and 1 (Bruce) stay on.
 
 ~~~mermaid
 stateDiagram-v2
@@ -705,9 +705,9 @@ The screenshot shows a grey hall with blue ramps at the two sides, with Yamo in 
 | Lanterns | 4, `lantern_list_room14`: L7 C9, L7 C30 (+4), L10 C9 (+8), L10 C30 (+12) |
 | Handlers | `room14_init`, `room14_frame` |
 
-**The setup.** [`room14_init` `$358D`](../src/room_specific_init.asm#L249) sets `room_state_a` = 1. So the handler draws the passage on two passes.
+**The setup.** [`room14_init` `$358D`](../src/room/room_specific_init.asm#L249) sets `room_state_a` = 1. So the handler draws the passage on two passes.
 
-**The behaviour.** When Bruce has lanterns L7 C9 and L7 C30, [`room14_frame` `$3ECC`](../src/room_frames_12_17.asm#L88) opens a passage at L4 C38. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/passage_open.asm#L69) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
+**The behaviour.** When Bruce has lanterns L7 C9 and L7 C30, [`room14_frame` `$3ECC`](../src/room/room_frames_12_17.asm#L88) opens a passage at L4 C38. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
 
 **The links to other rooms.**
 
@@ -738,9 +738,9 @@ The screenshot shows a dark tower with ladders in the middle, under a blue sky, 
 | Lanterns | 6, `lantern_list_room15`: L3 C19, L3 C21 (+4), L4 C14 (+8), L4 C26, L6 C13 (+16), L6 C27 |
 | Handlers | `room15_init`, `room15_frame` |
 
-**The setup.** [`room15_init` `$3593`](../src/room_specific_init.asm#L255) sets `room_state_a`, `room_state_b` and `room_state_c` = 1. So the handler draws each opening on two passes.
+**The setup.** [`room15_init` `$3593`](../src/room/room_specific_init.asm#L255) sets `room_state_a`, `room_state_b` and `room_state_c` = 1. So the handler draws each opening on two passes.
 
-**The behaviour.** [`room15_frame` `$3EE6`](../src/room_frames_12_17.asm#L106) runs three one-shot events. **Code.**
+**The behaviour.** [`room15_frame` `$3EE6`](../src/room/room_frames_12_17.asm#L106) runs three one-shot events. **Code.**
 
 | Event | Flag | Condition | Action |
 |---|---|---|---|
@@ -778,13 +778,13 @@ The screenshot shows a grey hall with three floors. The yellow item at the right
 | Lanterns | 2, `lantern_list_room16`: L4 C32, L7 C5 |
 | Handlers | `room16_init`, `room16_frame` |
 
-**The setup.** [`room16_init` `$359F`](../src/room_specific_init.asm#L264) sets colour RAM $FF (colour 15) for the extra-fall item (screen rows 19-22, columns 36-37). When `extra_fall_pickups_left` + `current_player` is 0, the handler erases the item with `draw_room16_bonus_taken`. **Code.**
+**The setup.** [`room16_init` `$359F`](../src/room/room_specific_init.asm#L264) sets colour RAM $FF (colour 15) for the extra-fall item (screen rows 19-22, columns 36-37). When `extra_fall_pickups_left` + `current_player` is 0, the handler erases the item with `draw_room16_bonus_taken`. **Code.**
 
-**The behaviour.** When room 16 is cleared, [`room16_frame` `$3F5B`](../src/room_frames_12_17.asm#L166) opens a passage at L7 C1 one time. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/passage_open.asm#L69) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
+**The behaviour.** When room 16 is cleared, [`room16_frame` `$3F5B`](../src/room/room_frames_12_17.asm#L166) opens a passage at L7 C1 one time. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
 
-**The extra fall.** The frame handler does not control the item. [`handle_touched_tile` `$2E89`](../src/background_touch.asm#L61) sends codes $2D and $2E in room 16 to [`collect_room16_bonus` `$2FD6`](../src/touch_effects.asm#L8). That routine accepts only Bruce, and only at `actor_y` $A0 or more. Then it does these steps:
+**The extra fall.** The frame handler does not control the item. [`handle_touched_tile` `$2E89`](../src/actor/background_touch.asm#L61) sends codes $2D and $2E in room 16 to [`collect_room16_bonus` `$2FD6`](../src/actor/touch_effects.asm#L8). That routine accepts only Bruce, and only at `actor_y` $A0 or more. Then it does these steps:
 
-1. It decrements [`extra_fall_pickups_left` `$4E95`](../src/lantern_lists.asm#L109) + player. The value is 5 at a game start.
+1. It decrements [`extra_fall_pickups_left` `$4E95`](../src/room/lantern_lists.asm#L109) + player. The value is 5 at a game start.
 2. It adds one fall to `falls_left`.
 3. It plays sound $8E and erases the item.
 
@@ -820,16 +820,16 @@ The screenshot shows a grey and yellow room with orange floors, three long slide
 
 The map decodes to two cells more than the play area holds. This is [the map overflow](rooms.md#map-sizes-and-the-overflow).
 
-**The setup.** [`room17_init` `$35C4`](../src/room_specific_init.asm#L284) does these steps:
+**The setup.** [`room17_init` `$35C4`](../src/room/room_specific_init.asm#L284) does these steps:
 
 1. It sets colour RAM $FF (colour 15) at screen row 19, column 38. This is the cell of lantern L10 C38.
 2. It sets `room_state_a` and `room_state_b` = 1.
 3. It puts the runner at L5 C11.
 4. It puts sliders 0, 1 and 2 at L3, L7 and L9, column 8, with `slider_timer` = $F8, $F1 and $EA.
 
-**The behaviour.** [`room17_frame` `$3F71`](../src/room_frames_12_17.asm#L188) runs on each pass. **Observed** (coverage), but not the two lantern events.
+**The behaviour.** [`room17_frame` `$3F71`](../src/room/room_frames_12_17.asm#L188) runs on each pass. **Observed** (coverage), but not the two lantern events.
 
-1. `room_state_c` counts 11 passes. Then [`room17_frame_colour_loop` `$3F86`](../src/room_frames_12_17.asm#L198) toggles bit 1 of the colour in the colour RAM of screen row 3, columns 8-35.
+1. `room_state_c` counts 11 passes. Then [`room17_frame_colour_loop` `$3F86`](../src/room/room_frames_12_17.asm#L198) toggles bit 1 of the colour in the colour RAM of screen row 3, columns 8-35.
 2. The runner of line 5 moves right on every second pass (`room_state_d`), from C11 to C27.
 3. When Bruce takes lantern L10 C38 (`lantern_list_room17`), the handler draws tile $5D (codes $44 $44) at L10 C37. It does this one time, with `room_state_a` tested by `beq`.
 4. When Bruce takes lantern L11 C31 (`lantern_list_room17+4`), the handler draws tile $5C (codes $49 $49 $49) at L10 C24. It does this one time (`room_state_b`). The tile fills the gap of line 10 between the code $49 cells at C23 and C27. **Code** (map cells).
@@ -882,24 +882,24 @@ The screenshot shows the face of the wizard at the top of the room, above a purp
 
 The map decodes to two cells more than the play area holds. This is [the map overflow](rooms.md#map-sizes-and-the-overflow).
 
-**The setup.** [`room18_init` `$35FA`](../src/room_specific_init.asm#L317) does these steps. **Code.**
+**The setup.** [`room18_init` `$35FA`](../src/room/room_specific_init.asm#L317) does these steps. **Code.**
 
 1. It sets colour RAM $FE (colour 14) for the full play area.
 2. It clears the fireball sprite data at `$8340-$83BF`.
 3. It sets no Y expansion and X expansion for all 8 sprites.
 4. It sets `room_state_a` = 1 (wizard present) and `room_state_b` = 1 (animation timer).
-5. It makes the two fireballs inactive ([`fireball_active` `$432E`](../src/fireball_text_score_vars.asm#L8) = 0, 0). Fireball 0 starts at once, and fireball 1 starts after 16 passes ([`fireball_respawn_delay` `$4330`](../src/fireball_text_score_vars.asm#L12) = 0 and $10).
+5. It makes the two fireballs inactive ([`fireball_active` `$432E`](../src/game/fireball_text_score_vars.asm#L8) = 0, 0). Fireball 0 starts at once, and fireball 1 starts after 16 passes ([`fireball_respawn_delay` `$4330`](../src/game/fireball_text_score_vars.asm#L12) = 0 and $10).
 6. It writes 6 and 7 to `fireball_unused_init`. No code reads these bytes.
 
-**The behaviour.** [`room18_frame` `$3CDC`](../src/wizard_room.asm#L13) has three states. The wizard alive ran in the coverage. The defeat ran in a run of the analysis: the wizard flashes and disappears, and the score increases by 3000. **Observed.**
+**The behaviour.** [`room18_frame` `$3CDC`](../src/room/wizard_room.asm#L13) has three states. The wizard alive ran in the coverage. The defeat ran in a run of the analysis: the wizard flashes and disappears, and the score increases by 3000. **Observed.**
 
-**Deadly characters do not kill in room 18.** [`touch_deadly_tile` `$304B`](../src/touch_effects.asm#L75) returns at once in this room. **Code.**
+**Deadly characters do not kill in room 18.** [`touch_deadly_tile` `$304B`](../src/actor/touch_effects.asm#L75) returns at once in this room. **Code.**
 
-1. **Wizard alive** (`room_state_a` = 1, the lantern is present). [`update_fireballs` `$4133`](../src/wizard_fireballs.asm#L13) moves the fireballs. The sprite-sprite collision register can show sprite 0 or 1 (Bruce) with sprite 6 or 7 (a fireball). If Bruce is not dying, [`set_actor_hazard_death` `$407D`](../src/room_hazard_draw.asm#L37) then kills him.
-2. **The face.** Every 8 passes (`room_state_b`), the handler sets the gaze `room_state_c` from `actor_x` ([`wizard_face_zone_x` `$4A89`](../src/room_tables.asm#L13)). The gaze is 2 when `actor_x` >= $76, 1 when `actor_x` >= $3A, else 0. The handler draws tile $38 + gaze at L2 C16. The face toggles (`room_state_d`) between two frames at L3 / L4 C18: tiles $41/$44 + gaze and tiles $3B/$3E + gaze (`draw_wizard_face_top`, `draw_wizard_face_bottom`).
-3. **Lantern taken** (the first pass with the record state 0). The handler sets `room_state_a` = 0 and calls [`clear_fireball_sprites` `$423F`](../src/wizard_fireballs.asm#L171). It switches off sprites 5-7 and draws tile $61 (code $06) at L11 C0. It gives 3000 points, sets the gaze to 1 and sets `room_state_b` = $50.
-4. **Defeat sequence** ([`room18_wizard_defeated` `$3DAF`](../src/wizard_room.asm#L134), for `room_state_b` passes). The handler puts random colours on the wizard area of colour RAM, with colour 0 on the last pass. It sets [`room_vmcsb` `$00F2`](../src/constants.asm#L117) = $3E (`charset_wizard_flash`). While more than 16 passes remain, it sets $3C at random, so the charset flickers. It plays sound $8B and toggles the four wizard parts (tiles $47-$4E).
-5. **Wizard gone** ([`room18_wizard_gone` `$3D9B`](../src/wizard_room.asm#L115), `room_state_b` = 0). On each pass, the handler draws tile $5E (codes $00 $00 $03) at L11 C37 and tile $5F (codes $5A $5A) at L12 C38. This is the open exit where the lantern was.
+1. **Wizard alive** (`room_state_a` = 1, the lantern is present). [`update_fireballs` `$4133`](../src/room/wizard_fireballs.asm#L13) moves the fireballs. The sprite-sprite collision register can show sprite 0 or 1 (Bruce) with sprite 6 or 7 (a fireball). If Bruce is not dying, [`set_actor_hazard_death` `$407D`](../src/room/room_hazard_draw.asm#L37) then kills him.
+2. **The face.** Every 8 passes (`room_state_b`), the handler sets the gaze `room_state_c` from `actor_x` ([`wizard_face_zone_x` `$4A89`](../src/room/room_tables.asm#L13)). The gaze is 2 when `actor_x` >= $76, 1 when `actor_x` >= $3A, else 0. The handler draws tile $38 + gaze at L2 C16. The face toggles (`room_state_d`) between two frames at L3 / L4 C18: tiles $41/$44 + gaze and tiles $3B/$3E + gaze (`draw_wizard_face_top`, `draw_wizard_face_bottom`).
+3. **Lantern taken** (the first pass with the record state 0). The handler sets `room_state_a` = 0 and calls [`clear_fireball_sprites` `$423F`](../src/room/wizard_fireballs.asm#L171). It switches off sprites 5-7 and draws tile $61 (code $06) at L11 C0. It gives 3000 points, sets the gaze to 1 and sets `room_state_b` = $50.
+4. **Defeat sequence** ([`room18_wizard_defeated` `$3DAF`](../src/room/wizard_room.asm#L134), for `room_state_b` passes). The handler puts random colours on the wizard area of colour RAM, with colour 0 on the last pass. It sets [`room_vmcsb` `$00F2`](../src/constants.asm#L117) = $3E (`charset_wizard_flash`). While more than 16 passes remain, it sets $3C at random, so the charset flickers. It plays sound $8B and toggles the four wizard parts (tiles $47-$4E).
+5. **Wizard gone** ([`room18_wizard_gone` `$3D9B`](../src/room/wizard_room.asm#L115), `room_state_b` = 0). On each pass, the handler draws tile $5E (codes $00 $00 $03) at L11 C37 and tile $5F (codes $5A $5A) at L12 C38. This is the open exit where the lantern was.
 
 ~~~mermaid
 stateDiagram-v2
@@ -922,7 +922,7 @@ stateDiagram-v2
 | Defeat | `room_state_b` = 0 | Gone | `room18_wizard_defeated` |
 | Gone | every pass | Gone: tiles $5E, $5F | `room18_wizard_gone` |
 
-**The flash charset stays.** The last pass of the sequence leaves `room_vmcsb` = $3E. So after the defeat, the room shows with [`charset_wizard_flash` `$B800`](../src/constants.asm#L203), the expanded [`room_charset_d` `$9C00`](../src/room_charset_d.asm#L8). No code resets it until the next `draw_room`. **Code.**
+**The flash charset stays.** The last pass of the sequence leaves `room_vmcsb` = $3E. So after the defeat, the room shows with [`charset_wizard_flash` `$B800`](../src/constants.asm#L203), the expanded [`room_charset_d` `$9C00`](../src/graphics/room_charset_d.asm#L8). No code resets it until the next `draw_room`. **Code.**
 
 **The links to other rooms.**
 
@@ -953,9 +953,9 @@ The screenshot shows a castle of blue and white bricks with arches. The status l
 | Lanterns | 0, `lantern_list_room19` (dummy record) |
 | Handlers | `room19_init`, `room19_frame` |
 
-**The setup.** [`room19_init` `$425F`](../src/ending_room.asm#L7) sets [`title_countdown` `$0049`](../src/constants.asm#L35) = $0458 frames. The interrupt decrements it, so it lasts about 22 seconds on PAL. The handler writes 40 zero bytes in screen row 0, so the status line is blank.
+**The setup.** [`room19_init` `$425F`](../src/room/ending_room.asm#L7) sets [`title_countdown` `$0049`](../src/constants.asm#L35) = $0458 frames. The interrupt decrements it, so it lasts about 22 seconds on PAL. The handler writes 40 zero bytes in screen row 0, so the status line is blank.
 
-**The behaviour.** [`room19_frame` `$4272`](../src/ending_room.asm#L27) shows random colours until the countdown is 0. Then it starts the next game loop. **Observed** (coverage: both states ran).
+**The behaviour.** [`room19_frame` `$4272`](../src/room/ending_room.asm#L27) shows random colours until the countdown is 0. Then it starts the next game loop. **Observed** (coverage: both states ran).
 
 ~~~mermaid
 stateDiagram-v2

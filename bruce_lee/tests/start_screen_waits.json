@@ -1,0 +1,44 @@
+{
+ "name": "Start screen: without a key or a fire button, loader.prg keeps the picture and does not start the game",
+ "start": {
+  "program": "build/clean_loader.prg"
+ },
+ "symbols": "build/symbols/clean_loader.json",
+ "steps": [
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "loader_start_screen_wait"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 450
+  },
+  {
+   "expect": "still_picture",
+   "memory": [
+    {
+     "address": "$d018",
+     "data": "78",
+     "mask": "fe"
+    },
+    {
+     "address": "$dd00",
+     "data": "00",
+     "mask": "03"
+    },
+    {
+     "address": "$d011",
+     "data": "3b",
+     "mask": "7f"
+    }
+   ]
+  },
+  {
+   "screen": "still_picture"
+  }
+ ]
+}

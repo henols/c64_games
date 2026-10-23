@@ -30,16 +30,16 @@ flowchart TB
   B -. "NMI after 5820 cycles" .-> N
 ~~~
 
-1. **The frame starts at line 0.** [`irq_frame_start` `$2A66`](../src/sprite_mux_plan.asm#L6) sets `irq_bitmap_on` as the next handler at line `$5A`. Then it plans the sprite rows and selects one of the 7 layouts. It writes row 1 of both groups directly to the VIC. The section [The frame-start handler](#the-frame-start-handler) gives the steps. (**Code**)
-2. **The bitmap starts under the panel.** [`irq_bitmap_on` `$2869`](../src/irq_screen_split.asm#L6) runs at line `$5A`, the last line of text row 4. It sets the first row handler, waits with four NOPs and writes `$3B` to `$D011` (bitmap mode). It writes the scene background colour and starts CIA 2 timer B. (**Code**)
+1. **The frame starts at line 0.** [`irq_frame_start` `$2A66`](../src/irq/sprite_mux_plan.asm#L6) sets `irq_bitmap_on` as the next handler at line `$5A`. Then it plans the sprite rows and selects one of the 7 layouts. It writes row 1 of both groups directly to the VIC. The section [The frame-start handler](#the-frame-start-handler) gives the steps. (**Code**)
+2. **The bitmap starts under the panel.** [`irq_bitmap_on` `$2869`](../src/irq/irq_screen_split.asm#L6) runs at line `$5A`, the last line of text row 4. It sets the first row handler, waits with four NOPs and writes `$3B` to `$D011` (bitmap mode). It writes the scene background colour and starts CIA 2 timer B. (**Code**)
 3. **The row handlers move the sprites down.** Each row handler runs at the last line of a sprite row. It writes the new Y and three new sprite pointers for one group or for both groups. The layout gives 2, 3 or 4 row handlers. (**Code**)
-4. **The NMI colours the floor.** CIA 2 timer B counts 5820 cycles and then gives an NMI. [`nmi_floor_colour` `$28A5`](../src/irq_screen_split.asm#L69) writes 7 (yellow) to `$D021`. (**Code**)
+4. **The NMI colours the floor.** CIA 2 timer B counts 5820 cycles and then gives an NMI. [`nmi_floor_colour` `$28A5`](../src/irq/irq_screen_split.asm#L66) writes 7 (yellow) to `$D021`. (**Code**)
 5. **The shadow row follows at line `$D9`.** The last row handler continues to the handler in `row4_irq_vector`. That handler shows the shadow of a fighter in the air, or it does nothing. (**Code**)
-6. **The frame ends at line `$FF`.** [`irq_frame_end` `$2994`](../src/irq_screen_split.asm#L310) sets `irq_frame_start` at line 0 and writes `$1B` to `$D011` (text mode). It writes `panel_bg_colour` to `$D021` and calls [`music_play_frame` `$09A5`](../src/music_driver.asm#L6). Thus the music driver runs one time in each frame. See [sound_music.md](sound_music.md). (**Code**)
+6. **The frame ends at line `$FF`.** [`irq_frame_end` `$2994`](../src/irq/irq_screen_split.asm#L295) sets `irq_frame_start` at line 0 and writes `$1B` to `$D011` (text mode). It writes `panel_bg_colour` to `$D021` and calls [`music_play_frame` `$09A5`](../src/music/music_driver.asm#L6). Thus the music driver runs one time in each frame. See [sound_music.md](sound_music.md). (**Code**)
 
 The NMI and the row handlers run in the same raster lines. A raster IRQ cannot interrupt the NMI, but the NMI can interrupt a row handler. The NMI handler saves only A, and it changes only `$D021`. (**Code**) **Conclusion**: the authors used a CIA 2 NMI for the floor colour. The raster chain is busy with the sprite rows in the lines `$B4-$D9`. The timer gives the colour change at the same line in each layout.
 
-The game code of the frame runs outside the interrupts. [`bout_frame_loop` `$15AA`](../src/init_bout_loop.asm#L208) waits until the raster line is `$FD` or more. Then it updates the two fighters while the handlers interrupt it. See [game_flow.md](game_flow.md). (**Code**)
+The game code of the frame runs outside the interrupts. [`bout_frame_loop` `$15AA`](../src/game/init_bout_loop.asm#L196) waits until the raster line is `$FD` or more. Then it updates the two fighters while the handlers interrupt it. See [game_flow.md](game_flow.md). (**Code**)
 
 ## The timeline of one frame
 
@@ -67,11 +67,11 @@ The line of the NMI is an estimate from the code. The code of `irq_bitmap_on` be
 
 1. **It continues the chain first.** It acknowledges the raster IRQ in `$D019` and sets `irq_bitmap_on` at line `$5A`. Then it saves Y and X on the stack. (**Code**)
 2. **It sets the sprite multicolours.** `$D025` = 0 (black) and `$D026` = `$0A` (light red). The third colour of each fighter, `fighter_colour`, comes in step 7. (**Code**)
-3. **It puts the fighters in the groups.** It writes `front_fighter` into `group_a_fighter` and the other fighter into `group_b_fighter`. Then [`mux_copy_group_pos` `$2AAA`](../src/sprite_mux_plan.asm#L44) copies `sprite_y`, `sprite_x_lo` and `sprite_x_msb` of each fighter into `group_y`, `group_x_lo` and `group_x_msb`. (**Code**)
-4. **It selects the shadow handler.** It compares the Y of each group with `$A0` and writes one of four handler addresses into `row4_irq_vector`. Then [`mux_patch_row4_ptrs` `$2B00`](../src/sprite_mux_plan.asm#L91) copies the shadow pointers into the row 4 handlers. When both groups are at `$A0`, it does not copy them. (**Code**)
-5. **It selects the layout.** [`mux_choose_layout` `$2B40`](../src/sprite_mux_plan.asm#L119) calculates the gap and jumps to the code of one of the 7 layouts. The section [The 7 layouts](#the-7-layouts) gives them. (**Code**)
+3. **It puts the fighters in the groups.** It writes `front_fighter` into `group_a_fighter` and the other fighter into `group_b_fighter`. Then [`mux_copy_group_pos` `$2AAA`](../src/irq/sprite_mux_plan.asm#L41) copies `sprite_y`, `sprite_x_lo` and `sprite_x_msb` of each fighter into `group_y`, `group_x_lo` and `group_x_msb`. (**Code**)
+4. **It selects the shadow handler.** It compares the Y of each group with `$A0` and writes one of four handler addresses into `row4_irq_vector`. Then [`mux_patch_row4_ptrs` `$2B00`](../src/irq/sprite_mux_plan.asm#L76) copies the shadow pointers into the row 4 handlers. When both groups are at `$A0`, it does not copy them. (**Code**)
+5. **It selects the layout.** [`mux_choose_layout` `$2B40`](../src/irq/sprite_mux_plan.asm#L104) calculates the gap and jumps to the code of one of the 7 layouts. The section [The 7 layouts](#the-7-layouts) gives them. (**Code**)
 6. **It patches the row handlers.** The layout code calls the patch routines for the row pointers. Then it writes the next handler address, the next raster line and the new Y into each handler of the chain. (**Code**)
-7. **It shows sprite row 1.** [`mux_set_row1` `$2E5A`](../src/sprite_mux_plan.asm#L500) writes the pointers of parts 0-2 of each group to `$CFF8-$CFFD`. It also writes the Y, the colours, the X of the three columns and the X bit 8 of each group. Then it restores X and Y and returns with RTI. (**Code**)
+7. **It shows sprite row 1.** [`mux_set_row1` `$2E5A`](../src/irq/sprite_mux_plan.asm#L485) writes the pointers of parts 0-2 of each group to `$CFF8-$CFFD`. It also writes the Y, the colours, the X of the three columns and the X bit 8 of each group. Then it restores X and Y and returns with RTI. (**Code**)
 
 The row 1 values go directly to the VIC, because the VIC shows row 1 later in the frame, at line Y. Rows 2 and 3 use the same sprites, so they cannot go to the VIC at line 0. Thus the handler writes them into the operands of the row handlers. (**Code**)
 
@@ -81,7 +81,7 @@ The handler has five `CLI` / `SEI` pairs, one after the stack saves and four in 
 
 ### Which fighter is in front
 
-`front_fighter` selects the fighter of group A. [`fighter_set_priority` `$224C`](../src/fighter_moves.asm#L16) sets it to a fighter in an attack move, or to the opponent of a fighter in move `$11`. The frame-start handler reads it again in each frame. Thus the two fighters can change groups from one frame to the next. Then the planner gives the groups their new pointers, Y, X and colours. (**Code**)
+`front_fighter` selects the fighter of group A. [`fighter_set_priority` `$224C`](../src/fighter/fighter_moves.asm#L16) sets it to a fighter in an attack move, or to the opponent of a fighter in move `$11`. The frame-start handler reads it again in each frame. Thus the two fighters can change groups from one frame to the next. Then the planner gives the groups their new pointers, Y, X and colours. (**Code**)
 
 ## The 7 layouts
 
@@ -110,7 +110,7 @@ flowchart TB
   G -->|"$18 or more"| L67["Layout 6 or 7: all rows of the higher group first"]
 ~~~
 
-**A gap of `$14` puts two IRQs one line apart.** Example: group A is `$14` lines higher than group B. Then row 2 of B starts at A+`$29`, and row 3 of A starts at A+`$2A`. A second IRQ cannot start one line after the first. Thus [`irq_b2_a3` `$27BD`](../src/irq_sprite_rows.asm#L602) runs at line A+`$28` and writes both rows. [`irq_a2_b3` `$2813`](../src/irq_sprite_rows.asm#L717) does the same when B is higher. Each one writes the first set of pointers, waits with three NOPs, and then writes the second set. (**Code**) The coverage of the runs includes the code of both combined handlers, so the gap `$14` occurs in play. (**Observed**)
+**A gap of `$14` puts two IRQs one line apart.** Example: group A is `$14` lines higher than group B. Then row 2 of B starts at A+`$29`, and row 3 of A starts at A+`$2A`. A second IRQ cannot start one line after the first. Thus [`irq_b2_a3` `$27BD`](../src/irq/irq_sprite_rows.asm#L602) runs at line A+`$28` and writes both rows. [`irq_a2_b3` `$2813`](../src/irq/irq_sprite_rows.asm#L717) does the same when B is higher. Each one writes the first set of pointers, waits with three NOPs, and then writes the second set. (**Code**) The coverage of the runs includes the code of both combined handlers, so the gap `$14` occurs in play. (**Observed**)
 
 **The test for a gap of `$16` does nothing.** After each gap subtraction, the code has `CMP #$16` and `BNE` to the next instruction (`mux_a_above_gap_test`, `mux_b_above_gap_test`). The branch offset is 0, so both paths are the same. (**Code**) A gap of `$16` cannot occur, because the gap is a multiple of 4. **Conclusion**: an earlier version had two more layouts for the gap `$16`. The two unused patch routines `mux_unused_patch_b3_a2` and `mux_unused_patch_a3_b2` fit that case. They are the patch routines of the combined handlers with the two rows exchanged. Nothing calls them.
 
@@ -129,7 +129,7 @@ All row handlers have the same form. Each value that changes from frame to frame
 | `_ptr_left`, `_ptr_mid`, `_ptr_right` | The 3 sprite pointers of one group | the single-group row and row 4 handlers |
 | `_a_ptr_*`, `_b_ptr_*` | The pointers of group A, of group B | the combined handlers and `irq_ab_row4` |
 
-This is [`irq_a_row2` `$2635`](../src/irq_sprite_rows.asm#L6) without the `RUN_STATE` patches of the source:
+This is [`irq_a_row2` `$2635`](../src/irq/irq_sprite_rows.asm#L6) without the `RUN_STATE` patches of the source:
 
 ~~~asm
 irq_a_row2
@@ -167,7 +167,7 @@ irq_a_row2_next_hi = * + 1
         rti
 ~~~
 
-Two groups of code write these operands. The layout code writes `_y`, `_next_line`, `_next_lo` and `_next_hi`. It also writes `irq_bitmap_on_next_line`, `irq_bitmap_on_next_lo` and `irq_bitmap_on_next_hi`. The patch routines in `sprite_mux_patch.asm` write the pointers. For example, [`mux_patch_a_row2` `$2F0C`](../src/sprite_mux_patch.asm#L6) copies the pointers of parts 3-5 of the group A fighter from `fighter_part_ptrs` into `irq_a_row2_ptr_left`, `irq_a_row2_ptr_mid` and `irq_a_row2_ptr_right`. The row 3 routines copy parts 6-8. (**Code**)
+Two groups of code write these operands. The layout code writes `_y`, `_next_line`, `_next_lo` and `_next_hi`. It also writes `irq_bitmap_on_next_line`, `irq_bitmap_on_next_lo` and `irq_bitmap_on_next_hi`. The patch routines in `sprite_mux_patch.asm` write the pointers. For example, [`mux_patch_a_row2` `$2F0C`](../src/irq/sprite_mux_patch.asm#L6) copies the pointers of parts 3-5 of the group A fighter from `fighter_part_ptrs` into `irq_a_row2_ptr_left`, `irq_a_row2_ptr_mid` and `irq_a_row2_ptr_right`. The row 3 routines copy parts 6-8. (**Code**)
 
 The six single-row handlers write the low byte of the next address before the pointers and the high byte after them. The vector at `$FFFE` has a wrong value between the two writes. No IRQ can come in that time, because the handler runs with the I flag set. (**Code**)
 
@@ -192,7 +192,7 @@ The image shows the shadow sprites of facing 0, at `$D540-$D7BF`.
 
 ## The vectors and the CIA set-up
 
-The game switches the KERNAL ROM off. Thus the CPU reads the vectors at `$FFFA-$FFFF` from RAM. [`init_vectors_cias` `$1459`](../src/init_bout_loop.asm#L51) writes them one time at the start (**Code**):
+The game switches the KERNAL ROM off. Thus the CPU reads the vectors at `$FFFA-$FFFF` from RAM. [`init_vectors_cias` `$1459`](../src/game/init_bout_loop.asm#L51) writes them one time at the start (**Code**):
 
 | Vector | Address | Value | Meaning |
 |---|---|---|---|
@@ -200,7 +200,7 @@ The game switches the KERNAL ROM off. Thus the CPU reads the vectors at `$FFFA-$
 | RESET | `$FFFC` | `reset_vector_rti` | An RTI byte. |
 | IRQ | `$FFFE` | `irq_frame_start` | The first handler. Each handler then writes the next one. |
 
-**The RESET vector points to an RTI byte.** [`reset_vector_rti` `$14A6`](../src/init_bout_loop.asm#L87) is one `RTI`. A reset switches the KERNAL ROM on, so the CPU reads the reset vector of the ROM and never this one. (**Code**) No run executed the byte. (**Observed**)
+**The RESET vector points to an RTI byte.** [`reset_vector_rti` `$14A6`](../src/game/init_bout_loop.asm#L75) is one `RTI`. A reset switches the KERNAL ROM on, so the CPU reads the reset vector of the ROM and never this one. (**Code**) No run executed the byte. (**Observed**)
 
 **The NMI handler does nothing for RESTORE.** `nmi_floor_colour` reads `$DD0D` with `BIT`. When bit 7 is 0, CIA 2 did not cause the NMI, and the handler only returns. Thus the RESTORE key does nothing that a player can see. (**Code**)
 
@@ -217,11 +217,11 @@ The game switches the KERNAL ROM off. Thus the CPU reads the vectors at `$FFFA-$
 
 (**Code**) **Conclusion**: the `CLI` / `SEI` pair of step 2 lets a pending KERNAL interrupt end while the KERNAL ROM is still on.
 
-The routine ends with the I flag set, and `init_vic_screen` then writes `$FF` to `$D012`. The first `CLI` is in [`bout_loop` `$1590`](../src/init_bout_loop.asm#L196). Thus the chain starts in the first bout, and its first IRQ runs `irq_frame_start` at line `$FF`. From then on, the chain runs at its normal lines. (**Code**)
+The routine ends with the I flag set, and `init_vic_screen` then writes `$FF` to `$D012`. The first `CLI` is in [`bout_loop` `$1590`](../src/game/init_bout_loop.asm#L184). Thus the chain starts in the first bout, and its first IRQ runs `irq_frame_start` at line `$FF`. From then on, the chain runs at its normal lines. (**Code**)
 
 **The timer B start each frame.** `irq_bitmap_on` writes the latch `$16BC` again and then `$09` to `$DD0F`. Bit 0 starts the timer and bit 3 selects one-shot mode. The timer does not run at this time, so the write of the high byte of the latch also loads the counter. After the NMI, the timer stops again until the next frame. (**Code**)
 
-**The scene background colour.** `irq_bitmap_on` writes `irq_bitmap_on_bg_colour` to `$D021`. The operand is 1 (white). [`scene_draw_if_new` `$1A63`](../src/title_and_scene.asm#L173) writes 3 into it while it draws a new scene, and 1 again at the end. (**Code**)
+**The scene background colour.** `irq_bitmap_on` writes `irq_bitmap_on_bg_colour` to `$D021`. The operand is 1 (white). [`scene_draw_if_new` `$1A63`](../src/game/title_and_scene.asm#L167) writes 3 into it while it draws a new scene, and 1 again at the end. (**Code**)
 
 ## The test at the start of each handler
 
@@ -233,7 +233,7 @@ All 15 raster handlers start with the same three instructions:
         jmp sfx_sample_irq              ; Not a VIC IRQ
 ~~~
 
-When bit 7 of `$D019` is 0, the IRQ did not come from the VIC. Then the handler jumps to [`sfx_sample_irq` `$29C8`](../src/sfx_sample_player.asm#L6), a 1-bit sample player on CIA 1 timer B. But `init_vectors_cias` stops all CIA 1 interrupts, and the VIC gives only the raster IRQ. Thus no handler can take the jump. (**Code**) No run executed one of the 15 `JMP` instructions or the sample player. (**Observed**)
+When bit 7 of `$D019` is 0, the IRQ did not come from the VIC. Then the handler jumps to [`sfx_sample_irq` `$29C8`](../src/sfx/sfx_sample_player.asm#L6), a 1-bit sample player on CIA 1 timer B. But `init_vectors_cias` stops all CIA 1 interrupts, and the VIC gives only the raster IRQ. Thus no handler can take the jump. (**Code**) No run executed one of the 15 `JMP` instructions or the sample player. (**Observed**)
 
 The test costs 7 cycles in each IRQ, so 42 to 56 cycles in each frame. (**Code**) **Conclusion**: an earlier build played a sample on the CIA 1 IRQ and the raster IRQ together. The sample player, its set-up and the 15 jumps stayed in the game after the music replaced the sample. The sample player and its old data are on [sound_music.md](sound_music.md). The history is on [../../docs/development.md](../../docs/development.md).
 

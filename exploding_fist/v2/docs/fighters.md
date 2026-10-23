@@ -18,7 +18,7 @@ This page tells how version II does it. The parts that are the same as in versio
 
 ## How it works
 
-The bout loop calls [`fighter_update` `$2808`](../src/fighter_input.asm#L6) for fighter 1 and then for fighter 0 in each frame. The routine is the same as in version I. The changes are in the routines that it calls. **Code**.
+The bout loop calls [`fighter_update` `$2808`](../src/fighter/fighter_input.asm#L6) for fighter 1 and then for fighter 0 in each frame. The routine is the same as in version I. The changes are in the routines that it calls. **Code**.
 
 ~~~mermaid
 flowchart TB
@@ -31,9 +31,9 @@ flowchart TB
 ~~~
 
 1. **The hit test runs first.** It finds a hit of the opponent and sets `hit_reaction` of the fighter that the hit touches. The details are on [combat.md](combat.md). **Code**.
-2. **The control gives the input.** [`fighter_get_input` `$2834`](../src/fighter_input.asm#L30) takes the first source that applies: a hit reaction, the computer ([ai.md](ai.md)), the keyboard when `keyboard_control` is not 0, else the joystick. **Code**.
-3. **The input gets two corrections.** [`move_fix_input` `$2AF2`](../src/fighter_moves.asm#L214) changes "back" into a block when an attack of the opponent is in range. It changes down-forward into move `$18` when the fighter does not crouch. **Code**.
-4. **The state machine selects the move.** [`move_update_state` `$29B4`](../src/fighter_moves.asm#L6) compares the input with the move. The section [The state machine of the moves](#the-state-machine-of-the-moves) gives the rules. **Code**.
+2. **The control gives the input.** [`fighter_get_input` `$2834`](../src/fighter/fighter_input.asm#L30) takes the first source that applies: a hit reaction, the computer ([ai.md](ai.md)), the keyboard when `keyboard_control` is not 0, else the joystick. **Code**.
+3. **The input gets two corrections.** [`move_fix_input` `$2AF2`](../src/fighter/fighter_moves.asm#L214) changes "back" into a block when an attack of the opponent is in range. It changes down-forward into move `$18` when the fighter does not crouch. **Code**.
+4. **The state machine selects the move.** [`move_update_state` `$29B4`](../src/fighter/fighter_moves.asm#L6) compares the input with the move. The section [The state machine of the moves](#the-state-machine-of-the-moves) gives the rules. **Code**.
 5. **The animation plays one frame.** `move_start_anim` starts the script of a new move, freezes a held pose, or lets the script continue. It then jumps to `anim_update`. **Code**.
 6. **The end of a script changes the move.** `move_anim_end` ends the bout after a hit reaction. Else it returns the fighter to the stance or keeps the end pose. **Code**.
 7. **The attacker comes to the front.** A fighter in an attack move gets the sprites with the higher priority. The code keeps the old priority while the sprites touch. **Code**.
@@ -44,9 +44,9 @@ The bull round uses only a part of this chain. `solo_fighter_update` reads the i
 
 ### The joystick
 
-[`joystick_read_move` `$284C`](../src/fighter_input.asm#L46) reads port 2 (`$DC00`) for fighter 0 and port 1 (`$DC01`) for fighter 1. It keeps bits 0-4. Version I set `$DC02` to `$FF` again after the read. Version II leaves port A as an input, and each keyboard reader sets `$DC02` itself. **Code**.
+[`joystick_read_move` `$284C`](../src/fighter/fighter_input.asm#L46) reads port 2 (`$DC00`) for fighter 0 and port 1 (`$DC01`) for fighter 1. It keeps bits 0-4. Version I set `$DC02` to `$FF` again after the read. Version II leaves port A as an input, and each keyboard reader sets `$DC02` itself. **Code**.
 
-[`joystick_apply_value` `$2856`](../src/fighter_input.asm#L52) changes the joystick value into the input. For facing 1, it exchanges the left and right bits. Then "forward" is always the direction of the facing. It does not exchange the bits when left and right are both 1 (no horizontal direction). Then it reads `joystick_move_table`. This table has the same 32 bytes as in version I. **Code**.
+[`joystick_apply_value` `$2856`](../src/fighter/fighter_input.asm#L52) changes the joystick value into the input. For facing 1, it exchanges the left and right bits. Then "forward" is always the direction of the facing. It does not exchange the bits when left and right are both 1 (no horizontal direction). Then it reads `joystick_move_table`. This table has the same 32 bytes as in version I. **Code**.
 
 The table below decodes the table for a fighter that faces right. The 16 values with no move (no direction, up with down, left with right) give `$01`, the stance. **Code**.
 
@@ -70,7 +70,7 @@ Version II adds a keyboard control. F7 on the title screen changes `keyboard_con
 
 The title screen after F7: KEYBOARD above 1 PLAYER.
 
-[`kbd_read_move` `$288C`](../src/fighter_input.asm#L75) sets port A to output (`$DC02` = `$FF`) and port B to input (`$DC03` = 0). It reads the fire keys and the direction keys of the fighter. The direction keys give the bits 0-3 of a joystick value. The fire keys set `kbd_fire_bit` to 0 (fire) or `$10` (no fire). The routine adds the two parts and jumps to `joystick_apply_value`. Thus a key works exactly as the joystick line with the same direction. **Code**.
+[`kbd_read_move` `$288C`](../src/fighter/fighter_input.asm#L75) sets port A to output (`$DC02` = `$FF`) and port B to input (`$DC03` = 0). It reads the fire keys and the direction keys of the fighter. The direction keys give the bits 0-3 of a joystick value. The fire keys set `kbd_fire_bit` to 0 (fire) or `$10` (no fire). The routine adds the two parts and jumps to `joystick_apply_value`. Thus a key works exactly as the joystick line with the same direction. **Code**.
 
 The keys of each fighter make a block of 3 × 3 keys. The centre key is the fire key. Fighter 0 uses `Q W E`, `A S D` and `Z X C` on the left side. Fighter 1 uses `P @ *`, `L : ;` and `, . /` on the right side. A direction key gives a screen direction, as the joystick does. Thus for facing 1 the left keys mean "forward". **Code**.
 
@@ -97,9 +97,9 @@ The keys of each fighter make a block of 3 × 3 keys. The centre key is the fire
 | 1 | `.` | 5 (`$DF`) | 4 (`$10`) | `$0D` | down |
 | 1 | `/` | 6 (`$BF`) | 7 (`$80`) | `$05` | down-right |
 
-Two keys never make a diagonal together. [`kbd0_read_direction` `$28CA`](../src/fighter_input.asm#L110) tests the keys in a fixed order and returns at the first key that is down. The order is Q, E, Z, W, C, X, D, A. Thus W with D gives "up", not "up-right". The diagonals have their own keys. With no direction key, the routine returns `$0F`. **Code**.
+Two keys never make a diagonal together. [`kbd0_read_direction` `$28CA`](../src/fighter/fighter_input.asm#L110) tests the keys in a fixed order and returns at the first key that is down. The order is Q, E, Z, W, C, X, D, A. Thus W with D gives "up", not "up-right". The diagonals have their own keys. With no direction key, the routine returns `$0F`. **Code**.
 
-The two fighters have different code. [`kbd0_read_fire` `$28B2`](../src/fighter_input.asm#L95) tests S and LEFT SHIFT with one read, because both keys are in column 1. [`kbd1_read_fire` `$2931`](../src/fighter_input.asm#L172) needs two reads: RIGHT SHIFT in column 6 and the colon in column 5. Fighter 1 tests its direction keys in the order /, *, P, @, comma, period, L, semicolon. **Code**. Conclusion: the authors wrote the code of each fighter by hand, not from a table.
+The two fighters have different code. [`kbd0_read_fire` `$28B2`](../src/fighter/fighter_input.asm#L95) tests S and LEFT SHIFT with one read, because both keys are in column 1. [`kbd1_read_fire` `$2931`](../src/fighter/fighter_input.asm#L172) needs two reads: RIGHT SHIFT in column 6 and the colon in column 5. Fighter 1 tests its direction keys in the order /, *, P, @, comma, period, L, semicolon. **Code**. Conclusion: the authors wrote the code of each fighter by hand, not from a table.
 
 The recording [keyboard.json](../tests/record/keyboard.json) plays a 1-player game in keyboard mode with the keys Q W E A D Z X C and S. Its reads of `$DC01` in the fighter 0 code show the row bit of each of these keys at 0. The replay on the rebuild gives the same state (6787 checkpoints, PASS). No run used the keys of fighter 1: the code at `$28A6-$28B1` and `$2931-$29B3` has no coverage. **Observed**.
 
@@ -140,7 +140,7 @@ The return flag has three values. `$80` changes the move at once when the input 
 
 ## The state machine of the moves
 
-[`move_update_state` `$29B4`](../src/fighter_moves.asm#L6) runs once in each frame, after the input. It changes the move only at the points that the rules below give. [`move_anim_end` `$2A8F`](../src/fighter_moves.asm#L150) makes the changes at the end of a script. The diagram leaves out the walks and the moves with return flag 1. **Code**.
+[`move_update_state` `$29B4`](../src/fighter/fighter_moves.asm#L6) runs once in each frame, after the input. It changes the move only at the points that the rules below give. [`move_anim_end` `$2A8F`](../src/fighter/fighter_moves.asm#L150) makes the changes at the end of a script. The diagram leaves out the walks and the moves with return flag 1. **Code**.
 
 ~~~mermaid
 stateDiagram-v2
@@ -196,9 +196,9 @@ The stance row for input `$07` never applies. `move_fix_input` changes input `$0
 
 The foot sweep `$0A`, the back sweep `$10` and the low punch `$07` start from the crouch. When the player changes the input, the attack plays backwards. At its end, the fighter returns to the crouch. Version I and version II do this in different ways. **Code**.
 
-[`anim_end_back_to_crouch` `$2AE4`](../src/fighter_moves.asm#L205) sets move `$04` and prepares the crouch script. Then it sets `anim_step_offset` to 8. The next step adds 4, so the script continues at its last step: 7 frames of frame `$0C`. Then the crouch holds its end pose, and a new low attack can start at once. **Code**.
+[`anim_end_back_to_crouch` `$2AE4`](../src/fighter/fighter_moves.asm#L205) sets move `$04` and prepares the crouch script. Then it sets `anim_step_offset` to 8. The next step adds 4, so the script continues at its last step: 7 frames of frame `$0C`. Then the crouch holds its end pose, and a new low attack can start at once. **Code**.
 
-Version I played its crouch script backwards: 15 frames of frame `$0C`, then the stance. A second sweep then needed a new crouch of 15 frames from the stance. **Code** ([`v1:anim_end_rise_crouch` `$23D6`](../../v1/src/fighter_moves.asm#L260)).
+Version I played its crouch script backwards: 15 frames of frame `$0C`, then the stance. A second sweep then needed a new crouch of 15 frames from the stance. **Code** ([`v1:anim_end_rise_crouch` `$23D6`](../../v1/src/fighter/fighter_moves.asm#L260)).
 
 | | Version I | Version II |
 |---|---|---|
@@ -210,7 +210,7 @@ Conclusion: the pause between two low attacks is about four times shorter, for a
 
 ## The animation scripts
 
-[`anim_step` `$37CC`](../src/anim_step.asm#L17) plays the scripts. It is the same as in version I, except for the X limits below. `anim_script_table` holds 33 words: a null word, the scripts `$01-$1F` and an end word. `anim_setup` gets the length of a script from the next word in the table. **Code**.
+[`anim_step` `$37CC`](../src/fighter/anim_step.asm#L17) plays the scripts. It is the same as in version I, except for the X limits below. `anim_script_table` holds 33 words: a null word, the scripts `$01-$1F` and an end word. `anim_setup` gets the length of a script from the next word in the table. **Code**.
 
 | Byte | Meaning |
 |---|---|
@@ -236,7 +236,7 @@ The somersault scripts `$08` and `$09` show the frames `$16`, `$17` and `$20`. I
 
 Conclusion: the authors removed the compensation because of the X limits. Near a limit, the code of version I refused the -11 step and accepted the +11 step. A somersault at the edge of the screen could then move the fighter 11 units.
 
-[`script_hit_reaction_16` `$7912`](../src/anim_scripts.asm#L169) keeps the dx values: -29, +6, -9, +4 (net -28 units). Only the delays are shorter. The fighter thus falls 21 frames faster, and the next exchange starts earlier. **Code**.
+[`script_hit_reaction_16` `$7912`](../src/fighter/anim_scripts.asm#L169) keeps the dx values: -29, +6, -9, +4 (net -28 units). Only the delays are shorter. The fighter thus falls 21 frames faster, and the next exchange starts earlier. **Code**.
 
 ### The two new bull scripts
 
@@ -248,22 +248,22 @@ The bull runs to the left with script `$1C` (22 units for each run). At `fighter
 | `$1F` | `$4C`, `$48` | -5, -7, -1: -13 | bull x 2, x set to `$0E` | `bull_exit_anim_1f` |
 
 1. The bull starts at x `$B0` and runs 8 times with script `$1C`. Then x is 0.
-2. [`bull_exit_anim_1e` `$13EA`](../src/bull_round.asm#L147) adds 12 units (x `$0C`) and starts [`script_bull_exit_two_cols` `$79C2`](../src/anim_scripts.asm#L229). Its frames show only the two right columns of the bull.
-3. At x 2, [`bull_exit_anim_1f` `$13F2`](../src/bull_round.asm#L152) adds 12 units again (x `$0E`) and starts [`script_bull_exit_one_col` `$79D6`](../src/anim_scripts.asm#L236). Its frames show only the right column.
+2. [`bull_exit_anim_1e` `$13EA`](../src/game/bull_round_12f8.asm#L137) adds 12 units (x `$0C`) and starts [`script_bull_exit_two_cols` `$79C2`](../src/fighter/anim_scripts.asm#L229). Its frames show only the two right columns of the bull.
+3. At x 2, [`bull_exit_anim_1f` `$13F2`](../src/game/bull_round_12f8.asm#L142) adds 12 units again (x `$0E`) and starts [`script_bull_exit_one_col` `$79D6`](../src/fighter/anim_scripts.asm#L236). Its frames show only the right column.
 4. At x 1, the bull is off the screen, and the round ends.
 
 **Code**. Conclusion: each jump of 12 units is one sprite column. The bull loses its left column at the edge, and the remaining columns stay at the same screen position. Version II also changes script `$1C` (delay 4, not 10) and script `$1D` (7 steps, not 3). The bull round is on [bull_round.md](bull_round.md).
 
 ## The X limits by facing
 
-[`anim_check_x_limits` `$384C`](../src/anim_step.asm#L95) keeps `fighter_x` in a range after each dx. Version II reads the limits from two new tables, by the facing of the fighter: [`fighter_x_min` `$12E9`](../src/entry_and_tables.asm#L108) and [`fighter_x_max` `$12EB`](../src/entry_and_tables.asm#L111). A value of `$C8-$FF` is a wrap below 0, and the code sets the minimum. Frames `$3B` and higher (the bull) have no limits. **Code**.
+[`anim_check_x_limits` `$384C`](../src/fighter/anim_step_37d8.asm#L74) keeps `fighter_x` in a range after each dx. Version II reads the limits from two new tables, by the facing of the fighter: [`fighter_x_min` `$12E9`](../src/game/entry_and_tables_1299.asm#L32) and [`fighter_x_max` `$12EB`](../src/game/entry_and_tables_1299.asm#L35). A value of `$C8-$FF` is a wrap below 0, and the code sets the minimum. Frames `$3B` and higher (the bull) have no limits. **Code**.
 
 | Facing | `fighter_x_min` | `fighter_x_max` | Sprite X | Version I |
 |---|---|---|---|---|
 | 0 (right) | `$0C` | `$95` | `$018-$12A` | `$0C-$94` |
 | 1 (left) | `$00` | `$89` | `$000-$112` | `$0C-$94` |
 
-Version I refused a step out of its range: the fighter kept its old X ([`v1:anim_check_x_limits` `$30B5`](../../v1/src/anim_step.asm#L95)). Version II sets the limit value. Thus a long step at the edge moves the fighter to the edge, not zero units. The largest step, dx -29 of the hit reaction, cannot make a false wrap: from `$95`, the value stays below `$C8`. **Code**.
+Version I refused a step out of its range: the fighter kept its old X ([`v1:anim_check_x_limits` `$30B5`](../../v1/src/fighter/anim_step_3041.asm#L74)). Version II sets the limit value. Thus a long step at the edge moves the fighter to the edge, not zero units. The largest step, dx -29 of the hit reaction, cannot make a false wrap: from `$95`, the value stays below `$C8`. **Code**.
 
 Conclusion: the mirrored frames put the body 12 units further to the right in the frame of 72 pixels. The limits of facing 1 are 12 units lower, so that the body has the same screen limits for the two facings.
 
@@ -280,9 +280,9 @@ Version II plays four digitized samples. The sample player was dead code in vers
 
 The lengths come from renders of the sample data. **Observed**.
 
-The calls of the moves are new code in version II. [`anim_start_new_move` `$2B4C`](../src/fighter_moves.asm#L267) reads `move_attack_flags` of the new move and calls [`sfx_play_sample_2` `$3164`](../src/sfx_sample_player.asm#L54). Thus each of the 11 attack moves starts the swish, also an attack that misses. [`hit_record` `$2CA8`](../src/hit_test.asm#L175) starts sample 0 or 1 with the hit reaction of the opponent. **Code**.
+The calls of the moves are new code in version II. [`anim_start_new_move` `$2B4C`](../src/fighter/fighter_moves.asm#L267) reads `move_attack_flags` of the new move and calls [`sfx_play_sample_2` `$3164`](../src/sfx/sfx_sample_player.asm#L52). Thus each of the 11 attack moves starts the swish, also an attack that misses. [`hit_record` `$2CA8`](../src/fighter/hit_test.asm#L175) starts sample 0 or 1 with the hit reaction of the opponent. **Code**.
 
-[`move_hit_fall_sample` `$29E9`](../src/fighter_moves.asm#L36) starts sample 3 when a fighter in a hit reaction gets a new step with frame `$2C` or `$28`. These are the last poses of the reactions `$16` and `$1A`. The state machine runs before the animation, so the sound starts one frame after the pose. Reaction `$1B` ends with frame `$2F` and has no floor sound. **Code**.
+[`move_hit_fall_sample` `$29E9`](../src/fighter/fighter_moves.asm#L36) starts sample 3 when a fighter in a hit reaction gets a new step with frame `$2C` or `$28`. These are the last poses of the reactions `$16` and `$1A`. The state machine runs before the animation, so the sound starts one frame after the pose. Reaction `$1B` ends with frame `$2F` and has no floor sound. **Code**.
 
 The data of sample 2 continues for 511 bytes after the end of its table entry. The file [sample2_attack_uncut.wav](assets/sample2_attack_uncut.wav) plays the full data (0.54 s). Conclusion: the authors cut sample 2 after they placed the samples. **Observed** (render).
 

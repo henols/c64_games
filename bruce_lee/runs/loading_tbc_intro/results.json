@@ -1,0 +1,45 @@
+{
+  "name": "loading_tbc_intro",
+  "completed": true,
+  "steps": 4,
+  "done": 4,
+  "pc": "$0872",
+  "files": [
+    "tbc_picture_0872.png"
+  ],
+  "observations": {
+    "at_0872": {
+      "registers": {
+        "pc": "$0872",
+        "a": 0,
+        "x": 0,
+        "y": 0,
+        "sp": 255,
+        "flags": {
+          "n": false,
+          "v": false,
+          "b": false,
+          "d": false,
+          "i": false,
+          "z": true,
+          "c": true
+        }
+      },
+      "vicii": {
+        "rasterLine": 20,
+        "mode": "multicolor-bitmap",
+        "screenAddress": "$dc00",
+        "graphicsAddress": "$e000",
+        "scrollX": 0,
+        "scrollY": 3,
+        "borderColor": 14,
+        "backgroundColors": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ The game plays a three-voice tune during the demo and during each game. The tune
 
 ## How it works
 
-The raster handler [`irq_frame_end` `$2994`](../src/irq_screen_split.asm#L310) runs at line `$FF`, under the playfield. It sets the text mode for the score panel and then calls [`music_play_frame` `$09A5`](../src/music_driver.asm#L6). The driver compares `game_mode` with the tune that plays now. A new value starts the new tune, and the same value plays one frame of it. **Code**
+The raster handler [`irq_frame_end` `$2994`](../src/irq/irq_screen_split.asm#L295) runs at line `$FF`, under the playfield. It sets the text mode for the score panel and then calls [`music_play_frame` `$09A5`](../src/music/music_driver.asm#L6). The driver compares `game_mode` with the tune that plays now. A new value starts the new tune, and the same value plays one frame of it. **Code**
 
 ~~~mermaid
 flowchart TB
@@ -31,19 +31,19 @@ flowchart TB
 `music_play_frame` does these steps in this order:
 
 1. **It reads the tune number.** `game_mode` is the tune number. The value 0 writes volume 0 to the SID and returns. **Code** No run executed this path. **Observed** (coverage)
-2. **It starts a new tune.** When `game_mode` is not `music_current_tune`, [`music_start_tune` `$09CF`](../src/music_driver.asm#L29) clears the SID and the state of the three voices. It copies the volume, the tempo, the base address, the pattern offset table and the three order lists of the tune. It writes the offset table into the operands of two `LDA $CF00,Y` instructions. The tune starts to play in the next frame. **Code**
+2. **It starts a new tune.** When `game_mode` is not `music_current_tune`, [`music_start_tune` `$09CF`](../src/music/music_driver.asm#L26) clears the SID and the state of the three voices. It copies the volume, the tempo, the base address, the pattern offset table and the three order lists of the tune. It writes the offset table into the operands of two `LDA $CF00,Y` instructions. The tune starts to play in the next frame. **Code**
 3. **It writes the global registers.** In each other frame it writes the volume, the resonance and the cutoff base to the SID. **Code**
-4. **It steps the voices.** [`music_play_voices` `$0A51`](../src/music_driver.asm#L79) counts the tempo of each voice down. At 0 the voice gets a tick: it reads its order list and its pattern. In each frame the voice sets or slides its frequency. **Code**
+4. **It steps the voices.** [`music_play_voices` `$0A51`](../src/music/music_driver.asm#L73) counts the tempo of each voice down. At 0 the voice gets a tick: it reads its order list and its pattern. In each frame the voice sets or slides its frequency. **Code**
 5. **It updates the effects.** After the voices, the driver steps the three LFOs, sets the pulse widths and adds the filter sweep to the cutoff. **Code**
-6. **It writes the voices.** [`music_write_sid_voice` `$0BB3`](../src/music_driver.asm#L285) writes the frequency, the pulse width, the envelope and the control byte of each voice that is on. **Code**
+6. **It writes the voices.** [`music_write_sid_voice` `$0BB3`](../src/music/music_driver.asm#L279) writes the frequency, the pulse width, the envelope and the control byte of each voice that is on. **Code**
 
 The driver keeps a copy of each SID register of a voice in its workspace. It writes all 7 registers of each voice that is on in each frame, also when no value changed. **Code**
 
 ### One tick of a voice
 
-A tick reads the next byte of the order list or of the pattern. [`music_read_order` `$0A77`](../src/music_driver.asm#L97) reads the command byte at the order position of the voice. It jumps through `music_order_commands`, a table of four handler addresses. The command byte is not range-checked. A byte above 3 would jump through the driver variables after the table, but no order list has such a byte. **Code**
+A tick reads the next byte of the order list or of the pattern. [`music_read_order` `$0A77`](../src/music/music_driver.asm#L91) reads the command byte at the order position of the voice. It jumps through `music_order_commands`, a table of four handler addresses. The command byte is not range-checked. A byte above 3 would jump through the driver variables after the table, but no order list has such a byte. **Code**
 
-While a note plays, the pattern command only counts the note timer down. When the timer reaches 0, the voice gets one release tick with the gate off. After the release tick, [`music_next_byte` `$0B19`](../src/music_driver.asm#L202) reads the next pattern byte. An instrument byte and the end of a pattern do not use a tick. The driver reads the next byte or the next order entry in the same tick. **Code**
+While a note plays, the pattern command only counts the note timer down. When the timer reaches 0, the voice gets one release tick with the gate off. After the release tick, [`music_next_byte` `$0B19`](../src/music/music_driver.asm#L196) reads the next pattern byte. An instrument byte and the end of a pattern do not use a tick. The driver reads the next byte or the next order entry in the same tick. **Code**
 
 ~~~mermaid
 stateDiagram-v2
@@ -68,13 +68,13 @@ Bit 6 of the duration byte keeps the gate on through the release tick. Duration 
 
 ### The effects of each frame
 
-The driver has five modulator slots. Slots 0-2 are triangle LFOs, one for each voice. [`music_step_modulators` `$0DFC`](../src/music_effects.asm#L100) adds or subtracts the LFO step of the voice in each frame and turns the direction at 0 and `$FF`. Slot 3 is a copy of ENV3, the envelope of SID voice 3. Slot 4 is a copy of OSC3. No instrument selects slot 4. **Code**
+The driver has five modulator slots. Slots 0-2 are triangle LFOs, one for each voice. [`music_step_modulators` `$0DFC`](../src/music/music_effects.asm#L100) adds or subtracts the LFO step of the voice in each frame and turns the direction at 0 and `$FF`. Slot 3 is a copy of ENV3, the envelope of SID voice 3. Slot 4 is a copy of OSC3. No instrument selects slot 4. **Code**
 
-[`music_update_pulse` `$0E3E`](../src/music_effects.asm#L133) sets the pulse width of each modulated voice to the base width plus the LFO value, shifted left by the shift of the instrument. An instrument with flag `$80` keeps a fixed width. **Code**
+[`music_update_pulse` `$0E3E`](../src/music/music_effects.asm#L133) sets the pulse width of each modulated voice to the base width plus the LFO value, shifted left by the shift of the instrument. An instrument with flag `$80` keeps a fixed width. **Code**
 
-[`music_update_filter` `$0E6D`](../src/music_effects.asm#L160) adds the sweep value to the cutoff base, or subtracts it. The sweep value is the modulator slot of the instrument, shifted left by the sweep shift. All instruments with a sweep use slot 3, the ENV3 copy. The voice of these instruments is voice 2, thus SID voice 3. The cutoff then follows the envelope of the same note. **Code**
+[`music_update_filter` `$0E6D`](../src/music/music_effects.asm#L160) adds the sweep value to the cutoff base, or subtracts it. The sweep value is the modulator slot of the instrument, shifted left by the sweep shift. All instruments with a sweep use slot 3, the ENV3 copy. The voice of these instruments is voice 2, thus SID voice 3. The cutoff then follows the envelope of the same note. **Code**
 
-[`music_slide_freq` `$0EB3`](../src/music_effects.asm#L197) moves the current frequency toward the note frequency in each frame. The step is the slide step of the instrument, shifted left by the octave of the note. Thus the slide takes the same time in each octave. The slide stops at the note. A slide instrument glides only when the duration byte of the previous note held bit 6 or bit 7. Else the driver sets the note frequency at once. **Code**
+[`music_slide_freq` `$0EB3`](../src/music/music_effects.asm#L197) moves the current frequency toward the note frequency in each frame. The step is the slide step of the instrument, shifted left by the octave of the note. Thus the slide takes the same time in each octave. The slide stops at the note. A slide instrument glides only when the duration byte of the previous note held bit 6 or bit 7. Else the driver sets the note frequency at once. **Code**
 
 ## The music data format
 
@@ -84,7 +84,7 @@ The music data fills `$0400-$09A4` (patterns and offset tables) and `$0F52-$1157
 
 ### Where the data is
 
-The tune tables have 5 entries, for tunes 0-4. [`music_tune_bases` `$0F54`](../src/music_tables.asm#L17) holds the base address of each tune. [`music_tune_pattern_tables` `$0F5E`](../src/music_tables.asm#L21) holds the address of the offset table of each tune. The other tables follow them. **Code**
+The tune tables have 5 entries, for tunes 0-4. [`music_tune_bases` `$0F54`](../src/music/music_tables.asm#L17) holds the base address of each tune. [`music_tune_pattern_tables` `$0F5E`](../src/music/music_tables.asm#L21) holds the address of the offset table of each tune. The other tables follow them. **Code**
 
 | Table | Address | Entry | Meaning |
 |---|---|---|---|
@@ -116,7 +116,7 @@ Tune 1 and voice 1 use the repeat in a special form. The target yy is the positi
 
 ### The patterns
 
-A pattern is a list of bytes. [`music_read_pattern` `$0B1C`](../src/music_driver.asm#L204) reads it with the pattern position of the voice. **Code**
+A pattern is a list of bytes. [`music_read_pattern` `$0B1C`](../src/music/music_driver.asm#L198) reads it with the pattern position of the voice. **Code**
 
 | Byte | Meaning |
 |---|---|
@@ -127,11 +127,11 @@ A pattern is a list of bytes. [`music_read_pattern` `$0B1C`](../src/music_driver
 
 The note frequency is `$0100` plus the entry of `music_note_freqs` for the note. The driver shifts it left by the octave of the note plus the octave offset of the instrument. A rest changes no frequency and leaves the gate as it is. **Code**
 
-[`music_note_freqs` `$0D14`](../src/music_workspace.asm#L138) holds the low bytes of octave 0, from C `$010C` to B `$01FA`. These values are the NTSC table of the Commodore 64 Programmer's Reference Guide. A4 is `$01C3` with 4 left shifts, thus `$1C30`. This gives 440 Hz at the NTSC clock. **Code**
+[`music_note_freqs` `$0D14`](../src/music/music_workspace_0cdb.asm#L53) holds the low bytes of octave 0, from C `$010C` to B `$01FA`. These values are the NTSC table of the Commodore 64 Programmer's Reference Guide. A4 is `$01C3` with 4 left shifts, thus `$1C30`. This gives 440 Hz at the NTSC clock. **Code**
 
 ### The durations
 
-[`music_durations` `$0D21`](../src/music_workspace.asm#L142) gives the note timer for each index. A note lasts the table value plus 1 ticks: the value in ticks with the gate on, then the release tick. **Code**
+[`music_durations` `$0D21`](../src/music/music_workspace_0cdb.asm#L57) gives the note timer for each index. A note lasts the table value plus 1 ticks: the value in ticks with the gate on, then the release tick. **Code**
 
 | Index | Byte | Ticks | Used by |
 |---|---|---|---|
@@ -158,7 +158,7 @@ Indexes 0-8 give 3, 6, 9, 12, 18, 24, 36, 48 and 72 ticks. Indexes 9-15 have no 
 
 ### The instrument records
 
-[`music_instrument_ptrs` `$0F86`](../src/music_tables.asm#L37) points to 25 records at `$105E-$1156`. The records follow each other without a gap. [`music_set_instrument` `$0D3C`](../src/music_effects.asm#L6) reads a record. A record has 6, 11, 13 or 18 bytes, because the pulse part and the filter part are optional. **Code**
+[`music_instrument_ptrs` `$0F86`](../src/music/music_tables.asm#L37) points to 25 records at `$105E-$1156`. The records follow each other without a gap. [`music_set_instrument` `$0D3C`](../src/music/music_effects.asm#L6) reads a record. A record has 6, 11, 13 or 18 bytes, because the pulse part and the filter part are optional. **Code**
 
 | Byte | Field | Meaning |
 |---|---|---|
@@ -232,7 +232,7 @@ Tune 1 is the tune of the demo. Entry 1 of the tune tables gives these values. *
 | `music_tune_volumes` | `$0A` | Volume 10, no filter mode |
 | `music_tune_tempos` | `$02` | 2 frames per tick, 25 ticks each second |
 
-The order list of voice 0 at [`music_t1_order_v0` `$0FC2`](../src/music_tables.asm#L52) starts with `01 00`: play pattern 0. Word 0 of the offset table is `$0000`. Thus pattern 0 is at `$0400` + `$0000` = `$0400`, the start of [`music_t1_pattern_00` `$0400`](../src/music_patterns.asm#L6). **Code**
+The order list of voice 0 at [`music_t1_order_v0` `$0FC2`](../src/music/music_tables.asm#L52) starts with `01 00`: play pattern 0. Word 0 of the offset table is `$0000`. Thus pattern 0 is at `$0400` + `$0000` = `$0400`, the start of [`music_t1_pattern_00` `$0400`](../src/music/music_patterns.asm#L6). **Code**
 
 The first bytes of pattern 0 are `80 00 01 53 00 50 00 5A 00 50 00 58 00`. **Code**
 
@@ -252,7 +252,7 @@ The frequency `$25A0` is 9632. At the NTSC clock of 1022727 Hz this gives 587.2 
 
 ## The tunes
 
-Each game mode selects one tune. [`demo_play` `$17BF`](../src/game_modes.asm#L226) sets `game_mode` to 1, [`game_one_player` `$16A9`](../src/game_modes.asm#L81) sets 2, and [`game_two_players` `$161D`](../src/game_modes.asm#L6) sets 3. No code writes 4 to `game_mode`. **Code**
+Each game mode selects one tune. [`demo_play` `$17BF`](../src/game/game_modes.asm#L220) sets `game_mode` to 1, [`game_one_player` `$16A9`](../src/game/game_modes.asm#L81) sets 2, and [`game_two_players` `$161D`](../src/game/game_modes.asm#L6) sets 3. No code writes 4 to `game_mode`. **Code**
 
 | Tune | game_mode | Patterns | Data | Volume | Tempo | Loop | Time of a loop |
 |---|---|---|---|---|---|---|---|
@@ -267,7 +267,7 @@ Voice 2 of tune 2 uses instrument 24, and voice 2 of tune 3 uses instrument 18. 
 
 ### Tune 4, the unused jingle
 
-Tune 4 is a complete short tune with its own patterns, offsets, order lists and instruments 19-21. Its data is at [`music_t4_pattern_00` `$08D6`](../src/music_patterns.asm#L758), `$099D-$09A4` and [`music_t4_order_v0` `$1053`](../src/music_tables.asm#L143). Each order list ends with the stop command, thus the tune plays one time and the voices stop. **Code**
+Tune 4 is a complete short tune with its own patterns, offsets, order lists and instruments 19-21. Its data is at [`music_t4_pattern_00` `$08D6`](../src/music/music_patterns_04be.asm#L654), `$099D-$09A4` and [`music_t4_order_v0` `$1053`](../src/music/music_tables_0fd5.asm#L84). Each order list ends with the stop command, thus the tune plays one time and the voices stop. **Code**
 
 A run that writes 4 to `game_mode` plays tune 4. The SID writes in the trace of that run show the tune. **Observed**
 
@@ -297,7 +297,7 @@ The source marks the repeat bug at `$0FCE` and the unread pattern in its comment
 
 The program holds a complete 1-bit sample player at `$29C8-$2A65`. No code can reach it. It plays a sample with clicks of the SID volume: each interrupt changes the volume from 15 to 0 or from 0 to 15. The time to the next click comes from the sample byte. **Code**
 
-[`sfx_sample_start` `$2A0A`](../src/sfx_sample_player.asm#L47) is the set-up, and nothing calls it. It does these steps:
+[`sfx_sample_start` `$2A0A`](../src/leftovers/leftover_2a0a.asm#L6) is the set-up, and nothing calls it. It does these steps:
 
 1. It stops the CIA1 timers and sets the sample range to `$0804-$0A04`.
 2. It clears the SID registers and sets `sfx_volume` to 15.
@@ -308,7 +308,7 @@ The set-up writes `$7F` to `CIAICR` two times and 0 to `sfx_done` two times. **C
 
 **Conclusion.** The duplicated writes are signs of edits to the routine.
 
-[`sfx_sample_irq` `$29C8`](../src/sfx_sample_player.asm#L6) runs at each timer B underflow. It writes `sfx_volume` EOR `$0F` to SIGVOL, so each interrupt gives one click. It reads the next sample byte. The byte is an index into two 256-byte tables at `$0E00` (low bytes) and `$0F00` (high bytes). They give the next count of timer B. The time to the next click is about (count + 1) × 9 cycles. At the end of the range it sets `sfx_done` to `$7F` and leaves timer B stopped. **Code**
+[`sfx_sample_irq` `$29C8`](../src/sfx/sfx_sample_player.asm#L6) runs at each timer B underflow. It writes `sfx_volume` EOR `$0F` to SIGVOL, so each interrupt gives one click. It reads the next sample byte. The byte is an index into two 256-byte tables at `$0E00` (low bytes) and `$0F00` (high bytes). They give the next count of timer B. The time to the next click is about (count + 1) × 9 cycles. At the end of the range it sets `sfx_done` to `$7F` and leaves timer B stopped. **Code**
 
 Each byte of the sample is thus one half-wave of a square wave. The range `$0804-$0A04` gives 513 half-waves. **Code**
 
@@ -324,7 +324,7 @@ The data of the player is now music. `$0804-$0A04` holds the end of pattern 3 of
 
 **Conclusion.** An earlier build of the game had a short sample at `$0804` and its period tables at `$0E00` and `$0F00`. The music driver and its data later took that memory. The player, its set-up and the 15 jumps stayed in the program.
 
-Version II uses the same player as a live part of the game. [`v2:sfx_sample_irq` `$311A`](../../v2/src/sfx_sample_player.asm#L6) plays four samples for the hits, the attack and a fighter on the floor. Version II keeps the samples in the floor bitmap at `$F540` and the period tables at `$0200` and `$0300`. The page [../../v2/docs/sound_music.md](../../v2/docs/sound_music.md) explains it. [../../docs/versions.md](../../docs/versions.md) lists all changes between the versions. **Code**
+Version II uses the same player as a live part of the game. [`v2:sfx_sample_irq` `$311A`](../../v2/src/sfx/sfx_sample_player.asm#L6) plays four samples for the hits, the attack and a fighter on the floor. Version II keeps the samples in the floor bitmap at `$F540` and the period tables at `$0200` and `$0300`. The page [../../v2/docs/sound_music.md](../../v2/docs/sound_music.md) explains it. [../../docs/versions.md](../../docs/versions.md) lists all changes between the versions. **Code**
 
 Before the game starts, the loading stage plays a speech sample. It uses a player of the same type: M.MYTINY at `$9000`, with its tables in M.SPCHTBL at `$9800`. That sample is not part of the game. The page [../../docs/loading_stage.md](../../docs/loading_stage.md) explains it. **Observed**
 

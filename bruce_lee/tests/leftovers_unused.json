@@ -264,6 +264,73 @@
    "side": "rebuild"
   },
   {
+   "write": {
+    "address": "$0b4a",
+    "data": "a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$0b6a",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$1117",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$1ad0",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$3a62",
+    "data": "a5"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$40aa",
+    "data": "a5a5"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$40b2",
+    "data": "a5a5"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$40ba",
+    "data": "a5a5"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$e388",
+    "data": "a5a5a5a5"
+   },
+   "side": "rebuild"
+  },
+  {
    "runUntil": {
     "target": {
      "kind": "address",
@@ -296,12 +363,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -386,7 +877,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -473,12 +982,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -563,7 +1496,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -700,12 +1651,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -790,7 +2165,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -912,12 +2305,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -1002,7 +2819,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -1124,12 +2959,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -1214,7 +3473,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -1336,12 +3613,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -1426,7 +4127,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -1548,12 +4267,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -1638,7 +4781,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -1760,12 +4921,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -1850,7 +5435,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -1972,12 +5575,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -2062,7 +6089,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",
@@ -2184,12 +6229,436 @@
     {
      "address": "$0200",
      "size": 3832,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$0b4a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b4f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b50",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b6f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b70",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b71",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b72",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b73",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b74",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b75",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b76",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b77",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b78",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b79",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b7f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b80",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b81",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b82",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b83",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b84",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b85",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b86",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b87",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b88",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b89",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$0b8d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$1103",
      "size": 12835,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$1117",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1118",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1119",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$111f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1120",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1121",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1122",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1123",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1124",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1125",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1126",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1127",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1128",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1129",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112c",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112d",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112e",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$112f",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1130",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ad9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ada",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adc",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1add",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ade",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1adf",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae0",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae1",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae4",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae5",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae6",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae7",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae8",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1ae9",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aea",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aeb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$1aec",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$3a62",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40aa",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ab",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b2",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40b3",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40ba",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$40bb",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$432e",
@@ -2274,7 +6743,25 @@
     {
      "address": "$e300",
      "size": 1214,
-     "view": "ram"
+     "view": "ram",
+     "exclude": [
+      {
+       "address": "$e388",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e389",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38a",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      },
+      {
+       "address": "$e38b",
+       "reason": "leftover byte of generate; the rebuild side fills it with $A5"
+      }
+     ]
     },
     {
      "address": "$e80a",

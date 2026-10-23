@@ -19,7 +19,7 @@ The main loop waits for the interrupt to count frames, so the interrupt also set
 
 ## How it works
 
-Every interrupt of the game is a VIC-II raster interrupt. [`init_game_irq` `$082D`](../src/play_init.asm#L114) turns the CIA 1 and CIA 2 interrupts off. One entry routine takes every interrupt and jumps through a vector to the handler of the current screen. Each handler does its part of the screen and then writes the line of the next interrupt. When the next handler is a different one, it also writes that handler into the vector. Thus a screen is a small loop of handlers, and a new screen only writes a new first handler. **Code**
+Every interrupt of the game is a VIC-II raster interrupt. [`init_game_irq` `$082D`](../src/game/play_init.asm#L114) turns the CIA 1 and CIA 2 interrupts off. One entry routine takes every interrupt and jumps through a vector to the handler of the current screen. Each handler does its part of the screen and then writes the line of the next interrupt. When the next handler is a different one, it also writes that handler into the vector. Thus a screen is a small loop of handlers, and a new screen only writes a new first handler. **Code**
 
 ~~~mermaid
 flowchart TB
@@ -41,9 +41,9 @@ flowchart TB
 
 ### The IRQ entry and the vector
 
-The game removes the KERNAL ROM from the memory map (`R6510` = `$35`), so the CPU reads the interrupt vectors from RAM. The IRQ vector `hw_irq_vector` points to [`irq_entry` `$1103`](../src/interrupt_entry.asm#L10). **Code**
+The game removes the KERNAL ROM from the memory map (`R6510` = `$35`), so the CPU reads the interrupt vectors from RAM. The IRQ vector `hw_irq_vector` points to [`irq_entry` `$1103`](../src/irq/interrupt_entry.asm#L10). **Code**
 
-**RESTORE does nothing.** The NMI vector and the RESET vector both point to [`nmi_entry` `$1116`](../src/interrupt_entry.asm#L25), which is a single RTI. A press of RESTORE returns at once. **Code**
+**RESTORE does nothing.** The NMI vector and the RESET vector both point to [`nmi_entry` `$1116`](../src/irq/interrupt_entry.asm#L25), which is a single RTI. A press of RESTORE returns at once. **Code**
 
 `irq_entry` does three things:
 
@@ -51,7 +51,7 @@ The game removes the KERNAL ROM from the memory map (`R6510` = `$35`), so the CP
 2. It reads the stacked status register (LDA `$0104`,X after TSX) to test for a BRK. **The BRK test does not work**: the code does `AND #$00` at `$110C`. Thus the result is always zero, and the BRK branch (`JMP (io1_dummy)`) never runs. **Code**
 3. `irq_dispatch` does `JMP (irq_vector)`.
 
-**The vector is part of an instruction.** [`irq_vector` `$0408`](../src/cold_start.asm#L31) and `irq_vector_hi` are the two bytes of the `AND #$EF` instruction in [`cold_start` `$0400`](../src/cold_start.asm#L22). The instruction runs one time at the cold start. After that, the code stores the address of the next handler there. **Code**
+**The vector is part of an instruction.** [`irq_vector` `$0408`](../src/game/cold_start.asm#L31) and `irq_vector_hi` are the two bytes of the `AND #$EF` instruction in [`cold_start` `$0400`](../src/game/cold_start.asm#L22). The instruction runs one time at the cold start. After that, the code stores the address of the next handler there. **Code**
 
 Each handler ends with the same steps:
 
@@ -71,13 +71,13 @@ The title shows the big logo (DATASOFT PRESENTS, BRUCE LEE, BY RON J FORTIER) in
 | `irq_title_frame` | 253 (`$FD`) | `VMCSB` = `$30` (screen `game_screen`, charset `$8000` of the logo), `SCROLX` = `$18` (multicolour, 40 columns) for the top of the next frame | `music_api_play` | `irq_title_split` at line 130 |
 | `irq_title_split` | 130 (`$82`) | after a short delay: `VMCSB` = `$32` (charset `text_font`), `SCROLX` = `$16` (multicolour, 38 columns, x-scroll 6) | none | `irq_title_frame` at line 253 |
 
-[`irq_title_frame` `$152C`](../src/screen_raster_irqs.asm#L81) also decrements [`frame_countdown` `$0048`](../src/constants.asm#L34) and the 16-bit `title_countdown`. Both stop at 0. **Code**
+[`irq_title_frame` `$152C`](../src/irq/screen_raster_irqs.asm#L81) also decrements [`frame_countdown` `$0048`](../src/constants.asm#L34) and the 16-bit `title_countdown`. Both stop at 0. **Code**
 
-The first title IRQs came 2 frames after [`show_title_screen` `$0584`](../src/title_demo_start.asm#L83). `irq_title_split` ran at line 130. It wrote `VMCSB` at line 130, cycle 62 and `SCROLX` at line 131. `irq_title_frame` ran at line 253. It wrote `VMCSB` at line 253 and `SCROLX` at line 254. Then it called `music_api_play` at line 254. **Observed**
+The first title IRQs came 2 frames after [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83). `irq_title_split` ran at line 130. It wrote `VMCSB` at line 130, cycle 62 and `SCROLX` at line 131. `irq_title_frame` ran at line 253. It wrote `VMCSB` at line 253 and `SCROLX` at line 254. Then it called `music_api_play` at line 254. **Observed**
 
 **The menu text is hires.** Text row 10 starts at line 131. Thus the logo rows 0-9 show in the logo charset, and the menu rows 10-24 show in the text font. The colour RAM of the menu rows is `$F1` (bit 3 clear: hires). Thus the menu text is hires, although `SCROLX` selects multicolour. **Conclusion**
 
-[`game_over` `$188E`](../src/lose_fall_game_over.asm#L82) installs the same pair with a first compare line of 251 (`$FB`). After the first `irq_title_split` the line is 253 again. **Code**
+[`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82) installs the same pair with a first compare line of 251 (`$FB`). After the first `irq_title_split` the line is 253 again. **Code**
 
 ~~~mermaid
 flowchart LR
@@ -94,11 +94,11 @@ The title screen: the logo rows above line 130, the menu in the text font below 
 
 Before each turn, the game shows a big PLAYER 1 or PLAYER 2 banner for 64 frames, about 1.3 seconds. One handler gives the big letters a shading from dark grey to white and back. It changes a colour every two lines.
 
-[`show_player_screen` `$0EA7`](../src/title_player_screens.asm#L71) does these steps:
+[`show_player_screen` `$0EA7`](../src/game/title_player_screens.asm#L71) does these steps:
 
 1. It fills the screen with the blank logo character `$DC`.
 2. It copies the big banner (`player_banner_top`) to rows 7 and 8.
-3. It installs [`irq_player_screen` `$14A4`](../src/screen_raster_irqs.asm#L10) at line 99 (`$63`).
+3. It installs [`irq_player_screen` `$14A4`](../src/irq/screen_raster_irqs.asm#L10) at line 99 (`$63`).
 4. It waits until `frame_countdown` is 0: 64 frames, or 128 frames in a two-player game. If the interrupt stops, the 24-bit counter `player_screen_wait` ends the wait. **Code**
 
 | Handler | Line | Sets | Next |
@@ -134,7 +134,7 @@ In a room, the screen has two parts. The status line at the top uses the hires t
 | `irq_game_playfield` | 64 (`$40`) | waits until the line is past 65 (`irq_playfield_wait`) plus a delay. `VMCSB` = `room_vmcsb` (the room charset). `BGCOL0` to `BGCOL2` = band 0 (`room_band_colours`). `raster_split_index` = 0, `band_palette_offset` = 3 | `irq_game_colour_split` at `raster_split_lines`[0], or `irq_game_bottom` when that is `$FD` |
 | `irq_game_colour_split` | split line r | waits for line r+3 (`irq_split_wait`), writes `BGCOL0` to `BGCOL2` from the next 3 bytes of `room_band_colours` (`irq_split_set_colours`), `band_palette_offset` += 3, `raster_split_index` += 1 | the next split line, or `irq_game_bottom` when the next entry is `$FD` (`irq_chain_to_bottom`) |
 
-[`irq_game_bottom` `$48C1`](../src/game_irq.asm#L12) starts the chain of each frame. [`reset_play_state` `$0763`](../src/play_init.asm#L19) sets `VMCSB` = `$38` and `SCROLX` = `$18` one time. No game handler writes `SCROLX`. **Observed** (no write in a traced game frame).
+[`irq_game_bottom` `$48C1`](../src/irq/game_irq.asm#L12) starts the chain of each frame. [`reset_play_state` `$0763`](../src/game/play_init.asm#L19) sets `VMCSB` = `$38` and `SCROLX` = `$18` one time. No game handler writes `SCROLX`. **Observed** (no write in a traced game frame).
 
 Text rows 0-1 (lines 51-66) are the status line in the hires text font on grey. The room starts at text row 2 (line 67), the separator row. The room uses the multicolour room charset. The colour splits change the background and the two multicolours at fixed lines, 3 lines after the split line. **Conclusion**, from the trace in [The worked example](#the-worked-example-one-frame-of-room-0).
 
@@ -149,27 +149,27 @@ flowchart LR
 
 ### The work of each frame
 
-In the game and in the attract demo, one routine does all the work of each frame: [`frame_update` `$15A8`](../src/frame_update.asm#L20). `irq_game_bottom` calls it in each frame of the game screen (**Observed** at line 259). It runs inside the interrupt, with interrupts disabled. The steps in the order of the code:
+In the game and in the attract demo, one routine does all the work of each frame: [`frame_update` `$15A8`](../src/game/frame_update.asm#L20). `irq_game_bottom` calls it in each frame of the game screen (**Observed** at line 259). It runs inside the interrupt, with interrupts disabled. The steps in the order of the code:
 
 1. **Split index.** `raster_split_index` = 0.
-2. **Sound effects.** The three effect voices play their next step, first [`sfx_voice1_update` `$EB03`](../src/sfx_voice1.asm#L19), with X = `room`. **There is no music in the game screen**: only `irq_title_frame` calls `music_api_play`. **Code**
+2. **Sound effects.** The three effect voices play their next step, first [`sfx_voice1_update` `$EB03`](../src/sfx/sfx_voice1.asm#L19), with X = `room`. **There is no music in the game screen**: only `irq_title_frame` calls `music_api_play`. **Code**
 3. **Random pointer.** `random_ptr` + 1 (`random_byte` also increments it). **Code**
-4. **Sprites.** [`show_actor_sprites` `$25E2`](../src/actor_sprites.asm#L75) writes the positions and colours of the actor sprites. **Code**
+4. **Sprites.** [`show_actor_sprites` `$25E2`](../src/actor/actor_sprites.asm#L75) writes the positions and colours of the actor sprites. **Code**
 5. **Fall attack budget.** When `fall_attack_refill_timer` is 0, the code sets the three bytes of [`fall_attack_budget` `$4F45`](../src/constants.asm#L168) to 2. Then it decrements the timer. Thus a refill comes every 256 frames. **Code**
 6. **Room charset.** `room_charset_hi` from `room_vmcsb` (see [The charset of the play area](#the-charset-of-the-play-area)). **Code**
-7. **Handedness marks.** Status row 1, column 2 shows `L` (character `$2C`) when joystick 1 is left-handed ([`joystick_right_handed` `$1383`](../src/room_enemy_tables.asm#L114) = 0). Else it is blank. Column 37 does the same for joystick 2 (`joystick_right_handed+1`). But it does this only when port 2 is in use (`option_two_players` or `option_yamo_player2` set). **Code**
+7. **Handedness marks.** Status row 1, column 2 shows `L` (character `$2C`) when joystick 1 is left-handed ([`joystick_right_handed` `$1383`](../src/room/room_enemy_tables.asm#L114) = 0). Else it is blank. Column 37 does the same for joystick 2 (`joystick_right_handed+1`). But it does this only when port 2 is in use (`option_two_players` or `option_yamo_player2` set). **Code**
 8. **Room time.** In a game (`game_mode` = 1) that is not paused (`pause_state` bit 7 clear), [`room_time` `$0087`](../src/constants.asm#L82) + 1. Its high byte stops at `$80`. `draw_room` sets it to 0. **Code**
-9. **Frame counters and the idle timer.** `frame_counter` + 1. When it wraps (every 256 frames), [`idle_timer` `$0082`](../src/constants.asm#L77) + 1 while it is positive, and `frame_count_256` + 1 (16 bit). When `idle_timer` gets to `$80`, the code sets `pause_state` = `$86` (paused, debounce 6). Then it calls `show_paused` and [`start_screen_saver` `$102B`](../src/game_setup.asm#L139). **Code**
-10. **Screen saver masks.** With `idle_timer` positive, `saver_and_mask` = `$FE` and `saver_eor_mask` = 0. With `idle_timer` negative (saver on), `idle_timer` = `$FE`, `saver_eor_mask` = `frame_count_256` and `saver_and_mask` = `$F7`. Then the 20 bytes of `room_band_colours` = ([`palette_backup` `$47B4`](../src/room_palettes.asm#L21) EOR `saver_eor_mask`) AND `saver_and_mask`. **Code**
-11. **Protection check 1.** [`frame_update_check_ddr` `$166A`](../src/frame_update.asm#L140): `D6510` must hold `$EF`. Else the code branches back to step 9 for ever, inside the interrupt, and the game stops. The original loader leaves `$EF` there. **Code**
-12. **Countdowns.** [`frame_countdown` `$0048`](../src/constants.asm#L34) - 1 and the 16-bit `title_countdown` - 1. Both stop at 0. In the game screen, `title_countdown` times the congratulations room ([`room19_init` `$425F`](../src/ending_room.asm#L7) sets `$0458`). **Code**
-13. **Joysticks.** [`frame_update_read_input` `$1689`](../src/frame_update.asm#L171) saves the CIA 1 port directions (`CIADDRA`, `CIADDRB`) and makes both ports inputs. In the demo (`game_mode` = 0) it reads nothing: `update_actors` takes Bruce's input from the demo stream. In a game: **Code**
+9. **Frame counters and the idle timer.** `frame_counter` + 1. When it wraps (every 256 frames), [`idle_timer` `$0082`](../src/constants.asm#L77) + 1 while it is positive, and `frame_count_256` + 1 (16 bit). When `idle_timer` gets to `$80`, the code sets `pause_state` = `$86` (paused, debounce 6). Then it calls `show_paused` and [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L139). **Code**
+10. **Screen saver masks.** With `idle_timer` positive, `saver_and_mask` = `$FE` and `saver_eor_mask` = 0. With `idle_timer` negative (saver on), `idle_timer` = `$FE`, `saver_eor_mask` = `frame_count_256` and `saver_and_mask` = `$F7`. Then the 20 bytes of `room_band_colours` = ([`palette_backup` `$47B4`](../src/room/room_palettes_47a0.asm#L15) EOR `saver_eor_mask`) AND `saver_and_mask`. **Code**
+11. **Protection check 1.** [`frame_update_check_ddr` `$166A`](../src/game/frame_update.asm#L140): `D6510` must hold `$EF`. Else the code branches back to step 9 for ever, inside the interrupt, and the game stops. The original loader leaves `$EF` there. **Code**
+12. **Countdowns.** [`frame_countdown` `$0048`](../src/constants.asm#L34) - 1 and the 16-bit `title_countdown` - 1. Both stop at 0. In the game screen, `title_countdown` times the congratulations room ([`room19_init` `$425F`](../src/room/ending_room.asm#L7) sets `$0458`). **Code**
+13. **Joysticks.** [`frame_update_read_input` `$1689`](../src/game/frame_update.asm#L171) saves the CIA 1 port directions (`CIADDRA`, `CIADDRB`) and makes both ports inputs. In the demo (`game_mode` = 0) it reads nothing: `update_actors` takes Bruce's input from the demo stream. In a game: **Code**
     - Bruce uses port 1 (`CIAPRB`) when `current_player` = 0, and port 2 (`CIAPRA`) when it is 1. Bits 0-3 go to `actor_joy_dir`, and fire (bit 4) goes to `actor_fire`.
     - A Yamo that a person plays (`option_yamo_player2` = 1) uses the other port. Its input goes to `actor_joy_dir+1` and `actor_fire+1`.
-    - **The code turns a left-handed joystick by 90 degrees** (`joystick_right_handed`,X = 0): new = (old >> 2) OR [`joy_rotate_bits` `$4A85`](../src/room_tables.asm#L8)[old AND 3]. Up becomes right, down becomes left, left becomes up, right becomes down.
-14. **Protection check 2.** [`frame_update_check_loader_mark` `$1703`](../src/frame_update.asm#L245): `prot_loader_mark` must hold `$32`. Else `frame_update_wipe_loop` writes over memory page by page, from the top page down. Its page counter is [`frame_update_wipe_counter` `$0539`](../src/title_demo_start.asm#L37), a byte of an instruction of `start_attract_demo`. The original loader leaves `$32` there. **Code**
+    - **The code turns a left-handed joystick by 90 degrees** (`joystick_right_handed`,X = 0): new = (old >> 2) OR [`joy_rotate_bits` `$4A85`](../src/room/room_tables.asm#L8)[old AND 3]. Up becomes right, down becomes left, left becomes up, right becomes down.
+14. **Protection check 2.** [`frame_update_check_loader_mark` `$1703`](../src/game/frame_update.asm#L245): `prot_loader_mark` must hold `$32`. Else `frame_update_wipe_loop` writes over memory page by page, from the top page down. Its page counter is [`frame_update_wipe_counter` `$0539`](../src/game/title_demo_start.asm#L37), a byte of an instruction of `start_attract_demo`. The original loader leaves `$32` there. **Code**
 15. **Port directions.** `frame_update_restore_ddr` restores the CIA 1 port directions. **Code**
-16. **Idle reset.** [`frame_update_reset_idle` `$173B`](../src/frame_update.asm#L289) sets `idle_timer` = 0 in the demo, always. In a game, it does this when the game is not paused and Bruce's or Yamo's joystick has a direction or fire. **Code**
+16. **Idle reset.** [`frame_update_reset_idle` `$173B`](../src/game/frame_update.asm#L289) sets `idle_timer` = 0 in the demo, always. In a game, it does this when the game is not paused and Bruce's or Yamo's joystick has a direction or fire. **Code**
 17. **Yamo player idle.** This step runs only in a game that is not paused, in a room with enemies (`room_no_enemy_flag` = 0), and with `option_yamo_player2` = 1. Without input on Yamo's joystick, [`yamo_idle_time` `$0089`](../src/constants.asm#L83) + 1 per frame. Input sets it to 0. At 7 * 256 = 1792 frames, Yamo goes back to the computer: **Code**
     - `option_yamo_player2` = 0, and `room_time+1` = `$20` (the top time level).
     - `play_open_sound` plays.
@@ -178,7 +178,7 @@ In the game and in the attract demo, one routine does all the work of each frame
 
 The two copy-protection checks of `frame_update` never fail in the clean program with the entry state of the loader (**Observed**: all runs pass them). The [protection page](protection.md) lists them with the other checks.
 
-While bit 7 of `pause_state` is 1, [`main_loop` `$1BC2`](../src/game_main_loop.asm#L23) skips the game work. But the interrupt and `frame_update` continue. Thus the sound effects, the countdowns and the idle timer also run during the pause. **Code**
+While bit 7 of `pause_state` is 1, [`main_loop` `$1BC2`](../src/game/game_main_loop.asm#L23) skips the game work. But the interrupt and `frame_update` continue. Thus the sound effects, the countdowns and the idle timer also run during the pause. **Code**
 
 ### The timing
 
@@ -208,7 +208,7 @@ The main loop sets `frame_countdown` = 3. Then it waits until the interrupt coun
 
 ### The charset of the play area
 
-Rooms 0-9 share one charset, and rooms 10-19 share another. The room of the wizard, room 18, has two charsets of its own. The second one is for the flash at the defeat of the wizard. The game keeps the charset of the room as the `VMCSB` value that `irq_game_playfield` writes at the top of the room. [`draw_room` `$09BC`](../src/draw_room.asm#L28) sets [`room_vmcsb` `$00F2`](../src/constants.asm#L117). Room 18 changes it during the wizard defeat (`room18_wizard_defeated`), and `frame_update` derives `room_charset_hi` from it every frame. **Code**
+Rooms 0-9 share one charset, and rooms 10-19 share another. The room of the wizard, room 18, has two charsets of its own. The second one is for the flash at the defeat of the wizard. The game keeps the charset of the room as the `VMCSB` value that `irq_game_playfield` writes at the top of the room. [`draw_room` `$09BC`](../src/room/draw_room.asm#L28) sets [`room_vmcsb` `$00F2`](../src/constants.asm#L117). Room 18 changes it during the wizard defeat (`room18_wizard_defeated`), and `frame_update` derives `room_charset_hi` from it every frame. **Code**
 
 | `room_vmcsb` | Charset | `room_charset_hi` | Rooms |
 |---|---|---|---|
@@ -219,7 +219,7 @@ Rooms 0-9 share one charset, and rooms 10-19 share another. The room of the wiza
 
 ### The split lists and the band palettes
 
-Each room has a split list (the lines where a new colour band starts) and a band palette (the colours of each band). `room_split_list_ptr` and `room_palette_ptr` hold one pointer per room. [`raster_split_lines` `$47F5`](../src/room_palettes.asm#L56) holds the split lines of the current frame. A list ends with `$FD`, the line of `irq_game_bottom`. A room with n split lines uses n + 1 records from its band palette. Each record has 3 bytes: `BGCOL0`, `BGCOL1` and `BGCOL2`. **Code**
+Each room has a split list (the lines where a new colour band starts) and a band palette (the colours of each band). `room_split_list_ptr` and `room_palette_ptr` hold one pointer per room. [`raster_split_lines` `$47F5`](../src/room/room_palettes_47a0.asm#L50) holds the split lines of the current frame. A list ends with `$FD`, the line of `irq_game_bottom`. A room with n split lines uses n + 1 records from its band palette. Each record has 3 bytes: `BGCOL0`, `BGCOL1` and `BGCOL2`. **Code**
 
 | Rooms | Split list | Split lines | Band palette | Bands (`BGCOL0`/`BGCOL1`/`BGCOL2`, low nibble) |
 |---|---|---|---|---|
@@ -237,13 +237,13 @@ Each room has a split list (the lines where a new colour band starts) and a band
 
 The colour numbers are 0 black, 1 white, 2 red, 4 purple, 6 blue, 8 orange and 9 brown. B is dark grey, C is grey, E is light blue and F is light grey.
 
-**The screen saver colours show one frame late.** [`irq_bottom_copy` `$4904`](../src/game_irq.asm#L42) copies the palette of the room to [`room_band_colours` `$0153`](../src/constants.asm#L146) every frame, before it calls `frame_update`. The screen saver of `frame_update` writes `room_band_colours` after the copy, so its colours change the next frame only. **Code**
+**The screen saver colours show one frame late.** [`irq_bottom_copy` `$4904`](../src/irq/game_irq.asm#L42) copies the palette of the room to [`room_band_colours` `$0153`](../src/constants.asm#L146) every frame, before it calls `frame_update`. The screen saver of `frame_update` writes `room_band_colours` after the copy, so its colours change the next frame only. **Code**
 
 ## The state machines
 
 ### The chain of handlers
 
-`irq_vector` is the state of the interrupt: it names the handler of the next interrupt. A screen setup writes the first handler of its chain. After that, the handlers of the chain write the next handler. [`irq_entry` `$1103`](../src/interrupt_entry.asm#L10) only follows the vector. **Code**
+`irq_vector` is the state of the interrupt: it names the handler of the next interrupt. A screen setup writes the first handler of its chain. After that, the handlers of the chain write the next handler. [`irq_entry` `$1103`](../src/irq/interrupt_entry.asm#L10) only follows the vector. **Code**
 
 ~~~mermaid
 stateDiagram-v2

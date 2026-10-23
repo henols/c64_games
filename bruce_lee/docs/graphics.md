@@ -24,14 +24,14 @@ flowchart TB
   SPL --> BOT
 ~~~
 
-1. **The start builds the graphics one time.** [`cold_start` `$0400`](../src/cold_start.asm#L22) copies the text font from the character ROM and expands the four room charsets to double height. Then it puts the contact masks of the frame images where the sources were (**Code**).
-2. **A new game prepares the VIC.** [`reset_play_state` `$0763`](../src/play_init.asm#L19) selects VIC bank 2 and the game screen [`game_screen` `$8C00`](../src/constants.asm#L195). It sets multicolour characters and X-expanded sprites (**Code**).
-3. **Each room selects its tiles, colours and charset.** [`draw_room` `$09BC`](../src/draw_room.asm#L28) decodes the room map into screen RAM and colour RAM. It puts the charset of the room into `room_vmcsb` (**Code**).
+1. **The start builds the graphics one time.** [`cold_start` `$0400`](../src/game/cold_start.asm#L22) copies the text font from the character ROM and expands the four room charsets to double height. Then it puts the contact masks of the frame images where the sources were (**Code**).
+2. **A new game prepares the VIC.** [`reset_play_state` `$0763`](../src/game/play_init.asm#L19) selects VIC bank 2 and the game screen [`game_screen` `$8C00`](../src/constants.asm#L195). It sets multicolour characters and X-expanded sprites (**Code**).
+3. **Each room selects its tiles, colours and charset.** [`draw_room` `$09BC`](../src/room/draw_room.asm#L28) decodes the room map into screen RAM and colour RAM. It puts the charset of the room into `room_vmcsb` (**Code**).
 4. **The sprites are drawn in one place and shown in another.** Each pass, `build_actor_sprites` draws the actors into the hidden sprite buffer. Each frame, the raster interrupt shows that buffer. It also changes the charset and the background colours at fixed raster lines (**Code**).
 
 ### One VIC bank for every screen
 
-The program never moves the screen. The title, the PLAYER n screen, the game and the game over screen all use the same screen RAM at `$8C00`. This is in VIC bank 2 (`$8000-$BFFF`). [`reset_play_state` `$0763`](../src/play_init.asm#L19) selects the bank with `CI2PRA` = `$01` (**Code**).
+The program never moves the screen. The title, the PLAYER n screen, the game and the game over screen all use the same screen RAM at `$8C00`. This is in VIC bank 2 (`$8000-$BFFF`). [`reset_play_state` `$0763`](../src/game/play_init.asm#L19) selects the bank with `CI2PRA` = `$01` (**Code**).
 
 The charset changes between the screens and between the parts of one screen. The raster interrupts change it with `$D018`. **Observed** in the room 0 snapshot: screen `$8C00`, charset `$8800` at raster line 55 and charset `$A000` at raster line 150.
 
@@ -44,7 +44,7 @@ The charset changes between the screens and between the parts of one screen. The
 | Game | from raster `$40` (row 2 on) | `room_vmcsb` | room charset (table below) | `$18` | `irq_game_playfield` |
 | Game over | as the title | `$30` / `$32` | `$8000` / `$8800` | `$18` / `$16` | `game_over` installs `irq_title_frame` |
 
-In a game, `reset_play_state` writes `$D016` = `$18` one time. The game interrupts never change it (**Code**). [`show_title_screen` `$0584`](../src/title_demo_start.asm#L83) and [`game_over` `$188E`](../src/lose_fall_game_over.asm#L82) first write `$D016` = `$08`. The title interrupts overwrite it in the next frame (**Code**).
+In a game, `reset_play_state` writes `$D016` = `$18` one time. The game interrupts never change it (**Code**). [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83) and [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82) first write `$D016` = `$08`. The title interrupts overwrite it in the next frame (**Code**).
 
 The room part of the game screen gets its charset from [`room_vmcsb` `$F2`](../src/constants.asm#L117). Most rooms use one of two charsets. The wizard room has two charsets of its own:
 
@@ -55,13 +55,13 @@ The room part of the game screen gets its charset from [`room_vmcsb` `$F2`](../s
 | `$3C` | `charset_wizard` | 18 | `draw_room`, and `room18_wizard_defeated` (random flashes back) |
 | `$3E` | `charset_wizard_flash` | 18, after the defeat of the wizard | `room18_wizard_defeated` |
 
-Code that reads the pixels of a tile needs the address of the charset, not the `$D018` value. [`frame_update` `$15A8`](../src/frame_update.asm#L20) turns `room_vmcsb` into the high byte of the charset, `room_charset_hi` (`$A0`, `$A8`, `$B0`, `$B8`). The contact test and the animated characters use it (**Code**).
+Code that reads the pixels of a tile needs the address of the charset, not the `$D018` value. [`frame_update` `$15A8`](../src/game/frame_update.asm#L20) turns `room_vmcsb` into the high byte of the charset, `room_charset_hi` (`$A0`, `$A8`, `$B0`, `$B8`). The contact test and the animated characters use it (**Code**).
 
 ### Tiles two characters high
 
-A room is 11 rows of 40 tiles, and each tile is 8 x 16 pixels. The C64 has no characters of that height. Thus the program keeps a tile as two characters. Character c is the upper half and character c + `$80` is the lower half. A map byte or a message byte gives c. The code writes c to the upper screen row and c OR `$80` to the lower screen row (**Code**: [`draw_room` `$0AEA`](../src/draw_room.asm#L190), [`print_message` `$17E2`](../src/actor_driver_text.asm#L59)).
+A room is 11 rows of 40 tiles, and each tile is 8 x 16 pixels. The C64 has no characters of that height. Thus the program keeps a tile as two characters. Character c is the upper half and character c + `$80` is the lower half. A map byte or a message byte gives c. The code writes c to the upper screen row and c OR `$80` to the lower screen row (**Code**: [`draw_room` `$0AEA`](../src/room/draw_room.asm#L190), [`print_message` `$17E2`](../src/actor/actor_driver_text.asm#L59)).
 
-The room charset sources hold 128 characters of 8 x 8 multicolour pixels. [`build_double_height_font` `$4892`](../src/draw_helpers.asm#L51) writes each source row two times. Thus a tile has the shape of its source character at two times the height. Its pixels are 2 x 2 screen pixels, because multicolour pixels are 2 pixels wide.
+The room charset sources hold 128 characters of 8 x 8 multicolour pixels. [`build_double_height_font` `$4892`](../src/room/draw_helpers.asm#L51) writes each source row two times. Thus a tile has the shape of its source character at two times the height. Its pixels are 2 x 2 screen pixels, because multicolour pixels are 2 pixels wide.
 
 | Source character n | Output |
 |---|---|
@@ -75,11 +75,11 @@ for n in 0..127:                      ; column_counter = $7F .. 0
 ; top = output base, bot = output base + $400
 ```
 
-**Worked example.** Tile 6 of [`room_charset_a` `$9000`](../src/room_charset_a.asm#L12) (bytes at `$9030`) is 8 x `$FF`. Character 6 of `charset_rooms_0_9` (at `$A030`) gets 8 x `$FF`. Character `$86` (at `$A430`) also gets 8 x `$FF`. Every pixel is code `%11`, the colour of the colour RAM. `reset_play_state` fills screen row 2 with character 6 and the colour RAM with `$F8`. This is the black separator line under the status line (**Code**).
+**Worked example.** Tile 6 of [`room_charset_a` `$9000`](../src/graphics/room_charset_a.asm#L12) (bytes at `$9030`) is 8 x `$FF`. Character 6 of `charset_rooms_0_9` (at `$A030`) gets 8 x `$FF`. Character `$86` (at `$A430`) also gets 8 x `$FF`. Every pixel is code `%11`, the colour of the colour RAM. `reset_play_state` fills screen row 2 with character 6 and the colour RAM with `$F8`. This is the black separator line under the status line (**Code**).
 
 ### Characters that move
 
-Some rooms have moving scenery: rooms 4, 5, 6, 8, 9 and 11. [`animate_scrolling_chars` `$2C70`](../src/animated_chars.asm#L12) writes characters `$61-$63` again, and their lower halves `$E1-$E3`. It writes them in `charset_rooms_0_9` or `charset_rooms_10_19`. The data comes from the 8-byte patterns `anim_char_patterns_low_rooms` / `anim_char_patterns_high_rooms`, rotated by `anim_chars_phase`. It writes each pattern row two times, as the expansion does. Thus the rows of the tile move up or down (**Code**).
+Some rooms have moving scenery: rooms 4, 5, 6, 8, 9 and 11. [`animate_scrolling_chars` `$2C70`](../src/room/animated_chars.asm#L12) writes characters `$61-$63` again, and their lower halves `$E1-$E3`. It writes them in `charset_rooms_0_9` or `charset_rooms_10_19`. The data comes from the 8-byte patterns `anim_char_patterns_low_rooms` / `anim_char_patterns_high_rooms`, rotated by `anim_chars_phase`. It writes each pattern row two times, as the expansion does. Thus the rows of the tile move up or down (**Code**).
 
 At each new game, `reset_play_state` also writes code `$20` of the text font to a solid block again (**Code**).
 
@@ -104,15 +104,15 @@ In a character with colour RAM bit 3 clear (the status line), the character is h
 | `EXTCOL` | `$F0` black (`vic_start_colours`) | `reset_play_state` |
 | `BGCOL0` of the status line | `$FC` grey | `irq_game_bottom` |
 
-**Black cells.** A map byte with bit 7 set draws tile (byte AND `$7F`). It also writes `$F8` to the two colour RAM cells of the tile ([`map_tile_set_black` `$0B5F`](../src/draw_room.asm#L262)). Thus the `%11` pixels of that tile are black, also in a room whose `%11` colour is not black. The same tile code can be coloured or black. The contact test of the actors tells these two cases apart: colour RAM colour 0 or not. Thus black and coloured `%11` pixels act differently for the actors (**Code**, see the comment of [`contact_col0` `$4EED`](../src/constants.asm#L153)).
+**Black cells.** A map byte with bit 7 set draws tile (byte AND `$7F`). It also writes `$F8` to the two colour RAM cells of the tile ([`map_tile_set_black` `$0B5F`](../src/room/draw_room_0b51.asm#L21)). Thus the `%11` pixels of that tile are black, also in a room whose `%11` colour is not black. The same tile code can be coloured or black. The contact test of the actors tells these two cases apart: colour RAM colour 0 or not. Thus black and coloured `%11` pixels act differently for the actors (**Code**, see the comment of [`contact_col0` `$4EED`](../src/constants.asm#L153)).
 
-**Colour bands.** The game interrupts change `BGCOL0-2` at up to three raster lines of the room area. Thus room 0 has a sky, mountains and ground in different colours. [`irq_game_bottom` `$48C1`](../src/game_irq.asm#L12) copies the palette and the split lines of the room each frame. `irq_game_playfield` sets band 0 at line `$40`. `irq_game_colour_split` sets each next band at its split line (**Code**). The chain is in [The raster interrupt chain](#the-raster-interrupt-chain). The palettes are in [The room colours](#the-room-colours).
+**Colour bands.** The game interrupts change `BGCOL0-2` at up to three raster lines of the room area. Thus room 0 has a sky, mountains and ground in different colours. [`irq_game_bottom` `$48C1`](../src/irq/game_irq.asm#L12) copies the palette and the split lines of the room each frame. `irq_game_playfield` sets band 0 at line `$40`. `irq_game_colour_split` sets each next band at its split line (**Code**). The chain is in [The raster interrupt chain](#the-raster-interrupt-chain). The palettes are in [The room colours](#the-room-colours).
 
-**Dead data.** `draw_room` also copies 20 bytes from [`room_aux_ptr` `$4AA8`](../src/room_tables.asm#L26) [room] to [`room_band_colours` `$0153`](../src/constants.asm#L146). `irq_game_bottom` overwrites the first 12 bytes every frame, and no code reads the last 8. Thus the copy has no effect (**Code**). **Observed** by the analysis runs: the write at [`irq_game_bottom` `$4906`](../src/game_irq.asm#L44) occurs every frame.
+**Dead data.** `draw_room` also copies 20 bytes from [`room_aux_ptr` `$4AA8`](../src/room/room_tables.asm#L26) [room] to [`room_band_colours` `$0153`](../src/constants.asm#L146). `irq_game_bottom` overwrites the first 12 bytes every frame, and no code reads the last 8. Thus the copy has no effect (**Code**). **Observed** by the analysis runs: the write at [`irq_game_bottom` `$4906`](../src/irq/game_irq.asm#L44) occurs every frame.
 
-**The screen saver.** After 32768 frames without input, `idle_timer` reaches `$80`. Then `frame_update` pauses the game and calls [`start_screen_saver` `$102B`](../src/game_setup.asm#L139). This routine saves `room_band_colours` in `palette_backup`. Then every frame `room_band_colours` = (`palette_backup` EOR `frame_count_256`) AND `$F7`, so the band colours cycle. `stop_screen_saver` restores them (**Code**).
+**The screen saver.** After 32768 frames without input, `idle_timer` reaches `$80`. Then `frame_update` pauses the game and calls [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L139). This routine saves `room_band_colours` in `palette_backup`. Then every frame `room_band_colours` = (`palette_backup` EOR `frame_count_256`) AND `$F7`, so the band colours cycle. `stop_screen_saver` restores them (**Code**).
 
-**The wizard flash.** When Bruce defeats the wizard, [`room18_wizard_defeated` `$3DAF`](../src/wizard_room.asm#L134) writes random colours `$F8-$FF` to the colour RAM of the wizard area. It also changes `room_vmcsb` between `$3E` and `$3C`. Thus the wizard flickers between two charsets (**Code**). See [The charsets](#the-charsets).
+**The wizard flash.** When Bruce defeats the wizard, [`room18_wizard_defeated` `$3DAF`](../src/room/wizard_room.asm#L134) writes random colours `$F8-$FF` to the colour RAM of the wizard area. It also changes `room_vmcsb` between `$3E` and `$3C`. Thus the wizard flickers between two charsets (**Code**). See [The charsets](#the-charsets).
 
 ### The software sprites
 
@@ -120,7 +120,7 @@ Bruce and Yamo each have two sprites on top of each other. The main sprite has t
 
 The program does not keep a sprite block for each picture. It copies each frame image from a compact 1-bit format into a sprite block (see [The sprite frame format](#the-sprite-frame-format)). If the VIC shows a sprite block while the CPU writes it, the VIC can show half a picture. Thus there are two sets of five blocks, buffer A and buffer B.
 
-[`build_actor_sprites` `$2584`](../src/actor_sprites.asm#L12) draws into the buffer that the VIC does not show. [`show_actor_sprites` `$25E2`](../src/actor_sprites.asm#L75) points the sprites to that buffer at raster line `$FD`, below the visible screen (**Code**). The hand-shake is in [The double buffer](#the-double-buffer).
+[`build_actor_sprites` `$2584`](../src/actor/actor_sprites.asm#L12) draws into the buffer that the VIC does not show. [`show_actor_sprites` `$25E2`](../src/actor/actor_sprites.asm#L75) points the sprites to that buffer at raster line `$FD`, below the visible screen (**Code**). The hand-shake is in [The double buffer](#the-double-buffer).
 
 When `show_actor_sprites` shows the sprites, it also sets their positions (**Code**):
 
@@ -131,8 +131,8 @@ When `show_actor_sprites` shows the sprites, it also sets their positions (**Cod
 
 Two other parts of the program use sprite blocks of the buffers:
 
-- **The fireballs in room 18.** Every pass, [`update_fireballs` `$4133`](../src/wizard_fireballs.asm#L13) writes 4 random rows into blocks `$0D` and `$0E`. These are byte 0 of rows 0-3, AND `fireball_shape_mask`. Thus the two fireballs sparkle. They are sprites 6 and 7, with random colours. `clear_fireball_sprites` clears those rows (**Code**).
-- **The TM sign on the title.** `show_title_screen` clears `sprite_buf_b_spr4` and copies the 12 bytes of [`title_tm_sprite_rows` `$0E40`](../src/title_sprite.asm#L22) to rows 4-7 of it. It shows the block as sprite 0: block `$0F`, X = `$10A` (266), Y = `$56` (86), X-expanded, light grey (**Code**). **Observed** on the title screenshot: a small TM after BRUCE LEE.
+- **The fireballs in room 18.** Every pass, [`update_fireballs` `$4133`](../src/room/wizard_fireballs.asm#L13) writes 4 random rows into blocks `$0D` and `$0E`. These are byte 0 of rows 0-3, AND `fireball_shape_mask`. Thus the two fireballs sparkle. They are sprites 6 and 7, with random colours. `clear_fireball_sprites` clears those rows (**Code**).
+- **The TM sign on the title.** `show_title_screen` clears `sprite_buf_b_spr4` and copies the 12 bytes of [`title_tm_sprite_rows` `$0E40`](../src/game/title_sprite.asm#L22) to rows 4-7 of it. It shows the block as sprite 0: block `$0F`, X = `$10A` (266), Y = `$56` (86), X-expanded, light grey (**Code**). **Observed** on the title screenshot: a small TM after BRUCE LEE.
 
 ```
 row  bytes       pixels of byte 0
@@ -180,7 +180,7 @@ The game screen at the start of a game: the black row 0, the status line on a gr
 
 ### The charsets
 
-The bank holds six charsets. Four come from the room charset sources at `$9000-$9FFF`. [`cold_start` `$0400`](../src/cold_start.asm#L22) expands them with four calls of `build_double_height_font`. Then [`build_contact_masks` `$512F`](../src/frame_builder.asm#L16) writes the contact masks of the frame images over `$9000-$9FBF`. Thus after the start, only the expanded copies exist (**Code**). [`warm_start_flag` `$03FF`](../src/cold_start.asm#L7) can skip the first three expansions, but it is always 0 (**Code**).
+The bank holds six charsets. Four come from the room charset sources at `$9000-$9FFF`. [`cold_start` `$0400`](../src/game/cold_start.asm#L22) expands them with four calls of `build_double_height_font`. Then [`build_contact_masks` `$512F`](../src/actor/frame_builder.asm#L16) writes the contact masks of the frame images over `$9000-$9FBF`. Thus after the start, only the expanded copies exist (**Code**). [`warm_start_flag` `$03FF`](../src/game/cold_start.asm#L7) can skip the first three expansions, but it is always 0 (**Code**).
 
 | Source | Range | Expanded to | `$D018` | Used by |
 |---|---|---|---|---|
@@ -191,9 +191,9 @@ The bank holds six charsets. Four come from the room charset sources at `$9000-$
 | character ROM `$D000-$D1FF` | 64 characters | `text_font` (with inverted copies) | `$32` | title menu, status line |
 | — (in the image) | `$8400-$87FF` | `title_logo_chars`, not changed | `$30` | title logo, big letters, big digits |
 
-**The fourth charset is the wizard flash.** A full 2 KB charset serves one effect. [`room_charset_d` `$9C00`](../src/room_charset_d.asm#L8) becomes `charset_wizard_flash`, and only [`room18_wizard_defeated` `$3DAF`](../src/wizard_room.asm#L134) selects it. On each pass of the defeat sequence, it sets `room_vmcsb` = `$3E`. While more than 16 passes remain, it sets `$3C` (`charset_wizard`) again at random. Thus the wizard flickers between the two charsets. It sets `$3E` on every pass, so room 18 keeps the flash charset after the sequence. Many tiles of the flash charset are equal to those of `room_charset_c`, but the wizard tiles have other pixel codes (**Code**).
+**The fourth charset is the wizard flash.** A full 2 KB charset serves one effect. [`room_charset_d` `$9C00`](../src/graphics/room_charset_d.asm#L8) becomes `charset_wizard_flash`, and only [`room18_wizard_defeated` `$3DAF`](../src/room/wizard_room.asm#L134) selects it. On each pass of the defeat sequence, it sets `room_vmcsb` = `$3E`. While more than 16 passes remain, it sets `$3C` (`charset_wizard`) again at random. Thus the wizard flickers between the two charsets. It sets `$3E` on every pass, so room 18 keeps the flash charset after the sequence. Many tiles of the flash charset are equal to those of `room_charset_c`, but the wizard tiles have other pixel codes (**Code**).
 
-**One byte is different in the releases.** `$9B00` is the top row of character `$60` of [`room_charset_c` `$9800`](../src/room_charset_c.asm#L6). It is `$0F` in TBC and DC and `$55` in SAEGER. The expansion copies it into two rows of character `$60` of `charset_wizard`. **Observed**: a watchpoint on `$9B00` stops in `build_double_height_font` at the cold start. `$55` is a value of the KERNAL RAM test. Thus the default build uses `$0F` (switch `FIX_RAM_TEST_BYTE`, [releases.md](releases.md)).
+**One byte is different in the releases.** `$9B00` is the top row of character `$60` of [`room_charset_c` `$9800`](../src/graphics/room_charset_c.asm#L6). It is `$0F` in TBC and DC and `$55` in SAEGER. The expansion copies it into two rows of character `$60` of `charset_wizard`. **Observed**: a watchpoint on `$9B00` stops in `build_double_height_font` at the cold start. `$55` is a value of the KERNAL RAM test. Thus the default build uses `$0F` (switch `FIX_RAM_TEST_BYTE`, [releases.md](releases.md)).
 
 The images below come from the reference. The reference shows each source in hires and in multicolour. It uses pattern colours, not the colours of a room.
 
@@ -235,7 +235,7 @@ Room 18 with `charset_wizard`: tiles of `room_charset_c` make the wizard at the 
 
 ![title_logo_chars in multicolour](reference/images/title_logo_chars-multicolour.png)
 
-[`title_logo_chars` `$8400`](../src/title_logo_charset.asm#L9) in multicolour: characters `$80-$FF` of the charset at `$8000`.
+[`title_logo_chars` `$8400`](../src/graphics/title_logo_charset.asm#L9) in multicolour: characters `$80-$FF` of the charset at `$8000`.
 
 ![title_logo_chars in hires](reference/images/title_logo_chars-hires.png)
 
@@ -262,14 +262,14 @@ The bars are the ends of the key caps F3, F5 and F7 of the title menu (**Code**)
 
 ### The room colours
 
-[`room_colour_fill` `$47A0`](../src/room_palettes.asm#L13) gives the colour RAM byte of each room (20 bytes, index = room). The `%11` colour is bits 0-2:
+[`room_colour_fill` `$47A0`](../src/room/room_palettes_47a0.asm#L7) gives the colour RAM byte of each room (20 bytes, index = room). The `%11` colour is bits 0-2:
 
 | Room | 0-3 | 4-6 | 7 | 8-9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Byte | `$FE` | `$FC` | `$FF` | `$FA` | `$F9` | `$FB` | `$F9` | `$FA` | `$F9` | `$FC` | `$F9` | `$FF` | `$FE` | `$FF` |
 | `%11` colour | 6 | 4 | 7 | 2 | 1 | 3 | 1 | 2 | 1 | 4 | 1 | 7 | 6 | 7 |
 
-[`room_split_list_ptr` `$4833`](../src/room_palettes.asm#L82) gives the split lines of each room, and [`room_palette_ptr` `$480B`](../src/room_palettes.asm#L75) gives the palette. A palette record is `BGCOL0`, `BGCOL1`, `BGCOL2`, with one record for each band. The table gives colour numbers:
+[`room_split_list_ptr` `$4833`](../src/room/room_palettes_47a0.asm#L76) gives the split lines of each room, and [`room_palette_ptr` `$480B`](../src/room/room_palettes_47a0.asm#L69) gives the palette. A palette record is `BGCOL0`, `BGCOL1`, `BGCOL2`, with one record for each band. The table gives colour numbers:
 
 | Rooms | Split lines | Band 0 | Band 1 | Band 2 |
 |---|---|---|---|---|
@@ -311,7 +311,7 @@ Room 15: band 0 (light blue sky) above line `$B6`, then a grey band, and the lig
 | PLAYER n | `$06` blue | `BGCOL1` changes every 2 lines from line `$6E`: `$FB`, `$FC`, `$FF`, `$F1`, `$FF`, `$FC`, `$FB` | not written |
 | Game over | `$06` blue | `$0F` light grey | `$0F` rows 0-11, `$F1` rows 12-24 |
 
-The big PLAYER n text uses pixel code `%01`. Thus [`irq_player_screen` `$14A4`](../src/screen_raster_irqs.asm#L10) can shade it with a change of `BGCOL1` every 2 raster lines (**Code**). **Observed** on the PLAYER 1 screen: the letters go from dark grey to white and back.
+The big PLAYER n text uses pixel code `%01`. Thus [`irq_player_screen` `$14A4`](../src/irq/screen_raster_irqs.asm#L10) can shade it with a change of `BGCOL1` every 2 raster lines (**Code**). **Observed** on the PLAYER 1 screen: the letters go from dark grey to white and back.
 
 ![The PLAYER 1 screen](images/screens/player_screen.png)
 
@@ -323,7 +323,7 @@ The title screen: the logo charset in rows 0-9 (multicolour), the text font from
 
 ### The sprites of each actor
 
-[`actor_main_sprite` `$276D`](../src/actor_sprites.asm#L319) = 0, 2, 4 and `actor_overlay_sprite` = 1, 3, `$FF` give the hardware sprites of actors 0, 1, 2. Each sprite also has a collision code. The fight code uses it to find who hit whom (**Code**):
+[`actor_main_sprite` `$276D`](../src/actor/actor_sprites.asm#L319) = 0, 2, 4 and `actor_overlay_sprite` = 1, 3, `$FF` give the hardware sprites of actors 0, 1, 2. Each sprite also has a collision code. The fight code uses it to find who hit whom (**Code**):
 
 | Hardware sprite | Use | Colour | Collision code |
 |---|---|---|---|
@@ -336,7 +336,7 @@ The title screen: the logo charset in rows 0-9 (multicolour), the text font from
 | 6, 7 | room 18: the two fireballs | random | — |
 | 0 | title: the TM sign | `$FF` light grey | — |
 
-`actor_collision_code_first` / `actor_collision_code_second` give the collision codes for each actor type. [`collision_code_to_sprite` `$59AE`](../src/actor_frame_tables.asm#L22) turns code 3-7 into sprite 4, 0, 1, 2, 3. `set_sprite_slot_owner` writes the actor into `sprite_owner` [sprite]. In a sprite-sprite collision, [`check_fight_collisions` `$29C3`](../src/fight_hits.asm#L14) reads it to find the actor of a sprite (**Code**).
+`actor_collision_code_first` / `actor_collision_code_second` give the collision codes for each actor type. [`collision_code_to_sprite` `$59AE`](../src/actor/actor_frame_tables.asm#L22) turns code 3-7 into sprite 4, 0, 1, 2, 3. `set_sprite_slot_owner` writes the actor into `sprite_owner` [sprite]. In a sprite-sprite collision, [`check_fight_collisions` `$29C3`](../src/actor/fight_hits.asm#L14) reads it to find the actor of a sprite (**Code**).
 
 ### The sprite blocks
 
@@ -353,9 +353,9 @@ The title screen: the logo charset in rows 0-9 (multicolour), the text font from
 | `$0E` | `$8380` | `sprite_buf_b_spr3` | B, sprite 3 | room 18: fireball 1, sprite 7 (`launch_fireball1`) |
 | `$0F` | `$83C0` | `sprite_buf_b_spr4` | B, sprite 4 | title: TM sprite. `reset_play_state` points all eight sprites here. |
 
-[`sprite_buffer_addresses` `$274F`](../src/actor_sprites.asm#L309) holds the ten block addresses, and `sprite_buffer_pointers` holds the ten block numbers. Buffer A is first, and the index is sprite + 5 x buffer (**Code**).
+[`sprite_buffer_addresses` `$274F`](../src/actor/actor_sprites.asm#L309) holds the ten block addresses, and `sprite_buffer_pointers` holds the ten block numbers. Buffer A is first, and the index is sprite + 5 x buffer (**Code**).
 
-**Conclusion.** The fireballs can share blocks `$0D` and `$0E` with buffer B of Yamo, because room 18 has no enemies ([`room_no_enemies` `$4C9E`](../src/room_tables.asm#L164) = `$FF`).
+**Conclusion.** The fireballs can share blocks `$0D` and `$0E` with buffer B of Yamo, because room 18 has no enemies ([`room_no_enemies` `$4C9E`](../src/room/room_tables.asm#L164) = `$FF`).
 
 ## The sprite frame format
 
@@ -379,10 +379,10 @@ Each actor has a block of 70 frame numbers:
 | 70-139 | Yamo | 70 | region `$5D91-$6282` (`yamo_frame_00` ...) |
 | 140-209 | Ninja | 140 | `$6283-$6369` and `ninja_frame_00` .. `$68F8` |
 
-The actor *type* is the index of [`actor_frame_base` `$59A5`](../src/actor_frame_tables.asm#L8). The type is bits 7-6 of `actor_flags`: 0 Bruce, 1 Ninja, 2 Yamo. Thus the bytes of the table are 0, 140, 70. A pose is an even number. [`set_actor_pose` `$29A1`](../src/actor_poses.asm#L324) sets `actor_frame_a` = base + pose for the main sprite. It sets `actor_frame_b` = base + pose + 1 for the overlay sprite (**Code**).
+The actor *type* is the index of [`actor_frame_base` `$59A5`](../src/actor/actor_frame_tables.asm#L8). The type is bits 7-6 of `actor_flags`: 0 Bruce, 1 Ninja, 2 Yamo. Thus the bytes of the table are 0, 140, 70. A pose is an even number. [`set_actor_pose` `$29A1`](../src/actor/actor_poses.asm#L324) sets `actor_frame_a` = base + pose for the main sprite. It sets `actor_frame_b` = base + pose + 1 for the overlay sprite (**Code**).
 
 - Even frames are the main sprite of a pose, and odd frames are the overlay sprite (**Code**).
-- The Ninja has one black sprite. [`setup_sprite_frame` `$2719`](../src/actor_sprites.asm#L278) gives him `$F0` and does not read `frame_colour` (**Code**). This is why `frame_colour` has only 140 entries (**Conclusion**).
+- The Ninja has one black sprite. [`setup_sprite_frame` `$2719`](../src/actor/actor_sprites.asm#L278) gives him `$F0` and does not read `frame_colour` (**Code**). This is why `frame_colour` has only 140 entries (**Conclusion**).
 - The code never mirrors a frame. Each facing has its own frames, for example Bruce 0 and 2 (**Code**).
 - Several frame numbers share graphics (**Code**: the address tables):
   - Bruce 42-55 use frames 0/1, and Bruce 68/69 use 32/33.
@@ -405,11 +405,11 @@ A frame image has 1 bit for each pixel and one or two bytes for each row. It has
 
 Each bit is one hires sprite pixel. All sprites are X-expanded (`XXPAND` = `$FF`, set by `reset_play_state`). Thus a narrow frame is 16 screen pixels wide and a wide frame is 32. The sprites are hires (`SPMC` = 0) and in front of the background (`SPBGPR` = 0). The rows after the frame, up to byte 63, are 0 (**Code**).
 
-**Frame height for the contact masks.** [`expand_contact_mask` `$517E`](../src/frame_builder.asm#L93) reads `frame_last_row` + 1 rows for the two widths. For a wide frame, that is one row more than the sprite builder draws (**Code**).
+**Frame height for the contact masks.** [`expand_contact_mask` `$517E`](../src/actor/frame_builder.asm#L93) reads `frame_last_row` + 1 rows for the two widths. For a wide frame, that is one row more than the sprite builder draws (**Code**).
 
 ### The decoder
 
-[`build_actor_sprites` `$2584`](../src/actor_sprites.asm#L12) goes through the actors. `setup_sprite_frame` reads the five tables, and [`copy_sprite_frame` `$26A0`](../src/actor_sprites.asm#L190) copies the rows:
+[`build_actor_sprites` `$2584`](../src/actor/actor_sprites.asm#L12) goes through the actors. `setup_sprite_frame` reads the five tables, and [`copy_sprite_frame` `$26A0`](../src/actor/actor_sprites.asm#L190) copies the rows:
 
 ```
 for actor X in 2, 1, 0 with actor_flags[X] bit 0 set:
@@ -489,7 +489,7 @@ The picture shows black hair on top, the yellow face and arms, and the black tro
 
 ### The raster interrupt chain
 
-The game interrupts run as a chain. Each one sets the raster line and the vector of the next one. [`irq_entry` `$1103`](../src/interrupt_entry.asm#L10) receives every interrupt and jumps through `irq_vector`. Thus the chain is a state machine of the value in `irq_vector`. [`init_game_irq` `$082D`](../src/play_init.asm#L114) starts it at line `$FB`.
+The game interrupts run as a chain. Each one sets the raster line and the vector of the next one. [`irq_entry` `$1103`](../src/irq/interrupt_entry.asm#L10) receives every interrupt and jumps through `irq_vector`. Thus the chain is a state machine of the value in `irq_vector`. [`init_game_irq` `$082D`](../src/game/play_init.asm#L114) starts it at line `$FB`.
 
 ~~~mermaid
 stateDiagram-v2
@@ -512,11 +512,11 @@ stateDiagram-v2
 | `irq_arm_next_split` | that line is not `$FD` | `irq_game_colour_split` at that line | `irq_arm_next_split` |
 | `irq_game_colour_split` | waits until line r+3 (or r+2 plus a delay), writes `BGCOL0-2` of the next band, `band_palette_offset` += 3 | `irq_arm_next_split` | `irq_split_set_colours` |
 
-The three states are [`irq_game_bottom` `$48C1`](../src/game_irq.asm#L12), [`irq_game_playfield` `$491E`](../src/game_irq.asm#L62) and [`irq_game_colour_split` `$4982`](../src/game_irq.asm#L117). The page [interrupts.md](interrupts.md) tells the full interrupt chain.
+The three states are [`irq_game_bottom` `$48C1`](../src/irq/game_irq.asm#L12), [`irq_game_playfield` `$491E`](../src/irq/game_irq.asm#L62) and [`irq_game_colour_split` `$4982`](../src/irq/game_irq.asm#L117). The page [interrupts.md](interrupts.md) tells the full interrupt chain.
 
 ### The double buffer
 
-[`sprite_buffer_select` `$277D`](../src/actor_sprites.asm#L331) is the buffer that the next build fills (0 = A, 1 = B). [`sprite_images_shown` `$277E`](../src/actor_sprites.asm#L333) is the hand-shake between the main loop and the interrupt. The value 0 means that a new set of images waits to be shown.
+[`sprite_buffer_select` `$277D`](../src/actor/actor_sprites.asm#L331) is the buffer that the next build fills (0 = A, 1 = B). [`sprite_images_shown` `$277E`](../src/actor/actor_sprites.asm#L333) is the hand-shake between the main loop and the interrupt. The value 0 means that a new set of images waits to be shown.
 
 ~~~mermaid
 stateDiagram-v2
@@ -534,11 +534,11 @@ stateDiagram-v2
 | Ready | `frame_update` calls `show_actor_sprites` (raster line `$FD`) | Shown: positions and colours written, pointers 0-4 = blocks of buffer `sprite_buffer_select`, then `sprite_buffer_select` EOR 1 | `show_actor_sprites_pointers` |
 | Shown | `show_actor_sprites` | Shown (nothing changes) | `show_actor_sprites` |
 
-1. The main loop builds the images one time in each pass (every 3 frames) into the hidden buffer ([`main_loop` `$1C2C`](../src/game_main_loop.asm#L80)). [`change_room` `$2F9A`](../src/background_touch.asm#L234) also builds them after it draws a room.
+1. The main loop builds the images one time in each pass (every 3 frames) into the hidden buffer ([`main_loop` `$1C2C`](../src/game/game_main_loop.asm#L80)). [`change_room` `$2F9A`](../src/actor/background_touch.asm#L234) also builds them after it draws a room.
 2. The interrupt at line `$FD` shows them. The pointers change below the visible screen. Thus the new images start with the next frame (**Conclusion**: no tearing).
 3. Then `sprite_buffer_select` flips. The next build writes the other buffer, which the VIC does not show now.
 
 ## Still open
 
-- Why does [`irq_title_split` `$1574`](../src/screen_raster_irqs.asm#L121) write `$D016` = `$16` (38 columns, X scroll 6) for the menu part of the title? **Observed**: at raster line 200 of the title, the VIC had X scroll 6 and charset `$8800`. A screen capture with a grid can show how far the menu text moves.
+- Why does [`irq_title_split` `$1574`](../src/irq/screen_raster_irqs.asm#L121) write `$D016` = `$16` (38 columns, X scroll 6) for the menu part of the title? **Observed**: at raster line 200 of the title, the VIC had X scroll 6 and charset `$8800`. A screen capture with a grid can show how far the menu text moves.
 - Did the authors plan charset source D for more than the wizard flash? Only `room18_wizard_defeated` selects it.

@@ -16,4 +16,9 @@ FIX_RAM_TEST_BYTE = 1 ; on in DC, TBC. $9b00-$9b00. $9B00 in the source of room 
 
 ; Other changes
 RUN_STATE         = 0 ; on in SAEGER. $e100-$e130, $e2e7-$e2e8, $e30a-$e314, $e3de-$e3e8, $e5e6-$e5e7, $e86c-$e86c. Values that a run of the game left in the music player before the SAEGER image was saved: the voice state at $E100, flags, the stream fetch operands and a branch operand. The game writes each before it reads it. TBC and DC have the values before any run.
-TITLE_PICTURE     = 1 ; on in TBC. no patch. src/boot.asm shows the Datasoft title picture (src/title_picture.kla) before the loader starts the game. TBC shows the picture in its intro, with CRACKED BY TBC in the bitmap and one screen colour for all cells. SAEGER and DC do not hold it. The switch has no patch: the game bytes do not change.
+
+; Start screen: on by default
+START_SCREEN = 1 ; the loader shows the start screen and waits for a key or a fire button. 0 starts the program at once. Only the clean build has it: a release and LEFTOVERS = 1 have none
+
+; Leftovers: off by default
+LEFTOVERS = 0 ; 122 bytes in 14 files in leftovers/ that nothing uses. 1 builds them, so main.asm gives the bytes of the program. Each release has them. The loader never loads them

@@ -1,0 +1,11 @@
+{
+  "name": "loading_stage_rc3",
+  "start": { "snapshot": "runs/loading_stage_rc3/stage_9000.vsf" },
+  "steps": [
+    { "frames": 2 },
+    { "screen": "picture" },
+    { "runUntil": { "target": { "kind": "address", "address": "$c1c9" }, "timeoutFrames": 3000 } },
+    { "coverage": "tune" },
+    { "observe": "after_tune", "vicii": true, "registers": true }
+  ]
+}

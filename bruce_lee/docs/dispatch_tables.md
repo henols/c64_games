@@ -33,15 +33,15 @@ The program has no other form of computed jump. **Code**
 
 ### CPU vectors
 
-The game removes the KERNAL ROM from the memory map (`$01` = `$35`). Thus the CPU reads its vectors from the RAM under the ROM, at [`hw_nmi_vector` `$FFFA`](../src/hardware_vectors.asm#L7). NMI and RESET both point to [`nmi_entry` `$1116`](../src/interrupt_entry.asm#L25), which is a single `RTI`, so the RESTORE key does nothing. IRQ points to `irq_entry`. The entries are in [the table reference](reference/tables.md#hw_nmi_vector). **Code**
+The game removes the KERNAL ROM from the memory map (`$01` = `$35`). Thus the CPU reads its vectors from the RAM under the ROM, at [`hw_nmi_vector` `$FFFA`](../src/irq/hardware_vectors.asm#L7). NMI and RESET both point to [`nmi_entry` `$1116`](../src/irq/interrupt_entry.asm#L25), which is a single `RTI`, so the RESTORE key does nothing. IRQ points to `irq_entry`. The entries are in [the table reference](reference/tables.md#hw_nmi_vector). **Code**
 
 ### The IRQ vector chain
 
 All interrupts are raster interrupts, and each screen needs a different handler at a different raster line. The program does not keep a table of handlers. Instead each handler stores the address of the next handler in a variable and sets the raster line where that handler runs. The full timing of the chain is on [interrupts.md](interrupts.md).
 
-[`irq_entry` `$1103`](../src/interrupt_entry.asm#L10) pushes A, X and Y. It tests the B flag of the stacked status with `AND #$00`, so the branch to `JMP (io1_dummy)` at `$1110` is never taken. Then [`irq_dispatch` `$1113`](../src/interrupt_entry.asm#L22) does `JMP (irq_vector)`. Each handler ends with `PLA`/`TAY`/`PLA`/`TAX`/`PLA`/`RTI`. **Code**
+[`irq_entry` `$1103`](../src/irq/interrupt_entry.asm#L10) pushes A, X and Y. It tests the B flag of the stacked status with `AND #$00`, so the branch to `JMP (io1_dummy)` at `$1110` is never taken. Then [`irq_dispatch` `$1113`](../src/irq/interrupt_entry.asm#L22) does `JMP (irq_vector)`. Each handler ends with `PLA`/`TAY`/`PLA`/`TAX`/`PLA`/`RTI`. **Code**
 
-**`irq_vector` shares its two bytes with an instruction of the cold start.** In the program image, [`irq_vector` `$0408`](../src/cold_start.asm#L31) and `irq_vector_hi` hold `$29 $EF`: the opcode and the operand of the `AND #$EF` in `cold_start`. The instruction runs once, and then the bytes are only a vector. Every screen setup stores a handler before it enables the raster interrupt, so the vector never holds the instruction bytes when an interrupt comes. **Code**
+**`irq_vector` shares its two bytes with an instruction of the cold start.** In the program image, [`irq_vector` `$0408`](../src/game/cold_start.asm#L31) and `irq_vector_hi` hold `$29 $EF`: the opcode and the operand of the `AND #$EF` in `cold_start`. The instruction runs once, and then the bytes are only a vector. Every screen setup stores a handler before it enables the raster interrupt, so the vector never holds the instruction bytes when an interrupt comes. **Code**
 
 ~~~mermaid
 flowchart LR
@@ -73,14 +73,14 @@ These routines write `irq_vector`:
 | `irq_game_playfield` | `irq_game_colour_split` | `raster_split_lines` [0] |
 | `irq_chain_to_bottom` | `irq_game_bottom` | `$FD` |
 
-On the game screen the colour splits form a short list. [`irq_arm_next_split` `$4953`](../src/game_irq.asm#L89) sets the next raster line from `raster_split_lines`. The value `$FD` ends the list, and then [`irq_chain_to_bottom` `$4975`](../src/game_irq.asm#L108) stores `irq_game_bottom` in the vector again. For the other split lines `irq_game_colour_split` stays the handler. **Code**
+On the game screen the colour splits form a short list. [`irq_arm_next_split` `$4953`](../src/irq/game_irq.asm#L89) sets the next raster line from `raster_split_lines`. The value `$FD` ends the list, and then [`irq_chain_to_bottom` `$4975`](../src/irq/game_irq.asm#L108) stores `irq_game_bottom` in the vector again. For the other split lines `irq_game_colour_split` stays the handler. **Code**
 
 ### The room handlers: two RTS tables
 
 Each of the 20 rooms has its own setup, for example the trapdoor counters, the moving ledges or the wizard. Each room also has its own logic on each pass, for example blinking lanterns, opening passages or the fireballs. The room number is a dense index from 0 to 19, so a table is the natural form. The program uses two RTS tables, both indexed by `room` * 2.
 
-1. **The init handler runs once per room.** At the end of `draw_room`, `setup_room_lanterns_and_init` draws the lanterns and then continues directly into [`room_init_dispatch` `$33BD`](../src/lantern_pickup.asm#L136). It pushes the high byte and then the low byte of the word from `room_init_handlers`, and executes `RTS`. The handler's own `RTS` returns to `draw_room`. **Code**
-2. **The frame handler runs on each pass.** `main_loop` calls [`run_room_frame_handler` `$3A6F`](../src/passage_open.asm#L18), which dispatches through `room_frame_handlers` in the same way. `draw_room` also ends with `JMP run_room_frame_handler`, so the frame handler runs once before the first pass and returns to the caller of `draw_room`. **Code**
+1. **The init handler runs once per room.** At the end of `draw_room`, `setup_room_lanterns_and_init` draws the lanterns and then continues directly into [`room_init_dispatch` `$33BD`](../src/room/lantern_pickup.asm#L136). It pushes the high byte and then the low byte of the word from `room_init_handlers`, and executes `RTS`. The handler's own `RTS` returns to `draw_room`. **Code**
+2. **The frame handler runs on each pass.** `main_loop` calls [`run_room_frame_handler` `$3A6F`](../src/room/passage_open.asm#L18), which dispatches through `room_frame_handlers` in the same way. `draw_room` also ends with `JMP run_room_frame_handler`, so the frame handler runs once before the first pass and returns to the caller of `draw_room`. **Code**
 
 The program uses `PHA`/`PHA`/`RTS` and not `JMP (ind)` for two reasons. The push needs no vector in memory. The handler returns with its own `RTS` directly to the caller of the dispatcher. **Conclusion**
 
@@ -95,7 +95,7 @@ The `RTS` of `room_init_dispatch` makes static analyzers report many false jump 
 
 ### Compare chains: the action states
 
-An actor in a timed action must continue that action on each step until its timer is 0. Examples of timed actions are a jump, a flying kick and a punch. [`actor_action_step` `$1C5B`](../src/actor_step.asm#L21) runs one step of actor X. At `actor_check_timer`, a nonzero `actor_timer`,X jumps to [`actor_continue_action` `$2008`](../src/actor_timed_actions.asm#L14). With a zero timer, the code continues at `actor_read_input`. It chooses a new action from the joystick with a chain of bit tests and no table. **Code**
+An actor in a timed action must continue that action on each step until its timer is 0. Examples of timed actions are a jump, a flying kick and a punch. [`actor_action_step` `$1C5B`](../src/actor/actor_step.asm#L21) runs one step of actor X. At `actor_check_timer`, a nonzero `actor_timer`,X jumps to [`actor_continue_action` `$2008`](../src/actor/actor_timed_actions.asm#L14). With a zero timer, the code continues at `actor_read_input`. It chooses a new action from the joystick with a chain of bit tests and no table. **Code**
 
 `actor_continue_action` stores the timer in `temp_y` and compares `actor_state`,X with one state after the other. The code of each handler follows its compare directly. The chain continues through three source files: `actor_timed_actions.asm`, `enemy_ai_states.asm` and `actor_hit_states.asm`. The table gives the order of the compares. The reference does not give this order.
 
@@ -119,15 +119,15 @@ An actor in a timed action must continue that action on each step until its time
 | 16 | `act_check_wall_bump` | `$18` | wall bump |
 | - | `actor_continue_state` | any other (0, `$1B`) | the state stays, the timer counts down |
 
-Each handler ends in [`actor_continue_state` `$24F4`](../src/actor_hit_states.asm#L143) or in a setter that ends the action. `actor_continue_state` sets the state to A and the timer to `temp_y` - 1. **Code**
+Each handler ends in [`actor_continue_state` `$24F4`](../src/actor/actor_hit_states.asm#L143) or in a setter that ends the action. `actor_continue_state` sets the state to A and the timer to `temp_y` - 1. **Code**
 
 The state values are sparse (`$05` to `$19`, 16 of them in use), and each handler is long inline code. A table would need 21 entries for the range and a jump to code that is already in line. **Conclusion** The actions themselves are on [actors.md](actors.md).
 
 ### Compare chains: the keys
 
-The keys work the same way. [`scan_keyboard` `$139E`](../src/keyboard_scan.asm#L24) puts the code of a new key in `key_code`. Bit 7 is the shift bit. Three places compare the code with the few keys that they accept. The game keys are also on [main_loop.md](main_loop.md).
+The keys work the same way. [`scan_keyboard` `$139E`](../src/input/keyboard_scan.asm#L24) puts the code of a new key in `key_code`. Bit 7 is the shift bit. Three places compare the code with the few keys that they accept. The game keys are also on [main_loop.md](main_loop.md).
 
-[`handle_game_keys` `$1B29`](../src/status_and_keys.asm#L57) runs on each pass of a game, not in the demo. It sets `key_scan_mode` = 1, so `scan_keyboard` decodes only these four keys. The compare removes the shift bit first. **Code**
+[`handle_game_keys` `$1B29`](../src/game/status_and_keys.asm#L57) runs on each pass of a game, not in the demo. It sets `key_scan_mode` = 1, so `scan_keyboard` decodes only these four keys. The compare removes the shift bit first. **Code**
 
 | Key | Code | Compare at | Action |
 |---|---|---|---|
@@ -138,7 +138,7 @@ The keys work the same way. [`scan_keyboard` `$139E`](../src/keyboard_scan.asm#L
 
 Because only these four keys reach the chain, the `RTS` after the last compare never runs. **Code**
 
-[`title_menu_loop` `$08B1`](../src/title_menu.asm#L14) runs on each pass of the title menu and decodes every key. It first jumps to `title_menu_handedness_keys`, which compares the code *with* the shift bit, so L and shift-L are different keys. Then [`title_menu_function_keys` `$08D2`](../src/title_menu.asm#L29) removes the shift bit and compares again. **Code**
+[`title_menu_loop` `$08B1`](../src/game/title_menu.asm#L14) runs on each pass of the title menu and decodes every key. It first jumps to `title_menu_handedness_keys`, which compares the code *with* the shift bit, so L and shift-L are different keys. Then [`title_menu_function_keys` `$08D2`](../src/game/title_menu.asm#L29) removes the shift bit and compares again. **Code**
 
 | Key | Code | Action |
 |---|---|---|
@@ -150,7 +150,7 @@ Because only these four keys reach the chain, the `RTS` after the last compare n
 | F5 | `$06` | `title_menu_toggle_opponent` |
 | F3 | `$05` | `title_menu_toggle_players` |
 
-In the demo, [`check_demo_abort` `$19B8`](../src/pause_status_line.asm#L7) runs on each pass. Fire on joystick port 1, or the key F1 (`$04`), goes to `demo_abort_to_title`. It waits until the player releases fire, waits 6 frames and jumps to `restart_to_title`. **Code**
+In the demo, [`check_demo_abort` `$19B8`](../src/game/pause_status_line.asm#L7) runs on each pass. Fire on joystick port 1, or the key F1 (`$04`), goes to `demo_abort_to_title`. It waits until the player releases fire, waits 6 frames and jumps to `restart_to_title`. **Code**
 
 ### Self-modified branches: the music and effect commands
 
@@ -162,14 +162,14 @@ The sound players read a stream of command bytes, and each command byte selects 
 
 The branch lands on one `JMP` of a jump table right after it. The offsets are multiples of 3, the size of a `JMP`. The format of the streams is on [sound_music.md](sound_music.md). **Code**
 
-**The music player.** [`music_voice_dispatch` `$E5D7`](../src/music_player.asm#L456) takes bits 4-6 of the command byte as the index into `music_cmd_offsets`. It stores the offset in `music_cmd_offset`, the operand of the `BCC` at [`music_cmd_branch` `$E5E6`](../src/music_player.asm#L467), and the branch lands in `music_cmd_jumps`. The decoded jump table is [`music_cmd_jumps`](reference/tables.md#music_cmd_jumps). **Code**
+**The music player.** [`music_voice_dispatch` `$E5D7`](../src/music/music_player_e38c.asm#L366) takes bits 4-6 of the command byte as the index into `music_cmd_offsets`. It stores the offset in `music_cmd_offset`, the operand of the `BCC` at [`music_cmd_branch` `$E5E6`](../src/music/music_player_e38c.asm#L377), and the branch lands in `music_cmd_jumps`. The decoded jump table is [`music_cmd_jumps`](reference/tables.md#music_cmd_jumps). **Code**
 
 - **The commands `$F0-$FE` jump to the code after the table.** Group 7 has the offset `$15`, which lands on the first byte after the seven `JMP`, the start of `music_cmd_length`. So `$Fx` is a second note length command, the same as `$8x`. **Code**
 - **`$FF` never reaches the dispatch.** `music_voice_read_command` handles it first: it ends the song. **Code**
 - **The program uses only half of the offset table.** `music_cmd_offsets` has 17 entries (`$00` to `$30` in steps of 3). Bits 4-6 give only 0-7, so the program never reads entries 8-16. **Code**
 - **The branch offset in the image depends on the release.** The SAEGER image holds the offset `$00` in the branch, a value that a run of the game left there before somebody saved the image. TBC and DC hold `$FE`, a `BCC` to itself, as before any run. The switch `RUN_STATE` gives the SAEGER value. The player writes the offset before each use, so the value does not matter. **Code**
 
-**The effect players.** Each of the three effect players reads the command byte (0-7). It stores `sfx_cmd_offsets` [command] in its own branch operand. In the voice 1 player, [`sfx_voice1_update` `$EB03`](../src/sfx_voice1.asm#L19) does this. The three players are identical apart from the SID registers. Thus they have three jump tables with the same layout. The reference decodes them as [`sfx_voice1_cmd_jumps`](reference/tables.md#sfx_voice1_cmd_jumps), `sfx_voice2_cmd_jumps` and `sfx_voice3_cmd_jumps`. **Code**
+**The effect players.** Each of the three effect players reads the command byte (0-7). It stores `sfx_cmd_offsets` [command] in its own branch operand. In the voice 1 player, [`sfx_voice1_update` `$EB03`](../src/sfx/sfx_voice1.asm#L19) does this. The three players are identical apart from the SID registers. Thus they have three jump tables with the same layout. The reference decodes them as [`sfx_voice1_cmd_jumps`](reference/tables.md#sfx_voice1_cmd_jumps), `sfx_voice2_cmd_jumps` and `sfx_voice3_cmd_jumps`. **Code**
 
 - **Commands 5 and 6 are the same.** Both `JMP` go to the "note, pulse, control" handler. **Code**
 - **The players never read entries 8-13 of the offset table.** `sfx_cmd_offsets` has 14 entries. Entries 8-13 would land past the jump tables, and no stream uses them. **Code**
@@ -179,16 +179,16 @@ The branch lands on one `JMP` of a jump table right after it. The offsets are mu
 
 ### Jump tables called by address: the music player entry points
 
-The music player is a separate block at `$E000` and `$E300`. The game calls it only at fixed addresses, so the player starts with jump tables. [`music_api_stop` `$E000`](../src/music_player_state.asm#L7) holds three `JMP`: stop, start the playlist and play one frame. The game uses only these three.
+The music player is a separate block at `$E000` and `$E300`. The game calls it only at fixed addresses, so the player starts with jump tables. [`music_api_stop` `$E000`](../src/music/music_player_state.asm#L7) holds three `JMP`: stop, start the playlist and play one frame. The game uses only these three.
 
-The first two jump to the internal jump table at [`music_jump_stop` `$E300`](../src/music_player.asm#L7): stop, start the current song and start the playlist. Inside the player, `music_start_song_x` also jumps to `music_jump_start_song`, the second entry of the internal table. [The table reference](reference/tables.md#music_api_stop) decodes the entries. **Code**
+The first two jump to the internal jump table at [`music_jump_stop` `$E300`](../src/music/music_player.asm#L7): stop, start the current song and start the playlist. Inside the player, `music_start_song_x` also jumps to `music_jump_start_song`, the second entry of the internal table. [The table reference](reference/tables.md#music_api_stop) decodes the entries. **Code**
 
 ### Jumps that belong to the copy protection
 
 The other computed jumps are all parts of the copy protection, which [protection.md](protection.md) explains. **Code**
 
-- **`JMP (io1_dummy)` in [`update_high_score` `$31A1`](../src/score.asm#L86).** It runs only when three protection key pairs are equal. It jumps through `$DE00`, the open I/O area, and the program crashes.
-- **The `RTS` at `$0080`.** [`cold_start` `$0440`](../src/cold_start.asm#L68) does `JSR $0080` once at the start, and [`build_masks_done` `$517B`](../src/frame_builder.asm#L76) ends `build_contact_masks` with `JMP $0080`. Both reach the `RTS` that the loader leaves at `$0080`. The second returns to `cold_start`. After `init_game_variables` clears the zero page, `$0080` is `frame_count_256`.
+- **`JMP (io1_dummy)` in [`update_high_score` `$31A1`](../src/game/score.asm#L86).** It runs only when three protection key pairs are equal. It jumps through `$DE00`, the open I/O area, and the program crashes.
+- **The `RTS` at `$0080`.** [`cold_start` `$0440`](../src/game/cold_start.asm#L68) does `JSR $0080` once at the start, and [`build_masks_done` `$517B`](../src/actor/frame_builder.asm#L76) ends `build_contact_masks` with `JMP $0080`. Both reach the `RTS` that the loader leaves at `$0080`. The second returns to `cold_start`. After `init_game_variables` clears the zero page, `$0080` is `frame_count_256`.
 - **A planted `TXS`.** After a failed protection check, `actor_play_step_sound` writes `$9A` (`TXS`) over the first opcode of `random_byte`, and over the `CLC` at `step_sound_crash_point` with X = 4. When that code runs, `TXS` copies X into the stack pointer.
 
 The switch `PROTECTION` = 0 (the default build) removes these jumps from the program:

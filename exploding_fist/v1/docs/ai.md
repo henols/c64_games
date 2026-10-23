@@ -15,7 +15,7 @@ The computer fights for a fighter when the player does not use that fighter. In 
 
 ## How it works
 
-The AI runs only for a fighter with `cpu_controlled` = 1. [`fighter_get_input` `$225F`](../src/fighter_moves.asm#L30) first gives the hit reaction to a fighter that a hit struck. Else it jumps to [`ai_update` `$1D48`](../src/ai_opponent.asm#L6) when `cpu_controlled,x` is not 0, and it reads the joystick when the value is 0. The game modes set the flags in this way (**Code**):
+The AI runs only for a fighter with `cpu_controlled` = 1. [`fighter_get_input` `$225F`](../src/fighter/fighter_moves.asm#L30) first gives the hit reaction to a fighter that a hit struck. Else it jumps to [`ai_update` `$1D48`](../src/ai/ai_opponent.asm#L6) when `cpu_controlled,x` is not 0, and it reads the joystick when the value is 0. The game modes set the flags in this way (**Code**):
 
 | Game mode | `cpu_controlled` (fighter 0, fighter 1) | Level of the AI |
 |---|---|---|
@@ -60,7 +60,7 @@ The AI never presses "walk back" for a block. It commands the blocks `$13` and `
 
 ### The reaction to an attack
 
-[`ai_check_opponent` `$1D65`](../src/ai_opponent.asm#L24) starts the danger check. An opponent that holds the end pose of its move is a special case. From level 5, the AI treats a held pose as no danger, but it watches a held crouch. Levels 0-4 treat a held attack pose as an attack. An opponent that retracts its move, or runs a move with no attack flag, is no danger. In these cases the AI goes to the movement steps. (**Code**)
+[`ai_check_opponent` `$1D65`](../src/ai/ai_opponent.asm#L24) starts the danger check. An opponent that holds the end pose of its move is a special case. From level 5, the AI treats a held pose as no danger, but it watches a held crouch. Levels 0-4 treat a held attack pose as an attack. An opponent that retracts its move, or runs a move with no attack flag, is no danger. In these cases the AI goes to the movement steps. (**Code**)
 
 When the opponent attacks, the own move decides the next step (**Code**):
 
@@ -71,11 +71,11 @@ When the opponent attacks, the own move decides the next step (**Code**):
 - **Opponent sweep `$0A` or `$10`, or a held crouch at level 5 and up.** The AI keeps only a crouch or a low move (`$04 $07 $0A $0B $10`). Else it commands stand.
 - **Other moves.** The AI keeps its last command.
 
-[`ai_react_to_attack` `$1DEC`](../src/ai_opponent.asm#L98) first calls [`hit_range_test` `$25D3`](../src/hit_test.asm#L213). When the fighters have different facings, the test says "in range" for `d` from -17 to 19. It also needs reach type 0 for the opponent move. When the facings are the same, the test needs reach type 1 and `d` from 3 to 31. The attacks with reach type 1 are `$0F` and `$10`. Thus the AI never reacts to `$0F` or `$10` when the fighters face each other. It reacts only to these two attacks when the facings are the same. (**Code**) No run executed the "in range" exit of the same-facing path, `$2632-$2634`. (**Observed**, coverage of all runs)
+[`ai_react_to_attack` `$1DEC`](../src/ai/ai_opponent.asm#L98) first calls [`hit_range_test` `$25D3`](../src/fighter/hit_test.asm#L213). When the fighters have different facings, the test says "in range" for `d` from -17 to 19. It also needs reach type 0 for the opponent move. When the facings are the same, the test needs reach type 1 and `d` from 3 to 31. The attacks with reach type 1 are `$0F` and `$10`. Thus the AI never reacts to `$0F` or `$10` when the fighters face each other. It reacts only to these two attacks when the facings are the same. (**Code**) No run executed the "in range" exit of the same-facing path, `$2632-$2634`. (**Observed**, coverage of all runs)
 
 The reaction delay comes next. When bit 7 of `ai_react_timer,x` is 1, the AI loads random AND `ai_react_mask`. A value of 0 gives the response in the same frame. Else the timer counts down to 0 in the next frames, and then the AI responds. (**Code**)
 
-[`ai_choose_response` `$1E0B`](../src/ai_opponent.asm#L115) takes r = random AND `ai_response_mask` (**Code**):
+[`ai_choose_response` `$1E0B`](../src/ai/ai_opponent.asm#L115) takes r = random AND `ai_response_mask` (**Code**):
 
 1. Bit 7 of r set: the AI attacks at once through the attack choice. It does not wait for the attack delay.
 2. Bit 5 or bit 6 of r set: the AI commands the counter move of the opponent move from `move_counter_moves`. That is block `$13`, block `$14` or jump `$05`.
@@ -101,15 +101,15 @@ The AI keeps four timers for each fighter. Each timer gets a random value AND a 
 | `ai_attack_timer` | `ai_attack_mask` | Frames of stand before the next attack | `ai_attack_timing` |
 | `ai_walk_timer` | `ai_walk_mask,x` or `ai_stop_mask,x` | Frames of a walk or of a stop | `ai_walk_decision` |
 
-[`ai_hold_pose` `$1E60`](../src/ai_opponent.asm#L162) adds 5 and the carry of the random step to the masked value. Thus a held kick or punch stays for at least 5 frames. A crouch `$04` stays until another step commands a new move. (**Code**)
+[`ai_hold_pose` `$1E60`](../src/ai/ai_opponent.asm#L162) adds 5 and the carry of the random step to the masked value. Thus a held kick or punch stays for at least 5 frames. A crouch `$04` stays until another step commands a new move. (**Code**)
 
-[`ai_attack_timing` `$1F13`](../src/ai_opponent.asm#L265) commands stand in each frame of the attack delay. A random value of 0 gives no attack: the timer then goes to `$FF`, and the AI loads a new delay in the next frame. At level 0 the mask is `$7F`, so the AI stands for up to 127 frames, about 2.5 seconds, between two attacks. (**Code**)
+[`ai_attack_timing` `$1F13`](../src/ai/ai_opponent.asm#L265) commands stand in each frame of the attack delay. A random value of 0 gives no attack: the timer then goes to `$FF`, and the AI loads a new delay in the next frame. At level 0 the mask is `$7F`, so the AI stands for up to 127 frames, about 2.5 seconds, between two attacks. (**Code**)
 
 Two more masks choose between moves. `ai_response_mask` chooses the response to an attack. `ai_variant_mask` changes a back attack `$0F` or `$10` into another move. (**Code**)
 
 ### Walk, stop and turn
 
-[`ai_check_position` `$1E92`](../src/ai_opponent.asm#L191) computes the distance and compares the facings. The result selects one of three actions (**Code**):
+[`ai_check_position` `$1E92`](../src/ai/ai_opponent.asm#L191) computes the distance and compares the facings. The result selects one of three actions (**Code**):
 
 | Facings | Distance `d` | Meaning | Action |
 |---|---|---|---|
@@ -122,16 +122,16 @@ Two more masks choose between moves. `ai_response_mask` chooses the response to 
 
 For the same facing, the code reverses the sign of `d`, so a negative `d` is in front. (**Code**)
 
-[`ai_walk_decision` `$1EBC`](../src/ai_opponent.asm#L215) counts `ai_walk_timer,x` down. At 0, a walking fighter stops for random AND `ai_stop_mask,x` frames. A stop time of 0 means "walk on". A standing fighter walks forward for random AND `ai_walk_mask,x` frames, and a value of 0 gives 256 frames. From level 7 the stop mask is 0, so the AI walks to the opponent without a pause. The AI never walks back in this step. Only the variant of a back attack commands walk back `$03`. (**Code**)
+[`ai_walk_decision` `$1EBC`](../src/ai/ai_opponent.asm#L215) counts `ai_walk_timer,x` down. At 0, a walking fighter stops for random AND `ai_stop_mask,x` frames. A stop time of 0 means "walk on". A standing fighter walks forward for random AND `ai_walk_mask,x` frames, and a value of 0 gives 256 frames. From level 7 the stop mask is 0, so the AI walks to the opponent without a pause. The AI never walks back in this step. Only the variant of a back attack commands walk back `$03`. (**Code**)
 
 ### The attack choice by distance
 
-[`ai_choose_attack` `$1F29`](../src/ai_opponent.asm#L277) first looks at a block of the opponent, when the facings are different. Against a low block `$13`, it takes a random entry of `ai_reply_to_low_block`: `$06 $0D $0E $11`. Against a high block `$14`, it takes a random entry of `ai_reply_to_high_block`: `$07 $0B $0C $18`. These are the attacks that the block does not stop. (**Code**) No run executed the reply to a low block, `$1F4F-$1F5C`. (**Observed**, coverage)
+[`ai_choose_attack` `$1F29`](../src/ai/ai_opponent.asm#L277) first looks at a block of the opponent, when the facings are different. Against a low block `$13`, it takes a random entry of `ai_reply_to_low_block`: `$06 $0D $0E $11`. Against a high block `$14`, it takes a random entry of `ai_reply_to_high_block`: `$07 $0B $0C $18`. These are the attacks that the block does not stop. (**Code**) No run executed the reply to a low block, `$1F4F-$1F5C`. (**Observed**, coverage)
 
 Else the AI reads a distance table. The index is the distance plus a base, plus random AND `ai_spread_mask` (**Code**):
 
-- Different facings: [`ai_attack_facing_table` `$2102`](../src/ai_tables.asm#L6), index = `d` + `$33` + spread.
-- Same facing: [`ai_attack_same_facing_table` `$2152`](../src/ai_tables.asm#L18), index = `d` + `$29` + spread.
+- Different facings: [`ai_attack_facing_table` `$2102`](../src/ai/ai_tables.asm#L6), index = `d` + `$33` + spread.
+- Same facing: [`ai_attack_same_facing_table` `$2152`](../src/ai/ai_tables.asm#L18), index = `d` + `$29` + spread.
 
 The spread moves the index up the table, toward the moves for a longer distance. At a low level the spread is `$07`, so its choice is less exact. The section [The distance tables](#the-distance-tables) gives the values. (**Code**)
 
@@ -139,11 +139,11 @@ Some results get one more step (**Code**):
 
 - **Foot sweep `$0A`.** Levels 0 and 1 give no command. The last command stays.
 - **Crouching attack `$07`.** The AI starts special action 5: crouch first, then `$07`. The input rules of `move_fix_input` change `$07` from a stand into `$18`, so the crouch is necessary. See [fighters.md](fighters.md).
-- **Back attack `$0F` or back sweep `$10`.** [`ai_attack_variant` `$1FC8`](../src/ai_opponent.asm#L371) takes v = random AND `ai_variant_mask`. Bit 7 of v gives about turn. `$40-$7F` gives walk back `$03`. `$20-$3F` gives the backward somersault `$08`. `$01-$1F` keeps the move. 0 gives the forward somersault `$09`.
+- **Back attack `$0F` or back sweep `$10`.** [`ai_attack_variant` `$1FC8`](../src/ai/ai_opponent_1f8f.asm#L41) takes v = random AND `ai_variant_mask`. Bit 7 of v gives about turn. `$40-$7F` gives walk back `$03`. `$20-$3F` gives the backward somersault `$08`. `$01-$1F` keeps the move. 0 gives the forward somersault `$09`.
 
 ### The special actions
 
-[`ai_dispatch_special` `$20F3`](../src/ai_opponent.asm#L561) reads the address of action n at [`ai_special_jump_table` `$21A1`](../src/ai_tables.asm#L30) + 2n. It then jumps through `ai_special_vector`. An action stays in `ai_special_action,x` until it clears the value, so it can take several frames. Entry 0 holds `$0000`, and nothing reads it. The reference shows `$0000` as `cpu_port_ddr` only because that is the name of address `$0000`. (**Code**)
+[`ai_dispatch_special` `$20F3`](../src/ai/ai_opponent_1f8f.asm#L231) reads the address of action n at [`ai_special_jump_table` `$21A1`](../src/ai/ai_tables.asm#L30) + 2n. It then jumps through `ai_special_vector`. An action stays in `ai_special_action,x` until it clears the value, so it can take several frames. Entry 0 holds `$0000`, and nothing reads it. The reference shows `$0000` as `cpu_port_ddr` only because that is the name of address `$0000`. (**Code**)
 
 | Action | Name | Against | What it does |
 |---|---|---|---|
@@ -160,9 +160,9 @@ Action 1 ends with `BEQ $2068` directly after `BNE $2061`. The branch is always 
 
 ## The skill levels
 
-[`ai_setup_level` `$1FFD`](../src/ai_opponent.asm#L408) copies the values of level `cpu_skill,x` into the masks. [`bout_setup_fighters` `$1536`](../src/init_bout_loop.asm#L148) calls it for fighter 0 and then for fighter 1 before each exchange. It also resets the AI state: command stand, no special action, no turn, and all timers to "load a new time". (**Code**)
+[`ai_setup_level` `$1FFD`](../src/ai/ai_opponent_1f8f.asm#L78) copies the values of level `cpu_skill,x` into the masks. [`bout_setup_fighters` `$1536`](../src/game/init_bout_loop.asm#L136) calls it for fighter 0 and then for fighter 1 before each exchange. It also resets the AI state: command stand, no special action, no turn, and all timers to "load a new time". (**Code**)
 
-The eight level tables start at [`ai_level_hold_mask` `$21D4`](../src/ai_tables.asm#L47). These are their values for levels 0-11 (**Code**):
+The eight level tables start at [`ai_level_hold_mask` `$21D4`](../src/ai/ai_tables.asm#L47). These are their values for levels 0-11 (**Code**):
 
 | Table | Address | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -192,13 +192,13 @@ The response mask gives each level its style (**Code**, the fractions are approx
 
 The variant mask also gives large differences. Level 5 has `$E0`, so a back attack never stays a back attack: the result is a turn, a walk back or a somersault. Levels 1 and 9 never turn and never walk back for a variant, because bit 7 and bit 6 of their masks are 0. (**Code**)
 
-The level of the one-player opponent is the rank index in `cpu_skill+1`. [`game_1p_promote` `$171D`](../src/game_modes.asm#L136) adds 1 to it after two won bouts. Level 0 is NOVICE, and levels 1-10 are 1ST DAN to 10TH DAN. Level 11 shows 10TH DAN a second time, because `rank_number_table` holds 10 in its last two entries. [game_flow.md](game_flow.md) tells the one-player game. (**Code**)
+The level of the one-player opponent is the rank index in `cpu_skill+1`. [`game_1p_promote` `$171D`](../src/game/game_modes.asm#L133) adds 1 to it after two won bouts. Level 0 is NOVICE, and levels 1-10 are 1ST DAN to 10TH DAN. Level 11 shows 10TH DAN a second time, because `rank_number_table` holds 10 in its last two entries. [game_flow.md](game_flow.md) tells the one-player game. (**Code**)
 
-[`demo_play` `$17BF`](../src/game_modes.asm#L226) gives each demo fighter level random AND 7 + 3 + carry. The carry comes from the random step, so the levels are 3-11. The two levels stay the same for the four bouts of a demo. (**Code**)
+[`demo_play` `$17BF`](../src/game/game_modes.asm#L220) gives each demo fighter level random AND 7 + 3 + carry. The carry comes from the random step, so the levels are 3-11. The two levels stay the same for the four bouts of a demo. (**Code**)
 
 ## The random number generator
 
-[`ai_next_random` `$1FF3`](../src/ai_opponent.asm#L399) steps `ai_random` and returns the new value in A. It shifts the byte left one bit. When the bit that goes out is 1, it does EOR `#$1D`. This is a linear feedback shift register with the polynomial x^8 + x^4 + x^3 + x^2 + 1. (**Code**)
+[`ai_next_random` `$1FF3`](../src/ai/ai_opponent_1f8f.asm#L69) steps `ai_random` and returns the new value in A. It shifts the byte left one bit. When the bit that goes out is 1, it does EOR `#$1D`. This is a linear feedback shift register with the polynomial x^8 + x^4 + x^3 + x^2 + 1. (**Code**)
 
 ```
 ai_next_random:  A = ai_random << 1
@@ -215,7 +215,7 @@ The game has two registers with the same step (**Code**):
 | `frame_random` | `$53`, written by `init_game_state` at the cold start | One step in each frame of a bout, by `frame_random_step` | Only the seed of `ai_random` |
 | `ai_random` | The byte that the loader left at `$8D`, then `frame_random` at the start of each one-player game | One step in each call of `ai_next_random` | The AI, the demo levels and the rank wrap |
 
-[`frame_random_step` `$1613`](../src/init_bout_loop.asm#L267) runs only in the frame loop of a bout. Thus `frame_random` counts the bout frames since the cold start, modulo 255. [`game_one_player` `$16A9`](../src/game_modes.asm#L81) copies it into `ai_random`. The decisions of the opponent thus depend on the frame in which the player started the game. (**Code**)
+[`frame_random_step` `$1613`](../src/game/init_bout_loop_1608.asm#L15) runs only in the frame loop of a bout. Thus `frame_random` counts the bout frames since the cold start, modulo 255. [`game_one_player` `$16A9`](../src/game/game_modes.asm#L81) copies it into `ai_random`. The decisions of the opponent thus depend on the frame in which the player started the game. (**Code**)
 
 Nothing writes `ai_random` before the first demo. In the entry state of R2010 and of SHADOW, `$8D` holds `$C7`. Thus the first demo after the load is the same each time. The section [The worked example](#the-worked-example) gives its levels. (**Code**, entry state) **Conclusion**: a test that writes `frame_random` before the one-player game starts makes the play of the opponent repeat. The recordings of `tests/record/` pin `frame_random` for this reason.
 
@@ -225,7 +225,7 @@ Nothing writes `ai_random` before the first demo. In the entry state of R2010 an
 
 Each table has 8 entries in a row. The column "`d` at spread 0" gives the distance of the first entry of the row when the random spread is 0. The first row of each table has the indexes `$00-$07`. No index is below `$08`, because the smallest `d` of an attack is -43 (different facings) or -33 (same facing). Thus nothing reads the first row of each table at any level. (**Code**)
 
-[`ai_attack_facing_table` `$2102-$2151`](../src/ai_tables.asm#L6), different facings (**Code**):
+[`ai_attack_facing_table` `$2102-$2151`](../src/ai/ai_tables.asm#L6), different facings (**Code**):
 
 | Index | `d` at spread 0 | Values | Moves |
 |---|---|---|---|
@@ -240,7 +240,7 @@ Each table has 8 entries in a row. The column "`d` at spread 0" gives the distan
 | `$40-$47` | 13 | `0E 0C 0A 0E 0A 0E 0A 0A` | Flying kick, mid kick, foot sweep |
 | `$48-$4F` | 21 | `01 02 01 03 01 01 01 01` | Stand and walks, only with the spread |
 
-[`ai_attack_same_facing_table` `$2152-$21A0`](../src/ai_tables.asm#L18), same facing (**Code**):
+[`ai_attack_same_facing_table` `$2152-$21A0`](../src/ai/ai_tables.asm#L18), same facing (**Code**):
 
 | Index | `d` at spread 0 | Values | Moves |
 |---|---|---|---|
@@ -280,7 +280,7 @@ The pairs keep one byte for each fighter, at the address for fighter 0 and the n
 
 ### The shared parameters at `$1FFD`
 
-[`ai_setup_level` `$1FFD`](../src/ai_opponent.asm#L408) loads the level of fighter X with `LDY cpu_skill,x`. Then it writes six masks without X: `ai_hold_mask`, `ai_spread_mask`, `ai_variant_mask`, `ai_attack_mask`, `ai_response_mask` and `ai_react_mask`. It also writes `ai_release_timer` and `ai_release_timer+1` with the same value. Only `ai_walk_mask,x`, `ai_stop_mask,x` and `ai_react_timer,x` use X. (**Code**)
+[`ai_setup_level` `$1FFD`](../src/ai/ai_opponent_1f8f.asm#L78) loads the level of fighter X with `LDY cpu_skill,x`. Then it writes six masks without X: `ai_hold_mask`, `ai_spread_mask`, `ai_variant_mask`, `ai_attack_mask`, `ai_response_mask` and `ai_react_mask`. It also writes `ai_release_timer` and `ai_release_timer+1` with the same value. Only `ai_walk_mask,x`, `ai_stop_mask,x` and `ai_react_timer,x` use X. (**Code**)
 
 The bout set-up calls the routine for fighter 0 first and for fighter 1 second. Thus the second call writes over the masks of the first call. Both fighters get the hold time, release time, attack spread, attack delay, variant, response and reaction delay of the level of fighter 1. Each fighter keeps only its own walk and stop masks and the three direct level tests. (**Code**)
 
@@ -292,7 +292,7 @@ The effect depends on the game mode (**Conclusion**):
 
 ### The `sta $92` without X in special action 8
 
-Special action 8 answers move `$06`. When bit 7 of the random value is 1, [`ai_spec_set_crouch_punch` `$20B2`](../src/ai_opponent.asm#L513) writes 5 into `ai_special_action` without X. Then it jumps to the code of action 5 with the correct X. (**Code**)
+Special action 8 answers move `$06`. When bit 7 of the random value is 1, [`ai_spec_set_crouch_punch` `$20B2`](../src/ai/ai_opponent_1f8f.asm#L183) writes 5 into `ai_special_action` without X. Then it jumps to the code of action 5 with the correct X. (**Code**)
 
 For fighter 0 the write is correct, because `$92` is its own byte. For fighter 1 the write goes to the byte of fighter 0, and the own action stays 8. Thus fighter 1 runs action 8 again in the next frame, with a new random value. It commands crouch in each frame with bit 7 set. It ends the action when bit 7 is 0, through action 6 (`$06` or `$18`). (**Code**) **Conclusion**: the crouch needs several frames to hold, so fighter 1 nearly always ends with `$06` or `$18`. It seldom reaches the crouching attack `$07`.
 
@@ -305,7 +305,7 @@ The coverage shows that a run executed action 8 with this write. (**Observed**, 
 
 ### The `cmp $0048,y` in special action 7
 
-Special action 7 answers the back sweep `$10`. [`ai_spec_sweep_by_facing` `$20CD`](../src/ai_opponent.asm#L535) compares `fighter_facing,x` with `fighter_facing,y`. It gives back sweep `$10` when the values are different and foot sweep `$0A` when they are the same. The routine does not load Y with `opponent_index`. Y still holds 14 from `ai_dispatch_special`, because the dispatch computes Y = 2 x 7. The 6510 has no `CMP zp,Y`, so the assembler writes `CMP $0048,Y`. The CPU reads `$0048` + 14 = `$56`, that is `fighter_move` of fighter 0. (**Code**)
+Special action 7 answers the back sweep `$10`. [`ai_spec_sweep_by_facing` `$20CD`](../src/ai/ai_opponent_1f8f.asm#L205) compares `fighter_facing,x` with `fighter_facing,y`. It gives back sweep `$10` when the values are different and foot sweep `$0A` when they are the same. The routine does not load Y with `opponent_index`. Y still holds 14 from `ai_dispatch_special`, because the dispatch computes Y = 2 x 7. The 6510 has no `CMP zp,Y`, so the assembler writes `CMP $0048,Y`. The CPU reads `$0048` + 14 = `$56`, that is `fighter_move` of fighter 0. (**Code**)
 
 `fighter_facing,x` is 0 or 1, and the move is 1 or more in a bout. Thus the compare finds "same" only when the own facing is 1 and fighter 0 stands (move 1). (**Code**)
 

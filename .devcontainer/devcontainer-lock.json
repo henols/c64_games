@@ -16,9 +16,9 @@
       "integrity": "sha256:8c0de46939b61958041700ee89e3493f3b2e4131a06dc46b4d9423427d06e5f6"
     },
     "https://github.com/henols/c64-re-tools/releases/latest/download/devcontainer-feature-c64-re-tools.tgz": {
-      "version": "1.2.0",
+      "version": "1.2.2",
       "resolved": "https://github.com/henols/c64-re-tools/releases/latest/download/devcontainer-feature-c64-re-tools.tgz",
-      "integrity": "sha256:111a3e99e1609949d20dd6e12348413d654aec42ee31e5c15516f4b6a1d03ecd",
+      "integrity": "sha256:4ee9b18c0964027ae1a2fc1da7cc42b9b8e96155f75d65064dd1f24e6a364b3c",
       "dependsOn": [
         "ghcr.io/devcontainers/features/node:1",
         "ghcr.io/devcontainers/features/java:1"

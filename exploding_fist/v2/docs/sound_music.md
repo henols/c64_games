@@ -10,7 +10,7 @@ The game makes two kinds of sound. A three-voice music driver plays one tune for
 
 ## The music
 
-The music driver and the tune data are the same as in version I, byte for byte, with two exceptions. The format of the patterns, the order lists and the instruments is on the music page of version I: [../../v1/docs/sound_music.md](../../v1/docs/sound_music.md). The frame-end raster IRQ calls [`music_play_frame` `$09A5`](../src/music_driver.asm#L6) once in each frame. The value in `game_mode` selects the tune. A new value starts the tune. (**Code**)
+The music driver and the tune data are the same as in version I, byte for byte, with two exceptions. The format of the patterns, the order lists and the instruments is on the music page of version I: [../../v1/docs/sound_music.md](../../v1/docs/sound_music.md). The frame-end raster IRQ calls [`music_play_frame` `$09A5`](../src/music/music_driver.asm#L6) once in each frame. The value in `game_mode` selects the tune. A new value starts the tune. (**Code**)
 
 | Tune | `game_mode` | Part of the game | Tempo (frames for each tick) |
 |---|---|---|---|
@@ -25,15 +25,15 @@ The fix of the tune 1 order list moved the data after it by 2 bytes. Thus the en
 
 In version I, the order list of voice 0 of tune 1 has a bug. Its repeat command jumps to position 19, but the list has only 17 bytes before the jump. Thus voice 0 continues into the order list of voice 1 and plays out of step with the other voices. Pattern 2 of the tune never plays. (**Code**)
 
-Version II puts 2 more bytes, `01 00` (play pattern 0), into the list at [`music_t1_order_v0` `$0FCE`](../src/music_tables.asm#L51). Now the repeat target 19 is the jump to position 0 at `$0FD5`. Voice 0 plays its section of 960 ticks two times, then pattern 2 (210 ticks). The loop has 2130 ticks, the same length as the loops of voices 1 and 2. At tempo 2, one loop takes about 85 seconds. (**Code**)
+Version II puts 2 more bytes, `01 00` (play pattern 0), into the list at [`music_t1_order_v0` `$0FCE`](../src/music/music_tables.asm#L51). Now the repeat target 19 is the jump to position 0 at `$0FD5`. Voice 0 plays its section of 960 ticks two times, then pattern 2 (210 ticks). The loop has 2130 ticks, the same length as the loops of voices 1 and 2. At tempo 2, one loop takes about 85 seconds. (**Code**)
 
 The runs of version II read pattern 2, instrument 2 and the last bytes of the list `$0FD3-$0FD6`. No run of version I read them. (**Observed**, coverage)
 
 ### The name entry jingle
 
-Version I has tune 4 in memory, but no code selects it. In version II, [`hs_name_entry` `$1762`](../src/high_score_table.asm#L400) writes 4 to `game_mode`. Thus the player hears tune 4 while he types his name into the high score table. The tune data is the same as in version I. (**Code**)
+Version I has tune 4 in memory, but no code selects it. In version II, [`hs_name_entry` `$1762`](../src/game/high_score_table.asm#L382) writes 4 to `game_mode`. Thus the player hears tune 4 while he types his name into the high score table. The tune data is the same as in version I. (**Code**)
 
-Tune 4 is a jingle that plays one time. After 384 ticks, about 7.7 seconds, each voice reads the stop command [`music_cmd_stop` `$0C58`](../src/music_driver.asm#L342). Then the name entry continues without music. The next value of `game_mode`, 1 for the demo, starts tune 1. The name entry run read all the data of tune 4 and executed the stop command. (**Observed**, coverage)
+Tune 4 is a jingle that plays one time. After 384 ticks, about 7.7 seconds, each voice reads the stop command [`music_cmd_stop` `$0C58`](../src/music/music_driver.asm#L336). Then the name entry continues without music. The next value of `game_mode`, 1 for the demo, starts tune 1. The name entry run read all the data of tune 4 and executed the stop command. (**Observed**, coverage)
 
 The high score table is on [high_scores.md](high_scores.md).
 
@@ -60,7 +60,7 @@ flowchart TB
 
 ### The start of a sample
 
-The game has eight entries, [`sfx_play_sample_0` `$3158`](../src/sfx_sample_player.asm#L44) to `sfx_play_sample_7` at `$3182`. Each entry saves X in `sfx_saved_x` and loads X with 4 times the sample number. Only the entries 0 to 3 have callers. The common part [`sfx_sample_start` `$3186`](../src/sfx_sample_player.asm#L84) then does these steps (**Code**):
+The game has eight entries, [`sfx_play_sample_0` `$3158`](../src/sfx/sfx_sample_player.asm#L42) to `sfx_play_sample_7` at `$3182`. Each entry saves X in `sfx_saved_x` and loads X with 4 times the sample number. Only the entries 0 to 3 have callers. The common part [`sfx_sample_start` `$3186`](../src/sfx/sfx_sample_player.asm#L82) then does these steps (**Code**):
 
 1. It reads `samples_off`. When the value is not 0, it restores X and returns. No sample starts.
 2. It writes `$7F` to `$DC0D` and switches off all CIA1 interrupts. It writes `$28` to `$DC0E` and `$DC0F` and stops the two timers. Thus a sample that plays stops now.
@@ -77,7 +77,7 @@ A new sample always stops the sample that plays. The game does not compare the t
 
 The CIA1 and the VIC share the IRQ vector at `$FFFE`, and the vector always points to a raster handler. Each raster handler starts with `BIT $DC0D / BPL / CLI / JMP sfx_sample_irq`. The `BIT` reads the CIA1 interrupt flags and clears them. When bit 7 is 1, the IRQ comes from timer B. The handler then clears the I flag and jumps to the sample IRQ. A raster IRQ can thus interrupt the sample IRQ. The raster handlers are on [interrupts.md](interrupts.md). (**Code**)
 
-[`sfx_sample_irq` `$311A`](../src/sfx_sample_player.asm#L6) does these steps (**Code**):
+[`sfx_sample_irq` `$311A`](../src/sfx/sfx_sample_player.asm#L6) does these steps (**Code**):
 
 1. It changes `sfx_volume` with `EOR #$0F` and writes it to `$D418`. The volume is now 0 or 15. The filter mode bits of `$D418` are 0.
 2. It reads the sample byte at `sfx_sample_ptr`. The byte is an index into the two period tables.
@@ -90,7 +90,7 @@ Timer B counts the underflows of timer A. A count `c` gives `c + 1` underflows, 
 
 ### The period tables
 
-The two tables [`sfx_period_lo` `$0200`](../src/constants.asm#L125) and `sfx_period_hi` at `$0300` give the count of timer B for each value of a sample byte. The file holds them at [`sfx_period_lo_init` `$C700`](../src/sfx_period_tables.asm#L103) and `sfx_period_hi_init` at `$C800`. The shape buffer 3 of the sprite builder uses `$C700-$C93F`. Thus [`init_copy_periods` `$18FA`](../src/init_machine.asm#L16) copies the two tables to pages 2 and 3 at the start, before the shape builder writes over them. (**Code**)
+The two tables [`sfx_period_lo` `$0200`](../src/constants.asm#L125) and `sfx_period_hi` at `$0300` give the count of timer B for each value of a sample byte. The file holds them at [`sfx_period_lo_init` `$C700`](../src/sfx/sfx_period_tables.asm#L103) and `sfx_period_hi_init` at `$C800`. The shape buffer 3 of the sprite builder uses `$C700-$C93F`. Thus [`init_copy_periods` `$18FA`](../src/game/init_machine.asm#L16) copies the two tables to pages 2 and 3 at the start, before the shape builder writes over them. (**Code**)
 
 The counts go up from 1 for value `$00` to 60000 for value `$FF`. Up to value `$30`, the count is the value + 1. From `$31`, the count is the value + 2, so the count 50 is not in the table. Above about `$BC` the steps are larger. The values `$EE-$FF` give long pauses from 500 to 60000. The samples use only the values `$04-$F1`. (**Code**)
 
@@ -120,7 +120,7 @@ stateDiagram-v2
 
 ### Where the data is
 
-The sample table [`sfx_sample_table` `$F540`](../src/sfx_samples_f540.asm#L6) holds one entry for each sample. `sfx_sample_start` reads the entry at offset X. The samples follow the table, from `$F580` to `$FFDD`. The file of the samples ends at `$FFEF`. (**Code**)
+The sample table [`sfx_sample_table` `$F540`](../src/sfx/sfx_samples_f540.asm#L6) holds one entry for each sample. `sfx_sample_start` reads the entry at offset X. The samples follow the table, from `$F580` to `$FFDD`. The file of the samples ends at `$FFEF`. (**Code**)
 
 ### The byte layout
 
@@ -193,21 +193,22 @@ Listen to the samples in these WAV files:
 - Sample 2, the attack: [sample2_attack.wav](assets/sample2_attack.wav)
 - Sample 3, the floor: [sample3_floor.wav](assets/sample3_floor.wav)
 
-The callers are in the hit test and in the move code. [`hit_record` `$2CA8`](../src/hit_test.asm#L175) sets the hit reaction of the opponent and then starts sample 0 or sample 1. [`move_start_anim` `$2B46`](../src/fighter_moves.asm#L263) starts sample 2 when the new move has `move_attack_flags` not 0. [`move_hit_fall_sample` `$29E9`](../src/fighter_moves.asm#L36) starts sample 3. The bull round starts sample 1 at `$13B7` and sample 3 at `$141F`. The bull round is on [bull_round.md](bull_round.md), and the hit reactions are on [combat.md](combat.md). (**Code**)
+The callers are in the hit test and in the move code. [`hit_record` `$2CA8`](../src/fighter/hit_test.asm#L175) sets the hit reaction of the opponent and then starts sample 0 or sample 1. [`move_start_anim` `$2B46`](../src/fighter/fighter_moves.asm#L263) starts sample 2 when the new move has `move_attack_flags` not 0. [`move_hit_fall_sample` `$29E9`](../src/fighter/fighter_moves.asm#L36) starts sample 3. The bull round starts sample 1 at `$13B7` and sample 3 at `$141F`. The bull round is on [bull_round.md](bull_round.md), and the hit reactions are on [combat.md](combat.md). (**Code**)
 
 The runs executed the entries 0 to 3 and read each byte of the four samples. They did not execute the entries 4 to 7. (**Observed**, coverage)
 
-[`../../tools/sample_to_wav.py`](../../tools/sample_to_wav.py) made the WAV files from the image of the SCC release. It uses the same count tables and the same `(c + 1) x 9` cycles as the player. It also adds the half-wave of the end byte, and it leaves out the first wait of `$0040`. Each of the two differences is less than 1 ms. The script does not include the END address. Thus END is the last byte + 1. This command makes sample 0, from the group folder:
+[`../../tools/sample_to_wav.py`](../../tools/sample_to_wav.py) made the WAV files from a plain build of the SCC release. It uses the same count tables and the same `(c + 1) x 9` cycles as the player. It also adds the half-wave of the end byte, and it leaves out the first wait of `$0040`. Each of the two differences is less than 1 ms. The script does not include the address SAMPLE_END. Thus SAMPLE_END is the last byte + 1. These commands make sample 0. Run the first one in the folder v2 with the script `assembler.ts` of the c64-assembler skill. Run the second one in the group folder. The build starts at `$0400`, thus `--start` is `0x0400`.
 
 ```
-python3 tools/sample_to_wav.py v2/original/releases/scc/image.bin 0xf580 0xf664 0xc700 0xc800 v2/docs/assets/sample0_knockdown.wav
+assembler.ts build src main.asm --release SCC --plain
+python3 tools/sample_to_wav.py v2/build/release_SCC.bin 0xf580 0xf664 0xc700 0xc800 v2/docs/assets/sample0_knockdown.wav --start 0x0400
 ```
 
 A second run of the script with the ranges of the table gave the same bytes as each of the five WAV files. (**Observed**)
 
 ### The cut tail of sample 2
 
-The data has a gap of 511 bytes between sample 2 and sample 3. [`sfx_sample_attack_cut` `$FCD4`](../src/sfx_samples_f979.asm#L116) holds the bytes `$FCD4-$FED2`, and no table entry covers them. No run read them. (**Observed**, coverage)
+The data has a gap of 511 bytes between sample 2 and sample 3. [`sfx_sample_attack_cut` `$FCD4`](../src/leftovers/leftover_fcd4.asm#L6) holds the bytes `$FCD4-$FED2`, and no table entry covers them. No run read them. (**Observed**, coverage)
 
 The bytes continue sample 2. They have the same range of values (`$1A-$35`) as the end of sample 2. Sample 3 starts with other values at `$FED3`. The end offset of entry 2 is `$0793`, and the start offset of entry 3 is `$0993`. The two offsets have the same low byte, and the high bytes differ by 2. (**Code**)
 
@@ -219,13 +220,13 @@ Thus sample 2 first went to `$FED2`, 1370 bytes and about 0.54 seconds. Then a p
 
 The samples are in the screen bitmap. The bitmap is at `$E000-$FF3F` in VIC bank 3. Bitmap row 17 starts at `$E000 + 17 x 320 = $F540`. Thus the table and the samples up to `$FF3F` fill the floor, the rows 17 to 24 of the bitmap. The last bytes, `$FF40-$FFDD`, are after the end of the bitmap. (**Code**)
 
-The player sees no pattern on the floor. [`floor_colour_fill` `$192F`](../src/init_machine.asm#L50) writes `$77` into the screen RAM and the colour RAM of rows 17 to 24. [`nmi_floor_colour` `$2FF2`](../src/irq_screen_split.asm#L44) sets the background colour to 7 at the floor. Thus all four multicolour values of a floor cell are 7, yellow. Each bit pattern shows as the same yellow area. (**Code**)
+The player sees no pattern on the floor. [`floor_colour_fill` `$192F`](../src/game/init_machine.asm#L50) writes `$77` into the screen RAM and the colour RAM of rows 17 to 24. [`nmi_floor_colour` `$2FF2`](../src/irq/irq_screen_split.asm#L44) sets the background colour to 7 at the floor. Thus all four multicolour values of a floor cell are 7, yellow. Each bit pattern shows as the same yellow area. (**Code**)
 
 The scene unpacker writes only the scene bitmap at `$E640-$F53F`. Thus no scene writes over the samples. In version I, the bull sprites had this place in the floor bitmap. Version II moved the bull to other memory and put the samples there. (**Code**, **Conclusion**)
 
 ## The DEL key
 
-DEL switches the samples off and on. [`title_key_del` `$1ED4`](../src/title_and_scene.asm#L72) changes `samples_off` with `EOR #$01`. It does this only when `in_game` is 0. The title loop and the demo have `in_game` = 0, and a game sets it to 1. Thus DEL works on the title and in the demo. During a game, the code ignores DEL. The start-up code sets `samples_off` to 0, so the samples are on after a load. (**Code**)
+DEL switches the samples off and on. [`title_key_del` `$1ED4`](../src/game/title_and_scene.asm#L72) changes `samples_off` with `EOR #$01`. It does this only when `in_game` is 0. The title loop and the demo have `in_game` = 0, and a game sets it to 1. Thus DEL works on the title and in the demo. During a game, the code ignores DEL. The start-up code sets `samples_off` to 0, so the samples are on after a load. (**Code**)
 
 `samples_off` stops only new samples. `sfx_sample_start` is the only code that reads it. A sample that plays when the player presses DEL continues to its end byte, at most 0.46 seconds. When the samples are off, the bull round also calls a sample entry that does nothing. The round continues normally, because `sfx_done` keeps the value `$7F`. (**Code**)
 
@@ -237,7 +238,7 @@ Each sample start clears all SID registers in the loop `sfx_clear_sid_loop` at `
 
 The two players also share `$D418`. The sample IRQ writes only 0 or 15, with the filter mode bits 0. The music driver writes `music_volume` to `$D418` in each frame. Thus the music changes the level of the sample one time in each frame. The sample removes the filter mode of the music until the next frame. (**Code**, **Conclusion**)
 
-The frame-end raster IRQ [`irq_frame_end` `$30E5`](../src/irq_screen_split.asm#L177) calls the music driver with the I flag set. A timer B IRQ must wait until the driver ends. The half-wave at that time becomes longer, one time in each frame. (**Code**, **Conclusion**)
+The frame-end raster IRQ [`irq_frame_end` `$30E5`](../src/irq/irq_screen_split.asm#L165) calls the music driver with the I flag set. A timer B IRQ must wait until the driver ends. The half-wave at that time becomes longer, one time in each frame. (**Code**, **Conclusion**)
 
 ## Still open
 

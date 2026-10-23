@@ -15,11 +15,11 @@ The 2010 disk keeps the file names of the original disk: M.PROG, M.SHAPES, M.CHS
 
 The original loader left one mark that the game can test. CIA2 control A (`$DD0E`) holds 0 at the game entry `$115A`. Version II tests this mark. A C64 after a KERNAL reset has `$08` in `$DD0E`. Thus a copy that loads the game with the KERNAL and jumps to `$115A` does not have the mark. **Code** / **Conclusion**.
 
-Version I has no check. The game code of version I reads no loader mark. It has no read of `$DD0E`. [`v1:hit_record` `$2591`](../v1/src/hit_test.asm#L175) goes directly from the store of `scoring_move` to the hit reaction. **Code**.
+Version I has no check. The game code of version I reads no loader mark. It has no read of `$DD0E`. [`v1:hit_record` `$2591`](../v1/src/fighter/hit_test.asm#L175) goes directly from the store of `scoring_move` to the hit reaction. **Code**.
 
 ## The check of version II
 
-Version II checks the mark at [`v2:protect_cia2_check` `$2CAE`](../v2/src/hit_test.asm#L180), inside [`v2:hit_record` `$2CA8`](../v2/src/hit_test.asm#L175). This routine records each scoring hit of a fighter. After it stores `scoring_move`, it reads `$DD0E`. When the value is 0, the routine continues to the hit reaction of the opponent. **Code**.
+Version II checks the mark at [`v2:protect_cia2_check` `$2CAE`](../v2/src/fighter/hit_test.asm#L180), inside [`v2:hit_record` `$2CA8`](../v2/src/fighter/hit_test.asm#L175). This routine records each scoring hit of a fighter. After it stores `scoring_move`, it reads `$DD0E`. When the value is 0, the routine continues to the hit reaction of the opponent. **Code**.
 
 ```
 hit_record          LDY opponent_index
@@ -54,7 +54,7 @@ The original loader must have left 0 in `$DD0E`. Otherwise the original game cra
 
 ## The effect of a failed check
 
-When `$DD0E` is not 0, the trap [`v2:protect_cia2_trap` `$2CB3`](../v2/src/hit_test.asm#L194) runs. It pushes a false return address on the stack: the `$DD0E` value as the high byte and `opponent_index` as the low byte. Then it jumps into [`v2:anim_update` `$37BD`](../v2/src/anim_step.asm#L6) with X = `$4E`. **Code**.
+When `$DD0E` is not 0, the trap [`v2:protect_cia2_trap` `$2CB3`](../v2/src/fighter/hit_test.asm#L194) runs. It pushes a false return address on the stack: the `$DD0E` value as the high byte and `opponent_index` as the low byte. Then it jumps into [`v2:anim_update` `$37BD`](../v2/src/fighter/anim_step.asm#L6) with X = `$4E`. **Code**.
 
 With X = `$4E`, `anim_update` works on the zero page `$4E` bytes above the fighter variables. It reads `anim_number,X` at `$93`, which is `ai_table_index`. When that byte is not 0, the routine plays a false animation step. It writes the sprite position bytes plus `$4E`, for example `$62` (`fighter_move` of fighter 1) and `$66` (`cpu_controlled` of fighter 1). **Code**.
 
@@ -88,7 +88,7 @@ The Mr. Z crack also starts the game with `$DD0E` = 0. The capture of MRZ at `$1
 
 The v2 switch `PROTECTION` in [config.asm](../v2/src/config.asm) disables the check. Its kind is protection, and its default is 0. The releases SCC and MRZ build with `PROTECTION` = 1. Version I has no protection switch. **Code**.
 
-`PROTECTION` = 0 changes three bytes at [`v2:protect_cia2_check` `$2CAE-$2CB0`](../v2/src/hit_test.asm#L180):
+`PROTECTION` = 0 changes three bytes at [`v2:protect_cia2_check` `$2CAE-$2CB0`](../v2/src/fighter/hit_test.asm#L180):
 
 | `PROTECTION` | Bytes at `$2CAE-$2CB0` | Code | Result |
 |---|---|---|---|
@@ -103,7 +103,7 @@ These tests show that the default build plays as the original. **Observed** (all
 - The four recordings in [tests/record](../v2/tests/record) replay on the rebuild: one_player_moves, two_player, cpu_ranks and keyboard. They pass 9262, 11107, 53394 and 6787 checkpoints.
 - The run [protection_trap_rebuild.json](../v2/tests/protection_trap_rebuild.json) writes `$08` to `$DD0E`, as the run of the original does. The default rebuild plays on through the first scoring hit.
 
-The release file `exploding_fist_v2.prg` uses the default build. Thus it plays on each C64, also after a KERNAL reset with `$08` in `$DD0E`. **Conclusion**.
+The loader `v2/build/clean_loader.prg` uses the default build. Thus it plays on each C64, also after a KERNAL reset with `$08` in `$DD0E`. **Conclusion**.
 
 ## Still open
 

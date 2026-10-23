@@ -3,31 +3,34 @@
 ; Build a release with -DRELEASE_<label>=1 (the build option --release <label>):
 ; then each switch has the value of that release, and the build does not read config.asm.
 
-; SAEGER (the program of the knowledge): original/releases/saeger/image.json. original/saeger.d64, file BRUCE LEE: cracked in October 1984 by Saeger Soft Group (SSG). The image was saved from a game that had run: it holds the run state of the music player, a byte of an interrupted KERNAL RAM test at $9B00, and the edit DIABOLO PRESENTS.
+; SAEGER (the program of the knowledge): original/saeger.d64, file BRUCE LEE: cracked in October 1984 by Saeger Soft Group (SSG). The image was saved from a game that had run: it holds the run state of the music player, a byte of an interrupted KERNAL RAM test at $9B00, and the edit DIABOLO PRESENTS.
 !ifdef RELEASE_SAEGER {
         CRACK_DIABOLO = 1
         FIX_RAM_TEST_BYTE = 0
         PROTECTION = 1
         RUN_STATE = 1
-        TITLE_PICTURE = 0
+        LEFTOVERS = 1
+        START_SCREEN = 0
 }
 
-; DC: original/releases/dc/image.json. original/danish.d64, file BRUCE LEE   (DC): Danish Crackers DC-011/P, TCS-CRUNCH packed. The game bytes are the TBC bytes, but the packed file ends at $F200: the demo input at $F300-$F538 is missing.
+; DC: original/danish.d64, file BRUCE LEE   (DC): Danish Crackers DC-011/P, TCS-CRUNCH packed. The game bytes are the TBC bytes, but the packed file ends at $F200: the demo input at $F300-$F538 is missing.
 !ifdef RELEASE_DC {
         CRACK_DIABOLO = 0
         FIX_RAM_TEST_BYTE = 1
         PROTECTION = 1
         RUN_STATE = 0
-        TITLE_PICTURE = 0
+        LEFTOVERS = 1
+        START_SCREEN = 0
 }
 
-; TBC: original/releases/tbc/image.json. original/bruce_lee_tbc.prg: CRACKED BY TBC, with the Datasoft title picture as its intro. Same crack image as SAEGER (same relocator at $C000 and copies at $A000), saved before a run: no run state, no RAM-test byte, DATASOFT PRESENTS.
+; TBC: original/bruce_lee_tbc.prg: CRACKED BY TBC. Same crack image as SAEGER (same relocator at $C000 and copies at $A000), saved before a run: no run state, no RAM-test byte, DATASOFT PRESENTS.
 !ifdef RELEASE_TBC {
         CRACK_DIABOLO = 0
         FIX_RAM_TEST_BYTE = 1
         PROTECTION = 1
         RUN_STATE = 0
-        TITLE_PICTURE = 1
+        LEFTOVERS = 1
+        START_SCREEN = 0
 }
 
 !ifndef RELEASE_SAEGER { !ifndef RELEASE_DC { !ifndef RELEASE_TBC { !source "config.asm" } } }

@@ -5,8 +5,8 @@
   "symbols": "knowledge"
  },
  "rebuild": {
-  "program": "build/fist_v2_loader.prg",
-  "symbols": "build/fist_v2.json"
+  "program": "build/clean_loader.prg",
+  "symbols": "build/symbols/clean_loader.json"
  },
  "steps": [
   {
@@ -14,6 +14,22 @@
   },
   {
    "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "loader_start_screen_wait"
+    },
+    "timeoutFrames": 1500
+   },
+   "side": "rebuild"
+  },
+  {
+   "registers": {
+    "pc": "loader_start_screen_continue"
+   },
+   "side": "rebuild"
   },
   {
    "runUntil": {

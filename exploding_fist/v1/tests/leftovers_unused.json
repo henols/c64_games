@@ -5,8 +5,8 @@
   "symbols": "knowledge"
  },
  "rebuild": {
-  "program": "build/fist_v1_loader.prg",
-  "symbols": "build/fist_v1.json"
+  "program": "build/clean_loader.prg",
+  "symbols": "build/symbols/clean_loader.json"
  },
  "steps": [
   {
@@ -14,6 +14,22 @@
   },
   {
    "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "loader_start_screen_wait"
+    },
+    "timeoutFrames": 1500
+   },
+   "side": "rebuild"
+  },
+  {
+   "registers": {
+    "pc": "loader_start_screen_continue"
+   },
+   "side": "rebuild"
   },
   {
    "runUntil": {
@@ -220,6 +236,94 @@
    "write": {
     "address": "$ff80",
     "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$0486",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$08d7",
+    "data": "a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$0906",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$0fd1",
+    "data": "a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$1057",
+    "data": "a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$105a",
+    "data": "a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$105d",
+    "data": "a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$1354",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$1371",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$2a0a",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "view": "ram"
+   },
+   "side": "rebuild"
+  },
+  {
+   "write": {
+    "address": "$1c53",
+    "data": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
     "view": "ram"
    },
    "side": "rebuild"

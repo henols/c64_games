@@ -8,7 +8,7 @@
 
 ## Application
 
-- [ ] Start build/bruce_lee_loader.prg (the default build, protection off) in an emulator: the title screen appears with no cracktro before it.
+- [ ] Start build/clean_loader.prg (the default build, protection off) in an emulator: the Datasoft title picture shows without the TBC text. A key or fire on joystick port 1 or 2 starts the game: the title screen appears with no cracktro before it.
 - [ ] Play into rooms 2, 5 and 10 with the default build: the game does not hang and rooms 0, 1 and 5 keep their maps.
 - [ ] On the title, press F3 and F5: the highlight moves between 1 PLAYER / 2 PLAYERS and COMPUTER / OPPONENT.
 - [ ] Press L, R, shift-L and shift-R on the title: the line "JOYSTICK # n IS IN LEFT/RIGHT HANDED MODE" appears.

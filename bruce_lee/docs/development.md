@@ -12,13 +12,13 @@ This page tells how Ron J. Fortier and Datasoft made the C64 version of *Bruce L
 
 ## The authors and the version
 
-The game names its author and its version in two places. The title screen shows "DATASOFT PRESENTS", "BRUCE LEE" and "BY RON J FORTIER" in big logo characters. During a game, the V key shows a version line in the top row of the screen: "BRUCE LEE (C) 1984 DATASOFT REV.2 BY RJF". [`toggle_credit_line` `$1B68`](../src/status_and_keys.asm#L94) copies the 40 characters of [`version_banner` `$4707`](../src/messages_rooms.asm#L266) into the row. The next V press clears the row again (**Code**).
+The game names its author and its version in two places. The title screen shows "DATASOFT PRESENTS", "BRUCE LEE" and "BY RON J FORTIER" in big logo characters. During a game, the V key shows a version line in the top row of the screen: "BRUCE LEE (C) 1984 DATASOFT REV.2 BY RJF". [`toggle_credit_line` `$1B68`](../src/game/status_and_keys.asm#L94) copies the 40 characters of [`version_banner` `$4707`](../src/text/messages_rooms.asm#L266) into the row. The next V press clears the row again (**Code**).
 
 So the C64 game is revision 2, by Ron J. Fortier (RJF), and Datasoft published it in 1984. The image does not tell what changed from revision 1 (**Code**).
 
-The Datasoft title picture names one more person. It reads "PROGRAMMED BY RON J FORTIER" and "GRAPHIC ART BY KELLY DAY" (**Observed**: the picture in the TBC intro). The game bytes do not hold the picture or this credit. Only the TBC release holds the picture, and the rebuild shows it at the start ([releases.md](releases.md)).
+The Datasoft title picture names one more person. It reads "PROGRAMMED BY RON J FORTIER" and "GRAPHIC ART BY KELLY DAY" (**Observed**: the picture in the TBC intro). The game bytes do not hold the picture or this credit. Only the TBC release holds the picture ([releases.md](releases.md)).
 
-The title tune plays on a player by another author. [`music_player_credit` `$E315`](../src/music_player.asm#L50) holds the text " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". No code reads this text (**Code**). The section on the music file below tells how the tune came into the game.
+The title tune plays on a player by another author. [`music_player_credit` `$E315`](../src/music/music_player.asm#L50) holds the text " MICROPEARL MUSIC PLAYER  COPYRIGHT 1983 JOHN A. FITZPATRICK ". No code reads this text (**Code**). The section on the music file below tells how the tune came into the game.
 
 ## The tools and the computer of the development
 
@@ -39,7 +39,7 @@ The title tune plays on a player by another author. [`music_player_credit` `$E31
  DFB $FF,$CF,$F[F,$FF]       <- cut by actor_frame_base at $59A5
 ```
 
-The text is the end of the source file of a room charset. Each tile has a comment line `* CHAR n` and two `DFB` lines of 4 bytes. The first line gives rows 0-3 of the tile, and the second line gives rows 4-7. The game expands these two parts into the two halves of a double-height character. The 31 bytes in the text are equal to tiles 96-99 of [`room_charset_d` `$9C00`](../src/room_charset_d.asm#L8), the wizard-flash tiles of room 18 (**Observed**). So the authors kept even the graphics as assembler source, one tile at a time (**Conclusion**).
+The text is the end of the source file of a room charset. Each tile has a comment line `* CHAR n` and two `DFB` lines of 4 bytes. The first line gives rows 0-3 of the tile, and the second line gives rows 4-7. The game expands these two parts into the two halves of a double-height character. The 31 bytes in the text are equal to tiles 96-99 of [`room_charset_d` `$9C00`](../src/graphics/room_charset_d.asm#L8), the wizard-flash tiles of room 18 (**Observed**). So the authors kept even the graphics as assembler source, one tile at a time (**Conclusion**).
 
 The format of the text is the format of an Apple II assembler (**Code**: the bytes):
 
@@ -66,7 +66,7 @@ The block `$E800-$EC8F` was the data file of the MicroPearl music editor. The ed
 | `$42AD` | `$EAAD` | The end of song 0. |
 | `$4490` | `$EC90` | The end of the data. |
 
-The player never reads the header. It uses [`music_song_table` `$E8C0`](../src/music_songs.asm#L7), and the build put this table over the start of the old voice 0 (**Code**). So the composer made the tune in the editor, and the authors put the file into the game as binary data (**Conclusion**).
+The player never reads the header. It uses [`music_song_table` `$E8C0`](../src/music/music_songs.asm#L7), and the build put this table over the start of the old voice 0 (**Code**). So the composer made the tune in the editor, and the authors put the file into the game as binary data (**Conclusion**).
 
 ### A C64 bitmap tool in memory
 
@@ -83,7 +83,7 @@ The program is a C64 graphics editor, not a part of the game. The game has no bi
 
 Bruce Lee was first an Atari 8-bit game. `atari_digit_key_codes` in bank1 at `$4CBA` holds `32 1F 1E 1A 18 1D 1B 33 35 30`. `atari_shift_digit_key_codes` at `$4CC4` holds the same bytes plus `$40` (**Observed**). These bytes are the Atari keyboard codes of the keys 0-9. On the Atari, SHIFT adds `$40`, so the second row is SHIFT+0 to SHIFT+9 (**Conclusion**: platform knowledge).
 
-No code reads these bytes. [`scan_keyboard` `$139E`](../src/keyboard_scan.asm#L24) gives each key as a C64 matrix index, and as matrix indexes these bytes are other keys (**Code**). The table is between two C64 tables, [`anim_step_delay` `$4CB2`](../src/room_tables.asm#L171) and `room_lantern_count_init` (**Code**).
+No code reads these bytes. [`scan_keyboard` `$139E`](../src/input/keyboard_scan.asm#L24) gives each key as a C64 matrix index, and as matrix indexes these bytes are other keys (**Code**). The table is between two C64 tables, [`anim_step_delay` `$4CB2`](../src/room/room_tables.asm#L171) and `room_lantern_count_init` (**Code**).
 
 So the authors made the C64 version from the Atari source, and a table of the Atari version stayed in it (**Conclusion**). The C64 game has no digit keys.
 
@@ -91,9 +91,9 @@ So the authors made the C64 version from the Atari source, and a table of the At
 
 Most leftovers are in memory that the game uses as work space but does not load. These areas are the following:
 
-- The actor workspace at `$4EED`, which [`init_game_variables` `$0F72`](../src/game_setup.asm#L18) clears.
+- The actor workspace at `$4EED`, which [`init_game_variables` `$0F72`](../src/game/game_setup.asm#L18) clears.
 - The sprite buffers at `$8180`.
-- The text font at `$8800`, which [`cold_start` `$0400`](../src/cold_start.asm#L22) builds.
+- The text font at `$8800`, which [`cold_start` `$0400`](../src/game/cold_start.asm#L22) builds.
 - The screen at `$8C00`.
 - The gaps between the parts of the music code and the sound code.
 
@@ -113,7 +113,7 @@ Three blocks are copies of the final program at a wrong address (**Observed**: b
 
 The copies hold the final addresses. The copy at `$4FE8` calls `JSR $478D` and reads `LDA $480B,X`. The lantern pointers point to the lantern lists of the game. So these blocks are the final layout at a higher address, not older builds that ran there (**Code**).
 
-The first copy has one more trace. Its copy of message `$62` reads `DATASO`, six zero bytes and `SENTS` (**Observed**). This is the original text "DATASOFT PRESENTS" of [`msg_presents` `$4770`](../src/messages_rooms.asm#L322). The SAEGER release changed this text to "DIABOLO  PRESENTS". The six zero bytes, and nine more at `$4FDE`, are game variables in the workspace. The final build writes these variables with initial zeros (**Code**).
+The first copy has one more trace. Its copy of message `$62` reads `DATASO`, six zero bytes and `SENTS` (**Observed**). This is the original text "DATASOFT PRESENTS" of [`msg_presents` `$4770`](../src/text/messages_rooms.asm#L322). The SAEGER release changed this text to "DIABOLO  PRESENTS". The six zero bytes, and nine more at `$4FDE`, are game variables in the workspace. The final build writes these variables with initial zeros (**Code**).
 
 Some gaps hold a repeated pattern with stray bits, the content of C64 DRAM after power-on (**Observed**). Examples are `micropearl_gap_e009` in bank4, between the parts of the music code, and `demo_area_uninitialised` in bank4 at `$F539`, after the demo input. So someone saved the block `$E000-$F5FF` as whole pages from the memory of a C64. The pages held old data and noise between the parts of the game (**Conclusion**). The text at `$5900` also starts in the middle of a line at the start of a page. So whole pages were written over the text (**Observed**).
 
@@ -127,7 +127,7 @@ Pages `$EF-$F1` hold three parts of the code pages `$29-$2B` of an older build, 
 | `old_apply_fight_hits_pause` | `$2A61` | The end of the pause setting of `apply_fight_hits`. |
 | `old_scroll_chars_pause_end` | `$2B60` | `animate_scrolling_chars`, from its pause to the copy loop. |
 
-The old [`animate_scrolling_chars` `$2C70`](../src/animated_chars.asm#L12) has the same logic as the final routine, but each address is different. The old [`check_fight_pair` `$2A36`](../src/fight_hits.asm#L89) does not have one test. The final routine first checks if a fall attack hit the attacker (state `$1B`). Then it checks the other states (**Code**).
+The old [`animate_scrolling_chars` `$2C70`](../src/room/animated_chars.asm#L12) has the same logic as the final routine, but each address is different. The old [`check_fight_pair` `$2A36`](../src/actor/fight_hits.asm#L89) does not have one test. The final routine first checks if a fall attack hit the attacker (state `$1B`). Then it checks the other states (**Code**).
 
 The addresses show how the program grew between this build and the final build (**Code**: the comments of the leftovers):
 
@@ -144,21 +144,21 @@ The authors added zero-page variables at low addresses. They added code before t
 
 ### Old charsets and sprite masks
 
-`$8E80-$8FFF` in bank2 holds tiles 0-47 of an older [`room_charset_a` `$9000`](../src/room_charset_a.asm#L12), `$180` lower than the charset of the game. 380 of the 384 bytes are equal. In the game, row 7 of tiles 24, 25, 26 and 45 has more pixels (**Observed**). This old charset covers the last byte of the symbol table, so it came into memory after the table (**Observed**).
+`$8E80-$8FFF` in bank2 holds tiles 0-47 of an older [`room_charset_a` `$9000`](../src/graphics/room_charset_a.asm#L12), `$180` lower than the charset of the game. 380 of the 384 bytes are equal. In the game, row 7 of tiles 24, 25, 26 and 45 has more pixels (**Observed**). This old charset covers the last byte of the symbol table, so it came into memory after the table (**Observed**).
 
-`$81B0-$83FF` in bank2 holds tiles 54-127 of an older [`room_charset_c` `$9800`](../src/room_charset_c.asm#L6), `$1800` lower. Tiles 63-94 differ only in the right-most pixel of each row. Tiles 95-127 differ in more pixels (**Observed**). So the authors still changed the room charsets late in the work (**Conclusion**).
+`$81B0-$83FF` in bank2 holds tiles 54-127 of an older [`room_charset_c` `$9800`](../src/graphics/room_charset_c.asm#L6), `$1800` lower. Tiles 63-94 differ only in the right-most pixel of each row. Tiles 95-127 differ in more pixels (**Observed**). So the authors still changed the room charsets late in the work (**Conclusion**).
 
-`plantb_sprite_bit_masks` in bank1 at `$59B3` holds `01 02 04 08 10`. `pleortb_sprite_flip_masks` at `$59B8` holds the same bits EOR `$1F` (**Observed**). The symbol table names them PLANTB and PLEORTB and marks both as referenced, so code of that build used them. No code of the final build reads them. The final build uses [`sprite_set_bit` `$2773`](../src/actor_sprites.asm#L325) and `sprite_clear_bit`, with full 8-bit masks (**Code**). So the authors wrote the sprite mask code again, and the old 5-bit tables stayed in the source (**Conclusion**).
+`plantb_sprite_bit_masks` in bank1 at `$59B3` holds `01 02 04 08 10`. `pleortb_sprite_flip_masks` at `$59B8` holds the same bits EOR `$1F` (**Observed**). The symbol table names them PLANTB and PLEORTB and marks both as referenced, so code of that build used them. No code of the final build reads them. The final build uses [`sprite_set_bit` `$2773`](../src/actor/actor_sprites.asm#L325) and `sprite_clear_bit`, with full 8-bit masks (**Code**). So the authors wrote the sprite mask code again, and the old 5-bit tables stayed in the source (**Conclusion**).
 
 ### The earlier demo recording
 
-`old_demo_input_stream` in bank4 at `$F200` is an older recording of the attract demo. It has one byte of joystick and fire for each pass. Its first 120 bytes are equal to the 11 bytes before [`demo_input_stream` `$F300`](../src/demo_input.asm#L12) and the first 109 bytes after it. After these bytes, the two recordings are different (**Observed**). The game starts to read at `$F300`. So it never reads the 11 bytes before `$F300`, `demo_input_prefix` in bank4 at `$F2F5` (**Code**).
+`old_demo_input_stream` in bank4 at `$F200` is an older recording of the attract demo. It has one byte of joystick and fire for each pass. Its first 120 bytes are equal to the 11 bytes before [`demo_input_stream` `$F300`](../src/input/demo_input.asm#L12) and the first 109 bytes after it. After these bytes, the two recordings are different (**Observed**). The game starts to read at `$F300`. So it never reads the 11 bytes before `$F300`, `demo_input_prefix` in bank4 at `$F2F5` (**Code**).
 
 So the authors recorded or changed the demo again late in the work, and they kept its first passes. They put the final recording at an address where the bytes that the game uses start at `$F300` (**Conclusion**). The final recording is also too short. The demo reads up to `$F538`. So in its last 37 passes, it reads the power-on noise after the recording as input (**Observed**: the demo run of [game_flow.md](game_flow.md)).
 
 ### The MicroPearl music file and the title tune edit
 
-The header of the music file says that voice 0 of the title tune started at `$E86A`. `old_title_voice0_start` in bank4 at `$E872` holds 78 bytes, equal to bytes 8-85 of [`music_title_voice0` `$E8D0`](../src/music_songs.asm#L16). The unused game bytes `$E86E-$E86F` are bytes 4-5 of the same copy (**Observed**). From `$E86A` to the end of voice 0, the file has 275 bytes. The voice 0 of the game has 173 bytes (**Code**).
+The header of the music file says that voice 0 of the title tune started at `$E86A`. `old_title_voice0_start` in bank4 at `$E872` holds 78 bytes, equal to bytes 8-85 of [`music_title_voice0` `$E8D0`](../src/music/music_songs_e8d0.asm#L7). The unused game bytes `$E86E-$E86F` are bytes 4-5 of the same copy (**Observed**). From `$E86A` to the end of voice 0, the file has 275 bytes. The voice 0 of the game has 173 bytes (**Code**).
 
 In the editor, voice 0 had a first part of 102 bytes. This part was about 5.6 bars that repeated the opening bass figure. Played from `$E86A`, the bass would be that far behind voices 1 and 2. The authors corrected this with a new pointer, not with a new file. The song table points voice 0 to `$E8D0`. The build put the song table and the playlist variables over the unused first part (**Conclusion**).
 
@@ -175,9 +175,9 @@ Effect player 1 and the effect data are over most of this copy, and no code sele
 
 Bank4 holds four parts of the effect data of an older build (**Observed**: byte compares, and a decode with the effect stream format):
 
-- `old_effect_stream` at `$EE83` is a rattle of 19 frames. It changes the waveform in each frame and jumps between pitches, like a shorter `sfx_wizard_defeated_stream`. No entry of [`sfx_stream_table` `$EBE5`](../src/sfx_data.asm#L6) points to it.
-- `old_lantern_stream_copy` at `$EED6` is a copy of [`sfx_lantern_stream` `$EE19`](../src/sfx_data.asm#L146), directly after the rattle. In the older build, the lantern sound was at this address.
-- `old_passage_stream_tail` at `$F155` is the end of [`sfx_passage_opens_stream` `$ED60`](../src/sfx_data.asm#L107). It has the note `$4A` (C#7) where the final stream has `$48` (B6).
+- `old_effect_stream` at `$EE83` is a rattle of 19 frames. It changes the waveform in each frame and jumps between pitches, like a shorter `sfx_wizard_defeated_stream`. No entry of [`sfx_stream_table` `$EBE5`](../src/sfx/sfx_data.asm#L6) points to it.
+- `old_lantern_stream_copy` at `$EED6` is a copy of [`sfx_lantern_stream` `$EE19`](../src/sfx/sfx_data.asm#L146), directly after the rattle. In the older build, the lantern sound was at this address.
+- `old_passage_stream_tail` at `$F155` is the end of [`sfx_passage_opens_stream` `$ED60`](../src/sfx/sfx_data.asm#L107). It has the note `$4A` (C#7) where the final stream has `$48` (B6).
 - `old_kick_stream_bytes` at `$F055` is a copy of 11 bytes of the kick sound.
 
 So the authors tuned and removed effects late in the work. In the final build, the passage sound ends two semitones lower, and the rattle is not there (**Conclusion**).
@@ -239,19 +239,19 @@ A frame label has the form `<prefix><action><side><phase><part>` (**Observed** f
 
 STOP is standing, and KICK is the flying kick. The DOWN frames show Bruce as he falls and as he lies on the floor. The DUCK frames show him flat on the floor.
 
-In the old build, Bruce's frames came directly after the tables: PLSIZE `$4E36` + 210 = `$4F08` = ADOWNL11. In the final build, the Yamo frames and the first Ninja frames, `$5D91-$6369`, are between the tables and [`bruce_frame_56` `$636A`](../src/bruce_frames.asm#L8). Their length, `$5D9`, is exactly the difference of the two offsets, `$1462` - `$E89` (**Code**). The YKICK and AYDOWN sets came after Bruce's frames. The final Yamo frames start with his flying kick and then his frames on the floor. These are the same two sets in the same order (**Code**).
+In the old build, Bruce's frames came directly after the tables: PLSIZE `$4E36` + 210 = `$4F08` = ADOWNL11. In the final build, the Yamo frames and the first Ninja frames, `$5D91-$6369`, are between the tables and [`bruce_frame_56` `$636A`](../src/graphics/bruce_frames.asm#L8). Their length, `$5D9`, is exactly the difference of the two offsets, `$1462` - `$E89` (**Code**). The YKICK and AYDOWN sets came after Bruce's frames. The final Yamo frames start with his flying kick and then his frames on the floor. These are the same two sets in the same order (**Code**).
 
 So Y is very probably Yamo. The authors first drew his frames after Bruce's frames. Later they drew them again and moved them in front of Bruce's frames. Bruce's punch and climbing frames then took the free space (**Conclusion**). The meaning of A and B is not proven (see Still open).
 
 ### A typo that stayed: ADWONL22
 
-The entry at `$8C32` is ADWONL22, a typo for ADOWNL22. It is the only entry with bit 7 clear, so the build never referenced it (**Observed**). Its value plus `$1462` is `$63C1`. At this address, `adwonl22_frame` in bank1 holds 42 bytes that are equal to [`bruce_frame_59` `$67D3`](../src/bruce_frames_b.asm#L332). The frame tables point frame 59 to `$67D3`, and nothing points to `$63C1` (**Code**).
+The entry at `$8C32` is ADWONL22, a typo for ADOWNL22. It is the only entry with bit 7 clear, so the build never referenced it (**Observed**). Its value plus `$1462` is `$63C1`. At this address, `adwonl22_frame` in bank1 holds 42 bytes that are equal to [`bruce_frame_59` `$67D3`](../src/graphics/bruce_frames_b.asm#L332). The frame tables point frame 59 to `$67D3`, and nothing points to `$63C1` (**Code**).
 
 The author typed this frame with a wrong label. A reference to ADOWNL22 did not find it. So the author added a copy with the correct name after the Bruce frames. The frame with the wrong label stayed in the source (**Conclusion**).
 
 ### Names of the knowledge from the table
 
-The knowledge keeps the source labels as comments, not as names. Each of the 46 Bruce frames with a label has the comment "Original source label …" in [src/bruce_frames.asm](../src/bruce_frames.asm) and [src/bruce_frames_b.asm](../src/bruce_frames_b.asm). The names of the knowledge tell the content. An example is `actor_frame_base` for PLOFS, and `frame_is_wide` for PLSIZE. Some leftover names contain the source label (**Code**):
+The knowledge keeps the source labels as comments, not as names. Each of the 46 Bruce frames with a label has the comment "Original source label …" in [src/graphics/bruce_frames.asm](../src/graphics/bruce_frames.asm) and [src/graphics/bruce_frames_b.asm](../src/graphics/bruce_frames_b.asm). The names of the knowledge tell the content. An example is `actor_frame_base` for PLOFS, and `frame_is_wide` for PLSIZE. Some leftover names contain the source label (**Code**):
 
 - `plantb_sprite_bit_masks`, `pleortb_sprite_flip_masks` and `adwonl22_frame` in bank1.
 - `sym_<label>` for each entry of the symbol table in bank2.
@@ -260,10 +260,10 @@ The knowledge keeps the source labels as comments, not as names. Each of the 46 
 
 The game and its image hold texts, code and data that nothing uses (**Code**: no pointer and no code reads them):
 
-- **Plain-text title and game over texts.** `unused_text_bruce_lee`, `unused_text_by` and `unused_text_ron_j_fortier` are in bank1 at `$4563`. `unused_text_game_over` and `unused_text_player` are at `$4598`. They have the message format of [`print_message` `$17E2`](../src/actor_driver_text.asm#L59), but no entry of `message_ptrs` points to them. The final title and game over screens show these words with logo characters and big letters. So an earlier version printed them as plain text. The graphics replaced the pointers, but the bytes stayed (**Conclusion**).
-- **PLAYER 1 and PLAYER 2.** [`msg_unused_player_1` `$46F5`](../src/messages_rooms.asm#L257) and `msg_unused_player_2` are messages with pointers, but no code prints them.
-- **A reversed vector routine.** `reversed_vector_install_code` in bank1 at `$10F8` holds 11 bytes. Read backwards to the RTS of [`empty_init_hook` `$10F7`](../src/game_setup.asm#L284), they are a routine that copies 6 bytes from `$1117` to the 6502 vectors at `$FFFA`. In the forward order, the RTS comes first, so the call from `cold_start` only returns. The vectors come with the image. An earlier build set the vectors with this routine. What reversed the bytes is not known (**Conclusion**).
-- **A jump that nothing uses.** [`unused_jump_reset_vector` `$1117`](../src/interrupt_entry.asm#L30) is code at the address where the reversed routine reads its vectors.
+- **Plain-text title and game over texts.** `unused_text_bruce_lee`, `unused_text_by` and `unused_text_ron_j_fortier` are in bank1 at `$4563`. `unused_text_game_over` and `unused_text_player` are at `$4598`. They have the message format of [`print_message` `$17E2`](../src/actor/actor_driver_text.asm#L59), but no entry of `message_ptrs` points to them. The final title and game over screens show these words with logo characters and big letters. So an earlier version printed them as plain text. The graphics replaced the pointers, but the bytes stayed (**Conclusion**).
+- **PLAYER 1 and PLAYER 2.** [`msg_unused_player_1` `$46F5`](../src/text/messages_rooms.asm#L257) and `msg_unused_player_2` are messages with pointers, but no code prints them.
+- **A reversed vector routine.** `reversed_vector_install_code` in bank1 at `$10F8` holds 11 bytes. Read backwards to the RTS of [`empty_init_hook` `$10F7`](../src/game/game_setup.asm#L284), they are a routine that copies 6 bytes from `$1117` to the 6502 vectors at `$FFFA`. In the forward order, the RTS comes first, so the call from `cold_start` only returns. The vectors come with the image. An earlier build set the vectors with this routine. What reversed the bytes is not known (**Conclusion**).
+- **A jump that nothing uses.** [`unused_jump_reset_vector` `$1117`](../src/leftovers/leftover_1117.asm#L7) is code at the address where the reversed routine reads its vectors.
 - **Unused bytes in the variables.** `zero_bytes_after_fireball_masks` in bank1 at `$4326` holds eight zero bytes inside the variable block of the game. The single bytes at `$4391` and `$479F` are also unused.
 - **Unused music and text.** The music credit, song 1, the stub stream and the DATASOFT PRESENTS message are not used (see the sections above).
 

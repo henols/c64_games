@@ -7,3 +7,9 @@
 
 ; Copy protection: off by default
 PROTECTION = 0 ; on in MRZ, SCC. $2cae-$2cb0. Version II checks CIA2 control A ($dd0e) on every scoring hit at protect_cia2_check. The original loader left 0 there; a C64 after a KERNAL reset has $08, and then the game crashes at the first point. Off: the check always passes.
+
+; Start screen: on by default
+START_SCREEN = 1 ; the loader shows the start screen and waits for a key or a fire button. 0 starts the program at once. Only the clean build has it: a release and LEFTOVERS = 1 have none
+
+; Leftovers: off by default
+LEFTOVERS = 0 ; 1499 bytes in 21 files in leftovers/ that nothing uses. 1 builds them, so main.asm gives the bytes of the program. Each release has them. The loader never loads them

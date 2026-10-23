@@ -3,14 +3,18 @@
 ; Build a release with -DRELEASE_<label>=1 (the build option --release <label>):
 ; then each switch has the value of that release, and the build does not read config.asm.
 
-; SCC (the program of the knowledge): original/releases/scc/image.json. The SCC crack: version II as nine files A-I with 4-byte start/end headers, loaded by a KERNAL loader at $0200. Captured at the game entry $115A.
+; SCC (the program of the knowledge): The SCC crack: version II as nine files A-I with 4-byte start/end headers, loaded by a KERNAL loader at $0200. Captured at the game entry $115A.
 !ifdef RELEASE_SCC {
         PROTECTION = 1
+        LEFTOVERS = 1
+        START_SCREEN = 0
 }
 
-; MRZ: original/releases/mrz/image.json. The Mr. Z crack: version II packed into one file FIST.OBJ, started by the intro EXPLODING F/MR.Z. Captured at the game entry $115A. The game bytes are identical to SCC.
+; MRZ: The Mr. Z crack: version II packed into one file FIST.OBJ, started by the intro EXPLODING F/MR.Z. Captured at the game entry $115A. The game bytes are identical to SCC.
 !ifdef RELEASE_MRZ {
         PROTECTION = 1
+        LEFTOVERS = 1
+        START_SCREEN = 0
 }
 
 !ifndef RELEASE_SCC { !ifndef RELEASE_MRZ { !source "config.asm" } }

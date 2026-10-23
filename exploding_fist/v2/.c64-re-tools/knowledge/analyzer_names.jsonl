@@ -82,7 +82,7 @@
 {"id":"20261020T232549.603-z3hlnq/79","space":"c64","address":"$0a5d","name":"la5d","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/80","space":"c64","address":"$0a77","name":"la77","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/81","space":"c64","address":"$0a8e","name":"la8e","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
-{"id":"20261020T233351.990-dcvqwl/2","space":"c64","address":"$0a8e","name":"FUN_0a8e","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
+{"id":"20261020T233351.990-dcvqwl/2","space":"c64","address":"$0a8e","name":"FUN_0a8e","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":"20261022T204811.306-5n4yg7"}
 {"id":"20261020T232549.603-z3hlnq/82","space":"c64","address":"$0a93","name":"la93","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/83","space":"c64","address":"$0a96","name":"la96","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/84","space":"c64","address":"$0a99","name":"la99","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
@@ -1115,7 +1115,9 @@
 {"id":"20261020T232549.603-z3hlnq/798","space":"c64","address":"$283b","name":"l283b","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/799","space":"c64","address":"$283f","name":"l283f","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/800","space":"c64","address":"$2843","name":"l2843","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
-{"id":"20261020T233351.990-dcvqwl/106","space":"c64","address":"$2843","name":"thunk_FUN_288c","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
+{"id":"20261020T233351.990-dcvqwl/106","space":"c64","address":"$2843","name":"thunk_FUN_288c","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":"20261022T104121.634-exo0et"}
+{"id":"20261022T104121.634-exo0et/1","space":"c64","address":"$2843","name":"kbd_read_move_2843","kind":"routine","origin":"ghidra","added":"20261022T104121.634-exo0et","closed":"20261022T204811.306-5n4yg7"}
+{"id":"20261022T204811.306-5n4yg7/1","space":"c64","address":"$2843","name":"FUN_2843","kind":"routine","origin":"ghidra","added":"20261022T204811.306-5n4yg7","closed":null}
 {"id":"20261020T232549.603-z3hlnq/801","space":"c64","address":"$2846","name":"l2846","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T233351.990-dcvqwl/107","space":"c64","address":"$2846","name":"thunk_FUN_284c","kind":"label","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
 {"id":"20261020T232549.603-z3hlnq/802","space":"c64","address":"$2849","name":"l2849","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
@@ -1300,7 +1302,7 @@
 {"id":"20261020T233341.758-0ois7s/220","space":"c64","address":"$2c9e","name":"l2c9e","kind":"label","origin":"dxa","added":"20261020T233341.758-0ois7s","closed":null}
 {"id":"20261020T233341.758-0ois7s/221","space":"c64","address":"$2ca7","name":"l2ca7","kind":"label","origin":"dxa","added":"20261020T233341.758-0ois7s","closed":null}
 {"id":"20261020T232549.603-z3hlnq/955","space":"c64","address":"$2ca8","name":"l2ca8","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
-{"id":"20261020T233351.990-dcvqwl/127","space":"c64","address":"$2ca8","name":"FUN_2ca8","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
+{"id":"20261020T233351.990-dcvqwl/127","space":"c64","address":"$2ca8","name":"FUN_2ca8","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":"20261022T204811.306-5n4yg7"}
 {"id":"20261020T232549.603-z3hlnq/956","space":"c64","address":"$2cb3","name":"l2cb3","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/957","space":"c64","address":"$2cbb","name":"l2cbb","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/958","space":"c64","address":"$2cc2","name":"l2cc2","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
@@ -1337,7 +1339,8 @@
 {"id":"20261020T232549.603-z3hlnq/987","space":"c64","address":"$2d67","name":"l2d67","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/988","space":"c64","address":"$2d6b","name":"l2d6b","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/989","space":"c64","address":"$2d9c","name":"l2d9c","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
-{"id":"20261020T233351.990-dcvqwl/130","space":"c64","address":"$2d9c","name":"FUN_2d9c","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
+{"id":"20261020T233351.990-dcvqwl/130","space":"c64","address":"$2d9c","name":"FUN_2d9c","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":"20261022T204811.306-5n4yg7"}
+{"id":"20261022T204811.306-5n4yg7/2","space":"c64","address":"$2d9d","name":"FUN_2d9d","kind":"routine","origin":"ghidra","added":"20261022T204811.306-5n4yg7","closed":null}
 {"id":"20261020T232549.603-z3hlnq/990","space":"c64","address":"$2d9f","name":"l2d9f","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/991","space":"c64","address":"$2da1","name":"l2da1","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/992","space":"c64","address":"$2da5","name":"l2da5","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
@@ -1663,7 +1666,8 @@
 {"id":"20261020T233351.990-dcvqwl/162","space":"c64","address":"$3e3d","name":"FUN_3e3d","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1281","space":"c64","address":"$3e5f","name":"l3e5f","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1282","space":"c64","address":"$603f","name":"l603f","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
-{"id":"20261020T233351.990-dcvqwl/163","space":"c64","address":"$603f","name":"FUN_603f","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
+{"id":"20261020T233351.990-dcvqwl/163","space":"c64","address":"$603f","name":"FUN_603f","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":"20261022T204811.306-5n4yg7"}
+{"id":"20261022T204811.306-5n4yg7/3","space":"c64","address":"$6040","name":"FUN_6040","kind":"routine","origin":"ghidra","added":"20261022T204811.306-5n4yg7","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1283","space":"c64","address":"$69a4","name":"l69a4","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1284","space":"c64","address":"$6ab5","name":"l6ab5","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1285","space":"c64","address":"$7722","name":"l7722","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
@@ -1671,7 +1675,7 @@
 {"id":"20261020T232549.603-z3hlnq/1287","space":"c64","address":"$7c1c","name":"l7c1c","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1288","space":"c64","address":"$7d58","name":"l7d58","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1289","space":"c64","address":"$7e00","name":"l7e00","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
-{"id":"20261020T233351.990-dcvqwl/164","space":"c64","address":"$9422","name":"FUN_9422","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
+{"id":"20261020T233351.990-dcvqwl/164","space":"c64","address":"$9422","name":"FUN_9422","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":"20261022T104121.634-exo0et"}
 {"id":"20261020T232549.603-z3hlnq/1290","space":"c64","address":"$c000","name":"lc000","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1291","space":"c64","address":"$c700","name":"lc700","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1292","space":"c64","address":"$cc00","name":"lcc00","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
@@ -1719,7 +1723,7 @@
 {"id":"20261020T232549.603-z3hlnq/1334","space":"c64","address":"$f542","name":"lf542","kind":"data","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1335","space":"c64","address":"$fed4","name":"lfed4","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1336","space":"c64","address":"$fefd","name":"lfefd","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
-{"id":"20261020T233351.990-dcvqwl/165","space":"c64","address":"$ff04","name":"FUN_ff04","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":null}
+{"id":"20261020T233351.990-dcvqwl/165","space":"c64","address":"$ff04","name":"FUN_ff04","kind":"routine","origin":"ghidra","added":"20261020T233351.990-dcvqwl","closed":"20261022T104121.634-exo0et"}
 {"id":"20261020T232549.603-z3hlnq/1337","space":"c64","address":"$ff05","name":"lff05","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1338","space":"c64","address":"$ff07","name":"lff07","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}
 {"id":"20261020T232549.603-z3hlnq/1339","space":"c64","address":"$ff09","name":"lff09","kind":"label","origin":"dxa","added":"20261020T232549.603-z3hlnq","closed":null}

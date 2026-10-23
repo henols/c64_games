@@ -5,8 +5,8 @@
   "symbols": "knowledge"
  },
  "rebuild": {
-  "program": "src/loader.prg",
-  "symbols": "knowledge"
+  "program": "build/clean_loader.prg",
+  "symbols": "build/symbols/clean_loader.json"
  },
  "steps": [
   {
@@ -14,6 +14,22 @@
   },
   {
    "autostart": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "loader_start_screen_wait"
+    },
+    "timeoutFrames": 1500
+   },
+   "side": "rebuild"
+  },
+  {
+   "registers": {
+    "pc": "loader_start_screen_continue"
+   },
+   "side": "rebuild"
   },
   {
    "frames": 100,
@@ -123,17 +139,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room00_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -150,17 +187,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room00_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -212,17 +270,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room01_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -239,17 +318,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room01_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -301,17 +401,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room02_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -328,17 +449,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room02_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -390,17 +532,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room03_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -417,17 +580,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room03_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -479,17 +663,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room04_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -506,17 +711,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room04_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -568,17 +794,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room05_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -595,17 +842,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room05_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -657,17 +925,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room06_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -684,17 +973,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room06_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -746,17 +1056,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room07_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -773,17 +1104,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room07_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -835,17 +1187,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room08_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -862,17 +1235,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room08_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -924,17 +1318,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room09_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -951,17 +1366,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room09_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1013,17 +1449,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room10_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1040,17 +1497,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room10_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1102,17 +1580,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room11_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1129,17 +1628,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room11_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1191,17 +1711,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room12_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1218,17 +1759,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room12_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1280,17 +1842,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room13_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1307,17 +1890,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room13_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1369,17 +1973,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room14_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1396,17 +2021,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room14_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1458,17 +2104,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room15_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1485,17 +2152,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room15_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1547,17 +2235,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room16_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1574,17 +2283,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room16_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1636,17 +2366,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room17_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1663,17 +2414,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room17_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1725,17 +2497,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room18_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1752,17 +2545,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room18_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1814,17 +2628,38 @@
    "frames": 20
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room19_drawn",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"
@@ -1841,17 +2676,38 @@
    "frames": 200
   },
   {
+   "runUntil": {
+    "target": {
+     "kind": "raster",
+     "line": 0
+    },
+    "timeoutFrames": 2
+   }
+  },
+  {
    "observe": "room19_later",
-   "screen": {},
+   "screen": {
+    "maxMismatchRatio": 0.0002
+   },
    "vicii": true,
    "memory": [
     {
      "address": "$8000",
-     "size": 16384
-    },
-    {
-     "address": "$d800",
-     "size": 1000
+     "size": 16384,
+     "exclude": [
+      {
+       "address": "$9b00",
+       "reason": "FIX_RAM_TEST_BYTE patch byte: the default build has the corrected byte"
+      },
+      {
+       "address": "$b300",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      },
+      {
+       "address": "$b301",
+       "reason": "FIX_RAM_TEST_BYTE: build_double_height_font copies $9B00 here"
+      }
+     ]
     },
     {
      "address": "room"

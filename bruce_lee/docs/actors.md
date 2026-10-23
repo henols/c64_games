@@ -12,7 +12,7 @@ Room 0 with Bruce at his start point A (`spawn_a_x` / `spawn_a_y` = `$1A`, `$C4`
 
 - Addresses are C64 addresses. Names are the names of the knowledge.
 - An *actor* is one of three slots, index X: 0 = Bruce, 1 = Yamo, 2 = Ninja. A per-actor array has 3 bytes, `array,X`.
-- A *pass* is one run of [`main_loop` `$1BC2`](../src/game_main_loop.asm#L23). A pass takes 3 frames (`frame_countdown` = 3). Thus the main loop does 16.7 passes each second on PAL.
+- A *pass* is one run of [`main_loop` `$1BC2`](../src/game/game_main_loop.asm#L23). A pass takes 3 frames (`frame_countdown` = 3). Thus the main loop does 16.7 passes each second on PAL.
 - A *step* of an actor is a pass in which its step delay `actor_step_delay` is 0. In a step, `actor_action_step` does an action. T is the timer `actor_timer` of the actor at the start of the step.
 - A *unit* of `actor_x` is 2 screen pixels. This is one multicolour pixel, because the sprites are X-expanded. A unit of `actor_y` is one raster line.
 - Joystick values are in the CIA format, active low: bit 0 up, bit 1 down, bit 2 left, bit 3 right, `$0F` = no direction.
@@ -41,18 +41,18 @@ flowchart TB
   IRQ["Each frame: read the joysticks, place the sprites (frame_update)"] -.-> E
 ```
 
-1. **The enemies appear.** [`tick_spawn_timers` `$0DA4`](../src/actor_spawn.asm#L341) decreases the spawn timers. At zero, Yamo or the Ninja appears (see [Spawning](#spawning)). Rooms with `room_no_enemy_flag` set skip this step.
-2. **The program looks at the background.** [`check_background_contact` `$5212`](../src/background_contact.asm#L17) compares each sprite shape with the background pixels. It sets the flags in `actor_contact`: floor, trigger, ladder, wall. The state machine reads these flags in each step. See [combat.md](combat.md).
-3. **The characters under the actors act.** [`check_background_touch` `$2E39`](../src/background_touch.asm#L10) reads the characters under each actor. These are exits, deadly tiles, lanterns, and the moving character `$62` that carries an actor (state `$17`).
-4. **The fights.** [`check_fight_collisions` `$29C3`](../src/fight_hits.asm#L14) and `apply_fight_hits` find and apply the hits. They do not run in rooms with `room_no_enemies` set. A hit sets a new state directly.
-5. **The actors act.** [`update_actors` `$179E`](../src/actor_driver_text.asm#L10) wakes the idle computer enemies and takes the demo input. Then it runs one step and one pose choice for each active actor, Ninja first.
-6. **The sprites.** [`build_actor_sprites` `$2584`](../src/actor_sprites.asm#L12) copies the frame images of the poses. `check_actor_knockouts` removes knocked-out enemies or ends the fall of Bruce.
+1. **The enemies appear.** [`tick_spawn_timers` `$0DA4`](../src/actor/actor_spawn.asm#L341) decreases the spawn timers. At zero, Yamo or the Ninja appears (see [Spawning](#spawning)). Rooms with `room_no_enemy_flag` set skip this step.
+2. **The program looks at the background.** [`check_background_contact` `$5212`](../src/actor/background_contact.asm#L17) compares each sprite shape with the background pixels. It sets the flags in `actor_contact`: floor, trigger, ladder, wall. The state machine reads these flags in each step. See [combat.md](combat.md).
+3. **The characters under the actors act.** [`check_background_touch` `$2E39`](../src/actor/background_touch.asm#L10) reads the characters under each actor. These are exits, deadly tiles, lanterns, and the moving character `$62` that carries an actor (state `$17`).
+4. **The fights.** [`check_fight_collisions` `$29C3`](../src/actor/fight_hits.asm#L14) and `apply_fight_hits` find and apply the hits. They do not run in rooms with `room_no_enemies` set. A hit sets a new state directly.
+5. **The actors act.** [`update_actors` `$179E`](../src/actor/actor_driver_text.asm#L10) wakes the idle computer enemies and takes the demo input. Then it runs one step and one pose choice for each active actor, Ninja first.
+6. **The sprites.** [`build_actor_sprites` `$2584`](../src/actor/actor_sprites.asm#L12) copies the frame images of the poses. `check_actor_knockouts` removes knocked-out enemies or ends the fall of Bruce.
 
-The raster interrupt [`frame_update` `$15A8`](../src/frame_update.asm#L20) reads the joysticks in each frame into `actor_joy_dir` and `actor_fire`. The main loop uses the last value (**Code**).
+The raster interrupt [`frame_update` `$15A8`](../src/game/frame_update.asm#L20) reads the joysticks in each frame into `actor_joy_dir` and `actor_fire`. The main loop uses the last value (**Code**).
 
 ### One step of an actor
 
-An action such as a jump lasts many steps. Thus each actor keeps its state and a timer from step to step. In each step, [`actor_action_step` `$1C5B`](../src/actor_step.asm#L21) continues the current action or starts a new action from the input. Before that, it records the moves of the last steps. With this record, the program can undo a move into a wall.
+An action such as a jump lasts many steps. Thus each actor keeps its state and a timer from step to step. In each step, [`actor_action_step` `$1C5B`](../src/actor/actor_step.asm#L21) continues the current action or starts a new action from the input. Before that, it records the moves of the last steps. With this record, the program can undo a move into a wall.
 
 ```mermaid
 flowchart TB
@@ -78,7 +78,7 @@ flowchart TB
 6. State `$19` (dying) goes directly to the timer check, without the wall check.
 7. State `$18` with a timer continues the wall bump in `act_wall_bump`.
 8. Bit 3 of `actor_contact` tells that the actor is in a wall. Then the last step moved it there, and the wall undo starts (see [Movement and the wall undo](#movement-and-the-wall-undo)).
-9. A timer that is not zero continues the timed action in [`actor_continue_action` `$2008`](../src/actor_timed_actions.asm#L14), with Y = timer. A zero timer starts a new action in [`actor_read_input` `$1D7E`](../src/actor_step.asm#L184).
+9. A timer that is not zero continues the timed action in [`actor_continue_action` `$2008`](../src/actor/actor_timed_actions.asm#L14), with Y = timer. A zero timer starts a new action in [`actor_read_input` `$1D7E`](../src/actor/actor_step.asm#L184).
 
 Each path ends in a state setter. The setter stores the state, its step delay and the timer. The move primitives also set a state (`$01`-`$04`) and return. Thus a handler that calls several primitives writes its own state at its end (**Code**).
 
@@ -92,7 +92,7 @@ Bruce appears at start point A of each room. An enemy appears at point A or poin
 | Yamo | `update_yamo_spawn` calls `spawn_yamo` when `yamo_spawn_timer` = 0 and Yamo is not active. | `$10` with timer 10 |
 | Ninja | `update_ninja_spawn` calls `spawn_ninja` when `ninja_spawn_timer` = 0 and the Ninja is not active. | `$00` with timer `$10` |
 
-All three actors use [`spawn_actor` `$0B8E`](../src/actor_spawn.asm#L20), with X = actor and A = type in bits 7-6 (`$00` Bruce, `$40` Ninja, `$80` Yamo) (**Code**):
+All three actors use [`spawn_actor` `$0B8E`](../src/actor/actor_spawn.asm#L20), with X = actor and A = type in bits 7-6 (`$00` Bruce, `$40` Ninja, `$80` Yamo) (**Code**):
 
 1. `actor_flags` = A OR 1. The type 0-2 goes to `temp_y`.
 2. The collision codes of the type go to `actor_collision_code_a` and `actor_collision_code_b`. `set_sprite_slot_owner` writes X into `sprite_owner` for each sprite of the actor. The fight code uses these values to find which actors touch.
@@ -106,15 +106,15 @@ All three actors use [`spawn_actor` `$0B8E`](../src/actor_spawn.asm#L20), with X
 4. The position:
    - In the demo (`game_mode` = 0) and for Bruce: start point A of the room, `spawn_a_x` / `spawn_a_y`.
    - An enemy with `enemy_follow_x` not zero takes the saved position and energy. Then `spawn_actor_follow_bruce` clears the follow entry.
-   - Yamo: the routine reads [`yamo_spawn_side` `$136F`](../src/room_enemy_tables.asm#L107) of the room. 0 = random side (`random_byte` bit 0). Else, when `random_byte` >= `$C0` (1 time in 4), the side is random. Else bit 7 clear = point A, and bit 7 set = point B (`spawn_b_x` / `spawn_b_y`).
+   - Yamo: the routine reads [`yamo_spawn_side` `$136F`](../src/room/room_enemy_tables.asm#L107) of the room. 0 = random side (`random_byte` bit 0). Else, when `random_byte` >= `$C0` (1 time in 4), the side is random. Else bit 7 clear = point A, and bit 7 set = point B (`spawn_b_x` / `spawn_b_y`).
    - Ninja: see the finding below.
 5. `spawn_actor_set_sprites` sets the sprite pointers from `sprite_buffer_pointers`. It adds 5 when `sprite_buffer_select` is not zero. It also sets the position of the main and the overlay sprite (X × 2, Y + `$1D`) and the sprite enable bits.
 
-**The Ninja's start side comes from Yamo's table.** The code only tests [`ninja_spawn_side` `$1333`](../src/room_enemy_tables.asm#L87) for zero, which means a random side. For a value that is not zero, [`spawn_actor_ninja_side` `$0C2A`](../src/actor_spawn.asm#L103) uses `yamo_spawn_side` of the room, with the same 3-in-4 rule (**Code**).
+**The Ninja's start side comes from Yamo's table.** The code only tests [`ninja_spawn_side` `$1333`](../src/room/room_enemy_tables.asm#L87) for zero, which means a random side. For a value that is not zero, [`spawn_actor_ninja_side` `$0C2A`](../src/actor/actor_spawn.asm#L103) uses `yamo_spawn_side` of the room, with the same 3-in-4 rule (**Code**).
 
-[`spawn_yamo` `$0CD5`](../src/actor_spawn.asm#L203) plays sound `$82` (`play_enemy_spawn_sound`) and stores the protection value `protection_result`. It calls `spawn_actor` with X = 1, A = `$80`. Then it sets state `$10`, pose `$2A`/`$2B`, frame `$6C`/`$6D` and timer `$0A`. It limits the energy to `$14` (**Code**).
+[`spawn_yamo` `$0CD5`](../src/actor/actor_spawn.asm#L203) plays sound `$82` (`play_enemy_spawn_sound`) and stores the protection value `protection_result`. It calls `spawn_actor` with X = 1, A = `$80`. Then it sets state `$10`, pose `$2A`/`$2B`, frame `$6C`/`$6D` and timer `$0A`. It limits the energy to `$14` (**Code**).
 
-[`spawn_ninja` `$0DF8`](../src/actor_spawn.asm#L398) plays sound `$82` and calls `spawn_actor` with A = `$40` (the caller sets X = 2). It sets frame `$82`. It sets the second pose and frame to 0, because the Ninja has no overlay sprite. It limits the energy to 7 and sets `actor_timer` = `$10` with state 0. Then it turns him toward Bruce (`measure_distance_to_bruce`, `face_bruce`) (**Code**).
+[`spawn_ninja` `$0DF8`](../src/actor/actor_spawn.asm#L398) plays sound `$82` and calls `spawn_actor` with A = `$40` (the caller sets X = 2). It sets frame `$82`. It sets the second pose and frame to 0, because the Ninja has no overlay sprite. It limits the energy to 7 and sets `actor_timer` = `$10` with state 0. Then it turns him toward Bruce (`measure_distance_to_bruce`, `face_bruce`) (**Code**).
 
 **The first frame of a new enemy is not its pose.** `spawn_yamo` and `spawn_ninja` store frames `$6C` and `$82`. These values are not `actor_frame_base` + pose (`$70`, `$8E`). `select_actor_pose` replaces them in the same pass. Before that, `check_background_contact` uses them one time (**Code**).
 
@@ -132,9 +132,9 @@ flowchart LR
   RM["Enemy removed"] --> RS["Timer = respawn delay"]
 ```
 
-1. [`draw_room` `$09BC`](../src/draw_room.asm#L28) loads `ninja_spawn_timer` from `ninja_room_delay` and `yamo_spawn_timer` from `yamo_room_delay` (`draw_room_load_spawn_timers`). When `game_loop_count` is not zero, both timers are 3. When player 2 plays Yamo, the timer of Yamo is 8.
+1. [`draw_room` `$09BC`](../src/room/draw_room.asm#L28) loads `ninja_spawn_timer` from `ninja_room_delay` and `yamo_spawn_timer` from `yamo_room_delay` (`draw_room_load_spawn_timers`). When `game_loop_count` is not zero, both timers are 3. When player 2 plays Yamo, the timer of Yamo is 8.
 2. In each pass in a room with enemies, `tick_spawn_timers` decreases both timers to 0.
-3. At 0, [`update_yamo_spawn` `$0D0F`](../src/actor_spawn.asm#L238) and [`update_ninja_spawn` `$0DB1`](../src/actor_spawn.asm#L355) make the enemy appear if it is not active. Then its timer gets the respawn delay of the room (`yamo_respawn_delay`, `ninja_respawn_delay`). Yamo gets `$30` when player 2 plays him. The time level can make the delay shorter (see [The time in the room](#the-time-in-the-room)).
+3. At 0, [`update_yamo_spawn` `$0D0F`](../src/actor/actor_spawn.asm#L238) and [`update_ninja_spawn` `$0DB1`](../src/actor/actor_spawn.asm#L355) make the enemy appear if it is not active. Then its timer gets the respawn delay of the room (`yamo_respawn_delay`, `ninja_respawn_delay`). Yamo gets `$30` when player 2 plays him. The time level can make the delay shorter (see [The time in the room](#the-time-in-the-room)).
 4. While the enemy is active, its timer stays at 0. `remove_actor` (knock-out, deadly tile, exit) calls `reset_spawn_timer`, which loads the respawn delay again. Thus the respawn delay starts at the removal.
 
 **The Ninja waits for a computer Yamo.** This rule applies when the Ninja's timer is 0 and Yamo is active and computer-controlled. Also `game_loop_count` must be 0, and the time level must be 0. Then `update_ninja_spawn` sets the timer to `$10` again when `random_byte` >= `$19`, which is 231 times in 256. Thus the Ninja seldom appears while a computer Yamo is in the room. In the demo `random_byte` returns 1, so the Ninja does not wait (**Code**).
@@ -143,7 +143,7 @@ In run `coll` of this page, the Ninja appeared at frame 63 and Yamo at frame 471
 
 ### The time in the room
 
-When Bruce stays longer in a room, the enemies appear again sooner and rest less after an attack. [`room_time` `$87`](../src/constants.asm#L82) counts the frames of play in the room. It does not count in the demo or during a pause, and `draw_room` clears it. [`get_room_time_level` `$10D0`](../src/game_setup.asm#L253) returns C = 1 from `$19` × 256 frames (128 seconds). It returns V = 1 from `$20` × 256 frames (164 seconds) (**Code**):
+When Bruce stays longer in a room, the enemies appear again sooner and rest less after an attack. [`room_time` `$87`](../src/constants.asm#L82) counts the frames of play in the room. It does not count in the demo or during a pause, and `draw_room` clears it. [`get_room_time_level` `$10D0`](../src/game/game_setup.asm#L253) returns C = 1 from `$19` × 256 frames (128 seconds). It returns V = 1 from `$20` × 256 frames (164 seconds) (**Code**):
 
 | Effect | Level 0 | Level C | Level V | `game_loop_count` nonzero (level 0) | Code |
 |---|---|---|---|---|---|
@@ -159,7 +159,7 @@ When a player-2 Yamo gets no input for 7 × 256 frames, `frame_update` sets the 
 
 ### Input from the joysticks
 
-Bruce and a player-controlled Yamo get their input from a joystick. [`actor_read_input` `$1D7E`](../src/actor_step.asm#L184) compares the direction with exact values. Thus each of the eight directions starts its own action. A value with an impossible combination, for example up and down together, matches no value. This value gives the idle state (**Code**).
+Bruce and a player-controlled Yamo get their input from a joystick. [`actor_read_input` `$1D7E`](../src/actor/actor_step.asm#L184) compares the direction with exact values. Thus each of the eight directions starts its own action. A value with an impossible combination, for example up and down together, matches no value. This value gives the idle state (**Code**).
 
 | `actor_joy_dir` | Direction | Action at timer 0 |
 |---|---|---|
@@ -176,7 +176,7 @@ Bruce and a player-controlled Yamo get their input from a joystick. [`actor_read
 
 `actor_fire` = 0 means that the player presses fire. Each other value means no fire.
 
-[`frame_update` `$15A8`](../src/frame_update.asm#L20) reads the joysticks in each frame of a game (`game_mode` = 1) (**Code**):
+[`frame_update` `$15A8`](../src/game/frame_update.asm#L20) reads the joysticks in each frame of a game (`game_mode` = 1) (**Code**):
 
 1. It saves the CIA 1 data direction registers (`cia1_ddra_save`) and sets them to input.
 2. For Bruce, it reads port 1 (`CIAPRB`) for player 1 and port 2 (`CIAPRA`) for player 2 (`current_player`). The low nibble is the direction.
@@ -185,7 +185,7 @@ Bruce and a player-controlled Yamo get their input from a joystick. [`actor_read
 5. When `option_yamo_player2` is not zero, the other port goes to `actor_joy_dir+1` and `actor_fire+1`. The handedness of that port applies.
 6. It restores the data direction registers.
 
-[`joy_rotate_bits` `$4A85`](../src/room_tables.asm#L8) = `$00`, `$08`, `$04`, `$0C`. The rotation changes the directions of a left-handed player as follows (**Code**):
+[`joy_rotate_bits` `$4A85`](../src/room/room_tables.asm#L8) = `$00`, `$08`, `$04`, `$0C`. The rotation changes the directions of a left-handed player as follows (**Code**):
 
 | Physical direction | Becomes |
 |---|---|
@@ -196,26 +196,26 @@ Bruce and a player-controlled Yamo get their input from a joystick. [`actor_read
 
 For example, a left-handed player pushes down. The port gives `%1101` = `$0D`. `$0D` >> 2 = `%0011`. `$0D` AND 3 = 1, and `joy_rotate_bits+1` = `$08`. `%0011` OR `%1000` = `$0B` = left.
 
-The title keys L and shift-L set left handed for port 1 and port 2. The keys R and shift-R set right handed. `title_menu_loop` writes the result to [`joystick_right_handed` `$1383`](../src/room_enemy_tables.asm#L114) (**Code**).
+The title keys L and shift-L set left handed for port 1 and port 2. The keys R and shift-R set right handed. `title_menu_loop` writes the result to [`joystick_right_handed` `$1383`](../src/room/room_enemy_tables.asm#L114) (**Code**).
 
 ### Yamo played by player 2
 
-The title option F5 sets [`option_yamo_player2` `$42CA`](../src/options_and_patterns.asm#L18). Then a second player plays Yamo against Bruce (**Code**):
+The title option F5 sets [`option_yamo_player2` `$42CA`](../src/game/options_and_patterns.asm#L18). Then a second player plays Yamo against Bruce (**Code**):
 
 - `frame_update` reads the other port into the input of Yamo (see [Input from the joysticks](#input-from-the-joysticks)).
 - `wake_idle_enemies` skips Yamo, so he never enters the AI states `$14`/`$15`. He uses `actor_read_input` like Bruce.
 - He cannot duck. Down on a floor gives the pose of Yamo (`yamo_start_pose`, state `$12`).
 - `act_ride` gives him no automatic direction in state `$17`.
 - The first spawn delay of Yamo is 8 passes, and his respawn delay is `$30` (48) passes.
-- [`init_game_variables` `$0F72`](../src/game_setup.asm#L18) gives 9 falls instead of 4.
+- [`init_game_variables` `$0F72`](../src/game/game_setup.asm#L18) gives 9 falls instead of 4.
 
-**When player 2 stops, the computer plays Yamo again.** When the joystick of Yamo is idle for 7 × 256 frames (`yamo_idle_time`), [`frame_update_yamo_idle` `$173F`](../src/frame_update.asm#L295) sets `option_yamo_player2` = 0. It sets the high byte of `room_time` to `$20`, which is the top time level. It also plays sound `$8A` and takes 5 falls from both players, but not below 0 (**Code**).
+**When player 2 stops, the computer plays Yamo again.** When the joystick of Yamo is idle for 7 × 256 frames (`yamo_idle_time`), [`frame_update_yamo_idle` `$173F`](../src/game/frame_update.asm#L295) sets `option_yamo_player2` = 0. It sets the high byte of `room_time` to `$20`, which is the top time level. It also plays sound `$8A` and takes 5 falls from both players, but not below 0 (**Code**).
 
 ### The attract demo and room 19
 
-In the attract demo, no player holds the joystick. [`update_actors` `$179E`](../src/actor_driver_text.asm#L10) reads one byte per pass from the demo stream while `game_mode` = 0. It gives this byte to Bruce as his input (see [The demo input stream](#the-demo-input-stream)). In the demo, every actor spawns at start point A and `random_byte` returns 1. The room time does not count (**Code**).
+In the attract demo, no player holds the joystick. [`update_actors` `$179E`](../src/actor/actor_driver_text.asm#L10) reads one byte per pass from the demo stream while `game_mode` = 0. It gives this byte to Bruce as his input (see [The demo input stream](#the-demo-input-stream)). In the demo, every actor spawns at start point A and `random_byte` returns 1. The room time does not count (**Code**).
 
-In room 19 (the congratulations room), the game moves Bruce itself. Before each step, [`update_actors_loop` `$17BE`](../src/actor_driver_text.asm#L29) writes a direction for Bruce. The direction is up (`$0E`) while the high byte of `room_time` is below 2 (512 frames). After that, the direction is none (`$0F`) (**Code**).
+In room 19 (the congratulations room), the game moves Bruce itself. Before each step, [`update_actors_loop` `$17BE`](../src/actor/actor_driver_text.asm#L29) writes a direction for Bruce. The direction is up (`$0E`) while the high byte of `room_time` is below 2 (512 frames). After that, the direction is none (`$0F`) (**Code**).
 
 ### The computer AI
 
@@ -223,7 +223,7 @@ A computer enemy has no joystick. It keeps `actor_joy_dir` = `$0F` and `actor_fi
 
 #### Waking
 
-An enemy that stands idle and rested starts to chase Bruce. [`wake_idle_enemies` `$2D7C`](../src/actor_helpers.asm#L40) runs first in each pass. It examines X = 2, 1 and 0, but actor 0 is never of the Yamo or Ninja type (**Code**):
+An enemy that stands idle and rested starts to chase Bruce. [`wake_idle_enemies` `$2D7C`](../src/actor/actor_helpers.asm#L40) runs first in each pass. It examines X = 2, 1 and 0, but actor 0 is never of the Yamo or Ninja type (**Code**):
 
 1. It skips the actor when `actor_energy` < 0.
 2. Yamo counts only when `option_yamo_player2` = 0 and `actor_flags` AND `$81` = `$81`. The Ninja counts when `actor_flags` AND `$41` = `$41`.
@@ -233,12 +233,12 @@ An enemy that stands idle and rested starts to chase Bruce. [`wake_idle_enemies`
 
 #### The chase
 
-In state `$14`, the enemy walks toward Bruce on his level. It attacks when Bruce is in range. [`ai_chase` `$22FA`](../src/enemy_ai_states.asm#L13) measures the distance with `measure_distance_to_bruce`. `bruce_dist_y` and `bruce_dist_x` hold the absolute value, at most `$30`. Bit 7 holds the sign: Bruce is lower, or Bruce is to the right (**Code**).
+In state `$14`, the enemy walks toward Bruce on his level. It attacks when Bruce is in range. [`ai_chase` `$22FA`](../src/actor/enemy_ai_states.asm#L13) measures the distance with `measure_distance_to_bruce`. `bruce_dist_y` and `bruce_dist_x` hold the absolute value, at most `$30`. Bit 7 holds the sign: Bruce is lower, or Bruce is to the right (**Code**).
 
 1. No floor (`actor_contact` bit 0 clear): on a ladder, the enemy continues to walk (`ai_walk_forward`). Else it falls (`ai_chase_fall`, then `actor_start_fall`).
 2. Bruce on another level, \|dy\| >= `$10` (`ai_other_level`): when Bruce is lower, the enemy continues to walk in its facing direction. When Bruce is higher, it calls `face_bruce` and `actor_recover`. The state becomes `$00`. After the timer, `wake_idle_enemies` starts the chase again.
 3. Same level, not facing Bruce: at \|dx\| >= `$21`, the enemy turns and walks (`ai_chase_turn_around`). Else it backs off (`ai_back_off`).
-4. Same level, facing Bruce: [`ai_facing_bruce` `$237B`](../src/enemy_ai_states.asm#L96) selects the attack from the table below.
+4. Same level, facing Bruce: [`ai_facing_bruce` `$237B`](../src/actor/enemy_ai_states.asm#L96) selects the attack from the table below.
 
 The enemy walks 2 units per step with `actor_walk_right_two` / `actor_walk_left_two`. The timer does not change.
 
@@ -258,11 +258,11 @@ In run `coll`, the Ninja entered state `$14` 16 passes after he appeared (his sp
 
 #### Backing off
 
-An enemy that is too close to Bruce, or has Bruce behind it, walks to a point 15 units from him. Then it turns. [`ai_back_off` `$2327`](../src/enemy_ai_states.asm#L40) starts this action (**Code**):
+An enemy that is too close to Bruce, or has Bruce behind it, walks to a point 15 units from him. Then it turns. [`ai_back_off` `$2327`](../src/actor/enemy_ai_states.asm#L40) starts this action (**Code**):
 
 1. The target point is the X of Bruce - 15 when Bruce is to the right (bit 7 of `bruce_dist_x`). It is the X of Bruce + 15 when he is to the left.
 2. `actor_timer` = \|target - X\|, at least 5. The state is `$15`, the step delay is 0, and `actor_climb_block` = 0.
-3. In each step of state `$15`, [`act_check_ai_back_off` `$23CD`](../src/enemy_ai_states.asm#L146) examines the enemy. Without a floor, it falls. At timer 1, it turns, with state `$14` and timer `$80`. Else it walks 2 units in its facing direction.
+3. In each step of state `$15`, [`act_check_ai_back_off` `$23CD`](../src/actor/enemy_ai_states.asm#L146) examines the enemy. Without a floor, it falls. At timer 1, it turns, with state `$14` and timer `$80`. Else it walks 2 units in its facing direction.
 
 The enemy backs off in its current facing. An enemy that does not face Bruce walks away from him. An enemy that faces Bruce at less than 5 units walks through him (**Code**). The enemies pass each other and Bruce, and then turn (**Conclusion**).
 
@@ -279,7 +279,7 @@ All movement uses four move primitives. Each primitive moves one unit and sets t
 
 A walk moves 2 units per pass, or 3 when the same-state count is 0. This is about 33 units = 67 pixels per second. A climb moves 3-4 units per 4 passes. A fall moves 2 lines per pass (**Code**, **Observed** in run `kick`).
 
-The program does not test for a wall before a move. It moves the actor and then reads the contact flags in the next step. When bit 3 of `actor_contact` is 1 at the start of a step, the last step moved the actor into a wall. Then [`actor_in_wall` `$1CD0`](../src/actor_step.asm#L89) undoes the moves of record 1 (**Code**):
+The program does not test for a wall before a move. It moves the actor and then reads the contact flags in the next step. When bit 3 of `actor_contact` is 1 at the start of a step, the last step moved the actor into a wall. Then [`actor_in_wall` `$1CD0`](../src/actor/actor_step.asm#L89) undoes the moves of record 1 (**Code**):
 
 ```
 undo_only_down = 1
@@ -299,15 +299,15 @@ else: move 1 unit against the facing (turns), state $18, timer 64
 
 `undo_only_down` stays 1 while the routine undoes only down moves of the last step. `undo_retry_count` is 8 at each step and decreases by 1 at each undo. It limits the retries. The undo moves count in record 0 like all moves. When the routine drops records 0 and 1, it removes these moves and the undone step (**Code**).
 
-In state `$18`, [`act_wall_bump` `$24B7`](../src/actor_hit_states.asm#L104) waits until the actor is free. When the actor is out of the wall, the state ends at the next step. When it is still in the wall, the code ORs the 40 counts of records 1-10. If the result is not zero, `act_wall_bump_undo_again` undoes the next record (**Code**).
+In state `$18`, [`act_wall_bump` `$24B7`](../src/actor/actor_hit_states.asm#L104) waits until the actor is free. When the actor is out of the wall, the state ends at the next step. When it is still in the wall, the code ORs the 40 counts of records 1-10. If the result is not zero, `act_wall_bump_undo_again` undoes the next record (**Code**).
 
-**A wall bump with an empty move history restarts the room.** When all counts of records 1-10 are zero, [`act_wall_bump_still_in` `$24C6`](../src/actor_hit_states.asm#L112) restarts the room. It calls `enter_room` with `current_actor` = 0 and `next_room` = `room`. Bruce starts at `spawn_a_x`/`spawn_a_y`. This also occurs when the stuck actor is an enemy (**Code**).
+**A wall bump with an empty move history restarts the room.** When all counts of records 1-10 are zero, [`act_wall_bump_still_in` `$24C6`](../src/actor/actor_hit_states.asm#L112) restarts the room. It calls `enter_room` with `current_actor` = 0 and `next_room` = `room`. Bruce starts at `spawn_a_x`/`spawn_a_y`. This also occurs when the stuck actor is an enemy (**Code**).
 
 **A walk into a wall makes the actor face the other way.** The program undoes the walk immediately. The undo move goes in the other direction, so the actor turns. While the player holds the joystick, the actor shakes at the wall (**Observed**, run `wall`, see [Walking into the left wall of room 0](#walking-into-the-left-wall-of-room-0)).
 
 ### Poses
 
-After the step, the program selects the picture of the actor. A pose is an even number. The frame of the main sprite is the first frame of the actor type plus the pose. The overlay sprite shows the next frame. [`select_actor_pose` `$2780`](../src/actor_poses.asm#L18) selects the pose from the state, the facing and the timer. [`set_actor_pose` `$29A1`](../src/actor_poses.asm#L324) changes the pose into the frames (**Code**).
+After the step, the program selects the picture of the actor. A pose is an even number. The frame of the main sprite is the first frame of the actor type plus the pose. The overlay sprite shows the next frame. [`select_actor_pose` `$2780`](../src/actor/actor_poses.asm#L18) selects the pose from the state, the facing and the timer. [`set_actor_pose` `$29A1`](../src/actor/actor_poses.asm#L324) changes the pose into the frames (**Code**).
 
 `update_actors` calls `select_actor_pose` after the step. The routine runs one time per step. When `actor_pose_done` is not zero, the pose of the step is already set. This occurs during the step delay, after `actor_set_idle` in the idle state, and after `apply_fight_hits` gave the attacker its pause. The routine saves `actor_pose` in `actor_prev_pose`. Then it tests the state in this order (**Code**):
 
@@ -405,7 +405,7 @@ The type of an actor sets its sprites, its frames and its collision codes. The c
 | Yamo (1) | `$81` | 2 | 2, 3 | `$46` | 70-139 | 6, 7 |
 | Ninja (2) | `$41` | 1 | 4, none (`$FF`) | `$8C` | 140-209 | 3 |
 
-`actor_main_sprite` and `actor_overlay_sprite` use the actor as index. [`actor_frame_base` `$59A5`](../src/actor_frame_tables.asm#L8), `actor_collision_code_first` and `actor_collision_code_second` use the type. `collision_code_to_sprite` changes the codes 3-7 to the sprites 4, 0, 1, 2, 3. The type index (Bruce 0, Ninja 1, Yamo 2) is different from the actor index (Bruce 0, Yamo 1, Ninja 2). `spawn_actor` and `set_actor_pose` get the type from bits 7-6 of `actor_flags` with three `ROL` and `AND #$03` (**Code**).
+`actor_main_sprite` and `actor_overlay_sprite` use the actor as index. [`actor_frame_base` `$59A5`](../src/actor/actor_frame_tables.asm#L8), `actor_collision_code_first` and `actor_collision_code_second` use the type. `collision_code_to_sprite` changes the codes 3-7 to the sprites 4, 0, 1, 2, 3. The type index (Bruce 0, Ninja 1, Yamo 2) is different from the actor index (Bruce 0, Yamo 1, Ninja 2). `spawn_actor` and `set_actor_pose` get the type from bits 7-6 of `actor_flags` with three `ROL` and `AND #$03` (**Code**).
 
 ### The move history
 
@@ -428,7 +428,7 @@ step start:
 move primitive: record0[direction] += 1
 ```
 
-A step without a move does not push. Thus the history holds the last 11 steps that moved. `draw_room` clears the history. [`check_exit_edge` `$30D4`](../src/touch_effects.asm#L154) also reads record 0 (`actor_move_queue`, `actor_move_queue+6`, `actor_move_queue+9`). It uses record 0 to find the direction of the move that reached the screen edge (**Code**).
+A step without a move does not push. Thus the history holds the last 11 steps that moved. `draw_room` clears the history. [`check_exit_edge` `$30D4`](../src/actor/touch_effects.asm#L154) also reads record 0 (`actor_move_queue`, `actor_move_queue+6`, `actor_move_queue+9`). It uses record 0 to find the direction of the move that reached the screen edge (**Code**).
 
 ### The spawn tables of the rooms
 
@@ -459,11 +459,11 @@ The delays are in passes. "B 3/4" means point B 3 times in 4 and a random point 
 | 18 | `$FF` | 0 | 0 | 0 | 0 | - | - | `$18`, `$C6` | - |
 | 19 | `$FF` | 0 | 0 | 0 | 0 | - | - | `$12`, `$95` | - |
 
-Rooms 13 and 17 have delays, but [`room_no_enemies` `$4C9E`](../src/room_tables.asm#L164) stops the spawn code there (**Code**).
+Rooms 13 and 17 have delays, but [`room_no_enemies` `$4C9E`](../src/room/room_tables.asm#L164) stops the spawn code there (**Code**).
 
 ### The demo input stream
 
-[`demo_input_stream` `$F300`](../src/demo_input.asm#L12) is the input of Bruce in the attract demo. `update_actors` reads one byte per pass through `demo_input_ptr`. The stream has no end marker. The title countdown ends the demo (**Code**).
+[`demo_input_stream` `$F300`](../src/input/demo_input.asm#L12) is the input of Bruce in the attract demo. `update_actors` reads one byte per pass through `demo_input_ptr`. The stream has no end marker. The title countdown ends the demo (**Code**).
 
 | Bits | Meaning |
 |---|---|
@@ -496,7 +496,7 @@ The first 8 bytes at `$F300` are `$17 $04 $28 $03 $08 $04 $00 $04`:
 
 ## The state machine
 
-Each action of an actor is a state in `actor_state`. An action that lasts more than one step also has a timer in `actor_timer`. A state with timer 0 lasts one step. At the next step, [`actor_read_input` `$1D7E`](../src/actor_step.asm#L184) selects a new action from the input. A state with a timer continues in [`actor_continue_action` `$2008`](../src/actor_timed_actions.asm#L14) until the timer reaches 0, or until a floor, a ladder or a wall stops it. Hits, deadly tiles and rides change the state from outside the step (**Code**).
+Each action of an actor is a state in `actor_state`. An action that lasts more than one step also has a timer in `actor_timer`. A state with timer 0 lasts one step. At the next step, [`actor_read_input` `$1D7E`](../src/actor/actor_step.asm#L184) selects a new action from the input. A state with a timer continues in [`actor_continue_action` `$2008`](../src/actor/actor_timed_actions.asm#L14) until the timer reaches 0, or until a floor, a ladder or a wall stops it. Hits, deadly tiles and rides change the state from outside the step (**Code**).
 
 | State | Meaning | Actors | Timer at the start | Step delay |
 |---|---|---|---|---|
@@ -526,7 +526,7 @@ Each action of an actor is a state in `actor_state`. An action that lasts more t
 | `$1A` | Duck | Bruce | 0 | 1 |
 | `$1B` | Hit by a fall attack | all | 8 | 0 |
 
-[`actor_state_step_delay` `$4A8C`](../src/room_tables.asm#L19) gives the step delay, 28 bytes with the state as index. Thus a climb does one step in 4 passes, and a duck does one step in 2 passes. All other states do a step in each pass (**Code**).
+[`actor_state_step_delay` `$4A8C`](../src/room/room_tables.asm#L19) gives the step delay, 28 bytes with the state as index. Thus a climb does one step in 4 passes, and a duck does one step in 2 passes. All other states do a step in each pass (**Code**).
 
 The naming-stage runs with the joystick in room 0 and run `coll` of this page showed these states (**Observed**):
 
@@ -535,7 +535,7 @@ The naming-stage runs with the joystick in room 0 and run `coll` of this page sh
 - A walk right and then right+fire gives `$0D`.
 - The Ninja runs `$14` with `$03`/`$02`/`$0E` inside.
 - Yamo enters with `$10`, then `$12` at timer 1.
-- A hit of the Ninja puts Bruce into `$0F`. [`apply_fight_hits_strike` `$2B9A`](../src/fight_hits.asm#L297) writes this state. A kick or a knock-out puts Bruce into `$13`.
+- A hit of the Ninja puts Bruce into `$0F`. [`apply_fight_hits_strike` `$2B9A`](../src/actor/fight_hits.asm#L297) writes this state. A kick or a knock-out puts Bruce into `$13`.
 - When Bruce pushes against the left wall, he goes to `$18`.
 
 ### Moves on the ground and on ladders
@@ -607,7 +607,7 @@ stateDiagram-v2
   S00 --> IN: timer 0
 ```
 
-**The flying kick needs a run-up.** Fire without a direction gives a punch. Fire during a walk gives a flying kick only after 3 or more walk steps in the same direction. Then `actor_same_state_count` is below 4. [`actor_walk_left_step` `$1E70`](../src/actor_step.asm#L334) and `actor_walk_right_step` test this count (**Code**, **Observed** in run `kick`, see [A flying kick](#a-flying-kick)).
+**The flying kick needs a run-up.** Fire without a direction gives a punch. Fire during a walk gives a flying kick only after 3 or more walk steps in the same direction. Then `actor_same_state_count` is below 4. [`actor_walk_left_step` `$1E70`](../src/actor/actor_step.asm#L334) and `actor_walk_right_step` test this count (**Code**, **Observed** in run `kick`, see [A flying kick](#a-flying-kick)).
 
 ### The enemies
 
@@ -684,9 +684,9 @@ stateDiagram-v2
   S18 --> RR: history empty
 ```
 
-[`apply_fight_hits` `$2B4E`](../src/fight_hits.asm#L252) writes the hit states. [`lose_fall` `$1818`](../src/lose_fall_game_over.asm#L14) takes a fall from Bruce, and [`enter_room` `$2F8E`](../src/background_touch.asm#L222) restarts the room (**Code**).
+[`apply_fight_hits` `$2B4E`](../src/actor/fight_hits.asm#L252) writes the hit states. [`lose_fall` `$1818`](../src/game/lose_fall_game_over.asm#L14) takes a fall from Bruce, and [`enter_room` `$2F8E`](../src/actor/background_touch.asm#L222) restarts the room (**Code**).
 
-**The knock-down slide of the Ninja is not symmetric.** A knocked-down actor slides 2 units per step against its facing. At timer 10, the Ninja slides 8 more units to the left, but only 4 more units to the right ([`act_knocked_down_slide` `$2458`](../src/actor_hit_states.asm#L56), **Code**).
+**The knock-down slide of the Ninja is not symmetric.** A knocked-down actor slides 2 units per step against its facing. At timer 10, the Ninja slides 8 more units to the left, but only 4 more units to the right ([`act_knocked_down_slide` `$2458`](../src/actor/actor_hit_states.asm#L56), **Code**).
 
 ### The dispatch
 
@@ -710,7 +710,7 @@ $05 $0C $0D $06 $07 $19 $17 $10 $11 $16 $14 $15 $12 $0F $13 $18
 
 Most handlers follow their compare directly in the code. State `$17` goes to `act_ride`, `$14` to `ai_chase`, `$12` to `actor_continue_state` and `$18` to `act_wall_bump`. Each other state (`$00`, `$1B`) only decreases its timer in `actor_continue_state`.
 
-Each path ends in a state setter. [`actor_set_state` `$1F92`](../src/actor_step.asm#L514) is the common setter. It stores the state, timer 0 and the step delay of the state. The table gives all setters (**Code**):
+Each path ends in a state setter. [`actor_set_state` `$1F92`](../src/actor/actor_step.asm#L514) is the common setter. It stores the state, timer 0 and the step delay of the state. The table gives all setters (**Code**):
 
 | Setter | State | Timer | Step delay |
 |---|---|---|---|
@@ -731,10 +731,10 @@ The AI (`ai_back_off_start`, `ai_yamo_set_flying_kick`, `ai_ninja_attack`) and `
 
 Two details of the timed handlers (**Code**):
 
-- `act_ride` and [`ai_walk_forward` `$2352`](../src/enemy_ai_states.asm#L69) increment `temp_y` before `actor_continue_state`. Thus the timer does not decrease, and states `$14` and `$17` end only by a transition.
+- `act_ride` and [`ai_walk_forward` `$2352`](../src/actor/enemy_ai_states.asm#L69) increment `temp_y` before `actor_continue_state`. Thus the timer does not decrease, and states `$14` and `$17` end only by a transition.
 - In each step, the Ninja strike counts one move in record 0 of the history, but the Ninja does not move. A later wall undo moves the Ninja in the opposite direction by these moves.
 
-**The swing sound of the punch never plays.** [`act_check_punch` `$226A`](../src/actor_timed_actions.asm#L349) plays sound `$85` at timer 8. But a punch starts with timer 4 (**Code**).
+**The swing sound of the punch never plays.** [`act_check_punch` `$226A`](../src/actor/actor_timed_actions.asm#L349) plays sound `$85` at timer 8. But a punch starts with timer 4 (**Code**).
 
 ### The transitions
 
@@ -878,7 +878,7 @@ The kick moved Bruce from `actor_x` = `$2E` to `$3A` (12 units = 24 pixels), and
 Run `wall` of this page starts from the room 0 snapshot with the joystick left (**Observed**):
 
 1. Bruce walks left from `actor_x` = `$1A`, 2 units per pass (state `$03`).
-2. At `actor_x` = `$0E`, the contact flags are `$09` (floor and wall). The run stops at [`actor_in_wall` `$1CD0`](../src/actor_step.asm#L89). The history of Bruce holds records 1-6 = (0, 0, 2, 0), six steps of 2 units left. Record 1 left is at [`actor_move_queue+$15` `$4F6C`](../src/constants.asm#L174).
+2. At `actor_x` = `$0E`, the contact flags are `$09` (floor and wall). The run stops at [`actor_in_wall` `$1CD0`](../src/actor/actor_step.asm#L89). The history of Bruce holds records 1-6 = (0, 0, 2, 0), six steps of 2 units left. Record 1 left is at [`actor_move_queue+$15` `$4F6C`](../src/constants.asm#L174).
 3. The undo moves right 2 units: `actor_x` = `$10`, `actor_facing` = 1 (right). After the pop, records 0-4 = (0, 0, 2, 0). `undo_only_down` = 0 and `undo_retry_count` = 7. Thus the code enters state `$18` with timer `$40` immediately, without a push.
 4. At the next step, Bruce is out of the wall, and `act_wall_bump` ends the state (timer 0). At the step after, the joystick still gives left. Thus he walks 2 units into the wall again. The cycle repeats each 3 steps (frames 5-9, 14-18, 23-...).
 
@@ -886,10 +886,10 @@ The player sees Bruce shake against the wall and turn right at each undo (**Conc
 
 ### Pose to frame for Yamo
 
-Yamo (`actor_flags` = `$81`) in state `$12` facing right gets pose `$2E`. The type is 2, and [`actor_frame_base+2` `$59A7`](../src/actor_frame_tables.asm#L9) = `$46`. Frame a = `$46` + `$2E` = `$74` (116), and frame b = `$75` (117). `build_actor_sprites` copies frame 116 into sprite 2 and frame 117 into sprite 3. The routine also calculates the overlay frame of the Ninja. But `build_actor_sprites` builds no overlay for actor 2 (**Code**).
+Yamo (`actor_flags` = `$81`) in state `$12` facing right gets pose `$2E`. The type is 2, and [`actor_frame_base+2` `$59A7`](../src/actor/actor_frame_tables.asm#L9) = `$46`. Frame a = `$46` + `$2E` = `$74` (116), and frame b = `$75` (117). `build_actor_sprites` copies frame 116 into sprite 2 and frame 117 into sprite 3. The routine also calculates the overlay frame of the Ninja. But `build_actor_sprites` builds no overlay for actor 2 (**Code**).
 
 ## Still open
 
 - What is the moving character `$62` of state `$17` on the screen in each room: a moving vine or a conveyor? A run in rooms 4, 5, 6, 8, 9 or 11 with a screenshot during a ride can answer this question.
-- Is the `actor_contact_upper` test of a falling Bruce ([`actor_bruce_falling` `$1D99`](../src/actor_step.asm#L200)) meant as a drift at the edge of a ledge? A run that walks Bruce over the edge of a ledge and traces `actor_x` in state `$0E` can show it.
+- Is the `actor_contact_upper` test of a falling Bruce ([`actor_bruce_falling` `$1D99`](../src/actor/actor_step.asm#L200)) meant as a drift at the edge of a ledge? A run that walks Bruce over the edge of a ledge and traces `actor_x` in state `$0E` can show it.
 - What were the unused states `$08`-`$0B` for? Their step delay is 3, like a climb. No code sets them.

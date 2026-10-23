@@ -21,7 +21,7 @@ Each release is a crack. No release has the original protected loader of Melbour
 
 **Observed** (sha256sum of each disk file).
 
-The knowledge holds each release as a capture of the game at its entry: `v1/original/releases/2010`, `v1/original/releases/shadow`, `v2/original/releases/scc` and `v2/original/releases/mrz`. Each folder has the image, the entry state and one PRG for each segment. The files `v1/original/fist_v1_2010.prg` and `v2/original/fist_v2_scc.prg` are loaders that the project generated for the two base releases. They put the original game bytes into memory, set the original entry state and start the game. The tests and the recordings run on them (**Observed**).
+Each release is a capture of the game at its entry. The project knowledge of v1 holds the bytes of R2010 and SHADOW, and the knowledge of v2 holds the bytes of SCC and MRZ. The files `v1/original/fist_v1_2010.prg` and `v2/original/fist_v2_scc.prg` are loaders that the project generated for the two base releases. They put the original game bytes into memory, set the original entry state and start the game. The tests and the recordings run on them (**Observed**).
 
 The differences in the game bytes are small:
 
@@ -124,7 +124,7 @@ The intro shows "CRACKED BY MR Z..." and enters the game at `$115A` (**Observed*
 
 ## The traces of the cracks in the program
 
-This section gives only the traces that a crack left in the game bytes or in the machine state at the entry. Two switches of version I and one switch of version II come from these traces. The default build of each project gives the clean program. A build with `--release` gives the bytes of that release (**Observed**: each release build is identical to its capture).
+This section gives only the traces that a crack left in the game bytes or in the machine state at the entry. Two switches of version I and one switch of version II come from these traces. The default build of each project gives the clean program. A build with `--release` gives the bytes of that release (**Observed**: each release build is identical to the bytes of the release in the project knowledge).
 
 ### Shadow: a dump of a running game
 
@@ -135,13 +135,13 @@ The SHADOW release is a memory dump of a game that ran. 304 of the 307 different
 - the shape pointers of the shape builder at `$3194-$369D`, and `$8005`
 - the sprite buffer bytes at `$C900-$C93E` and `$FD30-$FD4F`
 
-The game writes each of these bytes when it runs, for example the row operand [`v1:irq_a_row2_y` `$263F`](../v1/src/irq_sprite_rows.asm#L13) of a raster handler (**Code**).
+The game writes each of these bytes when it runs, for example the row operand [`v1:irq_a_row2_y` `$263F`](../v1/src/irq/irq_sprite_rows.asm#L13) of a raster handler (**Code**).
 
 The switch RUN_STATE of version I holds these values in 96 patches. Its default is 0, which gives the R2010 bytes. The value 1 gives the SHADOW bytes (**Code**). The Bruce Lee project has a release of the same kind, the SAEGER release (**Conclusion**).
 
 ### Shadow: the zeroed bytes at $0800
 
-The other 3 different bytes are at `$0800-$0802`. SHADOW has 0 there. R2010 has `$53 $43 $56`, which are bytes 13 to 15 of the pattern [`v1:music_t3_pattern_03` `$0800`](../v1/src/music_patterns.asm#L635) of tune 3 (**Observed**). No run of the game writes page `$08` (**Observed** in the coverage). Thus the 0 bytes come from the crack and not from the run.
+The other 3 different bytes are at `$0800-$0802`. SHADOW has 0 there. R2010 has `$53 $43 $56`, which are bytes 13 to 15 of the pattern [`v1:music_t3_pattern_03` `$0800`](../v1/src/music/music_patterns_04be.asm#L531) of tune 3 (**Observed**). No run of the game writes page `$08` (**Observed** in the coverage). Thus the 0 bytes come from the crack and not from the run.
 
 The packed file of Shadow loads at `$0801`, and a BASIC program needs a 0 at `$0800`. The crack put the 0 there and did not restore the original bytes (**Conclusion**). Tune 3 is the music of the two-player game, so SHADOW plays this pattern with changed bytes (**Conclusion**). The switch CRACK_SHADOW_0800 of version I gives the SHADOW bytes. Its default is 0, which gives the original pattern (**Code**).
 
@@ -149,7 +149,7 @@ The packed file of Shadow loads at `$0801`, and a BASIC program needs a 0 at `$0
 
 The SCC crackers drew "CRACKED BY S.C.C." into the title picture. The file C and M.PICTURE differ only in the cells 27 to 37 of the rows 0 to 3. These cells are at the top right of the picture. The difference is in the bitmap, the screen data and the colour data (**Observed** in a byte compare). The file G loads later over `$6000-$870F`, and the captures leave out the picture areas. Thus the text is not in the game bytes (**Observed**).
 
-The rebuild of version II shows the clean M.PICTURE of the 2010 disk at its start, from `v2/original/releases/2010_loading`. Then the start picture has no crack text. This image shows the clean picture.
+This image shows the clean M.PICTURE of the 2010 disk, without the crack text.
 
 ![The Melbourne House title picture of M.PICTURE, without the crack text](../v1/docs/images/title_picture.png)
 
@@ -163,7 +163,7 @@ $0362  STA $DD0E   ; CIA2 control register A
 $0365  JMP $115A   ; the entry of version II
 ```
 
-Version II reads `$DD0E` at each scoring hit in [`v2:protect_cia2_check` `$2CAE`](../v2/src/hit_test.asm#L180). When the value is not 0, the game jumps to a false address and crashes (**Code**). The game itself never writes `$DD0E`. A C64 after a KERNAL reset has `$08` in it (**Code**). Thus this one store passes the copy protection check of version II, and SCC changes no byte of the game code to do it (**Conclusion**). The original protected loader probably left the 0 in `$DD0E` (**Conclusion**). The check and its effect are on [protection.md](protection.md).
+Version II reads `$DD0E` at each scoring hit in [`v2:protect_cia2_check` `$2CAE`](../v2/src/fighter/hit_test.asm#L180). When the value is not 0, the game jumps to a false address and crashes (**Code**). The game itself never writes `$DD0E`. A C64 after a KERNAL reset has `$08` in it (**Code**). Thus this one store passes the copy protection check of version II, and SCC changes no byte of the game code to do it (**Conclusion**). The original protected loader probably left the 0 in `$DD0E` (**Conclusion**). The check and its effect are on [protection.md](protection.md).
 
 The switch PROTECTION of version II is 1 in SCC and MRZ. Its default is 0, which replaces the read of `$DD0E` with `LDA #$00` and a NOP. Then the check always passes (**Code**).
 
@@ -201,7 +201,7 @@ The comparison of the releases is byte by byte on the captured segments (**Obser
 
 1. R2010 against SHADOW gives the 307 bytes of the section about Shadow.
 2. SCC against MRZ gives no difference.
-3. The build of each release is identical to its capture: R2010 and SHADOW in version I, SCC and MRZ in version II.
+3. The build of each release is identical to the bytes of the release in the project knowledge. The releases are R2010 and SHADOW in version I, and SCC and MRZ in version II.
 
 ## Still open
 
