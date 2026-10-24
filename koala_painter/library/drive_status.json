@@ -1,0 +1,46 @@
+{
+  "name": "drive_status",
+  "title": "Drive status",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$3adf"},
+  "length": 98,
+  "bytes": [
+    "a9008590a5b948a90885ba20b4ffa490",
+    "d046a96f85b92096ffa90085704820a5",
+    "ffc92cd008a570d011a9208570a868aa",
+    "989dd7c7e88a484cfd3a20a5ffc90dd0",
+    "f96820abffadd7c7c930d013add8c7c9",
+    "30d00c186885b960a90aa02e20614338",
+    "6860"
+  ],
+  "instructions": [0,2,4,6,7,9,11,14,16,18,20,22,25,27,29,30,33,35,37,39,41,43,45,46,47,48,49,52,53,54,55,58,61,63,65,66,69,72,74,76,79,81,83,84,85,87,88,90,92,95,96,97],
+  "relocations": [
+    {"at":56,"size":"word","value":30}
+  ],
+  "variable": [3,5,10,12,13,15,21,23,24,28,31,32,38,44,50,51,59,60,67,68,70,71,77,78,86,93,94],
+  "symbols": [
+    {"at":0,"name":"drive_status","kind":"routine"},
+    {"at":30,"name":"drive_status_read","kind":"label"},
+    {"at":45,"name":"drive_status_store","kind":"label"},
+    {"at":58,"name":"drive_status_skip_rest","kind":"label"},
+    {"at":88,"name":"drive_status_no_device","kind":"label"},
+    {"at":95,"name":"drive_status_error","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"},
+    {"start":18,"end":24,"type":"code"},
+    {"start":25,"end":34,"type":"code"},
+    {"start":35,"end":36,"type":"code"},
+    {"start":37,"end":64,"type":"code"},
+    {"start":65,"end":68,"type":"code"},
+    {"start":69,"end":87,"type":"code"},
+    {"start":88,"end":97,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Reads the status of drive 8 from channel 15 (TALK, TKSA $6f). The bytes up to the second comma go to drive_status_text: the error number, a space for the first comma, and the message. Then it skips the rest up to the CR. C is clear when the number is 00; then SA is restored. When no device answers (STATUS not 0 after TALK), the script at $2e0a writes DEVICE NOT PRESENT at $c7d1, and C is set."},
+    {"at":25,"placement":"side","text":"script_flag = 0: no comma yet. The text index 0 goes on the stack."},
+    {"at":43,"placement":"side","text":"First comma: script_flag = $20, and a space goes into the text."},
+    {"at":69,"placement":"side","text":"The error number 00: no error."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,191 @@
+{
+ "name": "Storage: Init Disk, Y to the question, disk name PAINT, the disk of the snapshot is formatted. v2 with the TBC joystick hook in the snapshot",
+ "start": {
+  "snapshot": "runs/storage/menu_with_disk.vsf"
+ },
+ "steps": [
+  {
+   "frames": 5
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "68c7"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "frames": 400
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c0b5"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "frames": 200
+  },
+  {
+   "screen": "01_init_prompt"
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": "Y"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "screen": "02_formatting"
+  },
+  {
+   "frames": 100
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": "P"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": "A"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": "I"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": "N"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": "T"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "type": {
+    "mode": "text",
+    "text": "\n"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "frames": 200
+  },
+  {
+   "screen": "03_formatting"
+  },
+  {
+   "frames": 6000
+  },
+  {
+   "screen": "04_after_init"
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "coverage": "init_disk"
+  }
+ ]
+}

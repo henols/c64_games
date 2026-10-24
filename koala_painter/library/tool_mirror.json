@@ -1,0 +1,40 @@
+{
+  "name": "tool_mirror",
+  "title": "Mirror and Oops commands",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$162d"},
+  "length": 65,
+  "bytes": [
+    "2033164c6516ad604f490129018d604f",
+    "8d684ff00ea9018d604fa94f8521a963",
+    "854f60a9008d604fa9c7854fa99f8521",
+    "60a9b5a01e206143209b0a20420a4c63",
+    "0b"
+  ],
+  "instructions": [0,3,6,9,11,13,16,19,21,23,26,28,30,32,34,35,37,40,42,44,46,48,49,51,53,56,59,62],
+  "relocations": [
+    {"at":1,"size":"word","value":6},
+    {"at":4,"size":"word","value":56}
+  ],
+  "variable": [7,8,14,15,17,18,24,25,29,33,38,39,43,47,54,55,57,58,60,61,63,64],
+  "symbols": [
+    {"at":0,"name":"tool_mirror","kind":"routine"},
+    {"at":6,"name":"toggle_mirror_mode","kind":"routine"},
+    {"at":21,"name":"mirror_mode_on","kind":"routine"},
+    {"at":35,"name":"mirror_mode_off","kind":"routine"},
+    {"at":49,"name":"tool_oops","kind":"routine"},
+    {"at":56,"name":"return_to_menu","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":64,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Mirror command (code $0d). Changes mirror mode on or off (toggle_mirror_mode), then goes back to the menu (return_to_menu)."},
+    {"at":6,"placement":"line","text":"Inverts bit 0 of mirror_mode and copies it to mirror_mode_saved. Then sets the drawing limits of the new mode (mirror_mode_on or mirror_mode_off)."},
+    {"at":21,"placement":"line","text":"Sets mirror_mode to 1 and the drawing limits to the upper left quarter of the picture: max_x = 79, max_y = 99."},
+    {"at":35,"placement":"line","text":"Sets mirror_mode to 0 and the drawing limits to all of the picture: max_x = 159, max_y = 199. mirror_mode_saved does not change. Zoom and Copy call it."},
+    {"at":49,"placement":"line","text":"Oops command (code $10). Runs the script at $1eb5, then goes back to the menu (return_to_menu)."},
+    {"at":56,"placement":"line","text":"Starts the raster interrupt ($0a9b), sets the screen on ($0a42) and goes to the menu ($0b63)."}
+  ],
+  "references": [],
+  "operands": []
+}

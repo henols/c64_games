@@ -1,0 +1,48 @@
+{
+  "name": "tool_exit",
+  "title": "Tool exit and shared tool helpers",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$1495"},
+  "length": 90,
+  "bytes": [
+    "ad684ff0068d604f204216a01da9d320",
+    "61434c4a0ba01da9fe20614360a5d9c5",
+    "db900838e5dbc919900960a5db38e5d9",
+    "4cbb14a5dac5dc900938e5dcc9199001",
+    "6060a5dc38e5da4cd114a52a85dba52b",
+    "85dc60a97ca01e4c6143"
+  ],
+  "instructions": [0,3,5,8,11,13,15,18,21,23,25,28,29,31,33,35,36,38,40,42,43,45,46,48,51,53,55,57,58,60,62,64,65,66,68,69,71,74,76,78,80,82,83,85,87],
+  "relocations": [
+    {"at":49,"size":"word","value":38},
+    {"at":72,"size":"word","value":60}
+  ],
+  "variable": [1,2,6,7,9,10,16,17,19,20,26,27,30,32,37,44,47,52,54,59,67,70,75,77,79,81,88,89],
+  "symbols": [
+    {"at":0,"name":"tool_exit","kind":"label"},
+    {"at":11,"name":"tool_exit_script","kind":"label"},
+    {"at":21,"name":"run_tool_start_script","kind":"routine"},
+    {"at":29,"name":"points_near","kind":"routine"},
+    {"at":38,"name":"points_near_check_x","kind":"label"},
+    {"at":43,"name":"points_near_x_reverse","kind":"label"},
+    {"at":51,"name":"points_near_y","kind":"label"},
+    {"at":60,"name":"points_near_check_y","kind":"label"},
+    {"at":65,"name":"points_near_yes","kind":"label"},
+    {"at":66,"name":"points_near_y_reverse","kind":"label"},
+    {"at":74,"name":"set_line_end","kind":"routine"},
+    {"at":83,"name":"run_script_1e7c","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":82,"type":"code"},
+    {"start":83,"end":89,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Leaves a drawing tool. The callers jump here and remove their return address first. When mirror_mode_saved is set, sets mirror mode again (mirror_mode_on). Runs the script at $1dd3, then goes to the menu ($0b4a)."},
+    {"at":21,"placement":"line","text":"Runs the script at $1dfe. The script starts with op 9 to bitmap_mode_on. The tool start code at $0dd0 calls it."},
+    {"at":29,"placement":"line","text":"Compares the ends of the line (line_x0, line_y0) and (line_x1, line_y1). C = 0 when they differ by less than 25 on both axes, else C = 1."},
+    {"at":38,"placement":"side","text":"25 pixels."},
+    {"at":74,"placement":"line","text":"Sets the end of the line (line_x1, line_y1) to the cursor (cursor_x, cursor_y)."},
+    {"at":83,"placement":"line","text":"Runs the script at $1e7c. The code of the Erase command ($0c24) calls it."}
+  ],
+  "references": [],
+  "operands": []
+}

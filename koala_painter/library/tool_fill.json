@@ -1,0 +1,35 @@
+{
+  "name": "tool_fill",
+  "title": "Fill tool",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$13f2"},
+  "length": 82,
+  "bytes": [
+    "a935a02f20d00da2ff864820fb19a52a",
+    "c9fff01aad604ff00aa52b4a852ba52a",
+    "4a852aa52a8548a52b8549205f1a20fb",
+    "1920da0af0034c951420cf0af0cda52a",
+    "c9fff0c7a648862aa449842b2009374c",
+    "fd13"
+  ],
+  "instructions": [0,2,4,7,9,11,14,16,18,20,23,25,27,28,30,32,33,35,37,39,41,43,46,49,52,54,57,60,62,64,66,68,70,72,74,76,79],
+  "relocations": [
+    {"at":80,"size":"word","value":11}
+  ],
+  "variable": [5,6,10,12,13,15,21,22,26,29,31,34,36,38,40,42,44,45,47,48,50,51,55,56,58,59,63,69,71,73,75,77,78],
+  "symbols": [
+    {"at":0,"name":"tool_fill","kind":"routine"},
+    {"at":11,"name":"tool_fill_loop","kind":"label"},
+    {"at":35,"name":"tool_fill_keep_point","kind":"label"},
+    {"at":46,"name":"tool_fill_check_exit","kind":"label"},
+    {"at":57,"name":"tool_fill_check_press","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":81,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Fill command (code 9). Shows the label FILL. While the pen is on the pad, keeps the cursor position in shape_x0/shape_y0 and moves the cursor sprites there. On a button press with the pen on the pad, fills from the kept point ($3709). A long press off the pad goes to tool_exit."},
+    {"at":25,"placement":"side","text":"Mirror mode: halves the cursor coordinates."}
+  ],
+  "references": [],
+  "operands": []
+}

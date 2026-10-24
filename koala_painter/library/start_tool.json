@@ -1,0 +1,24 @@
+{
+  "name": "start_tool",
+  "title": "Tool Start",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$0dd0"},
+  "length": 18,
+  "bytes": [
+    "20614320420a20aa14a5e18d21d020ef",
+    "1460"
+  ],
+  "instructions": [0,3,6,9,11,14,17],
+  "relocations": [],
+  "variable": [1,2,4,5,7,8,10,12,13,15,16],
+  "symbols": [
+    {"at":0,"name":"start_tool","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Starts a tool: runs the script at A/Y (the tool label), screen on, the script at $1dfe ($14aa), background = background_colour, then the bitmap screen ($14ef)."}
+  ],
+  "references": [],
+  "operands": []
+}

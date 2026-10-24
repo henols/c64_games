@@ -1,0 +1,41 @@
+{
+  "name": "entry_jump_table",
+  "title": "Entry JMP Table and Cold Start",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$0900"},
+  "length": 67,
+  "bytes": [
+    "4c1b094c621c4cf71c4c030b4cf20a4c",
+    "871c4c25154cb8184c9e277820310aa9",
+    "018d0edca9818d0ddca91b8d1603a909",
+    "8d1703a9438d1403a9098d150320760a",
+    "4c7f0a"
+  ],
+  "instructions": [0,3,6,9,12,15,18,21,24,27,28,31,33,36,38,41,43,46,48,51,53,56,58,61,64],
+  "relocations": [
+    {"at":1,"size":"word","value":27}
+  ],
+  "variable": [4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,29,30,34,35,39,40,44,45,49,50,54,55,59,60,62,63,65,66],
+  "symbols": [
+    {"at":0,"name":"entry_jump_table","kind":"routine"},
+    {"at":6,"name":"jt_sample_pad","kind":"routine"},
+    {"at":21,"name":"jt_plot_pixel_bits","kind":"label"},
+    {"at":24,"name":"jt_draw_line","kind":"label"},
+    {"at":27,"name":"cold_start","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":26,"type":"jumps"},
+    {"start":27,"end":66,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"JMP table at the start of the program. $0900 cold_start (the entry), $0903 $1c62, $0906 sample_pad, $0909 an RTS, $090c wait_jiffies, $090f hit_test, $0912 $1525, $0915 $18b8, $0918 $279e. The program uses only $0900 and $0906 (from read_cursor)."},
+    {"at":6,"placement":"line","text":"JMP table entry: sample_pad. read_cursor calls it."},
+    {"at":27,"placement":"line","text":"Cold start: stops the interrupts, sets the CIA 1 timer interrupt and the BRK and IRQ vectors, then runs the start-up script at $1e1a (through start_script)."},
+    {"at":28,"placement":"side","text":"CIA 1 timer A latch = $4289"},
+    {"at":33,"placement":"side","text":"CIA 1 timer A: start, continuous"},
+    {"at":38,"placement":"side","text":"CIA 1: timer A interrupt on"},
+    {"at":43,"placement":"side","text":"BRK vector = cold_start"},
+    {"at":53,"placement":"side","text":"IRQ vector = irq_handler"}
+  ],
+  "references": [],
+  "operands": []
+}

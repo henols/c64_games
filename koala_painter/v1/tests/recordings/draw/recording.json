@@ -1,0 +1,354 @@
+{
+  "format": 1,
+  "name": "Draw: a Disc and a drag to have a picture, then Draw with a colour and a brush, one drag and three taps in the picture, back to the menu. Joystick on port 1 through a test-only hook (see tests/README.md).",
+  "program": "tests/program/mayday_0900.prg",
+  "sha256": "bc89f7a610889962a6511bc8ddd437a9afc79d5f91ad29909bde52d32bb6c397",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$4630",
+          "data": "ad01dc2901d003ce6346ad01dc2902d003ee6346ad01dc2904d003ce6446ad01dc2908d003ee6446ad63468527ad644685606000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "write": {
+          "address": "$09bf",
+          "data": "10eaeaeaeaeaeaea",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "write": {
+          "address": "$0a07",
+          "data": "203046eaeaeaeaeaeaea",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "registers": {
+          "pc": "$092f"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b85",
+            "space": "c64"
+          },
+          "timeoutFrames": 2000
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 9,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "c84a",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 153
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "8c48",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 213
+      }
+    },
+    {
+      "step": 21,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "2827",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 274
+      }
+    },
+    {
+      "step": 27,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 335
+      }
+    },
+    {
+      "step": 29,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b85",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 429
+      }
+    },
+    {
+      "step": 31,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b97",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 431
+      }
+    },
+    {
+      "step": 35,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "4f3b",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 547
+      }
+    },
+    {
+      "step": 43,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "5f63",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 671
+      }
+    },
+    {
+      "step": 49,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "7f77",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 732
+      }
+    },
+    {
+      "step": 55,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "7745",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 793
+      }
+    },
+    {
+      "step": 61,
+      "action": {
+        "write": {
+          "address": "$4663",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 854
+      }
+    },
+    {
+      "step": 64,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b82",
+            "space": "c64"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$4630",
+        "addr": "$dc01",
+        "count": 947
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 780,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 780,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$4630",
+      "addr": "$dc01",
+      "reads": 1091,
+      "rom": false
+    },
+    {
+      "site": "$463a",
+      "addr": "$dc01",
+      "reads": 1091,
+      "rom": false
+    },
+    {
+      "site": "$4644",
+      "addr": "$dc01",
+      "reads": 1091,
+      "rom": false
+    },
+    {
+      "site": "$464e",
+      "addr": "$dc01",
+      "reads": 1091,
+      "rom": false
+    },
+    {
+      "site": "$09bb",
+      "addr": "$dc01",
+      "reads": 546,
+      "rom": false
+    }
+  ],
+  "ticks": 15238276,
+  "hash": "7d3e9582"
+}

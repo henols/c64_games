@@ -1,0 +1,34 @@
+{
+  "name": "set_irq_timer",
+  "title": "Timer and Screen Control",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$0a31"},
+  "length": 69,
+  "bytes": [
+    "a9428d05dca9898d04dc60a90b8d11d0",
+    "60ad11d009108d11d060a902857da917",
+    "8d18d0a900850f850e4c2f1ca900a22e",
+    "9d00d0ca10faa9088d16d08d11d02042",
+    "0aa9146060"
+  ],
+  "instructions": [0,2,5,7,10,11,13,16,17,20,22,25,26,28,30,32,35,37,39,41],
+  "relocations": [],
+  "variable": [3,4,8,9,14,15,18,19,23,24,29,33,34,38,40,42,43],
+  "symbols": [
+    {"at":0,"name":"set_irq_timer","kind":"routine"},
+    {"at":11,"name":"screen_off","kind":"routine"},
+    {"at":17,"name":"screen_on","kind":"routine"},
+    {"at":26,"name":"init_menu_screen","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":43,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets the latch of CIA 1 timer A to $4289 cycles, the rate of the timer interrupt."},
+    {"at":11,"placement":"line","text":"Turns the screen off: $d011 = $0b (display off, 25 rows, Y scroll 3)."},
+    {"at":17,"placement":"line","text":"Turns the screen on: sets bit 4 of $d011."},
+    {"at":26,"placement":"line","text":"Prepares the menu text screen: cursor_colour_timer = 2, $d018 = $17, clears the button state, then $1c2f (black border, screen off, the script at $1ef8 with the character ROM visible, $d018 = $74 and VIC bank 1: screen $5c00, charset $5000)."},
+    {"at":44,"placement":"line","text":"Not reached: code that clears the VIC-II registers $d000-$d02e, sets $d016 and $d011 to 8, turns the screen on and returns $14 in A."}
+  ],
+  "references": [],
+  "operands": []
+}

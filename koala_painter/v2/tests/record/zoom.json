@@ -1,0 +1,520 @@
+{
+ "name": "Zoom: a Disc and a drag to have a picture, then Zoom with a colour and a brush, one drag and three taps in the picture, back to the menu. Joystick on port 1 through a test-only hook (see tests/README.md).",
+ "program": "tests/program/tbc_0900.prg",
+ "symbols": "none",
+ "coverage": "$0900",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$4839",
+    "data": "0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000"
+   }
+  },
+  {
+   "write": {
+    "address": "$4800",
+    "data": "ad01dc2901d003ce3348ad01dc2902d003ee3348ad01dc2904d003ce3448ad01dc2908d003ee3448ad33488527ad34488560600000"
+   }
+  },
+  {
+   "write": {
+    "address": "$0999",
+    "data": "10eaeaeaeaeaeaea"
+   }
+  },
+  {
+   "write": {
+    "address": "$09fc",
+    "data": "200048eaeaeaeaeaeaea"
+   }
+  },
+  {
+   "write": {
+    "address": "$1e30",
+    "data": "ff"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$0900"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 2000
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b05e"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c64"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "4877"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7464"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c85e"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c64"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "689f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "654c"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7574"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "9588"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8d56"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  }
+ ],
+ "load": true
+}
