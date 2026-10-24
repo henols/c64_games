@@ -1,0 +1,2268 @@
+{
+  "format": 1,
+  "name": "Every drawing tool once, in TBC's joystick mode: colour, brush, tool, picture, one drag and three taps, back to the menu; then Oops and Erase",
+  "program": "original/kmain_tbc.prg",
+  "sha256": "40a0dca1718b0621a381b899b7ee30cce41ea0fcd7d336b6aca0090fcf28eb90",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$0999",
+          "data": "10eaeaeaeaeaeaea",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "write": {
+          "address": "$09fc",
+          "data": "200048eaeaeaeaeaeaea",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "write": {
+          "address": "$1e30",
+          "data": "ff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "registers": {
+          "pc": "$0900"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b88",
+            "space": "c64"
+          },
+          "timeoutFrames": 2000
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 9,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b040",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 91
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c3d",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 148
+      }
+    },
+    {
+      "step": 21,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "2827",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 205
+      }
+    },
+    {
+      "step": 27,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 262
+      }
+    },
+    {
+      "step": 33,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "4432",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 499
+      }
+    },
+    {
+      "step": 41,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "545a",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 623
+      }
+    },
+    {
+      "step": 47,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "746e",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 684
+      }
+    },
+    {
+      "step": 53,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "6c3c",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 745
+      }
+    },
+    {
+      "step": 59,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 806
+      }
+    },
+    {
+      "step": 65,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c84a",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1059
+      }
+    },
+    {
+      "step": 71,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c48",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1120
+      }
+    },
+    {
+      "step": 77,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "4827",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1181
+      }
+    },
+    {
+      "step": 83,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1242
+      }
+    },
+    {
+      "step": 89,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "4f3b",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1483
+      }
+    },
+    {
+      "step": 97,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "5f63",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1607
+      }
+    },
+    {
+      "step": 103,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "7f77",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1668
+      }
+    },
+    {
+      "step": 109,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "7745",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1729
+      }
+    },
+    {
+      "step": 115,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1790
+      }
+    },
+    {
+      "step": 121,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b054",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2043
+      }
+    },
+    {
+      "step": 127,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c55",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2104
+      }
+    },
+    {
+      "step": 133,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "6827",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2165
+      }
+    },
+    {
+      "step": 139,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2223
+      }
+    },
+    {
+      "step": 145,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "5a44",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2453
+      }
+    },
+    {
+      "step": 153,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "6a6c",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2577
+      }
+    },
+    {
+      "step": 159,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8a80",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2638
+      }
+    },
+    {
+      "step": 165,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "824e",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2699
+      }
+    },
+    {
+      "step": 171,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 2760
+      }
+    },
+    {
+      "step": 177,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c85e",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3013
+      }
+    },
+    {
+      "step": 183,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c64",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3074
+      }
+    },
+    {
+      "step": 189,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "284f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3135
+      }
+    },
+    {
+      "step": 195,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3196
+      }
+    },
+    {
+      "step": 201,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "654c",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3441
+      }
+    },
+    {
+      "step": 209,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "7574",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3565
+      }
+    },
+    {
+      "step": 215,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "9588",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3626
+      }
+    },
+    {
+      "step": 221,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8d56",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3687
+      }
+    },
+    {
+      "step": 227,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3748
+      }
+    },
+    {
+      "step": 233,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b068",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 3991
+      }
+    },
+    {
+      "step": 239,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c73",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4052
+      }
+    },
+    {
+      "step": 245,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "484f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4113
+      }
+    },
+    {
+      "step": 251,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4174
+      }
+    },
+    {
+      "step": 257,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "7055",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4417
+      }
+    },
+    {
+      "step": 265,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "807d",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4541
+      }
+    },
+    {
+      "step": 271,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "a091",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4601
+      }
+    },
+    {
+      "step": 277,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "985f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4662
+      }
+    },
+    {
+      "step": 283,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4723
+      }
+    },
+    {
+      "step": 289,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c872",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 4969
+      }
+    },
+    {
+      "step": 295,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c82",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5030
+      }
+    },
+    {
+      "step": 301,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "684f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5091
+      }
+    },
+    {
+      "step": 307,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5152
+      }
+    },
+    {
+      "step": 313,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "7b5e",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5393
+      }
+    },
+    {
+      "step": 321,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8b86",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5517
+      }
+    },
+    {
+      "step": 327,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ab9a",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5578
+      }
+    },
+    {
+      "step": 333,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "a368",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5639
+      }
+    },
+    {
+      "step": 339,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5700
+      }
+    },
+    {
+      "step": 345,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b07c",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 5949
+      }
+    },
+    {
+      "step": 351,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c91",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6006
+      }
+    },
+    {
+      "step": 357,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "2877",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6063
+      }
+    },
+    {
+      "step": 363,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6120
+      }
+    },
+    {
+      "step": 369,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8666",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6357
+      }
+    },
+    {
+      "step": 377,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "968e",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6481
+      }
+    },
+    {
+      "step": 383,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b6a2",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6542
+      }
+    },
+    {
+      "step": 389,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ae70",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6603
+      }
+    },
+    {
+      "step": 395,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6664
+      }
+    },
+    {
+      "step": 401,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c886",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6907
+      }
+    },
+    {
+      "step": 407,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8ca5",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 6964
+      }
+    },
+    {
+      "step": 413,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "4877",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7021
+      }
+    },
+    {
+      "step": 419,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7079
+      }
+    },
+    {
+      "step": 425,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "916f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7313
+      }
+    },
+    {
+      "step": 433,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "a197",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7437
+      }
+    },
+    {
+      "step": 439,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c1ab",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7498
+      }
+    },
+    {
+      "step": 445,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b979",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7559
+      }
+    },
+    {
+      "step": 451,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7620
+      }
+    },
+    {
+      "step": 457,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b090",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7873
+      }
+    },
+    {
+      "step": 463,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c3d",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7934
+      }
+    },
+    {
+      "step": 469,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "6877",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 7995
+      }
+    },
+    {
+      "step": 475,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8056
+      }
+    },
+    {
+      "step": 481,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "9c78",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8303
+      }
+    },
+    {
+      "step": 489,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "aca0",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8427
+      }
+    },
+    {
+      "step": 495,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ccb4",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8488
+      }
+    },
+    {
+      "step": 501,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c482",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8548
+      }
+    },
+    {
+      "step": 507,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8605
+      }
+    },
+    {
+      "step": 513,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c89a",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8841
+      }
+    },
+    {
+      "step": 519,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c48",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8902
+      }
+    },
+    {
+      "step": 525,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "289f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 8963
+      }
+    },
+    {
+      "step": 531,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9024
+      }
+    },
+    {
+      "step": 537,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "4781",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9277
+      }
+    },
+    {
+      "step": 545,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "57a9",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9401
+      }
+    },
+    {
+      "step": 551,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "77bd",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9462
+      }
+    },
+    {
+      "step": 557,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "6f8b",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9523
+      }
+    },
+    {
+      "step": 563,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9584
+      }
+    },
+    {
+      "step": 569,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b0a4",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9837
+      }
+    },
+    {
+      "step": 575,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c55",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9898
+      }
+    },
+    {
+      "step": 581,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "489f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 9959
+      }
+    },
+    {
+      "step": 587,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10020
+      }
+    },
+    {
+      "step": 593,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "528a",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10273
+      }
+    },
+    {
+      "step": 601,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "62b2",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10397
+      }
+    },
+    {
+      "step": 607,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "82c6",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10458
+      }
+    },
+    {
+      "step": 613,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "7a94",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10519
+      }
+    },
+    {
+      "step": 619,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10580
+      }
+    },
+    {
+      "step": 625,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c8ae",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10833
+      }
+    },
+    {
+      "step": 631,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c64",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10894
+      }
+    },
+    {
+      "step": 637,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "28c7",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 10955
+      }
+    },
+    {
+      "step": 643,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11003
+      }
+    },
+    {
+      "step": 649,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "5d92",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11245
+      }
+    },
+    {
+      "step": 657,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "6dba",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11369
+      }
+    },
+    {
+      "step": 663,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8dce",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11430
+      }
+    },
+    {
+      "step": 669,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "859c",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11491
+      }
+    },
+    {
+      "step": 675,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11552
+      }
+    },
+    {
+      "step": 681,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b0b8",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11805
+      }
+    },
+    {
+      "step": 687,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c73",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11866
+      }
+    },
+    {
+      "step": 693,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "48c7",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11927
+      }
+    },
+    {
+      "step": 699,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 11988
+      }
+    },
+    {
+      "step": 705,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "689b",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12241
+      }
+    },
+    {
+      "step": 713,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "78c3",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12365
+      }
+    },
+    {
+      "step": 719,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "98d7",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12426
+      }
+    },
+    {
+      "step": 725,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "90a5",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12487
+      }
+    },
+    {
+      "step": 731,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12548
+      }
+    },
+    {
+      "step": 737,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c8c2",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12801
+      }
+    },
+    {
+      "step": 743,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c82",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12862
+      }
+    },
+    {
+      "step": 749,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "689f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12923
+      }
+    },
+    {
+      "step": 755,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 12984
+      }
+    },
+    {
+      "step": 761,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "73a4",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 13231
+      }
+    },
+    {
+      "step": 769,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "83cc",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 13345
+      }
+    },
+    {
+      "step": 775,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "a3e0",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 13406
+      }
+    },
+    {
+      "step": 781,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "9bae",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 13467
+      }
+    },
+    {
+      "step": 787,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 13528
+      }
+    },
+    {
+      "step": 793,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8827",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 13781
+      }
+    },
+    {
+      "step": 799,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 13841
+      }
+    },
+    {
+      "step": 805,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 14079
+      }
+    },
+    {
+      "step": 811,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "88c7",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 14333
+      }
+    },
+    {
+      "step": 818,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 14533
+      }
+    },
+    {
+      "step": 824,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 14777
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 7749,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 7749,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$4800",
+      "addr": "$dc01",
+      "reads": 15030,
+      "rom": false
+    },
+    {
+      "site": "$480a",
+      "addr": "$dc01",
+      "reads": 15030,
+      "rom": false
+    },
+    {
+      "site": "$4814",
+      "addr": "$dc01",
+      "reads": 15030,
+      "rom": false
+    },
+    {
+      "site": "$481e",
+      "addr": "$dc01",
+      "reads": 15030,
+      "rom": false
+    },
+    {
+      "site": "$0995",
+      "addr": "$dc01",
+      "reads": 7515,
+      "rom": false
+    }
+  ],
+  "ticks": 136944689,
+  "hash": "9a6581d0"
+}

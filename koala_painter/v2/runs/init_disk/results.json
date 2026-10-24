@@ -1,0 +1,15 @@
+{
+  "name": "Storage: Init Disk, Y to the question, disk name PAINT, the disk of the snapshot is formatted. v2 with the TBC joystick hook in the snapshot",
+  "completed": true,
+  "steps": 43,
+  "done": 43,
+  "pc": "$1da5",
+  "files": [
+    "01_init_prompt.png",
+    "02_formatting.png",
+    "03_formatting.png",
+    "04_after_init.png",
+    "init_disk.bin"
+  ],
+  "observations": {}
+}

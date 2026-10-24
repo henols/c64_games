@@ -1,0 +1,30 @@
+{
+  "name": "play_beep",
+  "title": "Pad Beep",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$431d"},
+  "length": 68,
+  "bytes": [
+    "a90e8d18d4a9048d03d4a9008d02d48d",
+    "05d48d06d4a9088d04d4a9008d04d4a9",
+    "f08d00d4a92e8d01d4a9038d05d4a911",
+    "8d04d460a9008d6a4fa9108d04d4a908",
+    "8d04d460"
+  ],
+  "instructions": [0,2,5,7,10,12,15,18,21,23,26,28,31,33,36,38,41,43,46,48,51,52,54,57,59,62,64,67],
+  "relocations": [],
+  "variable": [3,4,8,9,13,14,16,17,19,20,24,25,29,30,34,35,39,40,44,45,49,50,55,56,60,61,65,66],
+  "symbols": [
+    {"at":0,"name":"play_beep","kind":"routine"},
+    {"at":52,"name":"stop_beep","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":67,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Starts a short beep on SID voice 1: volume 14, pulse width $400, frequency $2ef0, attack 0, decay 3, sustain 0, release 0, triangle wave with the gate on. The IRQ calls it every 32 interrupts while off_pad_beep_on is not 0."},
+    {"at":23,"placement":"side","text":"Test bit on and off: resets the oscillator."},
+    {"at":52,"placement":"line","text":"Stops the beep: clears off_pad_beep_on, turns the gate of SID voice 1 off and sets the test bit. read_cursor calls it when the pad is touched."}
+  ],
+  "references": [],
+  "operands": []
+}

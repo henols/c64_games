@@ -1,0 +1,58 @@
+{
+  "name": "run_script",
+  "title": "Script Interpreter",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$4361"},
+  "length": 100,
+  "bytes": [
+    "4c6a434c44464c5b4685628463a90085",
+    "688569856b209d43c9fff00620b1434c",
+    "7643a669f011bd324f8563cabd324f85",
+    "62ca86694c764360a56cd00ba000b162",
+    "e662d002e66360a46bb9464f88846b60",
+    "0aa8a9002a856cb984468519b9854685",
+    "1a6c1900"
+  ],
+  "instructions": [0,3,6,9,11,13,15,17,19,21,24,26,28,31,34,36,38,41,43,44,47,49,50,52,55,56,58,60,62,64,66,68,70,71,73,76,77,79,80,81,82,84,85,87,90,92,95,97],
+  "relocations": [
+    {"at":1,"size":"word","value":9},
+    {"at":22,"size":"word","value":60},
+    {"at":29,"size":"word","value":80},
+    {"at":32,"size":"word","value":21},
+    {"at":53,"size":"word","value":21}
+  ],
+  "variable": [4,5,7,8,10,12,16,18,20,35,39,40,42,45,46,48,51,57,63,65,69,72,74,75,78,86,88,89,91,93,94,96,98,99],
+  "symbols": [
+    {"at":0,"name":"run_script","kind":"routine"},
+    {"at":3,"name":"jmp_read_bitmap_byte","kind":"routine"},
+    {"at":6,"name":"jmp_read_cell_colour","kind":"routine"},
+    {"at":9,"name":"run_script_start","kind":"label"},
+    {"at":21,"name":"script_next_op","kind":"label"},
+    {"at":34,"name":"script_end_or_return","kind":"label"},
+    {"at":55,"name":"script_done","kind":"label"},
+    {"at":56,"name":"script_get_operand","kind":"routine"},
+    {"at":60,"name":"script_read_byte","kind":"routine"},
+    {"at":70,"name":"script_read_byte_done","kind":"label"},
+    {"at":71,"name":"script_pop_arg","kind":"routine"},
+    {"at":80,"name":"script_dispatch","kind":"routine"},
+    {"at":97,"name":"script_jump_temp","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":8,"type":"jumps"},
+    {"start":9,"end":99,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Script interpreter: A/Y is the address of a script. Each opcode byte selects a routine in script_ops. Opcode $ff ends the script, or returns from a script call. An opcode with bit 7 set takes its operands from the argument stack in place of the script."},
+    {"at":3,"placement":"line","text":"Jump table entry: read_bitmap_byte."},
+    {"at":6,"placement":"line","text":"Jump table entry: read_cell_colour."},
+    {"at":9,"placement":"line","text":"Saves A/Y in script_ptr and clears the loop stack, the return stack and the argument stack."},
+    {"at":21,"placement":"line","text":"Reads the next opcode. $ff: end or return. Else run the opcode routine."},
+    {"at":34,"placement":"line","text":"Opcode $ff: return to the calling script when script_return_stack has an entry, else end."},
+    {"at":56,"placement":"line","text":"Gets one operand in A: pops it from script_arg_stack when script_stack_mode is not 0, else reads the next script byte."},
+    {"at":60,"placement":"line","text":"Reads the byte at script_ptr in A and increments script_ptr. Y = 0."},
+    {"at":71,"placement":"line","text":"Pops the top byte of script_arg_stack in A. Y = the new script_arg_index."},
+    {"at":80,"placement":"line","text":"Runs the routine of opcode A: bit 7 goes to script_stack_mode, bits 0-6 select the entry of script_ops. The opcode routine returns to the interpreter loop with RTS."},
+    {"at":97,"placement":"side","text":"Jumps to the address in temp_word. Op 9 also comes here."}
+  ],
+  "references": [],
+  "operands": []
+}

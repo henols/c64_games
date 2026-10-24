@@ -1,0 +1,4459 @@
+{
+ "name": "Every drawing tool once, in TBC's joystick mode: colour, brush, tool, picture, one drag and three taps, back to the menu; then Oops and Erase",
+ "program": "original/kmain_tbc.prg",
+ "load": true,
+ "symbols": "none",
+ "coverage": "$0900",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$0999",
+    "data": "10eaeaeaeaeaeaea"
+   }
+  },
+  {
+   "write": {
+    "address": "$09fc",
+    "data": "200048eaeaeaeaeaeaea"
+   }
+  },
+  {
+   "write": {
+    "address": "$1e30",
+    "data": "ff"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$0900"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 2000
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b040"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c3d"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "2827"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "4432"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "545a"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "746e"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "6c3c"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c84a"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c48"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "4827"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "4f3b"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "5f63"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7f77"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7745"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b054"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c55"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "6827"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "5a44"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "6a6c"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8a80"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "824e"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c85e"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c64"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "284f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "654c"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7574"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "9588"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8d56"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b068"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c73"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "484f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7055"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "807d"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "a091"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "985f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c872"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c82"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "684f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7b5e"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8b86"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ab9a"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "a368"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b07c"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c91"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "2877"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8666"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "968e"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b6a2"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ae70"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c886"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8ca5"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "4877"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "916f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "a197"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c1ab"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b979"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b090"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c3d"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "6877"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "9c78"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "aca0"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ccb4"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c482"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c89a"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c48"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "289f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "4781"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "57a9"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "77bd"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "6f8b"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b0a4"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c55"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "489f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "528a"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "62b2"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "82c6"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "7a94"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c8ae"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c64"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "28c7"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "5d92"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "6dba"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8dce"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "859c"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "b0b8"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c73"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "48c7"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "689b"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "78c3"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "98d7"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "90a5"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "c8c2"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8c82"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "689f"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "73a4"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "83cc"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "a3e0"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "9bae"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "8827"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "88c7"
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 6
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 12
+  },
+  {
+   "frames": 60
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b88"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b9a"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "write": {
+    "address": "$4833",
+    "data": "ffff"
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0b85"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  }
+ ]
+}

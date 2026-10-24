@@ -1,0 +1,40 @@
+{
+  "name": "plot_brush",
+  "title": "Brush plot",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$17ad"},
+  "length": 91,
+  "bytes": [
+    "a586858c48a587858d48a000848eb18a",
+    "c980f03c18658ce621c521c621b028aa",
+    "c8b18a848e18658de64fc54fc64fb00f",
+    "a8ad604fd0062041184cec17200818a4",
+    "8ec8848e4cbb17a48ec8c8848e4cbb17",
+    "68a868aa20f71820251560"
+  ],
+  "instructions": [0,2,4,5,7,9,10,12,14,16,18,20,21,23,25,27,29,31,32,33,35,37,38,40,42,44,46,48,49,52,54,57,60,63,65,66,68,71,73,74,75,77,80,81,82,83,84,87,90],
+  "relocations": [
+    {"at":58,"size":"word","value":63},
+    {"at":69,"size":"word","value":14},
+    {"at":78,"size":"word","value":14}
+  ],
+  "variable": [1,3,6,8,13,15,22,24,26,28,34,36,39,41,43,45,50,51,55,56,61,62,64,67,72,76,85,86,88,89],
+  "symbols": [
+    {"at":0,"name":"plot_brush","kind":"routine"},
+    {"at":14,"name":"plot_brush_loop","kind":"label"},
+    {"at":60,"name":"plot_brush_mirror","kind":"label"},
+    {"at":63,"name":"plot_brush_next","kind":"label"},
+    {"at":71,"name":"plot_brush_skip","kind":"label"},
+    {"at":80,"name":"plot_brush_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":90,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Plots the brush (brush_ptr) in current_colour around the selected pixel (pixel_x, pixel_y). The brush is a list of (dx, dy) byte pairs; $80 ends it. A point outside 0-max_x or 0-max_y is not plotted. In mirror mode each point is plotted 4 times ($1808), else one time ($1841). At the end selects the centre pixel again ($18f7) and gets its pixel value (get_colour_slot). It is a plot_vector routine of the line routines."},
+    {"at":23,"placement":"side","text":"X > max_x: the point is not plotted."},
+    {"at":40,"placement":"side","text":"Y > max_y: the point is not plotted."},
+    {"at":71,"placement":"side","text":"Skips dy of a point that is not plotted."}
+  ],
+  "references": [],
+  "operands": []
+}

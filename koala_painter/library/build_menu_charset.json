@@ -1,0 +1,26 @@
+{
+  "name": "build_menu_charset",
+  "title": "Menu Character Set Setup",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$1c2f"},
+  "length": 51,
+  "bytes": [
+    "a9008d20d0a90b8d11d078a5014829fb",
+    "8501a9f8a01e206143688501a9748d18",
+    "d0ad02dd09038d02ddad00dd29fe8d00",
+    "dd5860"
+  ],
+  "instructions": [0,2,5,7,10,11,13,14,16,18,20,22,25,26,28,30,33,36,38,41,44,46,49,50],
+  "relocations": [],
+  "variable": [3,4,8,9,12,17,23,24,27,31,32,34,35,39,40,42,43,47,48],
+  "symbols": [
+    {"at":0,"name":"build_menu_charset","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":50,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets the border black and blanks the screen ($d011 = $0b). With the character ROM visible, it runs menu_charset_script (charset at $5000). Then it selects screen $5c00 and charset $5000 ($d018 = $74) in VIC bank 1 ($dd00)."}
+  ],
+  "references": [],
+  "operands": []
+}

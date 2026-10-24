@@ -1,0 +1,65 @@
+{"id":"20261024T062304.808-prt6k8/1377","space":"c64","start":"$0900","file":"init/entry.asm","title":"Entry JMP Table and Cold Start","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1378","space":"c64","start":"$0969","file":"irq/irq.asm","title":"IRQ Handler","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1379","space":"c64","start":"$0a3c","file":"init/screen.asm","title":"Timer and Screen Control","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1380","space":"c64","start":"$0a81","file":"init/start.asm","title":"Start-up","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1381","space":"c64","start":"$0a98","file":"irq/menu_irq.asm","title":"Menu Raster Interrupt On and Off","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1382","space":"c64","start":"$0acc","file":"input/buttons.asm","title":"Pad Buttons and Waits","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1383","space":"c64","start":"$0b02","file":"menu/menu.asm","title":"Main Menu and Command Dispatch","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1384","space":"c64","start":"$0cc5","file":"menu/flash.asm","title":"Menu Flash","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1385","space":"c64","start":"$0d71","file":"data/menu_tables.asm","title":"Command, Flash Cell and Brush Tables","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1386","space":"c64","start":"$0dcd","file":"tools/tool_start.asm","title":"Tool Start","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1387","space":"c64","start":"$0de0","file":"tools/lines.asm","title":"Lines","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1388","space":"c64","start":"$0e17","file":"tools/rays.asm","title":"Rays","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1389","space":"c64","start":"$0ea3","file":"tools/circle.asm","title":"Circle and Disc","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1390","space":"c64","start":"$1028","file":"tools/line_tool.asm","title":"Line tool","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1391","space":"c64","start":"$1192","file":"tools/box_frame_tool.asm","title":"Box and Frame tools","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1392","space":"c64","start":"$13f0","file":"tools/fill_tool.asm","title":"Fill tool","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1393","space":"c64","start":"$1442","file":"tools/draw_tool.asm","title":"Draw tool","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1394","space":"c64","start":"$1493","file":"tools/tool_exit.asm","title":"Tool exit and shared tool helpers","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1395","space":"c64","start":"$14ed","file":"graphics/display_mode.asm","title":"Bitmap and text display mode","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1396","space":"c64","start":"$1523","file":"graphics/colour_slots.asm","title":"Colours of a picture cell","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1397","space":"c64","start":"$161e","file":"tools/mirror_oops_tool.asm","title":"Mirror and Oops commands","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1398","space":"c64","start":"$165f","file":"tools/xcolor_tool.asm","title":"Xcolor tool","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1399","space":"c64","start":"$178a","file":"graphics/plot_brush.asm","title":"Brush plot","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1400","space":"c64","start":"$17e5","file":"graphics/brush_plot.asm","title":"Dither and Mirror Point Plot","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1401","space":"c64","start":"$1845","file":"data/brush_shapes.asm","title":"Brush Shapes","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1402","space":"c64","start":"$1895","file":"graphics/pixel.asm","title":"Pixel Address, Plot, Invert and Read","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1403","space":"c64","start":"$1988","file":"input/cursor.asm","title":"Cursor Sprites and Cursor Position","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1404","space":"c64","start":"$1af8","file":"script/cursor_scripts.asm","title":"Cursor Sprite Scripts and Brush Marks","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1405","space":"c64","start":"$1ba3","file":"input/pad_to_screen.asm","title":"Pad Units to Screen Units","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1406","space":"c64","start":"$1c04","file":"init/menu_charset.asm","title":"Menu Character Set Setup","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1407","space":"c64","start":"$1c37","file":"input/hit_test.asm","title":"Hit Test of the Cell Tables","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1408","space":"c64","start":"$1ccc","file":"input/pad_smoothing.asm","title":"Pad Sample Smoothing","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1409","space":"c64","start":"$1d98","file":"menu/draw_menu.asm","title":"Draw the Menu","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1410","space":"c64","start":"$1da8","file":"script/picture_buffers.asm","title":"Scripts: Picture Colours, Undo and Buffers","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1411","space":"c64","start":"$1eb6","file":"script/menu_charset.asm","title":"Script: Menu Character Set","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1412","space":"c64","start":"$232b","file":"script/screen_scripts.asm","title":"Scripts: Colour Bar and Screen Clear","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1413","space":"c64","start":"$236a","file":"script/storage_screen.asm","title":"Script: Storage Screen","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1414","space":"c64","start":"$2438","file":"storage/storage_scripts.asm","title":"Storage Screen Scripts and Texts","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1415","space":"c64","start":"$25a6","file":"menu/colour_row_mark.asm","title":"Menu Colour Row Mark","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1416","space":"c64","start":"$25c8","file":"data/menu_zoom_hit_tables.asm","title":"Hit Tables of the Menu and the Zoom Screen","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1417","space":"c64","start":"$2746","file":"graphics/bresenham_line.asm","title":"Line Drawing and Mirrored XOR Plot","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1418","space":"c64","start":"$29c7","file":"storage/storage_screen.asm","title":"Storage Screen: Directory, Save, Get, Name and Disk Commands","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1419","space":"c64","start":"$2d3c","file":"storage/storage_data.asm","title":"Storage Names, Hit Table and Messages","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1420","space":"c64","start":"$2e0e","file":"text/cursor_labels.asm","title":"Tool Name Labels of the Cursor","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1421","space":"c64","start":"$2f3c","file":"zoom/zoom_choose_area.asm","title":"Zoom: Choose the Area","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1422","space":"c64","start":"$3115","file":"zoom/zoom_view.asm","title":"Zoom: magnified view and its scripts","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1423","space":"c64","start":"$32ac","file":"menu/brush_marker.asm","title":"Brush marker in the menu","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1424","space":"c64","start":"$32be","file":"zoom/zoom_clamp.asm","title":"Zoom: cursor limits","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1425","space":"c64","start":"$32d7","file":"menu/brush_marker_data.asm","title":"Brush marker table and script","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1426","space":"c64","start":"$32ef","file":"storage/picture_file.asm","title":"Save and load of the picture file","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1427","space":"c64","start":"$33d0","file":"tools/copy.asm","title":"Copy","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1428","space":"c64","start":"$35e5","file":"tools/swap.asm","title":"Swap","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1429","space":"c64","start":"$3659","file":"tools/fill.asm","title":"Fill","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1430","space":"c64","start":"$3924","file":"graphics/bit_pair_colour.asm","title":"Colour of a bit pair","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1431","space":"c64","start":"$393d","file":"protection/disk_protection.asm","title":"Disk protection","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1432","space":"c64","start":"$39c4","file":"storage/drive_status.asm","title":"Drive status","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1433","space":"c64","start":"$3a26","file":"graphics/circle.asm","title":"Circle and Disc","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1434","space":"c64","start":"$3bc3","file":"graphics/circle_plot.asm","title":"Circle and Disc Plot Routines","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1435","space":"c64","start":"$3dcc","file":"menu/menu_screen_script.asm","title":"Menu Screen Script","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1436","space":"c64","start":"$4202","file":"script/interpreter.asm","title":"Script Interpreter","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1437","space":"c64","start":"$4266","file":"script/opcodes.asm","title":"Script Opcode Routines","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1438","space":"c64","start":"$44e5","file":"graphics/read_pixel.asm","title":"Bitmap and Colour Reads in All RAM","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1439","space":"c64","start":"$4525","file":"script/opcode_table.asm","title":"Script Opcode Table","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1440","space":"c64","start":"$4630","file":"data/workspace.asm","title":"Workspace, Script Stacks and Variables","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}
+{"id":"20261024T062304.808-prt6k8/1441","space":"c64","start":"$5800","file":"data/title_picture.asm","title":"Title Picture","origin":"llm","added":"20261024T062304.808-prt6k8","closed":null}

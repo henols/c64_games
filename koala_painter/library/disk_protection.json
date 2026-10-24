@@ -1,0 +1,63 @@
+{
+  "name": "disk_protection",
+  "title": "Disk protection",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$3a43"},
+  "length": 156,
+  "bytes": [
+    "a9018d1384ad1384c901d040a9008d13",
+    "84ad1384d03620ad3aa90ba297a03a20",
+    "a12ceaea20c23aeaea20e7ff20ad3aa9",
+    "0ba2a2a03a20a12ceaea20c23aeaea20",
+    "e7ff20832c78a2ff9a4c7f0aa971a01e",
+    "4c61432355313a352c302c312c310d55",
+    "313a352c302c312c320da901a296a03a",
+    "20bdffa905a208a00520baff4cc0ff20",
+    "ccffa20f20c6ff20cfff290f8d500848",
+    "20cfffc90dd0f920ccff6860"
+  ],
+  "instructions": [0,2,5,8,10,12,14,17,20,22,25,27,29,31,34,35,36,39,40,41,44,47,49,51,53,56,57,58,61,62,63,66,69,70,72,73,76,78,80,106,108,110,112,115,117,119,121,124,127,130,132,135,138,140,143,144,147,149,151,154,155],
+  "relocations": [
+    {"at":23,"size":"word","value":106},
+    {"at":37,"size":"word","value":127},
+    {"at":45,"size":"word","value":106},
+    {"at":59,"size":"word","value":127}
+  ],
+  "variable": [3,4,6,7,15,16,18,19,32,33,42,43,54,55,64,65,67,68,74,75,81,82,113,114,122,123,125,126,128,129,133,134,136,137,141,142,145,146,152,153],
+  "symbols": [
+    {"at":0,"name":"disk_protection","kind":"routine"},
+    {"at":76,"name":"protection_failed","kind":"label"},
+    {"at":83,"name":"protection_commands","kind":"data"},
+    {"at":106,"name":"protection_open_buffer","kind":"routine"},
+    {"at":127,"name":"protection_read_status","kind":"routine"},
+    {"at":144,"name":"protection_skip_status","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":33,"type":"code"},
+    {"start":34,"end":35,"type":"code"},
+    {"start":36,"end":55,"type":"code"},
+    {"start":56,"end":57,"type":"code"},
+    {"start":58,"end":68,"type":"code"},
+    {"start":69,"end":82,"type":"code"},
+    {"start":83,"end":105,"type":"petscii"},
+    {"start":106,"end":150,"type":"code"},
+    {"start":151,"end":153,"type":"code"},
+    {"start":154,"end":155,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Disk protection (switch PROTECTION), reached from op 9 of startup_script. A RAM test at $8413: when the byte does not keep $01 and $00, protection_failed. Then for track 1 sectors 1 and 2: opens the buffer channel 5, sends a U1 command on channel 15 and reads the first digit of the drive status (protection_result). TBC put NOPs over the checks of the results. Then CLALL, the command I (initialize) to the drive, a new stack and start_main."},
+    {"at":2,"placement":"side","text":"RAM test: $8413 must keep $01, then $00."},
+    {"at":25,"placement":"side","text":"Command U1:5,0,1,1 (11 bytes): reads track 1 sector 1 into the buffer of channel 5."},
+    {"at":34,"placement":"side","text":"NOPs of TBC over the check of the command."},
+    {"at":39,"placement":"side","text":"NOPs of TBC over the check of the drive status."},
+    {"at":47,"placement":"side","text":"Command U1:5,0,1,2: reads track 1 sector 2."},
+    {"at":56,"placement":"side","text":"NOPs of TBC over the check of the command."},
+    {"at":61,"placement":"side","text":"NOPs of TBC over the check of the drive status."},
+    {"at":66,"placement":"side","text":"Sends I (initialize) to the drive."},
+    {"at":76,"placement":"line","text":"Protection failed: the script at $1e71 does SEI and writes 0 to 16000 bytes from $0900. The program erases itself."},
+    {"at":83,"placement":"line","text":"Protection: the name # of the buffer channel, and the two U1 commands that read track 1 sectors 1 and 2 into it."},
+    {"at":106,"placement":"line","text":"Opens file 5 on device 8 with secondary address 5 and the name # (a buffer in the drive)."},
+    {"at":127,"placement":"line","text":"Reads the drive status from channel 15 up to the CR. Gives the first digit of the error number (and 15) in A and in protection_result."}
+  ],
+  "references": [],
+  "operands": []
+}

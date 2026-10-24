@@ -1,0 +1,24 @@
+{
+  "name": "show_brush_marker",
+  "title": "Brush marker in the menu",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$32ea"},
+  "length": 18,
+  "bytes": [
+    "ad5a4f4aaabd15338d474fa91da0334c",
+    "6143"
+  ],
+  "instructions": [0,3,4,5,8,11,13,15],
+  "relocations": [],
+  "variable": [1,2,6,7,9,10,16,17],
+  "symbols": [
+    {"at":0,"name":"show_brush_marker","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Marks the current brush in the menu: runs brush_marker_script with the value brush_marker_columns[current_brush / 2] as its argument."}
+  ],
+  "references": [],
+  "operands": []
+}

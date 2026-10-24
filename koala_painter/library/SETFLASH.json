@@ -1,0 +1,66 @@
+{
+  "name": "SETFLASH",
+  "title": "Menu Flash",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$0cc8"},
+  "length": 172,
+  "bytes": [
+    "291f8d654f0aaabd980d1d990df076a9",
+    "008d644f8530a905a043206143ad654f",
+    "8d634fa901852f60ad674fc900d008a9",
+    "028d674f4c040da9008d674f200d0d20",
+    "200d4c2f0dad634f0aaabd980d8554bd",
+    "990d855520690d60ad604ff005a9134c",
+    "100da2134c3b0dad644ff005a9124c10",
+    "0da212ad674f48a9008d674f8a20100d",
+    "688d674f60ad654fc911d00dae644fe0",
+    "01f006a9018d644f606868ad654f4cbb",
+    "0bad674fa00591548810fb60"
+  ],
+  "instructions": [0,2,5,6,7,10,13,15,17,20,22,24,26,29,32,35,37,39,40,43,45,47,49,52,55,57,60,63,66,69,72,73,74,77,79,82,84,87,88,91,93,95,98,100,103,106,108,110,113,115,118,119,121,124,125,128,129,132,133,136,138,140,143,145,147,149,152,153,154,155,158,161,164,166,168,169,171],
+  "relocations": [
+    {"at":53,"size":"word","value":60},
+    {"at":61,"size":"word","value":69},
+    {"at":64,"size":"word","value":88},
+    {"at":67,"size":"word","value":103},
+    {"at":85,"size":"word","value":161},
+    {"at":96,"size":"word","value":72},
+    {"at":101,"size":"word","value":115},
+    {"at":111,"size":"word","value":72},
+    {"at":126,"size":"word","value":72}
+  ],
+  "variable": [3,4,8,9,11,12,18,19,21,27,28,30,31,33,34,38,41,42,50,51,58,59,70,71,75,76,78,80,81,83,89,90,104,105,116,117,122,123,130,131,134,135,141,142,150,151,156,157,159,160,162,163,167],
+  "symbols": [
+    {"at":0,"name":"SETFLASH","kind":"routine"},
+    {"at":40,"name":"FLASHEM","kind":"label"},
+    {"at":55,"name":"FLSHTOBL","kind":"label"},
+    {"at":60,"name":"DOFLASH","kind":"label"},
+    {"at":69,"name":"ONLSTFX","kind":"label"},
+    {"at":72,"name":"ONLSTFX1","kind":"label"},
+    {"at":88,"name":"MIRRED","kind":"label"},
+    {"at":98,"name":"SETFLDNZ","kind":"label"},
+    {"at":103,"name":"FLSHERA","kind":"label"},
+    {"at":113,"name":"flash_erase_off","kind":"label"},
+    {"at":115,"name":"flash_cell_off","kind":"label"},
+    {"at":133,"name":"setflash_no_cell","kind":"label"},
+    {"at":153,"name":"setflash_run_now","kind":"label"},
+    {"at":161,"name":"paint_flash_cell","kind":"routine"},
+    {"at":166,"name":"paint_flash_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":171,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"SETFLASH (name from the symbol table leftover): A AND $1f is the chosen command (chosen_command). A command with a menu cell in flash_cell_table (1-$0a): erase_mode off, pad_read_enable = 0, the script at $4305, current_command = chosen_command, flash_enable on. A command without a cell goes to setflash_no_cell."},
+    {"at":40,"placement":"line","text":"FLASHEM (name from the symbol table leftover): changes flash_colour between 0 and 2, then paints the flash cells (DOFLASH). irq_flash calls it each 20 interrupts."},
+    {"at":60,"placement":"line","text":"DOFLASH: paints the cell of current_command, the Mirror cell and the Erase cell."},
+    {"at":69,"placement":"line","text":"ONLSTFX: paints the menu cell of current_command with flash_colour."},
+    {"at":72,"placement":"line","text":"ONLSTFX1: paints the menu cell of the index in A (flash_cell_table) with flash_colour."},
+    {"at":88,"placement":"line","text":"MIRRED: paints the Mirror cell (index $13) with flash_colour when mirror_mode is on, else with colour 0."},
+    {"at":103,"placement":"line","text":"FLSHERA: paints the Erase cell (index $12) with flash_colour when erase_mode is on, else with colour 0."},
+    {"at":115,"placement":"line","text":"Paints the cell of the index in X with colour 0, and keeps flash_colour."},
+    {"at":133,"placement":"line","text":"A command without a flash cell. Erase ($11) when erase_mode is not 1: erase_mode = 1, return. Else it removes the return address of the caller and runs the command at once (run_command)."},
+    {"at":161,"placement":"line","text":"Writes flash_colour to the 6 bytes of colour RAM at menu_ptr: one menu cell."}
+  ],
+  "references": [],
+  "operands": []
+}

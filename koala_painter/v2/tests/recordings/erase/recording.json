@@ -1,0 +1,468 @@
+{
+  "format": 1,
+  "name": "Erase: a Disc and a drag to have a picture, then Erase with a colour and a brush, one drag and three taps in the picture, back to the menu. Joystick on port 1 through a test-only hook (see tests/README.md).",
+  "program": "tests/program/tbc_0900.prg",
+  "sha256": "9b580abe53d3fbacfc7436236c9738b2b3fb4afc2d29b8762962a3a212321345",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$4839",
+          "data": "0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "write": {
+          "address": "$4800",
+          "data": "ad01dc2901d003ce3348ad01dc2902d003ee3348ad01dc2904d003ce3448ad01dc2908d003ee3448ad33488527ad34488560600000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "write": {
+          "address": "$0999",
+          "data": "10eaeaeaeaeaeaea",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "write": {
+          "address": "$09fc",
+          "data": "200048eaeaeaeaeaeaea",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "write": {
+          "address": "$1e30",
+          "data": "ff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "registers": {
+          "pc": "$0900"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 9,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b88",
+            "space": "c64"
+          },
+          "timeoutFrames": 2000
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "b05e",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 91
+      }
+    },
+    {
+      "step": 17,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c64",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 148
+      }
+    },
+    {
+      "step": 23,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "4877",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 205
+      }
+    },
+    {
+      "step": 29,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 262
+      }
+    },
+    {
+      "step": 31,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b88",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 353
+      }
+    },
+    {
+      "step": 33,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b9a",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 355
+      }
+    },
+    {
+      "step": 37,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "7464",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 457
+      }
+    },
+    {
+      "step": 43,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 615
+      }
+    },
+    {
+      "step": 46,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b85",
+            "space": "c64"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 709
+      }
+    },
+    {
+      "step": 50,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "c8c2",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 871
+      }
+    },
+    {
+      "step": 56,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "8c82",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 932
+      }
+    },
+    {
+      "step": 62,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "88c7",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 993
+      }
+    },
+    {
+      "step": 69,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1193
+      }
+    },
+    {
+      "step": 71,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b88",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1287
+      }
+    },
+    {
+      "step": 73,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b9a",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1289
+      }
+    },
+    {
+      "step": 78,
+      "action": {
+        "write": {
+          "address": "$4833",
+          "data": "ffff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1534
+      }
+    },
+    {
+      "step": 81,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$0b85",
+            "space": "c64"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$4800",
+        "addr": "$dc01",
+        "count": 1627
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 1113,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 1113,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$4800",
+      "addr": "$dc01",
+      "reads": 1758,
+      "rom": false
+    },
+    {
+      "site": "$480a",
+      "addr": "$dc01",
+      "reads": 1758,
+      "rom": false
+    },
+    {
+      "site": "$4814",
+      "addr": "$dc01",
+      "reads": 1758,
+      "rom": false
+    },
+    {
+      "site": "$481e",
+      "addr": "$dc01",
+      "reads": 1758,
+      "rom": false
+    },
+    {
+      "site": "$0995",
+      "addr": "$dc01",
+      "reads": 879,
+      "rom": false
+    }
+  ],
+  "ticks": 21880944,
+  "hash": "05f23a9f"
+}

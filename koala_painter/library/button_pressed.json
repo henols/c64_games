@@ -1,0 +1,38 @@
+{
+  "name": "button_pressed",
+  "title": "Pad Buttons and Waits",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$0acf"},
+  "length": 54,
+  "bytes": [
+    "a50f48a900850f68c9006020ef0af00d",
+    "a58fc9109007a900858fa90160a90060",
+    "a50e60588519a9ff38e51985a2a5a2c9",
+    "04b0fa606060"
+  ],
+  "instructions": [0,2,3,5,7,8,10,11,14,16,18,20,22,24,26,28,29,31,32,34,35,36,38,40,41,43,45,47,49,51,52],
+  "relocations": [
+    {"at":12,"size":"word","value":32}
+  ],
+  "variable": [1,6,17,25,33,37,42,44,46],
+  "symbols": [
+    {"at":0,"name":"button_pressed","kind":"routine"},
+    {"at":11,"name":"long_press_off_pad","kind":"routine"},
+    {"at":29,"name":"long_press_none","kind":"label"},
+    {"at":32,"name":"button_down","kind":"routine"},
+    {"at":35,"name":"wait_jiffies","kind":"routine"},
+    {"at":45,"name":"wait_jiffies_loop","kind":"label"},
+    {"at":52,"name":"null_routine","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":52,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Gives the press of a pad button since the last call (button_press_edge), and clears it. Z is set when there was no press."},
+    {"at":11,"placement":"line","text":"A is 1 when the pad is not touched for 16 samples (off_pad_count) and a button is held: the gesture that changes between the menu and the picture."},
+    {"at":32,"placement":"line","text":"Gives button_held in A: 1 while a pad button is down."},
+    {"at":35,"placement":"line","text":"Waits A + 1 jiffies: sets the low byte of the jiffy clock ($a2) to $ff - A and waits until it wraps to a value below 4. Turns the interrupts on. Only the JMP table entry $090c points here."},
+    {"at":52,"placement":"line","text":"Only an RTS. The JMP table entry $0909 points here."}
+  ],
+  "references": [],
+  "operands": []
+}

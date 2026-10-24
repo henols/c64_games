@@ -1,0 +1,28 @@
+{
+  "name": "start_script",
+  "title": "Start-up",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$0a76"},
+  "length": 37,
+  "bytes": [
+    "a01ea91a2061436060204b0aa95ba01e",
+    "206143a900852f58200a1520420a20ab",
+    "1920050b60"
+  ],
+  "instructions": [0,2,4,7,9,12,14,16,19,21,23,24,27,30,33,36],
+  "relocations": [],
+  "variable": [5,6,10,11,17,18,22,25,26,28,29,31,32,34,35],
+  "symbols": [
+    {"at":0,"name":"start_script","kind":"routine"},
+    {"at":9,"name":"start_main","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":7,"type":"code"},
+    {"start":9,"end":36,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Runs the start-up script at $1e1a. Its op 9 jumps to the disk protection (switch PROTECTION)."},
+    {"at":9,"placement":"line","text":"Start-up after the start-up script: init_menu_screen, the script at $1e5b, menu flash off, interrupts on, text mode ($150a), screen on, the cursor sprites ($19ab), then menu."}
+  ],
+  "references": [],
+  "operands": []
+}

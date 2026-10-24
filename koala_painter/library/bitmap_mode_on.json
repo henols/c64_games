@@ -1,0 +1,28 @@
+{
+  "name": "bitmap_mode_on",
+  "title": "Bitmap and text display mode",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$14ef"},
+  "length": 54,
+  "bytes": [
+    "ad11d009208d11d0ad16d009108d16d0",
+    "ad18d009088d18d04c420aad11d029df",
+    "8d11d0ad16d029ef8d16d0ad18d029f7",
+    "8d18d04c420a"
+  ],
+  "instructions": [0,3,5,8,11,13,16,19,21,24,27,30,32,35,38,40,43,46,48,51],
+  "relocations": [],
+  "variable": [1,2,6,7,9,10,14,15,17,18,22,23,25,26,28,29,33,34,36,37,41,42,44,45,49,50,52,53],
+  "symbols": [
+    {"at":0,"name":"bitmap_mode_on","kind":"routine"},
+    {"at":27,"name":"text_mode_on","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":53,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Shows the picture: sets bitmap mode ($d011 bit 5), multicolour mode ($d016 bit 4) and the bitmap at offset $2000 of the VIC bank ($d018 bit 3). Then sets the screen on ($0a42)."},
+    {"at":27,"placement":"line","text":"Shows the text screen: clears bitmap mode ($d011 bit 5), multicolour mode ($d016 bit 4) and $d018 bit 3. Then sets the screen on ($0a42)."}
+  ],
+  "references": [],
+  "operands": []
+}

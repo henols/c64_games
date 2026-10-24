@@ -1,0 +1,49 @@
+{
+  "name": "cmd_rays",
+  "title": "Rays",
+  "from": {"program":"v2","image":"knowledge revision 20261024T060153.303-4co6b5","start":"$0e17"},
+  "length": 139,
+  "bytes": [
+    "a5ec48a90185eca9cca02e20d00da54a",
+    "854da5e1854a206811209327a54d854a",
+    "a50e850fd00e205c1a20da0af0066885",
+    "ec4c9514205c1aa52ac9fff0e3a62a86",
+    "dba42b84dc20ef0af0062088274c3d0e",
+    "209327205c1aa52ac9ffd0034c970ea5",
+    "2ac5dbd009a52bc5dcd0034c970ea52a",
+    "48a52b482093276885dc6885db209327",
+    "20ef0af0ce2093274c3d0e"
+  ],
+  "instructions": [0,2,3,5,7,9,11,14,16,18,20,22,25,28,30,32,34,36,38,41,44,46,47,49,52,55,57,59,61,63,65,67,69,72,74,77,80,83,86,88,90,92,95,97,99,101,103,105,107,110,112,113,115,116,119,120,122,123,125,128,131,133,136],
+  "relocations": [
+    {"at":78,"size":"word","value":38},
+    {"at":93,"size":"word","value":128},
+    {"at":108,"size":"word","value":128},
+    {"at":137,"size":"word","value":38}
+  ],
+  "variable": [1,6,12,13,15,17,19,21,23,24,26,27,29,31,33,35,39,40,42,43,48,50,51,53,54,56,62,64,66,68,70,71,75,76,81,82,84,85,87,96,98,102,104,111,114,117,118,121,124,126,127,129,130,134,135],
+  "symbols": [
+    {"at":0,"name":"cmd_rays","kind":"routine"},
+    {"at":32,"name":"rays_loop","kind":"label"},
+    {"at":38,"name":"rays_check_exit","kind":"label"},
+    {"at":52,"name":"rays_read_point","kind":"label"},
+    {"at":80,"name":"rays_band_draw","kind":"label"},
+    {"at":83,"name":"rays_band_loop","kind":"label"},
+    {"at":95,"name":"rays_band_test_move","kind":"label"},
+    {"at":110,"name":"rays_band_move","kind":"label"},
+    {"at":128,"name":"rays_band_button","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":138,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Command 6 (Rays): lines from one centre point. The centre comes from $1168. While a button is down, it draws a line from the centre to the cursor ($2788) at each read. While the buttons are up, a band line follows the cursor ($2793). It sets brush_plot_flag to 1 and puts it back at the end. A long press with no touch goes back to the menu ($1495)."},
+    {"at":5,"placement":"side","text":"brush_plot_flag = 1 during Rays"},
+    {"at":61,"placement":"side","text":"shape_x1/shape_y1 = cursor"},
+    {"at":116,"placement":"side","text":"remove the band line at the old point"},
+    {"at":125,"placement":"side","text":"draw the band line at the new point"},
+    {"at":133,"placement":"side","text":"remove the band line, then draw the real line"}
+  ],
+  "references": [],
+  "operands": []
+}
