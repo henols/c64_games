@@ -1,0 +1,146 @@
+{
+ "name": "setup",
+ "program": "tests/program/tfp_6000.prg",
+ "load": true,
+ "inputs": [
+  "$dc00",
+  "$dc01",
+  "$d012"
+ ],
+ "coverage": "start",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "registers": {
+    "pc": "$8000"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$8658"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$7d66"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 40
+   }
+  },
+  {
+   "frames": 1500
+  }
+ ]
+}

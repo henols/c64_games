@@ -1,0 +1,23 @@
+{
+  "name": "start-up of the TFP original and of the clean loader",
+  "original": { "program": "original/friendly_programmer/hover_bovver_tfp.prg", "symbols": "knowledge" },
+  "rebuild": { "program": "build/clean_loader.prg", "symbols": "build/symbols/clean_loader.json" },
+  "steps": [
+    { "frames": 150 },
+    { "autostart": true },
+    { "runUntil": { "target": { "kind": "address", "address": "attract_loop" }, "timeoutFrames": 3000 } },
+    { "observe": "after_init",
+      "memory": [
+        { "address": "$2000", "size": 2048 },
+        { "address": "$3000", "size": 4096 },
+        { "address": "$0340", "size": 27 },
+        { "address": "$0360", "size": 27 },
+        { "address": "$4c01", "size": 50 },
+        { "address": "$0314", "size": 6 }
+      ],
+      "vicii": true },
+    { "runUntil": { "target": { "kind": "address", "address": "show_high_scores" }, "timeoutFrames": 6000 } },
+    { "frames": 100 },
+    { "observe": "high_scores", "screen": {}, "memory": [{ "address": "$0400", "size": 1000 }, { "address": "$d800", "size": 1000, "mask": "0f" }] }
+  ]
+}

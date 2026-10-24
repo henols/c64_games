@@ -1,0 +1,24 @@
+{
+ "name": "attract",
+ "program": "tests/program/tfp_6000.prg",
+ "load": true,
+ "inputs": [
+  "$dc00",
+  "$dc01",
+  "$d012"
+ ],
+ "coverage": "start",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "registers": {
+    "pc": "$8000"
+   }
+  },
+  {
+   "frames": 9000
+  }
+ ]
+}

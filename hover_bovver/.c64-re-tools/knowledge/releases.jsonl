@@ -1,0 +1,5 @@
+{"id":"20261024T085802.326-uuat1w/1","space":"c64","label":"HF","base":0,"comment":"Hokuto Force +6DH (2008), csdb 74063: menu answer T with all trainers off","origin":"llm","added":"20261024T085802.326-uuat1w","closed":null}
+{"id":"20261024T085802.803-mw3g2o/1","space":"c64","label":"HF_SCORES","base":0,"comment":"Hokuto Force +6DH (2008): menu answer H, the high-score saver","origin":"llm","added":"20261024T085802.803-mw3g2o","closed":null}
+{"id":"20261024T085802.545-5wpxo8/1","space":"c64","label":"HF_TRAINERS","base":0,"comment":"Hokuto Force +6DH (2008): menu answer T with all six trainers on","origin":"llm","added":"20261024T085802.545-5wpxo8","closed":null}
+{"id":"20261024T085802.059-mgnq2k/1","space":"c64","label":"KSX","base":0,"comment":"Kraksnax (2022) \"US/Canadian edition\", csdb 215611: recrack of the TFP block with new texts","origin":"llm","added":"20261024T085802.059-mgnq2k","closed":null}
+{"id":"20261024T085801.806-i81i1j/1","space":"c64","label":"TFP","base":1,"comment":"The Friendly Programmer (1984), csdb 24125: T64 memory dump; the original MAIN block $6000-$9fff","origin":"llm","added":"20261024T085801.806-i81i1j","closed":null}

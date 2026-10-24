@@ -1,0 +1,656 @@
+{
+  "format": 1,
+  "name": "lawns",
+  "program": "tests/program/tfp_6000.prg",
+  "sha256": "df34d79ea94ea27d6ffbb78c5a9397cdae1879a2f6ed45c46a7a6d15b41edc23",
+  "symbols": "knowledge",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d012"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "registers": {
+          "pc": "$8000"
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$8658",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$8658",
+        "count": 1
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$7d66",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$7d66",
+        "count": 1
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 88
+      }
+    },
+    {
+      "step": 12,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 14,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 89
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 17,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 90
+      }
+    },
+    {
+      "step": 18,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 20,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 91
+      }
+    },
+    {
+      "step": 21,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 23,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 92
+      }
+    },
+    {
+      "step": 24,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 26,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 93
+      }
+    },
+    {
+      "step": 27,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 29,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 94
+      }
+    },
+    {
+      "step": 30,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 32,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 95
+      }
+    },
+    {
+      "step": 33,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 35,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 96
+      }
+    },
+    {
+      "step": 36,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 38,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 97
+      }
+    },
+    {
+      "step": 39,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 41,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 98
+      }
+    },
+    {
+      "step": 42,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 44,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 99
+      }
+    },
+    {
+      "step": 45,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 47,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 100
+      }
+    },
+    {
+      "step": 48,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 50,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 101
+      }
+    },
+    {
+      "step": 51,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 53,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 102
+      }
+    },
+    {
+      "step": 54,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 56,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 103
+      }
+    },
+    {
+      "step": 57,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 59,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 104
+      }
+    },
+    {
+      "step": 60,
+      "action": {
+        "write": {
+          "address": "$0022",
+          "data": "0000",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 62,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$90e9",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$90e9",
+        "count": 105
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$ff5e",
+      "addr": "$d012",
+      "reads": 2096,
+      "rom": true
+    },
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 46747,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 46747,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 46747,
+      "rom": true
+    },
+    {
+      "site": "$864e",
+      "addr": "$dc01",
+      "reads": 553,
+      "rom": false
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 28989,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 28989,
+      "rom": true
+    },
+    {
+      "site": "$9585",
+      "addr": "$d012",
+      "reads": 34,
+      "rom": false
+    }
+  ],
+  "ticks": 427370738,
+  "hash": "d344c383"
+}

@@ -1,0 +1,118 @@
+{
+  "format": 1,
+  "name": "keys",
+  "program": "tests/program/tfp_6000.prg",
+  "sha256": "df34d79ea94ea27d6ffbb78c5a9397cdae1879a2f6ed45c46a7a6d15b41edc23",
+  "symbols": "knowledge",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d012"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "registers": {
+          "pc": "$8000"
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$8658",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$8658",
+        "count": 1
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$7d66",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$7d66",
+        "count": 1
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$ff5e",
+      "addr": "$d012",
+      "reads": 2096,
+      "rom": true
+    },
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 9686,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 9686,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 9686,
+      "rom": true
+    },
+    {
+      "site": "$864e",
+      "addr": "$dc01",
+      "reads": 1572,
+      "rom": false
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 38016,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 38016,
+      "rom": true
+    },
+    {
+      "site": "$9585",
+      "addr": "$d012",
+      "reads": 21,
+      "rom": false
+    },
+    {
+      "site": "$96b6",
+      "addr": "$d012",
+      "reads": 4,
+      "rom": false
+    }
+  ],
+  "ticks": 93134014,
+  "hash": "acdfbc1e"
+}

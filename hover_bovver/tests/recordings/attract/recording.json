@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "name": "attract",
+  "program": "tests/program/tfp_6000.prg",
+  "sha256": "df34d79ea94ea27d6ffbb78c5a9397cdae1879a2f6ed45c46a7a6d15b41edc23",
+  "symbols": "knowledge",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d012"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "registers": {
+          "pc": "$8000"
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$ff5e",
+      "addr": "$d012",
+      "reads": 2096,
+      "rom": true
+    },
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 19821,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 19821,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 19821,
+      "rom": true
+    },
+    {
+      "site": "$864e",
+      "addr": "$dc01",
+      "reads": 1854841,
+      "rom": false
+    }
+  ],
+  "ticks": 182800804,
+  "hash": "a07d66b9"
+}
