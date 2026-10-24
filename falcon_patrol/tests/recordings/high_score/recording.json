@@ -1,0 +1,1247 @@
+{
+  "format": 1,
+  "name": "High-score entry: a test hook writes the score 01750 and lives 0 after the start, the jet dives into the ground, the name FP is entered letter by letter, then the title runs 4000 frames without FIRE",
+  "program": "original/bombardieri/falcon.prg",
+  "sha256": "eb95c68bf34f5501205ed71e59c99c3faa0d4f76f51aa75e40602196fc069bdf",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "registers": {
+          "pc": "$4100"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4185",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$4185",
+        "count": 1
+      }
+    },
+    {
+      "step": 9,
+      "action": {
+        "write": {
+          "address": "$0012",
+          "data": "0001070500",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 10,
+      "action": {
+        "write": {
+          "address": "$001d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4c90",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "$4c90",
+        "count": 1
+      }
+    },
+    {
+      "step": 17,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 1
+      }
+    },
+    {
+      "step": 19,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 2
+      }
+    },
+    {
+      "step": 21,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 3
+      }
+    },
+    {
+      "step": 23,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 4
+      }
+    },
+    {
+      "step": 25,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 5
+      }
+    },
+    {
+      "step": 27,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 6
+      }
+    },
+    {
+      "step": 29,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 7
+      }
+    },
+    {
+      "step": 31,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 8
+      }
+    },
+    {
+      "step": 33,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 9
+      }
+    },
+    {
+      "step": 35,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 10
+      }
+    },
+    {
+      "step": 37,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 11
+      }
+    },
+    {
+      "step": 39,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 12
+      }
+    },
+    {
+      "step": 41,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 13
+      }
+    },
+    {
+      "step": 43,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4d24",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4d24",
+        "count": 1
+      }
+    },
+    {
+      "step": 45,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 14
+      }
+    },
+    {
+      "step": 47,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 15
+      }
+    },
+    {
+      "step": 49,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 16
+      }
+    },
+    {
+      "step": 51,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 17
+      }
+    },
+    {
+      "step": 53,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 18
+      }
+    },
+    {
+      "step": 55,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 19
+      }
+    },
+    {
+      "step": 57,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 20
+      }
+    },
+    {
+      "step": 59,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 21
+      }
+    },
+    {
+      "step": 61,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 22
+      }
+    },
+    {
+      "step": 63,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 23
+      }
+    },
+    {
+      "step": 65,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 24
+      }
+    },
+    {
+      "step": 67,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 25
+      }
+    },
+    {
+      "step": 69,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 26
+      }
+    },
+    {
+      "step": 71,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 27
+      }
+    },
+    {
+      "step": 73,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 28
+      }
+    },
+    {
+      "step": 75,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 29
+      }
+    },
+    {
+      "step": 77,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 30
+      }
+    },
+    {
+      "step": 79,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 31
+      }
+    },
+    {
+      "step": 81,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 32
+      }
+    },
+    {
+      "step": 83,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 33
+      }
+    },
+    {
+      "step": 85,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 34
+      }
+    },
+    {
+      "step": 87,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4d24",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4d24",
+        "count": 2
+      }
+    },
+    {
+      "step": 89,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 35
+      }
+    },
+    {
+      "step": 91,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 36
+      }
+    },
+    {
+      "step": 93,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 37
+      }
+    },
+    {
+      "step": 95,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 38
+      }
+    },
+    {
+      "step": 97,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 39
+      }
+    },
+    {
+      "step": 99,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 40
+      }
+    },
+    {
+      "step": 101,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 41
+      }
+    },
+    {
+      "step": 103,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 42
+      }
+    },
+    {
+      "step": 105,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 43
+      }
+    },
+    {
+      "step": 107,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 44
+      }
+    },
+    {
+      "step": 109,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 45
+      }
+    },
+    {
+      "step": 111,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 46
+      }
+    },
+    {
+      "step": 113,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 47
+      }
+    },
+    {
+      "step": 115,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 48
+      }
+    },
+    {
+      "step": 117,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 49
+      }
+    },
+    {
+      "step": 119,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 50
+      }
+    },
+    {
+      "step": 121,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 51
+      }
+    },
+    {
+      "step": 123,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 52
+      }
+    },
+    {
+      "step": 125,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 53
+      }
+    },
+    {
+      "step": 127,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 54
+      }
+    },
+    {
+      "step": 129,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 55
+      }
+    },
+    {
+      "step": 131,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 56
+      }
+    },
+    {
+      "step": 133,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4cdf",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4cdf",
+        "count": 57
+      }
+    },
+    {
+      "step": 135,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$4d2f",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$4d2f",
+        "count": 1
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$4c34",
+      "addr": "$d419",
+      "reads": 5,
+      "rom": false
+    },
+    {
+      "site": "$4bb5",
+      "addr": "$dc01",
+      "reads": 10455,
+      "rom": false
+    },
+    {
+      "site": "$4be6",
+      "addr": "$dc01",
+      "reads": 3839,
+      "rom": false
+    },
+    {
+      "site": "$5700",
+      "addr": "$dc01",
+      "reads": 454,
+      "rom": false
+    },
+    {
+      "site": "$4513",
+      "addr": "$d41b",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$451d",
+      "addr": "$d41b",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$4aad",
+      "addr": "$d41b",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$4650",
+      "addr": "$d41b",
+      "reads": 33,
+      "rom": false
+    },
+    {
+      "site": "$4661",
+      "addr": "$d41b",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$56a1",
+      "addr": "$d41b",
+      "reads": 33,
+      "rom": false
+    },
+    {
+      "site": "$43bc",
+      "addr": "$d41b",
+      "reads": 134,
+      "rom": false
+    },
+    {
+      "site": "$4ce2",
+      "addr": "$dc01",
+      "reads": 57,
+      "rom": false
+    },
+    {
+      "site": "$4d24",
+      "addr": "$dc01",
+      "reads": 2,
+      "rom": false
+    },
+    {
+      "site": "$4d6c",
+      "addr": "$dc01",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$4ee8",
+      "addr": "$dc01",
+      "reads": 1390777,
+      "rom": false
+    },
+    {
+      "site": "$53fb",
+      "addr": "$dc01",
+      "reads": 2312828,
+      "rom": false
+    }
+  ],
+  "ticks": 120216369,
+  "hash": "4af14648"
+}

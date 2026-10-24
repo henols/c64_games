@@ -1,0 +1,49 @@
+{
+ "name": "Title screen with the tune for 1500 frames, FIRE starts a game, the first refuel on the pad",
+ "program": "original/bombardieri/falcon.prg",
+ "load": true,
+ "symbols": "none",
+ "coverage": "$4100",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "registers": {
+    "pc": "$4100"
+   }
+  },
+  {
+   "frames": 1500
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 600
+  }
+ ]
+}

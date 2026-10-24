@@ -1,0 +1,108 @@
+{
+ "name": "Screens for the documentation: the title, a refuel on the pad, an enemy wave, a hit jet that falls, and the next jet",
+ "start": {
+  "program": "original/bombardieri/falcon.prg",
+  "load": true
+ },
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$ea81"
+    },
+    "timeoutFrames": 10
+   }
+  },
+  {
+   "registers": {
+    "pc": "$4100"
+   }
+  },
+  {
+   "frames": 120
+  },
+  {
+   "screen": "title"
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "screen": "refuel_on_pad"
+  },
+  {
+   "frames": 330
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 152
+  },
+  {
+   "screen": "enemy_wave"
+  },
+  {
+   "frames": 8
+  },
+  {
+   "screen": "jet_hit"
+  },
+  {
+   "frames": 60
+  },
+  {
+   "screen": "jet_falling"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "new_jet"
+  }
+ ]
+}

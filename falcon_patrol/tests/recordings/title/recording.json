@@ -1,0 +1,104 @@
+{
+  "format": 1,
+  "name": "Title screen with the tune for 1500 frames, FIRE starts a game, the first refuel on the pad",
+  "program": "original/bombardieri/falcon.prg",
+  "sha256": "eb95c68bf34f5501205ed71e59c99c3faa0d4f76f51aa75e40602196fc069bdf",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "registers": {
+          "pc": "$4100"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$4c34",
+      "addr": "$d419",
+      "reads": 2,
+      "rom": false
+    },
+    {
+      "site": "$4bb5",
+      "addr": "$dc01",
+      "reads": 7395,
+      "rom": false
+    },
+    {
+      "site": "$4be6",
+      "addr": "$dc01",
+      "reads": 2755,
+      "rom": false
+    },
+    {
+      "site": "$4ee8",
+      "addr": "$dc01",
+      "reads": 764032,
+      "rom": false
+    },
+    {
+      "site": "$53fb",
+      "addr": "$dc01",
+      "reads": 400924,
+      "rom": false
+    },
+    {
+      "site": "$5700",
+      "addr": "$dc01",
+      "reads": 53,
+      "rom": false
+    }
+  ],
+  "ticks": 47370971,
+  "hash": "774edcfa"
+}

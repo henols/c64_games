@@ -1,0 +1,104 @@
+{
+  "name": "Trainer side effect: the Derbyshire Ram trainer byte at $417c, a score of 01750, one lost jet. Does the next jet clear the score?",
+  "completed": true,
+  "steps": 25,
+  "done": 25,
+  "pc": "$4185",
+  "files": [
+    "second_jet.png"
+  ],
+  "observations": {
+    "first_jet": {
+      "memory": {
+        "$0012": "0001070500",
+        "$001d": "03",
+        "$0022": "01"
+      },
+      "registers": {
+        "pc": "$4185",
+        "a": 9,
+        "x": 0,
+        "y": 0,
+        "sp": 237,
+        "flags": {
+          "n": false,
+          "v": false,
+          "b": false,
+          "d": false,
+          "i": false,
+          "z": true,
+          "c": true
+        }
+      }
+    },
+    "jet_lost": {
+      "memory": {
+        "$0012": "0001070500",
+        "$001d": "03",
+        "$0022": "08"
+      },
+      "registers": {
+        "pc": "$5640",
+        "a": 8,
+        "x": 25,
+        "y": 32,
+        "sp": 235,
+        "flags": {
+          "n": false,
+          "v": false,
+          "b": false,
+          "d": false,
+          "i": false,
+          "z": false,
+          "c": true
+        }
+      }
+    },
+    "second_jet_prompt": {
+      "memory": {
+        "$0012": "0001070500",
+        "$001d": "03",
+        "$0022": "00"
+      },
+      "registers": {
+        "pc": "$53e3",
+        "a": 3,
+        "x": 0,
+        "y": 131,
+        "sp": 235,
+        "flags": {
+          "n": false,
+          "v": true,
+          "b": false,
+          "d": false,
+          "i": false,
+          "z": true,
+          "c": true
+        }
+      }
+    },
+    "second_jet_play": {
+      "memory": {
+        "$0012": "0000000000",
+        "$001d": "03",
+        "$0022": "01"
+      },
+      "registers": {
+        "pc": "$4185",
+        "a": 9,
+        "x": 0,
+        "y": 0,
+        "sp": 237,
+        "flags": {
+          "n": false,
+          "v": false,
+          "b": false,
+          "d": false,
+          "i": false,
+          "z": true,
+          "c": true
+        }
+      }
+    }
+  }
+}

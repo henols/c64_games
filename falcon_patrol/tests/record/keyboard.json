@@ -1,0 +1,938 @@
+{
+ "name": "Keyboard control: SPACE starts, then random taps of the left arrow, 1, CTRL, 2 and SPACE",
+ "program": "original/bombardieri/falcon.prg",
+ "load": true,
+ "symbols": "none",
+ "coverage": "$4100",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "registers": {
+    "pc": "$4100"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 530
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 39
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 28
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 35
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 9
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 5
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 21
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 19
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 35
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 40
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 30
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 19
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 38
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 5
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 15
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 6
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 35
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 29
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 30
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 33
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 28
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 36
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 21
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 24
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 37
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 27
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 31
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 19
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 6
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 15
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 39
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 11
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 22
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 12
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 35
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 10
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 9
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 14
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 23
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 31
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 26
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 22
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 20
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 24
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 9
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 39
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 17
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 23
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 21
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 13
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 29
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 38
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 40
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 37
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 32
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 24
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 21
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 24
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 26
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 31
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 29
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 13
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 26
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 27
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 22
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 6
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 8
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 28
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 34
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 28
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 21
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 29
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 6
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 13
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 37
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 22
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 32
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 11
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 25
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 19
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 15
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 26
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 33
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 19
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 17
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 16
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 26
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 27
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 13
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 23
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 22
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 27
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 23
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 31
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 31
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 17
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 35
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 37
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 40
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 38
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 39
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 19
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 23
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 20
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 17
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 8
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 35
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 15
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 24
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 6
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 39
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 8
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 12
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 13
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 39
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 8
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 19
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 12
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 12
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 20
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 13
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 36
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 30
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 22
+   }
+  },
+  {
+   "press": {
+    "keys": "1",
+    "frames": 22
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 38
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 32
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 35
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 5
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 13
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 12
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 9
+   }
+  },
+  {
+   "press": {
+    "keys": "2",
+    "frames": 7
+   }
+  },
+  {
+   "press": {
+    "keys": "{LEFTARROW}",
+    "frames": 37
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}",
+    "frames": 36
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 15
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 9
+   }
+  },
+  {
+   "press": {
+    "keys": "{CTRL}",
+    "frames": 29
+   }
+  }
+ ]
+}

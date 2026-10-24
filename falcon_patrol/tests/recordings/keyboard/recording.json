@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "name": "Keyboard control: SPACE starts, then random taps of the left arrow, 1, CTRL, 2 and SPACE",
+  "program": "original/bombardieri/falcon.prg",
+  "sha256": "eb95c68bf34f5501205ed71e59c99c3faa0d4f76f51aa75e40602196fc069bdf",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "registers": {
+          "pc": "$4100"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$4c34",
+      "addr": "$d419",
+      "reads": 7,
+      "rom": false
+    },
+    {
+      "site": "$4bb5",
+      "addr": "$dc01",
+      "reads": 3825,
+      "rom": false
+    },
+    {
+      "site": "$4be6",
+      "addr": "$dc01",
+      "reads": 1275,
+      "rom": false
+    },
+    {
+      "site": "$5700",
+      "addr": "$dc01",
+      "reads": 2782,
+      "rom": false
+    },
+    {
+      "site": "$4513",
+      "addr": "$d41b",
+      "reads": 5,
+      "rom": false
+    },
+    {
+      "site": "$451d",
+      "addr": "$d41b",
+      "reads": 5,
+      "rom": false
+    },
+    {
+      "site": "$4aad",
+      "addr": "$d41b",
+      "reads": 5,
+      "rom": false
+    },
+    {
+      "site": "$4650",
+      "addr": "$d41b",
+      "reads": 132,
+      "rom": false
+    },
+    {
+      "site": "$4661",
+      "addr": "$d41b",
+      "reads": 108,
+      "rom": false
+    },
+    {
+      "site": "$56a1",
+      "addr": "$d41b",
+      "reads": 130,
+      "rom": false
+    },
+    {
+      "site": "$43bc",
+      "addr": "$d41b",
+      "reads": 170,
+      "rom": false
+    }
+  ],
+  "ticks": 150682907,
+  "hash": "613db827"
+}

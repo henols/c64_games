@@ -1,0 +1,14 @@
+{
+  "name": "Screens for the documentation: the high-score entry. A test hook writes the score 01750 and lives 0 after the start, the jet dives into the ground, and the name FP is entered",
+  "completed": true,
+  "steps": 144,
+  "done": 144,
+  "pc": "$53fb",
+  "files": [
+    "name_entry.png",
+    "name_entry_done.png",
+    "title_after_entry.png",
+    "start_prompt.png"
+  ],
+  "observations": {}
+}

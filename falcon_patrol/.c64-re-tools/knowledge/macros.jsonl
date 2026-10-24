@@ -1,0 +1,1 @@
+{"id":"20261024T095358.959-o22yqh/1","space":"c64","name":"set16","params":"dst, value","body":"        lda #<.value\n        sta .dst\n        lda #>.value\n        sta .dst+1","comment":"Puts the 16-bit value at dst. It changes A.","origin":"llm","added":"20261024T095358.959-o22yqh","closed":null}

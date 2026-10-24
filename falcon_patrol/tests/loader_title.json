@@ -1,0 +1,90 @@
+{
+ "name": "The clean loader starts the game: the title screen with the high-score table and the credit line is the same as in the original file at the first note of the title tune",
+ "original": {
+  "program": "original/bombardieri/falcon.prg",
+  "symbols": "knowledge"
+ },
+ "rebuild": {
+  "program": "build/clean_loader.prg",
+  "symbols": "build/symbols/clean_loader.json"
+ },
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   },
+   "side": "original"
+  },
+  {
+   "load": true,
+   "side": "original"
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$ea81"
+    },
+    "timeoutFrames": 10
+   },
+   "side": "original"
+  },
+  {
+   "registers": {
+    "pc": "cold_start"
+   },
+   "side": "original"
+  },
+  {
+   "autostart": true,
+   "side": "rebuild"
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_tune_hold_outer"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 3
+  },
+  {
+   "observe": "title",
+   "memory": [
+    {
+     "address": "$0800",
+     "size": 1000
+    },
+    {
+     "address": "$d800",
+     "size": 1000,
+     "mask": "0f"
+    },
+    {
+     "address": "$0012",
+     "size": 5
+    },
+    {
+     "address": "$001d",
+     "size": 1
+    },
+    {
+     "address": "$d015",
+     "size": 1
+    }
+   ],
+   "vicii": true,
+   "screen": {}
+  }
+ ]
+}

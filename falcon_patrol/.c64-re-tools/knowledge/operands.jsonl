@@ -1,0 +1,13 @@
+{"id":"20261024T095428.952-1ngg7i/1","space":"c64","address":"$410a","select":"expr","offset":0,"expression":"bomb_sprite / 64","origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T095428.952-1ngg7i/3","space":"c64","address":"$43e8","select":"expr","offset":0,"expression":"(enemy_sprites + $1c0) / 64","origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T095428.952-1ngg7i/5","space":"c64","address":"$4877","select":"expr","offset":0,"expression":"explosion_sprites / 64","origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T103005.172-js08c1/3","space":"c64","address":"$4a84","select":"value","symbol":"score","offset":1,"origin":"llm","added":"20261024T103005.172-js08c1","closed":null}
+{"id":"20261024T103005.172-js08c1/5","space":"c64","address":"$4a8e","select":"value","symbol":"score","offset":2,"origin":"llm","added":"20261024T103005.172-js08c1","closed":null}
+{"id":"20261024T103005.172-js08c1/7","space":"c64","address":"$4a98","select":"value","symbol":"score","offset":2,"origin":"llm","added":"20261024T103005.172-js08c1","closed":null}
+{"id":"20261024T095428.952-1ngg7i/11","space":"c64","address":"$50e2","select":"hi","symbol":"landscape_map","offset":0,"origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T095428.952-1ngg7i/13","space":"c64","address":"$50e6","select":"lo","symbol":"landscape_map","offset":0,"origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T095428.952-1ngg7i/15","space":"c64","address":"$534e","select":"lo","symbol":"radar_chars","offset":0,"origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T095428.952-1ngg7i/17","space":"c64","address":"$5352","select":"hi","symbol":"radar_chars","offset":0,"origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T095428.952-1ngg7i/7","space":"c64","address":"$539a","select":"expr","offset":0,"expression":"(jet_sprites + $c0) / 64","origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}
+{"id":"20261024T103005.172-js08c1/9","space":"c64","address":"$55e3","select":"value","symbol":"score","offset":1,"origin":"llm","added":"20261024T103005.172-js08c1","closed":null}
+{"id":"20261024T095428.952-1ngg7i/9","space":"c64","address":"$56e5","select":"expr","offset":0,"expression":"smoke_sprites / 64","origin":"llm","added":"20261024T095428.952-1ngg7i","closed":null}

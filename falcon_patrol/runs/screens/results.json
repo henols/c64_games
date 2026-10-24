@@ -1,0 +1,16 @@
+{
+  "name": "Screens for the documentation: the title, a refuel on the pad, an enemy wave, a hit jet that falls, and the next jet",
+  "completed": true,
+  "steps": 23,
+  "done": 23,
+  "pc": "$52a4",
+  "files": [
+    "title.png",
+    "refuel_on_pad.png",
+    "enemy_wave.png",
+    "jet_hit.png",
+    "jet_falling.png",
+    "new_jet.png"
+  ],
+  "observations": {}
+}

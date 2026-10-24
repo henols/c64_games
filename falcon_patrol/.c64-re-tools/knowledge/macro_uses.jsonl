@@ -1,0 +1,4 @@
+{"id":"20261024T095358.959-o22yqh/2","space":"c64","start":"$4b21","end":"$4b2a","macro":"set16","args":"CINV, raster_irq","origin":"llm","added":"20261024T095358.959-o22yqh","closed":null}
+{"id":"20261024T095358.959-o22yqh/3","space":"c64","start":"$4c4f","end":"$4c56","macro":"set16","args":"screen_ptr, hiscore_table","origin":"llm","added":"20261024T095358.959-o22yqh","closed":null}
+{"id":"20261024T095358.959-o22yqh/4","space":"c64","start":"$4c90","end":"$4c97","macro":"set16","args":"screen_ptr, $0a12","origin":"llm","added":"20261024T095358.959-o22yqh","closed":null}
+{"id":"20261024T095358.959-o22yqh/5","space":"c64","start":"$5a4c","end":"$5a53","macro":"set16","args":"pitch_frame_ptr, jet_level_left","origin":"llm","added":"20261024T095358.959-o22yqh","closed":null}

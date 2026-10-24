@@ -1,0 +1,208 @@
+{
+ "name": "Trainer side effect: the Derbyshire Ram trainer byte at $417c, a score of 01750, one lost jet. Does the next jet clear the score?",
+ "start": {
+  "program": "original/bombardieri/falcon.prg",
+  "load": true
+ },
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$ea81"
+    },
+    "timeoutFrames": 10
+   }
+  },
+  {
+   "write": {
+    "address": "$417c",
+    "data": "a5"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$4100"
+   }
+  },
+  {
+   "frames": 120
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$4185"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "write": {
+    "address": "$0012",
+    "data": "0001070500"
+   }
+  },
+  {
+   "observe": "first_jet",
+   "memory": [
+    {
+     "address": "$0012",
+     "size": 5
+    },
+    {
+     "address": "$001d",
+     "size": 1
+    },
+    {
+     "address": "$0022",
+     "size": 1
+    }
+   ],
+   "registers": true
+  },
+  {
+   "frames": 430
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$5640"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "observe": "jet_lost",
+   "memory": [
+    {
+     "address": "$0012",
+     "size": 5
+    },
+    {
+     "address": "$001d",
+     "size": 1
+    },
+    {
+     "address": "$0022",
+     "size": 1
+    }
+   ],
+   "registers": true
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$53e3"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "observe": "second_jet_prompt",
+   "memory": [
+    {
+     "address": "$0012",
+     "size": 5
+    },
+    {
+     "address": "$001d",
+     "size": 1
+    },
+    {
+     "address": "$0022",
+     "size": 1
+    }
+   ],
+   "registers": true
+  },
+  {
+   "frames": 5
+  },
+  {
+   "screen": "second_jet"
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$4185"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "observe": "second_jet_play",
+   "memory": [
+    {
+     "address": "$0012",
+     "size": 5
+    },
+    {
+     "address": "$001d",
+     "size": 1
+    },
+    {
+     "address": "$0022",
+     "size": 1
+    }
+   ],
+   "registers": true
+  }
+ ]
+}

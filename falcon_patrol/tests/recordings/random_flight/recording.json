@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "name": "Random flight on joystick port 1 for 15000 frames (seed 7): take-offs, crashes, game overs and new games",
+  "program": "original/bombardieri/falcon.prg",
+  "sha256": "eb95c68bf34f5501205ed71e59c99c3faa0d4f76f51aa75e40602196fc069bdf",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "registers": {
+          "pc": "$4100"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$4c34",
+      "addr": "$d419",
+      "reads": 15,
+      "rom": false
+    },
+    {
+      "site": "$4bb5",
+      "addr": "$dc01",
+      "reads": 2890,
+      "rom": false
+    },
+    {
+      "site": "$4be6",
+      "addr": "$dc01",
+      "reads": 989,
+      "rom": false
+    },
+    {
+      "site": "$5700",
+      "addr": "$dc01",
+      "reads": 5586,
+      "rom": false
+    },
+    {
+      "site": "$4513",
+      "addr": "$d41b",
+      "reads": 13,
+      "rom": false
+    },
+    {
+      "site": "$451d",
+      "addr": "$d41b",
+      "reads": 13,
+      "rom": false
+    },
+    {
+      "site": "$4aad",
+      "addr": "$d41b",
+      "reads": 13,
+      "rom": false
+    },
+    {
+      "site": "$4650",
+      "addr": "$d41b",
+      "reads": 272,
+      "rom": false
+    },
+    {
+      "site": "$4661",
+      "addr": "$d41b",
+      "reads": 198,
+      "rom": false
+    },
+    {
+      "site": "$56a1",
+      "addr": "$d41b",
+      "reads": 325,
+      "rom": false
+    },
+    {
+      "site": "$43bc",
+      "addr": "$d41b",
+      "reads": 333,
+      "rom": false
+    }
+  ],
+  "ticks": 313631147,
+  "hash": "7204545a"
+}
