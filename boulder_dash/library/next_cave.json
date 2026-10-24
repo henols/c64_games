@@ -1,0 +1,67 @@
+{
+  "name": "next_cave",
+  "title": "End of a cave",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$8841"},
+  "length": 186,
+  "bytes": [
+    "a55d0aaabd647ec915d00aa55ec904f0",
+    "02e65ea901855d60a200a900954ee8e0",
+    "06d0f9a55e1869018553a90085978502",
+    "a9d08503208c7020f47ca597d00b20c5",
+    "70205d7020c887d0f1209d70200c7d20",
+    "f47c2041886020fa87206e87a5a0f009",
+    "a900855d855e20228860a201869ba59f",
+    "f0062059884cc688a5a6f0062041884c",
+    "c688209788a5a2d02ca59d1869118d55",
+    "98a55c1869108d5898aaa925e011d002",
+    "a9218d5b98a55d1869208d5e98a55e18",
+    "69118d6098a900859460"
+  ],
+  "instructions": [0,2,3,4,7,9,11,13,15,17,19,21,23,24,26,28,30,31,33,35,37,38,40,42,44,46,48,50,52,55,58,60,62,65,68,71,73,76,79,82,85,86,89,92,94,96,98,100,102,105,106,108,110,112,114,117,120,122,124,127,130,133,135,137,139,140,142,145,147,148,150,153,154,156,158,160,162,165,167,168,170,173,175,176,178,181,183,185],
+  "relocations": [
+    {"at":83,"size":"word","value":0},
+    {"at":115,"size":"word","value":24},
+    {"at":118,"size":"word","value":133},
+    {"at":125,"size":"word","value":0},
+    {"at":128,"size":"word","value":133},
+    {"at":131,"size":"word","value":86}
+  ],
+  "variable": [1,5,6,12,18,22,29,36,41,45,47,51,53,54,56,57,59,63,64,66,67,69,70,74,75,77,78,80,81,87,88,90,91,93,99,101,103,104,109,111,121,134,138,143,144,146,151,152,163,164,166,171,172,174,179,180,184],
+  "symbols": [
+    {"at":0,"name":"next_cave","kind":"routine"},
+    {"at":19,"name":"next_cave_wrap","kind":"label"},
+    {"at":21,"name":"next_cave_store","kind":"label"},
+    {"at":24,"name":"count_time_bonus","kind":"routine"},
+    {"at":28,"name":"time_bonus_clear","kind":"label"},
+    {"at":58,"name":"time_bonus_loop","kind":"label"},
+    {"at":73,"name":"time_bonus_done","kind":"label"},
+    {"at":86,"name":"lose_life","kind":"routine"},
+    {"at":105,"name":"lose_life_done","kind":"label"},
+    {"at":106,"name":"end_cave","kind":"routine"},
+    {"at":120,"name":"end_cave_no_exit","kind":"label"},
+    {"at":130,"name":"end_cave_lost_life","kind":"label"},
+    {"at":133,"name":"end_cave_status","kind":"label"},
+    {"at":162,"name":"end_cave_men_text","kind":"label"},
+    {"at":181,"name":"end_cave_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":136,"type":"code"},
+    {"start":137,"end":138,"type":"code"},
+    {"start":139,"end":185,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets cave_number to the next cave from the cave table. After intermission 4 it sets cave A and the next level, at most 4."},
+    {"at":4,"placement":"side","text":"Reads the cave table at $7e66: two bytes for each cave, cave_number 1-based."},
+    {"at":24,"placement":"line","text":"Counts the remaining time down to 0. Each unit adds level plus 1 to the score with a sound. Then goes to the next cave."},
+    {"at":40,"placement":"side","text":"Points for each time unit: level plus 1."},
+    {"at":48,"placement":"side","text":"Start pitch of the bonus sound."},
+    {"at":86,"placement":"line","text":"After a lost life: updates the best score and changes turns. At game over it goes back to the title and fills the score lines."},
+    {"at":106,"placement":"line","text":"Ends a cave: the exit gives the time bonus, a death in an intermission goes on, another death costs a life. Updates the status line."},
+    {"at":120,"placement":"side","text":"A death in an intermission costs no life."},
+    {"at":137,"placement":"side","text":"Player digit in the status line."},
+    {"at":145,"placement":"side","text":"Lives digit in the status line."},
+    {"at":154,"placement":"side","text":"One life shows MAN, other counts show MEN."}
+  ],
+  "references": [],
+  "operands": []
+}

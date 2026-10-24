@@ -1,0 +1,25 @@
+{
+  "name": "draw_steel_border",
+  "title": "Steel border of the cave",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$820f"},
+  "length": 24,
+  "bytes": [
+    "a90785daa90085dba90285dca92885dd",
+    "a91685df203f8160"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,23],
+  "relocations": [],
+  "variable": [3,7,11,15,19,21,22],
+  "symbols": [
+    {"at":0,"name":"draw_steel_border","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":23,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Draws the steel wall edge of the cave: 40 by 22 cells from map row 2."},
+    {"at":0,"placement":"side","text":"OUTWAL in the developer symbol table (symbol_table_leftover)."}
+  ],
+  "references": [],
+  "operands": []
+}

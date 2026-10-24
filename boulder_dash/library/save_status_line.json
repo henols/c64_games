@@ -1,0 +1,44 @@
+{
+  "name": "save_status_line",
+  "title": "Status line save and display",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6b04"},
+  "length": 89,
+  "bytes": [
+    "a200a000bd000c996298e8e8c8c014d0",
+    "f360a201a003b146c93cd002a2078aa2",
+    "039d0ed8ca10faa201a001b146c91910",
+    "02a2078aa2039d02d8ca10faa200a000",
+    "b146c901d002a9209d000ce81869349d",
+    "000ce8c8c014d0e860"
+  ],
+  "instructions": [0,2,4,7,10,11,12,13,15,17,18,20,22,24,26,28,30,31,33,36,37,39,41,43,45,47,49,51,52,54,57,58,60,62,64,66,68,70,72,75,76,77,79,82,83,84,86,88],
+  "relocations": [],
+  "variable": [5,6,8,9,23,34,35,44,55,56,65,73,74,80,81],
+  "symbols": [
+    {"at":0,"name":"save_status_line","kind":"routine"},
+    {"at":4,"name":"save_status_line_loop","kind":"label"},
+    {"at":18,"name":"show_status_line","kind":"routine"},
+    {"at":30,"name":"show_status_colour_collected","kind":"label"},
+    {"at":33,"name":"show_status_fill_collected","kind":"label"},
+    {"at":51,"name":"show_status_colour_needed","kind":"label"},
+    {"at":54,"name":"show_status_fill_needed","kind":"label"},
+    {"at":64,"name":"show_status_char_loop","kind":"label"},
+    {"at":72,"name":"show_status_store_char","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":88,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies the left halves of the 20 double-width characters of screen row 0 to saved_status_line."},
+    {"at":18,"placement":"line","text":"Shows the 20-character line at text_ptr in screen row 0 as double-width characters (c and c+$34). Sets the colours of the two count fields."},
+    {"at":24,"placement":"side","text":"Character 3 is the diamond symbol only in the game status line."},
+    {"at":28,"placement":"side","text":"Yellow for the collected count."},
+    {"at":33,"placement":"side","text":"Colour of screen columns 14-17 (characters 7-8)."},
+    {"at":45,"placement":"side","text":"Codes $19 and up (the diamond symbol) give white, digits give yellow."},
+    {"at":54,"placement":"side","text":"Colour of screen columns 2-5 (characters 1-2)."},
+    {"at":70,"placement":"side","text":"Shows code $01 as code $20."},
+    {"at":77,"placement":"side","text":"The right half of a character is the left half plus $34."}
+  ],
+  "references": [],
+  "operands": []
+}

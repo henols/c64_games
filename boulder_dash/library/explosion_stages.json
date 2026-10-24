@@ -1,0 +1,64 @@
+{
+  "name": "explosion_stages",
+  "title": "Explosion stages, Rockford birth and flashing boxes",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$72b7"},
+  "length": 169,
+  "bytes": [
+    "1f001e1f1d1e1c1d1b1c241423242223",
+    "212220212838272826272526a029b132",
+    "a000d9b772d003beb872c8c8c014d0f2",
+    "8aa02920b66c4c157ea595d01aa029b1",
+    "32a000d9cb72d003becc72c8c8c008d0",
+    "f28aa02920b66c4c157ea92ea0009136",
+    "186901c89136690fa05091366901c891",
+    "3660a5920aaaa5910a187dda538534a9",
+    "007ddb538535209b6c20117360a029e6",
+    "b9a5b92901d00cb13220b66cc925d006",
+    "4cf0722029734c157e"
+  ],
+  "instructions": [28,30,32,34,37,39,42,43,44,46,48,49,51,54,57,59,61,63,65,67,70,72,75,76,77,79,81,82,84,87,90,92,94,96,97,99,100,102,104,106,108,110,111,113,114,116,117,118,120,121,122,125,127,129,132,134,137,140,141,143,145,147,149,151,153,156,158,160,163,166],
+  "relocations": [
+    {"at":35,"size":"word","value":0},
+    {"at":40,"size":"word","value":1},
+    {"at":68,"size":"word","value":20},
+    {"at":73,"size":"word","value":21},
+    {"at":138,"size":"word","value":90},
+    {"at":161,"size":"word","value":57},
+    {"at":164,"size":"word","value":114}
+  ],
+  "variable": [31,52,53,55,56,58,64,85,86,88,89,95,101,107,112,115,119,123,124,126,130,131,133,135,136,144,146,152,154,155,167,168],
+  "symbols": [
+    {"at":0,"name":"explosion_stages","kind":"data"},
+    {"at":1,"name":"explosion_stage_next","kind":"data"},
+    {"at":20,"name":"birth_stages","kind":"data"},
+    {"at":21,"name":"birth_stage_next","kind":"data"},
+    {"at":28,"name":"handle_explosion","kind":"routine"},
+    {"at":34,"name":"explosion_find","kind":"label"},
+    {"at":42,"name":"explosion_find_next","kind":"label"},
+    {"at":57,"name":"handle_rockford_birth","kind":"routine"},
+    {"at":67,"name":"birth_find","kind":"label"},
+    {"at":75,"name":"birth_find_next","kind":"label"},
+    {"at":87,"name":"birth_next","kind":"label"},
+    {"at":90,"name":"draw_steel_block","kind":"routine"},
+    {"at":114,"name":"draw_current_as_steel","kind":"routine"},
+    {"at":141,"name":"handle_flashing_box","kind":"routine"},
+    {"at":163,"name":"flashing_box_steel","kind":"label"},
+    {"at":166,"name":"flashing_box_next","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":19,"type":"bytes","element":2},
+    {"start":20,"end":27,"type":"bytes","element":2},
+    {"start":28,"end":168,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"10 pairs (code, next code): $1b-$1f end in space, $20-$24 end in a diamond."},
+    {"at":20,"placement":"line","text":"4 pairs (code, next code): the inbox $25 changes through $26-$28 to Rockford $38."},
+    {"at":28,"placement":"line","text":"Handler of the explosion stages $1b-$24: changes the cell to the next stage of explosion_stages."},
+    {"at":57,"placement":"line","text":"Handler of $26-$28 and of the inbox: after inbox_delay changes the cell to the next stage of birth_stages."},
+    {"at":90,"placement":"line","text":"Draws the steel wall characters ($2e) as 2 x 2 characters at draw_ptr."},
+    {"at":114,"placement":"line","text":"Draws the current cell as steel wall without a change of its code."},
+    {"at":141,"placement":"line","text":"Handler of the open exit $05 and the inbox $25. Odd frames draw steel wall, even frames draw the cell and step the inbox birth."}
+  ],
+  "references": [],
+  "operands": []
+}

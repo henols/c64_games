@@ -1,0 +1,471 @@
+{
+ "name": "Options and two players: F3 cycles the player and joystick modes (four presses: back to one player, then two players with one joystick). The joystick selects the cave and the level (level 4 sets the cave back to A). Fire starts cave I on level 2. RUN/STOP gives up each life in turn until game over. Joystick port 1.",
+ "program": "tests/program/statesoft_5000.prg",
+ "symbols": "none",
+ "coverage": "$8e6a",
+ "load": true,
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "00"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$8e6a"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 8
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 700
+  },
+  {
+   "press": {
+    "keys": "{STOP}"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{STOP}"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{STOP}"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{STOP}"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{STOP}"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{STOP}"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "frames": 1500
+  }
+ ]
+}

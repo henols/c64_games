@@ -1,0 +1,69 @@
+{
+  "name": "explode_cell",
+  "title": "Explosions",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6d16"},
+  "length": 150,
+  "bytes": [
+    "b132c907f005a58920b66c60a0282016",
+    "6da02920166dc689a02a20166da05020",
+    "166da05120166da05220166da0782016",
+    "6da07920166da07a20166d4c916da590",
+    "f007a029a90520b66c4c157ea0002016",
+    "6da00120166da00220166da02820166d",
+    "a02920166dc689a02a20166da0502016",
+    "6da05120166da05220166da9508d1198",
+    "20e37ca206bda56d9d07d4ca10f76032",
+    "140f00811b00"
+  ],
+  "instructions": [0,2,4,6,8,11,12,14,17,19,22,24,26,29,31,34,36,39,41,44,46,49,51,54,56,59,62,64,66,68,70,73,76,78,81,83,86,88,91,93,96,98,101,103,105,108,110,113,115,118,120,123,125,128,131,133,136,139,140,142],
+  "relocations": [
+    {"at":15,"size":"word","value":0},
+    {"at":20,"size":"word","value":0},
+    {"at":27,"size":"word","value":0},
+    {"at":32,"size":"word","value":0},
+    {"at":37,"size":"word","value":0},
+    {"at":42,"size":"word","value":0},
+    {"at":47,"size":"word","value":0},
+    {"at":52,"size":"word","value":0},
+    {"at":57,"size":"word","value":0},
+    {"at":60,"size":"word","value":123},
+    {"at":79,"size":"word","value":0},
+    {"at":84,"size":"word","value":0},
+    {"at":89,"size":"word","value":0},
+    {"at":94,"size":"word","value":0},
+    {"at":99,"size":"word","value":0},
+    {"at":106,"size":"word","value":0},
+    {"at":111,"size":"word","value":0},
+    {"at":116,"size":"word","value":0},
+    {"at":121,"size":"word","value":0},
+    {"at":134,"size":"word","value":143}
+  ],
+  "variable": [1,7,9,10,23,63,71,72,74,75,102,126,127,129,130,137,138],
+  "symbols": [
+    {"at":0,"name":"explode_cell","kind":"routine"},
+    {"at":11,"name":"explode_cell_done","kind":"label"},
+    {"at":12,"name":"explode_below","kind":"routine"},
+    {"at":62,"name":"handle_closed_exit","kind":"routine"},
+    {"at":73,"name":"closed_exit_next","kind":"label"},
+    {"at":76,"name":"explode_here","kind":"routine"},
+    {"at":123,"name":"play_explosion_sound","kind":"label"},
+    {"at":133,"name":"play_explosion_sound_loop","kind":"label"},
+    {"at":143,"name":"explosion_sound_regs","kind":"data"}
+  ],
+  "regions": [
+    {"start":0,"end":142,"type":"code"},
+    {"start":143,"end":149,"type":"bytes"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Writes explosion_code at scan_ptr+Y unless the cell is steel wall."},
+    {"at":12,"placement":"line","text":"Explodes the 3 x 3 cells around the cell below the current cell, then starts the explosion sound."},
+    {"at":22,"placement":"side","text":"The cells after the current cell get the code minus 1: the scan advances them in this frame."},
+    {"at":62,"placement":"line","text":"Handler of cell $04 (closed exit, drawn as steel wall): changes it to the open exit $05 when exit_open is set."},
+    {"at":76,"placement":"line","text":"Explodes the 3 x 3 cells around the current cell with explosion_code, then starts the explosion sound."},
+    {"at":101,"placement":"side","text":"The cells after the current cell get the code minus 1: the scan advances them in this frame."},
+    {"at":123,"placement":"line","text":"Starts the explosion sound on SID voice 2 and blocks other voice 2 sounds for 80 frames."},
+    {"at":143,"placement":"line","text":"SID voice 2 registers $d407-$d40d of the explosion sound: frequency, pulse width, control, attack/decay, sustain/release."}
+  ],
+  "references": [],
+  "operands": []
+}

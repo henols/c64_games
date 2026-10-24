@@ -1,0 +1,176 @@
+{
+  "format": 1,
+  "name": "Pause and restart: the title runs 3000 frames without input. F1 two times (the title does not see the first press in every phase) and fire start cave A. Rockford walks, SPACE pauses the game and SPACE resumes it. F1 during the game starts the program again. Joystick port 1.",
+  "program": "original/bd_obj_charsoft.prg",
+  "sha256": "2396f331e86b415a665927a912d357c4b70c48170fa7d95e6d6645c4d390912a",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "registers": {
+          "pc": "$8ab3"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 14,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08a3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 13561
+      }
+    },
+    {
+      "step": 16,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$087b",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 14670
+      }
+    },
+    {
+      "step": 23,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$087e",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 16333
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$8709",
+      "addr": "$dc01",
+      "reads": 17853,
+      "rom": false
+    },
+    {
+      "site": "$86a5",
+      "addr": "$dc01",
+      "reads": 8888,
+      "rom": false
+    },
+    {
+      "site": "$86bb",
+      "addr": "$dc01",
+      "reads": 8888,
+      "rom": false
+    },
+    {
+      "site": "$6b5d",
+      "addr": "$dc01",
+      "reads": 306,
+      "rom": false
+    },
+    {
+      "site": "$6b74",
+      "addr": "$dc01",
+      "reads": 435,
+      "rom": false
+    }
+  ],
+  "ticks": 94097187,
+  "hash": "de709199"
+}

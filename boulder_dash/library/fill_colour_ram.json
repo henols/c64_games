@@ -1,0 +1,29 @@
+{
+  "name": "fill_colour_ram",
+  "title": "Colour RAM fill",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6ae3"},
+  "length": 33,
+  "bytes": [
+    "48a227a9099d00d8ca10faa2008646a2",
+    "d88647a203689146c8d0fbe647ca10f6",
+    "60"
+  ],
+  "instructions": [0,1,3,5,8,9,11,13,15,17,19,21,22,24,25,27,29,30,32],
+  "relocations": [],
+  "variable": [6,7,14,18,23,28],
+  "symbols": [
+    {"at":0,"name":"fill_colour_ram","kind":"routine"},
+    {"at":5,"name":"fill_colour_ram_row0","kind":"label"},
+    {"at":22,"name":"fill_colour_ram_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":32,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets colour RAM row 0 ($d800-$d827) to 9, then fills $d800+Y to $dbff with A. Input: A = colour, Y = first offset. Output: colour_ram_ptr = $dc00, Y = 0."},
+    {"at":5,"placement":"side","text":"Row 0 gets colour 9 (multicolour, colour 1)."},
+    {"at":22,"placement":"side","text":"Fills four pages, $d8-$db."}
+  ],
+  "references": [],
+  "operands": []
+}

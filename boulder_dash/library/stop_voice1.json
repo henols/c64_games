@@ -1,0 +1,37 @@
+{
+  "name": "stop_voice1",
+  "title": "Stop the SID voices",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7cdf"},
+  "length": 36,
+  "bytes": [
+    "a204d006a20bd002a212a9089d00d4a9",
+    "009d00d46020df7c20e37c20e77ca94f",
+    "8d18d460"
+  ],
+  "instructions": [0,2,4,6,8,10,12,15,17,20,21,24,27,30,32,35],
+  "relocations": [
+    {"at":22,"size":"word","value":0},
+    {"at":25,"size":"word","value":4},
+    {"at":28,"size":"word","value":8}
+  ],
+  "variable": [13,14,18,19,33,34],
+  "symbols": [
+    {"at":0,"name":"stop_voice1","kind":"routine"},
+    {"at":4,"name":"stop_voice2","kind":"routine"},
+    {"at":8,"name":"stop_voice3","kind":"routine"},
+    {"at":10,"name":"stop_voice_x","kind":"label"},
+    {"at":21,"name":"stop_all_sound","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":35,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Stops SID voice 1. It sets and clears the test bit of the voice control register."},
+    {"at":4,"placement":"line","text":"Stops SID voice 2."},
+    {"at":8,"placement":"line","text":"Stops SID voice 3."},
+    {"at":10,"placement":"side","text":"X is the register offset of the voice."},
+    {"at":21,"placement":"line","text":"Stops the three voices and sets the SID volume to 15 with filter mode bit 6."}
+  ],
+  "references": [],
+  "operands": []
+}

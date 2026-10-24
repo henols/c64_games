@@ -1,0 +1,1268 @@
+{
+  "format": 1,
+  "name": "Cave A: start a one-player game with F1 and fire, collect 12 diamonds on a planned route, leave by the exit, bonus count and start of cave B. Joystick port 1.",
+  "program": "original/bd_obj_charsoft.prg",
+  "sha256": "2396f331e86b415a665927a912d357c4b70c48170fa7d95e6d6645c4d390912a",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "registers": {
+          "pc": "$8ab3"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08a3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 681
+      }
+    },
+    {
+      "step": 13,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$087b",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 1810
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0882",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 1825
+      }
+    },
+    {
+      "step": 17,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08d2",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 1929
+      }
+    },
+    {
+      "step": 19,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08d7",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 1962
+      }
+    },
+    {
+      "step": 21,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08ff",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2037
+      }
+    },
+    {
+      "step": 23,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0903",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2051
+      }
+    },
+    {
+      "step": 25,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$092b",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2112
+      }
+    },
+    {
+      "step": 27,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$092e",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2126
+      }
+    },
+    {
+      "step": 29,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0906",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2173
+      }
+    },
+    {
+      "step": 31,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0907",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2186
+      }
+    },
+    {
+      "step": 33,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08b7",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2201
+      }
+    },
+    {
+      "step": 35,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08b6",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2229
+      }
+    },
+    {
+      "step": 37,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0906",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2246
+      }
+    },
+    {
+      "step": 39,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0907",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2276
+      }
+    },
+    {
+      "step": 41,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$092f",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2291
+      }
+    },
+    {
+      "step": 43,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0932",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2306
+      }
+    },
+    {
+      "step": 45,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$095a",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2353
+      }
+    },
+    {
+      "step": 47,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$095f",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2368
+      }
+    },
+    {
+      "step": 49,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$09d7",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2441
+      }
+    },
+    {
+      "step": 51,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$09d4",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2489
+      }
+    },
+    {
+      "step": 53,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$09ac",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2534
+      }
+    },
+    {
+      "step": 55,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$09aa",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2549
+      }
+    },
+    {
+      "step": 57,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a4a",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2578
+      }
+    },
+    {
+      "step": 59,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a44",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2641
+      }
+    },
+    {
+      "step": 61,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a48",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2732
+      }
+    },
+    {
+      "step": 63,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a70",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2789
+      }
+    },
+    {
+      "step": 65,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a78",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2805
+      }
+    },
+    {
+      "step": 67,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a77",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2926
+      }
+    },
+    {
+      "step": 69,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a27",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2940
+      }
+    },
+    {
+      "step": 71,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a28",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2969
+      }
+    },
+    {
+      "step": 73,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a50",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 2986
+      }
+    },
+    {
+      "step": 75,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a53",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3001
+      }
+    },
+    {
+      "step": 77,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a4a",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3046
+      }
+    },
+    {
+      "step": 79,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a22",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3179
+      }
+    },
+    {
+      "step": 81,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a1f",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3194
+      }
+    },
+    {
+      "step": 83,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$09cf",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3237
+      }
+    },
+    {
+      "step": 85,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$09c5",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3268
+      }
+    },
+    {
+      "step": 87,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$099d",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3417
+      }
+    },
+    {
+      "step": 89,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0999",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3430
+      }
+    },
+    {
+      "step": 91,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$099a",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3489
+      }
+    },
+    {
+      "step": 93,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a62",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3506
+      }
+    },
+    {
+      "step": 95,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0a5f",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3583
+      }
+    },
+    {
+      "step": 97,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0aaf",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3628
+      }
+    },
+    {
+      "step": 99,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0ab9",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3656
+      }
+    },
+    {
+      "step": 101,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0ae1",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3806
+      }
+    },
+    {
+      "step": 103,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0ae6",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3823
+      }
+    },
+    {
+      "step": 105,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0b0e",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3898
+      }
+    },
+    {
+      "step": 107,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0b14",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 3913
+      }
+    },
+    {
+      "step": 109,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0b3c",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 4002
+      }
+    },
+    {
+      "step": 111,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0b41",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 4016
+      }
+    },
+    {
+      "step": 113,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0ac9",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 4092
+      }
+    },
+    {
+      "step": 115,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0acb",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 4133
+      }
+    },
+    {
+      "step": 117,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0af3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 4166
+      }
+    },
+    {
+      "step": 119,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0af6",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 4180
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$8709",
+      "addr": "$dc01",
+      "reads": 7823,
+      "rom": false
+    },
+    {
+      "site": "$86a5",
+      "addr": "$dc01",
+      "reads": 2694,
+      "rom": false
+    },
+    {
+      "site": "$86bb",
+      "addr": "$dc01",
+      "reads": 2694,
+      "rom": false
+    },
+    {
+      "site": "$6b5d",
+      "addr": "$dc01",
+      "reads": 217,
+      "rom": false
+    },
+    {
+      "site": "$6b74",
+      "addr": "$dc01",
+      "reads": 421,
+      "rom": false
+    }
+  ],
+  "ticks": 56395691,
+  "hash": "b561538e"
+}

@@ -1,0 +1,206 @@
+{
+ "name": "Lives: one player in cave A. Rockford steps down from under a boulder and the boulder kills him. In the second life the time runs out. In the third life RUN/STOP gives up the life: game over and back to the title. Joystick port 1.",
+ "program": "original/bd_obj_charsoft.prg",
+ "symbols": "none",
+ "coverage": "$8ab3",
+ "load": true,
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "00"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$8ab3"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08a3",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08cb",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08cc",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08f4",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08a3",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 9000
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08a3",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{STOP}"
+   }
+  },
+  {
+   "frames": 1500
+  }
+ ]
+}

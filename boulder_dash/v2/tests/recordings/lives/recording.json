@@ -1,0 +1,239 @@
+{
+  "format": 1,
+  "name": "Lives: one player in cave A. Rockford steps down from under a boulder and the boulder kills him. In the second life the time runs out. In the third life RUN/STOP gives up the life: game over and back to the title. Joystick port 1.",
+  "program": "tests/program/statesoft_5000.prg",
+  "sha256": "4442661a6aa9fca32b9f25eb501001c180ed75a680bacaf4ba9aa27277f3dd4e",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "registers": {
+          "pc": "$8e6a"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08a3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 681
+      }
+    },
+    {
+      "step": 13,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08cb",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 1810
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08cc",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 1827
+      }
+    },
+    {
+      "step": 17,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08f4",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 1844
+      }
+    },
+    {
+      "step": 23,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08a3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 3079
+      }
+    },
+    {
+      "step": 28,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08a3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 40308
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$8aa0",
+      "addr": "$dc01",
+      "reads": 46731,
+      "rom": false
+    },
+    {
+      "site": "$8a3c",
+      "addr": "$dc01",
+      "reads": 23312,
+      "rom": false
+    },
+    {
+      "site": "$8a52",
+      "addr": "$dc01",
+      "reads": 23312,
+      "rom": false
+    },
+    {
+      "site": "$6ef5",
+      "addr": "$dc01",
+      "reads": 1396,
+      "rom": false
+    },
+    {
+      "site": "$6f0c",
+      "addr": "$dc01",
+      "reads": 7611,
+      "rom": false
+    }
+  ],
+  "ticks": 236151105,
+  "hash": "7bfc819e"
+}

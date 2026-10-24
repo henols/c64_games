@@ -1,0 +1,28 @@
+{
+  "name": "play_frame_irq",
+  "title": "Play frame work",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7b2b"},
+  "length": 45,
+  "bytes": [
+    "a5a7f0016020587920a97720077b2011",
+    "71207179e6c220ad76a5c22901d00bad",
+    "0798855849808d0798604c009e"
+  ],
+  "instructions": [0,2,4,5,8,11,14,17,20,22,25,27,29,31,34,36,38,41,42],
+  "relocations": [],
+  "variable": [1,6,7,9,10,12,13,15,16,18,19,21,23,24,26,32,33,35,39,40,43,44],
+  "symbols": [
+    {"at":0,"name":"play_frame_irq","kind":"routine"},
+    {"at":5,"name":"play_frame_irq_run","kind":"label"},
+    {"at":42,"name":"play_frame_irq_draw","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":44,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Frame work of the play IRQ at split 0: flash, cover, magic wall time, cave time, sound and scroll. Even frames show the screen that was drawn last. Odd frames draw the other screen at $9E00."},
+    {"at":31,"placement":"side","text":"Show the drawn screen, then draw into the other screen next time."}
+  ],
+  "references": [],
+  "operands": []
+}

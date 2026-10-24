@@ -1,0 +1,38 @@
+{
+  "name": "mask_title_chars",
+  "title": "Title screen animation",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$842e"},
+  "length": 57,
+  "bytes": [
+    "a207bd30201d00209d4820bd38201d00",
+    "209d5020ca10eb60a5cfd007a90185cf",
+    "4c6684e6c1a5c1c904900aa90085c120",
+    "8774202e8420ac8360"
+  ],
+  "instructions": [0,2,5,8,11,14,17,20,21,23,24,26,28,30,32,35,37,39,41,43,45,47,50,53,56],
+  "relocations": [
+    {"at":33,"size":"word","value":56},
+    {"at":51,"size":"word","value":0}
+  ],
+  "variable": [3,4,6,7,9,10,12,13,15,16,18,19,25,31,36,38,46,48,49,54,55],
+  "symbols": [
+    {"at":0,"name":"mask_title_chars","kind":"routine"},
+    {"at":2,"name":"mask_title_chars_loop","kind":"label"},
+    {"at":24,"name":"title_irq_frame","kind":"routine"},
+    {"at":35,"name":"title_irq_count","kind":"label"},
+    {"at":53,"name":"title_irq_tune","kind":"label"},
+    {"at":56,"name":"title_irq_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":56,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Builds text characters 9 and 10: characters 6 and 7 ORed with the scrolled character 0. The symbol table calls it MASQUE."},
+    {"at":0,"placement":"side","text":"MASQUE in the developer symbol table (symbol_table_leftover)."},
+    {"at":24,"placement":"line","text":"Title IRQ work. The first call sets irq_started. Every fourth call scrolls character 0 and masks the title characters. Each call plays the tune."},
+    {"at":26,"placement":"side","text":"The first IRQ only marks that the title IRQ runs."},
+    {"at":47,"placement":"side","text":"Rotates character 0 one row up."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,27 @@
+{
+  "name": "init_irq",
+  "title": "IRQ setup",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$8a81"},
+  "length": 49,
+  "bytes": [
+    "a93c8d079820db7678a207bd0b869554",
+    "ca10f8a2018e1ad0e886a7a9288d12d0",
+    "a9188d11d0a9758d1403a9868d150358",
+    "60"
+  ],
+  "instructions": [0,2,5,8,9,11,14,16,17,19,21,24,25,27,29,32,34,37,39,42,44,47,48],
+  "relocations": [],
+  "variable": [3,4,6,7,12,13,15,22,23,26,30,31,35,36,40,41,45,46],
+  "symbols": [
+    {"at":0,"name":"init_irq","kind":"routine"},
+    {"at":11,"name":"init_irq_copy_values","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":48,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Clears the play screens, copies the title raster split values to $54-$5b, enables the raster IRQ at line $28 and sets $0314 to irq_handler."}
+  ],
+  "references": [],
+  "operands": []
+}

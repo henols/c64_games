@@ -1,0 +1,38 @@
+{
+  "name": "run_demo",
+  "title": "Demo play",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$8913"},
+  "length": 75,
+  "bytes": [
+    "a90085d385d485d2a5d2d01ba6d3bda8",
+    "5e85d2290f858bd004a90185d446d246",
+    "d246d246d2e6d320746bd004a90185d4",
+    "a5d4d00820d97dc6d24c1b8920f47ca5",
+    "9ff00320ab88a900855d60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,17,19,21,23,25,27,29,31,33,35,37,39,42,44,46,48,50,52,55,57,60,63,65,67,70,72,74],
+  "relocations": [
+    {"at":58,"size":"word","value":8}
+  ],
+  "variable": [3,5,7,9,13,15,16,18,22,28,30,32,34,36,38,40,41,47,49,53,54,56,61,62,64,68,69,73],
+  "symbols": [
+    {"at":0,"name":"run_demo","kind":"routine"},
+    {"at":8,"name":"demo_next_step","kind":"label"},
+    {"at":29,"name":"demo_set_count","kind":"label"},
+    {"at":39,"name":"demo_check_fire","kind":"label"},
+    {"at":48,"name":"demo_check_end","kind":"label"},
+    {"at":60,"name":"demo_end","kind":"label"},
+    {"at":70,"name":"demo_to_title","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":59,"type":"code"},
+    {"start":60,"end":74,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Plays the demo from the table at $5ea8: low nibble = joystick direction, high nibble = tick count. Fire or a 0 direction ends it."},
+    {"at":21,"placement":"side","text":"The demo direction replaces the joystick input."},
+    {"at":39,"placement":"side","text":"Fire ends the demo."}
+  ],
+  "references": [],
+  "operands": []
+}

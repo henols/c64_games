@@ -1,0 +1,48 @@
+{
+  "name": "amoeba_neighbours",
+  "title": "Amoeba",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6fcc"},
+  "length": 109,
+  "bytes": [
+    "01282a51ee0298ad0398c9c89008a911",
+    "20b66c4c157ea58cd008a91420b66c4c",
+    "157ea542d020a9038546a201a446b9cc",
+    "6fa8b132c902b002a200c64610eee000",
+    "d004a901854220d06a259ac904b01baa",
+    "bccc6fa201b132d002a200c901d002a2",
+    "00e000d005a93b20b66c4c157e"
+  ],
+  "instructions": [4,7,10,12,14,16,19,22,24,26,28,31,34,36,38,40,42,44,46,49,50,52,54,56,58,60,62,64,66,68,70,73,75,77,79,80,83,85,87,89,91,93,95,97,99,101,103,106],
+  "relocations": [
+    {"at":47,"size":"word","value":0},
+    {"at":81,"size":"word","value":0}
+  ],
+  "variable": [5,6,8,9,17,18,20,21,23,29,30,32,33,35,41,45,51,59,69,71,72,74,86,104,105,107,108],
+  "symbols": [
+    {"at":0,"name":"amoeba_neighbours","kind":"data"},
+    {"at":4,"name":"handle_amoeba","kind":"routine"},
+    {"at":22,"name":"amoeba_check_growing","kind":"label"},
+    {"at":34,"name":"amoeba_check_room","kind":"label"},
+    {"at":44,"name":"amoeba_room_loop","kind":"label"},
+    {"at":58,"name":"amoeba_room_next","kind":"label"},
+    {"at":70,"name":"amoeba_try_grow","kind":"label"},
+    {"at":91,"name":"amoeba_check_dirt","kind":"label"},
+    {"at":97,"name":"amoeba_grow","kind":"label"},
+    {"at":106,"name":"amoeba_next","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":3,"type":"bytes"},
+    {"start":4,"end":108,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Cell offsets of the four neighbours that the amoeba grows into: up, left, right, down."},
+    {"at":4,"placement":"line","text":"Handler of the amoeba $3a. Counts the cells, becomes boulders at 200 cells or diamonds when enclosed, else grows at random into space or dirt."},
+    {"at":10,"placement":"side","text":"200 amoeba cells in the last frame."},
+    {"at":38,"placement":"side","text":"text_ptr is a loop counter here."},
+    {"at":52,"placement":"side","text":"Space or dirt is room to grow."},
+    {"at":73,"placement":"side","text":"The random mask sets the growth speed."},
+    {"at":101,"placement":"side","text":"Scanned amoeba $3b."}
+  ],
+  "references": [],
+  "operands": []
+}

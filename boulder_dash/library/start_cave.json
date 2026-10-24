@@ -1,0 +1,27 @@
+{
+  "name": "start_cave",
+  "title": "Start of a cave",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$8722"},
+  "length": 36,
+  "bytes": [
+    "208e7e20ab7c200f8220808120dc7ea9",
+    "0085ed85ee85e985ea20fe77a90085bd",
+    "20f47c60"
+  ],
+  "instructions": [0,3,6,9,12,15,17,19,21,23,25,28,30,32,35],
+  "relocations": [],
+  "variable": [1,2,4,5,7,8,10,11,13,14,18,20,22,24,26,27,31,33,34],
+  "symbols": [
+    {"at":0,"name":"start_cave","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":35,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Prepares cave_number at level: decodes it, draws the outer wall and the objects, resets the cave variables and the scroll, silences the sound."},
+    {"at":6,"placement":"side","text":"Draws the outer steel wall: OUTWAL in the symbol table leftover."},
+    {"at":15,"placement":"side","text":"Stops the scroll in both directions."}
+  ],
+  "references": [],
+  "operands": []
+}

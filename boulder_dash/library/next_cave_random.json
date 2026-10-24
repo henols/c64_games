@@ -1,0 +1,25 @@
+{
+  "name": "next_cave_random",
+  "title": "Random numbers of the cave generator",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6ced"},
+  "length": 41,
+  "bytes": [
+    "a53f6a6a29808d0498a53e6a297f8d05",
+    "98a53e6a6a298018653e6913853ea53f",
+    "6d04986d0598853f60"
+  ],
+  "instructions": [0,2,3,4,6,9,11,12,14,17,19,20,21,23,24,26,28,30,32,35,38,40],
+  "relocations": [],
+  "variable": [1,7,8,10,15,16,18,25,29,31,33,34,36,37,39],
+  "symbols": [
+    {"at":0,"name":"next_cave_random","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":40,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Steps the pseudo-random generator of the cave decoder: random_seed1 and random_seed2 get the next values. Uses random_temp1 and random_temp2."}
+  ],
+  "references": [],
+  "operands": []
+}

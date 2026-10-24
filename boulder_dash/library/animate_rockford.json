@@ -1,0 +1,60 @@
+{
+  "name": "animate_rockford",
+  "title": "Character animation",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$782a"},
+  "length": 302,
+  "bytes": [
+    "a58bc90ff03ca90085be85bfa598d019",
+    "bde865996032bdf065996832bd686699",
+    "e032bd706699e83260bde864996032bd",
+    "f064996832bd686599e032bd706599e8",
+    "3260e000d01ca90085bf20d06a2903d0",
+    "04a90185bf20d06a290fd006a90145be",
+    "85bea5bff00fbde863996032bdf06399",
+    "68324cab78b91032996032b918329968",
+    "32a5bef00dbd686499e032bd706499e8",
+    "3260b9903299e032b9983299e83260a5",
+    "95d007a594f003200571a5c00aaaa000",
+    "bd0656994032bd0e56994832bd865699",
+    "c032bd8e5699c832a5fff058c9049018",
+    "bd0654990032bd0e54990832bd865499",
+    "8032bd8e54998832a5ff2902f018bd06",
+    "57990031bd0e57990831bd8657998031",
+    "bd8e57998831a5ff2901f018bd065599",
+    "2033bd0e55992833bd865599a033bd8e",
+    "5599a833202a78e8c8c008d08360"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,19,22,25,28,31,34,37,40,41,44,47,50,53,56,59,62,65,66,68,70,72,74,77,79,81,83,85,88,90,92,94,96,98,100,102,105,108,111,114,117,120,123,126,129,131,133,136,139,142,145,146,149,152,155,158,159,161,163,165,167,170,172,173,174,176,179,182,185,188,191,194,197,200,202,204,206,208,211,214,217,220,223,226,229,232,234,236,238,241,244,247,250,253,256,259,262,264,266,268,271,274,277,280,283,286,289,292,295,296,297,299,301],
+  "relocations": [
+    {"at":115,"size":"word","value":129},
+    {"at":293,"size":"word","value":0}
+  ],
+  "variable": [1,9,11,13,17,18,20,21,23,24,26,27,29,30,32,33,35,36,38,39,42,43,45,46,48,49,51,52,54,55,57,58,60,61,63,64,73,75,76,84,86,87,95,97,99,103,104,106,107,109,110,112,113,118,119,121,122,124,125,127,128,130,134,135,137,138,140,141,143,144,147,148,150,151,153,154,156,157,160,164,168,169,171,177,178,180,181,183,184,186,187,189,190,192,193,195,196,198,199,201,209,210,212,213,215,216,218,219,221,222,224,225,227,228,230,231,233,239,240,242,243,245,246,248,249,251,252,254,255,257,258,260,261,263,269,270,272,273,275,276,278,279,281,282,284,285,287,288,290,291],
+  "symbols": [
+    {"at":0,"name":"animate_rockford","kind":"routine"},
+    {"at":41,"name":"animate_rockford_left","kind":"label"},
+    {"at":66,"name":"animate_rockford_idle","kind":"label"},
+    {"at":85,"name":"animate_rockford_tap_check","kind":"label"},
+    {"at":98,"name":"animate_rockford_top","kind":"label"},
+    {"at":117,"name":"animate_rockford_top_stand","kind":"label"},
+    {"at":129,"name":"animate_rockford_bottom","kind":"label"},
+    {"at":146,"name":"animate_rockford_bot_stand","kind":"label"},
+    {"at":159,"name":"animate_chars","kind":"routine"},
+    {"at":170,"name":"animate_chars_start","kind":"label"},
+    {"at":176,"name":"animate_chars_loop","kind":"label"},
+    {"at":232,"name":"animate_chars_butterfly","kind":"label"},
+    {"at":262,"name":"animate_chars_firefly","kind":"label"},
+    {"at":292,"name":"animate_chars_next","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":301,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies one byte row of the Rockford characters $4C, $4D, $5C and $5D. Input: X = frame offset, Y = byte row 0-7. Walking uses the left or right frames. Standing uses the standing image, with random eye blinks and foot taps."},
+    {"at":66,"placement":"line","text":"Once in each cycle, Rockford blinks with a chance of 1 in 4. The foot tap toggles with a chance of 1 in 16."},
+    {"at":159,"placement":"line","text":"Shows the status line during play. Then copies the current animation frame (anim_frame) into the characters of the diamond and of Rockford. Also the amoeba, the butterfly and the firefly characters, as cave_anim_flags selects."},
+    {"at":204,"placement":"side","text":"Bit 2: amoeba (characters $40, $41, $50, $51)."}
+  ],
+  "references": [],
+  "operands": []
+}

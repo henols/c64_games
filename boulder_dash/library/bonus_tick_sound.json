@@ -1,0 +1,28 @@
+{
+  "name": "bonus_tick_sound",
+  "title": "Time bonus sound",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$87c8"},
+  "length": 50,
+  "bytes": [
+    "c603a20fa9108d12d486020602a50338",
+    "e5028d0fd4a9a08d14d4a9008d13d4a9",
+    "118d12d4a0c088d0fdcad0d8a9108d12",
+    "d460"
+  ],
+  "instructions": [0,2,4,6,9,11,13,15,16,18,21,23,26,28,31,33,36,38,39,41,42,44,46,49],
+  "relocations": [],
+  "variable": [1,7,8,10,12,14,17,19,20,24,25,29,30,34,35,47,48],
+  "symbols": [
+    {"at":0,"name":"bonus_tick_sound","kind":"routine"},
+    {"at":4,"name":"bonus_tick_sweep","kind":"label"},
+    {"at":38,"name":"bonus_tick_wait","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":49,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Plays one falling sweep on SID voice 3 for one bonus time unit. Lowers the start pitch in $03. Returns with A non-zero."}
+  ],
+  "references": [],
+  "operands": []
+}

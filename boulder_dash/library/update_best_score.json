@@ -1,0 +1,36 @@
+{
+  "name": "update_best_score",
+  "title": "Best scores",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$87fa"},
+  "length": 71,
+  "bytes": [
+    "a900aa85a1b565dd4898f008a205b004",
+    "a90185a1e8e006d0eca5a1f00aa205bd",
+    "48989565ca10f860a205b5749d2798b5",
+    "839d3398b56e1869109d1398b57d6910",
+    "9d1f98ca10e460"
+  ],
+  "instructions": [0,2,3,5,7,10,12,14,16,18,20,21,23,25,27,29,31,34,36,37,39,40,42,44,47,49,52,54,55,57,60,62,64,67,68,70],
+  "relocations": [],
+  "variable": [4,6,8,9,19,26,32,33,35,43,45,46,48,50,51,53,58,59,61,65,66],
+  "symbols": [
+    {"at":0,"name":"update_best_score","kind":"routine"},
+    {"at":5,"name":"update_best_compare","kind":"label"},
+    {"at":20,"name":"update_best_next","kind":"label"},
+    {"at":31,"name":"update_best_copy","kind":"label"},
+    {"at":39,"name":"update_best_done","kind":"label"},
+    {"at":40,"name":"copy_scores_to_title","kind":"routine"},
+    {"at":42,"name":"copy_scores_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":70,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Compares the score digits with best_score. A higher score sets new_best_flag and becomes the best score of the player."},
+    {"at":40,"placement":"line","text":"Writes the last score and the best score of both players into the LAST and HIGH lines of the title."},
+    {"at":44,"placement":"side","text":"Best score of player 1 and of player 2 into the HIGH line."},
+    {"at":52,"placement":"side","text":"Last score of player 1 and of player 2 into the LAST line."}
+  ],
+  "references": [],
+  "operands": []
+}

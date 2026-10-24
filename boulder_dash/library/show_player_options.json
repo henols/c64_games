@@ -1,0 +1,28 @@
+{
+  "name": "show_player_options",
+  "title": "Player and joystick digits of the title",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$81f0"},
+  "length": 31,
+  "bytes": [
+    "a5a3d01aa59e1869118d700b69348d71",
+    "0ba5a41869118d840b69348d850b60"
+  ],
+  "instructions": [0,2,4,6,7,9,12,14,17,19,20,22,25,27,30],
+  "relocations": [],
+  "variable": [1,5,10,11,15,16,18,23,24,28,29],
+  "symbols": [
+    {"at":0,"name":"show_player_options","kind":"routine"},
+    {"at":30,"name":"show_player_options_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":30,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"When the options show, writes the number of players and of joysticks as two map cells each."},
+    {"at":0,"placement":"side","text":"OPTION in the developer symbol table (symbol_table_leftover)."},
+    {"at":4,"placement":"side","text":"Digit 1 is $11. The right half of a character is the code plus $34."},
+    {"at":30,"placement":"side","text":"EXIT in the developer symbol table (symbol_table_leftover)."}
+  ],
+  "references": [],
+  "operands": []
+}

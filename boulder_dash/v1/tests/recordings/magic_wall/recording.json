@@ -1,0 +1,145 @@
+{
+  "format": 1,
+  "name": "Magic wall: cave H starts from the options screen. After 250 frames the record file writes a falling boulder ($12) at cell row 14, column 14 ($0A8E), above the magic wall. The wall becomes active, lets a diamond out below and runs until its time ends. F1 ends the game.",
+  "program": "original/bd_obj_charsoft.prg",
+  "sha256": "2396f331e86b415a665927a912d357c4b70c48170fa7d95e6d6645c4d390912a",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "registers": {
+          "pc": "$8ab3"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "08",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 661
+      }
+    },
+    {
+      "step": 13,
+      "action": {
+        "write": {
+          "address": "$0a8e",
+          "data": "12",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8709",
+        "addr": "$dc01",
+        "count": 1682
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$8709",
+      "addr": "$dc01",
+      "reads": 12161,
+      "rom": false
+    },
+    {
+      "site": "$86a5",
+      "addr": "$dc01",
+      "reads": 6071,
+      "rom": false
+    },
+    {
+      "site": "$86bb",
+      "addr": "$dc01",
+      "reads": 6071,
+      "rom": false
+    },
+    {
+      "site": "$6b5d",
+      "addr": "$dc01",
+      "reads": 344,
+      "rom": false
+    },
+    {
+      "site": "$6b74",
+      "addr": "$dc01",
+      "reads": 354,
+      "rom": false
+    }
+  ],
+  "ticks": 65850285,
+  "hash": "5436fd3a"
+}

@@ -1,0 +1,88 @@
+{
+ "name": "Magic wall: cave H starts from the options screen. After 250 frames the record file writes a falling boulder ($12) at cell row 14, column 14 ($0A8E), above the magic wall. The wall becomes active, lets a diamond out below and runs until its time ends. F1 ends the game.",
+ "program": "original/bd_obj_charsoft.prg",
+ "symbols": "none",
+ "coverage": "$8ab3",
+ "load": true,
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "00"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$8ab3"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "08"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 250
+  },
+  {
+   "write": {
+    "address": "$0a8e",
+    "data": "12"
+   }
+  },
+  {
+   "frames": 2500
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 100
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "count_magic_wall_time",
+  "title": "Magic wall time",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7b07"},
+  "length": 36,
+  "bytes": [
+    "a59b4901258dc901d019e68ea58ec93c",
+    "d011a900858ee68fa58fcd0124d004a9",
+    "02858d60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,29,31,33,35],
+  "relocations": [],
+  "variable": [1,5,11,13,21,23,25,27,28,34],
+  "symbols": [
+    {"at":0,"name":"count_magic_wall_time","kind":"routine"},
+    {"at":35,"name":"count_magic_wall_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":35,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"While the magic wall is active and the game is not paused, counts seconds. At cave_magic_time seconds the magic wall expires (state 2)."}
+  ],
+  "references": [],
+  "operands": []
+}

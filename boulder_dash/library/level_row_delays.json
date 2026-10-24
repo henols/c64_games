@@ -1,0 +1,29 @@
+{
+  "name": "level_row_delays",
+  "title": "Speed delay of the scan",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7ccd"},
+  "length": 18,
+  "bytes": [
+    "0c06030100a49cf008a210cad0fd88d0",
+    "f860"
+  ],
+  "instructions": [5,7,9,11,12,14,15,17],
+  "relocations": [],
+  "variable": [6],
+  "symbols": [
+    {"at":0,"name":"level_row_delays","kind":"data"},
+    {"at":5,"name":"scan_row_delay","kind":"routine"},
+    {"at":9,"name":"scan_row_delay_outer","kind":"label"},
+    {"at":11,"name":"scan_row_delay_inner","kind":"label"},
+    {"at":17,"name":"scan_row_delay_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":5,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Delay after each scanned row, one byte for each level 1-5. A larger value gives a slower game."},
+    {"at":5,"placement":"line","text":"Waits after a scanned row: row_delay times 16 loop steps. Changes X and Y."}
+  ],
+  "references": [],
+  "operands": []
+}

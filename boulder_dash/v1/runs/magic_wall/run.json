@@ -1,0 +1,139 @@
+{
+ "name": "magic",
+ "start": {
+  "program": "original/bd_obj_charsoft.prg",
+  "load": true
+ },
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "00"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$8ab3"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "08"
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 250
+  },
+  {
+   "frames": 20
+  },
+  {
+   "screen": "h0"
+  },
+  {
+   "observe": "before",
+   "memory": [
+    {
+     "address": "$0a68",
+     "size": 120
+    },
+    {
+     "address": "$008d",
+     "size": 1
+    }
+   ]
+  },
+  {
+   "write": {
+    "address": "$0a8e",
+    "data": "12"
+   }
+  },
+  {
+   "trace": "magic",
+   "points": [
+    {
+     "kind": "exec",
+     "start": "$7dd9"
+    },
+    {
+     "kind": "exec",
+     "start": "$73dd"
+    },
+    {
+     "kind": "exec",
+     "start": "$7e3a"
+    },
+    {
+     "kind": "exec",
+     "start": "$73bf"
+    }
+   ],
+   "frames": 60
+  },
+  {
+   "observe": "after",
+   "memory": [
+    {
+     "address": "$0a68",
+     "size": 120
+    },
+    {
+     "address": "$008d",
+     "size": 1
+    }
+   ]
+  },
+  {
+   "screen": "h1"
+  },
+  {
+   "frames": 300
+  },
+  {
+   "screen": "h2"
+  }
+ ]
+}

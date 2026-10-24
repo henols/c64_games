@@ -1,0 +1,65 @@
+{
+  "name": "delay_short",
+  "title": "Delays, pause and the game keys",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7d03"},
+  "length": 160,
+  "bytes": [
+    "a080cad0fd88d0fa6020037d20037d20",
+    "037d20037d60a090a200a5fcc9efd001",
+    "60cad0f688d0f16020046ba9588546a9",
+    "6c854720166ba59bc901d007e69b2003",
+    "7d85fc20197da9628546a99885472016",
+    "6b20197d20197d20197da5fcc9efd0c8",
+    "20037da90085fc60a5fcc9efd012a200",
+    "869420f47ce69b202b7da900859be694",
+    "a5fcc97fd00ca595d008a9008594a902",
+    "8597a90085fca5fbc9efd0034cb38a60"
+  ],
+  "instructions": [0,2,3,5,6,8,9,12,15,18,21,22,24,26,28,30,32,33,34,36,37,39,40,43,45,47,49,51,54,56,58,60,62,65,67,70,72,74,76,78,81,84,87,90,92,94,96,99,101,103,104,106,108,110,112,114,117,119,122,124,126,128,130,132,134,136,138,140,142,144,146,148,150,152,154,156,159],
+  "relocations": [
+    {"at":10,"size":"word","value":0},
+    {"at":13,"size":"word","value":0},
+    {"at":16,"size":"word","value":0},
+    {"at":19,"size":"word","value":0},
+    {"at":63,"size":"word","value":0},
+    {"at":68,"size":"word","value":22},
+    {"at":82,"size":"word","value":22},
+    {"at":85,"size":"word","value":22},
+    {"at":88,"size":"word","value":22},
+    {"at":97,"size":"word","value":0},
+    {"at":120,"size":"word","value":40}
+  ],
+  "variable": [27,41,42,46,50,52,53,55,61,66,73,77,79,80,91,102,105,113,115,116,118,125,127,129,135,141,145,149,151,157,158],
+  "symbols": [
+    {"at":0,"name":"delay_short","kind":"routine"},
+    {"at":2,"name":"delay_short_loop","kind":"label"},
+    {"at":9,"name":"delay_long","kind":"routine"},
+    {"at":22,"name":"wait_or_space","kind":"routine"},
+    {"at":24,"name":"wait_or_space_outer","kind":"label"},
+    {"at":26,"name":"wait_or_space_inner","kind":"label"},
+    {"at":33,"name":"wait_or_space_next","kind":"label"},
+    {"at":40,"name":"pause_game","kind":"routine"},
+    {"at":67,"name":"pause_blink","kind":"label"},
+    {"at":104,"name":"check_game_keys","kind":"routine"},
+    {"at":128,"name":"check_keys_run_stop","kind":"label"},
+    {"at":146,"name":"check_keys_f1","kind":"label"},
+    {"at":159,"name":"check_keys_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":159,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Busy wait of 128 times X loop steps. Input: X. A does not change."},
+    {"at":9,"placement":"line","text":"Busy wait of four short delays."},
+    {"at":22,"placement":"line","text":"Busy wait that ends early when SPACE is pressed (key_row7 = $EF)."},
+    {"at":40,"placement":"line","text":"Pause: blinks SPACEBAR TO RESUME with the saved status line until SPACE is pressed again."},
+    {"at":40,"placement":"side","text":"Saves the status line in status_saved."},
+    {"at":54,"placement":"side","text":"On the first pass, it waits and clears the key state."},
+    {"at":104,"placement":"line","text":"Reads the game keys after each scan: SPACE pauses, RUN/STOP ends the life, F1 restarts the game."},
+    {"at":128,"placement":"side","text":"RUN/STOP counts only when Rockford is born."},
+    {"at":142,"placement":"side","text":"play_end = 2 ends the play of the cave."},
+    {"at":152,"placement":"side","text":"F1: key_row0 = $EF."}
+  ],
+  "references": [],
+  "operands": []
+}

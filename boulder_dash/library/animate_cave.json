@@ -1,0 +1,23 @@
+{
+  "name": "animate_cave",
+  "title": "Animation step",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7af7"},
+  "length": 16,
+  "bytes": [
+    "a5c0186908293f85c020c97820df7a60"
+  ],
+  "instructions": [0,2,3,5,7,9,12,15],
+  "relocations": [],
+  "variable": [1,8,10,11,13,14],
+  "symbols": [
+    {"at":0,"name":"animate_cave","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":15,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Steps anim_frame to the next of 8 frames, animates the cave characters and the magic wall. The screen drawing routine calls it."}
+  ],
+  "references": [],
+  "operands": []
+}

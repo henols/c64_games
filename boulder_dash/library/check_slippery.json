@@ -1,0 +1,36 @@
+{
+  "name": "check_slippery",
+  "title": "What a falling object lands on",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6e65"},
+  "length": 72,
+  "bytes": [
+    "a200c910d002a201c914d002a201c902",
+    "d002a201e00160a201b1322933d132d0",
+    "0c0930d132d006a200a9218589e000f0",
+    "14a201b132290bd132d00a2908f006a2",
+    "00a91c8589e00060"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71],
+  "relocations": [],
+  "variable": [26,30,36,44,52,56,68],
+  "symbols": [
+    {"at":0,"name":"check_slippery","kind":"routine"},
+    {"at":8,"name":"check_slippery_diamond","kind":"label"},
+    {"at":14,"name":"check_slippery_wall","kind":"label"},
+    {"at":20,"name":"check_slippery_done","kind":"label"},
+    {"at":23,"name":"check_hit_enemy","kind":"routine"},
+    {"at":45,"name":"check_hit_firefly","kind":"label"},
+    {"at":69,"name":"check_hit_enemy_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":71,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Returns Z set when cell code A is a boulder, a diamond or brick wall. Falling objects roll off these cells."},
+    {"at":23,"placement":"line","text":"Returns Z set when the cell at scan_ptr+Y is a butterfly ($30-$33) or firefly ($08-$0b). Sets explosion_code to $21 (diamonds) or $1c (space)."},
+    {"at":25,"placement":"side","text":"Butterfly test: the code has only bits $33 and has bits $30."},
+    {"at":51,"placement":"side","text":"Firefly test: the code has only bits $0b and has bit $08."}
+  ],
+  "references": [],
+  "operands": []
+}

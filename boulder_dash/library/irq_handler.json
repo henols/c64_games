@@ -1,0 +1,57 @@
+{
+  "name": "irq_handler",
+  "title": "Raster IRQ handler",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$8675"},
+  "length": 173,
+  "bytes": [
+    "ad19d08d19d02901f01ec6a71004a901",
+    "85a7a6a7b5548d11d0b5568d16d0b558",
+    "8d18d0b55a8d12d0200487a9fe8d00dc",
+    "ad01dcc9fff00ac5fdd00485fbf00285",
+    "fda97f8d00dcad01dcc9fff00ac5fed0",
+    "0485fcf00285fe200487a5cec901d018",
+    "a5a3d004a9288558a9008d15d0a91885",
+    "56a91b8554204684a5ced008a97f8d15",
+    "d0202b7ba9008d1bd068a868aa6840a9",
+    "ff8d00dcad01dc291fc91ff00fa9ff85",
+    "fb85fc85fd85fe68684ccf8660"
+  ],
+  "instructions": [0,3,6,8,10,12,14,16,18,20,22,25,27,30,32,35,37,40,43,45,48,51,53,55,57,59,61,63,65,67,70,73,75,77,79,81,83,85,87,90,92,94,96,98,100,102,104,106,109,111,113,115,117,120,122,124,126,129,132,134,137,138,139,140,141,142,143,145,148,151,153,155,157,159,161,163,165,167,168,169,172],
+  "relocations": [
+    {"at":41,"size":"word","value":143},
+    {"at":88,"size":"word","value":143},
+    {"at":170,"size":"word","value":90}
+  ],
+  "variable": [1,2,4,5,11,17,19,21,23,24,26,28,29,31,33,34,36,38,39,46,47,49,50,56,60,64,68,69,71,72,78,82,86,91,97,103,107,108,112,116,118,119,121,127,128,130,131,135,136,146,147,149,150,160,162,164,166],
+  "symbols": [
+    {"at":0,"name":"irq_handler","kind":"routine"},
+    {"at":18,"name":"irq_set_split","kind":"label"},
+    {"at":40,"name":"irq_scan_keys","kind":"label"},
+    {"at":63,"name":"irq_key_row0_new","kind":"label"},
+    {"at":65,"name":"irq_scan_row7","kind":"label"},
+    {"at":85,"name":"irq_key_row7_new","kind":"label"},
+    {"at":87,"name":"irq_keys_done","kind":"label"},
+    {"at":90,"name":"irq_frame_work","kind":"label"},
+    {"at":104,"name":"irq_title_mode","kind":"label"},
+    {"at":120,"name":"irq_check_game_mode","kind":"label"},
+    {"at":132,"name":"irq_exit","kind":"label"},
+    {"at":143,"name":"irq_joystick_guard","kind":"routine"},
+    {"at":172,"name":"irq_joystick_guard_ok","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":172,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Raster IRQ. Sets two raster splits from the tables at $54-$5b, scans keyboard rows 0 and 7, then does the title or game frame work."},
+    {"at":18,"placement":"side","text":"The split index selects the VIC-II values of the next split."},
+    {"at":43,"placement":"side","text":"Keyboard row 0: a value counts when two scans agree."},
+    {"at":65,"placement":"side","text":"Keyboard row 7: a value counts when two scans agree."},
+    {"at":90,"placement":"side","text":"irq_mode 1: title frame work."},
+    {"at":100,"placement":"side","text":"Without the credits the upper split shows the screen at $0800."},
+    {"at":120,"placement":"side","text":"irq_mode 0: game frame work with sprites 0-6."},
+    {"at":143,"placement":"line","text":"Reads $dc01 with no keyboard column selected. A joystick 1 input sets all key values to $ff and skips the keyboard scan."},
+    {"at":167,"placement":"side","text":"Drops the return address and continues in the IRQ handler."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,35 @@
+{
+  "name": "decimal_one",
+  "title": "Binary to decimal",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7e3e"},
+  "length": 40,
+  "bytes": [
+    "000001a202a90095c3ca10fba5c6f017",
+    "a20218b5c37d3e7ec90a9002e90a95c3",
+    "ca10f0c6c6d0e960"
+  ],
+  "instructions": [3,5,7,9,10,12,14,16,18,19,21,24,26,28,30,32,33,35,37,39],
+  "relocations": [
+    {"at":22,"size":"word","value":0}
+  ],
+  "variable": [8,13,20,31,36],
+  "symbols": [
+    {"at":0,"name":"decimal_one","kind":"data"},
+    {"at":3,"name":"count_to_decimal","kind":"routine"},
+    {"at":7,"name":"count_to_decimal_clear","kind":"label"},
+    {"at":16,"name":"count_to_decimal_step","kind":"label"},
+    {"at":19,"name":"count_to_decimal_digit","kind":"label"},
+    {"at":30,"name":"count_to_decimal_store","kind":"label"},
+    {"at":38,"name":"cave_sequence_base","kind":"label"},
+    {"at":39,"name":"count_to_decimal_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":3,"end":39,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"The number 1 as three decimal digits, hundreds first."},
+    {"at":3,"placement":"line","text":"Converts decimal_count to three decimal digits in decimal_digits, hundreds first. It counts up one at a time and sets decimal_count to 0."}
+  ],
+  "references": [],
+  "operands": []
+}

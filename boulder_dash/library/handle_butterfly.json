@@ -1,0 +1,33 @@
+{
+  "name": "handle_butterfly",
+  "title": "Butterflies",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6ead"},
+  "length": 78,
+  "bytes": [
+    "20c16dd00aa921858920626d4c157ea0",
+    "29b1322903aabcac6db132d00e188a69",
+    "012903693420b66c4cd76cbcb06db132",
+    "d00d188a6934bcb06d20b66c4cd76c18",
+    "a0298a69032903693491324c157e"
+  ],
+  "instructions": [0,3,5,7,9,12,15,17,19,21,22,25,27,29,30,31,33,35,37,40,43,46,48,50,51,52,54,57,60,63,64,66,67,69,71,73,75],
+  "relocations": [],
+  "variable": [1,2,8,10,11,13,14,18,23,24,26,38,39,41,42,44,45,47,55,56,58,59,61,62,74,76,77],
+  "symbols": [
+    {"at":0,"name":"handle_butterfly","kind":"routine"},
+    {"at":15,"name":"butterfly_move","kind":"label"},
+    {"at":43,"name":"butterfly_try_ahead","kind":"label"},
+    {"at":63,"name":"butterfly_turn_left","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":77,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Handler of the butterflies $30-$33. Explodes to diamonds next to Rockford or amoeba. Else it turns right, moves ahead or turns left."},
+    {"at":5,"placement":"side","text":"Explosion to diamonds: stages $20-$24."},
+    {"at":22,"placement":"side","text":"Bits 0-1 index the cell on the right side of the butterfly."},
+    {"at":35,"placement":"side","text":"Code $34-$37: butterfly already scanned in this frame."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,42 @@
+{
+  "name": "set_magic_wall_brick",
+  "title": "Magic wall",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7a86"},
+  "length": 113,
+  "bytes": [
+    "a207bd70329d10319d18319d90319d98",
+    "31ca10ee60a5c22901f021a9108d12d4",
+    "20d06a29030a0a0a69868d0fd4a9008d",
+    "13d4a9a08d14d4a9118d12d4a5c0291f",
+    "aaa000bd603399103199183199903199",
+    "9831e8c8c008d0eb60a58dc901d0034c",
+    "9b7ac902d00a20867a20e77ca903858d",
+    "60"
+  ],
+  "instructions": [0,2,5,8,11,14,17,18,20,21,23,25,27,29,32,35,37,38,39,40,42,45,47,50,52,55,57,60,62,64,65,67,70,73,76,79,82,83,84,86,88,89,91,93,95,98,100,102,105,108,110,112],
+  "relocations": [
+    {"at":96,"size":"word","value":21},
+    {"at":103,"size":"word","value":0}
+  ],
+  "variable": [3,4,6,7,9,10,12,13,15,16,22,30,31,33,34,43,44,48,49,53,54,58,59,61,68,69,71,72,74,75,77,78,80,81,90,106,107,111],
+  "symbols": [
+    {"at":0,"name":"set_magic_wall_brick","kind":"routine"},
+    {"at":2,"name":"set_magic_wall_brick_loop","kind":"label"},
+    {"at":21,"name":"animate_magic_wall","kind":"routine"},
+    {"at":60,"name":"animate_magic_wall_gfx","kind":"label"},
+    {"at":67,"name":"animate_magic_wall_loop","kind":"label"},
+    {"at":89,"name":"update_magic_wall","kind":"routine"},
+    {"at":98,"name":"update_magic_wall_expire","kind":"label"},
+    {"at":112,"name":"update_magic_wall_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":112,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies the brick wall character $4E into the four magic wall characters $22, $23, $32 and $33."},
+    {"at":21,"placement":"line","text":"Active magic wall: plays its noise on voice 3 on odd frames and copies an animation frame into the four magic wall characters."},
+    {"at":89,"placement":"line","text":"State 1 animates the magic wall. State 2 shows it as a brick wall, stops voice 3 and sets state 3."}
+  ],
+  "references": [],
+  "operands": []
+}

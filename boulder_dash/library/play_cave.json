@@ -1,0 +1,26 @@
+{
+  "name": "play_cave",
+  "title": "Main game loop",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$88fb"},
+  "length": 24,
+  "bytes": [
+    "20d97da597f0f920f47c20ab88a5a8d0",
+    "fc8d08988d119860"
+  ],
+  "instructions": [0,3,5,7,10,13,15,17,20,23],
+  "relocations": [],
+  "variable": [1,2,4,8,9,11,12,14,18,19,21,22],
+  "symbols": [
+    {"at":0,"name":"play_cave","kind":"routine"},
+    {"at":13,"name":"play_cave_wait_flash","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":23,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Main game loop: runs one game tick at $7dd9 until cave_end_state is set. Then ends the cave and waits for the bonus life flash."},
+    {"at":0,"placement":"side","text":"One game tick: scans all cells of the cave."}
+  ],
+  "references": [],
+  "operands": []
+}

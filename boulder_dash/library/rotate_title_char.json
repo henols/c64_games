@@ -1,0 +1,25 @@
+{
+  "name": "rotate_title_char",
+  "title": "Title character animation",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7487"},
+  "length": 20,
+  "bytes": [
+    "ac0020a200bd01209d0020e8e007d0f5",
+    "8c072060"
+  ],
+  "instructions": [0,3,5,8,11,12,14,16,19],
+  "relocations": [],
+  "variable": [1,2,6,7,9,10,17,18],
+  "symbols": [
+    {"at":0,"name":"rotate_title_char","kind":"routine"},
+    {"at":5,"name":"rotate_title_char_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":19,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Rotates the 8 bytes of character 0 of the charset at $2000 up by one byte. The title IRQ calls it every fourth time."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,318 @@
+{
+  "format": 1,
+  "name": "Extras: two players with two joysticks (F3 two times). Player 1 starts cave A, the score is set to 490 and the first diamond gives a bonus life with the space sparkle. Rockford pushes a boulder to the right. RUN/STOP ends the turn, player 2 starts with fire on port 2 and walks with joystick 2. RESTORE starts the program again.",
+  "program": "tests/program/statesoft_5000.prg",
+  "sha256": "4442661a6aa9fca32b9f25eb501001c180ed75a680bacaf4ba9aa27277f3dd4e",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "registers": {
+          "pc": "$8e6a"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08a3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 1081
+      }
+    },
+    {
+      "step": 16,
+      "action": {
+        "write": {
+          "address": "$005f",
+          "data": "000000040900",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 18,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$087b",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 2214
+      }
+    },
+    {
+      "step": 20,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0882",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 2229
+      }
+    },
+    {
+      "step": 22,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0881",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 2336
+      }
+    },
+    {
+      "step": 26,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$0883",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 3148
+      }
+    },
+    {
+      "step": 35,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$08a3",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 5235
+      }
+    },
+    {
+      "step": 37,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$087b",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 5236
+      }
+    },
+    {
+      "step": 39,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "$087e",
+            "operator": "eq",
+            "value": 56,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 400
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 5261
+      }
+    },
+    {
+      "step": 42,
+      "action": {
+        "restore": true
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 5549
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$8aa0",
+      "addr": "$dc01",
+      "reads": 7183,
+      "rom": false
+    },
+    {
+      "site": "$8a3c",
+      "addr": "$dc01",
+      "reads": 3202,
+      "rom": false
+    },
+    {
+      "site": "$8a52",
+      "addr": "$dc01",
+      "reads": 3202,
+      "rom": false
+    },
+    {
+      "site": "$6ef5",
+      "addr": "$dc01",
+      "reads": 149,
+      "rom": false
+    },
+    {
+      "site": "$6f0c",
+      "addr": "$dc01",
+      "reads": 130,
+      "rom": false
+    },
+    {
+      "site": "$6f07",
+      "addr": "$dc00",
+      "reads": 38,
+      "rom": false
+    },
+    {
+      "site": "$6efb",
+      "addr": "$dc00",
+      "reads": 11,
+      "rom": false
+    }
+  ],
+  "ticks": 45114441,
+  "hash": "a5d17ecc"
+}

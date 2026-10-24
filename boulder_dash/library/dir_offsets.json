@@ -1,0 +1,56 @@
+{
+  "name": "dir_offsets",
+  "title": "Direction tables, enemy contact and fireflies",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6dac"},
+  "length": 124,
+  "bytes": [
+    "28012a515128012ab132c9389006c93b",
+    "b002a20060a201a00120b46da02820b4",
+    "6da02a20b46da05120b46de0006020c1",
+    "6dd00aa91c858920626d4c157ea029b1",
+    "322903aabcb06db132d00e188a690329",
+    "03690c20b66c4cd76cbcac6db132d00d",
+    "188a690cbcac6d20b66c4cd76c18a029",
+    "8a69012903690c91324c157e"
+  ],
+  "instructions": [8,10,12,14,16,18,20,21,23,25,28,30,33,35,38,40,43,45,46,49,51,53,55,58,61,63,65,67,68,71,73,75,76,77,79,81,83,86,89,92,94,96,97,98,100,103,106,109,110,112,113,115,117,119,121],
+  "relocations": [
+    {"at":26,"size":"word","value":8},
+    {"at":31,"size":"word","value":8},
+    {"at":36,"size":"word","value":8},
+    {"at":41,"size":"word","value":8},
+    {"at":47,"size":"word","value":21},
+    {"at":69,"size":"word","value":4},
+    {"at":90,"size":"word","value":0},
+    {"at":101,"size":"word","value":0}
+  ],
+  "variable": [9,54,56,57,59,60,64,72,84,85,87,88,93,104,105,107,108,120,122,123],
+  "symbols": [
+    {"at":0,"name":"dir_offsets","kind":"data"},
+    {"at":4,"name":"dir_offsets_turned","kind":"data"},
+    {"at":8,"name":"check_rockford_cell","kind":"routine"},
+    {"at":20,"name":"check_rockford_cell_done","kind":"label"},
+    {"at":21,"name":"check_enemy_touch","kind":"routine"},
+    {"at":46,"name":"handle_firefly","kind":"routine"},
+    {"at":61,"name":"firefly_move","kind":"label"},
+    {"at":89,"name":"firefly_try_ahead","kind":"label"},
+    {"at":109,"name":"firefly_turn_right","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":3,"type":"bytes"},
+    {"start":4,"end":7,"type":"bytes"},
+    {"start":8,"end":123,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Cell offsets from scan_ptr for directions 0-3: left $28, up $01, right $2a, down $51."},
+    {"at":4,"placement":"line","text":"Cell offsets of dir_offsets one step back: entry d is dir_offsets entry d-1."},
+    {"at":8,"placement":"line","text":"Clears X when the cell at scan_ptr+Y is Rockford ($38, $39) or amoeba ($3a)."},
+    {"at":21,"placement":"line","text":"Checks the four neighbours of the current cell for Rockford or amoeba. Returns Z set when one touches it."},
+    {"at":46,"placement":"line","text":"Handler of the fireflies $08-$0b (bits 0-1 = direction). Explodes next to Rockford or amoeba, else turns left, moves ahead or turns right."},
+    {"at":51,"placement":"side","text":"Explosion to space: stages $1b-$1f."},
+    {"at":68,"placement":"side","text":"Cell on the left side of the firefly."},
+    {"at":81,"placement":"side","text":"Code $0c-$0f: firefly already scanned in this frame."}
+  ],
+  "references": [],
+  "operands": []
+}

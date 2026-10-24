@@ -1,0 +1,67 @@
+{
+  "name": "run_title",
+  "title": "Title screen and its start",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$859b"},
+  "length": 218,
+  "bytes": [
+    "a200bd58209d0020e8e008d0f5a90185",
+    "5d85a2201885a90185bd85c278a207bd",
+    "13869554ca10f858a90085ce85c185fb",
+    "85fc20f47ca5a2f007a200865ee8865d",
+    "a9138d58988595a55d1869208d5e98a5",
+    "5e1869118d6098a9008594a94e8546a9",
+    "98854720166ba9028597600000060e09",
+    "1b1b1818382828c2101b10183c38283b",
+    "a90085cda9288d18d0a204bd06869d20",
+    "d0ca10f7a909a00020e36ae646c647a9",
+    "019146c8d0fb20a183a5a3d003208d83",
+    "202782a90085cfa90185cea5cff0fca9",
+    "008d00988d01988d0b988d0e988d0f98",
+    "8d09988d08988d119860"
+  ],
+  "instructions": [0,2,5,8,9,11,13,15,17,19,22,24,26,28,29,31,34,36,37,39,40,42,44,46,48,50,53,55,57,59,61,62,64,66,69,71,73,74,76,79,81,82,84,87,89,91,93,95,97,99,102,104,106,128,130,132,134,137,139,142,145,146,148,150,152,155,157,159,161,163,164,166,169,171,173,176,179,181,183,185,187,189,191,193,196,199,202,205,208,211,214,217],
+  "relocations": [
+    {"at":32,"size":"word","value":120},
+    {"at":140,"size":"word","value":107}
+  ],
+  "variable": [3,4,6,7,16,18,20,21,25,27,35,43,45,47,49,51,52,54,60,63,67,68,70,72,77,78,80,85,86,90,94,98,100,101,105,131,135,136,143,144,153,154,156,158,162,167,168,170,174,175,177,178,182,186,188,194,195,197,198,200,201,203,204,206,207,209,210,212,213,215,216],
+  "symbols": [
+    {"at":0,"name":"run_title","kind":"routine"},
+    {"at":2,"name":"run_title_copy_char0","kind":"label"},
+    {"at":31,"name":"run_title_game_irq","kind":"label"},
+    {"at":64,"name":"run_title_status","kind":"label"},
+    {"at":107,"name":"title_colours","kind":"data"},
+    {"at":112,"name":"irq_title_values","kind":"data"},
+    {"at":120,"name":"irq_game_values","kind":"data"},
+    {"at":128,"name":"title_screen_setup","kind":"routine"},
+    {"at":139,"name":"title_setup_colours","kind":"label"},
+    {"at":161,"name":"title_setup_fill_white","kind":"label"},
+    {"at":176,"name":"title_setup_draw","kind":"label"},
+    {"at":187,"name":"title_setup_wait_irq","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":106,"type":"code"},
+    {"start":107,"end":111,"type":"bytes"},
+    {"start":112,"end":119,"type":"bytes","element":2},
+    {"start":120,"end":127,"type":"bytes","element":2},
+    {"start":128,"end":217,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Runs the title until a game or the demo starts. Then sets the game IRQ values and fills the status line."},
+    {"at":13,"placement":"side","text":"Cave A and demo_mode are the defaults of the title."},
+    {"at":29,"placement":"side","text":"Copies the raster split values of the game."},
+    {"at":53,"placement":"side","text":"The demo always plays cave A at level 1."},
+    {"at":64,"placement":"side","text":"Digit 3: three lives in the status line."},
+    {"at":91,"placement":"side","text":"Status line text for the routine at $6b16."},
+    {"at":102,"placement":"side","text":"Ends the cave before it starts. The cave setup clears it."},
+    {"at":107,"placement":"line","text":"Colours of the border and of the background registers 0-3 on the title, for $d020-$d024."},
+    {"at":112,"placement":"line","text":"Raster split values of the title: two bytes each for $d011, $d016, $d018 and $d012, copied to $54-$5b."},
+    {"at":120,"placement":"line","text":"Raster split values of the game: two bytes each for $d011, $d016, $d018 and $d012, copied to $54-$5b."},
+    {"at":128,"placement":"line","text":"Sets the title colours, draws the title scene, puts the IRQ into title mode, waits for its first frame and clears the sound state."},
+    {"at":134,"placement":"side","text":"Screen $0800, charset $2000."},
+    {"at":155,"placement":"side","text":"Text pointer to $db01: colour RAM up to $dc00 becomes white."},
+    {"at":176,"placement":"side","text":"Draws the title scene: TTSCEN in the symbol table leftover."}
+  ],
+  "references": [],
+  "operands": []
+}

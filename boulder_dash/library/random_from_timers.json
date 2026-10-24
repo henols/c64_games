@@ -1,0 +1,25 @@
+{
+  "name": "random_from_timers",
+  "title": "Random numbers from the CIA timers",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$6ad0"},
+  "length": 19,
+  "bytes": [
+    "ad04dc4d05dc4d04dd6d05dd4d06dd4d",
+    "07dd60"
+  ],
+  "instructions": [0,3,6,9,12,15,18],
+  "relocations": [],
+  "variable": [1,2,4,5,7,8,10,11,13,14,16,17],
+  "symbols": [
+    {"at":0,"name":"random_from_timers","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":18,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Returns in A a random byte. It combines the low and high bytes of CIA 1 timer A and CIA 2 timers A and B."},
+    {"at":9,"placement":"side","text":"ADC: the carry from the caller also changes the result."}
+  ],
+  "references": [],
+  "operands": []
+}

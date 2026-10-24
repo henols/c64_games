@@ -1,0 +1,75 @@
+{"id":"20261024T095510.874-1fp2lo/655","space":"c64","start":"$5000","file":"data/text_charset.asm","title":"Character set of the title and the status lines","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/656","space":"c64","start":"$53b0","file":"screen/cell_screen_tables.asm","title":"Cave map offsets to screen buffer offsets","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/657","space":"c64","start":"$5406","file":"data/element_glyphs.asm","title":"Animation frames of the amoeba, firefly, diamond and butterfly","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/658","space":"c64","start":"$5806","file":"cave/cave_data.asm","title":"Cave definitions","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/659","space":"c64","start":"$5ea8","file":"input/demo_moves.asm","title":"Joystick moves of the demo","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/660","space":"c64","start":"$5ee8","file":"engine/element_tables.asm","title":"Tables of the cell codes","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/661","space":"c64","start":"$5fe8","file":"data/title_tune_notes.asm","title":"Notes of the title tune","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/662","space":"c64","start":"$60e8","file":"data/cell_charset.asm","title":"Character set of the cave cells","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T095510.874-1fp2lo/663","space":"c64","start":"$63e8","file":"rockford/rockford_glyphs.asm","title":"Animation frames of Rockford","origin":"llm","added":"20261024T095510.874-1fp2lo","closed":null}
+{"id":"20261024T100710.969-a8grbc/303","space":"c64","start":"$66e8","file":"data/title_logo.asm","title":"Title logo in text characters","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/304","space":"c64","start":"$68e8","file":"data/first_star_logo.asm","title":"First Star Software logo","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/305","space":"c64","start":"$6e68","file":"engine/random.asm","title":"Random numbers from the CIA timers","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/306","space":"c64","start":"$6e7b","file":"screen/colour_ram.asm","title":"Colour RAM fill","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/307","space":"c64","start":"$6e9c","file":"status/status_line.asm","title":"Status line save and display","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/308","space":"c64","start":"$6ef5","file":"input/joystick.asm","title":"Joystick and fire button","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/309","space":"c64","start":"$6f14","file":"text/texts.asm","title":"Texts of the title, options and status line","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/310","space":"c64","start":"$7018","file":"engine/cell_draw.asm","title":"Writing and drawing cells","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/311","space":"c64","start":"$7085","file":"cave/cave_random.asm","title":"Random numbers of the cave generator","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/312","space":"c64","start":"$70ae","file":"engine/explosion.asm","title":"Explosions","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/313","space":"c64","start":"$7144","file":"engine/firefly.asm","title":"Direction tables, enemy contact and fireflies","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/314","space":"c64","start":"$71c0","file":"sound/element_sounds.asm","title":"Sounds of diamonds and boulders","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/315","space":"c64","start":"$71fd","file":"engine/falling_checks.asm","title":"What a falling object lands on","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/316","space":"c64","start":"$7245","file":"engine/butterfly.asm","title":"Butterflies","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/317","space":"c64","start":"$7293","file":"engine/diamond.asm","title":"Diamonds","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/318","space":"c64","start":"$7364","file":"engine/amoeba.asm","title":"Amoeba","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/319","space":"c64","start":"$73d1","file":"status/score_time.asm","title":"Score, lives, cave time and diamond counts","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/320","space":"c64","start":"$7529","file":"rockford/movement.asm","title":"Rockford movement and digging","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/321","space":"c64","start":"$764f","file":"engine/stages.asm","title":"Explosion stages, Rockford birth and flashing boxes","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/322","space":"c64","start":"$76f8","file":"engine/boulder.asm","title":"Boulders","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/323","space":"c64","start":"$77d1","file":"screen/space_sparkle.asm","title":"Space sparkle","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/324","space":"c64","start":"$781f","file":"title/title_char.asm","title":"Title character animation","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/325","space":"c64","start":"$7833","file":"screen/scroll.asm","title":"Scrolling of the view","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/326","space":"c64","start":"$7a5e","file":"cave/cell_ptr.asm","title":"Cell pointer","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/327","space":"c64","start":"$7a73","file":"screen/cover.asm","title":"Cover and uncover the cave","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/328","space":"c64","start":"$7bc2","file":"screen/animation.asm","title":"Character animation","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/329","space":"c64","start":"$7cf0","file":"screen/flash.asm","title":"Screen flash","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/330","space":"c64","start":"$7d09","file":"sound/effects.asm","title":"Sound effects","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/331","space":"c64","start":"$7e1e","file":"engine/magic_wall.asm","title":"Magic wall","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/332","space":"c64","start":"$7e8f","file":"screen/animate_cave.asm","title":"Animation step","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/333","space":"c64","start":"$7e9f","file":"engine/magic_wall_time.asm","title":"Magic wall time","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/334","space":"c64","start":"$7ec3","file":"irq/play_frame.asm","title":"Play frame work","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/335","space":"c64","start":"$7ef0","file":"data/draw_screen_copy.asm","title":"Copy source of the screen drawing routine","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/336","space":"c64","start":"$8029","file":"cave/random_fill.asm","title":"Random fill of the cave","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/337","space":"c64","start":"$8065","file":"engine/row_delay.asm","title":"Speed delay of the scan","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/338","space":"c64","start":"$8077","file":"sound/voices_off.asm","title":"Stop the SID voices","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/339","space":"c64","start":"$809b","file":"input/game_keys.asm","title":"Delays, pause and the game keys","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/340","space":"c64","start":"$813b","file":"engine/cave_scan.asm","title":"The scan of the cave map","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/341","space":"c64","start":"$81d6","file":"status/decimal.asm","title":"Binary to decimal","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/342","space":"c64","start":"$81fe","file":"cave/sequence.asm","title":"Order of the caves","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/343","space":"c64","start":"$8226","file":"cave/setup.asm","title":"Cave set-up","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/344","space":"c64","start":"$8336","file":"status/end_of_life.asm","title":"Messages at the end of a life","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/345","space":"c64","start":"$8406","file":"cave/draw_objects.asm","title":"Drawing of the cave objects","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/346","space":"c64","start":"$8588","file":"title/player_options.asm","title":"Player and joystick digits of the title","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/347","space":"c64","start":"$85a7","file":"cave/steel_border.asm","title":"Steel border of the cave","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/348","space":"c64","start":"$85bf","file":"title/draw_title_screen.asm","title":"Title screen","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/349","space":"c64","start":"$86de","file":"sound/tune_frequencies.asm","title":"Note frequencies of the title tune","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/350","space":"c64","start":"$8740","file":"data/cave_animations.asm","title":"Animations of each cave","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/351","space":"c64","start":"$8754","file":"sound/title_tune.asm","title":"Title tune player","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/352","space":"c64","start":"$87d6","file":"title/title_animation.asm","title":"Title screen animation","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/353","space":"c64","start":"$880f","file":"title/options.asm","title":"Options on the title screen","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/354","space":"c64","start":"$892c","file":"title/run_title.asm","title":"Title screen and its start","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/355","space":"c64","start":"$8a0c","file":"irq/irq_handler.asm","title":"Raster IRQ handler","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/356","space":"c64","start":"$8ab9","file":"cave/cave_start.asm","title":"Start of a cave","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/357","space":"c64","start":"$8add","file":"status/players.asm","title":"Players and lives","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/358","space":"c64","start":"$8b5f","file":"sound/bonus_sound.asm","title":"Time bonus sound","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/359","space":"c64","start":"$8b91","file":"status/scores.asm","title":"Best scores","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/360","space":"c64","start":"$8bd8","file":"cave/cave_end.asm","title":"End of a cave","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/361","space":"c64","start":"$8c92","file":"engine/play_loop.asm","title":"Main game loop","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/362","space":"c64","start":"$8caa","file":"title/demo.asm","title":"Demo play","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/363","space":"c64","start":"$8cf5","file":"init/init_screens.asm","title":"Screens, charsets and sprites","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/364","space":"c64","start":"$8dcc","file":"init/init_vars.asm","title":"Game variables","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/365","space":"c64","start":"$8e38","file":"irq/irq_setup.asm","title":"IRQ setup","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/366","space":"c64","start":"$8e69","file":"init/cold_start.asm","title":"Cold start and top loop","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T100710.969-a8grbc/367","space":"c64","start":"$8f3d","file":"dev/symbol_table.asm","title":"Leftover: developer symbol table","origin":"llm","added":"20261024T100710.969-a8grbc","closed":null}
+{"id":"20261024T095541.481-klo5jt/30","space":"bank1","start":"$9e00","file":"screen/draw_screen.asm","title":"Screen drawing routine","origin":"llm","added":"20261024T095541.481-klo5jt","closed":null}

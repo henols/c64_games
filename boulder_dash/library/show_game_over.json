@@ -1,0 +1,72 @@
+{
+  "name": "show_game_over",
+  "title": "Messages at the end of a life",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7f9e"},
+  "length": 208,
+  "bytes": [
+    "a9f48546a96b854720166b200c7d60a0",
+    "75a280a5a6d007a59d49014cbe7fa59d",
+    "206b6bd004a001a201cad0e788d0e260",
+    "a9148d069820046ba91c8546a96c8547",
+    "20166b20ad7fa9628546a99885472016",
+    "6b20ad7f20ad7f20ad7fce0698d004a9",
+    "0085b8a5b8d0ce60a55d0aaabd657e85",
+    "a6f011a9308546a96c854720166b2039",
+    "704c2d80a94e8546a998854720166b60",
+    "a5afc5c7d00ca9008594a9108d180c20",
+    "ce7fa5a0f00ea9008594209e7fa90285",
+    "8d4c5980a55df003200680a90185bd20",
+    "f47c20f97620db76a5a0f003200c7d60"
+  ],
+  "instructions": [0,2,4,6,8,11,14,15,17,19,21,23,25,27,30,32,35,37,39,41,42,44,45,47,48,50,53,56,58,60,62,64,67,70,72,74,76,78,81,84,87,90,93,95,97,99,101,103,104,106,107,108,111,113,115,117,119,121,123,126,129,132,134,136,138,140,143,144,146,148,150,152,154,156,159,162,164,166,168,170,173,175,177,180,182,184,187,189,191,194,197,200,202,204,207],
+  "relocations": [
+    {"at":28,"size":"word","value":32},
+    {"at":68,"size":"word","value":15},
+    {"at":82,"size":"word","value":15},
+    {"at":85,"size":"word","value":15},
+    {"at":88,"size":"word","value":15},
+    {"at":130,"size":"word","value":143},
+    {"at":160,"size":"word","value":48},
+    {"at":171,"size":"word","value":0},
+    {"at":178,"size":"word","value":187},
+    {"at":185,"size":"word","value":104}
+  ],
+  "variable": [3,7,9,10,12,13,20,24,31,33,34,51,52,54,55,59,63,65,66,73,77,79,80,91,92,98,100,105,109,110,112,118,122,124,125,127,128,135,139,141,142,145,147,153,157,158,163,169,176,181,190,192,193,195,196,198,199,201,205,206],
+  "symbols": [
+    {"at":0,"name":"show_game_over","kind":"routine"},
+    {"at":15,"name":"wait_next_player_fire","kind":"routine"},
+    {"at":17,"name":"wait_fire_outer","kind":"label"},
+    {"at":19,"name":"wait_fire_inner","kind":"label"},
+    {"at":30,"name":"wait_fire_same_player","kind":"label"},
+    {"at":32,"name":"wait_fire_read","kind":"label"},
+    {"at":41,"name":"wait_fire_next","kind":"label"},
+    {"at":48,"name":"show_out_of_time","kind":"routine"},
+    {"at":53,"name":"out_of_time_blink","kind":"label"},
+    {"at":99,"name":"out_of_time_check_fire","kind":"label"},
+    {"at":104,"name":"show_next_cave_text","kind":"routine"},
+    {"at":132,"name":"next_cave_player_line","kind":"label"},
+    {"at":143,"name":"next_cave_text_done","kind":"label"},
+    {"at":144,"name":"end_of_life","kind":"routine"},
+    {"at":162,"name":"end_of_life_game_over","kind":"label"},
+    {"at":180,"name":"end_of_life_next_cave","kind":"label"},
+    {"at":187,"name":"end_of_life_reset","kind":"label"},
+    {"at":207,"name":"end_of_life_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":29,"type":"code"},
+    {"start":30,"end":31,"type":"code"},
+    {"start":32,"end":207,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Shows G A M E   O V E R in the status line and waits."},
+    {"at":15,"placement":"line","text":"Waits a fixed time. Fire of the next player ends the wait early. In an intermission, it reads the fire of the same player."},
+    {"at":48,"placement":"line","text":"Blinks OUT OF TIME with the saved status line 20 times, or until fire is pressed."},
+    {"at":104,"placement":"line","text":"For an intermission, shows B O N U S  L I F E and adds a life. Else shows the player line."},
+    {"at":144,"placement":"line","text":"Runs after a life or a cave ends: shows out of time, game over or the next cave text. Then it clears the screen."},
+    {"at":144,"placement":"side","text":"The clock reached the time of the cave."},
+    {"at":156,"placement":"side","text":"Shows 0 in the last time digit on the screen."},
+    {"at":173,"placement":"side","text":"Resets the magic wall graphics."}
+  ],
+  "references": [],
+  "operands": []
+}

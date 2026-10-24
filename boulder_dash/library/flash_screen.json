@@ -1,0 +1,25 @@
+{
+  "name": "flash_screen",
+  "title": "Screen flash",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7958"},
+  "length": 25,
+  "bytes": [
+    "a5a5f014a9018d21d08d20d0c6a5d008",
+    "a9008d21d08d20d060"
+  ],
+  "instructions": [0,2,4,6,9,12,14,16,18,21,24],
+  "relocations": [],
+  "variable": [1,7,8,10,11,13,19,20,22,23],
+  "symbols": [
+    {"at":0,"name":"flash_screen","kind":"routine"},
+    {"at":24,"name":"flash_screen_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":24,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"While flash_frames is not 0, sets the border and the background white and decrements flash_frames. The last frame sets them black."}
+  ],
+  "references": [],
+  "operands": []
+}

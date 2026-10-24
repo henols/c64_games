@@ -1,0 +1,57 @@
+{
+  "name": "draw_title_screen",
+  "title": "Title screen",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$8227"},
+  "length": 240,
+  "bytes": [
+    "a200bde8669d0008bde8679d0009bde8",
+    "689d000abdd0699de80ee8d0e5a5cc05",
+    "a2f048a200a000b97c6b9df80ae81869",
+    "349df80ae8c8c014d0eda200a000b990",
+    "6b9d200be81869349d200be8c8c014d0",
+    "eda200a000b96c6c9d480be81869349d",
+    "480be8c8c014d0ed4cd782a200a000b9",
+    "b86b9df80ae81869349df80ae8c8c014",
+    "d0eda200a000b912989d200be8186934",
+    "9d200be8c8c014d0eda200a000b92698",
+    "9d480be81869349d480be8c8c014d0ed",
+    "a200a000b9446c9d980be81869349d98",
+    "0be8c8c014d0eda200a000b9a46b9d70",
+    "0be81869349d700be8c8c014d0eda227",
+    "a9209dc00bca10fa20f081a90085cc60"
+  ],
+  "instructions": [0,2,5,8,11,14,17,20,23,26,27,29,31,33,35,37,39,42,45,46,47,49,52,53,54,56,58,60,62,65,68,69,70,72,75,76,77,79,81,83,85,88,91,92,93,95,98,99,100,102,104,107,109,111,114,117,118,119,121,124,125,126,128,130,132,134,137,140,141,142,144,147,148,149,151,153,155,157,160,163,164,165,167,170,171,172,174,176,178,180,183,186,187,188,190,193,194,195,197,199,201,203,206,209,210,211,213,216,217,218,220,222,224,226,229,230,232,235,237,239],
+  "relocations": [
+    {"at":105,"size":"word","value":176}
+  ],
+  "variable": [3,4,6,7,9,10,12,13,15,16,18,19,21,22,24,25,30,32,40,41,43,44,50,51,63,64,66,67,73,74,86,87,89,90,96,97,112,113,115,116,122,123,135,136,138,139,145,146,158,159,161,162,168,169,181,182,184,185,191,192,204,205,207,208,214,215,227,228,233,234,238],
+  "symbols": [
+    {"at":0,"name":"draw_title_screen","kind":"routine"},
+    {"at":2,"name":"title_copy_picture","kind":"label"},
+    {"at":39,"name":"title_credits_line1","kind":"label"},
+    {"at":62,"name":"title_credits_line2","kind":"label"},
+    {"at":85,"name":"title_credits_line3","kind":"label"},
+    {"at":107,"name":"title_scores","kind":"label"},
+    {"at":111,"name":"title_scores_line1","kind":"label"},
+    {"at":134,"name":"title_scores_line2","kind":"label"},
+    {"at":157,"name":"title_scores_line3","kind":"label"},
+    {"at":176,"name":"title_cave_line","kind":"label"},
+    {"at":180,"name":"title_cave_line_loop","kind":"label"},
+    {"at":203,"name":"title_player_line","kind":"label"},
+    {"at":220,"name":"FREQ","kind":"label"},
+    {"at":221,"name":"FREQ_HI","kind":"label"},
+    {"at":226,"name":"title_clear_last_row","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":239,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Draws the title in the map: picture, credits or scores, player line and cave line. Each character takes two map cells."},
+    {"at":0,"placement":"side","text":"TTSCEN in the developer symbol table (symbol_table_leftover)."},
+    {"at":2,"placement":"side","text":"Title picture to map rows 0-18 and to the screen at $0EE8."},
+    {"at":29,"placement":"side","text":"Credits after the start or in demo mode, else the scores."},
+    {"at":220,"placement":"side","text":"FREQ of the developer symbol table: tune_freq_table minus $14. play_title_tune indexes it with note number times 2."}
+  ],
+  "references": [],
+  "operands": []
+}

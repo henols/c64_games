@@ -1,0 +1,433 @@
+{
+  "format": 1,
+  "name": "Cave tour: on the options screen, write the cave number $5D (1-20, the caves A-P and the four intermissions), start with fire, let the cave run 500 frames without input, then F1 back to the title and F1 to the options. Joystick port 1.",
+  "program": "tests/program/statesoft_5000.prg",
+  "sha256": "4442661a6aa9fca32b9f25eb501001c180ed75a680bacaf4ba9aa27277f3dd4e",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "registers": {
+          "pc": "$8e6a"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "01",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 661
+      }
+    },
+    {
+      "step": 17,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "02",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 3442
+      }
+    },
+    {
+      "step": 26,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "03",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 6223
+      }
+    },
+    {
+      "step": 35,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 9004
+      }
+    },
+    {
+      "step": 44,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "05",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 11784
+      }
+    },
+    {
+      "step": 53,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "06",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 14565
+      }
+    },
+    {
+      "step": 62,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "07",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 17346
+      }
+    },
+    {
+      "step": 71,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "08",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 20128
+      }
+    },
+    {
+      "step": 80,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "09",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 22910
+      }
+    },
+    {
+      "step": 89,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "0a",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 25691
+      }
+    },
+    {
+      "step": 98,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "0b",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 28472
+      }
+    },
+    {
+      "step": 107,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "0c",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 31251
+      }
+    },
+    {
+      "step": 116,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "0d",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 34032
+      }
+    },
+    {
+      "step": 125,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "0e",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 36813
+      }
+    },
+    {
+      "step": 134,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "0f",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 39591
+      }
+    },
+    {
+      "step": 143,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "10",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 42372
+      }
+    },
+    {
+      "step": 152,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "11",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 45153
+      }
+    },
+    {
+      "step": 161,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "12",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 47933
+      }
+    },
+    {
+      "step": 170,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "13",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 50714
+      }
+    },
+    {
+      "step": 179,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "14",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "site": "$8aa0",
+        "addr": "$dc01",
+        "count": 53496
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$8aa0",
+      "addr": "$dc01",
+      "reads": 56276,
+      "rom": false
+    },
+    {
+      "site": "$8a3c",
+      "addr": "$dc01",
+      "reads": 27940,
+      "rom": false
+    },
+    {
+      "site": "$8a52",
+      "addr": "$dc01",
+      "reads": 27940,
+      "rom": false
+    },
+    {
+      "site": "$6ef5",
+      "addr": "$dc01",
+      "reads": 999,
+      "rom": false
+    },
+    {
+      "site": "$6f0c",
+      "addr": "$dc01",
+      "reads": 1433,
+      "rom": false
+    }
+  ],
+  "ticks": 284483974,
+  "hash": "ef938015"
+}

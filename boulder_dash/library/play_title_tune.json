@@ -1,0 +1,40 @@
+{
+  "name": "play_title_tune",
+  "title": "Title tune player",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$83ac"},
+  "length": 130,
+  "bytes": [
+    "a5c12901d00160ad0c98c9a0d043a910",
+    "8d04d48d0bd4a9a88d0cd48d0dd4ae00",
+    "98ee0098ee0098bde95f0aa8b903838d",
+    "00d4b904838d01d4bde85f0aa8b90383",
+    "8d07d4b904838d08d4ad0098d003ee01",
+    "98ad0c98490769040a0a0a0a8d06d4a9",
+    "118d04d48d0bd4ad0c9818690129a78d",
+    "0c98a5a2f00bad0198c902d004a90185",
+    "cd60"
+  ],
+  "instructions": [0,2,4,6,7,10,12,14,16,19,22,24,27,30,33,36,39,42,43,44,47,50,53,56,59,60,61,64,67,70,73,76,78,81,84,86,88,89,90,91,92,95,97,100,103,106,107,109,111,114,116,118,121,123,125,127,129],
+  "relocations": [],
+  "variable": [1,8,9,17,18,20,21,25,26,28,29,31,32,34,35,37,38,40,41,45,46,48,49,51,52,54,55,57,58,62,63,65,66,68,69,71,72,74,75,79,80,82,83,93,94,98,99,101,102,104,105,112,113,115,119,120,128],
+  "symbols": [
+    {"at":0,"name":"play_title_tune","kind":"routine"},
+    {"at":7,"name":"title_tune_note","kind":"label"},
+    {"at":81,"name":"title_tune_envelope","kind":"label"},
+    {"at":129,"name":"music_play_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":129,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Plays the title tune on voices 1 and 2 on odd title ticks. In demo mode, the second pass ends the title."},
+    {"at":0,"placement":"side","text":"MUSPLY in the developer symbol table (symbol_table_leftover)."},
+    {"at":7,"placement":"side","text":"tune_tick $A0 starts a new note."},
+    {"at":39,"placement":"side","text":"Voice 1 note."},
+    {"at":56,"placement":"side","text":"Voice 2 note."},
+    {"at":76,"placement":"side","text":"One more pass of the whole tune."},
+    {"at":81,"placement":"side","text":"The sustain of voice 1 falls over the eight ticks of a note."}
+  ],
+  "references": [],
+  "operands": []
+}

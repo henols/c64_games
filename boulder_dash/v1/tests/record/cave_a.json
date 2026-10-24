@@ -1,0 +1,1054 @@
+{
+ "name": "Cave A: start a one-player game with F1 and fire, collect 12 diamonds on a planned route, leave by the exit, bonus count and start of cave B. Joystick port 1.",
+ "program": "original/bd_obj_charsoft.prg",
+ "symbols": "none",
+ "coverage": "$8ab3",
+ "load": true,
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "00"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$8ab3"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08a3",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$087b",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0882",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08d2",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08d7",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08ff",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0903",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$092b",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$092e",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0906",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0907",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08b7",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08b6",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0906",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0907",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$092f",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0932",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$095a",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$095f",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$09d7",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$09d4",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$09ac",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$09aa",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a4a",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a44",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a48",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a70",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a78",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a77",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a27",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a28",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a50",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a53",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a4a",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a22",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a1f",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$09cf",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$09c5",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$099d",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0999",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$099a",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a62",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0a5f",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0aaf",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0ab9",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0ae1",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0ae6",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0b0e",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0b14",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0b3c",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0b41",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0ac9",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0acb",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0af3",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$0af6",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 900
+  }
+ ]
+}

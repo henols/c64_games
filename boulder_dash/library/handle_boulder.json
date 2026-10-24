@@ -1,0 +1,62 @@
+{
+  "name": "handle_boulder",
+  "title": "Boulders",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7360"},
+  "length": 217,
+  "bytes": [
+    "a051b132d00ba91320b66c20566e4cd7",
+    "6ca051b13220656ed028a050b132d00e",
+    "a028b132d008a91320b66c4cd76ca052",
+    "b132d00ea02ab132d008a91320b66c4c",
+    "d76c4c157ea029a91120b66c60a051b1",
+    "32d008a91320b66c4cd76cc903d021a5",
+    "8dd004a901858dc901d00ba079b132d0",
+    "05a91720b66ca900a02920b66c4c286e",
+    "20566ea051b13220656ed02ea050b132",
+    "d00ea028b132d008a91320b66c4cd76c",
+    "a052b132d00ea02ab132d008a91320b6",
+    "6c4cd76c20a5734c157ec938d00aa91c",
+    "858920226d4c157e207c6ed00620226d",
+    "4c157e20a5734c157e"
+  ],
+  "instructions": [0,2,4,6,8,11,14,17,19,21,24,26,28,30,32,34,36,38,40,43,46,48,50,52,54,56,58,60,63,66,69,71,73,76,77,79,81,83,85,88,91,93,95,97,99,101,103,105,107,109,111,113,115,118,120,122,125,128,131,133,135,138,140,142,144,146,148,150,152,154,157,160,162,164,166,168,170,172,174,177,180,183,186,188,190,192,194,197,200,203,205,208,211,214],
+  "relocations": [
+    {"at":181,"size":"word","value":69},
+    {"at":212,"size":"word","value":69}
+  ],
+  "variable": [3,9,10,12,13,15,16,20,22,23,29,35,41,42,44,45,49,55,61,62,64,65,67,68,74,75,80,86,87,89,90,96,102,110,116,117,123,124,126,127,129,130,134,136,137,143,149,155,156,158,159,163,169,175,176,178,179,184,185,193,195,196,198,199,201,202,206,207,209,210,215,216],
+  "symbols": [
+    {"at":0,"name":"handle_boulder","kind":"routine"},
+    {"at":17,"name":"boulder_check_roll","kind":"label"},
+    {"at":46,"name":"boulder_roll_right","kind":"label"},
+    {"at":66,"name":"boulder_next","kind":"label"},
+    {"at":69,"name":"boulder_stop","kind":"routine"},
+    {"at":77,"name":"handle_falling_boulder","kind":"routine"},
+    {"at":91,"name":"falling_boulder_blocked","kind":"label"},
+    {"at":103,"name":"falling_boulder_magic","kind":"label"},
+    {"at":118,"name":"falling_boulder_magic_done","kind":"label"},
+    {"at":128,"name":"falling_boulder_land","kind":"label"},
+    {"at":160,"name":"fall_try_roll_right","kind":"label"},
+    {"at":180,"name":"fall_land","kind":"label"},
+    {"at":186,"name":"fall_hit_check","kind":"label"},
+    {"at":200,"name":"fall_hit_creature","kind":"label"},
+    {"at":211,"name":"fall_stop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":216,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Handler of the boulder $10. It starts to fall into space below, or rolls off a slippery cell below."},
+    {"at":69,"placement":"line","text":"Changes the current cell to a scanned boulder $11."},
+    {"at":77,"placement":"line","text":"Handler of the falling boulder $12. It falls, passes through the magic wall, rolls off slippery cells, kills Rockford or an enemy, or stops."},
+    {"at":113,"placement":"side","text":"A diamond falls out below the active magic wall."},
+    {"at":125,"placement":"side","text":"JMP, not JSR: the RTS of play_diamond_sound returns from the whole cave scan of this frame."},
+    {"at":160,"placement":"line","text":"The object cannot roll left. It rolls right when the cells right and down-right are empty."},
+    {"at":180,"placement":"line","text":"The object cannot roll. It comes to rest and the scan goes to the next cell."},
+    {"at":186,"placement":"line","text":"The cell below is not round. Rockford below explodes with the explosion to space."},
+    {"at":190,"placement":"side","text":"Explosion code $1C: explosion to space."},
+    {"at":200,"placement":"side","text":"Z = 1 when the cell below is a firefly or a butterfly."}
+  ],
+  "references": [],
+  "operands": []
+}

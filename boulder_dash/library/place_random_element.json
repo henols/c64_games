@@ -1,0 +1,37 @@
+{
+  "name": "place_random_element",
+  "title": "Random fill of the cave",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7c91"},
+  "length": 60,
+  "bytes": [
+    "a20120ed6ca000d91c24b003be1824c8",
+    "c004d0f38aa029913260a901859220cd",
+    "76a900859120917c20c676e691a591c9",
+    "28d0f2e692a592c916d0e660"
+  ],
+  "instructions": [0,2,5,7,10,12,15,16,18,20,21,23,25,26,28,30,33,35,37,40,43,45,47,49,51,53,55,57,59],
+  "relocations": [
+    {"at":38,"size":"word","value":0}
+  ],
+  "variable": [3,4,8,9,13,14,24,29,31,32,36,41,42,44,46,52,54],
+  "symbols": [
+    {"at":0,"name":"place_random_element","kind":"routine"},
+    {"at":7,"name":"place_random_test","kind":"label"},
+    {"at":15,"name":"place_random_next","kind":"label"},
+    {"at":26,"name":"fill_cave_random","kind":"routine"},
+    {"at":33,"name":"fill_random_row","kind":"label"},
+    {"at":37,"name":"fill_random_cell","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":59,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Writes a random element to the scan cell. Input: cell pointer $32. Output: A is the element."},
+    {"at":0,"placement":"side","text":"Dirt is the default element."},
+    {"at":7,"placement":"side","text":"A number below the odds byte selects the random element. The last match wins."},
+    {"at":21,"placement":"side","text":"Offset $29 is the current cell of the scan pointer."},
+    {"at":26,"placement":"line","text":"Fills 21 rows of 40 cells, from the second cave row on, with the random elements of the cave."}
+  ],
+  "references": [],
+  "operands": []
+}

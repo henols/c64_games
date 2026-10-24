@@ -1,0 +1,245 @@
+{
+ "points": [
+  {
+   "kind": "exec",
+   "start": "$7dd9"
+  },
+  {
+   "kind": "exec",
+   "start": "$73dd"
+  },
+  {
+   "kind": "exec",
+   "start": "$7e3a"
+  },
+  {
+   "kind": "exec",
+   "start": "$73bf"
+  }
+ ],
+ "frames": 60,
+ "end": "frames",
+ "hits": [
+  {
+   "point": 3,
+   "pc": "$73bf",
+   "bytes": "a58d",
+   "text": "LDA $8d",
+   "a": 3,
+   "x": 36,
+   "y": 81,
+   "sp": 251,
+   "frame": 0,
+   "rasterLine": 268,
+   "rasterCycle": 14
+  },
+  {
+   "point": 1,
+   "pc": "$73dd",
+   "bytes": "4c286e",
+   "text": "JMP $6e28",
+   "a": 0,
+   "x": 0,
+   "y": 81,
+   "sp": 251,
+   "frame": 0,
+   "rasterLine": 277,
+   "rasterCycle": 23
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 255,
+   "y": 81,
+   "sp": 251,
+   "frame": 0,
+   "rasterLine": 280,
+   "rasterCycle": 15
+  },
+  {
+   "point": 2,
+   "pc": "$7e3a",
+   "bytes": "206b7d",
+   "text": "JSR $7d6b",
+   "a": 22,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 8,
+   "rasterLine": 268,
+   "rasterCycle": 1
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 8,
+   "rasterLine": 268,
+   "rasterCycle": 61
+  },
+  {
+   "point": 2,
+   "pc": "$7e3a",
+   "bytes": "206b7d",
+   "text": "JSR $7d6b",
+   "a": 22,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 16,
+   "rasterLine": 263,
+   "rasterCycle": 28
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 16,
+   "rasterLine": 264,
+   "rasterCycle": 25
+  },
+  {
+   "point": 2,
+   "pc": "$7e3a",
+   "bytes": "206b7d",
+   "text": "JSR $7d6b",
+   "a": 22,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 24,
+   "rasterLine": 251,
+   "rasterCycle": 16
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 24,
+   "rasterLine": 252,
+   "rasterCycle": 13
+  },
+  {
+   "point": 2,
+   "pc": "$7e3a",
+   "bytes": "206b7d",
+   "text": "JSR $7d6b",
+   "a": 22,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 32,
+   "rasterLine": 236,
+   "rasterCycle": 19
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 32,
+   "rasterLine": 237,
+   "rasterCycle": 16
+  },
+  {
+   "point": 2,
+   "pc": "$7e3a",
+   "bytes": "206b7d",
+   "text": "JSR $7d6b",
+   "a": 22,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 40,
+   "rasterLine": 214,
+   "rasterCycle": 50
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 40,
+   "rasterLine": 216,
+   "rasterCycle": 27
+  },
+  {
+   "point": 2,
+   "pc": "$7e3a",
+   "bytes": "206b7d",
+   "text": "JSR $7d6b",
+   "a": 22,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 48,
+   "rasterLine": 209,
+   "rasterCycle": 56
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 48,
+   "rasterLine": 210,
+   "rasterCycle": 53
+  },
+  {
+   "point": 2,
+   "pc": "$7e3a",
+   "bytes": "206b7d",
+   "text": "JSR $7d6b",
+   "a": 22,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 56,
+   "rasterLine": 191,
+   "rasterCycle": 0
+  },
+  {
+   "point": 0,
+   "pc": "$7dd9",
+   "bytes": "a916",
+   "text": "LDA #$16",
+   "a": 0,
+   "x": 0,
+   "y": 0,
+   "sp": 251,
+   "frame": 56,
+   "rasterLine": 192,
+   "rasterCycle": 40
+  }
+ ]
+}

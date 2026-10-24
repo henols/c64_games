@@ -1,0 +1,162 @@
+{
+ "name": "Pause and restart: the title runs 3000 frames without input. F1 two times (the title does not see the first press in every phase) and fire start cave A. Rockford walks, SPACE pauses the game and SPACE resumes it. F1 during the game starts the program again. Joystick port 1.",
+ "program": "original/bd_obj_charsoft.prg",
+ "symbols": "none",
+ "coverage": "$8ab3",
+ "load": true,
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$e5d4"
+    },
+    "timeoutFrames": 300
+   }
+  },
+  {
+   "write": {
+    "address": "$005d",
+    "data": "00"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$8ab3"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "frames": 3000
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$08a3",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$087b",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "memory",
+     "address": "$087e",
+     "operator": "eq",
+     "value": 56
+    },
+    "timeoutFrames": 400
+   }
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 300
+  }
+ ]
+}

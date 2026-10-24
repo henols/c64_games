@@ -1,0 +1,54 @@
+{
+  "name": "update_amoeba_room",
+  "title": "The scan of the cave map",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$7da3"},
+  "length": 155,
+  "bytes": [
+    "a542d008a543f004a900858ca5428543",
+    "a9008542ad02988d0398a9008d029860",
+    "20696ba596c910d00ca5b8d008a5aff0",
+    "04a902859760a9168502a55dc9119004",
+    "a90f8502a901859220cd76a910c596f0",
+    "02e69620c37d20a37da9008591a029b1",
+    "320aaabd695ff00a8539bd685f85386c",
+    "3800a000b132aabde85ef0029132e632",
+    "d002e633e691a591c928d0d120d27ce6",
+    "92a592c502d0c2206b7d60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,23,26,28,31,32,35,37,39,41,43,45,47,49,51,53,54,56,58,60,62,64,66,68,70,72,75,77,79,81,83,86,89,91,93,95,97,98,99,102,104,106,109,111,114,116,118,119,122,124,126,128,130,132,134,136,138,140,143,145,147,149,151,154],
+  "relocations": [
+    {"at":84,"size":"word","value":32},
+    {"at":87,"size":"word","value":0}
+  ],
+  "variable": [1,5,11,13,15,19,21,22,24,25,29,30,33,34,36,42,46,52,57,59,67,71,73,74,78,82,92,96,100,101,105,107,108,110,112,113,117,120,121,125,127,131,133,135,141,142,144,146,148,152,153],
+  "symbols": [
+    {"at":0,"name":"update_amoeba_room","kind":"routine"},
+    {"at":12,"name":"update_amoeba_counts","kind":"label"},
+    {"at":32,"name":"check_restart_fire","kind":"routine"},
+    {"at":53,"name":"check_restart_done","kind":"label"},
+    {"at":54,"name":"scan_cave","kind":"routine"},
+    {"at":68,"name":"scan_cave_start","kind":"label"},
+    {"at":83,"name":"scan_cave_checks","kind":"label"},
+    {"at":89,"name":"scan_cave_row","kind":"label"},
+    {"at":93,"name":"scan_cell","kind":"label"},
+    {"at":114,"name":"scan_cell_settle","kind":"label"},
+    {"at":126,"name":"scan_next_cell","kind":"label"},
+    {"at":132,"name":"scan_next_column","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":154,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Stops the amoeba growth when no amoeba cell had room now but one had room in the scan before. Keeps the amoeba count."},
+    {"at":8,"placement":"side","text":"The amoeba becomes diamonds."},
+    {"at":32,"placement":"line","text":"Reads fire. When no Rockford is in the cave for 16 scans, the clock ran a second and fire is pressed, it ends the play."},
+    {"at":54,"placement":"line","text":"Scans the cave once. Each cell runs the handler of its element or gets the settled code. Then it reads the game keys."},
+    {"at":54,"placement":"side","text":"22 rows, or 15 rows for an intermission."},
+    {"at":75,"placement":"side","text":"Counts the scans without Rockford, at most 16. The Rockford handler sets it to 0."},
+    {"at":99,"placement":"side","text":"High byte of the handler of the element. Zero: no handler."},
+    {"at":111,"placement":"side","text":"The handler returns with jmp scan_cell_settle."},
+    {"at":114,"placement":"side","text":"Sets the settled code of the element, when the table gives one."}
+  ],
+  "references": [],
+  "operands": []
+}

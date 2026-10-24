@@ -1,0 +1,28 @@
+{
+  "name": "next_cell_ptr",
+  "title": "Cell pointer",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$76c6"},
+  "length": 21,
+  "bytes": [
+    "e632d002e63360f002a9281869278532",
+    "a908853360"
+  ],
+  "instructions": [0,2,4,6,7,9,11,12,14,16,18,20],
+  "relocations": [],
+  "variable": [1,5,15,19],
+  "symbols": [
+    {"at":0,"name":"next_cell_ptr","kind":"routine"},
+    {"at":6,"name":"next_cell_ptr_done","kind":"label"},
+    {"at":7,"name":"cell_ptr_to_row_start","kind":"routine"},
+    {"at":11,"name":"cell_ptr_to_row_start_set","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":20,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Increments cell_ptr by one cell."},
+    {"at":7,"placement":"line","text":"Sets cell_ptr for the first cell of cave row 0 (Z = 1) or cave row 1 (Z = 0)."}
+  ],
+  "references": [],
+  "operands": []
+}

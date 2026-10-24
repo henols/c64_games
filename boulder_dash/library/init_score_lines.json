@@ -1,0 +1,49 @@
+{
+  "name": "init_score_lines",
+  "title": "Screens, charsets and sprites",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$895e"},
+  "length": 183,
+  "bytes": [
+    "a213bdcc6b9d1298bde06b9d2698a920",
+    "9d3a98ca10eca93c8d3d9860a228a920",
+    "9dff0bcad0faa9609d280c9d000d9d00",
+    "0e9d000f9d002c9d002d9d002e9d002f",
+    "e8d0e5bd00509d0020bd00519d0021bd",
+    "00529d0022bd00539d0023bde85f9d00",
+    "30bde8609d0031bde8619d0032bde862",
+    "9d0033e8d0cda227a9ff9d7037a9009d",
+    "9837ca10f3a207a9de9df80f9df82fa9",
+    "009d27d0ca10f0a00ca9379900d0aaa9",
+    "3a9901d08a38e930888810efa9ff8d1d",
+    "d0a9608d10d060"
+  ],
+  "instructions": [0,2,5,8,11,14,16,19,20,22,24,27,28,30,32,35,36,38,40,43,46,49,52,55,58,61,64,65,67,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,116,118,120,122,125,127,130,131,133,135,137,140,143,145,148,149,151,153,155,158,159,161,164,165,166,168,169,170,172,174,177,179,182],
+  "relocations": [],
+  "variable": [3,4,6,7,9,10,12,13,17,18,25,26,33,34,41,42,44,45,47,48,50,51,53,54,56,57,59,60,62,63,68,69,71,72,74,75,77,78,80,81,83,84,86,87,89,90,92,93,95,96,98,99,101,102,104,105,107,108,110,111,113,114,123,124,128,129,138,139,141,142,146,147,156,157,162,163,175,176,180,181],
+  "symbols": [
+    {"at":0,"name":"init_score_lines","kind":"routine"},
+    {"at":2,"name":"init_score_lines_loop","kind":"label"},
+    {"at":28,"name":"init_screens","kind":"routine"},
+    {"at":32,"name":"init_screens_top_row","kind":"label"},
+    {"at":40,"name":"init_screens_fill","kind":"label"},
+    {"at":67,"name":"init_screens_charsets","kind":"label"},
+    {"at":120,"name":"init_screens_sprite_bar","kind":"label"},
+    {"at":135,"name":"init_screens_sprite_ptrs","kind":"label"},
+    {"at":155,"name":"init_screens_sprite_pos","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":54,"type":"code"},
+    {"start":55,"end":182,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Fills the LAST and HIGH score lines from the texts at $6bcc and $6be0, and a blank third line."},
+    {"at":28,"placement":"line","text":"Clears both screens, copies both charsets from $5000 and $5fe8, makes the sprite bar and sets the seven expanded sprites in a row."},
+    {"at":38,"placement":"side","text":"Fills screen 0 from row 1 and screen 1 with character $60."},
+    {"at":67,"placement":"side","text":"Text charset $2000-$23ff and cave charset $3000-$33ff."},
+    {"at":120,"placement":"side","text":"Sprite data at $3780: eight solid rows, then empty rows."},
+    {"at":135,"placement":"side","text":"Sprite pointers $de ($3780) for both screens, colour black."},
+    {"at":155,"placement":"side","text":"Sprites 6 down to 0, 48 pixels apart."}
+  ],
+  "references": [],
+  "operands": []
+}

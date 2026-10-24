@@ -1,0 +1,30 @@
+{
+  "name": "color_option_digits",
+  "title": "Colours of the title",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$838d"},
+  "length": 31,
+  "bytes": [
+    "a90ea2019d70db9d84db9da6db9dbadb",
+    "ca10f160a907a24f9d00d8ca10fa60"
+  ],
+  "instructions": [0,2,4,7,10,13,16,17,19,20,22,24,27,28,30],
+  "relocations": [],
+  "variable": [5,6,8,9,11,12,14,15,25,26],
+  "symbols": [
+    {"at":0,"name":"color_option_digits","kind":"routine"},
+    {"at":4,"name":"color_option_digits_loop","kind":"label"},
+    {"at":20,"name":"color_status_rows","kind":"routine"},
+    {"at":24,"name":"color_status_rows_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":30,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Gives the player, joystick, cave and level digits colour 14 in colour RAM."},
+    {"at":0,"placement":"side","text":"BLUE in the developer symbol table (symbol_table_leftover)."},
+    {"at":20,"placement":"line","text":"Gives the two top rows colour 7 in colour RAM."},
+    {"at":20,"placement":"side","text":"YELLOW in the developer symbol table (symbol_table_leftover)."}
+  ],
+  "references": [],
+  "operands": []
+}

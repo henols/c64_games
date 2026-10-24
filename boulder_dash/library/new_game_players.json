@@ -1,0 +1,52 @@
+{
+  "name": "new_game_players",
+  "title": "Players and lives",
+  "from": {"program":"v1","image":"knowledge revision 20261024T095241.687-hsv9k0","start":"$8746"},
+  "length": 130,
+  "bytes": [
+    "a900859d85a0a205955f954eca10f9a9",
+    "03855ca208b55c956b957aca10f7a205",
+    "b5749565ca10f960c65ca59dd00ba20e",
+    "b55c956bca10f93009a20eb55c957aca",
+    "10f9a59ef013a59dd009a57af00be69d",
+    "4c9f87a56bf002c69da59dd00ba20eb5",
+    "6b955cca10f93009a20eb57a955cca10",
+    "f9a55cd00ca90185a0a903855ca90085",
+    "9d60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,13,15,17,19,21,23,25,27,28,30,32,34,36,37,39,40,42,44,46,48,50,52,53,55,57,59,61,63,64,66,68,70,72,74,76,78,80,83,85,87,89,91,93,95,97,99,100,102,104,106,108,110,111,113,115,117,119,121,123,125,127,129],
+  "relocations": [
+    {"at":81,"size":"word","value":89}
+  ],
+  "variable": [3,5,9,11,18,22,24,26,33,35,41,43,49,51,60,62,67,71,75,79,84,88,90,96,98,107,109,114,120,124,128],
+  "symbols": [
+    {"at":0,"name":"new_game_players","kind":"routine"},
+    {"at":8,"name":"new_game_clear_score","kind":"label"},
+    {"at":21,"name":"new_game_copy_players","kind":"label"},
+    {"at":32,"name":"new_game_load_best","kind":"label"},
+    {"at":40,"name":"end_turn","kind":"routine"},
+    {"at":48,"name":"end_turn_save_p1","kind":"label"},
+    {"at":57,"name":"end_turn_save_p2","kind":"label"},
+    {"at":59,"name":"end_turn_save_p2_loop","kind":"label"},
+    {"at":66,"name":"end_turn_choose","kind":"label"},
+    {"at":83,"name":"end_turn_to_p1","kind":"label"},
+    {"at":89,"name":"end_turn_load","kind":"label"},
+    {"at":95,"name":"end_turn_load_p1_loop","kind":"label"},
+    {"at":104,"name":"end_turn_load_p2","kind":"label"},
+    {"at":106,"name":"end_turn_load_p2_loop","kind":"label"},
+    {"at":113,"name":"end_turn_check_lives","kind":"label"},
+    {"at":129,"name":"end_turn_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":129,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Starts a new game: player 1, three lives, score 0 for both players. Loads the best score of player 1."},
+    {"at":21,"placement":"side","text":"Copies lives, cave, level and score to both player states."},
+    {"at":40,"placement":"line","text":"Takes one life, saves the current player state and loads the next player with lives. No lives left sets game_over."},
+    {"at":66,"placement":"side","text":"Two players change turns when the other player has lives."},
+    {"at":113,"placement":"side","text":"No lives: game over, the state resets to player 1 with three lives."}
+  ],
+  "references": [],
+  "operands": []
+}

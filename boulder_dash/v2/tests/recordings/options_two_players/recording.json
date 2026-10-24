@@ -1,0 +1,113 @@
+{
+  "format": 1,
+  "name": "Options and two players: F3 cycles the player and joystick modes (four presses: back to one player, then two players with one joystick). The joystick selects the cave and the level (level 4 sets the cave back to A). Fire starts cave I on level 2. RUN/STOP gives up each life in turn until game over. Joystick port 1.",
+  "program": "tests/program/statesoft_5000.prg",
+  "sha256": "4442661a6aa9fca32b9f25eb501001c180ed75a680bacaf4ba9aa27277f3dd4e",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$e5d4",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "$e5d4",
+        "count": 269214
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$005d",
+          "data": "00",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "registers": {
+          "pc": "$8e6a"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$8aa0",
+      "addr": "$dc01",
+      "reads": 26780,
+      "rom": false
+    },
+    {
+      "site": "$8a3c",
+      "addr": "$dc01",
+      "reads": 13242,
+      "rom": false
+    },
+    {
+      "site": "$8a52",
+      "addr": "$dc01",
+      "reads": 13242,
+      "rom": false
+    },
+    {
+      "site": "$6ef5",
+      "addr": "$dc01",
+      "reads": 564,
+      "rom": false
+    },
+    {
+      "site": "$6f0c",
+      "addr": "$dc01",
+      "reads": 861,
+      "rom": false
+    }
+  ],
+  "ticks": 139046555,
+  "hash": "718d400e"
+}
