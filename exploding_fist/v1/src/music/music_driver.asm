@@ -145,7 +145,7 @@ music_ptab_lo_page = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $0ad0-$0ad2, NOP after the code
 !byte $b9,$57,$09
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $0ad0 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $0ad0 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda $cf00,y                     ; Self-modified: low byte of the pattern offset
 }
@@ -161,7 +161,7 @@ music_ptab_hi_page = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $0adc-$0ade, NOP after the code
 !byte $b9,$58,$09
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $0adc has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $0adc has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda $cf01,y                     ; Self-modified: high byte of the pattern offset
 }

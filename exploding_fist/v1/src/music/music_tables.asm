@@ -8,7 +8,7 @@ music_pattern_base
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $0f52-$0f53, NOP after the code
 !byte $00,$04
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $0f52 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $0f52 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00,$00                   ; Base address of the tune data; pattern offsets are added to it
 }

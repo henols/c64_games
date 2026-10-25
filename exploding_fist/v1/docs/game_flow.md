@@ -30,7 +30,7 @@ flowchart TB
   G --> H["One pass per frame: fighters, random, keys, clock"]
 ~~~
 
-[`cold_start` `$1601`](../src/game/init_bout_loop.asm#L240) prepares the machine one time and jumps into [`title_main_loop` `$19A7`](../src/game/title_and_scene.asm#L64). The title loop never returns. Each mode calls its own bout handler, and each bout handler calls [`bout_loop` `$1590`](../src/game/init_bout_loop.asm#L184) again until the bout has a result. The state machines at the end of the page give each change of state. (**Code**)
+[`cold_start` `$1601`](../src/game/init_bout_loop.asm#L240) prepares the machine one time and jumps into [`title_main_loop` `$19A7`](../src/game/title_and_scene.asm#L62). The title loop never returns. Each mode calls its own bout handler, and each bout handler calls [`bout_loop` `$1590`](../src/game/init_bout_loop.asm#L184) again until the bout has a result. The state machines at the end of the page give each change of state. (**Code**)
 
 ### The cold start
 
@@ -60,9 +60,9 @@ After a one-player game, the title loop reads the fire button of port 2 one time
 | F7 | `$F7` | Nothing: the same result as no key | Always |
 | Fire, port 2 | `$DC00` bit 4 = 0 | Start the game of the mode (A = `$80`) | `in_game` = 0 |
 
-[`title_key_f5` `$19A4`](../src/game/title_and_scene.asm#L60) jumps to the title loop from inside `bout_loop`. It does not reset the stack. Each press leaves 4 return addresses, 8 bytes, on the stack. (**Code**) The stack pointer wraps in page 1 and no code reads these bytes, so the program does not crash (**Conclusion**). F5 also changes the mode back to 1 PLAYER, because `title_main_loop` clears `two_player_mode` (**Code**).
+[`title_key_f5` `$19A4`](../src/game/title_and_scene.asm#L59) jumps to the title loop from inside `bout_loop`. It does not reset the stack. Each press leaves 4 return addresses, 8 bytes, on the stack. (**Code**) The stack pointer wraps in page 1 and no code reads these bytes, so the program does not crash (**Conclusion**). F5 also changes the mode back to 1 PLAYER, because `title_main_loop` clears `two_player_mode` (**Code**).
 
-F7 has its own compare but gives the same result as no key (**Code**). The authors removed an F7 function (**Conclusion**). No run executed the paths of F1, F3, F5 and F7 (**Code**, coverage). The runs started each game with fire on port 2 or with a register step to the start path of `title_keys_fire` (**Observed**).
+F7 has its own compare but gives the same result as no key (**Code**). The authors removed an F7 function (**Conclusion**). The recording `title_keys` presses each key, and the run [../runs/title_keys](../runs/title_keys) keeps a screen after each press. F3 changes `two_player_mode` to 1, and the panel shows 2 PLAYER. A second F3 changes it back to 0. F7 changes nothing. F1 starts a 1-player game: `in_game` = 1 and `game_mode` = 2. F5 in the game goes back to the demo with 1 PLAYER (**Observed**). An old note told that bits 5-7 of `$DC01` read 0 in the emulator. That was a fault of the old test tools, not of the game.
 
 ### The attract demo
 
@@ -106,7 +106,7 @@ Each bout clears the half points, the tie-break values and the symbols, writes 3
 - **Draw (`$81`).** Both fighters bow and the bout starts again. The count of wins does not change.
 - **Lost (0).** `high_score_update` tests the score of player 1, `high_score_show` writes the high score, and the game ends.
 
-The rank index is also `cpu_skill+1`, the AI level of the computer. NOVICE fights level 0, 1ST DAN fights level 1, and 10TH DAN fights level 10. The page [ai.md](ai.md) tells what each level changes. (**Code**) The test `one_player_cpu.json` and the recording `cpu_ranks` play promotions with the computer in place of player 1. Their screens and states are the same on the original and on the rebuild. (**Observed**)
+The rank index is also `cpu_skill+1`, the AI level of the computer. NOVICE fights level 0, 1ST DAN fights level 1, and 10TH DAN fights level 10. The page [ai.md](ai.md) tells what each level changes. (**Code**) The recording `cpu_ranks` plays promotions with the computer in place of player 1. Its state and its panel are the same on the original and on the rebuild at each checkpoint. (**Observed**)
 
 ### The rank overflow
 
@@ -159,7 +159,7 @@ Each pass does this work in this order (**Code**):
 7. When no fighter is in a hit reaction and fighter 0 left the start move `$17`, it calls `timer_tick`.
 8. When `time_up` is 1, both fighters show frame `$37` on the ground, and the exchange ends with A = 1.
 
-A pass takes one frame when its work fits in the frame. In the two-player recording, 11579 passes ran in 12455 frames (**Observed**). The other frames are the start, the scene drawing and the bows (**Conclusion**).
+A pass takes one frame when its work fits in the frame. In the two-player recording, 11594 passes ran in 12486 frames (**Observed**). The other frames are the start, the scene drawing and the bows (**Conclusion**).
 
 A hit does not end the exchange at once. The hit fighter plays its hit reaction, and the end of this animation writes the reaction move into `bout_knockdown`. The page [combat.md](combat.md) explains the hits. (**Code**) After a fall, both fighters start again from the start places.
 
@@ -362,7 +362,6 @@ In the column "Panel text", `*` stands for a glyph from the scene bitmap or from
 
 ## Still open
 
-- How do F1, F3, F5 and F7 act in a run? The bits 5-7 of `$DC01` read 0 in this emulator, so the row byte never matches. A run on another emulator, or a write of `last_key_row` and a register step, can test them.
 - What does the panel show at each rank index from 12 to 22? A run that stops after `print_rank_text` in `game_1p_promote` at each index can capture each screen. The test `rank_overflow.json` captures only the start of the game.
 - What does the wrap after rank index 22 do in a run? A run with the rank index and `stage_counter` at 21 before two won bouts can show it.
 - Does the demo show the extra symbols after F3? A run with `two_player_mode` = 1 during the demo can show it.

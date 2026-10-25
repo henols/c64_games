@@ -14,7 +14,7 @@ Version II adds a bonus round to the 1-player game. After the player wins the tw
 
 ![The bull round in scene 3: the white fighter at the left, the brown bull runs at him from the right](images/bull_round.png)
 
-The image shows a round at 3RD DAN, with the score 24700. The scenario [one_player_cpu_bull.json](../tests/one_player_cpu_bull.json) plays the 1-player game with the computer for player 1 until the round. (**Observed**)
+The image shows a round at 3RD DAN, with the score 24700. The recording `cpu_ranks` ([../tests/README.md](../tests/README.md)) plays the 1-player game with the computer for player 1 through several rounds. (**Observed**)
 
 ## When the round comes
 

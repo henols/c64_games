@@ -368,12 +368,11 @@ ea93 dc01 0 ff
 0dfc d41c 302 2a
 0e02 d41b 302 ff
 0dfc d41c 303 29
-0dfc d41c 304 27
 end f6bc dc01 115
 end f6bf dc01 115
 end ea93 dc01 115
 end 1e73 dc01 306
 end 1e94 dc00 51
-end 0dfc d41c 305
-end 0e02 d41b 305
+end 0dfc d41c 304
+end 0e02 d41b 304
 end 2851 dc00 254

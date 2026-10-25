@@ -41,7 +41,7 @@ Each version has a different RAM pattern in its gaps (see [The RAM in the gaps](
 
 In version I a one-player game has no upper rank. [`v1:game_one_player` `$16A9`](../v1/src/game/game_modes.asm#L81) stops the promotions only at `stage_counter` $16, after 22 promotions. The rank table `v1:rank_number_table` has 12 entries, so ranks 12 to 22 read code bytes from `$1D48` as rank numbers. The panel then shows texts such as "|||TH DANN", and the AI level of the opponent reads the next tables. **Observed** in [rank_overflow.json](../v1/tests/rank_overflow.json) and the recording `cpu_ranks`.
 
-Version II compares with 10 at [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game/game_modes.asm#L146). The rank stays "10TH DAN", and the AI level after the cap is 7 to 10. **Observed** in [rank_cap.json](../v2/tests/rank_cap.json). The details are on [../v1/docs/game_flow.md](../v1/docs/game_flow.md) and [../v2/docs/game_flow.md](../v2/docs/game_flow.md).
+Version II compares with 10 at [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game/game_modes.asm#L146). The rank stays "10TH DAN", and the AI level after the cap is 7 to 10. **Observed** in the recording `cpu_ranks` of [../v2/tests/README.md](../v2/tests/README.md). The details are on [../v1/docs/game_flow.md](../v1/docs/game_flow.md) and [../v2/docs/game_flow.md](../v2/docs/game_flow.md).
 
 ### The tune 1 order list
 
@@ -138,7 +138,7 @@ The round also shows that its author wrote it for the v1 sample player. It write
 
 ![The bull round of version II in scene 3](../v2/docs/images/bull_round.png)
 
-The capture shows the round in scene 3, with the Buddha statue. The scenario [one_player_cpu_bull.json](../v2/tests/one_player_cpu_bull.json) plays to the round and after it. **Observed**. No run stopped the bull, so the 3000-point path of version II is **Code** only.
+The capture shows the round in scene 3, with the Buddha statue. The recording `cpu_ranks` of version II plays through several bull rounds. **Observed**. No run stopped the bull, so the 3000-point path of version II is **Code** only.
 
 ## The samples
 

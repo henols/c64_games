@@ -12,7 +12,7 @@ shape_buffer3_part8
 !byte $6a,$00,$6a,$6a,$00,$55,$6a,$00,$aa,$9a,$00,$aa,$9a,$80,$a5,$1a
 !byte $80,$9a,$1a,$80,$6a,$ca,$80,$69,$ca,$80,$a9,$c6,$80,$aa,$cd,$80
 !byte $ab,$cf,$00,$a7,$cf,$00,$0f,$df,$f0,$7f,$df,$f0,$7f,$7d,$f0,$87
-        !if * - .patch_start > 64 { !error "The patch RUN_STATE at $c900 has ", * - .patch_start, " bytes; the range has 64." } else { !fill 64 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 64 { !error "The patch RUN_STATE at $c900 has ", ((* - .patch_start) & $ffff), " bytes; the range has 64." } else { !fill 64 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $57,$9f,$80,$97,$84,$1f,$02,$df
         !byte $80,$ff,$15,$ff,$03,$7f,$80,$9f

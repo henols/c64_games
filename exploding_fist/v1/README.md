@@ -97,7 +97,7 @@ flowchart TB
 ~~~
 
 1. **The start runs one time.** [`cold_start` `$1601`](src/game/init_bout_loop.asm#L240) calls `init_game_state`, which switches the ROMs off, sets the IRQ, NMI and RESET vectors and prepares the screen. Then it jumps to the title loop. (**Code**)
-2. **The title loop never returns.** [`title_main_loop` `$19A7`](src/game/title_and_scene.asm#L64) shows the mode and the high score and plays the demo. A start key calls the one-player game or the two-player game. Each game ends in the title loop again. (**Code**)
+2. **The title loop never returns.** [`title_main_loop` `$19A7`](src/game/title_and_scene.asm#L62) shows the mode and the high score and plays the demo. A start key calls the one-player game or the two-player game. Each game ends in the title loop again. (**Code**)
 3. **The bout loop sets the pace.** [`bout_loop` `$1590`](src/game/init_bout_loop.asm#L184) plays one exchange. Each pass waits for raster line `$FD` and updates fighter 1 and then fighter 0. The exchange ends at a fall, at time up or at a start key. (**Code**)
 4. **The fighters obey one set of rules.** [`fighter_update` `$2233`](src/fighter/fighter_moves.asm#L6) does the hit test, gets the requested move and steps the animation script. The request comes from the joystick or from [`ai_update` `$1D48`](src/ai/ai_opponent.asm#L6). Thus the computer uses the same moves and the same hit test as a player. (**Code**)
 5. **The interrupts draw the screen.** [`irq_frame_start` `$2A66`](src/irq/sprite_mux_plan.asm#L6) runs at line 0. It plans the frame and writes the plan into the operands of the later handlers. Six hardware sprites show two fighters of 3 x 3 sprites. A CIA 2 NMI makes the floor yellow. (**Code**)
@@ -162,18 +162,17 @@ The disks, the files and the captures are on [../docs/releases.md](../docs/relea
 
 **The tests.** All tests in [tests/](tests/) PASS (**Observed**):
 
-- The scenarios run the original loader and `build/clean_loader.prg` side by side, and compare memory, the VIC-II and the screen. The rebuild side runs to `loader_start_screen_wait` and sets the PC to `loader_start_screen_continue`. Its symbols are in `build/symbols/clean_loader.json`, which `generate --loader` writes. The scenarios are [demo.json](tests/demo.json), [one_player_cpu.json](tests/one_player_cpu.json), [two_player.json](tests/two_player.json) and [rank_overflow.json](tests/rank_overflow.json).
-- [leftovers_unused.json](tests/leftovers_unused.json) fills 36 unused ranges with `$A5` on the rebuild side. These ranges include the 26 leftover ranges (1029 bytes) that `build/clean_loader.prg` leaves out. The state and the screens stay the same as on the original.
+- Five recordings with scripted input replay on `build/clean_loader.prg` with the same state at each checkpoint. They are `demo`, `title_keys`, `one_player_moves` (all 16 joystick moves), `two_player` (both joysticks) and `cpu_ranks` (80610 frames into the rank overflow). Together they pass about 95000 checkpoints. The recorded sessions and their coverage are in [tests/recordings](tests/recordings).
+- The scenario [leftovers_unused.json](tests/leftovers_unused.json) fills 36 unused ranges with `$A5` on the rebuild side. These ranges include the 26 leftover ranges (1029 bytes) that `build/clean_loader.prg` leaves out. The state and the screens stay the same as on the original. The scenario [rank_overflow.json](tests/rank_overflow.json) compares the broken rank text.
 - The runs with expected values are [bull_test.json](tests/bull_test.json) and [start_screen.json](tests/start_screen.json).
-- The recordings in [tests/record](tests/record) replay on `build/clean_loader.prg` with the symbols of `build/symbols/clean_loader.json`. The replay runs the rebuild to `loader_start_screen_wait` and sets the PC to `loader_start_screen_continue`. `one_player_moves` plays all 16 joystick moves, `two_player` uses both joysticks, and `cpu_ranks` plays 80610 frames into the rank overflow. They pass 9608, 11579 and 64935 checkpoints. The recorded sessions and their coverage are in [tests/recordings](tests/recordings).
+- [tests/README.md](tests/README.md) gives the notes of each test: the checkpoint, the state, the pins and the writes that are only for a test.
 
-The emulator tools of this setup take no joystick input, but the recordings do. The runs with the computer write `cpu_controlled` after the start of a game. After all runs, 46 code ranges with 297 instructions stayed unexecuted. Most of them are the bull test, the sample player and its 15 jumps, the title keys and the paths of tune 4. The generated list `.c64-re-tools/local/generated/src/not_executed.json` gives them. `generate` writes it, and git does not keep it. (**Observed**)
+The runs with the computer write `cpu_controlled` after the start of a game. After all runs, 43 code ranges with 279 instructions stayed unexecuted. Most of them are the bull test, the sample player and its 15 jumps, and the paths of tune 4. The generated list `.c64-re-tools/local/generated/src/not_executed.json` gives them. `generate` writes it, and git does not keep it. (**Observed**)
 
 ## Still open
 
 - What does an AI command above `$18` do at the levels 12-16 after the rank overflow? — A one-player game with `cpu_skill+1` = 12 and a watch on `fighter_input` of fighter 1.
 - What does the rank wrap after rank index 22 do? — A run with the rank index and `stage_counter` at 21 before two won bouts.
-- How do the keys F1, F3, F5 and F7 act? In this VICE, bits 5-7 of `$DC01` read 0, so no key compare matches. — A run on another emulator.
 - Does the tie-break bug change a result in play? — A one-player bout with the hits of the example in [combat.md](docs/combat.md#the-tie-break-and-its-bug), to time up.
 - Can both fighters hit in one exchange? — A watchpoint on `hit_reaction` of both fighters in the recording `two_player`.
 - Is the drift of voice 0 in the demo music audible? — A recording of the SID output for two loops of the demo.

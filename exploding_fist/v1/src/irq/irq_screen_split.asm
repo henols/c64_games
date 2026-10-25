@@ -18,7 +18,7 @@ irq_bitmap_on_next_line = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2877-$2878, NOP after the code
 !byte $a9,$b4
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2877 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2877 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$00                        ; Patched: raster line of the first row handler (first group_y + $14)
 }
@@ -30,7 +30,7 @@ irq_bitmap_on_next_lo = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $287c-$287d, NOP after the code
 !byte $a9,$1b
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $287c has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $287c has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$00                        ; Patched: first row handler, low byte
 }
@@ -42,7 +42,7 @@ irq_bitmap_on_next_hi = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2881-$2882, NOP after the code
 !byte $a9,$27
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2881 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2881 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$00                        ; Patched: first row handler, high byte
 }
@@ -90,7 +90,7 @@ irq_a_row4_ptr_left = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $28c6-$28c7, NOP after the code
 !byte $a9,$66
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $28c6 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $28c6 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4a                        ; Patched: row4_ptr_left of the group A fighter
 }
@@ -102,7 +102,7 @@ irq_a_row4_ptr_mid = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $28cb-$28cc, NOP after the code
 !byte $a9,$67
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $28cb has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $28cb has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4b                        ; Patched: row4_ptr_mid of the group A fighter
 }
@@ -114,7 +114,7 @@ irq_a_row4_ptr_right = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $28d0-$28d1, NOP after the code
 !byte $a9,$00
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $28d0 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $28d0 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4c                        ; Patched: row4_ptr_right of the group A fighter
 }
@@ -145,7 +145,7 @@ irq_b_row4_ptr_left = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $28ff-$2900, NOP after the code
 !byte $a9,$00
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $28ff has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $28ff has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4a                        ; Patched: row4_ptr_left of the group B fighter
 }
@@ -157,7 +157,7 @@ irq_b_row4_ptr_mid = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2904-$2905, NOP after the code
 !byte $a9,$7a
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2904 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2904 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4b                        ; Patched: row4_ptr_mid of the group B fighter
 }
@@ -169,7 +169,7 @@ irq_b_row4_ptr_right = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2909-$290a, NOP after the code
 !byte $a9,$7b
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2909 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2909 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4c                        ; Patched: row4_ptr_right of the group B fighter
 }
@@ -203,7 +203,7 @@ irq_ab_row4_a_ptr_left = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2941-$2942, NOP after the code
 !byte $a9,$66
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2941 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2941 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4a                        ; Patched: row4_ptr_left of the group A fighter
 }
@@ -215,7 +215,7 @@ irq_ab_row4_a_ptr_mid = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2946-$2947, NOP after the code
 !byte $a9,$67
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2946 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2946 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4b                        ; Patched: row4_ptr_mid of the group A fighter
 }
@@ -227,7 +227,7 @@ irq_ab_row4_a_ptr_right = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $294b-$294c, NOP after the code
 !byte $a9,$00
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $294b has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $294b has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4c                        ; Patched: row4_ptr_right of the group A fighter
 }
@@ -239,7 +239,7 @@ irq_ab_row4_b_ptr_left = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2950-$2951, NOP after the code
 !byte $a9,$00
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2950 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2950 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4a                        ; Patched: row4_ptr_left of the group B fighter
 }
@@ -251,7 +251,7 @@ irq_ab_row4_b_ptr_mid = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $2955-$2956, NOP after the code
 !byte $a9,$7a
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $2955 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $2955 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4b                        ; Patched: row4_ptr_mid of the group B fighter
 }
@@ -263,7 +263,7 @@ irq_ab_row4_b_ptr_right = * + 1
 !if RUN_STATE {
         ; RUN_STATE on: 2 bytes at $295a-$295b, NOP after the code
 !byte $a9,$7b
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $295a has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $295a has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$4c                        ; Patched: row4_ptr_right of the group B fighter
 }

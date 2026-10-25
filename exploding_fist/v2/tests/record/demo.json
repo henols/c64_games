@@ -1,0 +1,69 @@
+{
+ "name": "attract demo: four bouts of two computer fighters to the end, then the title again",
+ "program": "original/fist_v2_scc.prg",
+ "symbols": "knowledge",
+ "coverage": "$115a",
+ "checkpoint": "frame_random_step",
+ "state": [
+  {
+   "address": "fighter_x",
+   "size": 4
+  },
+  {
+   "address": "fighter_move",
+   "size": 2
+  },
+  {
+   "address": "half_points",
+   "size": 2
+  },
+  {
+   "address": "stage_counter",
+   "size": 6
+  },
+  {
+   "address": "game_mode",
+   "size": 1
+  },
+  {
+   "address": "$cc00",
+   "size": 200
+  }
+ ],
+ "pin": [
+  {
+   "address": "frame_random",
+   "size": 1
+  },
+  {
+   "address": "ai_random",
+   "size": 1
+  }
+ ],
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "read_title_keys"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "demo_exit"
+    },
+    "timeoutFrames": 30000
+   }
+  },
+  {
+   "frames": 300
+  }
+ ]
+}

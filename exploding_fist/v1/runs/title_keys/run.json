@@ -1,0 +1,186 @@
+{
+ "name": "title keys with a screen and the mode bytes after each key",
+ "start": {
+  "program": "original/fist_v1_2010.prg"
+ },
+ "symbols": "knowledge",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "read_title_keys"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "observe": "k00_title",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode"
+   ]
+  },
+  {
+   "screen": "k00_title"
+  },
+  {
+   "frames": 50
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k01_f3",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode"
+   ]
+  },
+  {
+   "screen": "k01_f3"
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k02_f3",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode"
+   ]
+  },
+  {
+   "screen": "k02_f3"
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k03_f7",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode"
+   ]
+  },
+  {
+   "screen": "k03_f7"
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "observe": "k04_f1",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode"
+   ]
+  },
+  {
+   "screen": "k04_f1"
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "bout_frame_loop"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "observe": "k05_f5",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode"
+   ]
+  },
+  {
+   "screen": "k05_f5"
+  },
+  {
+   "observe": "end",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode"
+   ]
+  },
+  {
+   "screen": "end"
+  }
+ ]
+}

@@ -146,7 +146,7 @@ No text of the game can show a character outside `$20-$5F`. The rank stops at 10
 
 ### The scene pictures
 
-[`scene_draw_if_new` `$1F3F`](../src/game/title_and_scene.asm#L135) draws the scene `stage_counter AND 3` when it is not on the screen. It clears the bitmap, unpacks the colour and screen maps, and then unpacks the bitmap. Version I copied the maps after the bitmap. (**Code**)
+[`scene_draw_if_new` `$1F3F`](../src/game/title_and_scene.asm#L133) draws the scene `stage_counter AND 3` when it is not on the screen. It clears the bitmap, unpacks the colour and screen maps, and then unpacks the bitmap. Version I copied the maps after the bitmap. (**Code**)
 
 1. **The bitmap.** [`scene_unpack_bitmap` `$17BB`](../src/scenes/scene_unpack.asm#L6) is the code of version I without a change. It unpacks backward from `$F53F` down to `$E640`, the bitmap rows 5-16. The format is on [the graphics of version I](../../v1/docs/graphics.md). (**Code**)
 2. **The colour and screen maps.** [`scene_unpack_maps` `$1849`](../src/scenes/scene_unpack.asm#L87) is new. It unpacks a nibble RLE stream into the colour RAM and the screen of rows 5-16. The format is in [the packed scene maps](#the-packed-scene-maps). (**Code**)

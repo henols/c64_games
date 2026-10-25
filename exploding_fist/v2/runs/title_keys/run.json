@@ -1,0 +1,278 @@
+{
+ "name": "title keys with a screen and the mode bytes after each key",
+ "start": {
+  "program": "original/fist_v2_scc.prg"
+ },
+ "symbols": "knowledge",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "read_title_keys"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "observe": "k00_title",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k00_title"
+  },
+  {
+   "frames": 50
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k01_f3",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k01_f3"
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k02_f3",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k02_f3"
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k03_f7",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k03_f7"
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k04_f7",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k04_f7"
+  },
+  {
+   "press": {
+    "keys": "{DEL}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k05_del",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k05_del"
+  },
+  {
+   "press": {
+    "keys": "{DEL}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "observe": "k06_del",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k06_del"
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "observe": "k07_f1",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k07_f1"
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "bout_frame_loop"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "observe": "k08_f5",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "k08_f5"
+  },
+  {
+   "observe": "end",
+   "memory": [
+    {
+     "address": "$cc00",
+     "size": 200
+    },
+    "two_player_mode",
+    "in_game",
+    "game_mode",
+    "keyboard_control",
+    "samples_off"
+   ]
+  },
+  {
+   "screen": "end"
+  }
+ ]
+}

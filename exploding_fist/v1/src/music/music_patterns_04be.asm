@@ -526,7 +526,7 @@ music_t3_pattern_03
 !if CRACK_SHADOW_0800 {
         ; CRACK_SHADOW_0800 on: 4 bytes at $0800-$0803, NOP after the code
 !byte $00,$00,$00,$03
-        !if * - .patch_start > 4 { !error "The patch CRACK_SHADOW_0800 at $0800 has ", * - .patch_start, " bytes; the range has 4." } else { !fill 4 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 4 { !error "The patch CRACK_SHADOW_0800 at $0800 has ", ((* - .patch_start) & $ffff), " bytes; the range has 4." } else { !fill 4 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $53,$43
         !byte $56,$03

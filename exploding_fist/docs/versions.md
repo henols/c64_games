@@ -18,15 +18,15 @@ Version II is the same game with five new features, three corrections and one co
 
 The new features:
 
-- **Keyboard control.** F7 on the title selects JOYSTICK or KEYBOARD. With KEYBOARD, player 1 uses the keys `Q W E`, `A D`, `Z X C` and fire `S` or LEFT SHIFT. In version I, F7 does nothing. **Observed** in [keyboard_option.json](../v2/tests/keyboard_option.json).
+- **Keyboard control.** F7 on the title selects JOYSTICK or KEYBOARD. With KEYBOARD, player 1 uses the keys `Q W E`, `A D`, `Z X C` and fire `S` or LEFT SHIFT. In version I, F7 does nothing. **Observed** in the recordings `title_keys` and `keyboard` of [../v2/tests/README.md](../v2/tests/README.md).
 - **A high score table with names.** After each one-player game, a table shows the 5 best scores with the rank and a name of 6 letters. A new entry gets a name entry with tune 4 as its music. Version I keeps only one high score for each mode. **Observed** in the recording one_player_moves of version II.
 - **Live samples.** Four digitized sounds play: a knockdown, a hit, the swish of an attack and a fall to the floor. DEL on the title disables and enables them. Version I has the sample player, but no code calls it. **Observed** (renders of the samples) and **Code**.
-- **The bull bonus round.** After each promotion in scene 3, a bull runs at the player. A low punch at the right time stops it for 3000 points. A run without a hit gives 500 points. In version I, the round is a test routine that nothing calls. **Observed** in [one_player_cpu_bull.json](../v2/tests/one_player_cpu_bull.json).
+- **The bull bonus round.** After each promotion in scene 3, a bull runs at the player. A low punch at the right time stops it for 3000 points. A run without a hit gives 500 points. In version I, the round is a test routine that nothing calls. **Observed** in the recording `cpu_ranks` of [../v2/tests/README.md](../v2/tests/README.md).
 - **The judge.** At a decision by time and at the end of a two-player game, a judge sprite shows the winner with a flag. Version I calls a lone RTS at the same three places (**Code**).
 
 The corrections:
 
-- **The rank cap.** Version II stops the promotions at 10TH DAN. Version I promotes the player to rank 22 and shows garbage text after 10TH DAN. **Observed** in [rank_overflow.json](../v1/tests/rank_overflow.json) and [rank_cap.json](../v2/tests/rank_cap.json).
+- **The rank cap.** Version II stops the promotions at 10TH DAN. Version I promotes the player to rank 22 and shows garbage text after 10TH DAN. **Observed** in [rank_overflow.json](../v1/tests/rank_overflow.json) and in the recording `cpu_ranks` of each version.
 - **The correction of tune 1.** In version I, voice 0 of the demo tune continues in the order list of voice 1 and never plays pattern 2. Version II adds 2 bytes, and the three voices loop together (**Code**).
 - **The X limits by facing.** Version I refuses each step out of the range $0C-$94. Version II clamps the position to a limit that depends on the facing of the fighter (**Code**).
 

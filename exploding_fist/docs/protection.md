@@ -99,8 +99,9 @@ The trap stays in the default build, but no path reaches it. A build with `--rel
 
 These tests show that the default build plays as the original. **Observed** (all PASS):
 
-- The scenarios [demo.json](../v2/tests/demo.json), [one_player_cpu_bull.json](../v2/tests/one_player_cpu_bull.json), [two_player.json](../v2/tests/two_player.json), [rank_cap.json](../v2/tests/rank_cap.json), [keyboard_option.json](../v2/tests/keyboard_option.json) and [leftovers_unused.json](../v2/tests/leftovers_unused.json) run the original and the default rebuild side by side. Both loaders write 0 to `$DD0E`, so both games score points.
-- The four recordings in [tests/record](../v2/tests/record) replay on the rebuild: one_player_moves, two_player, cpu_ranks and keyboard. They pass 9262, 11107, 53394 and 6787 checkpoints.
+- The eight recordings in [tests/record](../v2/tests/record) replay on the rebuild with the same state at each checkpoint. Both loaders write 0 to `$DD0E`, so both games score points. `cpu_ranks` alone has 53394 checkpoints, with all ranks and the bull rounds. See [../v2/tests/README.md](../v2/tests/README.md).
+- The patch takes 4 cycles, the same as the check of the original. Thus each scoring hit takes the same time in the rebuild (**Code**).
+- The scenario [leftovers_unused.json](../v2/tests/leftovers_unused.json) runs the original and the default rebuild side by side.
 - The run [protection_trap_rebuild.json](../v2/tests/protection_trap_rebuild.json) writes `$08` to `$DD0E`, as the run of the original does. The default rebuild plays on through the first scoring hit.
 
 The loader `v2/build/clean_loader.prg` uses the default build. Thus it plays on each C64, also after a KERNAL reset with `$08` in `$DD0E`. **Conclusion**.

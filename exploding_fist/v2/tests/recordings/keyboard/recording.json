@@ -1,28 +1,46 @@
 {
   "format": 1,
-  "name": "Keyboard control: F7 option set, a 1-player game with the keys of player 1 (Q W E A D Z X C, S = fire)",
+  "name": "Keyboard control: F7 sets the option, a 1-player game with the keys of player 1 (Q W E A D Z X C, S = fire)",
   "program": "original/fist_v2_scc.prg",
   "sha256": "f83c459a59f4bbdb7835e03ff32a6b8b9c8a2f81993b78489feaf22abe2a3d14",
-  "symbols": "none",
+  "symbols": "knowledge",
   "load": false,
   "compare": {
-    "checkpoint": "$1aff",
+    "checkpoint": "frame_random_step",
     "state": [
       {
-        "address": "$6a",
+        "address": "fighter_x",
         "size": 4
       },
       {
-        "address": "$61",
+        "address": "fighter_move",
         "size": 2
       },
       {
-        "address": "$8a",
+        "address": "half_points",
         "size": 2
       },
       {
-        "address": "$af",
+        "address": "stage_counter",
         "size": 6
+      },
+      {
+        "address": "game_mode",
+        "size": 1
+      },
+      {
+        "address": "$cc00",
+        "size": 200
+      }
+    ],
+    "pin": [
+      {
+        "address": "frame_random",
+        "size": 1
+      },
+      {
+        "address": "ai_random",
+        "size": 1
       }
     ]
   },
@@ -42,30 +60,15 @@
         "runUntil": {
           "target": {
             "kind": "address",
-            "address": "$1e64",
+            "address": "read_title_keys",
             "space": "c64"
           },
           "timeoutFrames": 3000
         }
       },
       "key": {
-        "tick": 5896801
-      }
-    },
-    {
-      "step": 4,
-      "action": {
-        "write": {
-          "address": "$c6",
-          "data": "01",
-          "space": "c64",
-          "view": "cpu"
-        }
-      },
-      "key": {
-        "site": "$1e73",
-        "addr": "$dc01",
-        "count": 52
+        "pc": "read_title_keys",
+        "count": 1
       }
     }
   ],
@@ -91,79 +94,79 @@
     {
       "site": "$1e73",
       "addr": "$dc01",
-      "reads": 6763,
+      "reads": 6650,
       "rom": false
     },
     {
       "site": "$1e94",
       "addr": "$dc00",
-      "reads": 5057,
+      "reads": 4688,
       "rom": false
     },
     {
       "site": "$0dfc",
       "addr": "$d41c",
-      "reads": 7559,
+      "reads": 7590,
       "rom": false
     },
     {
       "site": "$0e02",
       "addr": "$d41b",
-      "reads": 7559,
+      "reads": 7590,
       "rom": false
     },
     {
       "site": "$28b7",
       "addr": "$dc01",
-      "reads": 1368,
+      "reads": 1713,
       "rom": false
     },
     {
       "site": "$28cf",
       "addr": "$dc01",
-      "reads": 1368,
+      "reads": 1713,
       "rom": false
     },
     {
       "site": "$28de",
       "addr": "$dc01",
-      "reads": 1310,
+      "reads": 1656,
       "rom": false
     },
     {
       "site": "$2901",
       "addr": "$dc01",
-      "reads": 1128,
+      "reads": 1478,
       "rom": false
     },
     {
       "site": "$2924",
       "addr": "$dc01",
-      "reads": 947,
+      "reads": 1308,
       "rom": false
     },
     {
       "site": "$31c5",
       "addr": "$d41c",
-      "reads": 93,
+      "reads": 123,
       "rom": false
     },
     {
       "site": "$31c5",
       "addr": "$d41b",
-      "reads": 93,
+      "reads": 123,
       "rom": false
     },
     {
       "site": "$31c5",
       "addr": "$d41a",
-      "reads": 93,
+      "reads": 123,
       "rom": false
     },
     {
       "site": "$31c5",
       "addr": "$d419",
-      "reads": 93,
+      "reads": 123,
       "rom": false
     },
     {
@@ -185,6 +188,6 @@
       "rom": false
     }
   ],
-  "ticks": 159477740,
-  "hash": "a0f97c14"
+  "ticks": 160084267,
+  "hash": "b278066c"
 }

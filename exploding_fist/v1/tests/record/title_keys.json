@@ -1,0 +1,117 @@
+{
+ "name": "title keys: F3 two times, F7, F1 starts a 1-player game and F5 goes back to the title",
+ "program": "original/fist_v1_2010.prg",
+ "symbols": "knowledge",
+ "coverage": "$1158",
+ "checkpoint": "frame_random_step",
+ "state": [
+  {
+   "address": "fighter_x",
+   "size": 4
+  },
+  {
+   "address": "fighter_move",
+   "size": 2
+  },
+  {
+   "address": "half_points",
+   "size": 2
+  },
+  {
+   "address": "stage_counter",
+   "size": 6
+  },
+  {
+   "address": "game_mode",
+   "size": 1
+  },
+  {
+   "address": "$cc00",
+   "size": 200
+  }
+ ],
+ "pin": [
+  {
+   "address": "frame_random",
+   "size": 1
+  },
+  {
+   "address": "ai_random",
+   "size": 1
+  }
+ ],
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "read_title_keys"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 10
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "bout_frame_loop"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 6
+   }
+  },
+  {
+   "frames": 400
+  }
+ ]
+}

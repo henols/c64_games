@@ -1,25 +1,43 @@
 {
  "name": "demo, then a 1-player game with all 16 joystick moves until the game is over",
  "program": "original/fist_v1_2010.prg",
- "symbols": "none",
+ "symbols": "knowledge",
  "coverage": "$1158",
- "checkpoint": "$1613",
+ "checkpoint": "frame_random_step",
  "state": [
   {
-   "address": "$5f",
+   "address": "fighter_x",
    "size": 4
   },
   {
-   "address": "$56",
+   "address": "fighter_move",
    "size": 2
   },
   {
-   "address": "$7f",
+   "address": "half_points",
    "size": 2
   },
   {
-   "address": "$a4",
+   "address": "stage_counter",
    "size": 6
+  },
+  {
+   "address": "game_mode",
+   "size": 1
+  },
+  {
+   "address": "$cc00",
+   "size": 200
+  }
+ ],
+ "pin": [
+  {
+   "address": "frame_random",
+   "size": 1
+  },
+  {
+   "address": "ai_random",
+   "size": 1
   }
  ],
  "steps": [

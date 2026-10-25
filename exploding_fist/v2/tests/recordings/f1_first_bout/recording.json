@@ -23,6 +23,24 @@
       {
         "address": "stage_counter",
         "size": 6
+      },
+      {
+        "address": "game_mode",
+        "size": 1
+      },
+      {
+        "address": "$cc00",
+        "size": 200
+      }
+    ],
+    "pin": [
+      {
+        "address": "frame_random",
+        "size": 1
+      },
+      {
+        "address": "ai_random",
+        "size": 1
       }
     ]
   },
@@ -49,7 +67,8 @@
         }
       },
       "key": {
-        "tick": 5896801
+        "pc": "read_title_keys",
+        "count": 1
       }
     },
     {
@@ -65,9 +84,8 @@
         }
       },
       "key": {
-        "site": "$1e73",
-        "addr": "$dc01",
-        "count": 57
+        "pc": "bout_1p_exchanges",
+        "count": 2
       }
     },
     {
@@ -83,7 +101,8 @@
         }
       },
       "key": {
-        "previous": true
+        "pc": "bout_frame_loop",
+        "count": 572584
       }
     }
   ],

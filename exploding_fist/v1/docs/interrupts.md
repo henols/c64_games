@@ -221,7 +221,7 @@ The routine ends with the I flag set, and `init_vic_screen` then writes `$FF` to
 
 **The timer B start each frame.** `irq_bitmap_on` writes the latch `$16BC` again and then `$09` to `$DD0F`. Bit 0 starts the timer and bit 3 selects one-shot mode. The timer does not run at this time, so the write of the high byte of the latch also loads the counter. After the NMI, the timer stops again until the next frame. (**Code**)
 
-**The scene background colour.** `irq_bitmap_on` writes `irq_bitmap_on_bg_colour` to `$D021`. The operand is 1 (white). [`scene_draw_if_new` `$1A63`](../src/game/title_and_scene.asm#L167) writes 3 into it while it draws a new scene, and 1 again at the end. (**Code**)
+**The scene background colour.** `irq_bitmap_on` writes `irq_bitmap_on_bg_colour` to `$D021`. The operand is 1 (white). [`scene_draw_if_new` `$1A63`](../src/game/title_and_scene.asm#L165) writes 3 into it while it draws a new scene, and 1 again at the end. (**Code**)
 
 ## The test at the start of each handler
 

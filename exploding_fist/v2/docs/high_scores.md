@@ -13,7 +13,7 @@ Version II adds a table of the 5 best scores of the 1-player game. Each entry ha
 
 ## When the table shows
 
-The table shows only at the end of a 1-player game. The title loop calls `game_one_player` and then [`hs_table_update` `$146A`](../src/game/high_score_table.asm#L6) at [`title_start_1p` `$1F0A`](../src/game/title_and_scene.asm#L105). After the table, the loop clears the panel with `hs_clear_panel` and starts the demo again. (**Code**)
+The table shows only at the end of a 1-player game. The title loop calls `game_one_player` and then [`hs_table_update` `$146A`](../src/game/high_score_table.asm#L6) at [`title_start_1p` `$1F0A`](../src/game/title_and_scene.asm#L103). After the table, the loop clears the panel with `hs_clear_panel` and starts the demo again. (**Code**)
 
 A 2-player game does not show the table. `game_two_players` calls only `high_score_update`, the code of version I that keeps one high score for each mode at `$1299` and `$129F`. The 1-player game also updates its single high score before it returns. Thus a 1-player score goes into two places: the single high score of the title and the table. (**Code**)
 
@@ -214,10 +214,11 @@ A key in the name entry, for example F: F is column 2, row bit 5. `key_scan` wri
 
 The recording `tests/record/one_player_moves.json` types FIST and RETURN in the name entry. The name in the table is then "FIST" and two spaces. (**Code**)
 
+Only a 1-player game calls the table. The recording `two_player` selects 2 PLAYER with F3 and plays to the judge. Its coverage has no run of `hs_name_entry` (**Observed**).
+
 ## Still open
 
 - Hold fire at the end of a 1-player game and confirm that the table does not show and the name stays "......". A recording with fire held at the last fall can do this.
 - No run put a new score in places 1-4. The row address loop at `$14A5` and the place-4 path of `hs_shift_ranks` at `$16FB` never ran. A second 1-player game with a lower score can reach them.
 - No run used DEL, typed 6 characters or held a key in the name entry (`$17A0-$17AC`, `$1794`, `$1569` never ran). A recording with these keys can show them.
 - Confirm that only A-Z, 0-9, SPACE, RETURN and DEL give characters. Confirm that the joystick in port 1 gives "1", "2", "P", "L" and SPACE.
-- `tests/two_player.json` reaches `hs_name_entry`, but only a 1-player game calls the table. The test writes `two_player_mode` at `title_main_loop`, before the `STA` that clears it. Confirm if its game is a 1-player game.

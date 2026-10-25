@@ -34,7 +34,6 @@ title_keys_none
         lda #$00
         rts
 title_key_f1
-; not executed $1981-$19a0
         lda in_game
         bne title_keys_fire
         lda #$80
@@ -58,7 +57,6 @@ title_key_f7
         lda #$00                        ; F7 does nothing.
         rts
 title_key_f5
-; not executed $19a4-$19a6
         jmp title_main_loop             ; F5 works also during a game; the stack is not reset.
 ; Title loop: one player, then the high score, the mode text and the demo again and again. A start key or fire starts the game of two_player_mode.
 title_main_loop

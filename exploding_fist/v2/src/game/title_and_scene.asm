@@ -41,7 +41,6 @@ title_key_f1
         lda #$80
         rts
 title_key_f3
-; not executed $1ea8-$1ec0
         lda in_game
         bne title_f3_done
         inc two_player_mode
@@ -67,7 +66,6 @@ title_f7_done
         lda #$00                        ; The v1 F7 code: LDA #0, RTS.
         rts
 title_key_f5
-; not executed $1ed1-$1ed3
         jmp title_main_loop             ; F5 works also during a game; the stack is not reset.
 title_key_del
         lda in_game

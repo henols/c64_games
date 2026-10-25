@@ -35,7 +35,7 @@ shape_ptr_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3193-$3195, NOP after the code
 !byte $b9,$16,$31
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3193 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3193 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -69,7 +69,7 @@ shape_part0_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $31bd-$31bf, NOP after the code
 !byte $b9,$c0,$80
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $31bd has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $31bd has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -110,7 +110,7 @@ shape_part1_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $31f1-$31f3, NOP after the code
 !byte $b9,$80,$80
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $31f1 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $31f1 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -151,7 +151,7 @@ shape_part2_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3225-$3227, NOP after the code
 !byte $b9,$c0,$8d
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3225 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3225 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -192,7 +192,7 @@ shape_part3_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3259-$325b, NOP after the code
 !byte $b9,$00,$8f
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3259 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3259 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -233,7 +233,7 @@ shape_part4_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $328d-$328f, NOP after the code
 !byte $b9,$40,$8f
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $328d has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $328d has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -274,7 +274,7 @@ shape_part5_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $32c1-$32c3, NOP after the code
 !byte $b9,$00,$a5
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $32c1 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $32c1 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -315,7 +315,7 @@ shape_part6_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $32f5-$32f7, NOP after the code
 !byte $b9,$80,$8f
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $32f5 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $32f5 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -356,7 +356,7 @@ shape_part7_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3329-$332b, NOP after the code
 !byte $b9,$c0,$8f
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3329 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3329 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -397,7 +397,7 @@ shape_part8_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $335d-$335f, NOP after the code
 !byte $b9,$40,$93
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $335d has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $335d has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }

@@ -23,6 +23,24 @@
       {
         "address": "stage_counter",
         "size": 6
+      },
+      {
+        "address": "game_mode",
+        "size": 1
+      },
+      {
+        "address": "$cc00",
+        "size": 200
+      }
+    ],
+    "pin": [
+      {
+        "address": "frame_random",
+        "size": 1
+      },
+      {
+        "address": "ai_random",
+        "size": 1
       }
     ]
   },
@@ -49,7 +67,8 @@
         }
       },
       "key": {
-        "tick": 5896801
+        "pc": "read_title_keys",
+        "count": 1
       }
     },
     {
@@ -65,9 +84,8 @@
         }
       },
       "key": {
-        "site": "$1e73",
-        "addr": "$dc01",
-        "count": 57
+        "pc": "bout_frame_loop",
+        "count": 83155
       }
     }
   ],
@@ -105,13 +123,13 @@
     {
       "site": "$0dfc",
       "addr": "$d41c",
-      "reads": 305,
+      "reads": 304,
       "rom": false
     },
     {
       "site": "$0e02",
       "addr": "$d41b",
-      "reads": 305,
+      "reads": 304,
       "rom": false
     },
     {
@@ -121,6 +139,6 @@
       "rom": false
     }
   ],
-  "ticks": 16863077,
-  "hash": "9be5f181"
+  "ticks": 16851004,
+  "hash": "facaa7df"
 }

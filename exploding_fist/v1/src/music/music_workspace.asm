@@ -32,7 +32,7 @@ music_filter_source = * + 56
 !byte $47,$09,$06,$56,$0a,$81,$81,$81,$c2,$d5,$f2,$0f,$0f,$0f,$4c,$c2
 !byte $a6,$05,$04,$05,$2c,$12,$0a,$00,$00,$00,$04,$09,$06,$07,$05,$05
 !byte $00,$00,$00,$00,$00,$01,$00,$5d,$80
-        !if * - .patch_start > 57 { !error "The patch RUN_STATE at $0c8c has ", * - .patch_start, " bytes; the range has 57." } else { !fill 57 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 57 { !error "The patch RUN_STATE at $0c8c has ", ((* - .patch_start) & $ffff), " bytes; the range has 57." } else { !fill 57 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00,$00,$00               ; Note frequency low byte, voice x (target of the slide)
         !byte $00,$f7,$00               ; Note frequency high byte, voice x
@@ -74,7 +74,7 @@ music_temp_lo = * + 13
 !if RUN_STATE {
         ; RUN_STATE on: 14 bytes at $0cca-$0cd7, NOP after the code
 !byte $03,$03,$04,$08,$00,$03,$01,$01,$01,$02,$02,$02,$03,$d0
-        !if * - .patch_start > 14 { !error "The patch RUN_STATE at $0cca has ", * - .patch_start, " bytes; the range has 14." } else { !fill 14 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 14 { !error "The patch RUN_STATE at $0cca has ", ((* - .patch_start) & $ffff), " bytes; the range has 14." } else { !fill 14 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00,$00,$ec               ; Shift count of the note frequency (octave), voice x
         !byte $44,$00,$00               ; Note 1-12 of the note, 0 = rest, voice x

@@ -12,7 +12,7 @@ shape_parts
 !byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 !byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 !byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-        !if * - .patch_start > 64 { !error "The patch RUN_STATE at $8000 has ", * - .patch_start, " bytes; the range has 64." } else { !fill 64 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 64 { !error "The patch RUN_STATE at $8000 has ", ((* - .patch_start) & $ffff), " bytes; the range has 64." } else { !fill 64 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !fill 64, $00
 }

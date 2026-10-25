@@ -24,7 +24,7 @@ music_repeat_count = * + 38
 !byte $07,$38,$f3,$3e,$3b,$00,$00,$0c,$00,$00,$ff,$80,$80,$02,$00,$00
 !byte $02,$c8,$c8,$cc,$01,$01,$0a,$88,$68,$d0,$0c,$09,$12,$00,$0d,$00
 !byte $00,$0d,$00,$00,$00,$00,$00,$01,$01
-        !if * - .patch_start > 41 { !error "The patch RUN_STATE at $0cdb has ", * - .patch_start, " bytes; the range has 41." } else { !fill 41 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 41 { !error "The patch RUN_STATE at $0cdb has ", ((* - .patch_start) & $ffff), " bytes; the range has 41." } else { !fill 41 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00,$00,$00               ; Modulator slots 0-4: LFO of voice 0-2, ENV3, OSC3
         !byte $c8                       ; Modulator slot 3: SID ENV3 copied each frame
@@ -68,7 +68,7 @@ music_resonance = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $0d39-$0d3b, NOP after the code
 !byte $3a,$01,$f4
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $0d39 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $0d39 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00                       ; Value for SIGVOL: filter mode in bits 4-7, volume in bits 0-3
         !byte $00                       ; Tune that plays now. It is 0 in the file, thus the first game_mode 1 starts tune 1

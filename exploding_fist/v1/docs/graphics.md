@@ -216,12 +216,12 @@ Scene 3: a Buddha statue and a temple.
 
 ### Drawing a scene
 
-[`scene_draw_if_new` `$1A63`](../src/game/title_and_scene.asm#L167) runs before each bout. It draws the scene only when the scene number differs from `scene_shown`. At the start, `scene_shown` is 1, so the first bout draws scene 0. The routine does these steps:
+[`scene_draw_if_new` `$1A63`](../src/game/title_and_scene.asm#L165) runs before each bout. It draws the scene only when the scene number differs from `scene_shown`. At the start, `scene_shown` is 1, so the first bout draws scene 0. The routine does these steps:
 
 1. It writes 3 into the operand of the background colour of `irq_bitmap_on`. The bitmap rows now have a cyan background.
 2. `scene_blank_rows` fills the screen RAM and the colour RAM of rows 5-16 with `$33`. All four pixel values now give cyan, so the player sees a cyan area and not a half-drawn scene.
 3. `scene_unpack_bitmap` unpacks the bitmap into `$E640-$F53F` (see the data format below).
-4. [`scene_copy_maps` `$19F6`](../src/game/title_and_scene.asm#L110) copies the 480-byte colour map to `$D8C8` and the 480-byte screen map to `$CCC8`.
+4. [`scene_copy_maps` `$19F6`](../src/game/title_and_scene.asm#L108) copies the 480-byte colour map to `$D8C8` and the 480-byte screen map to `$CCC8`.
 5. It writes 1 into the operand again, and the scene shows on a white background.
 
 **Code**.

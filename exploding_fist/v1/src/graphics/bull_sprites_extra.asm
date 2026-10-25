@@ -179,7 +179,7 @@ bull_f66_parts
 !byte $31,$ea,$66,$fe,$47,$fe,$4a,$f3,$91,$f2,$0e,$f2,$50,$f2,$33,$f3
 !byte $57,$f1,$ca,$f1,$ed,$f6,$3e,$f1,$2f,$f3,$66,$fe,$a5,$f4,$ed,$f5
 !byte $00
-        !if * - .patch_start > 33 { !error "The patch RUN_STATE at $fd30 has ", * - .patch_start, " bytes; the range has 33." } else { !fill 33 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 33 { !error "The patch RUN_STATE at $fd30 has ", ((* - .patch_start) & $ffff), " bytes; the range has 33." } else { !fill 33 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte %00000010,%10101001,%10101010
         !byte %10000010,%10101011,%01011010

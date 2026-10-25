@@ -1,27 +1,45 @@
 {
+ "name": "Keyboard control: F7 sets the option, a 1-player game with the keys of player 1 (Q W E A D Z X C, S = fire)",
  "program": "original/fist_v2_scc.prg",
- "symbols": "none",
+ "symbols": "knowledge",
  "coverage": "$115a",
- "checkpoint": "$1aff",
+ "checkpoint": "frame_random_step",
  "state": [
   {
-   "address": "$6a",
+   "address": "fighter_x",
    "size": 4
   },
   {
-   "address": "$61",
+   "address": "fighter_move",
    "size": 2
   },
   {
-   "address": "$8a",
+   "address": "half_points",
    "size": 2
   },
   {
-   "address": "$af",
+   "address": "stage_counter",
    "size": 6
+  },
+  {
+   "address": "game_mode",
+   "size": 1
+  },
+  {
+   "address": "$cc00",
+   "size": 200
   }
  ],
- "name": "Keyboard control: F7 option set, a 1-player game with the keys of player 1 (Q W E A D Z X C, S = fire)",
+ "pin": [
+  {
+   "address": "frame_random",
+   "size": 1
+  },
+  {
+   "address": "ai_random",
+   "size": 1
+  }
+ ],
  "steps": [
   {
    "frames": 100
@@ -30,7 +48,7 @@
    "runUntil": {
     "target": {
      "kind": "address",
-     "address": "$1e64"
+     "address": "read_title_keys"
     },
     "timeoutFrames": 3000
    }
@@ -39,10 +57,13 @@
    "frames": 50
   },
   {
-   "write": {
-    "address": "$c6",
-    "data": "01"
+   "press": {
+    "keys": "{F7}",
+    "frames": 6
    }
+  },
+  {
+   "frames": 20
   },
   {
    "frames": 5
@@ -67,652 +88,1084 @@
    "frames": 200
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "S"
+   "press": {
+    "keys": "S"
+   }
   },
   {
-   "press": "W"
+   "press": {
+    "keys": "W"
+   }
   },
   {
-   "press": "D"
+   "press": {
+    "keys": "D"
+   }
   },
   {
-   "press": "X"
+   "press": {
+    "keys": "X"
+   }
   },
   {
-   "press": "A"
+   "press": {
+    "keys": "A"
+   }
   },
   {
-   "press": "Q"
+   "press": {
+    "keys": "Q"
+   }
   },
   {
-   "press": "E"
+   "press": {
+    "keys": "E"
+   }
   },
   {
-   "press": "Z"
+   "press": {
+    "keys": "Z"
+   }
   },
   {
-   "press": "C"
+   "press": {
+    "keys": "C"
+   }
   },
   {
    "frames": 6000

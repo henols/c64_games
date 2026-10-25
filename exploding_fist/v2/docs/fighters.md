@@ -64,7 +64,7 @@ The table below decodes the table for a fighter that faces right. The 16 values 
 
 ### The keyboard
 
-Version II adds a keyboard control. F7 on the title screen changes `keyboard_control` (`$C6`) between 0 and 1. The title shows JOYSTICK or KEYBOARD above "1 PLAYER". The details of the title keys are on [game_flow.md](game_flow.md). **Observed** in the scenario [keyboard_option.json](../tests/keyboard_option.json). The option applies to each fighter that the computer does not control. **Code**.
+Version II adds a keyboard control. F7 on the title screen changes `keyboard_control` (`$C6`) between 0 and 1. The title shows JOYSTICK or KEYBOARD above "1 PLAYER". The details of the title keys are on [game_flow.md](game_flow.md). **Observed** in the recording `title_keys` and the run [../runs/title_keys](../runs/title_keys). The option applies to each fighter that the computer does not control. **Code**.
 
 ![The title screen with the KEYBOARD option](images/title_keyboard.png)
 

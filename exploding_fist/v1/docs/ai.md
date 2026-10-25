@@ -377,7 +377,7 @@ A demo run can test this example: the run reads `cpu_skill` (`$A8`, `$A9`) after
 
 ## Still open
 
-- Do the levels 7 and 7 of the worked example appear in the first demo after the load? — Run `tests/demo.json` and read `$A8` and `$A9` at `demo_bout_loop`.
+- Do the levels 7 and 7 of the worked example appear in the first demo after the load? — Run the steps of `tests/record/demo.json` and read `$A8` and `$A9` at `demo_bout_loop`.
 - What does a command above `$18` do at level 12 to 16? A broken animation, a frozen fighter or a crash? — In a one-player game, write `cpu_skill+1` = 12 at the bout set-up, and watch `fighter_input` of fighter 1 for values above `$18`.
 - Which rank did the recording `cpu_ranks` reach, and did fighter 0 command a value above `$18` there? — Replay the recording and log `cpu_skill+1` and `fighter_input`.
 - Does fighter 0 in the demo start the crouching attack from the wrong write of action 8? — Run the demo with a watchpoint on `$92` for writes at `$20B2` while X = 1.

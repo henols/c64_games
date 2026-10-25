@@ -184,7 +184,7 @@ protect_cia2_check
         ; PROTECTION off: 3 bytes at $2cae-$2cb0, NOP after the code
         ; The check passes: A = 0 and Z set, as with $dd0e = 0.
 lda #$00
-        !if * - .patch_start > 3 { !error "The patch PROTECTION at $2cae has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch PROTECTION at $2cae has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda CI2CRA                      ; CIA2 control A; the game never writes it
 }

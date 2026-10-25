@@ -88,7 +88,7 @@ Layouts 2 to 7 are the same as in version I. Only the start of each handler chan
 
 ### The changed equal-Y layout
 
-When both fighters have the same Y, one handler sets the row of both groups: 6 Y values and 6 pointers. In version I, the IRQ of [`irq_ab_row2` `$2E4C`](../src/irq/irq_sprite_rows.asm#L148) came at `group_y + $14`. In version II, it comes 2 lines earlier, at `group_y + $12`. Then the handler waits in a loop until `$D012` is `group_y + $14`. **Code**.
+When both fighters have the same Y, one handler sets the row of both groups: 6 Y values and 6 pointers. In version I, the IRQ of [`irq_ab_row2` `$2E4C`](../src/irq/irq_sprite_rows.asm#L149) came at `group_y + $14`. In version II, it comes 2 lines earlier, at `group_y + $12`. Then the handler waits in a loop until `$D012` is `group_y + $14`. **Code**.
 
 ```
         lda #<wait line>    ; patched: group_y + $14 (row 2) or group_y + $29 (row 3)

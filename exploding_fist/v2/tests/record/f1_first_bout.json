@@ -5,18 +5,82 @@
  "coverage": "$115a",
  "checkpoint": "frame_random_step",
  "state": [
-  { "address": "fighter_x", "size": 4 },
-  { "address": "fighter_move", "size": 2 },
-  { "address": "half_points", "size": 2 },
-  { "address": "stage_counter", "size": 6 }
+  {
+   "address": "fighter_x",
+   "size": 4
+  },
+  {
+   "address": "fighter_move",
+   "size": 2
+  },
+  {
+   "address": "half_points",
+   "size": 2
+  },
+  {
+   "address": "stage_counter",
+   "size": 6
+  },
+  {
+   "address": "game_mode",
+   "size": 1
+  },
+  {
+   "address": "$cc00",
+   "size": 200
+  }
+ ],
+ "pin": [
+  {
+   "address": "frame_random",
+   "size": 1
+  },
+  {
+   "address": "ai_random",
+   "size": 1
+  }
  ],
  "steps": [
-  { "frames": 100 },
-  { "runUntil": { "target": { "kind": "address", "address": "read_title_keys" }, "timeoutFrames": 3000 } },
-  { "frames": 50 },
-  { "press": "{F1}" },
-  { "runUntil": { "target": { "kind": "address", "address": "bout_1p_exchanges" }, "timeoutFrames": 2000 } },
-  { "runUntil": { "target": { "kind": "address", "address": "bout_frame_loop" }, "timeoutFrames": 2000 } },
-  { "frames": 25 }
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "read_title_keys"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "press": {
+    "keys": "{F1}"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "bout_1p_exchanges"
+    },
+    "timeoutFrames": 2000
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "bout_frame_loop"
+    },
+    "timeoutFrames": 2000
+   }
+  },
+  {
+   "frames": 25
+  }
  ]
 }

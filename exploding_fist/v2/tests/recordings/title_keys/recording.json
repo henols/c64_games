@@ -1,0 +1,168 @@
+{
+  "format": 1,
+  "name": "title keys: F3 two times, F7 two times, DEL two times, F1 starts a 1-player game and F5 goes back to the title",
+  "program": "original/fist_v2_scc.prg",
+  "sha256": "f83c459a59f4bbdb7835e03ff32a6b8b9c8a2f81993b78489feaf22abe2a3d14",
+  "symbols": "knowledge",
+  "load": false,
+  "compare": {
+    "checkpoint": "frame_random_step",
+    "state": [
+      {
+        "address": "fighter_x",
+        "size": 4
+      },
+      {
+        "address": "fighter_move",
+        "size": 2
+      },
+      {
+        "address": "half_points",
+        "size": 2
+      },
+      {
+        "address": "stage_counter",
+        "size": 6
+      },
+      {
+        "address": "game_mode",
+        "size": 1
+      },
+      {
+        "address": "$cc00",
+        "size": 200
+      }
+    ],
+    "pin": [
+      {
+        "address": "frame_random",
+        "size": 1
+      },
+      {
+        "address": "ai_random",
+        "size": 1
+      }
+    ]
+  },
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "read_title_keys",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "read_title_keys",
+        "count": 1
+      }
+    },
+    {
+      "step": 18,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "bout_frame_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "bout_frame_loop",
+        "count": 656107
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$1e73",
+      "addr": "$dc01",
+      "reads": 1188,
+      "rom": false
+    },
+    {
+      "site": "$1e94",
+      "addr": "$dc00",
+      "reads": 861,
+      "rom": false
+    },
+    {
+      "site": "$0dfc",
+      "addr": "$d41c",
+      "reads": 1213,
+      "rom": false
+    },
+    {
+      "site": "$0e02",
+      "addr": "$d41b",
+      "reads": 1213,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41c",
+      "reads": 13,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41b",
+      "reads": 13,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41a",
+      "reads": 13,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d419",
+      "reads": 13,
+      "rom": false
+    },
+    {
+      "site": "$2851",
+      "addr": "$dc00",
+      "reads": 320,
+      "rom": false
+    }
+  ],
+  "ticks": 34737961,
+  "hash": "7c220d87"
+}

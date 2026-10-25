@@ -226,7 +226,7 @@ The scene unpacker writes only the scene bitmap at `$E640-$F53F`. Thus no scene 
 
 ## The DEL key
 
-DEL switches the samples off and on. [`title_key_del` `$1ED4`](../src/game/title_and_scene.asm#L72) changes `samples_off` with `EOR #$01`. It does this only when `in_game` is 0. The title loop and the demo have `in_game` = 0, and a game sets it to 1. Thus DEL works on the title and in the demo. During a game, the code ignores DEL. The start-up code sets `samples_off` to 0, so the samples are on after a load. (**Code**)
+DEL switches the samples off and on. [`title_key_del` `$1ED4`](../src/game/title_and_scene.asm#L70) changes `samples_off` with `EOR #$01`. It does this only when `in_game` is 0. The title loop and the demo have `in_game` = 0, and a game sets it to 1. Thus DEL works on the title and in the demo. During a game, the code ignores DEL. The start-up code sets `samples_off` to 0, so the samples are on after a load. (**Code**)
 
 `samples_off` stops only new samples. `sfx_sample_start` is the only code that reads it. A sample that plays when the player presses DEL continues to its end byte, at most 0.46 seconds. When the samples are off, the bull round also calls a sample entry that does nothing. The round continues normally, because `sfx_done` keeps the value `$7F`. (**Code**)
 

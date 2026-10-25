@@ -51,7 +51,7 @@ The seed of step 6 is a constant. The first demo after the power-on reads `frame
 
 ### The title loop and its keys
 
-[`title_main_loop` `$1EE1`](../src/game/title_and_scene.asm#L82) writes 0 to `two_player_mode`. The loop at `title_demo_loop` then does these steps again and again:
+[`title_main_loop` `$1EE1`](../src/game/title_and_scene.asm#L80) writes 0 to `two_player_mode`. The loop at `title_demo_loop` then does these steps again and again:
 
 1. It shows the single high score of the mode, with `high_score_show`.
 2. It writes 1 PLAYER or 2 PLAYER, with `show_mode_text`.
@@ -81,9 +81,9 @@ The image shows the title panel during the demo after F7. KEYBOARD is on row 3, 
 
 (**Code**)
 
-F7 and DEL are new in version II. F7 selects the keyboard control of the fighters, see [fighters.md](fighters.md). DEL stops all samples, because `sfx_sample_start` starts no sample while `samples_off` is not 0. The v1 F7 code, `LDA #$00` and RTS, stays as the last two instructions of the v2 F7 handler. (**Code**) The test `tests/keyboard_option.json` enters the F7 and the DEL handler with a register step. The panel then shows KEYBOARD, and `keyboard_control` and `samples_off` change to 1 (**Observed**).
+F7 and DEL are new in version II. F7 selects the keyboard control of the fighters, see [fighters.md](fighters.md). DEL stops all samples, because `sfx_sample_start` starts no sample while `samples_off` is not 0. The v1 F7 code, `LDA #$00` and RTS, stays as the last two instructions of the v2 F7 handler. (**Code**) The recording `title_keys` presses F3, F7 and DEL two times each, then F1 in the title and F5 in the game. The run [../runs/title_keys](../runs/title_keys) keeps a screen and the mode bytes after each press. Each key changes its byte to 1 and back to 0. The panel shows 2 PLAYER after F3 and KEYBOARD after F7. F1 starts a 1-player game, and F5 goes back to the demo (**Observed**).
 
-[`title_key_f5` `$1ED1`](../src/game/title_and_scene.asm#L69) does not test `in_game`. Thus F5 stops a game at any time and returns to the title. The JMP does not reset the stack, so each F5 leaves 8 bytes of return addresses on the stack. (**Code**) The 6502 stack pointer wraps in page 1, and the memory map gives page 1 only to the stack. Thus many F5 presses do no damage (**Conclusion**).
+[`title_key_f5` `$1ED1`](../src/game/title_and_scene.asm#L68) does not test `in_game`. Thus F5 stops a game at any time and returns to the title. The JMP does not reset the stack, so each F5 leaves 8 bytes of return addresses on the stack. (**Code**) The 6502 stack pointer wraps in page 1, and the memory map gives page 1 only to the stack. Thus many F5 presses do no damage (**Conclusion**).
 
 A start key returns A = `$80` only while `in_game` is 0. In a game, F1 and fire have no effect, so the `BMI` tests after each exchange of a game never branch (**Conclusion**).
 
@@ -117,7 +117,7 @@ After two won bouts, the game tests the stage. When `stage_counter` AND 3 = 3, i
 
 The rank cap corrects the rank overflow of version I. Version I compared `stage_counter` with `$16`. Its rank index went past the 12 entries of the rank table into code bytes, and the rank text broke, for example "|||TH DANN". See [../../v1/docs/game_flow.md](../../v1/docs/game_flow.md). (**Observed** in v1 `tests/rank_overflow.json`) In version II, `tests/rank_cap.json` sets the stage 9 and wins the next clear. The rank text stays 10TH DAN (**Observed**). That test sets the rank index to 10 at stage 9, so its promotion reads entry 11 of the table. Entry 11 also holds 10. In a normal game the rank index equals `stage_counter`, so the game never reads entry 11 (**Code**).
 
-The wrap also gives a weaker opponent. At 10TH DAN the computer has AI level 10, and in the next stages it has 7 to 10 (**Code**). The test `tests/one_player_cpu_bull.json` lets the computer play for player 1. It wins three ranks and reaches the bull round (**Observed**).
+The wrap also gives a weaker opponent. At 10TH DAN the computer has AI level 10, and in the next stages it has 7 to 10 (**Code**). The recording `tests/record/cpu_ranks.json` lets the computer play for player 1. It wins all ranks, goes past the cap and plays the bull rounds (**Observed**).
 
 ### The two-player game
 
@@ -137,7 +137,7 @@ The judge comes at three places: a one-player decision for player 1, a one-playe
 
 In version I, these three calls go to `winner_stub`, a lone RTS. The v1 sprite multiplexer already keeps the X bit 8 of sprites 6 and 7. The v1 bout loop also keeps sprites 6 and 7 in the enable register. (**Code**) Thus the authors planned the judge in version I and completed it in version II (**Conclusion**). See [../../docs/versions.md](../../docs/versions.md).
 
-The judge sprites stay on after the decision. [`bout_prepare_scene` `$1F3A`](../src/game/title_and_scene.asm#L131) switches them off with `SPENA` = `$3F` before each bout. No other code writes `SPENA` between the end of a game and the first bout of the demo. (**Code**) Thus the judge is visible during the end pause of a two-player game. After a one-player loss by decision, the judge stays visible during the high score table too (**Conclusion**).
+The judge sprites stay on after the decision. [`bout_prepare_scene` `$1F3A`](../src/game/title_and_scene.asm#L129) switches them off with `SPENA` = `$3F` before each bout. No other code writes `SPENA` between the end of a game and the first bout of the demo. (**Code**) Thus the judge is visible during the end pause of a two-player game. After a one-player loss by decision, the judge stays visible during the high score table too (**Conclusion**).
 
 ![The judge sprite of scenes 2 and 3 at $D400, in multicolour](reference/images/judge_sprite_scene23-multicolour.png)
 
@@ -315,7 +315,6 @@ Clear 11 is the first wrap: 10 + 1 = 11, and 11 AND 3 = 3, so the value is `$20`
 
 ## Still open
 
-- F1, F3 and F5 — no run pressed these keys. The runs write `two_player_mode` and start the game with fire or a register step. A run that types F3 and F5 in the demo can show the mode change and the return to the title.
 - The judge on the screen — no screen of this page shows sprites 6 and 7. A run that forces a time-up decision in each scene can show the shapes, the place of the flag and the colours.
 - The judge after a one-player loss by decision — the code leaves sprites 6 and 7 on during the high score table. A run that loses a bout by decision can show it.
 - The draw of a two-player game (`$1B61-$1B68`) — no run executed it. A run with equal scores after four bouts can show the bow of both fighters.

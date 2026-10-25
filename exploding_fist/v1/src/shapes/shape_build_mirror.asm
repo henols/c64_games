@@ -33,7 +33,7 @@ shape_mptr_src_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3421-$3423, NOP after the code
 !byte $b9,$28,$31
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3421 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3421 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda shape_parts,y
 }
@@ -318,7 +318,7 @@ shape_msrc0_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3681-$3683, NOP after the code
 !byte $bc,$00,$94
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3681 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3681 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldy shape_parts,x
 }
@@ -331,7 +331,7 @@ shape_mdst0_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3687-$3689, NOP after the code
 !byte $9d,$fe,$c8
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3687 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3687 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         sta shape_parts,x               ; Base destination-2: source byte 2 goes to byte 0
 }
@@ -344,7 +344,7 @@ shape_msrc1_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $368b-$368d, NOP after the code
 !byte $bc,$00,$94
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $368b has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $368b has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldy shape_parts,x
 }
@@ -357,7 +357,7 @@ shape_mdst1_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3691-$3693, NOP after the code
 !byte $9d,$00,$c9
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3691 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3691 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         sta shape_parts,x               ; Base destination: byte 1 stays
 }
@@ -370,7 +370,7 @@ shape_msrc2_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $3695-$3697, NOP after the code
 !byte $bc,$00,$94
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $3695 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $3695 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldy shape_parts,x
 }
@@ -383,7 +383,7 @@ shape_mdst2_hi = * + 2
 !if RUN_STATE {
         ; RUN_STATE on: 3 bytes at $369b-$369d, NOP after the code
 !byte $9d,$02,$c9
-        !if * - .patch_start > 3 { !error "The patch RUN_STATE at $369b has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch RUN_STATE at $369b has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         sta shape_parts,x               ; Base destination+2: source byte 0 goes to byte 2
 }

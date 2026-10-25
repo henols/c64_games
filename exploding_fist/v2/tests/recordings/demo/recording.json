@@ -1,0 +1,162 @@
+{
+  "format": 1,
+  "name": "attract demo: four bouts of two computer fighters to the end, then the title again",
+  "program": "original/fist_v2_scc.prg",
+  "sha256": "f83c459a59f4bbdb7835e03ff32a6b8b9c8a2f81993b78489feaf22abe2a3d14",
+  "symbols": "knowledge",
+  "load": false,
+  "compare": {
+    "checkpoint": "frame_random_step",
+    "state": [
+      {
+        "address": "fighter_x",
+        "size": 4
+      },
+      {
+        "address": "fighter_move",
+        "size": 2
+      },
+      {
+        "address": "half_points",
+        "size": 2
+      },
+      {
+        "address": "stage_counter",
+        "size": 6
+      },
+      {
+        "address": "game_mode",
+        "size": 1
+      },
+      {
+        "address": "$cc00",
+        "size": 200
+      }
+    ],
+    "pin": [
+      {
+        "address": "frame_random",
+        "size": 1
+      },
+      {
+        "address": "ai_random",
+        "size": 1
+      }
+    ]
+  },
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "read_title_keys",
+            "space": "c64"
+          },
+          "timeoutFrames": 3000
+        }
+      },
+      "key": {
+        "pc": "read_title_keys",
+        "count": 1
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "demo_exit",
+            "space": "c64"
+          },
+          "timeoutFrames": 30000
+        }
+      },
+      "key": {
+        "pc": "demo_exit",
+        "count": 1
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 115,
+      "rom": true
+    },
+    {
+      "site": "$1e73",
+      "addr": "$dc01",
+      "reads": 6566,
+      "rom": false
+    },
+    {
+      "site": "$1e94",
+      "addr": "$dc00",
+      "reads": 6566,
+      "rom": false
+    },
+    {
+      "site": "$0dfc",
+      "addr": "$d41c",
+      "reads": 7305,
+      "rom": false
+    },
+    {
+      "site": "$0e02",
+      "addr": "$d41b",
+      "reads": 7305,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41c",
+      "reads": 111,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41b",
+      "reads": 111,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d41a",
+      "reads": 111,
+      "rom": false
+    },
+    {
+      "site": "$31c5",
+      "addr": "$d419",
+      "reads": 111,
+      "rom": false
+    }
+  ],
+  "ticks": 154453232,
+  "hash": "1f689e5e"
+}
