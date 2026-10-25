@@ -160,7 +160,7 @@ The restart puts the program into a known state before the title. **Code.**
 
 ## The title screen
 
-The title shows "DATASOFT PRESENTS", the big BRUCE LEE with a TM sign, "BY RON J FORTIER" and three menu lines. A box shows each chosen option in inverted characters. [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83) builds the screen. Four places go to it: `restart_to_title`, `lose_fall` at the end of the demo, [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82), and a protection failure in `room10_frame`. **Code.**
+The title shows "DATASOFT PRESENTS", the big BRUCE LEE with a TM sign, "BY RON J FORTIER" and three menu lines. A box shows each chosen option in inverted characters. [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83) builds the screen. Four places go to it: `restart_to_title`, `lose_fall` at the end of the demo, [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L80), and a protection failure in `room10_frame`. **Code.**
 
 ### The setup
 

@@ -59,7 +59,6 @@ init_game_room_flags_loop
         sta falls_left
         lda option_yamo_player2
         beq init_game_copy_scores
-; not executed $0fc5-$0fc8
         lda #$09                        ; 9 falls when Yamo is player controlled
         sta falls_left
 ; bonus_fall_next_score of both players = bonus_fall_first_score (40000 points).
@@ -94,7 +93,6 @@ fill_parked_lanterns_loop
 ; pointer, next_room = room loop counter. Called by lose_fall (next_turn_enter_room) when the turn passes to
 ; the other player.
 swap_player_lanterns
-; not executed $0fed-$104a
         lda #<parked_lantern_flags      ; row_ptr_top = parked_lantern_flags
         sta row_ptr_top
         lda #>parked_lantern_flags
@@ -137,6 +135,7 @@ swap_room_lanterns_done
 ; (bit 7 set = saver running). frame_update then flashes the band colours. Called by frame_update when
 ; idle_timer reaches $80 (32768 frames without input).
 start_screen_saver
+; not executed $102b-$104a
         ldx #$13
 start_screen_saver_loop
         lda room_band_colours,x

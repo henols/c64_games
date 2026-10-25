@@ -77,7 +77,7 @@ The first title IRQs came 2 frames after [`show_title_screen` `$0584`](../src/ga
 
 **The menu text is hires.** Text row 10 starts at line 131. Thus the logo rows 0-9 show in the logo charset, and the menu rows 10-24 show in the text font. The colour RAM of the menu rows is `$F1` (bit 3 clear: hires). Thus the menu text is hires, although `SCROLX` selects multicolour. **Conclusion**
 
-[`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82) installs the same pair with a first compare line of 251 (`$FB`). After the first `irq_title_split` the line is 253 again. **Code**
+[`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L80) installs the same pair with a first compare line of 251 (`$FB`). After the first `irq_title_split` the line is 253 again. **Code**
 
 ~~~mermaid
 flowchart LR
@@ -159,7 +159,7 @@ In the game and in the attract demo, one routine does all the work of each frame
 6. **Room charset.** `room_charset_hi` from `room_vmcsb` (see [The charset of the play area](#the-charset-of-the-play-area)). **Code**
 7. **Handedness marks.** Status row 1, column 2 shows `L` (character `$2C`) when joystick 1 is left-handed ([`joystick_right_handed` `$1383`](../src/room/room_enemy_tables.asm#L114) = 0). Else it is blank. Column 37 does the same for joystick 2 (`joystick_right_handed+1`). But it does this only when port 2 is in use (`option_two_players` or `option_yamo_player2` set). **Code**
 8. **Room time.** In a game (`game_mode` = 1) that is not paused (`pause_state` bit 7 clear), [`room_time` `$0087`](../src/constants.asm#L82) + 1. Its high byte stops at `$80`. `draw_room` sets it to 0. **Code**
-9. **Frame counters and the idle timer.** `frame_counter` + 1. When it wraps (every 256 frames), [`idle_timer` `$0082`](../src/constants.asm#L77) + 1 while it is positive, and `frame_count_256` + 1 (16 bit). When `idle_timer` gets to `$80`, the code sets `pause_state` = `$86` (paused, debounce 6). Then it calls `show_paused` and [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L139). **Code**
+9. **Frame counters and the idle timer.** `frame_counter` + 1. When it wraps (every 256 frames), [`idle_timer` `$0082`](../src/constants.asm#L77) + 1 while it is positive, and `frame_count_256` + 1 (16 bit). When `idle_timer` gets to `$80`, the code sets `pause_state` = `$86` (paused, debounce 6). Then it calls `show_paused` and [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L137). **Code**
 10. **Screen saver masks.** With `idle_timer` positive, `saver_and_mask` = `$FE` and `saver_eor_mask` = 0. With `idle_timer` negative (saver on), `idle_timer` = `$FE`, `saver_eor_mask` = `frame_count_256` and `saver_and_mask` = `$F7`. Then the 20 bytes of `room_band_colours` = ([`palette_backup` `$47B4`](../src/room/room_palettes_47a0.asm#L15) EOR `saver_eor_mask`) AND `saver_and_mask`. **Code**
 11. **Protection check 1.** [`frame_update_check_ddr` `$166A`](../src/game/frame_update.asm#L140): `D6510` must hold `$EF`. Else the code branches back to step 9 for ever, inside the interrupt, and the game stops. The original loader leaves `$EF` there. **Code**
 12. **Countdowns.** [`frame_countdown` `$0048`](../src/constants.asm#L34) - 1 and the 16-bit `title_countdown` - 1. Both stop at 0. In the game screen, `title_countdown` times the congratulations room ([`room19_init` `$425F`](../src/room/ending_room.asm#L7) sets `$0458`). **Code**
@@ -167,9 +167,9 @@ In the game and in the attract demo, one routine does all the work of each frame
     - Bruce uses port 1 (`CIAPRB`) when `current_player` = 0, and port 2 (`CIAPRA`) when it is 1. Bits 0-3 go to `actor_joy_dir`, and fire (bit 4) goes to `actor_fire`.
     - A Yamo that a person plays (`option_yamo_player2` = 1) uses the other port. Its input goes to `actor_joy_dir+1` and `actor_fire+1`.
     - **The code turns a left-handed joystick by 90 degrees** (`joystick_right_handed`,X = 0): new = (old >> 2) OR [`joy_rotate_bits` `$4A85`](../src/room/room_tables.asm#L8)[old AND 3]. Up becomes right, down becomes left, left becomes up, right becomes down.
-14. **Protection check 2.** [`frame_update_check_loader_mark` `$1703`](../src/game/frame_update.asm#L245): `prot_loader_mark` must hold `$32`. Else `frame_update_wipe_loop` writes over memory page by page, from the top page down. Its page counter is [`frame_update_wipe_counter` `$0539`](../src/game/title_demo_start.asm#L37), a byte of an instruction of `start_attract_demo`. The original loader leaves `$32` there. **Code**
+14. **Protection check 2.** [`frame_update_check_loader_mark` `$1703`](../src/game/frame_update.asm#L244): `prot_loader_mark` must hold `$32`. Else `frame_update_wipe_loop` writes over memory page by page, from the top page down. Its page counter is [`frame_update_wipe_counter` `$0539`](../src/game/title_demo_start.asm#L37), a byte of an instruction of `start_attract_demo`. The original loader leaves `$32` there. **Code**
 15. **Port directions.** `frame_update_restore_ddr` restores the CIA 1 port directions. **Code**
-16. **Idle reset.** [`frame_update_reset_idle` `$173B`](../src/game/frame_update.asm#L289) sets `idle_timer` = 0 in the demo, always. In a game, it does this when the game is not paused and Bruce's or Yamo's joystick has a direction or fire. **Code**
+16. **Idle reset.** [`frame_update_reset_idle` `$173B`](../src/game/frame_update.asm#L288) sets `idle_timer` = 0 in the demo, always. In a game, it does this when the game is not paused and Bruce's or Yamo's joystick has a direction or fire. **Code**
 17. **Yamo player idle.** This step runs only in a game that is not paused, in a room with enemies (`room_no_enemy_flag` = 0), and with `option_yamo_player2` = 1. Without input on Yamo's joystick, [`yamo_idle_time` `$0089`](../src/constants.asm#L83) + 1 per frame. Input sets it to 0. At 7 * 256 = 1792 frames, Yamo goes back to the computer: **Code**
     - `option_yamo_player2` = 0, and `room_time+1` = `$20` (the top time level).
     - `play_open_sound` plays.
@@ -203,6 +203,28 @@ The main loop sets `frame_countdown` = 3. Then it waits until the interrupt coun
 | Fall attack refill | every 256 frames | **Code** |
 | Idle pause | 32768 frames (about 11 minutes) | **Code** |
 | Player Yamo time-out | 1792 frames (36 s) | **Code** |
+
+### A room change can stop the interrupts
+
+**The game can stop at a room change.** The fault is in the original program, and the default build has it too. [`draw_room` `$09BC`](../src/room/draw_room.asm#L28) switches the screen off at the start and on again at the end. Each time it reads `SCROLY`, changes bit 4 and writes the value back ([`$09C1`](../src/room/draw_room.asm#L31) and [`$0B38`](../src/room/draw_room.asm#L230)). **Code**
+
+- A read of `SCROLY` gives bit 8 of the current raster line in bit 7.
+- A write of `SCROLY` puts bit 7 into bit 8 of the raster compare line.
+- `change_room` sets the I flag before it calls `draw_room`, and clears it after the draw. During the draw, the VIC-II can latch a raster interrupt, but no handler runs.
+
+The handlers use the compare lines 64, 182, 199 and 253. With bit 8 set, the compare line becomes 320 or higher. A PAL frame has only 312 lines, so such a compare line never matches. The result depends on the raster line of each write. **Code**
+
+| Screen off (`$09C1`) | Screen on (`$0B38`) | Result |
+|---|---|---|
+| line 0-255 | any line | The compare line stays below 256. It matches during the draw, and the latched interrupt runs after the CLI. |
+| line 256-311 | line 0-255 | The write at the end clears bit 8 again. The next match comes at the compare line. |
+| line 256-311 | line 256-311 | The compare line stays 320 or higher. No raster interrupt comes again. `frame_countdown` stays 3, and `main_loop` waits for ever. |
+
+**Observed** in the run `runs/room_change_freeze`. Bruce left room 15 for room 13. `draw_room` wrote `$8B` to `SCROLY` on line 306 and `$9B` on line 282 of the next frame. The last compare line was 64, so the compare line became 320. After 600 more frames, `frame_countdown` was still 3. **Observed** in a trace of an earlier version of the room tour: 13 other room changes. Their screen-off write came on lines 2-311 and their screen-on write on lines 3-304. None of them had both writes on lines 256-311.
+
+A pass of the main loop starts on line 264-277. A room change starts in the pass, so the screen-off write often comes on a line above 255. The draw takes about 40 to 290 lines, as the room map needs. **Conclusion**: the fault needs a room whose draw ends on lines 256-311 of a frame, and a start on lines 256-311 too. Thus it is rare, but a player can meet it.
+
+**A smaller effect.** When only the screen-off write comes on lines 256-311, no interrupt is latched during the draw. The first interrupt after the draw then comes at the next compare line, not at once. Thus the frame count of the room change depends on the raster line where the draw starts. One cycle earlier or later at line 255/256 changes the number of frames that the game counts. **Observed**: a check 5 patch that was 1 cycle shorter made the replay `all_rooms` lose one pass of frames at the entry of room 5. The `PROTECTION` patches now keep the cycles of the original (see [tests/README.md](../tests/README.md)).
 
 ## The data
 

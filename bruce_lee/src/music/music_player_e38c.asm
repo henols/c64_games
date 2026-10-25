@@ -73,7 +73,7 @@ rts
 lda $1234
 rts
 lda $1234
-        !if * - .patch_start > 11 { !error "The patch RUN_STATE at $e3de has ", * - .patch_start, " bytes; the range has 11." } else { !fill 11 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 11 { !error "The patch RUN_STATE at $e3de has ", ((* - .patch_start) & $ffff), " bytes; the range has 11." } else { !fill 11 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda music_title_voice0+$10      ; operand music_fetch_voice0_src = stream pointer of voice 0: set by music_set_voice_pointers, advanced by music_read_byte
         rts
@@ -382,7 +382,7 @@ music_cmd_offset = * + 1
         ; RUN_STATE off: 2 bytes at $e5e6-$e5e7, NOP after the code
         ; BCC operand before the command dispatch sets music_cmd_offset.
 !byte $90,$fe
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $e5e6 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $e5e6 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         bcc music_cmd_jumps             ; self-modified: offset from music_cmd_offsets, always taken (C = 0)
 }

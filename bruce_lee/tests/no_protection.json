@@ -453,6 +453,14 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$166e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$166f",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$1670",
        "reason": "PROTECTION patch byte"
       },
@@ -466,6 +474,14 @@
       },
       {
        "address": "$1704",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1705",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1706",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -665,6 +681,18 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$342c",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342d",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$342f",
        "reason": "PROTECTION patch byte"
       },
@@ -678,6 +706,14 @@
       },
       {
        "address": "$36a9",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36aa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36ab",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -698,6 +734,22 @@
       },
       {
        "address": "$3caa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cab",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cac",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cad",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cae",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -1166,6 +1218,14 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$166e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$166f",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$1670",
        "reason": "PROTECTION patch byte"
       },
@@ -1179,6 +1239,14 @@
       },
       {
        "address": "$1704",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1705",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1706",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -1378,6 +1446,18 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$342c",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342d",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$342f",
        "reason": "PROTECTION patch byte"
       },
@@ -1391,6 +1471,14 @@
       },
       {
        "address": "$36a9",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36aa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36ab",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -1411,6 +1499,22 @@
       },
       {
        "address": "$3caa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cab",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cac",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cad",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cae",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -1919,6 +2023,14 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$166e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$166f",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$1670",
        "reason": "PROTECTION patch byte"
       },
@@ -1932,6 +2044,14 @@
       },
       {
        "address": "$1704",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1705",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1706",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -2131,6 +2251,18 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$342c",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342d",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$342f",
        "reason": "PROTECTION patch byte"
       },
@@ -2144,6 +2276,14 @@
       },
       {
        "address": "$36a9",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36aa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36ab",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -2164,6 +2304,22 @@
       },
       {
        "address": "$3caa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cab",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cac",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cad",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cae",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -2651,6 +2807,14 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$166e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$166f",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$1670",
        "reason": "PROTECTION patch byte"
       },
@@ -2664,6 +2828,14 @@
       },
       {
        "address": "$1704",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1705",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1706",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -2863,6 +3035,18 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$342c",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342d",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$342f",
        "reason": "PROTECTION patch byte"
       },
@@ -2876,6 +3060,14 @@
       },
       {
        "address": "$36a9",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36aa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36ab",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -2896,6 +3088,22 @@
       },
       {
        "address": "$3caa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cab",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cac",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cad",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cae",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -3383,6 +3591,14 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$166e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$166f",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$1670",
        "reason": "PROTECTION patch byte"
       },
@@ -3396,6 +3612,14 @@
       },
       {
        "address": "$1704",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1705",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1706",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -3595,6 +3819,18 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$342c",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342d",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$342f",
        "reason": "PROTECTION patch byte"
       },
@@ -3608,6 +3844,14 @@
       },
       {
        "address": "$36a9",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36aa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36ab",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -3628,6 +3872,22 @@
       },
       {
        "address": "$3caa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cab",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cac",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cad",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cae",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -4115,6 +4375,14 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$166e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$166f",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$1670",
        "reason": "PROTECTION patch byte"
       },
@@ -4128,6 +4396,14 @@
       },
       {
        "address": "$1704",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1705",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1706",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -4327,6 +4603,18 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$342c",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342d",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$342f",
        "reason": "PROTECTION patch byte"
       },
@@ -4340,6 +4628,14 @@
       },
       {
        "address": "$36a9",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36aa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36ab",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -4360,6 +4656,22 @@
       },
       {
        "address": "$3caa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cab",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cac",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cad",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cae",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -4847,6 +5159,14 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$166e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$166f",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$1670",
        "reason": "PROTECTION patch byte"
       },
@@ -4860,6 +5180,14 @@
       },
       {
        "address": "$1704",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1705",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$1706",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -5059,6 +5387,18 @@
        "reason": "PROTECTION patch byte"
       },
       {
+       "address": "$342c",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342d",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$342e",
+       "reason": "PROTECTION patch byte"
+      },
+      {
        "address": "$342f",
        "reason": "PROTECTION patch byte"
       },
@@ -5072,6 +5412,14 @@
       },
       {
        "address": "$36a9",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36aa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$36ab",
        "reason": "PROTECTION patch byte"
       },
       {
@@ -5092,6 +5440,22 @@
       },
       {
        "address": "$3caa",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cab",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cac",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cad",
+       "reason": "PROTECTION patch byte"
+      },
+      {
+       "address": "$3cae",
        "reason": "PROTECTION patch byte"
       },
       {

@@ -26,7 +26,6 @@ run_room_frame_handler
         rts
 ; Adds 4 (one lantern record) to aux_ptr. Called by swap_room_lanterns (the two-player lantern swap). Changes A.
 advance_aux_ptr_by_4
-; not executed $3a7c-$3a89
         lda aux_ptr
         clc
         adc #$04

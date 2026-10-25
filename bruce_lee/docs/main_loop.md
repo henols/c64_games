@@ -86,18 +86,18 @@ The game screen after V: the credit line in row 0 and the status line in row 1. 
 
 SPACE pauses the game, and SPACE or fire of the current player ends the pause. A game without input pauses itself after about 11 minutes. A long pause starts a screen saver that changes the colours of the room. One byte, `pause_state`, holds the paused bit and a debounce count. Its layout is in [The data](#the-data), and the states are in [The state machine of the pause](#the-state-machine-of-the-pause).
 
-**The debounce.** [`pause_debounce` `$19EC`](../src/game/pause_status_line.asm#L36) lowers the count in each pass: 6, 5, 3, 1, 0 (it subtracts 1 from bits 1-2 and drops bit 0). So a change of the pause takes 4 passes to settle. While it runs, `last_game_key` = `$FF`. [`check_pause_fire` `$1A08`](../src/game/pause_status_line.asm#L53) acts only at count 0. The count does not block SPACE. **Code.**
+**The debounce.** [`pause_debounce` `$19EC`](../src/game/pause_status_line.asm#L35) lowers the count in each pass: 6, 5, 3, 1, 0 (it subtracts 1 from bits 1-2 and drops bit 0). So a change of the pause takes 4 passes to settle. While it runs, `last_game_key` = `$FF`. [`check_pause_fire` `$1A08`](../src/game/pause_status_line.asm#L52) acts only at count 0. The count does not block SPACE. **Code.**
 
 **Fire ends the pause.** `check_pause_fire` reads the fire button of the current player: port 1 (`CIAPRB`) for player 1, port 2 (`CIAPRA`) for player 2. Fire while not paused does nothing. **Code.**
 
-**The toggle.** [`toggle_pause` `$1A22`](../src/game/pause_status_line.asm#L69) sets `pause_state` = (`pause_state` EOR `$80`) OR 6. **Code.**
+**The toggle.** [`toggle_pause` `$1A22`](../src/game/pause_status_line.asm#L68) sets `pause_state` = (`pause_state` EOR `$80`) OR 6. **Code.**
 
 - Into the pause: `show_paused` sets `up_blink_timer` = `$11` and calls `blink_player_label`, so the label shows and stays. It sets `idle_timer` = `$51` and prints "** PAUSED **" (message `$0B`, `show_paused_message`) on the status line from column 15.
 - Out of the pause: `clear_paused_message` prints 12 blanks over the message. When `idle_timer` is negative, `stop_screen_saver` restores the band colours. Then `idle_timer` = 0, and `print_top_label` and `show_high_score` draw TOP and the top score again, because the message covered them.
 
 **The idle timer.** `frame_update` adds 1 to `idle_timer` every 256 frames while it is positive. Any direction or fire on Bruce's joystick or on the joystick of a player-moved Yamo resets it to 0, but not while paused. In the demo it is reset in each frame. When it reaches `$80` (32768 frames, about 11 minutes), the code at [`frame_update` `$1634`](../src/game/frame_update.asm#L105) sets `pause_state` = `$86` and calls `show_paused` and `start_screen_saver`. **Code.**
 
-**The screen saver.** [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L139) copies the 20 colours of the raster bands of the room, `room_band_colours`, to `palette_backup` and sets `idle_timer` = `$FE`. While `idle_timer` is negative, `frame_update` computes each band colour in each frame as (`palette_backup`+x EOR `frame_count_256`) AND `$F7`. `frame_count_256` counts once every 256 frames, so the colours change about every 5 seconds. **Code.**
+**The screen saver.** [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L137) copies the 20 colours of the raster bands of the room, `room_band_colours`, to `palette_backup` and sets `idle_timer` = `$FE`. While `idle_timer` is negative, `frame_update` computes each band colour in each frame as (`palette_backup`+x EOR `frame_count_256`) AND `$F7`. `frame_count_256` counts once every 256 frames, so the colours change about every 5 seconds. **Code.**
 
 **While paused,** the pass runs only steps 1-3 of [One pass](#one-pass). The interrupt still runs: the sprites stay, the sound effects play on, and `room_time` stops. F1, S, V and SPACE work. **Code.**
 
@@ -111,7 +111,7 @@ The paused game: "** PAUSED **" covers TOP and the top score on the status line.
 
 In the opponent mode, player 2 moves Yamo with the second joystick. When player 2 stops playing, the computer moves Yamo again.
 
-When `option_yamo_player2` = 1 and player 2 gives no input for 7 * 256 frames, [`frame_update_yamo_idle` `$173F`](../src/game/frame_update.asm#L295) sets `option_yamo_player2` = 0. It counts in `yamo_idle_time` only in a game, not paused, in a room with enemies. It also sets the high byte of `room_time` = `$20` and plays `play_open_sound`. Then it takes 5 falls (not below 0) from `falls_left` and from the parked player in `inactive_player_state`. **Code.** The 5 falls are the extra falls of the opponent mode, which starts with 9 falls instead of 4. **Conclusion.**
+When `option_yamo_player2` = 1 and player 2 gives no input for 7 * 256 frames, [`frame_update_yamo_idle` `$173F`](../src/game/frame_update.asm#L294) sets `option_yamo_player2` = 0. It counts in `yamo_idle_time` only in a game, not paused, in a room with enemies. It also sets the high byte of `room_time` = `$20` and plays `play_open_sound`. Then it takes 5 falls (not below 0) from `falls_left` and from the parked player in `inactive_player_state`. **Code.** The 5 falls are the extra falls of the opponent mode, which starts with 9 falls instead of 4. **Conclusion.**
 
 ### The status line
 
@@ -131,7 +131,7 @@ The status line is screen row 1, one screen row high, in the text font. [`reset_
 
 Screen row 0 holds the credit line or the black bar (see [The keys of a game](#the-keys-of-a-game)).
 
-**The blink.** [`blink_player_label` `$1A96`](../src/game/pause_status_line.asm#L147) decrements `up_blink_timer` in each pass. At 0 it sets the timer to `$20` and prints 3 blanks. At `$10` it prints message 1 + `current_player`. So the label is on for 16 passes and off for 16 passes, a period of 96 frames. **Code.**
+**The blink.** [`blink_player_label` `$1A96`](../src/game/pause_status_line.asm#L146) decrements `up_blink_timer` in each pass. At 0 it sets the timer to `$20` and prints 3 blanks. At `$10` it prints message 1 + `current_player`. So the label is on for 16 passes and off for 16 passes, a period of 96 frames. **Code.**
 
 **The falls.** [`show_falls_count` `$1AED`](../src/game/status_and_keys.asm#L10) converts `falls_left` (0-99) to two decimal digits by repeated subtraction of 10. It packs them into one BCD byte and prints it with `print_hex_byte`. **Code.**
 
@@ -225,11 +225,11 @@ A lost fall restarts the room. In a two-player game, the players take turns afte
 5. In a two-player game, when the parked player is not out (`inactive_player_state` is positive): `current_player` EOR 1.
 6. `show_player_screen` shows PLAYER n, also in a one-player game. Then it blanks the screen.
 7. With the same condition as step 5: `next_turn_swap_block_loop` exchanges the player block with `inactive_player_state`, `swap_player_lanterns` exchanges the lanterns, and `next_turn_swap_score_loop` exchanges the limits of the extra falls.
-8. [`next_turn_enter_room` `$1886`](../src/game/lose_fall_game_over.asm#L72): `reset_play_state` draws the game screen and the status line of this player and spawns Bruce. X = `room`, and `place_bruce_at_room_start` enters that room at its start point. That ends in `main_loop`.
+8. [`next_turn_enter_room` `$1886`](../src/game/lose_fall_game_over.asm#L70): `reset_play_state` draws the game screen and the status line of this player and spawns Bruce. X = `room`, and `place_bruce_at_room_start` enters that room at its start point. That ends in `main_loop`.
 
 ### The game over
 
-When the last fall is lost, [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82) shows the game over screen of the current player, with his score in big digits. **Code.**
+When the last fall is lost, [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L80) shows the game over screen of the current player, with his score in big digits. **Code.**
 
 1. It clears the fireball sprites and the text screen (`clear_text_screen`). SEI. It blanks the screen and sets `SPENA` = 0, so no sprite shows.
 2. `irq_vector` = `irq_title_frame` at raster line `$FB`. Blue border and background, colour RAM `$0F`, rows 12-24 white, rows 0-9 filled with `$DC`.
@@ -241,7 +241,7 @@ When the last fall is lost, [`game_over` `$188E`](../src/game/lose_fall_game_ove
 8. In a two-player game, when the parked player is not out: jump to `next_turn`, the turn of the other player.
 9. Else `game_over_to_title` waits 64 more frames and jumps to `show_title_screen`.
 
-**The game over copies only one character of the player digit.** [`game_over_digit_loop` `$1909`](../src/game/lose_fall_game_over.asm#L144) runs only once (DEY/BPL from Y = 0), so it copies only the first character of each half of the big digit. **Code.** The bug does not show: the second character keeps the value of the last PLAYER n screen, and that screen always showed the same player. **Conclusion.** In run d1-flow the game over screens of player 1 and of player 2 both showed the right digit. **Observed.**
+**The game over copies only one character of the player digit.** [`game_over_digit_loop` `$1909`](../src/game/lose_fall_game_over.asm#L142) runs only once (DEY/BPL from Y = 0), so it copies only the first character of each half of the big digit. **Code.** The bug does not show: the second character keeps the value of the last PLAYER n screen, and that screen always showed the same player. **Conclusion.** In run d1-flow the game over screens of player 1 and of player 2 both showed the right digit. **Observed.**
 
 ![The game over screen](images/screens/game_over.png)
 
@@ -301,7 +301,7 @@ The score variables are 24-bit binary numbers, high byte first. The top score an
 
 ### The state machine of the pause
 
-The pause has two settled states, playing and paused, and a debounce of 4 passes between them. The screen saver is a paused state with changing colours. [`toggle_pause` `$1A22`](../src/game/pause_status_line.asm#L69) makes each change by a key or fire, and [`pause_debounce` `$19EC`](../src/game/pause_status_line.asm#L36) counts the debounce down.
+The pause has two settled states, playing and paused, and a debounce of 4 passes between them. The screen saver is a paused state with changing colours. [`toggle_pause` `$1A22`](../src/game/pause_status_line.asm#L68) makes each change by a key or fire, and [`pause_debounce` `$19EC`](../src/game/pause_status_line.asm#L35) counts the debounce down.
 
 ~~~mermaid
 stateDiagram-v2
@@ -338,7 +338,7 @@ In run d1-flow, after SPACE, `pause_state` was `$85`, `$83`, `$81`, `$80`, `$80`
 
 ### The state machine of the turns
 
-A game moves between play, the loss of a fall, the PLAYER n screen and the game over. [`lose_fall` `$1818`](../src/game/lose_fall_game_over.asm#L14) starts each change. [`next_turn` `$182A`](../src/game/lose_fall_game_over.asm#L23) and [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82) choose who plays next. "Other player in" means `option_two_players` = 1 and `inactive_player_state` positive.
+A game moves between play, the loss of a fall, the PLAYER n screen and the game over. [`lose_fall` `$1818`](../src/game/lose_fall_game_over.asm#L14) starts each change. [`next_turn` `$182A`](../src/game/lose_fall_game_over.asm#L23) and [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L80) choose who plays next. "Other player in" means `option_two_players` = 1 and `inactive_player_state` positive.
 
 ~~~mermaid
 stateDiagram-v2

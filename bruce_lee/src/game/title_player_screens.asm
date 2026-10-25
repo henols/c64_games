@@ -145,7 +145,6 @@ show_player_text_loop
         sta frame_countdown
         lda option_two_players
         beq show_player_wait_loop
-; not executed $0f45-$0f46
         asl frame_countdown             ; two players: wait 128 frames
 show_player_wait_loop
         lda frame_countdown

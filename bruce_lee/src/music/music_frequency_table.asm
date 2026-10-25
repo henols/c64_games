@@ -55,7 +55,7 @@ music_resonance = * + 1
 !if RUN_STATE = 0 {
         ; RUN_STATE off: 2 bytes at $e2e7-$e2e8, NOP after the code
 !byte $b7,$de
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE at $e2e7 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE at $e2e7 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $01                       ; 0 = normal length table, 1 = doubled lengths (commands $AC/$AD)
         !byte $00                       ; value for $D417 (resonance and filter routing), written by music_apply_volume

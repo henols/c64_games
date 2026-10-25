@@ -383,7 +383,7 @@ The screenshot shows a blue room with a big temple building, a striped wall at t
 
 **The setup.** None (`room_init_none`).
 
-**The behaviour.** When room 6 is cleared, [`room06_frame` `$39AA`](../src/room/room_frames_0_7.asm#L519) opens a passage at L5 C1 one time. It uses `room_state_a` as the flag and [`open_passage_ledge` `$3AA0`](../src/room/passage_open.asm#L54) to draw. Then it runs [`update_burst_traps` `$3228`](../src/room/room_misc_support.asm#L33) and `animate_scrolling_chars`. **Code.**
+**The behaviour.** When room 6 is cleared, [`room06_frame` `$39AA`](../src/room/room_frames_0_7.asm#L519) opens a passage at L5 C1 one time. It uses `room_state_a` as the flag and [`open_passage_ledge` `$3AA0`](../src/room/passage_open.asm#L53) to draw. Then it runs [`update_burst_traps` `$3228`](../src/room/room_misc_support.asm#L33) and `animate_scrolling_chars`. **Code.**
 
 **The links to other rooms.**
 
@@ -420,7 +420,7 @@ The map decodes to two cells more than the play area holds. This is [the map ove
 **The behaviour.** [`room07_frame` `$39C3`](../src/room/room_frames_0_7.asm#L542) runs on each pass. **Observed** (coverage), but not the second passage and not the runner to the left.
 
 1. `update_burst_traps` moves the burst traps.
-2. When Bruce has the 5 lanterns of line 2, one time (`room_state_a`): [`open_passage_ledge` `$3AA0`](../src/room/passage_open.asm#L54) at L2 C33. The handler then stops for this pass.
+2. When Bruce has the 5 lanterns of line 2, one time (`room_state_a`): [`open_passage_ledge` `$3AA0`](../src/room/passage_open.asm#L53) at L2 C33. The handler then stops for this pass.
 3. When Bruce has the 6 lanterns of line 5, one time (`room_state_b`): `open_passage_ledge` at L5 C38. The handler then stops for this pass.
 4. Slider 0 runs at L4 C34-36 (look B).
 5. The runner of line 11 moves right (C5-35) while lantern L9 C2 (`lantern_list_room7+$2C`) or L9 C3 (`lantern_list_room7+$30`) is present. When Bruce has both, [`room07_frame_runner_left` `$3A51`](../src/room/room_frames_0_7.asm#L614) moves it left (C36-5).
@@ -547,7 +547,7 @@ The map decodes to two cells more than the play area holds. This is [the map ove
 
 **The behaviour.** [`room10_frame` `$3C90`](../src/room/room_frames_8_11.asm#L278) does three things on each pass:
 
-1. When Bruce has lanterns L4 C1 and L7 C30, one time (`room_state_a`): [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) at L4 C38. **Code.**
+1. When Bruce has lanterns L4 C1 and L7 C30, one time (`room_state_a`): [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L68) at L4 C38. **Code.**
 2. **The copy protection check** ([`room10_frame_protection_check` `$3CA7`](../src/room/room_frames_8_11.asm#L289)). If `D6510` does not hold $EF, the handler writes $80 to the first byte of `room_map_00`, `room_map_05` and `room_map_01`. Then it jumps to `show_title_screen`. After that, those three rooms show as empty. The check passed in the coverage. **Observed.** It is check 8 of [protection.md](protection.md). The default build (`PROTECTION` = 0) never damages the maps. **Code.**
 3. `update_burst_traps` moves the burst traps.
 
@@ -581,7 +581,7 @@ The screenshot shows a purple room with a climbing column at the left and three 
 
 **The setup.** None (`room_init_none`). But [`draw_room` `$09BC`](../src/room/draw_room.asm#L28) has a rule for room 11. When rooms 12, 14 and 16 are cleared, it sends Bruce to the start of room 13 (`place_bruce_at_room_start` with X = 13). **Code**. This code never ran in the coverage.
 
-**The behaviour.** When Bruce takes lantern L10 C7 (`lantern_list_room11+8`), [`room11_frame` `$3CC0`](../src/room/room_frames_8_11.asm#L318) starts the moving column again, one time (`room_state_a`). It sets `anim_chars_direction` = 0 and starts the speed curve again. Then it runs `update_burst_traps` and `animate_scrolling_chars`. **Code.**
+**The behaviour.** When Bruce takes lantern L10 C7 (`lantern_list_room11+8`), [`room11_frame` `$3CC0`](../src/room/room_frames_8_11.asm#L319) starts the moving column again, one time (`room_state_a`). It sets `anim_chars_direction` = 0 and starts the speed curve again. Then it runs `update_burst_traps` and `animate_scrolling_chars`. **Code.**
 
 **The links to other rooms.** In room 11, [`check_exit_edge` `$30D4`](../src/actor/touch_effects.asm#L154) allows an exit at all places, not only at a screen edge. So the three pits of line 7 are exits. **Code.**
 
@@ -618,7 +618,7 @@ The screenshot shows a grey hall with three floors and blue ramps. **Observed.**
 
 **The behaviour.** [`room12_frame` `$3E4C`](../src/room/room_frames_12_17.asm#L11) does three things on each pass. **Code.**
 
-1. When Bruce has lantern L10 C36 (`lantern_list_room12+8`), the handler calls [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) at L10 C38. The flag is `room_state_a`.
+1. When Bruce has lantern L10 C36 (`lantern_list_room12+8`), the handler calls [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L68) at L10 C38. The flag is `room_state_a`.
 2. The second passage needs two conditions. Room 12 must be cleared, and the room 14 lanterns L10 C9 (`lantern_list_room14+8`) and L10 C30 (`lantern_list_room14+$C`) must be taken. Then, one time (`room_state_b`), the handler calls `open_passage_dark` at L7 C38.
 3. `update_burst_traps` moves the burst traps.
 
@@ -659,7 +659,7 @@ The map decodes to two cells more than the play area holds. This is [the map ove
 1. The handler sets X = `current_player` * 4.
 2. Bruce's `actor_y` selects a band: $64-$89 is band 0, $8A-$B5 is band 1, and $B6 or more is band 2. Above $64, the handler does nothing.
 3. If [`room13_band_bonus` `$014B`](../src/constants.asm#L145) + X + band is 1, the handler sets it to 0. The player gets 500 points ([`add_score` `$3175`](../src/game/score.asm#L52) with $01 at byte 1 and $F4 at byte 2). The pass stops there.
-4. Else [`update_floor_movers` `$104B`](../src/game/game_setup.asm#L169) moves the movers on even passes. Only sprites 0 and 1 (Bruce) stay on.
+4. Else [`update_floor_movers` `$104B`](../src/game/game_setup.asm#L168) moves the movers on even passes. Only sprites 0 and 1 (Bruce) stay on.
 
 ~~~mermaid
 stateDiagram-v2
@@ -707,7 +707,7 @@ The screenshot shows a grey hall with blue ramps at the two sides, with Yamo in 
 
 **The setup.** [`room14_init` `$358D`](../src/room/room_specific_init.asm#L249) sets `room_state_a` = 1. So the handler draws the passage on two passes.
 
-**The behaviour.** When Bruce has lanterns L7 C9 and L7 C30, [`room14_frame` `$3ECC`](../src/room/room_frames_12_17.asm#L88) opens a passage at L4 C38. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
+**The behaviour.** When Bruce has lanterns L7 C9 and L7 C30, [`room14_frame` `$3ECC`](../src/room/room_frames_12_17.asm#L88) opens a passage at L4 C38. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L68) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
 
 **The links to other rooms.**
 
@@ -780,7 +780,7 @@ The screenshot shows a grey hall with three floors. The yellow item at the right
 
 **The setup.** [`room16_init` `$359F`](../src/room/room_specific_init.asm#L264) sets colour RAM $FF (colour 15) for the extra-fall item (screen rows 19-22, columns 36-37). When `extra_fall_pickups_left` + `current_player` is 0, the handler erases the item with `draw_room16_bonus_taken`. **Code.**
 
-**The behaviour.** When room 16 is cleared, [`room16_frame` `$3F5B`](../src/room/room_frames_12_17.asm#L166) opens a passage at L7 C1 one time. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L69) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
+**The behaviour.** When room 16 is cleared, [`room16_frame` `$3F5B`](../src/room/room_frames_12_17.asm#L166) opens a passage at L7 C1 one time. The flag is `room_state_a`, and [`open_passage_dark` `$3AB4`](../src/room/passage_open.asm#L68) draws the passage. Then the handler runs `update_burst_traps`. **Code.**
 
 **The extra fall.** The frame handler does not control the item. [`handle_touched_tile` `$2E89`](../src/actor/background_touch.asm#L61) sends codes $2D and $2E in room 16 to [`collect_room16_bonus` `$2FD6`](../src/actor/touch_effects.asm#L8). That routine accepts only Bruce, and only at `actor_y` $A0 or more. Then it does these steps:
 

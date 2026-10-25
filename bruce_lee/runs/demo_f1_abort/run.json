@@ -1,0 +1,105 @@
+{
+ "name": "demo F1 abort: F1 ends the second attract demo, fire ends the third",
+ "start": {
+  "program": "original/bruce_lee.prg"
+ },
+ "symbols": "knowledge",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": " "
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$0400"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "coverage": "before_entry"
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "start_attract_demo"
+    },
+    "timeoutFrames": 3500
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "show_title_screen"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "start_attract_demo"
+    },
+    "timeoutFrames": 3500
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 12
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "start_attract_demo"
+    },
+    "timeoutFrames": 3500
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "coverage": "coverage"
+  },
+  {
+   "screen": "title_after_abort"
+  }
+ ]
+}

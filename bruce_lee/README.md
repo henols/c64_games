@@ -36,19 +36,20 @@ A check that fails does one of three things (**Code**. **Observed** for checks 4
 - **It destroys.** Two checks wipe memory, and one jumps through the empty I/O area at `$DE00`. The room 10 check cuts the maps of rooms 0, 1 and 5. The game then draws these rooms empty in each later game.
 - **It waits.** The two delayed checks move their own operands one key pair further on each footstep of any actor. After 32 footsteps they write a TXS into the code, and the game crashes. The crash comes many seconds after the cause, and this hides the source of the crash (**Conclusion**).
 
-All three releases keep every check. Their relocator sets the loader marks again, and the key page comes with the image. Thus their game passes every check (**Observed**: title, demo and game runs). In the rebuild, the switch `PROTECTION` gives each of the 13 patched places its passing path, with the same registers and flags. The default build has it off, and each release build has it on. The details are on [docs/protection.md](docs/protection.md).
+All three releases keep every check. Their relocator sets the loader marks again, and the key page comes with the image. Thus their game passes every check (**Observed**: title, demo and game runs). In the rebuild, the switch `PROTECTION` gives each of the 13 patched places its passing path, with the same registers and flags. The patches of the checks that run often also take the same cycles as the original. The default build has it off, and each release build has it on. The details are on [docs/protection.md](docs/protection.md).
 
 ## Findings
 
 The facts that a reader does not expect. Each page has more.
 
 - **The copy protection is still in the game, and it is delayed.** Several checks compare marks of the original loader in zero page and pairs of bytes on the key page `$CF00`. A failed check does not stop the game at once. It changes code step by step. Then [`random_byte` `$1159`](src/irq/interrupt_entry_1131.asm#L45) breaks, the game jumps through `$DE00`, or the game wipes memory or damages the maps of rooms 0, 1 and 5. **Code**. **Observed**: junk on the `$CF00` page breaks the game. See [protection.md](docs/protection.md).
+- **A room change can stop the game.** [`draw_room` `$09BC`](src/room/draw_room.asm#L28) switches the screen off and on with a read and a write of `SCROLY`. Each write puts bit 8 of the current raster line into the raster compare line. When both writes come on lines 256-311, the compare line stays above the last line of the frame. Then no raster interrupt comes again, and the game waits for ever. **Observed**: the exit from room 15 to room 13 in `runs/room_change_freeze`. See [interrupts.md](docs/interrupts.md).
 - **A knock-out by a fall attack repeats.** After the knock-out, [`apply_fight_ko` `$2C24`](src/actor/fight_hits.asm#L384) jumps back to `apply_fight_hits_fall`. So the damage and the points repeat until the energy wraps to a positive value. **Observed**: in one run the score went from 2000 to 15050, and the Yamo survived with 124 energy. See [combat.md](docs/combat.md).
 - **Six rooms write 2 bytes into a contact mask.** The maps of rooms 4, 7, 10, 13, 17 and 18 decode to 442 cells instead of 440. The two extra cells write `$80` to `$9010-$9011`, a mask of Bruce's frames. **Observed** in the room runs. See [rooms.md](docs/rooms.md).
 - **A new top score moves the next extra fall to 171072 points.** [`update_high_score` `$3184`](src/game/score.asm#L65) copies 4 bytes to `top_score`, and the 4th byte, the raster split index in `$44`, lands in `bonus_fall_first_score`. **Observed** in 7 of 7 stores. See [main_loop.md](docs/main_loop.md).
 - **Extra falls come late.** The extra-fall test compares the score with the limit byte by byte, not as one 24-bit number. **Code**. See [main_loop.md](docs/main_loop.md).
 - **The random table is filled and never read.** The game fills `random_table` at `$0200`. But `init_game_variables` clears its pointer, so `random_byte` reads zero page and the stack page instead. In the demo it returns 1. **Observed**. See [startup_title.md](docs/startup_title.md).
-- **The right-handed key is R.** The title keys L/R and shift-L/shift-R set the joystick handedness of port 1 and port 2. **Code**: key code `$11` is matrix column 2, row 1. See [startup_title.md](docs/startup_title.md).
+- **The right-handed key is R.** The title keys L/R and shift-L/shift-R set the joystick handedness of port 1 and port 2. **Code**: key code `$11` is matrix column 2, row 1. **Observed**: the R key of the recording `title_options` runs `title_set_joy1_right_handed`. See [startup_title.md](docs/startup_title.md).
 - **The S key only switches the title tune.** The sound effects of the game always play. **Code**. See [sound_music.md](docs/sound_music.md).
 - **The music has NTSC tuning.** On PAL every note is about 2/3 of a semitone flat. **Code**. See [sound_music.md](docs/sound_music.md).
 - **The attract demo ends at its first lost fall.** It reads 569 bytes of [`demo_input_stream` `$F300`](src/input/demo_input.asm#L12). **Observed**. See [startup_title.md](docs/startup_title.md).
@@ -84,7 +85,7 @@ flowchart TB
 ```
 
 1. **The cold start runs once.** [`cold_start` `$0400`](src/game/cold_start.asm#L22) copies the ROM font to `$8800` and expands the four room charset sources at `$9000-$9FFF` into double-height charsets. `build_contact_masks` then builds the contact masks over the charset sources, so the cold start cannot run a second time. (**Code**. [startup_title.md](docs/startup_title.md))
-2. **The title is a loop of its own.** [`title_menu_loop` `$08B1`](src/game/title_menu.asm#L14) reads the option keys and the fire button of port 1. After 2400 frames it starts the attract demo. F7 or fire starts a game. (**Observed** in `tests/title.json`, `tests/title_options.json` and `tests/demo.json`)
+2. **The title is a loop of its own.** [`title_menu_loop` `$08B1`](src/game/title_menu.asm#L14) reads the option keys and the fire button of port 1. After 2400 frames it starts the attract demo. F7 or fire starts a game. (**Observed** in the recordings `title_options` and `demo`)
 3. **A room is drawn once and then changed by code.** [`draw_room` `$09BC`](src/room/draw_room.asm#L28) decodes the room map and runs the init handler of the room. Everything that moves or opens later is done by the frame handler of the room, once in each pass. ([rooms.md](docs/rooms.md))
 4. **The main loop sets the pace of the game.** One pass of [`main_loop` `$1BC2`](src/game/game_main_loop.asm#L23) runs the keys, the enemy spawns, the room handler and the contact tests. Then it runs the input and the action of each actor, and the sprite builder. It then waits for `frame_countdown`. The interrupt counts this variable down from 3, once in each frame. (**Observed**. [main_loop.md](docs/main_loop.md))
 5. **The interrupts set the picture in every frame.** [`irq_entry` `$1103`](src/irq/interrupt_entry.asm#L10) jumps through `irq_vector` to the next raster handler of a chain. In a game, the chain sets the status line, the room charset and the colour bands. `frame_update` runs the timers, the joysticks and the sound effects. ([interrupts.md](docs/interrupts.md))
@@ -199,21 +200,19 @@ The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033
 - `assembler.ts build src main.asm --out build/bruce_lee.prg` gives the clean game without a loader.
 - `assembler.ts build src main.asm --release SAEGER --compare --out build/bruce_lee_SAEGER.prg` checks the original against the knowledge. `--release TBC` and `--release DC` check the other releases. Each release build gives its capture byte for byte: SAEGER in all 24 segments, TBC and DC in their 23 segments.
 
-**The tests.** The scenarios in [tests/](tests/) run the original disk file and `build/clean_loader.prg` side by side. They compare memory, the VIC-II and the screen. The emulator cannot press a key on the start screen. Thus the rebuild side of each scenario runs to `loader_start_screen_wait`, and then sets the PC to `loader_start_screen_continue`. The scenarios are:
+**The tests.** Nine recordings in [tests/recordings/](tests/recordings/) play parts of the original: the title and its options, the demo and the game keys. Other recordings play two players, a player Yamo, a game over and all 20 rooms. Each recording replays on `build/clean_loader.prg` with the same game state at each checkpoint, 11845 checkpoints in all (**Observed**). The replays pin the stack page, because `random_byte` reads it. Seven scenarios and run files test what a replay cannot test:
 
-- `title`, `title_options` and `demo`
-- `game_start`, `room_change`, `game_keys` and `lose_fall_game_over`
-- `wizard_and_ending`
-- `all_rooms`: the picture, the VIC-II and VIC bank 2 of each of the 20 rooms
+- `leftovers_unused`, `crack_leftover_a000` and `original_loader_stage_033c` put junk in the unused blocks of the original, and the game runs the same.
+- `no_protection` destroys the protection data of the default build and compares it with the TBC release.
+- `start_screen`, `start_screen_fire` and `start_screen_waits` test the start screen of the loader.
 
-`no_protection` and `all_rooms_no_protection` run the TBC release against `build/clean_loader.prg`. They destroy the protection data. The default build then runs like the original and draws all 20 rooms like the original. The recording `tests/recordings/first-rooms` replays on `build/clean_loader.prg` with the symbols of `build/symbols/clean_loader.json`. The replay runs the rebuild to `loader_start_screen_wait` and sets the PC to `loader_start_screen_continue`. It passes 1075 checkpoints of `main_loop` (**Observed**). [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest. [tests/README.md](tests/README.md) gives the conditions of each test and the parts that it does not compare.
+[tests/README.md](tests/README.md) gives the conditions of each test and the parts that it does not compare. [tests/PLAYTEST.md](tests/PLAYTEST.md) is the checklist for a human playtest.
 
 ## Still open
 
 These questions come up on more than one page. Each page lists its own questions at its end.
 
-- **The keyboard scanner never ran.** [`scan_keyboard` `$139E`](src/input/keyboard_scan.asm#L24) needs a C64 keyboard matrix, and VICE 3.10 holds bits 5-7 of the CIA 1 ports low (VICE bug #2202). The runs and the tests write the key codes into `key_code` and `key_ready`. A run on a VICE with the fix can check the scanner and the R key.
-- **Some code never ran.** The coverage of all runs misses 912 instructions in 132 ranges. Examples are parts of the wizard defeat, some room events and several protection paths. The source marks each range with `; not executed`, and `.c64-re-tools/local/generated/src/not_executed.json` lists them. Git does not keep that file: `generate` writes it again. Runs that reach these paths can close the gaps.
+- **Some code never ran.** The coverage of all runs misses 763 instructions in 121 ranges. Examples are parts of the wizard defeat, some room events and several protection paths. The source marks each range with `; not executed`, and `.c64-re-tools/local/generated/src/not_executed.json` lists them. Git does not keep that file: `generate` writes it again. Runs that reach these paths can close the gaps.
 - **What some room pieces are in game terms.** The sliders, the runners and some graphic messages have names that come from their place and use. See [rooms.md](docs/rooms.md).
 - **The warm-start flag.** [`warm_start_flag` `$03FF`](src/game/cold_start.asm#L7) must be 0, and nothing writes it. The original loader may have had a restart path. See [protection.md](docs/protection.md).
 

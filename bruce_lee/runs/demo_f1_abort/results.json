@@ -1,0 +1,13 @@
+{
+  "name": "demo F1 abort: F1 ends the second attract demo, fire ends the third",
+  "completed": true,
+  "steps": 18,
+  "done": 18,
+  "pc": "$08e2",
+  "files": [
+    "before_entry.bin",
+    "coverage.bin",
+    "title_after_abort.png"
+  ],
+  "observations": {}
+}

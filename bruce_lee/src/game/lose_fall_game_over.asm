@@ -31,7 +31,6 @@ next_turn
         jsr clear_fireball_sprites      ; clear the fireball sprite rows
         lda option_two_players
         beq next_turn_player_screen
-; not executed $1840-$184a
         lda inactive_player_state       ; falls_left of the other player: negative = that player is out
         bmi next_turn_player_screen
         lda current_player              ; switch to the other player
@@ -44,7 +43,6 @@ next_turn_player_screen
         sta SCROLY
         lda option_two_players
         beq next_turn_enter_room
-; not executed $185b-$1885
         lda inactive_player_state
         bmi next_turn_enter_room
 ; Exchange the player block $28-$43 (falls_left ... score) with inactive_player_state.

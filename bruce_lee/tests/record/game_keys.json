@@ -1,0 +1,278 @@
+{
+ "name": "game keys: SPACE pauses and resumes, fire ends a pause, V, S, F1 back to the title",
+ "program": "original/bruce_lee.prg",
+ "symbols": "knowledge",
+ "coverage": "$0400",
+ "checkpoint": "main_loop",
+ "state": [
+  {
+   "address": "falls_left",
+   "size": 3
+  },
+  {
+   "address": "score",
+   "size": 3
+  },
+  {
+   "address": "actor_x",
+   "size": 6
+  },
+  {
+   "address": "actor_state",
+   "size": 3
+  },
+  {
+   "address": "actor_energy",
+   "size": 3
+  },
+  {
+   "address": "pause_state",
+   "size": 1
+  },
+  {
+   "address": "title_music_off",
+   "size": 1
+  },
+  {
+   "address": "game_screen",
+   "size": 40
+  }
+ ],
+ "pin": [
+  {
+   "address": "random_ptr",
+   "size": 2
+  },
+  {
+   "address": "$0100",
+   "size": 256
+  }
+ ],
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": " "
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 900
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 53
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-left",
+    "fire": true
+   }
+  },
+  {
+   "frames": 13
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "left",
+    "fire": false
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 23
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "up-right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 25
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "press": {
+    "keys": "V"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "V"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "S"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "S"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "frames": 60
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}"
+   }
+  },
+  {
+   "frames": 20
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "frames": 50
+  }
+ ]
+}

@@ -15,7 +15,6 @@ check_demo_abort
         jsr scan_keyboard
         lda key_ready
         beq check_demo_abort_done
-; not executed $19d1-$19ea
         lda #$00
         sta key_ready
         lda key_code

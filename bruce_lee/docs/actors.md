@@ -143,7 +143,7 @@ In run `coll` of this page, the Ninja appeared at frame 63 and Yamo at frame 471
 
 ### The time in the room
 
-When Bruce stays longer in a room, the enemies appear again sooner and rest less after an attack. [`room_time` `$87`](../src/constants.asm#L82) counts the frames of play in the room. It does not count in the demo or during a pause, and `draw_room` clears it. [`get_room_time_level` `$10D0`](../src/game/game_setup.asm#L253) returns C = 1 from `$19` × 256 frames (128 seconds). It returns V = 1 from `$20` × 256 frames (164 seconds) (**Code**):
+When Bruce stays longer in a room, the enemies appear again sooner and rest less after an attack. [`room_time` `$87`](../src/constants.asm#L82) counts the frames of play in the room. It does not count in the demo or during a pause, and `draw_room` clears it. [`get_room_time_level` `$10D0`](../src/game/game_setup.asm#L252) returns C = 1 from `$19` × 256 frames (128 seconds). It returns V = 1 from `$20` × 256 frames (164 seconds) (**Code**):
 
 | Effect | Level 0 | Level C | Level V | `game_loop_count` nonzero (level 0) | Code |
 |---|---|---|---|---|---|
@@ -209,7 +209,7 @@ The title option F5 sets [`option_yamo_player2` `$42CA`](../src/game/options_and
 - The first spawn delay of Yamo is 8 passes, and his respawn delay is `$30` (48) passes.
 - [`init_game_variables` `$0F72`](../src/game/game_setup.asm#L18) gives 9 falls instead of 4.
 
-**When player 2 stops, the computer plays Yamo again.** When the joystick of Yamo is idle for 7 × 256 frames (`yamo_idle_time`), [`frame_update_yamo_idle` `$173F`](../src/game/frame_update.asm#L295) sets `option_yamo_player2` = 0. It sets the high byte of `room_time` to `$20`, which is the top time level. It also plays sound `$8A` and takes 5 falls from both players, but not below 0 (**Code**).
+**When player 2 stops, the computer plays Yamo again.** When the joystick of Yamo is idle for 7 × 256 frames (`yamo_idle_time`), [`frame_update_yamo_idle` `$173F`](../src/game/frame_update.asm#L294) sets `option_yamo_player2` = 0. It sets the high byte of `room_time` to `$20`, which is the top time level. It also plays sound `$8A` and takes 5 falls from both players, but not below 0 (**Code**).
 
 ### The attract demo and room 19
 

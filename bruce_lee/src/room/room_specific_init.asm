@@ -55,7 +55,7 @@ room05_init
 lda #$32
 tay
 cpy #$32
-        !if * - .patch_start > 7 { !error "The patch PROTECTION at $342a has ", * - .patch_start, " bytes; the range has 7." } else { !fill 7 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 7 { !error "The patch PROTECTION at $342a has ", ((* - .patch_start) & $ffff), " bytes; the range has 7." } else { !fill 7 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda prot_loader_mark,x
         tay

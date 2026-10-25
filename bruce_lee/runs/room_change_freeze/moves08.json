@@ -1,0 +1,16 @@
+{
+ "points": [
+  {
+   "kind": "exec",
+   "start": "$09bc"
+  },
+  {
+   "kind": "write",
+   "start": "$d011",
+   "end": "$d012"
+  }
+ ],
+ "frames": 18,
+ "end": "frames",
+ "hits": []
+}

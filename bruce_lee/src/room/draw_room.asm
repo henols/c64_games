@@ -28,7 +28,7 @@
 draw_room
         lda SCROLY                      ; screen off
         and #$ef
-        sta SCROLY
+        sta SCROLY                      ; screen off; also copies raster bit 8 into the compare line (see $0B33)
         lda SPENA                       ; remember sprites 0-4 enable bits
         and #$1f
         sta saved_sprite_enable
@@ -111,7 +111,6 @@ draw_room_load_spawn_timers
 draw_room_check_two_player_yamo
         lda option_yamo_player2         ; player 2 controls Yamo: Yamo comes after 8 passes
         beq draw_room_reset_bruce
-; not executed $0a67-$0a6a
         lda #$08
         sta yamo_spawn_timer
 ; Reset Bruce (actor 0): actor_contact = 1 (floor), actor_timer = 4, actor_state = 0, actor_step_delay = 0;
@@ -221,6 +220,11 @@ draw_room_store_repeat
         jmp draw_room_next_code
 draw_room_done
         jsr setup_room_lanterns_and_init ; draw the lanterns of the room
+; Freeze: bit 7 of a SCROLY read is the current raster line bit 8, and the write puts it into bit 8 of the
+; raster compare line. change_room runs draw_room under SEI. When the screen-off write ($09C1) and this screen-on
+; write both come on raster lines 256-311, the compare line stays above 311 (for example 256 + 64 = 320). The
+; raster IRQ then never fires again, frame_countdown stays 3, and main_loop waits for ever. When the screen-off
+; write comes before line 256, the compare line still matches during the draw, and the IRQ runs after the CLI.
         lda SCROLY                      ; screen on
         ora #$10
         sta SCROLY
@@ -230,9 +234,9 @@ draw_room_done
 ; Increment the 16-bit pointer row_ptr_top. Same code as inc_row_ptr_top. Only caller: swap_room_lanterns (not
 ; executed).
 inc_pointer_04_copy
-; not executed $0b43-$0b49
         inc row_ptr_top
         bne inc_pointer_04_copy_done
+; not executed $0b47-$0b48
         inc row_ptr_top+1
 inc_pointer_04_copy_done
         rts

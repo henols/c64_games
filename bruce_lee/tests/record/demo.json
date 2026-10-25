@@ -1,0 +1,102 @@
+{
+ "name": "attract demo to its end, then fire ends the next demo",
+ "program": "original/bruce_lee.prg",
+ "symbols": "knowledge",
+ "coverage": "$0400",
+ "checkpoint": "main_loop",
+ "state": [
+  {
+   "address": "falls_left",
+   "size": 3
+  },
+  {
+   "address": "score",
+   "size": 3
+  },
+  {
+   "address": "actor_x",
+   "size": 6
+  },
+  {
+   "address": "actor_state",
+   "size": 3
+  },
+  {
+   "address": "actor_energy",
+   "size": 3
+  },
+  {
+   "address": "demo_input_ptr",
+   "size": 2
+  }
+ ],
+ "pin": [
+  {
+   "address": "random_ptr",
+   "size": 2
+  },
+  {
+   "address": "$0100",
+   "size": 256
+  }
+ ],
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": " "
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "start_attract_demo"
+    },
+    "timeoutFrames": 3500
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "show_title_screen"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "start_attract_demo"
+    },
+    "timeoutFrames": 3500
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "frames": 300
+  }
+ ]
+}

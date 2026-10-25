@@ -29,6 +29,10 @@
       {
         "address": "random_ptr",
         "size": 2
+      },
+      {
+        "address": "$0100",
+        "size": 256
       }
     ]
   },
@@ -43,18 +47,6 @@
   ],
   "events": [
     {
-      "step": 2,
-      "action": {
-        "type": {
-          "mode": "text",
-          "text": " "
-        }
-      },
-      "key": {
-        "tick": 5896801
-      }
-    },
-    {
       "step": 3,
       "action": {
         "runUntil": {
@@ -67,7 +59,8 @@
         }
       },
       "key": {
-        "previous": true
+        "pc": "title_menu_loop",
+        "count": 1
       }
     },
     {
@@ -83,9 +76,8 @@
         }
       },
       "key": {
-        "site": "$094b",
-        "addr": "$dc00",
-        "count": 41787
+        "pc": "main_loop",
+        "count": 1
       }
     }
   ],
@@ -93,19 +85,31 @@
     {
       "site": "$f6bc",
       "addr": "$dc01",
-      "reads": 240,
+      "reads": 241,
       "rom": true
     },
     {
       "site": "$f6bf",
       "addr": "$dc01",
-      "reads": 240,
+      "reads": 241,
       "rom": true
     },
     {
       "site": "$ea93",
       "addr": "$dc01",
-      "reads": 240,
+      "reads": 241,
+      "rom": true
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 36,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 36,
       "rom": true
     },
     {
@@ -615,13 +619,13 @@
     {
       "site": "$094b",
       "addr": "$dc00",
-      "reads": 41787,
+      "reads": 41789,
       "rom": false
     },
     {
       "site": "$094e",
       "addr": "$dc01",
-      "reads": 41787,
+      "reads": 41789,
       "rom": false
     },
     {
@@ -637,6 +641,6 @@
       "rom": false
     }
   ],
-  "ticks": 18640367,
-  "hash": "a8b98a0a"
+  "ticks": 18659962,
+  "hash": "d8fcbc2b"
 }

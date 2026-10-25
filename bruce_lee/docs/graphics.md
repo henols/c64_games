@@ -44,7 +44,7 @@ The charset changes between the screens and between the parts of one screen. The
 | Game | from raster `$40` (row 2 on) | `room_vmcsb` | room charset (table below) | `$18` | `irq_game_playfield` |
 | Game over | as the title | `$30` / `$32` | `$8000` / `$8800` | `$18` / `$16` | `game_over` installs `irq_title_frame` |
 
-In a game, `reset_play_state` writes `$D016` = `$18` one time. The game interrupts never change it (**Code**). [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83) and [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82) first write `$D016` = `$08`. The title interrupts overwrite it in the next frame (**Code**).
+In a game, `reset_play_state` writes `$D016` = `$18` one time. The game interrupts never change it (**Code**). [`show_title_screen` `$0584`](../src/game/title_demo_start.asm#L83) and [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L80) first write `$D016` = `$08`. The title interrupts overwrite it in the next frame (**Code**).
 
 The room part of the game screen gets its charset from [`room_vmcsb` `$F2`](../src/constants.asm#L117). Most rooms use one of two charsets. The wizard room has two charsets of its own:
 
@@ -59,7 +59,7 @@ Code that reads the pixels of a tile needs the address of the charset, not the `
 
 ### Tiles two characters high
 
-A room is 11 rows of 40 tiles, and each tile is 8 x 16 pixels. The C64 has no characters of that height. Thus the program keeps a tile as two characters. Character c is the upper half and character c + `$80` is the lower half. A map byte or a message byte gives c. The code writes c to the upper screen row and c OR `$80` to the lower screen row (**Code**: [`draw_room` `$0AEA`](../src/room/draw_room.asm#L190), [`print_message` `$17E2`](../src/actor/actor_driver_text.asm#L59)).
+A room is 11 rows of 40 tiles, and each tile is 8 x 16 pixels. The C64 has no characters of that height. Thus the program keeps a tile as two characters. Character c is the upper half and character c + `$80` is the lower half. A map byte or a message byte gives c. The code writes c to the upper screen row and c OR `$80` to the lower screen row (**Code**: [`draw_room` `$0AEA`](../src/room/draw_room.asm#L189), [`print_message` `$17E2`](../src/actor/actor_driver_text.asm#L59)).
 
 The room charset sources hold 128 characters of 8 x 8 multicolour pixels. [`build_double_height_font` `$4892`](../src/room/draw_helpers.asm#L51) writes each source row two times. Thus a tile has the shape of its source character at two times the height. Its pixels are 2 x 2 screen pixels, because multicolour pixels are 2 pixels wide.
 
@@ -110,7 +110,7 @@ In a character with colour RAM bit 3 clear (the status line), the character is h
 
 **Dead data.** `draw_room` also copies 20 bytes from [`room_aux_ptr` `$4AA8`](../src/room/room_tables.asm#L26) [room] to [`room_band_colours` `$0153`](../src/constants.asm#L146). `irq_game_bottom` overwrites the first 12 bytes every frame, and no code reads the last 8. Thus the copy has no effect (**Code**). **Observed** by the analysis runs: the write at [`irq_game_bottom` `$4906`](../src/irq/game_irq.asm#L44) occurs every frame.
 
-**The screen saver.** After 32768 frames without input, `idle_timer` reaches `$80`. Then `frame_update` pauses the game and calls [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L139). This routine saves `room_band_colours` in `palette_backup`. Then every frame `room_band_colours` = (`palette_backup` EOR `frame_count_256`) AND `$F7`, so the band colours cycle. `stop_screen_saver` restores them (**Code**).
+**The screen saver.** After 32768 frames without input, `idle_timer` reaches `$80`. Then `frame_update` pauses the game and calls [`start_screen_saver` `$102B`](../src/game/game_setup.asm#L137). This routine saves `room_band_colours` in `palette_backup`. Then every frame `room_band_colours` = (`palette_backup` EOR `frame_count_256`) AND `$F7`, so the band colours cycle. `stop_screen_saver` restores them (**Code**).
 
 **The wizard flash.** When Bruce defeats the wizard, [`room18_wizard_defeated` `$3DAF`](../src/room/wizard_room.asm#L134) writes random colours `$F8-$FF` to the colour RAM of the wizard area. It also changes `room_vmcsb` between `$3E` and `$3C`. Thus the wizard flickers between two charsets (**Code**). See [The charsets](#the-charsets).
 

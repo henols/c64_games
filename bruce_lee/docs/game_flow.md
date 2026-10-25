@@ -56,11 +56,11 @@ The attract demo in room 0. It plays with the recorded input of `demo_input_stre
 When Bruce dies or is knocked out, the current player loses a fall. In a two-player game the turn then passes to the other player, so the players take turns after every lost fall, not after every game. Each player has his own block of variables, which the game swaps on each change of the player. [`lose_fall` `$1818`](../src/game/lose_fall_game_over.asm#L14) does the work in this order:
 
 1. It silences the sound. In the demo it goes to the title.
-2. It decrements `falls_left`. Below 0, it goes to [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L82).
+2. It decrements `falls_left`. Below 0, it goes to [`game_over` `$188E`](../src/game/lose_fall_game_over.asm#L80).
 3. [`next_turn` `$182A`](../src/game/lose_fall_game_over.asm#L23) sets `actor_energy` of all three actors to `$24`, and clears `enemy_follow_x` and the fireball sprites.
 4. With two players (`option_two_players` = 1) and the other player not out ([`inactive_player_state` `$439F`](../src/game/fireball_text_score_vars_4392.asm#L24), the parked `falls_left`, >= 0), `current_player` changes. **Code**
 5. `show_player_screen` shows PLAYER 1 or PLAYER 2.
-6. On a change of the player, [`next_turn_swap_block_loop` `$1862`](../src/game/lose_fall_game_over.asm#L52) swaps the player block `$0028-$0043` with `inactive_player_state`. The block holds `falls_left`, `room`, `room_lanterns_left`, `game_loop_count` and the score. `swap_player_lanterns` swaps the lantern flags of all rooms. The swap also includes `bonus_fall_next_score`.
+6. On a change of the player, [`next_turn_swap_block_loop` `$1862`](../src/game/lose_fall_game_over.asm#L50) swaps the player block `$0028-$0043` with `inactive_player_state`. The block holds `falls_left`, `room`, `room_lanterns_left`, `game_loop_count` and the score. `swap_player_lanterns` swaps the lantern flags of all rooms. The swap also includes `bonus_fall_next_score`.
 7. `reset_play_state` draws the game screen and spawns Bruce. [`place_bruce_at_room_start` `$3217`](../src/room/room_misc_support.asm#L11) puts him at the start point of his room (`spawn_a_x`, `spawn_a_y`) and enters the room.
 
 ![The PLAYER 2 screen](images/screens/player2_screen.png)

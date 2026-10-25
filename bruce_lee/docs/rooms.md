@@ -69,7 +69,7 @@ The screen stays off while `draw_room` works. The steps below are in the order o
 7. **Bruce.** Sets `actor_contact` = 1 (on the floor), `actor_timer` = 4, `actor_state` = 0 and `actor_step_delay` = 0. Clears the three slots of `burst_trap_timer`.
 8. Copies the room aux block to `room_band_colours` (see [The room aux blocks](#the-room-aux-blocks)).
 9. Sets the charset of the room in `room_vmcsb`: $38, $3A or $3C (see [Graphics of each room](#graphics-of-each-room)).
-10. Decodes the map, from [`draw_room_next_code` `$0AD7`](../src/room/draw_room.asm#L178) to `draw_room_done` (see [The map format](#the-map-format)).
+10. Decodes the map, from [`draw_room_next_code` `$0AD7`](../src/room/draw_room.asm#L177) to `draw_room_done` (see [The map format](#the-map-format)).
 11. Calls [`setup_room_lanterns_and_init` `$336E`](../src/room/lantern_pickup.asm#L79). This routine draws the replacement code over each taken lantern. It clears the five scratch bytes of the room with `room_init_clear_vars`. It runs the init handler through `room_init_dispatch`. The init handler returns to `draw_room`.
 12. Enables the screen and sprites 0-4 again.
 13. Jumps to `run_room_frame_handler`. Thus the frame handler runs one time before the main loop starts. Its RTS returns to the caller of `draw_room`.
@@ -129,12 +129,12 @@ The other parts of the lantern code:
 
 - **Redraw.** After the map, `setup_room_lanterns_and_init` draws the replacement code over each taken lantern. It writes code AND $7F in the upper row and code OR $80 in the lower row. `set_text_row_pointers` gives the line address, and the lower row is 40 bytes after it. **Code.**
 - **Reset.** [`reset_all_lanterns` `$33CA`](../src/room/lantern_pickup.asm#L147) sets the state of each record to 1, from room 19 to room 0. It uses `reset_room_lanterns` and `next_lantern_record`. It runs at a game start, and when room 19 starts the next game loop. It also sets the dummy records of rooms 13 and 19 to 1. **Code.**
-- **Two players.** The lists hold the lanterns of the current player. When the turn goes to the other player, [`swap_player_lanterns` `$0FED`](../src/game/game_setup.asm#L96) exchanges the state bytes of all records with `parked_lantern_flags`. `fill_parked_lanterns` sets the parked flags to 1 at a game start. The coverage did not run this code. **Code.**
+- **Two players.** The lists hold the lanterns of the current player. When the turn goes to the other player, [`swap_player_lanterns` `$0FED`](../src/game/game_setup.asm#L95) exchanges the state bytes of all records with `parked_lantern_flags`. `fill_parked_lanterns` sets the parked flags to 1 at a game start. The coverage did not run this code. **Code.**
 - **Flames.** On each pass in all rooms, `flicker_lantern_flames` writes random pixels into bytes 2-3 of the flame characters. These characters are $93, $94 and $B1 in both room charsets, and also $86 and $E7 in `charset_rooms_0_9`. **Code.**
 
 ### Passages
 
-A passage is a wall, one column wide and three lines high, that opens when Bruce takes the correct lanterns. The passage routines get the top line R in A and the column C in Y. [`draw_passage_cell` `$3ACA`](../src/room/passage_open.asm#L80) draws one tile at (`passage_row`, `passage_col`) and moves one line down. Each routine plays sound $8A. It draws two tiles of one type, and a third tile of a different type at the bottom. **Code.**
+A passage is a wall, one column wide and three lines high, that opens when Bruce takes the correct lanterns. The passage routines get the top line R in A and the column C in Y. [`draw_passage_cell` `$3ACA`](../src/room/passage_open.asm#L79) draws one tile at (`passage_row`, `passage_col`) and moves one line down. Each routine plays sound $8A. It draws two tiles of one type, and a third tile of a different type at the bottom. **Code.**
 
 | Routine | Lines R, R+1 | Line R+2 | Used in |
 |---|---|---|---|
@@ -172,7 +172,7 @@ The rooms make three types of moving hazards from these codes. The frame handler
 
 **Burst traps.** A burst trap is a floor cell with character $60. When an actor touches it, it bursts some passes later into deadly cells. [Burst traps](#burst-traps) gives the states. **Code.**
 
-**The floor movers of room 13.** Room 13 has 10 runner slots, and 8 of them are in use. [`room13_init` `$34C3`](../src/room/room_specific_init.asm#L159) fills the slots in `mover_dir` (0 off, $02 left, $82 right), `mover_col`, `mover_row`, `mover_old_col`, `mover_min_col` and `mover_wrap_col`. `room13_frame` calls [`update_floor_movers` `$104B`](../src/game/game_setup.asm#L169) on even passes. **Observed** (coverage).
+**The floor movers of room 13.** Room 13 has 10 runner slots, and 8 of them are in use. [`room13_init` `$34C3`](../src/room/room_specific_init.asm#L159) fills the slots in `mover_dir` (0 off, $02 left, $82 right), `mover_col`, `mover_row`, `mover_old_col`, `mover_min_col` and `mover_wrap_col`. `room13_frame` calls [`update_floor_movers` `$104B`](../src/game/game_setup.asm#L168) on even passes. **Observed** (coverage).
 
 `update_floor_movers` moves slots 8 to 0 by one column each. A left mover that goes below its minimum column starts again at its wrap column. A right mover at its wrap column starts again at its minimum column. The routine draws with `draw_runner_step`, or with `draw_runner_step_alt` on lines 5 and 10. **Observed** (coverage).
 
@@ -409,7 +409,7 @@ The cells fill 40 columns per text line, from line 2 (screen row 3, `$8C78`) to 
 
 ### The decoder
 
-The decoder is the end of `draw_room`, from [`draw_room_next_code` `$0AD7`](../src/room/draw_room.asm#L178). It keeps four pointers: the upper and lower screen row of the cell, and the same two rows in colour RAM. **Code.**
+The decoder is the end of `draw_room`, from [`draw_room_next_code` `$0AD7`](../src/room/draw_room.asm#L177). It keeps four pointers: the upper and lower screen row of the cell, and the same two rows in colour RAM. **Code.**
 
 ```
 data_ptr   = map of room

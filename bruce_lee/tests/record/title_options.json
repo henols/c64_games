@@ -1,0 +1,118 @@
+{
+ "name": "title options: F3, F5, L, R, shift-L, shift-R, F3, F5 and L again",
+ "program": "original/bruce_lee.prg",
+ "symbols": "knowledge",
+ "coverage": "$0400",
+ "checkpoint": "title_menu_option_changed",
+ "state": [
+  {
+   "address": "option_two_players",
+   "size": 4
+  },
+  {
+   "address": "joystick_right_handed",
+   "size": 2
+  },
+  {
+   "address": "title_music_off",
+   "size": 1
+  }
+ ],
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": " "
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "press": {
+    "keys": "{F3}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "{F5}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "L"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "R"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "{LSHIFT+L}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "{LSHIFT+R}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "{F3}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "{F5}"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "press": {
+    "keys": "L"
+   }
+  },
+  {
+   "frames": 80
+  },
+  {
+   "frames": 200
+  }
+ ]
+}

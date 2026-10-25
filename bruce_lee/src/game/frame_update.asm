@@ -146,7 +146,7 @@ frame_update_check_ddr
         ; Check 4: the CPU port DDR check always passes (A and flags as on the passing path).
 lda #$ef
 cmp #$ef
-        !if * - .patch_start > 6 { !error "The patch PROTECTION at $166c has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 6 { !error "The patch PROTECTION at $166c has ", ((* - .patch_start) & $ffff), " bytes; the range has 6." } else { !fill 6 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda D6510,x                     ; protection: the loader leaves $EF in the CPU port DDR
         cmp #$ef
@@ -181,7 +181,6 @@ frame_update_read_input
         lda CIAPRB                      ; player 1 (current_player 0): joystick port 1
         ldx current_player
         beq frame_update_bruce_joystick
-; not executed $16a9-$16ab
         lda CIAPRA                      ; player 2: joystick port 2
 frame_update_bruce_joystick
         and #$0f                        ; bits 0-3: up, down, left, right (0 = pressed)
@@ -247,11 +246,11 @@ frame_update_check_loader_mark
 .patch_start
 !if PROTECTION = 0 {
         ; PROTECTION off: 8 bytes at $1703-$170a, NOP after the code
-        ; Check 5: the loader mark check always passes, no memory wipe.
+        ; Check 5: the loader mark check always passes, no memory wipe. 8 cycles, as the passing path of the original (LDA zp, CMP #, BEQ taken): BIT reads $02 like the original, and the value is not used. The code after frame_update_restore_ddr loads A and sets the flags again.
 lda #$32
-cmp #$32
+bit prot_loader_mark
 jmp frame_update_restore_ddr
-        !if * - .patch_start > 8 { !error "The patch PROTECTION at $1703 has ", * - .patch_start, " bytes; the range has 8." } else { !fill 8 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 8 { !error "The patch PROTECTION at $1703 has ", ((* - .patch_start) & $ffff), " bytes; the range has 8." } else { !fill 8 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda prot_loader_mark            ; the loader leaves $32 in $02
         cmp #$32

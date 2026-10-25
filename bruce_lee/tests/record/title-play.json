@@ -25,6 +25,10 @@
     {
       "address": "random_ptr",
       "size": 2
+    },
+    {
+      "address": "$0100",
+      "size": 256
     }
   ],
   "coverage": "$0400",
@@ -33,9 +37,8 @@
       "frames": 100
     },
     {
-      "type": {
-        "mode": "text",
-        "text": " "
+      "press": {
+        "keys": " "
       }
     },
     {

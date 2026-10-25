@@ -257,7 +257,7 @@ title_protection_wipe = * + 2
         ; PROTECTION off: 4 bytes at $06f1-$06f4, NOP after the code
         ; Check 3: the title signature always passes, no memory wipe.
 jmp title_start_countdown
-        !if * - .patch_start > 4 { !error "The patch PROTECTION at $06f1 has ", * - .patch_start, " bytes; the range has 4." } else { !fill 4 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 4 { !error "The patch PROTECTION at $06f1 has ", ((* - .patch_start) & $ffff), " bytes; the range has 4." } else { !fill 4 - ((* - .patch_start) & $ffff), $ea }
 } else {
         beq title_start_countdown
 ; not executed $06f3-$06f9

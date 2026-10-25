@@ -106,7 +106,7 @@ room_charset_c
         ; FIX_RAM_TEST_BYTE on: 1 byte at $9b00-$9b00, NOP after the code
         ; The source byte of TBC and DC. SAEGER has $55, the first test value of the KERNAL RAM test.
 !byte $0f
-        !if * - .patch_start > 1 { !error "The patch FIX_RAM_TEST_BYTE at $9b00 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch FIX_RAM_TEST_BYTE at $9b00 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $55
 }

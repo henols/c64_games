@@ -63,7 +63,7 @@ cold_start_random_delay
 !if PROTECTION = 0 {
         ; PROTECTION off: 3 bytes at $0440-$0442, NOP after the code
         ; Check 2: no JSR to the loader's RTS at $0080.
-        !if * - .patch_start > 3 { !error "The patch PROTECTION at $0440 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch PROTECTION at $0440 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         jsr $0080                       ; JSR frame_count_256: the loader leaves an RTS there (init_game_variables clears it later)
 }

@@ -1,0 +1,127 @@
+{
+  "name": "room change freeze: exit from room 15 to room 13, draw_room starts and ends on raster lines 256-311",
+  "completed": true,
+  "steps": 536,
+  "done": 536,
+  "pc": "$1c34",
+  "files": [
+    "room15_start.png",
+    "moves00.json",
+    "moves01.json",
+    "moves02.json",
+    "moves03.json",
+    "moves04.json",
+    "moves05.json",
+    "moves06.json",
+    "moves07.json",
+    "moves08.json",
+    "moves09.json",
+    "moves10.json",
+    "moves11.json",
+    "moves12.json",
+    "moves13.json",
+    "frozen.png"
+  ],
+  "observations": {},
+  "expectations": [
+    {
+      "expect": "frozen",
+      "pass": true,
+      "count": 0,
+      "mismatches": []
+    },
+    {
+      "expect": "still_frozen",
+      "pass": true,
+      "count": 0,
+      "mismatches": []
+    }
+  ],
+  "failedExpectations": [],
+  "traces": {
+    "moves00": {
+      "file": "moves00.json",
+      "hits": 480,
+      "frames": 60,
+      "end": "frames"
+    },
+    "moves01": {
+      "file": "moves01.json",
+      "hits": 216,
+      "frames": 29,
+      "end": "frames"
+    },
+    "moves02": {
+      "file": "moves02.json",
+      "hits": 1,
+      "frames": 37,
+      "end": "frames"
+    },
+    "moves03": {
+      "file": "moves03.json",
+      "hits": 0,
+      "frames": 34,
+      "end": "frames"
+    },
+    "moves04": {
+      "file": "moves04.json",
+      "hits": 0,
+      "frames": 10,
+      "end": "frames"
+    },
+    "moves05": {
+      "file": "moves05.json",
+      "hits": 0,
+      "frames": 28,
+      "end": "frames"
+    },
+    "moves06": {
+      "file": "moves06.json",
+      "hits": 0,
+      "frames": 57,
+      "end": "frames"
+    },
+    "moves07": {
+      "file": "moves07.json",
+      "hits": 0,
+      "frames": 12,
+      "end": "frames"
+    },
+    "moves08": {
+      "file": "moves08.json",
+      "hits": 0,
+      "frames": 18,
+      "end": "frames"
+    },
+    "moves09": {
+      "file": "moves09.json",
+      "hits": 0,
+      "frames": 26,
+      "end": "frames"
+    },
+    "moves10": {
+      "file": "moves10.json",
+      "hits": 0,
+      "frames": 38,
+      "end": "frames"
+    },
+    "moves11": {
+      "file": "moves11.json",
+      "hits": 0,
+      "frames": 57,
+      "end": "frames"
+    },
+    "moves12": {
+      "file": "moves12.json",
+      "hits": 0,
+      "frames": 22,
+      "end": "frames"
+    },
+    "moves13": {
+      "file": "moves13.json",
+      "hits": 0,
+      "frames": 37,
+      "end": "frames"
+    }
+  }
+}

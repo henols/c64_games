@@ -327,7 +327,7 @@ msg_presents
         ; CRACK_DIABOLO off: 7 bytes at $4771-$4777, NOP after the code
         ; "ATASOFT": msg_presents reads DATASOFT PRESENTS, as in TBC and DC.
 !byte $41,$54,$41,$53,$4f,$46,$54
-        !if * - .patch_start > 7 { !error "The patch CRACK_DIABOLO at $4771 has ", * - .patch_start, " bytes; the range has 7." } else { !fill 7 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 7 { !error "The patch CRACK_DIABOLO at $4771 has ", ((* - .patch_start) & $ffff), " bytes; the range has 7." } else { !fill 7 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !pet "iabolo "
 }

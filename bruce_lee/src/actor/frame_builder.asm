@@ -21,7 +21,7 @@ build_contact_masks
 !if PROTECTION = 0 {
         ; PROTECTION off: 2 bytes at $5134-$5135, NOP after the code
         ; Check 1: no hang on the $CF8F signature.
-        !if * - .patch_start > 2 { !error "The patch PROTECTION at $5134 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch PROTECTION at $5134 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         bne build_contact_masks         ; hang: protection byte check
 }
@@ -32,7 +32,7 @@ build_contact_masks
 !if PROTECTION = 0 {
         ; PROTECTION off: 2 bytes at $5139-$513a, NOP after the code
         ; Check 1: no hang on the $CFAF signature.
-        !if * - .patch_start > 2 { !error "The patch PROTECTION at $5139 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch PROTECTION at $5139 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         bne build_contact_masks         ; hang unless prot_signature_b = prot_signature_a
 }
@@ -80,7 +80,7 @@ build_masks_done
         ; PROTECTION off: 3 bytes at $517b-$517d, NOP after the code
         ; Check 2: return directly, not through the loader's RTS at $0080.
 rts
-        !if * - .patch_start > 3 { !error "The patch PROTECTION at $517b has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch PROTECTION at $517b has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         jmp $0080                       ; $0080 holds an RTS
 }

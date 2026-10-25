@@ -24,7 +24,7 @@ music_lookahead = * + 48
         ; RUN_STATE off: 49 bytes at $e100-$e130, NOP after the code
         ; Music voice state before any song: music_reset_state writes it for each song.
 !byte $c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$c2,$7e,$b7,$af,$c2,$7e,$b7,$af,$3f,$f6,$89,$b7,$3f,$f6,$89,$b7,$3f,$f6,$8b,$b7,$3f,$f6,$8f,$b7,$c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$c2,$7e,$b3,$af,$3f
-        !if * - .patch_start > 49 { !error "The patch RUN_STATE at $e100 has ", * - .patch_start, " bytes; the range has 49." } else { !fill 49 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 49 { !error "The patch RUN_STATE at $e100 has ", ((* - .patch_start) & $ffff), " bytes; the range has 49." } else { !fill 49 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00                       ; semitones added to every note; reset to 0 for each song
 ; Tie flag per voice: 1 = notes are tied (no new gate, no gate off), 0 = normal. Commands $A7/$A8.

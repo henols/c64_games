@@ -81,7 +81,7 @@ room02_frame
         ; Check 6: room 2 does not hang (X and flags as on the passing path).
 ldx #$ef
 cpx #$ef
-        !if * - .patch_start > 6 { !error "The patch PROTECTION at $36a8 has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 6 { !error "The patch PROTECTION at $36a8 has ", ((* - .patch_start) & $ffff), " bytes; the range has 6." } else { !fill 6 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldx D6510,y                     ; protection: hangs unless D6510 = $EF
         cpx #$ef

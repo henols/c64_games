@@ -10,7 +10,7 @@ music_playlist_pos
 !if RUN_STATE = 0 {
         ; RUN_STATE off: 1 byte at $e86c-$e86c, NOP after the code
 !byte $00
-        !if * - .patch_start > 1 { !error "The patch RUN_STATE at $e86c has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch RUN_STATE at $e86c has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $01                       ; index of the next playlist entry
 }

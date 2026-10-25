@@ -292,11 +292,12 @@ room10_frame_protection_check
 .patch_start
 !if PROTECTION = 0 {
         ; PROTECTION off: 6 bytes at $3ca9-$3cae, NOP after the code
-        ; Check 8: room 10 never damages the room maps.
-ldx #$ef
-cpx #$ef
-beq room10_frame_bursts
-        !if * - .patch_start > 6 { !error "The patch PROTECTION at $3ca9 has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
+        ; Check 8: room 10 never damages the room maps. 9 cycles, as the passing path of the original (LDX zp,Y, CPX #, BEQ taken). update_burst_traps loads X at once, so X and the flags are free.
+nop
+nop
+nop
+jmp room10_frame_bursts
+        !if ((* - .patch_start) & $ffff) > 6 { !error "The patch PROTECTION at $3ca9 has ", ((* - .patch_start) & $ffff), " bytes; the range has 6." } else { !fill 6 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldx D6510,y
         cpx #$ef                        ; protection: D6510 must be $EF

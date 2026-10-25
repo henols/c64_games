@@ -25,6 +25,10 @@
     {
       "address": "random_ptr",
       "size": 2
+    },
+    {
+      "address": "$0100",
+      "size": 256
     }
   ],
   "steps": [
@@ -32,9 +36,8 @@
       "frames": 100
     },
     {
-      "type": {
-        "mode": "text",
-        "text": " "
+      "press": {
+        "keys": " "
       }
     },
     {
@@ -200,5 +203,6 @@
     {
       "frames": 400
     }
-  ]
+  ],
+  "coverage": "$0400"
 }

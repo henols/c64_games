@@ -133,7 +133,7 @@ The source holds each difference as a switch in `src/switches.asm`. The default 
 
 | Switch | Kind | Default | Releases with it on | Patches |
 |---|---|---|---|---|
-| `PROTECTION` | protection | 0 | SAEGER, TBC, DC | 13 patches, 47 bytes |
+| `PROTECTION` | protection | 0 | SAEGER, TBC, DC | 13 patches, 53 bytes |
 | `CRACK_DIABOLO` | crack | 0 | SAEGER | `$4771-$4777` |
 | `FIX_RAM_TEST_BYTE` | fix | 1 | TBC, DC | `$9B00` |
 | `RUN_STATE` | change | 0 | SAEGER | `$E100-$E130`, `$E2E7-$E2E8`, `$E30A-$E314`, `$E3DE-$E3E8`, `$E5E6-$E5E7`, `$E86C` |
@@ -152,13 +152,13 @@ The TBC capture has no segment for the key bytes `$CF79-$CFBA`, but the bytes ar
 
 ### The tests of the releases
 
-- `tests/no_protection.json` and `tests/all_rooms_no_protection.json` compare the default loader with the TBC release.
-- The other scenarios in [tests/](../tests/) compare the SAEGER release with `build/clean_loader.prg`.
-- The recording `tests/recordings/first-rooms` replays on `build/clean_loader.prg` with the symbols of `build/symbols/clean_loader.json`. The replay runs the rebuild to `loader_start_screen_wait` and sets the PC to `loader_start_screen_continue`. Each replay gives PASS at 1075 checkpoints of [`main_loop` `$1BC2`](../src/game/game_main_loop.asm#L23) (**Observed**).
+- `tests/no_protection.json` compares the default loader with the TBC release.
+- The junk scenarios in [tests/](../tests/) run the SAEGER release on both sides.
+- The nine recordings in `tests/recordings/` are sessions of the SAEGER release. Each one replays on `build/clean_loader.prg` with the symbols of `build/symbols/clean_loader.json`, with the same game state at each checkpoint (**Observed**).
 
 ## Still open
 
-- Does room 18 draw character `$60` of [`charset_wizard` `$B000`](../src/constants.asm#L202)? A run of `tests/all_rooms.json` on the SAEGER and TBC releases, with a compare of the screen of room 18, can show it.
+- Does room 18 draw character `$60` of [`charset_wizard` `$B000`](../src/constants.asm#L202)? A run that enters room 18 on the SAEGER and TBC releases, with a compare of the screen of room 18, can show it.
 - What is the order of the cracks? TBC and DC can come from the same clean copy, or one can come from the other.
 - What are the 49 bytes at `$A400-$A430` that differ between the SAEGER and TBC captures? A compare of the file offsets that the relocator moves there can show it.
 - Who added the tape tools at `$FE00`? A tape version of another crack with the same bytes can show it.

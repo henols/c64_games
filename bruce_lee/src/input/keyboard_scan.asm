@@ -40,7 +40,6 @@ scan_keyboard_matrix
         lda CIAPRA
         cmp #$ff
         beq scan_keyboard_release       ; no column has a key
-; not executed $13c4-$13f4
         sta key_columns                 ; column bits of the pressed keys
         stx CIADDRB
         dex
@@ -79,7 +78,6 @@ scan_keyboard_store
         beq scan_keyboard_done          ; same key as before: no new code
         lda key_shift
         beq scan_keyboard_set_code
-; not executed $1417-$1418
         lda #$80                        ; bit 7 = shift
 scan_keyboard_set_code
         ora key_scan_code
@@ -87,7 +85,6 @@ scan_keyboard_set_code
         lda key_scan_code
         cmp #$ff
         beq scan_keyboard_done          ; no key: no flag
-; not executed $1426-$142a
         lda #$01
         sta key_ready
 scan_keyboard_done
@@ -96,7 +93,6 @@ scan_keyboard_done
 ; Takes the highest column with a key, drives it low, tests the rows 7 to 0 and stores column*8 + row in
 ; key_scan_code. The shift keys ($0F left, $34 right) are skipped. key_scan_code = $FF when no key.
 decode_any_key
-; not executed $142c-$1487
         ldx #$07
 decode_any_key_column
         asl key_columns                 ; bit 7 first: column 7 down to 0
@@ -144,6 +140,7 @@ decode_game_key_loop
         iny
         cpy #$08
         bne decode_game_key_loop
+; not executed $1478-$147d
         lda #$6f                        ; code of an unknown key
         sta key_scan_code
         rts

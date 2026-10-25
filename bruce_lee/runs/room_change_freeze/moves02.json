@@ -1,0 +1,32 @@
+{
+ "points": [
+  {
+   "kind": "exec",
+   "start": "$09bc"
+  },
+  {
+   "kind": "write",
+   "start": "$d011",
+   "end": "$d012"
+  }
+ ],
+ "frames": 37,
+ "end": "frames",
+ "hits": [
+  {
+   "point": 1,
+   "pc": "$0b38",
+   "bytes": "8d11d0",
+   "text": "STA $d011",
+   "a": 155,
+   "x": 0,
+   "y": 4,
+   "sp": 253,
+   "frame": 1,
+   "rasterLine": 282,
+   "rasterCycle": 49,
+   "address": "$d011",
+   "value": 155
+  }
+ ]
+}

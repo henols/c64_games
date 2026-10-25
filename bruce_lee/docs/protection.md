@@ -70,7 +70,7 @@ The loader leaves `$EF` in the data direction register of the CPU port. A reset 
 
 Nothing in the program writes `$02`, so only the loader can leave `$32` there. **Code**
 
-- **Check 5, every frame.** [`frame_update_check_loader_mark` `$1703`](../src/game/frame_update.asm#L245) compares `prot_loader_mark` with `$32`. When the value differs, the code stores that value into the high byte of `row_ptr_top`. Then [`frame_update_wipe_loop` `$170B`](../src/game/frame_update.asm#L265) writes the value over memory, 256 bytes per page, page by page downward. The page counter [`frame_update_wipe_counter` `$0539`](../src/game/title_demo_start.asm#L37) is the high byte (`$D0`) of the operand of `STA SCROLY` in `demo_start_blank_screen`. Thus the wipe covers `$D0` pages and also destroys that instruction. **Observed**: with `$02` = 0, the wipe started in the first frame. 60 frames later, the CPU was still in the loop, with the counter at `$54`.
+- **Check 5, every frame.** [`frame_update_check_loader_mark` `$1703`](../src/game/frame_update.asm#L244) compares `prot_loader_mark` with `$32`. When the value differs, the code stores that value into the high byte of `row_ptr_top`. Then [`frame_update_wipe_loop` `$170B`](../src/game/frame_update.asm#L264) writes the value over memory, 256 bytes per page, page by page downward. The page counter [`frame_update_wipe_counter` `$0539`](../src/game/title_demo_start.asm#L37) is the high byte (`$D0`) of the operand of `STA SCROLY` in `demo_start_blank_screen`. Thus the wipe covers `$D0` pages and also destroys that instruction. **Observed**: with `$02` = 0, the wipe started in the first frame. 60 frames later, the CPU was still in the loop, with the counter at `$54`.
 - **Check 7, room 5.** [`room05_init` `$3428`](../src/room/room_specific_init.asm#L48) reads `prot_loader_mark`,X with X = 0. When the value is not `$32`, the code branches to itself. The game hangs when Bruce enters room 5. **Code**
 
 ### Check 2: the RTS at `$0080`
@@ -114,9 +114,9 @@ Both delayed checks act in [`actor_play_step_sound` `$1FC4`](../src/actor/actor_
 **Check 11, the tick key.**
 
 1. On each pass, [`main_loop_protection_check` `$1C13`](../src/game/game_main_loop.asm#L67) loads `prot_key_tick` and XORs `prot_key_tick_pair`.
-2. It stores the result in [`protection_check_value` `$2007`](../src/actor/actor_step.asm#L623). The result is `$04` with the original bytes. The image holds `$FF`.
-3. On each footstep, when `protection_check_value` is 0, [`step_sound_check_protection2` `$1FE5`](../src/actor/actor_step.asm#L584) increments `main_loop_prot_key_lo` and `main_loop_prot_pair_lo`.
-4. When `main_loop_prot_key_lo` reaches `$9A`, the code loads X = 4. It writes `$9A` over the `CLC` at [`step_sound_crash_point` `$1FFE`](../src/actor/actor_step.asm#L606).
+2. It stores the result in [`protection_check_value` `$2007`](../src/actor/actor_step.asm#L627). The result is `$04` with the original bytes. The image holds `$FF`.
+3. On each footstep, when `protection_check_value` is 0, [`step_sound_check_protection2` `$1FE5`](../src/actor/actor_step.asm#L586) increments `main_loop_prot_key_lo` and `main_loop_prot_pair_lo`.
+4. When `main_loop_prot_key_lo` reaches `$9A`, the code loads X = 4. It writes `$9A` over the `CLC` at [`step_sound_crash_point` `$1FFE`](../src/actor/actor_step.asm#L610).
 5. That instruction is the next instruction, so TXS runs at once. The stack pointer becomes 4, and the next `PLA`/RTS read the wrong stack bytes.
 
 The main loop computes the value again on every pass. When the moved operands reach a pair that differs, the value is not 0, and the operands stop. **Code**
@@ -169,7 +169,7 @@ The checks read only `$CF79-$CFBA`. The page has two halves of 32 bytes: `$CF79-
 
 ## The state machine of the delayed checks
 
-Each delayed check is a small state machine in the code itself. The state is the low byte of its key operand. While the computed value is not 0, the check stays in the state Armed and does nothing. When the value is 0, each footstep moves the operands one pair further. When the key operand reaches its end mark, the check writes TXS into the code. [`step_sound_check_protection2` `$1FE5`](../src/actor/actor_step.asm#L584) makes the changes of check 11.
+Each delayed check is a small state machine in the code itself. The state is the low byte of its key operand. While the computed value is not 0, the check stays in the state Armed and does nothing. When the value is 0, each footstep moves the operands one pair further. When the key operand reaches its end mark, the check writes TXS into the code. [`step_sound_check_protection2` `$1FE5`](../src/actor/actor_step.asm#L586) makes the changes of check 11.
 
 ~~~mermaid
 stateDiagram-v2
@@ -240,7 +240,7 @@ No code skips the decrement in `lose_fall`. **Code**
 
 ## The switch PROTECTION
 
-The knowledge holds 13 patches under the switch `PROTECTION` (kind `protection`). The switch is on in the three releases and off in the default build. Each patch makes one check take its passing path. The registers and flags are the same as on the passing path of the original. The patches change 47 bytes and no length. **Code**
+The knowledge holds 13 patches under the switch `PROTECTION` (kind `protection`). The switch is on in the three releases and off in the default build. Each patch makes one check take its passing path. The registers and flags are the same as on the passing path of the original, where the code after the check uses them. The patches change 53 bytes and no length. **Code**
 
 | Check | Patch range | Code with the switch off | Effect |
 |---|---|---|---|
@@ -249,15 +249,15 @@ The knowledge holds 13 patches under the switch `PROTECTION` (kind `protection`)
 | 2 | `build_masks_done`, `$517B-$517D` | `RTS` instead of `JMP $0080` | returns directly to `cold_start` |
 | 3 | `title_protection_check`, `$06F1-$06F4` | `JMP title_start_countdown` | no memory wipe on the title |
 | 4 | `frame_update_check_ddr`, `$166C-$1671` | `LDA #$EF` / `CMP #$EF` | no endless loop in the interrupt |
-| 5 | `frame_update_check_loader_mark`, `$1703-$170A` | `LDA #$32` / `CMP #$32` / `JMP frame_update_restore_ddr` | no memory wipe |
+| 5 | `frame_update_check_loader_mark`, `$1703-$170A` | `LDA #$32` / `BIT $02` / `JMP frame_update_restore_ddr` (8 cycles) | no memory wipe |
 | 6 | `room02_frame`, `$36A8-$36AD` | `LDX #$EF` / `CPX #$EF` | room 2 does not hang |
 | 7 | `room05_init`, `$342A-$3430` | `LDA #$32` / `TAY` / `CPY #$32` | room 5 does not hang |
-| 8 | `room10_frame_protection_check`, `$3CA9-$3CAE` | `LDX #$EF` / `CPX #$EF` / `BEQ room10_frame_bursts` | the maps of rooms 0, 1 and 5 stay intact |
+| 8 | `room10_frame_protection_check`, `$3CA9-$3CAE` | `NOP` / `NOP` / `NOP` / `JMP room10_frame_bursts` (9 cycles) | the maps of rooms 0, 1 and 5 stay intact |
 | 9 | `update_high_score`, `$31A1-$31A3` | `JMP update_high_score_compare` | no crash through `JMP ($DE00)` |
-| 10 | `actor_play_step_sound`, `$1FCE-$1FD2` | `JMP step_sound_check_protection2` | the Yamo key never moves its operands, `random_byte` stays intact |
-| 11 | `step_sound_check_protection2`, `$1FE5-$1FE9` | `JMP step_sound_restore_regs` | the tick key never moves its operands, no TXS at `step_sound_crash_point` |
+| 10 | `actor_play_step_sound`, `$1FCE-$1FD2` | `NOP` / `NOP` / `JMP step_sound_check_protection2` (7 cycles) | the Yamo key never moves its operands, `random_byte` stays intact |
+| 11 | `step_sound_check_protection2`, `$1FE5-$1FE9` | `NOP` / `NOP` / `JMP step_sound_restore_regs` (7 cycles) | the tick key never moves its operands, no TXS at `step_sound_crash_point` |
 
-The checks still read their bytes. They still store [`protection_result` `$1166`](../src/room/room_enemy_tables.asm#L7) and [`protection_check_value` `$2007`](../src/actor/actor_step.asm#L623). But no code acts on a failed value. **Code**
+The checks still read their bytes. They still store [`protection_result` `$1166`](../src/room/room_enemy_tables.asm#L7) and [`protection_check_value` `$2007`](../src/actor/actor_step.asm#L627). But no code acts on a failed value. **Code**
 
 **The builds.**
 
@@ -265,9 +265,11 @@ The checks still read their bytes. They still store [`protection_result` `$1166`
 - `--release SAEGER` gives the original program byte for byte (`PROTECTION` = 1). `build/clean_loader.prg` is the loader of that build. c64-source builds it and checks it with the switch values of the base release.
 - `--define PROTECTION=1` restores only the checks in the default build.
 
-**The default build runs like the original without the protection data.** [tests/no_protection.json](../tests/no_protection.json) runs the default loader and destroys the protection data at the entry. It sets `$00` = `$2F`, `$02` = 0, `$0080` = 0 and the full `$CF00` page to 0. Its original is the TBC release, whose game bytes are the default build without the patches. The test plays the title, the demo and room 0, and enters rooms 2, 5 and 10. The screens and the memory are the same as in the original. Only the 47 patch bytes and the two check results differ. **Observed**: PASS.
+**The default build runs like the original without the protection data.** [tests/no_protection.json](../tests/no_protection.json) runs the default loader and destroys the protection data at the entry. It sets `$00` = `$2F`, `$02` = 0, `$0080` = 0 and the full `$CF00` page to 0. Its original is the TBC release, whose game bytes are the default build without the patches. The test plays the title, the demo and room 0, and enters rooms 2, 5 and 10. The screens and the memory are the same as in the original. Only the bytes of the patch ranges and the two check results differ. **Observed**: PASS.
 
-[tests/all_rooms_no_protection.json](../tests/all_rooms_no_protection.json) compares each of the 20 rooms of the default build with the TBC release.
+The recording `all_rooms` in [tests/recordings/](../tests/recordings/) visits each of the 20 rooms. It replays on the default build with the same game state and the same screen memory as the original (**Observed**).
+
+**The patches keep the cycles.** The patches of checks 5, 8, 10 and 11 run in each frame, in each pass of room 10 or on each footstep. They take the same number of cycles as the passing path of the original. For example, check 10 is `NOP` / `NOP` / `JMP`: 7 cycles, as `LDA` absolute and a taken `BNE`. Check 5 uses `BIT` on `$02` to get 8 cycles, and it does not use the value. Thus the default build keeps the timing of the original, and the replays can compare each pass (see [tests/README.md](../tests/README.md)).
 
 ## Still open
 

@@ -29,7 +29,7 @@ music_end_action = * + 10
 !if RUN_STATE = 0 {
         ; RUN_STATE off: 11 bytes at $e30a-$e314, NOP after the code
 !byte $a7,$bf,$b6,$02,$a7,$bf,$1f,$be,$16,$00,$1f
-        !if * - .patch_start > 11 { !error "The patch RUN_STATE at $e30a has ", * - .patch_start, " bytes; the range has 11." } else { !fill 11 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 11 { !error "The patch RUN_STATE at $e30a has ", ((* - .patch_start) & $ffff), " bytes; the range has 11." } else { !fill 11 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00                       ; nonzero: music_play_frame silences the SID and stops
         !byte $00                       ; set to 1 when a voice reaches its $FF end byte; nothing reads it

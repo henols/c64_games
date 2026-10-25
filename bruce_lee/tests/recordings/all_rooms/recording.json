@@ -1,0 +1,2381 @@
+{
+  "format": 1,
+  "name": "all 20 rooms: place Bruce at the start of each room and move at random",
+  "program": "original/bruce_lee.prg",
+  "sha256": "032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590",
+  "symbols": "knowledge",
+  "load": false,
+  "compare": {
+    "checkpoint": "main_loop",
+    "state": [
+      {
+        "address": "falls_left",
+        "size": 3
+      },
+      {
+        "address": "score",
+        "size": 3
+      },
+      {
+        "address": "actor_x",
+        "size": 6
+      },
+      {
+        "address": "actor_state",
+        "size": 3
+      },
+      {
+        "address": "actor_energy",
+        "size": 3
+      },
+      {
+        "address": "room_lanterns_left",
+        "size": 1
+      },
+      {
+        "address": "game_screen",
+        "size": 1000
+      }
+    ],
+    "pin": [
+      {
+        "address": "random_ptr",
+        "size": 2
+      },
+      {
+        "address": "$0100",
+        "size": 256
+      }
+    ]
+  },
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 3,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "title_menu_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 1500
+        }
+      },
+      "key": {
+        "pc": "title_menu_loop",
+        "count": 1
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1
+      }
+    },
+    {
+      "step": 9,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 300
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2
+      }
+    },
+    {
+      "step": 10,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 3
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 12,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 0
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 13,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 0,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 14,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 4
+      }
+    },
+    {
+      "step": 43,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 166
+      }
+    },
+    {
+      "step": 44,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 45,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 1
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 46,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 1,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 47,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 167
+      }
+    },
+    {
+      "step": 80,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 324
+      }
+    },
+    {
+      "step": 81,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 82,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 2
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 83,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 2,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 84,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 325
+      }
+    },
+    {
+      "step": 111,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 486
+      }
+    },
+    {
+      "step": 112,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 113,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 3
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 114,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 3,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 115,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 487
+      }
+    },
+    {
+      "step": 142,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 654
+      }
+    },
+    {
+      "step": 143,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 144,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 4
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 145,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 4,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 146,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 655
+      }
+    },
+    {
+      "step": 171,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 815
+      }
+    },
+    {
+      "step": 172,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 173,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 5
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 174,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 5,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 175,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 816
+      }
+    },
+    {
+      "step": 204,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 981
+      }
+    },
+    {
+      "step": 205,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 206,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 6
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 207,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 6,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 208,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 982
+      }
+    },
+    {
+      "step": 239,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1140
+      }
+    },
+    {
+      "step": 240,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 241,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 7
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 242,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 7,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 243,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1141
+      }
+    },
+    {
+      "step": 270,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1204
+      }
+    },
+    {
+      "step": 271,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 272,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 8
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 273,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 8,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 274,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1205
+      }
+    },
+    {
+      "step": 299,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1353
+      }
+    },
+    {
+      "step": 300,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 301,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 9
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 302,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 9,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 303,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1354
+      }
+    },
+    {
+      "step": 330,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1519
+      }
+    },
+    {
+      "step": 331,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 332,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 10
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 333,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 10,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 334,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1520
+      }
+    },
+    {
+      "step": 359,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1676
+      }
+    },
+    {
+      "step": 360,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 361,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 11
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 362,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 11,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 363,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1677
+      }
+    },
+    {
+      "step": 396,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1849
+      }
+    },
+    {
+      "step": 397,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 398,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 12
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 399,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 12,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 400,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1850
+      }
+    },
+    {
+      "step": 429,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1991
+      }
+    },
+    {
+      "step": 430,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 431,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 13
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 432,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 13,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 433,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 1992
+      }
+    },
+    {
+      "step": 462,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2061
+      }
+    },
+    {
+      "step": 463,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 464,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 14
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 465,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 14,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 466,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2062
+      }
+    },
+    {
+      "step": 497,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2217
+      }
+    },
+    {
+      "step": 498,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 499,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 15
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 500,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 15,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 501,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2218
+      }
+    },
+    {
+      "step": 528,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2386
+      }
+    },
+    {
+      "step": 529,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 530,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 16
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 531,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 16,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 532,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2387
+      }
+    },
+    {
+      "step": 565,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2530
+      }
+    },
+    {
+      "step": 566,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 567,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 17
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 568,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 17,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 569,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2531
+      }
+    },
+    {
+      "step": 594,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2694
+      }
+    },
+    {
+      "step": 595,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 596,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 18
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 597,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 18,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 598,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2695
+      }
+    },
+    {
+      "step": 623,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2743
+      }
+    },
+    {
+      "step": 624,
+      "action": {
+        "write": {
+          "address": "falls_left",
+          "data": "04",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 625,
+      "action": {
+        "registers": {
+          "pc": "place_bruce_at_room_start",
+          "x": 19
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 626,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "memory",
+            "address": "room",
+            "operator": "eq",
+            "value": 19,
+            "space": "c64",
+            "view": "cpu"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 627,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "main_loop",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "main_loop",
+        "count": 2744
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 241,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 241,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 241,
+      "rom": true
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 36,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 36,
+      "rom": true
+    },
+    {
+      "site": "$0437",
+      "addr": "$d41b",
+      "reads": 256,
+      "rom": false
+    },
+    {
+      "site": "$256b",
+      "addr": "$d41c",
+      "reads": 60,
+      "rom": false
+    },
+    {
+      "site": "$256b",
+      "addr": "$d41b",
+      "reads": 60,
+      "rom": false
+    },
+    {
+      "site": "$256b",
+      "addr": "$d41a",
+      "reads": 60,
+      "rom": false
+    },
+    {
+      "site": "$256b",
+      "addr": "$d419",
+      "reads": 60,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de27",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de26",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de25",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de24",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de23",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de22",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de21",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de20",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de1f",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de1e",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de1d",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de1c",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de1b",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de1a",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de19",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de18",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de17",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de16",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de15",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de14",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de13",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de12",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de11",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de10",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de0f",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de0e",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de0d",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de0c",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de0b",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de0a",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de09",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de08",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de07",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de06",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de05",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de04",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de03",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de02",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de01",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1a90",
+      "addr": "$de00",
+      "reads": 20,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de2c",
+      "reads": 186,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de2d",
+      "reads": 186,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de2e",
+      "reads": 186,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de38",
+      "reads": 12,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de39",
+      "reads": 12,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de3a",
+      "reads": 12,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de44",
+      "reads": 12,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de45",
+      "reads": 11,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de46",
+      "reads": 11,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de47",
+      "reads": 11,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de48",
+      "reads": 11,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de31",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de32",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de33",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de34",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de35",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de36",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de37",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de3b",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de3c",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de3d",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de3e",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de3f",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de40",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de41",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de42",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de43",
+      "reads": 3,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de49",
+      "reads": 2,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de4a",
+      "reads": 2,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de4b",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de2b",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de2f",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de30",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$13a3",
+      "addr": "$dc00",
+      "reads": 9773,
+      "rom": false
+    },
+    {
+      "site": "$13a6",
+      "addr": "$dc01",
+      "reads": 9773,
+      "rom": false
+    },
+    {
+      "site": "$13bd",
+      "addr": "$dc00",
+      "reads": 7613,
+      "rom": false
+    },
+    {
+      "site": "$13fd",
+      "addr": "$dc00",
+      "reads": 7613,
+      "rom": false
+    },
+    {
+      "site": "$1400",
+      "addr": "$dc01",
+      "reads": 7613,
+      "rom": false
+    },
+    {
+      "site": "$08f5",
+      "addr": "$dc01",
+      "reads": 6885,
+      "rom": false
+    },
+    {
+      "site": "$094b",
+      "addr": "$dc00",
+      "reads": 41822,
+      "rom": false
+    },
+    {
+      "site": "$094e",
+      "addr": "$dc01",
+      "reads": 41822,
+      "rom": false
+    },
+    {
+      "site": "$16a2",
+      "addr": "$dc01",
+      "reads": 8642,
+      "rom": false
+    },
+    {
+      "site": "$16c4",
+      "addr": "$dc01",
+      "reads": 8642,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de0a",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de0b",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de0c",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de0d",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de0e",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de0f",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de10",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de11",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de12",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de13",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de14",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de15",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de16",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de17",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de18",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de19",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de1a",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de1b",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de1c",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de1d",
+      "reads": 200,
+      "rom": false
+    },
+    {
+      "site": "$1809",
+      "addr": "$de1e",
+      "reads": 200,
+      "rom": false
+    }
+  ],
+  "ticks": 212352381,
+  "hash": "8cefdd33"
+}

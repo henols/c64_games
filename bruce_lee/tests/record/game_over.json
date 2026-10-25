@@ -1,0 +1,146 @@
+{
+ "name": "no input: the enemies take all falls, the PLAYER screens, game over and the title",
+ "program": "original/bruce_lee.prg",
+ "symbols": "knowledge",
+ "coverage": "$0400",
+ "checkpoint": "main_loop",
+ "state": [
+  {
+   "address": "falls_left",
+   "size": 3
+  },
+  {
+   "address": "score",
+   "size": 3
+  },
+  {
+   "address": "actor_x",
+   "size": 6
+  },
+  {
+   "address": "actor_state",
+   "size": 3
+  },
+  {
+   "address": "actor_energy",
+   "size": 3
+  }
+ ],
+ "pin": [
+  {
+   "address": "random_ptr",
+   "size": 2
+  },
+  {
+   "address": "$0100",
+   "size": 256
+  }
+ ],
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": " "
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 1500
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 1,
+    "direction": "center"
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "main_loop"
+    },
+    "timeoutFrames": 900
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "lose_fall"
+    },
+    "timeoutFrames": 9000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "lose_fall"
+    },
+    "timeoutFrames": 9000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "lose_fall"
+    },
+    "timeoutFrames": 9000
+   }
+  },
+  {
+   "frames": 50
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "game_over"
+    },
+    "timeoutFrames": 9000
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "title_menu_loop"
+    },
+    "timeoutFrames": 3000
+   }
+  },
+  {
+   "frames": 50
+  }
+ ]
+}
