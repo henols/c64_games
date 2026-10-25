@@ -1,0 +1,30 @@
+{
+  "name": "copy_sprite_shadows",
+  "title": "Copy the sprite shadow registers to the VIC-II",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$98d8"},
+  "length": 31,
+  "bytes": [
+    "a210b5029d00d0ca10f8a207b5299d27",
+    "d0b54a9df847ca10f3a5178d15d060"
+  ],
+  "instructions": [0,2,4,7,8,10,12,14,17,19,22,23,25,27,30],
+  "relocations": [],
+  "variable": [3,5,6,13,15,16,18,20,21,26,28,29],
+  "symbols": [
+    {"at":0,"name":"copy_sprite_shadows","kind":"routine"},
+    {"at":2,"name":"copy_sprite_shadows_pos","kind":"label"},
+    {"at":12,"name":"copy_sprite_shadows_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":30,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Copies the sprite positions, colours, pointers and enable bits from the zero page to the VIC-II."},
+    {"at":2,"placement":"side","text":"$02-$12 to $d000-$d010."},
+    {"at":12,"placement":"side","text":"Colours to $d027, pointers to $47f8."}
+  ],
+  "references": [],
+  "operands": [
+    {"at":4,"select":"expr","expression":"SP0X"}
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "format": 1,
+  "name": "One player against opponent 7 (opponent number set to 7): no input, the computer cuts off the player's head, the goblin drags the body away",
+  "program": "original/rdi/barbarian_part2_rdi.prg",
+  "sha256": "ba39ad343eaeef9ed43fda3dc6abcd99d20834cbb9ca4ec877bf10d0552da491",
+  "symbols": "none",
+  "load": false,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$dc04",
+    "$dc06"
+  ],
+  "events": [
+    {
+      "step": 9,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$80bb",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$80bb",
+        "count": 75
+      }
+    },
+    {
+      "step": 10,
+      "action": {
+        "write": {
+          "address": "$00be",
+          "data": "07",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 259,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 259,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 259,
+      "rom": true
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$93aa",
+      "addr": "$dc01",
+      "reads": 293,
+      "rom": false
+    },
+    {
+      "site": "$93d1",
+      "addr": "$dc01",
+      "reads": 293,
+      "rom": false
+    },
+    {
+      "site": "$9416",
+      "addr": "$dc01",
+      "reads": 293,
+      "rom": false
+    },
+    {
+      "site": "$943d",
+      "addr": "$dc01",
+      "reads": 293,
+      "rom": false
+    },
+    {
+      "site": "$945e",
+      "addr": "$dc01",
+      "reads": 293,
+      "rom": false
+    },
+    {
+      "site": "$9477",
+      "addr": "$dc01",
+      "reads": 293,
+      "rom": false
+    },
+    {
+      "site": "$876a",
+      "addr": "$dc06",
+      "reads": 268,
+      "rom": false
+    },
+    {
+      "site": "$876d",
+      "addr": "$dc04",
+      "reads": 268,
+      "rom": false
+    },
+    {
+      "site": "$8644",
+      "addr": "$dc00",
+      "reads": 36,
+      "rom": false
+    }
+  ],
+  "ticks": 78289897,
+  "hash": "ffa2ef58"
+}

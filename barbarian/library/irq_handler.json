@@ -1,0 +1,51 @@
+{
+  "name": "irq_handler",
+  "title": "IRQ and NMI handlers, raster interrupt",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$94e8"},
+  "length": 128,
+  "bytes": [
+    "488a489848a9012d1ad02c19d0f00320",
+    "1a95ad0ddc101485972902f00458201f",
+    "99a5972901f00458209a9e68a868aa68",
+    "4040ad11d0301aad12d0c9fab013a9fa",
+    "8d12d0a9018d19d0a6c4bd407f8d21d0",
+    "60ad11d0297f8d11d0a9728d12d0a901",
+    "8d19d0a9008d21d05820d898a5c1d00f",
+    "20689520399620f39720209720f79860"
+  ],
+  "instructions": [0,1,2,3,4,5,7,10,13,15,18,21,23,25,27,29,30,33,35,37,39,40,43,44,45,46,47,48,50,53,55,58,60,62,64,67,69,72,74,77,80,81,84,86,89,91,94,96,99,101,104,105,108,110,112,115,118,121,124,127],
+  "relocations": [
+    {"at":16,"size":"word","value":50}
+  ],
+  "variable": [8,9,11,12,19,20,24,31,32,34,41,42,51,52,56,57,65,66,70,71,73,75,76,78,79,82,83,87,88,92,93,97,98,102,103,106,107,109,113,114,116,117,119,120,122,123,125,126],
+  "symbols": [
+    {"at":0,"name":"irq_handler","kind":"routine"},
+    {"at":18,"name":"irq_check_cia","kind":"label"},
+    {"at":33,"name":"irq_check_timer_a","kind":"label"},
+    {"at":43,"name":"irq_exit","kind":"label"},
+    {"at":49,"name":"nmi_handler","kind":"routine"},
+    {"at":50,"name":"raster_irq","kind":"routine"},
+    {"at":81,"name":"raster_irq_bottom","kind":"label"},
+    {"at":127,"name":"raster_irq_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":48,"type":"code"},
+    {"start":50,"end":127,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"IRQ handler ($fffe). Runs the raster IRQ and the CIA 1 timer A and timer B routines."},
+    {"at":5,"placement":"side","text":"Calls the raster routine when the raster IRQ is enabled and flagged."},
+    {"at":18,"placement":"side","text":"Reading the ICR acknowledges the CIA 1 interrupts."},
+    {"at":25,"placement":"side","text":"Timer B: runs $991f, the routine for sound requests and music data."},
+    {"at":33,"placement":"side","text":"Timer A: runs $9e9a. It counts down the sound timers and writes the SID."},
+    {"at":49,"placement":"line","text":"NMI handler ($fffa): only RTI. Thus the RESTORE key does nothing while $01 = $25."},
+    {"at":50,"placement":"line","text":"Raster IRQ at lines $72 and $fa. Line $72 sets the scene colour, line $fa updates the sprites."},
+    {"at":55,"placement":"side","text":"Line $72: next IRQ at line $fa."},
+    {"at":72,"placement":"side","text":"Sets the background colour of the scene from the table at $7f40."},
+    {"at":81,"placement":"line","text":"Line $fa: next IRQ at line $72, black background for the top of the screen."},
+    {"at":104,"placement":"side","text":"Allows other interrupts during the sprite update."},
+    {"at":108,"placement":"side","text":"When sprites_frozen is not 0, the sprites do not move."}
+  ],
+  "references": [],
+  "operands": []
+}

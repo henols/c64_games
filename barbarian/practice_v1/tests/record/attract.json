@@ -1,0 +1,28 @@
+{
+ "name": "Demo mode: the computer fights the computer for 15000 frames",
+ "program": "original/rdi/barbarian_part1_rdi.prg",
+ "symbols": "none",
+ "inputs": [
+  "$dc00",
+  "$dc01",
+  "$dc04",
+  "$dc06"
+ ],
+ "coverage": "$8009",
+ "steps": [
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 500
+  },
+  {
+   "frames": 15000
+  }
+ ]
+}

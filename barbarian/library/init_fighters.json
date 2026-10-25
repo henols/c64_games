@@ -1,0 +1,40 @@
+{
+  "name": "init_fighters",
+  "title": "Start values of the fighters",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8123"},
+  "length": 77,
+  "bytes": [
+    "a201a9009569956bbd427f9571a98095",
+    "678a9591204381205481ca10e586b460",
+    "0980955ba904955da90c9593a9ff9595",
+    "608a1869870aa8b978ba857fb979ba85",
+    "80a003a930917fc8c00890f760"
+  ],
+  "instructions": [0,2,4,6,8,11,13,15,17,18,20,23,26,27,29,31,32,34,36,38,40,42,44,46,48,49,50,51,53,54,55,58,60,63,65,67,69,71,72,74,76],
+  "relocations": [
+    {"at":21,"size":"word","value":32},
+    {"at":24,"size":"word","value":49}
+  ],
+  "variable": [5,7,9,10,12,16,19,30,35,39,43,47,56,57,59,61,62,64,70],
+  "symbols": [
+    {"at":0,"name":"init_fighters","kind":"routine"},
+    {"at":2,"name":"init_fighters_loop","kind":"label"},
+    {"at":32,"name":"reset_fighter","kind":"routine"},
+    {"at":49,"name":"clear_fighter_score","kind":"routine"},
+    {"at":67,"name":"clear_fighter_score_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":76,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets both fighters to the start of a bout: start positions, move $00, facing, energy and score 0. Sets the walk-in flag."},
+    {"at":8,"placement":"side","text":"Start position: $00 for fighter 0, $1f for fighter 1."},
+    {"at":18,"placement":"side","text":"Fighter 0 faces right, fighter 1 faces left."},
+    {"at":29,"placement":"side","text":"X = $ff: the fighters walk in."},
+    {"at":32,"placement":"line","text":"Resets fighter X for a bout. A is the corner animation (stored with bit 7 set). Energy 12, idle timer $ff."},
+    {"at":49,"placement":"line","text":"Sets the 5 score digits of fighter X to 0. The score is the text $87 (fighter 0) or $88 (fighter 1)."},
+    {"at":65,"placement":"side","text":"The digits are at offset 3-7 of the text."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,58 @@
+{
+  "name": "draw_fighter",
+  "title": "Drawing of a fighter into the work bitmap",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8b59"},
+  "length": 232,
+  "bytes": [
+    "a5af30034c638b4ccb8ba699b5710aa8",
+    "b97e7f69788583b97f7f69a68584a9ca",
+    "858fa9058590a900859ba208a59b2907",
+    "d013a59b4a4aa8a5837910cf8579a584",
+    "7911cf857aa000b18ff00f85a5a8b9aa",
+    "03bc07cf317905a59179e68fd002e690",
+    "ca10e2e679d002e67ae69ba59bc93e90",
+    "b960a699b571859d0aa8b97e7f697885",
+    "83b97f7f69a68584a9ca858fa9058590",
+    "a900859ba59d85c6a208a59b2907d013",
+    "a59b4a4aa8a5837910cf8579a5847911",
+    "cf857aa5c6c928b017e6c6a000b18ff0",
+    "0f85a5a8b9aa03bc07cf317905a59179",
+    "e68fd002e690ca10dae679d002e67ae6",
+    "9ba59bc93e90ad60"
+  ],
+  "instructions": [0,2,4,7,10,12,14,15,16,19,21,23,26,28,30,32,34,36,38,40,42,44,46,48,50,52,53,54,55,57,60,62,64,67,69,71,73,75,77,78,81,84,86,88,90,92,94,96,97,99,101,103,105,107,109,111,113,114,116,118,120,121,122,125,127,129,132,134,136,138,140,142,144,146,148,150,152,154,156,158,160,162,163,164,165,167,170,172,174,177,179,181,183,185,187,189,191,193,195,196,199,202,204,206,208,210,212,214,215,217,219,221,223,225,227,229,231],
+  "relocations": [
+    {"at":5,"size":"word","value":10},
+    {"at":8,"size":"word","value":114}
+  ],
+  "variable": [1,11,13,17,18,22,24,25,29,33,37,41,45,51,56,58,59,61,63,65,66,68,72,76,79,80,82,83,85,87,89,91,95,100,104,106,108,115,117,119,123,124,128,130,131,135,139,143,147,149,151,155,161,166,168,169,171,173,175,176,178,180,186,190,194,197,198,200,201,203,205,207,209,213,218,222,224,226],
+  "symbols": [
+    {"at":0,"name":"draw_fighter","kind":"routine"},
+    {"at":7,"name":"draw_fighter_use_clip","kind":"label"},
+    {"at":10,"name":"draw_fighter_full","kind":"label"},
+    {"at":42,"name":"draw_fighter_full_row","kind":"label"},
+    {"at":69,"name":"draw_fighter_full_byte","kind":"label"},
+    {"at":90,"name":"draw_fighter_full_skip","kind":"label"},
+    {"at":96,"name":"draw_fighter_full_next","kind":"label"},
+    {"at":105,"name":"draw_fighter_full_line","kind":"label"},
+    {"at":114,"name":"draw_fighter_clip","kind":"label"},
+    {"at":148,"name":"draw_fighter_clip_row","kind":"label"},
+    {"at":179,"name":"draw_fighter_clip_byte","kind":"label"},
+    {"at":208,"name":"draw_fighter_clip_skip","kind":"label"},
+    {"at":214,"name":"draw_fighter_clip_next","kind":"label"},
+    {"at":223,"name":"draw_fighter_clip_line","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":231,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Draws the pose buffer of fighter $99 into the work bitmap at its column $71,x. Pixel pairs %00 are transparent. After a beaten fighter ($af bit 7), it uses the clipped version that draws only columns below 40."},
+    {"at":16,"placement":"side","text":"Work bitmap address of the column: $a678 + 8 * column."},
+    {"at":50,"placement":"side","text":"At each 8th line: next character row (offsets at $cf10)."},
+    {"at":77,"placement":"side","text":"Mask from $03aa: keeps the background where the pixel pair is %00."},
+    {"at":109,"placement":"side","text":"62 lines."},
+    {"at":181,"placement":"side","text":"Columns 40 and more are off the screen."}
+  ],
+  "references": [],
+  "operands": []
+}

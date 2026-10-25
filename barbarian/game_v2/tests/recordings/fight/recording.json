@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "name": "One player: each joystick direction with and without fire, then no input until the game ends",
+  "program": "original/fairlight/barbarian_p2_flt.prg",
+  "sha256": "637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285",
+  "symbols": "none",
+  "load": false,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$dc04",
+    "$dc06"
+  ],
+  "events": [],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$c14a",
+      "addr": "$dc01",
+      "reads": 274,
+      "rom": false
+    },
+    {
+      "site": "$93b6",
+      "addr": "$dc01",
+      "reads": 813,
+      "rom": false
+    },
+    {
+      "site": "$93e5",
+      "addr": "$dc01",
+      "reads": 813,
+      "rom": false
+    },
+    {
+      "site": "$942a",
+      "addr": "$dc01",
+      "reads": 813,
+      "rom": false
+    },
+    {
+      "site": "$9451",
+      "addr": "$dc01",
+      "reads": 813,
+      "rom": false
+    },
+    {
+      "site": "$9474",
+      "addr": "$dc01",
+      "reads": 813,
+      "rom": false
+    },
+    {
+      "site": "$948d",
+      "addr": "$dc01",
+      "reads": 813,
+      "rom": false
+    },
+    {
+      "site": "$864e",
+      "addr": "$dc00",
+      "reads": 326,
+      "rom": false
+    },
+    {
+      "site": "$875b",
+      "addr": "$dc06",
+      "reads": 584,
+      "rom": false
+    },
+    {
+      "site": "$875e",
+      "addr": "$dc04",
+      "reads": 584,
+      "rom": false
+    }
+  ],
+  "ticks": 193729536,
+  "hash": "2d3ecb44"
+}

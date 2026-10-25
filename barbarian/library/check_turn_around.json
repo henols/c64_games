@@ -1,0 +1,37 @@
+{
+  "name": "check_turn_around",
+  "title": "Turn of both fighters after they pass each other",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$90b3"},
+  "length": 61,
+  "bytes": [
+    "a5b21016a201869db567c984d007b56f",
+    "d0034cce90a69dca10ec60a201a99d95",
+    "6b098095670aa8b987bc8587b988bc85",
+    "88a0009469b187956fca10e160"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,21,23,24,26,27,29,31,33,35,37,38,39,42,44,47,49,51,53,55,57,58,60],
+  "relocations": [
+    {"at":19,"size":"word","value":27}
+  ],
+  "variable": [1,7,9,15,22,32,36,40,41,43,45,46,48,52,54,56],
+  "symbols": [
+    {"at":0,"name":"check_turn_around","kind":"routine"},
+    {"at":4,"name":"check_turn_around_start","kind":"label"},
+    {"at":6,"name":"check_turn_around_loop","kind":"label"},
+    {"at":21,"name":"check_turn_around_next","kind":"label"},
+    {"at":26,"name":"check_turn_around_done","kind":"label"},
+    {"at":27,"name":"check_turn_around_both","kind":"label"},
+    {"at":29,"name":"check_turn_around_set","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":60,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Runs when turn_request bit 7 is set. When a fighter does move $84 at frame 0, both fighters start move $9d (turn around)."},
+    {"at":29,"placement":"side","text":"Move $9d for both fighters."},
+    {"at":37,"placement":"side","text":"Move table pointer from $bc87, indexed by the move number."},
+    {"at":53,"placement":"side","text":"First frame of the move."}
+  ],
+  "references": [],
+  "operands": []
+}

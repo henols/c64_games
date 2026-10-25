@@ -1,0 +1,321 @@
+{
+ "name": "Two players: player 1 wins a bout against player 2 (energy of player 2 set to 1), then the time bonus",
+ "program": "original/fairlight/barbarian_p1_flt.prg",
+ "symbols": "none",
+ "inputs": [
+  "$dc00",
+  "$dc01",
+  "$dc04",
+  "$dc06"
+ ],
+ "coverage": "$8009",
+ "steps": [
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 500
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 3
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "$0094",
+    "data": "01"
+   }
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 2500
+  }
+ ]
+}

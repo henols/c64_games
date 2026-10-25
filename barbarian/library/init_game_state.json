@@ -1,0 +1,41 @@
+{
+  "name": "init_game_state",
+  "title": "Start state of the game",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$9272"},
+  "length": 109,
+  "bytes": [
+    "a90085af85b085b185b285b585b785b6",
+    "85b985ba85bb85bc85bd85c185c485cb",
+    "a90185b3a90485be209e9260a200a9ff",
+    "9daa048a291fa8a90e99aa05e8d0ef60",
+    "a93c85c8a93285c960a210a9009502ca",
+    "10fb85178d15d08d17d08d1cd08d1dd0",
+    "8d1bd08d1ed08d1fd08d20d060"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,43,44,46,48,51,52,54,55,57,60,61,63,64,66,68,70,72,73,75,77,79,80,82,84,87,90,93,96,99,102,105,108],
+  "relocations": [
+    {"at":41,"size":"word","value":44}
+  ],
+  "variable": [3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,35,39,49,50,58,59,67,71,78,83,85,86,88,89,91,92,94,95,97,98,100,101,103,104,106,107],
+  "symbols": [
+    {"at":0,"name":"init_game_state","kind":"routine"},
+    {"at":44,"name":"fill_block_stores","kind":"routine"},
+    {"at":46,"name":"fill_block_stores_loop","kind":"label"},
+    {"at":64,"name":"reset_timer","kind":"routine"},
+    {"at":73,"name":"clear_sprites","kind":"routine"},
+    {"at":77,"name":"clear_sprites_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":43,"type":"code"},
+    {"start":44,"end":63,"type":"code"},
+    {"start":64,"end":108,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Clears the story and game flags. Sets demo_mode = 1 and opponent_index = 4. Fills the block stores. The start and each restart call it."},
+    {"at":44,"placement":"line","text":"Fills block_store_a and block_store_b ($04aa-$05a9) with $ff and the 32 colour store bytes $05aa-$05c9 with $0e."},
+    {"at":64,"placement":"line","text":"Sets the bout time to 60 seconds of 50 frames."},
+    {"at":73,"placement":"line","text":"Clears the sprite positions $02-$12 and switches off all sprites. Clears the VIC sprite registers and sets a black border."}
+  ],
+  "references": [],
+  "operands": []
+}

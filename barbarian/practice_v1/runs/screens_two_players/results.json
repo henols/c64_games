@@ -1,0 +1,32 @@
+{
+  "name": "screens of two_players",
+  "completed": true,
+  "steps": 178,
+  "done": 178,
+  "pc": "$97b5",
+  "files": [
+    "f000400.png",
+    "f000800.png",
+    "f001200.png",
+    "f001600.png",
+    "f002000.png",
+    "f002400.png",
+    "f002800.png",
+    "f003200.png",
+    "f003600.png",
+    "f004000.png",
+    "f004400.png",
+    "f004800.png",
+    "f005200.png",
+    "f005600.png",
+    "f006000.png",
+    "f006400.png",
+    "f006800.png",
+    "f007200.png",
+    "f007600.png",
+    "f008000.png",
+    "f008400.png",
+    "end.png"
+  ],
+  "observations": {}
+}

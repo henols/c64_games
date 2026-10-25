@@ -1,0 +1,31 @@
+{
+  "name": "add_time_bonus",
+  "title": "Time bonus of the winner",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$83a9"},
+  "length": 79,
+  "bytes": [
+    "a5bdf046a5b3d042a5b6103ea93e855f",
+    "a9bc8560a6c8f03286c8a5b61869870a",
+    "a8b978ba6903857fb979ba6900858020",
+    "1089c6c8a5b6297f18698720df922094",
+    "82a90120f385a6c8d0cea90085b660"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,29,31,32,33,36,38,40,43,45,47,50,52,54,56,57,59,62,65,67,70,72,74,76,78],
+  "relocations": [],
+  "variable": [1,5,9,15,19,21,25,27,34,35,39,41,42,46,48,49,51,53,60,61,63,64,68,69,71,77],
+  "symbols": [
+    {"at":0,"name":"add_time_bonus","kind":"routine"},
+    {"at":24,"name":"add_time_bonus_loop","kind":"label"},
+    {"at":74,"name":"add_time_bonus_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":78,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Two-player game only: adds 10 points to the score of the winner for each second left. Clears bout_winner."},
+    {"at":12,"placement":"side","text":"Points for one second: digits 0,0,0,1,0 at $bc3e."},
+    {"at":47,"placement":"side","text":"Adds the 5 digits to the score text."}
+  ],
+  "references": [],
+  "operands": []
+}

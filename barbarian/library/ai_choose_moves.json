@@ -1,0 +1,49 @@
+{
+  "name": "ai_choose_moves",
+  "title": "Move choice of the computer fighter",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$870c"},
+  "length": 143,
+  "bytes": [
+    "a5b205af05b405ba05b505bb3070a5be",
+    "0aa8b9a2c88585b9a3c88586a6b3d004",
+    "a5bdd05a869db56f0aa8b9dac98587b9",
+    "dbc98588202789a6aabcb2c9b187208b",
+    "8769388587a58869cb8588a9f08581a9",
+    "cd8582a59d4901aae6cda5b3f008ad06",
+    "dc4d04dc85cda5cd291fa8b185a8b187",
+    "205586206386208d86a69dca10a66048",
+    "a9008588680a26880a26880a268860"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,17,18,21,23,26,28,30,32,34,36,38,40,41,42,45,47,50,52,55,57,60,62,65,67,69,71,73,75,77,79,81,83,85,87,88,90,92,94,97,100,102,104,106,107,109,110,112,115,118,121,123,124,126,127,128,130,132,133,134,136,137,139,140,142],
+  "relocations": [
+    {"at":63,"size":"word","value":127}
+  ],
+  "variable": [1,3,5,7,9,11,15,19,20,22,24,25,27,29,33,37,39,43,44,46,48,49,51,53,54,56,58,59,61,68,70,74,78,82,84,89,91,95,96,98,99,101,103,108,111,113,114,116,117,119,120,122,131,135,138,141],
+  "symbols": [
+    {"at":0,"name":"ai_choose_moves","kind":"routine"},
+    {"at":36,"name":"ai_choose_loop","kind":"label"},
+    {"at":102,"name":"ai_choose_pick","kind":"label"},
+    {"at":126,"name":"ai_choose_done","kind":"label"},
+    {"at":127,"name":"multiply_by_8","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":142,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Gives a joystick value to each fighter that the computer controls. The value comes from the pose of the other fighter, the distance and a random column. It does nothing in a two-player game. It also does nothing when $af, $b2, $b4, $b5, $ba or $bb has bit 7 set. Demo ($b3 = 1): both fighters. One-player game: only fighter 1."},
+    {"at":14,"placement":"side","text":"The opponent number selects one of 8 tables of 32 column numbers at $c8a2."},
+    {"at":28,"placement":"side","text":"X = the fighter that the computer looks at. The computer moves the other fighter."},
+    {"at":38,"placement":"side","text":"The pose of the watched fighter selects a pointer to a row list at $c9da."},
+    {"at":57,"placement":"side","text":"Distance band 0-7 from $c9b2 selects a row number."},
+    {"at":62,"placement":"side","text":"Row address = $cb38 + 8 * row number. A row holds 8 joystick values."},
+    {"at":75,"placement":"side","text":"Pointer to the 9 joystick directions at $cdf0 for the move look-up."},
+    {"at":83,"placement":"side","text":"X = the fighter that the computer moves."},
+    {"at":88,"placement":"side","text":"The counter increments one time for each fighter in each frame."},
+    {"at":94,"placement":"side","text":"Demo only: the random number is CIA 1 timer B low EOR timer A low."},
+    {"at":102,"placement":"side","text":"Column 0-7 from the level table at a random position 0-31."},
+    {"at":110,"placement":"side","text":"Uses the joystick value as input of the computer fighter."},
+    {"at":127,"placement":"line","text":"Multiplies A by 8. Output: low byte in A, high byte in $88, carry clear for A < $20."}
+  ],
+  "references": [],
+  "operands": []
+}

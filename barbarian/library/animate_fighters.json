@@ -1,0 +1,69 @@
+{
+  "name": "animate_fighters",
+  "title": "Move sequences and poses of the fighters",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$893a"},
+  "length": 226,
+  "bytes": [
+    "a200a5bb3020a5ba100160a003b979bd",
+    "0980c568d007206389e84c63898810ed",
+    "a201206389ca4c6389b5670aa8b987bc",
+    "8565b988bc8566a006b567d985c8d00e",
+    "b98cc8d569d007b993c885dc85dd8810",
+    "e8b469b165c9fff02e48c89469b165c9",
+    "ffd004a900956b68956f0aa8b980bd85",
+    "89b981bd858a8699201c8a20a78a202c",
+    "8a20598ba69960c8b165d00595694c71",
+    "89c901d003956760c902d008c8b16595",
+    "694c7189c903d035b567c99dd01fb591",
+    "4901959185b2869daabd4a7fa69d1875",
+    "719571e0019006a592498185b7c8b165",
+    "956b09809567a90095694c6389d6694c",
+    "7189"
+  ],
+  "instructions": [0,2,4,6,8,10,11,13,16,18,20,22,25,26,29,30,32,34,37,38,41,43,44,45,48,50,53,55,57,59,62,64,67,69,71,74,76,78,79,81,83,85,87,89,90,91,93,95,97,99,101,103,104,106,107,108,111,113,116,118,120,123,126,129,132,134,135,136,138,140,142,145,147,149,151,152,154,156,157,159,161,164,166,168,170,172,174,176,178,180,182,184,185,188,190,191,193,195,197,199,201,203,205,206,208,210,212,214,216,218,221,223],
+  "relocations": [
+    {"at":23,"size":"word","value":41},
+    {"at":27,"size":"word","value":41},
+    {"at":35,"size":"word","value":41},
+    {"at":39,"size":"word","value":41},
+    {"at":143,"size":"word","value":55},
+    {"at":162,"size":"word","value":55},
+    {"at":219,"size":"word","value":41},
+    {"at":224,"size":"word","value":55}
+  ],
+  "variable": [3,7,14,15,19,42,46,47,49,51,52,54,58,60,61,65,66,68,72,73,75,77,82,84,92,94,102,105,109,110,112,114,115,117,119,121,122,124,125,127,128,130,131,133,137,141,150,158,160,169,175,179,181,183,186,187,189,192,194,200,204,207,209,213,217,222],
+  "symbols": [
+    {"at":0,"name":"animate_fighters","kind":"routine"},
+    {"at":11,"name":"animate_fighters_order","kind":"label"},
+    {"at":13,"name":"animate_fighters_check","kind":"label"},
+    {"at":29,"name":"animate_fighters_next","kind":"label"},
+    {"at":38,"name":"animate_fighters_single","kind":"label"},
+    {"at":41,"name":"animate_fighter","kind":"routine"},
+    {"at":55,"name":"animate_fighter_step","kind":"label"},
+    {"at":57,"name":"animate_fighter_sfx_loop","kind":"label"},
+    {"at":78,"name":"animate_fighter_sfx_next","kind":"label"},
+    {"at":103,"name":"animate_fighter_pose","kind":"label"},
+    {"at":135,"name":"animate_fighter_command","kind":"label"},
+    {"at":145,"name":"animate_fighter_cmd_stop","kind":"label"},
+    {"at":152,"name":"animate_fighter_cmd_goto","kind":"label"},
+    {"at":164,"name":"animate_fighter_cmd_chain","kind":"label"},
+    {"at":205,"name":"animate_fighter_next_move","kind":"label"},
+    {"at":221,"name":"animate_fighter_hold","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":225,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Animates both fighters and draws them into the work bitmap. The drawing order sets which fighter is in front. When fighter 1 does one of the 4 moves at $bd79, fighter 0 goes first. During set-up ($ba bit 7) it does nothing. When $bb bit 7 is set, it animates only fighter 0."},
+    {"at":41,"placement":"line","text":"Steps the move sequence of fighter X by one byte and draws the new pose. The sequence of move $67,x comes from the pointers at $bc87. A byte below $ff is a pose number. $ff is a command. The next byte: 0 = start again, 1 = stop, 2 = go to an index. Command 3 starts the next move. A higher command holds the last pose. At move $9d (turn), command 3 also changes the facing and moves the fighter by $7f4a."},
+    {"at":57,"placement":"side","text":"7 pairs of move and frame at $c885/$c88c start the sound at $c893."},
+    {"at":99,"placement":"side","text":"The last pose of the sequence: the move can be interrupted."},
+    {"at":107,"placement":"side","text":"The pose number selects a pose record at $bd80."},
+    {"at":168,"placement":"side","text":"Move $9d is the turn: it changes the facing."},
+    {"at":180,"placement":"side","text":"The new facing clears bit 7 of $b2."},
+    {"at":201,"placement":"side","text":"Fighter 1 turned: requests the mirror of the shared sprites."},
+    {"at":221,"placement":"side","text":"Shows the last pose again."}
+  ],
+  "references": [],
+  "operands": []
+}

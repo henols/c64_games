@@ -1,0 +1,32 @@
+{
+  "name": "count_down_timers",
+  "title": "Frame counters: idle timers, bout clock",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$98f7"},
+  "length": 40,
+  "bytes": [
+    "a201b595f002d695ca10f7a5b405b505",
+    "af300ea5c8f00ac6c9d006a93285c9c6",
+    "c8a5caf002c6ca60"
+  ],
+  "instructions": [0,2,4,6,8,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39],
+  "relocations": [],
+  "variable": [3,7,12,14,16,20,24,30,32,34,38],
+  "symbols": [
+    {"at":0,"name":"count_down_timers","kind":"routine"},
+    {"at":2,"name":"count_down_timers_loop","kind":"label"},
+    {"at":8,"name":"count_down_timers_next","kind":"label"},
+    {"at":33,"name":"update_timers_delay","kind":"label"},
+    {"at":39,"name":"update_timers_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":39,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Once a frame: counts down the idle timers of both fighters, the bout clock and the counter $ca."},
+    {"at":11,"placement":"side","text":"The time counts only when bit 7 of $b4, $b5 and $af is clear."},
+    {"at":23,"placement":"side","text":"Counts 50 frames for each step of the time."},
+    {"at":33,"placement":"side","text":"Decrements the delay counter until it is 0."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,164 @@
+{
+ "name": "decapitation, dense screens",
+ "start": {
+  "program": "original/rdi/barbarian_part2_rdi.prg"
+ },
+ "symbols": "knowledge",
+ "steps": [
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "frames": 100
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "$00be",
+    "data": "07"
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "d01630"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01660"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01690"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01720"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01750"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01780"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01810"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01840"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01870"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01900"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01930"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01960"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d01990"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d02020"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "screen": "d02050"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "frames": 400
+  },
+  {
+   "frames": 400
+  },
+  {
+   "frames": 400
+  },
+  {
+   "frames": 80
+  }
+ ]
+}

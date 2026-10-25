@@ -1,0 +1,60 @@
+{
+  "name": "move_fighter",
+  "title": "Horizontal movement of a fighter",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8aa7"},
+  "length": 178,
+  "bytes": [
+    "a009b189f03a85a7c8b18985aea699b4",
+    "91a5a759487f85a746a746a746a7900f",
+    "20e88a20248b101849ff387571957146",
+    "a7900d20098b20248b10051875719571",
+    "6038b571e5ae85aeb491d00da5ae3004",
+    "c903b00ba9034c068ba5ae1002a90095",
+    "716018b57165aeb491f009c91c900ba9",
+    "1c4c218bc9209002a91c957160a5af30",
+    "2ba59138d007a572e5714c388ba571e5",
+    "7285c31017a5b23013b567c991d0108a",
+    "4901a8b96700c984d00585b2297f60a5",
+    "c360"
+  ],
+  "instructions": [0,2,4,6,8,9,11,13,15,17,19,22,24,26,28,30,32,35,38,40,42,43,45,47,49,51,54,57,59,60,62,64,65,66,68,70,72,74,76,78,80,82,84,86,89,91,93,95,97,98,99,101,103,105,107,109,111,113,116,118,120,122,124,125,127,129,131,132,134,136,138,141,143,145,147,149,151,153,155,157,159,160,162,163,166,168,170,172,174,175,177],
+  "relocations": [
+    {"at":33,"size":"word","value":65},
+    {"at":36,"size":"word","value":125},
+    {"at":52,"size":"word","value":98},
+    {"at":55,"size":"word","value":125},
+    {"at":87,"size":"word","value":95},
+    {"at":114,"size":"word","value":122},
+    {"at":139,"size":"word","value":145}
+  ],
+  "variable": [3,7,10,12,14,16,18,20,21,23,25,27,29,44,46,48,61,63,67,69,71,73,77,90,96,100,102,104,123,126,130,135,137,142,144,146,150,154,164,165,171,176],
+  "symbols": [
+    {"at":0,"name":"move_fighter","kind":"routine"},
+    {"at":47,"name":"move_fighter_right","kind":"label"},
+    {"at":64,"name":"move_fighter_done","kind":"label"},
+    {"at":65,"name":"step_fighter_left","kind":"routine"},
+    {"at":84,"name":"step_fighter_left_min","kind":"label"},
+    {"at":89,"name":"step_fighter_left_clamp0","kind":"label"},
+    {"at":95,"name":"step_fighter_left_store","kind":"label"},
+    {"at":98,"name":"step_fighter_right","kind":"routine"},
+    {"at":116,"name":"step_fighter_right_clamp","kind":"label"},
+    {"at":122,"name":"step_fighter_right_store","kind":"label"},
+    {"at":125,"name":"get_fighter_gap","kind":"routine"},
+    {"at":141,"name":"get_fighter_gap_swap","kind":"label"},
+    {"at":145,"name":"get_fighter_gap_check","kind":"label"},
+    {"at":172,"name":"get_fighter_gap_positive","kind":"label"},
+    {"at":175,"name":"get_fighter_gap_negative","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":177,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Moves fighter $99 by the step in byte 10 of the pose record. Byte 9 holds the direction bits. The facing swaps the bits (EOR $7f48). Bit 2: X decreases. Bit 3: X increases. Fighters that pass each other move back."},
+    {"at":28,"placement":"side","text":"Bit 2 into carry."},
+    {"at":65,"placement":"line","text":"Decreases $71,x by $ae. Minimum: 3 when the fighter faces right ($91,x = 0), else 0."},
+    {"at":98,"placement":"line","text":"Increases $71,x by $ae. Maximum: $1c. When the fighter faces right, only a value of $20 or more becomes $1c."},
+    {"at":125,"placement":"line","text":"Calculates the gap between the fighters from the facing of fighter 0 into $c3. Negative: the fighters passed each other. When fighter X does move $91 and the other fighter does move $84, it sets $b2 = $84 (turn request). Output: A = gap, N set only for a negative gap that must be corrected. After a beaten fighter ($af bit 7), N is clear."}
+  ],
+  "references": [],
+  "operands": []
+}

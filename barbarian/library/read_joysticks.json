@@ -1,0 +1,68 @@
+{
+  "name": "read_joysticks",
+  "title": "Joystick input of the human fighters",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$860f"},
+  "length": 179,
+  "bytes": [
+    "a5b3d008a6bd201c86ca10fa60a5af05",
+    "b505b205b405ba302ca002b97dbd0980",
+    "d567f0218810f4b5910aa8b9eccd8581",
+    "b9edcd8582bd00dc491f291f20558620",
+    "6386208d8660956d290fa008d181f003",
+    "8810f960849cb567297fa8b56d2910d0",
+    "06b902ce4c7986b91ece8587208b8765",
+    "87693a8587a58869ce8588a49c60b56b",
+    "3030b567c99ad00818987567c99af022",
+    "b1870980d567f01a9567b187956b0aa8",
+    "b987bc8587b988bc8588a0009469b187",
+    "956f60"
+  ],
+  "instructions": [0,2,4,6,9,10,12,13,15,17,19,21,23,25,27,30,32,34,36,37,39,41,42,43,46,48,51,53,56,58,60,63,66,69,70,72,74,76,78,80,81,83,84,86,88,90,91,93,95,97,100,103,106,108,111,113,115,117,119,121,123,125,126,128,130,132,134,136,137,138,140,142,144,146,148,150,152,154,156,158,159,160,163,165,168,170,172,174,176,178],
+  "relocations": [
+    {"at":7,"size":"word","value":13},
+    {"at":61,"size":"word","value":70},
+    {"at":64,"size":"word","value":84},
+    {"at":67,"size":"word","value":126},
+    {"at":101,"size":"word","value":106}
+  ],
+  "variable": [1,5,14,16,18,20,22,28,29,33,40,44,45,47,49,50,52,54,55,71,77,85,87,92,98,99,104,105,107,109,110,112,116,118,122,124,127,131,139,145,149,153,155,157,161,162,164,166,167,169,173,175,177],
+  "symbols": [
+    {"at":0,"name":"read_joysticks","kind":"routine"},
+    {"at":6,"name":"read_joysticks_loop","kind":"label"},
+    {"at":12,"name":"read_joysticks_done","kind":"label"},
+    {"at":13,"name":"read_joystick","kind":"routine"},
+    {"at":27,"name":"read_joystick_check_move","kind":"label"},
+    {"at":69,"name":"read_joystick_done","kind":"label"},
+    {"at":70,"name":"joystick_to_direction","kind":"routine"},
+    {"at":76,"name":"joystick_to_direction_loop","kind":"label"},
+    {"at":83,"name":"joystick_to_direction_done","kind":"label"},
+    {"at":84,"name":"find_move_row","kind":"routine"},
+    {"at":103,"name":"find_move_row_fire","kind":"label"},
+    {"at":106,"name":"find_move_row_calc","kind":"label"},
+    {"at":126,"name":"start_new_move","kind":"routine"},
+    {"at":144,"name":"start_new_move_check","kind":"label"},
+    {"at":178,"name":"start_new_move_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":24,"type":"code"},
+    {"start":25,"end":26,"type":"code"},
+    {"start":27,"end":178,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Reads the joystick of each human fighter, from fighter two_players down to fighter 0. Not in the demo."},
+    {"at":13,"placement":"line","text":"Reads the joystick of fighter X and selects the next move. Fighter 0 uses port 2 ($dc00), fighter 1 port 1 ($dc01)."},
+    {"at":23,"placement":"side","text":"No input during the walk-in, the time-out, the set-up, the turn, or after a kill."},
+    {"at":25,"placement":"side","text":"Moves $1b, $08 and $13 ignore the joystick."},
+    {"at":43,"placement":"side","text":"Direction table for the facing of the fighter."},
+    {"at":53,"placement":"side","text":"Bits 0-4 of the port: 1 = pressed."},
+    {"at":70,"placement":"line","text":"Stores the input A in fighter_input. Returns Y = 0-8: none, forward, back, down, up, down-forward, up-forward, down-back, up-back. Y = $ff for no match."},
+    {"at":84,"placement":"line","text":"Sets move_ptr to the row of 9 next moves for the current move. Uses table $ce1e with fire, $ce02 without fire. Keeps Y."},
+    {"at":111,"placement":"side","text":"move_ptr = $ce3a + 9 x row."},
+    {"at":126,"placement":"line","text":"Starts the move of row entry Y unless the current move is locked or is the same. Sets the first pose."},
+    {"at":130,"placement":"side","text":"Idle move $1a: stays while there is no direction."},
+    {"at":156,"placement":"side","text":"Bit 7 of the table entry locks the new move."},
+    {"at":160,"placement":"side","text":"Move script: table $bc87."}
+  ],
+  "references": [],
+  "operands": []
+}

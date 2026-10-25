@@ -1,0 +1,62 @@
+{
+  "name": "animate_sprites",
+  "title": "Sprite animations: frames, colour and expansion",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$9720"},
+  "length": 211,
+  "bytes": [
+    "a207bd9202100aa5171da6ce85172035",
+    "97ca10ee60bd9a02d072bd92020aa8b9",
+    "e8cb8561b9e9cb8562ad1cd03daece8d",
+    "1cd0ad17d03daece8d17d0ad1dd03dae",
+    "ce8d1dd0a000b1619d9a02c8b161859f",
+    "290f9529069f9009ad1cd01da6ce8d1c",
+    "d0069f9009ad1dd01da6ce8d1dd0069f",
+    "9009ad17d01da6ce8d17d0bca202b161",
+    "c9fff00c186920954afea202de9a0260",
+    "c8b161d008a9029da2024c9b97c901d0",
+    "0fa9009d9202a5173daece85174cac97",
+    "c902d00cc8b1611869029da2024c9b97",
+    "c8b1619d9202a9009d9a02a9029da202",
+    "4c3597"
+  ],
+  "instructions": [0,2,5,7,9,12,14,17,18,20,21,24,26,29,30,31,34,36,39,41,44,47,50,53,56,59,62,65,68,70,72,75,76,78,80,82,84,86,88,91,94,97,99,101,104,107,110,112,114,117,120,123,126,128,130,132,133,135,137,140,143,144,145,147,149,151,154,157,159,161,163,166,168,171,173,176,178,180,181,183,184,186,189,192,193,195,198,200,203,205,208],
+  "relocations": [
+    {"at":15,"size":"word","value":21},
+    {"at":155,"size":"word","value":123},
+    {"at":174,"size":"word","value":140},
+    {"at":190,"size":"word","value":123},
+    {"at":209,"size":"word","value":21}
+  ],
+  "variable": [3,4,8,10,11,13,22,23,27,28,32,33,35,37,38,40,42,43,45,46,48,49,51,52,54,55,57,58,60,61,63,64,66,67,71,73,74,77,79,83,85,89,90,92,93,95,96,98,102,103,105,106,108,109,111,115,116,118,119,121,122,124,125,127,136,138,139,141,142,146,152,153,164,165,167,169,170,172,182,187,188,194,196,197,201,202,206,207],
+  "symbols": [
+    {"at":0,"name":"animate_sprites","kind":"routine"},
+    {"at":2,"name":"animate_sprites_loop","kind":"label"},
+    {"at":17,"name":"animate_sprites_next","kind":"label"},
+    {"at":21,"name":"animate_sprite","kind":"routine"},
+    {"at":97,"name":"animate_sprite_check_xexp","kind":"label"},
+    {"at":110,"name":"animate_sprite_check_yexp","kind":"label"},
+    {"at":123,"name":"animate_sprite_read_frame","kind":"label"},
+    {"at":140,"name":"animate_sprite_count_delay","kind":"label"},
+    {"at":144,"name":"animate_sprite_command","kind":"label"},
+    {"at":157,"name":"animate_sprite_cmd_end","kind":"label"},
+    {"at":176,"name":"animate_sprite_cmd_goto","kind":"label"},
+    {"at":192,"name":"animate_sprite_cmd_new_anim","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":210,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Runs the animation of each sprite 7-0 with sprite_anim bit 7 set, and switches that sprite on."},
+    {"at":21,"placement":"line","text":"Steps the animation of sprite X. Sets the frame, colour, multicolour and expansion when the delay ends."},
+    {"at":26,"placement":"side","text":"Gets the animation pointer from the table at $cbe8."},
+    {"at":68,"placement":"side","text":"Byte 0: frame delay. Byte 1: bit 7 multicolour, bit 6 X expand, bit 5 Y expand, bits 0-3 colour."},
+    {"at":123,"placement":"side","text":"Bytes from offset 2: frame numbers, or $ff and a command."},
+    {"at":132,"placement":"side","text":"The sprite pointer is the frame number + $20."},
+    {"at":144,"placement":"line","text":"Command after $ff: 0 restarts, 1 ends, 2 n goes to frame n, other n starts animation n."},
+    {"at":157,"placement":"side","text":"Command 1: stops the animation and switches the sprite off."},
+    {"at":176,"placement":"side","text":"Command 2: the next byte + 2 is the new offset."},
+    {"at":192,"placement":"side","text":"Other command: the next byte is the new animation."}
+  ],
+  "references": [],
+  "operands": []
+}

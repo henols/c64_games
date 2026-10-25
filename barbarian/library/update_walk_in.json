@@ -1,0 +1,37 @@
+{
+  "name": "update_walk_in",
+  "title": "Walk-in at the start of a bout",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8358"},
+  "length": 81,
+  "bytes": [
+    "a5ba05bb304aa5b41046a5aac906902b",
+    "20a983a201a981d567f0099567a90095",
+    "6920b292ca10eea5dc0d51023022a989",
+    "85dca98a85dda98b85de60a90085b4a9",
+    "ff85958596a5b83007208a94a98185e0",
+    "60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,19,21,23,25,27,29,31,33,36,37,39,41,44,46,48,50,52,54,56,58,59,61,63,65,67,69,71,73,76,78,80],
+  "relocations": [],
+  "variable": [1,3,7,11,17,18,24,28,32,34,35,40,42,43,49,53,57,62,66,68,70,74,75,79],
+  "symbols": [
+    {"at":0,"name":"update_walk_in","kind":"routine"},
+    {"at":21,"name":"update_walk_in_loop","kind":"label"},
+    {"at":36,"name":"update_walk_in_next","kind":"label"},
+    {"at":59,"name":"update_walk_in_end","kind":"label"},
+    {"at":80,"name":"update_walk_in_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":80,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"At the start of a bout, walks both fighters in until the distance is less than 6. Then the bout starts."},
+    {"at":21,"placement":"side","text":"Move $01: walks forward."},
+    {"at":33,"placement":"side","text":"Sets the time to 60 seconds."},
+    {"at":46,"placement":"side","text":"Starts the sound effects $89-$8b of the walk-in."},
+    {"at":65,"placement":"side","text":"Starts the idle timers of both fighters."},
+    {"at":73,"placement":"side","text":"With sound on, waits for the volume and starts the fade-in again."}
+  ],
+  "references": [],
+  "operands": []
+}

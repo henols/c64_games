@@ -1,0 +1,38 @@
+{
+  "name": "start_sound_request",
+  "title": "Tune requests and volume fade",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$9e05"},
+  "length": 105,
+  "bytes": [
+    "8a0aa8b5dcc9839009a5b81005a90095",
+    "dc60b5dc9d5102a90085ea95dc9d3902",
+    "991802991902991e02991f02bc7da0b9",
+    "350029f6993500a548290f3daece8548",
+    "60a5e2d023a5e01011297f85e2e6dfa5",
+    "dfc90f901385e04c6d9ea5e1100a297f",
+    "85e2c6dfd00285e160"
+  ],
+  "instructions": [0,1,2,3,5,7,9,11,13,15,17,18,20,23,25,27,29,32,35,38,41,44,47,50,52,55,57,59,62,64,65,67,69,71,73,75,77,79,81,83,85,87,90,92,94,96,98,100,102,104],
+  "relocations": [
+    {"at":88,"size":"word","value":104}
+  ],
+  "variable": [4,10,16,19,21,22,26,28,30,31,33,34,36,37,39,40,42,43,45,46,48,49,53,54,56,60,61,63,66,70,76,78,80,86,91,97,99,103],
+  "symbols": [
+    {"at":0,"name":"start_sound_request","kind":"routine"},
+    {"at":18,"name":"start_sound_request_accept","kind":"label"},
+    {"at":65,"name":"update_volume_fade","kind":"routine"},
+    {"at":90,"name":"update_volume_fade_out","kind":"label"},
+    {"at":104,"name":"update_volume_fade_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":104,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Starts the tune that sound_request,x asks for on voice X. When sound is off, drops requests of $83 and higher."},
+    {"at":23,"placement":"side","text":"Stops the effects, the note time and the filter sweep. Read offset = 0."},
+    {"at":55,"placement":"side","text":"Clears the resonance and the filter bit of the voice."},
+    {"at":65,"placement":"line","text":"Fades the master volume in (to 15) or out (to 0), one step after each fade delay."}
+  ],
+  "references": [],
+  "operands": []
+}

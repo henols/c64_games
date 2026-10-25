@@ -1,0 +1,50 @@
+{
+  "name": "clear_pose_buffer",
+  "title": "Pose image of a fighter in the pose buffer",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8a1c"},
+  "length": 139,
+  "bytes": [
+    "a2008a9dca059dca069d0107e8d0f460",
+    "a008a900857db189f0324a667d4a667d",
+    "6908857e849d980aa8b9b6ce858fb9b7",
+    "ce8590a03eb17df00e85a4849cb9c8ce",
+    "a8a5a4918fa49c8810eba49d8810c3a6",
+    "99b591f00320758a60a9ca858fa90585",
+    "90a93e859aa008b18ff004aabdaa0248",
+    "8810f4a00868918f8810fa18a58f6909",
+    "858f9002e690c69a10db60"
+  ],
+  "instructions": [0,2,3,6,9,12,13,15,16,18,20,22,24,26,27,29,30,32,34,36,38,39,40,41,44,46,49,51,53,55,57,59,61,64,65,67,69,71,72,74,76,77,79,81,83,85,88,89,91,93,95,97,99,101,103,105,107,108,111,112,113,115,117,118,120,121,123,124,126,128,130,132,134,136,138],
+  "relocations": [
+    {"at":86,"size":"word","value":89}
+  ],
+  "variable": [4,5,7,8,10,11,21,23,28,31,35,37,42,43,45,47,48,50,54,58,60,62,63,66,68,70,75,80,82,92,96,100,104,109,110,119,125,129,133,135],
+  "symbols": [
+    {"at":0,"name":"clear_pose_buffer","kind":"routine"},
+    {"at":3,"name":"clear_pose_buffer_loop","kind":"label"},
+    {"at":16,"name":"build_pose_image","kind":"routine"},
+    {"at":18,"name":"build_pose_image_part","kind":"label"},
+    {"at":53,"name":"build_pose_image_byte","kind":"label"},
+    {"at":71,"name":"build_pose_image_skip","kind":"label"},
+    {"at":76,"name":"build_pose_image_next","kind":"label"},
+    {"at":88,"name":"build_pose_image_done","kind":"label"},
+    {"at":89,"name":"mirror_pose_buffer","kind":"routine"},
+    {"at":101,"name":"mirror_pose_buffer_row","kind":"label"},
+    {"at":103,"name":"mirror_pose_buffer_read","kind":"label"},
+    {"at":111,"name":"mirror_pose_buffer_push","kind":"label"},
+    {"at":117,"name":"mirror_pose_buffer_write","kind":"label"},
+    {"at":134,"name":"mirror_pose_buffer_next","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":138,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Clears the pose buffer at $05ca-$07ff and the byte at $0800. Output: X = 0, A = 0."},
+    {"at":16,"placement":"line","text":"Builds the image of a pose in the pose buffer at $05ca: 63 lines of 9 bytes, a 3 x 3 grid of sprite-shaped parts. Bytes 0-8 of the pose record at ($89) are the part numbers. A part is 63 bytes at $0800 + 64 * number. 0 = no part. The 0 bytes of a part are transparent. Mirrors the image when fighter $99 faces left ($91,x not 0)."},
+    {"at":39,"placement":"side","text":"Buffer address of the part from $ceb6."},
+    {"at":61,"placement":"side","text":"Buffer offset of the sprite byte from $cec8."},
+    {"at":89,"placement":"line","text":"Mirrors the pose buffer horizontally: it reverses the 9 bytes of each line and mirrors each byte through the table at $02aa."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,257 @@
+{
+ "name": "screens of attract",
+ "start": {
+  "program": "original/rdi/barbarian_part2_rdi.prg"
+ },
+ "symbols": "knowledge",
+ "steps": [
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f000400"
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f000800"
+  },
+  {
+   "frames": 100
+  },
+  {
+   "frames": 300
+  },
+  {
+   "screen": "f001200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f001600"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f002000"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f002400"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f002800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f003200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f003600"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f004000"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f004400"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f004800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f005200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f005600"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f006000"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f006400"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f006800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f007200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f007600"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f008000"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f008400"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f008800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f009200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f009600"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f010000"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f010400"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f010800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f011200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f011600"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f012000"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f012400"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f012800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f013200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f013600"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f014000"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f014400"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f014800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f015200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f015600"
+  },
+  {
+   "frames": 300
+  },
+  {
+   "screen": "end"
+  }
+ ]
+}

@@ -1,0 +1,115 @@
+{
+  "format": 1,
+  "name": "The keys: F3 music/effects, CTRL+V, F5, F1 and F7 to start, F5 in the game, Q to quit",
+  "program": "original/rdi/barbarian_part2_rdi.prg",
+  "sha256": "ba39ad343eaeef9ed43fda3dc6abcd99d20834cbb9ca4ec877bf10d0552da491",
+  "symbols": "none",
+  "load": false,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$dc04",
+    "$dc06"
+  ],
+  "events": [],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 259,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 259,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 259,
+      "rom": true
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$93aa",
+      "addr": "$dc01",
+      "reads": 88,
+      "rom": false
+    },
+    {
+      "site": "$93d1",
+      "addr": "$dc01",
+      "reads": 88,
+      "rom": false
+    },
+    {
+      "site": "$9416",
+      "addr": "$dc01",
+      "reads": 88,
+      "rom": false
+    },
+    {
+      "site": "$943d",
+      "addr": "$dc01",
+      "reads": 88,
+      "rom": false
+    },
+    {
+      "site": "$945e",
+      "addr": "$dc01",
+      "reads": 87,
+      "rom": false
+    },
+    {
+      "site": "$9477",
+      "addr": "$dc01",
+      "reads": 87,
+      "rom": false
+    },
+    {
+      "site": "$876a",
+      "addr": "$dc06",
+      "reads": 136,
+      "rom": false
+    },
+    {
+      "site": "$876d",
+      "addr": "$dc04",
+      "reads": 136,
+      "rom": false
+    },
+    {
+      "site": "$93b6",
+      "addr": "$dc01",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$93c2",
+      "addr": "$dc01",
+      "reads": 136,
+      "rom": false
+    },
+    {
+      "site": "$944d",
+      "addr": "$dc01",
+      "reads": 2706157,
+      "rom": false
+    }
+  ],
+  "ticks": 67341456,
+  "hash": "450e19cf"
+}

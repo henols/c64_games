@@ -1,0 +1,34 @@
+{
+  "name": "colour_side_blocks",
+  "title": "Colours of screen areas",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$91fa"},
+  "length": 120,
+  "bytes": [
+    "a203a90e9d50d89d78d89da0d89dc8d8",
+    "a9059d74d89d9cd89dc4d89decd8a973",
+    "9d50449d78449da0449dc844a97d9d74",
+    "449d9c449dc4449dec44ca10c560a21f",
+    "a90a9d34da9d5cda9d84da9dacda9dd4",
+    "da9dfcda9d24db9d4cdba9c09d34469d",
+    "5c469d84469dac469dd4469dfc469d24",
+    "479d4c47ca10c960"
+  ],
+  "instructions": [0,2,4,7,10,13,16,18,21,24,27,30,32,35,38,41,44,46,49,52,55,58,59,61,62,64,66,69,72,75,78,81,84,87,90,92,95,98,101,104,107,110,113,116,117,119],
+  "relocations": [],
+  "variable": [5,6,8,9,11,12,14,15,19,20,22,23,25,26,28,29,33,34,36,37,39,40,42,43,47,48,50,51,53,54,56,57,67,68,70,71,73,74,76,77,79,80,82,83,85,86,88,89,93,94,96,97,99,100,102,103,105,106,108,109,111,112,114,115],
+  "symbols": [
+    {"at":0,"name":"colour_side_blocks","kind":"routine"},
+    {"at":2,"name":"colour_side_blocks_loop","kind":"label"},
+    {"at":62,"name":"reset_fight_colours","kind":"routine"},
+    {"at":64,"name":"reset_fight_colours_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":119,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Sets the colours of rows 2-5. Columns 0-3 get screen $73 and colour RAM $0e. Columns 36-39 get $7d and $05."},
+    {"at":62,"placement":"line","text":"Sets the colours of the fight area, rows 14-21, columns 4-35: screen RAM $c0 and colour RAM $0a. Removes the colours of a text there."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,38 @@
+{
+  "name": "set_end_figure",
+  "title": "Sprite figure of the end sequence",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8e17"},
+  "length": 92,
+  "bytes": [
+    "a5bb1057a5cb0aaabd9dcc8579bd9ecc",
+    "857a78a000a203b1799d9202d00aa517",
+    "3daece85178d15d0a9009d9a02a9029d",
+    "a202849c869d8a0aaac8c8c8c8b17995",
+    "02c8c8c8c818b17969a29503a49cc8a6",
+    "9dca10c3a512090f85125860"
+  ],
+  "instructions": [0,2,4,6,7,8,11,13,16,18,19,21,23,25,28,30,32,35,37,40,42,45,47,50,52,54,55,56,57,58,59,60,61,63,65,66,67,68,69,70,72,74,76,78,79,81,82,84,86,88,90,91],
+  "relocations": [],
+  "variable": [1,5,9,10,12,14,15,17,24,26,27,31,33,34,36,38,39,43,44,48,49,51,53,62,64,71,75,77,80,85,89],
+  "symbols": [
+    {"at":0,"name":"set_end_figure","kind":"routine"},
+    {"at":23,"name":"set_end_figure_loop","kind":"label"},
+    {"at":40,"name":"set_end_figure_anim","kind":"label"},
+    {"at":91,"name":"set_end_figure_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":91,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Runs only when end_sequence bit 7 is set. Starts sprites 0-3 from record end_figure_set of the table $cc9d. The main loop calls it each frame."},
+    {"at":4,"placement":"side","text":"Pointer to the 12-byte record: 4 animations, 4 X positions, 4 Y positions."},
+    {"at":21,"placement":"side","text":"Record byte 0 goes to sprite 3, byte 3 to sprite 0."},
+    {"at":23,"placement":"side","text":"Animation of the sprite: 0 switches the sprite off."},
+    {"at":40,"placement":"side","text":"Restarts the animation at its first step."},
+    {"at":61,"placement":"side","text":"X position from record byte 4-7."},
+    {"at":70,"placement":"side","text":"Y position from record byte 8-11, plus $a2."},
+    {"at":84,"placement":"side","text":"Sets the X bit 8 of sprites 0-3."}
+  ],
+  "references": [],
+  "operands": []
+}

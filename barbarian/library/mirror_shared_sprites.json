@@ -1,0 +1,36 @@
+{
+  "name": "mirror_shared_sprites",
+  "title": "Mirror of the shared sprite images",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8ce3"},
+  "length": 83,
+  "bytes": [
+    "a5b7104e297f85b7a92c85a1a9c08559",
+    "a954855aa03eb159aabdaa02855288b1",
+    "59aabdaa02855388b159aabdaa028554",
+    "a5529159c8a5539159c8a55491598888",
+    "8810d318a559694085599002e65ac6a1",
+    "10c260"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,25,28,30,31,33,34,37,39,40,42,43,46,48,50,52,53,55,57,58,60,62,63,64,65,67,68,70,72,74,76,78,80,82],
+  "relocations": [],
+  "variable": [1,7,11,15,19,23,26,27,29,32,35,36,38,41,44,45,47,49,51,54,56,59,61,69,73,77,79],
+  "symbols": [
+    {"at":0,"name":"mirror_shared_sprites","kind":"routine"},
+    {"at":20,"name":"mirror_shared_sprites_next","kind":"label"},
+    {"at":22,"name":"mirror_shared_sprites_row","kind":"label"},
+    {"at":78,"name":"mirror_shapes_next","kind":"label"},
+    {"at":82,"name":"mirror_shapes_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":9,"type":"code"},
+    {"start":10,"end":11,"type":"code"},
+    {"start":12,"end":82,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"When $b7 bit 7 is set, clears bit 7 and mirrors the 45 sprite images at $54c0 horizontally. Sprite pointers $53 and more have one copy for both facings ($9027). Fighter 1 turns: $b7 bit 7 is set."},
+    {"at":22,"placement":"side","text":"Swaps the 3 bytes of a sprite line and mirrors each byte through $02aa."},
+    {"at":78,"placement":"side","text":"Next sprite shape: $a1 counts 45 shapes down."}
+  ],
+  "references": [],
+  "operands": []
+}

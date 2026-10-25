@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "name": "Demo mode: the computer fights the computer for 15000 frames",
+  "program": "original/rdi/barbarian_part1_rdi.prg",
+  "sha256": "be23d11d9c2fd24241ff5607f82d871ece4af1cf8e7576972c7e8d8d7c787c1e",
+  "symbols": "none",
+  "load": false,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$dc04",
+    "$dc06"
+  ],
+  "events": [],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 260,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 260,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 260,
+      "rom": true
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$923e",
+      "addr": "$dc01",
+      "reads": 1487,
+      "rom": false
+    },
+    {
+      "site": "$9265",
+      "addr": "$dc01",
+      "reads": 1487,
+      "rom": false
+    },
+    {
+      "site": "$92ac",
+      "addr": "$dc01",
+      "reads": 1487,
+      "rom": false
+    },
+    {
+      "site": "$92d3",
+      "addr": "$dc01",
+      "reads": 1487,
+      "rom": false
+    },
+    {
+      "site": "$92f4",
+      "addr": "$dc01",
+      "reads": 1487,
+      "rom": false
+    },
+    {
+      "site": "$930d",
+      "addr": "$dc01",
+      "reads": 1487,
+      "rom": false
+    },
+    {
+      "site": "$85fe",
+      "addr": "$dc06",
+      "reads": 2336,
+      "rom": false
+    },
+    {
+      "site": "$8601",
+      "addr": "$dc04",
+      "reads": 2336,
+      "rom": false
+    }
+  ],
+  "ticks": 316579536,
+  "hash": "bafb3489"
+}

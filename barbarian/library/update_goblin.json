@@ -1,0 +1,71 @@
+{
+  "name": "update_goblin",
+  "title": "Sprites 3 and 4 take away the dead fighter",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$9639"},
+  "length": 231,
+  "bytes": [
+    "a5b0100920479620ab9620d49660ad92",
+    "02105ea5af297faab567c988d053a512",
+    "4829018558a5028557684a4a4a290185",
+    "56a5081869088555a5566900c558d031",
+    "a557c555d02ba201bde8cd9d5a02bde0",
+    "cd9d920220cc989d9a02a9029da202ca",
+    "10e6ad510205dc3008a9eb85dc85dd85",
+    "de60a5b11024ad510205dc3010c9d4f0",
+    "0ca9d485dca9d585dda9d685dea50829",
+    "07d007200397b002f67160a5b1302a20",
+    "0397d025a001a204b9eacd9d5a02b9e2",
+    "cd9d920220cc989d9a02a9029da202ca",
+    "8810e584b1a9e285dc60a5124a4a4a4a",
+    "a5086a4a4a38e90385c5a5af297faab5",
+    "71186905c5c560"
+  ],
+  "instructions": [0,2,4,7,10,13,14,17,19,21,23,24,26,28,30,32,33,35,37,39,41,42,43,44,45,47,49,51,52,54,56,58,60,62,64,66,68,70,72,75,78,81,84,87,90,92,95,96,98,101,103,105,107,109,111,113,114,116,118,121,123,125,127,129,131,133,135,137,139,141,143,145,147,150,152,154,155,157,159,162,164,166,168,171,174,177,180,183,186,188,191,192,193,195,197,199,201,202,204,205,206,207,208,210,211,212,213,214,216,218,220,222,223,225,226,228,230],
+  "relocations": [
+    {"at":5,"size":"word","value":14},
+    {"at":8,"size":"word","value":114},
+    {"at":11,"size":"word","value":155},
+    {"at":148,"size":"word","value":202},
+    {"at":160,"size":"word","value":202}
+  ],
+  "variable": [1,15,16,20,25,31,36,38,40,48,50,55,57,61,65,67,73,74,76,77,79,80,82,83,85,86,88,89,93,94,99,100,102,108,110,112,115,119,120,122,132,136,140,142,153,156,169,170,172,173,175,176,178,179,181,182,184,185,189,190,196,200,203,209,217,219,224,229],
+  "symbols": [
+    {"at":0,"name":"update_goblin","kind":"routine"},
+    {"at":13,"name":"update_goblin_exit","kind":"label"},
+    {"at":14,"name":"goblin_reach_sprite0","kind":"routine"},
+    {"at":72,"name":"goblin_reach_sprite0_loop","kind":"label"},
+    {"at":113,"name":"goblin_reach_sprite0_exit","kind":"label"},
+    {"at":114,"name":"goblin_drag_body","kind":"routine"},
+    {"at":141,"name":"goblin_drag_body_move","kind":"label"},
+    {"at":154,"name":"goblin_drag_body_exit","kind":"label"},
+    {"at":155,"name":"goblin_grab_body","kind":"routine"},
+    {"at":168,"name":"goblin_grab_body_loop","kind":"label"},
+    {"at":201,"name":"goblin_grab_body_exit","kind":"label"},
+    {"at":202,"name":"goblin_body_compare","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":230,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Runs the goblin events while goblin_active bit 7 is set. $91a7 starts the goblin as sprites 3 and 4."},
+    {"at":14,"placement":"line","text":"When sprite 3 reaches sprite 0 and the dead fighter has state $88, sprites 0 and 1 get new scripts."},
+    {"at":19,"placement":"side","text":"X = the index of the dead fighter."},
+    {"at":30,"placement":"side","text":"Gets the 9-bit X of sprite 0 in $57/$58."},
+    {"at":49,"placement":"side","text":"Gets the 9-bit X of sprite 3 plus 8 in $55/$56."},
+    {"at":70,"placement":"side","text":"Gives sprites 1 and 0 the scripts at $cde8 and the animations at $cde0."},
+    {"at":98,"placement":"side","text":"Requests sound $eb on the three voices when voice 1 is free."},
+    {"at":114,"placement":"line","text":"While goblin_drags bit 7 is set: plays sounds $d4-$d6 and moves the dead fighter one column with sprite 3."},
+    {"at":118,"placement":"side","text":"Requests sounds $d4-$d6 when voice 1 is free and does not play $d4."},
+    {"at":141,"placement":"side","text":"Moves the body only when sprite 3 is on a character column."},
+    {"at":152,"placement":"side","text":"Increments the column of the dead fighter (X from goblin_body_compare)."},
+    {"at":155,"placement":"line","text":"When sprite 3 reaches the dead fighter, sprites 4 and 3 get new scripts and goblin_drags is set."},
+    {"at":164,"placement":"side","text":"Gives sprites 4 and 3 the scripts at $cdea and the animations at $cde2."},
+    {"at":195,"placement":"side","text":"Y is $ff here: sets goblin_drags."},
+    {"at":197,"placement":"side","text":"Requests sound $e2 on voice 1."},
+    {"at":202,"placement":"line","text":"Compares dead fighter column + 5 with sprite 3 column - 3. Out: CMP flags, X = dead fighter."},
+    {"at":202,"placement":"side","text":"Bit 3 of sprite_x_msb is bit 8 of the sprite 3 X."},
+    {"at":208,"placement":"side","text":"Divides the 9-bit X of sprite 3 by 8."}
+  ],
+  "references": [],
+  "operands": []
+}

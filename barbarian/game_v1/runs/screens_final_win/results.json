@@ -1,0 +1,20 @@
+{
+  "name": "screens of final_win",
+  "completed": true,
+  "steps": 96,
+  "done": 96,
+  "pc": "$8a61",
+  "files": [
+    "f000400.png",
+    "f000800.png",
+    "f001200.png",
+    "f001600.png",
+    "f002000.png",
+    "f002400.png",
+    "f002800.png",
+    "f003200.png",
+    "f003600.png",
+    "end.png"
+  ],
+  "observations": {}
+}

@@ -1,0 +1,59 @@
+{
+  "name": "end_bout",
+  "title": "End of a bout and the next opponent",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$83f8"},
+  "length": 180,
+  "bytes": [
+    "a5af102d297faab571c92890248a4901",
+    "aa869db591c59df005a99d4c1f84b571",
+    "dd447ff00da982d567f0069567a90095",
+    "6960a5af297f859daabd427f9571a201",
+    "a98095678a9591204381a9009569ca10",
+    "ef86b485af85b085b1a59df008a5b7f0",
+    "04498185b7a5b3d028a5bdf00b20a983",
+    "a9c820f3854cab94a59dd008a9c820f3",
+    "854cab94a5bec90790034c8d84690185",
+    "be20738e60a5c485b4d00320738e20e3",
+    "8ca98085bb20e685a93220f38520368d",
+    "20dc8d60"
+  ],
+  "instructions": [0,2,4,6,7,9,11,13,14,16,17,19,21,23,25,27,30,32,35,37,39,41,43,45,47,49,50,52,54,56,57,60,62,64,66,68,69,71,74,76,78,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,112,114,117,120,122,124,126,129,132,134,136,138,141,143,145,148,149,151,153,155,158,161,163,165,168,170,173,176,179],
+  "relocations": [
+    {"at":28,"size":"word","value":39},
+    {"at":139,"size":"word","value":149}
+  ],
+  "variable": [1,8,18,20,22,31,33,34,40,44,48,51,55,58,59,61,67,70,72,73,77,82,84,86,88,90,94,100,102,106,110,111,115,116,118,119,121,127,128,130,131,133,144,146,147,150,152,156,157,159,160,164,166,167,171,172,174,175,177,178],
+  "symbols": [
+    {"at":0,"name":"end_bout","kind":"routine"},
+    {"at":30,"name":"end_bout_check_position","kind":"label"},
+    {"at":39,"name":"end_bout_set_move","kind":"label"},
+    {"at":49,"name":"end_bout_done","kind":"label"},
+    {"at":50,"name":"end_bout_reset","kind":"label"},
+    {"at":64,"name":"end_bout_reset_loop","kind":"label"},
+    {"at":101,"name":"end_bout_next","kind":"label"},
+    {"at":120,"name":"end_bout_check_loser","kind":"label"},
+    {"at":132,"name":"end_bout_player_won","kind":"label"},
+    {"at":141,"name":"end_bout_next_opponent","kind":"label"},
+    {"at":145,"name":"end_bout_swap_background","kind":"label"},
+    {"at":149,"name":"end_bout_final_stage","kind":"label"},
+    {"at":158,"name":"end_bout_final_stage_init","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":179,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"After a kill, waits until the loser is at X $28 or more. Then the winner turns and walks back to its start position."},
+    {"at":25,"placement":"side","text":"Move $1d: turns the fighter."},
+    {"at":37,"placement":"side","text":"Move $02: walks back."},
+    {"at":50,"placement":"line","text":"The winner is at its start position: resets both fighters and starts the walk-in of the next bout."},
+    {"at":97,"placement":"side","text":"The computer lost and the images are mirrored: mirrors them back."},
+    {"at":103,"placement":"side","text":"Demo: changes the background and continues."},
+    {"at":109,"placement":"side","text":"Two-player game: the game ends after one bout."},
+    {"at":124,"placement":"side","text":"Player lost: waits 200 frames and starts the demo again."},
+    {"at":134,"placement":"side","text":"After opponent 7, the final stage starts."},
+    {"at":145,"placement":"side","text":"Changes to the other background picture."},
+    {"at":149,"placement":"line","text":"Starts the final stage. Shows background 1 and changes the sprite images and a bitmap block."}
+  ],
+  "references": [],
+  "operands": []
+}

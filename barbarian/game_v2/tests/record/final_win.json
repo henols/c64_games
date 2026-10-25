@@ -1,0 +1,410 @@
+{
+ "name": "One player: wins a bout against opponent 7 (computer energy set to 1, opponent number set to 7), dodges Drax's bolts by rolling and crouching, reaches the princess",
+ "program": "original/fairlight/barbarian_p2_flt.prg",
+ "symbols": "none",
+ "inputs": [
+  "$dc00",
+  "$dc01",
+  "$dc04",
+  "$dc06"
+ ],
+ "coverage": "$8009",
+ "steps": [
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 500
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "frames": 1
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "$0094",
+    "data": "01"
+   }
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "$00be",
+    "data": "07"
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$84a7"
+    },
+    "timeoutFrames": 900
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 25
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 70
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 1500
+  }
+ ]
+}

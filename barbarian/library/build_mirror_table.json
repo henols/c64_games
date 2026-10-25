@@ -1,0 +1,35 @@
+{
+  "name": "build_mirror_table",
+  "title": "Mirror and mask tables for multicolour bytes",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8170"},
+  "length": 65,
+  "bytes": [
+    "a2008aa0030a080a66a82866a88810f5",
+    "a5a89daa02e8d0ea60a200a00386a406",
+    "a426a606a426a618a5a62903d0013808",
+    "26a52826a58810e7a5a59daa03e8d0db",
+    "60"
+  ],
+  "instructions": [0,2,3,5,6,7,8,10,11,13,14,16,18,21,22,24,25,27,29,31,33,35,37,39,40,42,44,46,47,48,50,51,53,54,56,58,61,62,64],
+  "relocations": [],
+  "variable": [9,12,17,19,20,30,32,34,36,38,41,49,52,57,59,60],
+  "symbols": [
+    {"at":0,"name":"build_mirror_table","kind":"routine"},
+    {"at":2,"name":"build_mirror_table_byte","kind":"label"},
+    {"at":5,"name":"build_mirror_table_pair","kind":"label"},
+    {"at":25,"name":"build_mask_table","kind":"routine"},
+    {"at":27,"name":"build_mask_table_byte","kind":"label"},
+    {"at":31,"name":"build_mask_table_pair","kind":"label"},
+    {"at":47,"name":"build_mask_table_store","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":64,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Builds the mirror table at $02aa. Each entry is its index with the order of the 4 pixel pairs reversed."},
+    {"at":25,"placement":"line","text":"Builds the mask table at $03aa. Each pixel pair %00 of the index gives %11, each other pair gives %00."},
+    {"at":44,"placement":"side","text":"Carry set when the pixel pair is %00."}
+  ],
+  "references": [],
+  "operands": []
+}

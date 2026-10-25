@@ -1,0 +1,43 @@
+{
+  "name": "init_sound",
+  "title": "SID init, SID shadow and the effects tick",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$9e6e"},
+  "length": 77,
+  "bytes": [
+    "a218a90095319d00d4ca10f8a2008a9d",
+    "0002e8e05ad0f8a20095cee8e020d0f9",
+    "60a218b5319d00d4ca10f860a598d01c",
+    "a202bd3c02f003de3c02ca10f5a5e8f0",
+    "02c6e820979c20a09d208f9e60"
+  ],
+  "instructions": [0,2,4,6,9,10,12,14,15,18,19,21,23,25,27,28,30,32,33,35,37,40,41,43,44,46,48,50,53,55,58,59,61,63,65,67,70,73,76],
+  "relocations": [
+    {"at":74,"size":"word","value":33}
+  ],
+  "variable": [5,7,8,16,17,26,36,38,39,45,51,52,56,57,62,66,68,69,71,72],
+  "symbols": [
+    {"at":0,"name":"init_sound","kind":"routine"},
+    {"at":4,"name":"init_sound_clear_sid","kind":"label"},
+    {"at":15,"name":"init_sound_clear_workspace","kind":"label"},
+    {"at":25,"name":"init_sound_clear_zp","kind":"label"},
+    {"at":33,"name":"copy_sid_shadow","kind":"routine"},
+    {"at":35,"name":"copy_sid_shadow_loop","kind":"label"},
+    {"at":44,"name":"effects_tick","kind":"routine"},
+    {"at":50,"name":"effects_tick_delay","kind":"label"},
+    {"at":58,"name":"effects_tick_next","kind":"label"},
+    {"at":67,"name":"effects_tick_update","kind":"label"},
+    {"at":76,"name":"effects_tick_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":32,"type":"code"},
+    {"start":33,"end":76,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Silences the SID. Clears the SID shadow, the driver workspace $0200-$0259 and the driver variables $ce-$ed."},
+    {"at":33,"placement":"line","text":"Copies the SID shadow ($31-$49) to the SID registers $d400-$d418."},
+    {"at":44,"placement":"line","text":"Effects tick on CIA 1 timer A. Updates the effects and the filter sweep, then writes the SID."},
+    {"at":46,"placement":"side","text":"Does nothing while the music tick runs."}
+  ],
+  "references": [],
+  "operands": []
+}

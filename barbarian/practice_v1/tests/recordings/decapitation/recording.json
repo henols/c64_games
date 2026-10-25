@@ -1,0 +1,141 @@
+{
+  "format": 1,
+  "name": "One player against opponent 7 (opponent number set to 7): no input, the computer cuts off the player's head",
+  "program": "original/rdi/barbarian_part1_rdi.prg",
+  "sha256": "be23d11d9c2fd24241ff5607f82d871ece4af1cf8e7576972c7e8d8d7c787c1e",
+  "symbols": "none",
+  "load": false,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$dc04",
+    "$dc06"
+  ],
+  "events": [
+    {
+      "step": 9,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$80bb",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$80bb",
+        "count": 74
+      }
+    },
+    {
+      "step": 10,
+      "action": {
+        "write": {
+          "address": "$00be",
+          "data": "07",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 260,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 260,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 260,
+      "rom": true
+    },
+    {
+      "site": "$eaab",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$eaae",
+      "addr": "$dc01",
+      "reads": 18,
+      "rom": true
+    },
+    {
+      "site": "$923e",
+      "addr": "$dc01",
+      "reads": 326,
+      "rom": false
+    },
+    {
+      "site": "$9265",
+      "addr": "$dc01",
+      "reads": 326,
+      "rom": false
+    },
+    {
+      "site": "$92ac",
+      "addr": "$dc01",
+      "reads": 326,
+      "rom": false
+    },
+    {
+      "site": "$92d3",
+      "addr": "$dc01",
+      "reads": 326,
+      "rom": false
+    },
+    {
+      "site": "$92f4",
+      "addr": "$dc01",
+      "reads": 326,
+      "rom": false
+    },
+    {
+      "site": "$930d",
+      "addr": "$dc01",
+      "reads": 326,
+      "rom": false
+    },
+    {
+      "site": "$85fe",
+      "addr": "$dc06",
+      "reads": 56,
+      "rom": false
+    },
+    {
+      "site": "$8601",
+      "addr": "$dc04",
+      "reads": 56,
+      "rom": false
+    },
+    {
+      "site": "$84d8",
+      "addr": "$dc01",
+      "reads": 259,
+      "rom": false
+    },
+    {
+      "site": "$84d8",
+      "addr": "$dc00",
+      "reads": 259,
+      "rom": false
+    }
+  ],
+  "ticks": 78252387,
+  "hash": "4b8708e8"
+}

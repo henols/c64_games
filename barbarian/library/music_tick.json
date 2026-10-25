@@ -1,0 +1,67 @@
+{
+  "name": "music_tick",
+  "title": "Music tick: reads the music data of each voice",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$991f"},
+  "length": 246,
+  "bytes": [
+    "a2028698b5dc100320059ebd51021041",
+    "86e38a0a85e4a8bd7da085e5b9180219",
+    "1902d02dbd51020aa8a6e4b971a1187d",
+    "1e0285d2b972a17d1f0285d3a00084e6",
+    "b1d2c9c0b021a6e30a9d4e02209299a6",
+    "e3ca10b0205f9c20469ea54929f005df",
+    "8549a90085986020159aa6e3a5e630e1",
+    "4c4399a00084d10a26d169bb85d0a5d1",
+    "699e85d1a6e5b1d09531c8b1d09532a6",
+    "e3bd48029d3c02bd36029d3902bc80a0",
+    "b900029d4502b909029d4202a9009d4b",
+    "029d3f02a4e4b91202991802b9130299",
+    "1902a6e5a5ea85e8ad570285e7a5d485",
+    "daa5d585db20eb9db92a029533b92b02",
+    "9534a90085eb85e9b53529f609019535",
+    "a90120509c60"
+  ],
+  "instructions": [0,2,4,6,8,11,14,16,18,19,20,22,23,26,28,31,34,36,39,40,41,43,46,47,50,52,55,58,60,62,64,66,68,70,72,73,76,79,81,82,84,87,90,92,94,96,98,100,102,103,106,108,110,112,115,117,119,120,122,124,126,128,130,132,134,136,138,139,141,143,145,148,151,154,157,160,163,166,169,172,174,177,180,182,185,188,191,194,196,198,200,203,205,207,209,211,213,216,219,221,224,226,228,230,232,234,236,238,240,242,245],
+  "relocations": [
+    {"at":77,"size":"word","value":115},
+    {"at":113,"size":"word","value":36}
+  ],
+  "variable": [3,5,9,10,12,13,17,21,24,25,27,29,30,32,33,37,38,42,44,45,48,49,51,53,54,56,57,59,63,65,71,74,75,80,85,86,88,89,91,95,97,101,104,105,107,109,118,121,125,127,131,133,135,137,140,142,144,146,147,149,150,152,153,155,156,158,159,161,162,164,165,167,168,170,171,175,176,178,179,181,183,184,186,187,189,190,192,193,195,197,199,201,202,204,206,208,210,212,214,215,217,218,220,222,223,225,229,231,233,239,243,244],
+  "symbols": [
+    {"at":0,"name":"music_tick","kind":"routine"},
+    {"at":4,"name":"music_tick_voice","kind":"label"},
+    {"at":11,"name":"music_tick_check_active","kind":"label"},
+    {"at":36,"name":"music_tick_read_event","kind":"label"},
+    {"at":81,"name":"music_tick_next_voice","kind":"label"},
+    {"at":103,"name":"music_tick_command","kind":"label"},
+    {"at":115,"name":"start_note","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":245,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Music tick on CIA 1 timer B. For each voice, starts a request and reads the music data when the note ends."},
+    {"at":2,"placement":"side","text":"Tells the effects tick that the music tick is busy."},
+    {"at":4,"placement":"side","text":"Bit 7 set: a new tune or sound waits for this voice."},
+    {"at":11,"placement":"side","text":"Bit 7 clear: the voice plays nothing."},
+    {"at":23,"placement":"side","text":"SID register offset of the voice."},
+    {"at":28,"placement":"side","text":"The note time of the voice is not 0: no new event yet."},
+    {"at":36,"placement":"line","text":"Points to the tune data at the read offset of the voice and reads one event."},
+    {"at":66,"placement":"side","text":"Bytes $00-$bf are notes. Bytes $c0-$ff are commands."},
+    {"at":72,"placement":"side","text":"Pitch = note * 2 (the table has quarter-tone steps)."},
+    {"at":84,"placement":"side","text":"Counts down the note times and the fade delay."},
+    {"at":90,"placement":"side","text":"Puts the master volume into the SID volume."},
+    {"at":108,"placement":"side","text":"Bit 7 of music_stop_read set: the voice waits for the note time."},
+    {"at":115,"placement":"line","text":"Starts a note on voice music_voice. A = pitch (0-$bf). Sets the frequency, effects, note time, filter sweep, pulse width and gate."},
+    {"at":122,"placement":"side","text":"Pointer into the frequency table at $9ebb (2 bytes for each pitch)."},
+    {"at":145,"placement":"side","text":"Loads the effect speed and the effect flags of the instrument."},
+    {"at":157,"placement":"side","text":"Loads phase 0 of the effect steps of the voice."},
+    {"at":180,"placement":"side","text":"Note time = note length of the voice."},
+    {"at":196,"placement":"side","text":"Starts the filter sweep from its start cutoff."},
+    {"at":216,"placement":"side","text":"Sets the pulse width of the instrument."},
+    {"at":232,"placement":"side","text":"Clears the test bit and sets the gate."},
+    {"at":240,"placement":"side","text":"The note uses 1 byte of data."}
+  ],
+  "references": [],
+  "operands": []
+}

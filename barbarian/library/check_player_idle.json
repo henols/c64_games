@@ -1,0 +1,33 @@
+{
+  "name": "check_player_idle",
+  "title": "Idle move of a human fighter",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$86c2"},
+  "length": 74,
+  "bytes": [
+    "a5b3d045a5af05b405b505ba303ba6bd",
+    "a002b567d97dbdf02d8810f8b56d291f",
+    "d020b595d0209569a91a956b09809567",
+    "0aa8b987bc8587b988bc8588a000b187",
+    "956fa9ff9595ca10c760"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,23,25,26,28,30,32,34,36,38,40,42,44,46,48,49,50,53,55,58,60,62,64,66,68,70,71,73],
+  "relocations": [],
+  "variable": [1,5,7,9,11,15,19,21,22,29,35,39,43,47,51,52,54,56,57,59,63,65,69],
+  "symbols": [
+    {"at":0,"name":"check_player_idle","kind":"routine"},
+    {"at":16,"name":"check_player_idle_loop","kind":"label"},
+    {"at":20,"name":"check_player_idle_list","kind":"label"},
+    {"at":66,"name":"idle_check_reset","kind":"label"},
+    {"at":70,"name":"idle_check_next","kind":"label"},
+    {"at":73,"name":"idle_check_done","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":73,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Starts the idle move $1a for a human fighter whose idle timer is 0. Input sets the timer to $ff again."},
+    {"at":66,"placement":"side","text":"Joystick input is present: sets the idle value of the fighter to $ff."}
+  ],
+  "references": [],
+  "operands": []
+}

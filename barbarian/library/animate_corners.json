@@ -1,0 +1,66 @@
+{
+  "name": "animate_corners",
+  "title": "Animation of the top corner blocks",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$81b1"},
+  "length": 209,
+  "bytes": [
+    "a201b55b100320be81ca10f660b55b0a",
+    "a8b943bc8573b944bc8574a000869db1",
+    "730aaabd7e7f8577bd7f7f8578c8b173",
+    "0aaaa5777dce7f8577a5787dcf7f8578",
+    "c8b17385abc8b17385aca69db45db173",
+    "8575c8b1738576c80575c904900a204a",
+    "82a69df65df65d60c901b007a904955d",
+    "4cfd81c902b00ab173186904955d4cfd",
+    "81c903b00da904955db1730980955b4c",
+    "be81b55b297f955b60a6aba000a90785",
+    "9cb1759177c8c69c10f7cad0f0a5ab0a",
+    "aaa5757d7e7f8575a5767d7f7f857618",
+    "a57769408577a57869018578c6acd0c9",
+    "60"
+  ],
+  "instructions": [0,2,4,6,9,10,12,13,15,16,17,20,22,25,27,29,31,33,34,35,38,40,43,45,46,48,49,50,52,55,57,59,62,64,65,67,69,70,72,74,76,78,80,82,83,85,87,88,90,92,94,97,99,101,103,104,106,108,110,112,115,117,119,121,122,124,126,129,131,133,135,137,139,141,143,146,148,150,152,153,155,157,159,161,163,165,166,168,170,171,173,175,176,177,179,182,184,186,189,191,192,194,196,198,200,202,204,206,208],
+  "relocations": [
+    {"at":7,"size":"word","value":13},
+    {"at":95,"size":"word","value":153},
+    {"at":113,"size":"word","value":76},
+    {"at":127,"size":"word","value":76},
+    {"at":144,"size":"word","value":13}
+  ],
+  "variable": [3,14,18,19,21,23,24,26,30,32,36,37,39,41,42,44,47,51,53,54,56,58,60,61,63,66,68,71,73,75,77,79,81,84,86,89,98,100,102,111,120,125,136,138,142,147,151,154,160,162,164,167,174,178,180,181,183,185,187,188,190,193,197,199,203,205],
+  "symbols": [
+    {"at":0,"name":"animate_corners","kind":"routine"},
+    {"at":2,"name":"animate_corners_loop","kind":"label"},
+    {"at":9,"name":"animate_corners_next","kind":"label"},
+    {"at":13,"name":"animate_corner","kind":"routine"},
+    {"at":76,"name":"animate_corner_step","kind":"label"},
+    {"at":104,"name":"animate_corner_cmd_0","kind":"label"},
+    {"at":115,"name":"animate_corner_cmd_1","kind":"label"},
+    {"at":129,"name":"animate_corner_cmd_2","kind":"label"},
+    {"at":146,"name":"animate_corner_stop","kind":"label"},
+    {"at":153,"name":"draw_corner_frame","kind":"routine"},
+    {"at":157,"name":"draw_corner_frame_char","kind":"label"},
+    {"at":161,"name":"draw_corner_frame_byte","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":208,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Steps the corner animation of each fighter that has bit 7 set in its animation number."},
+    {"at":13,"placement":"line","text":"Steps the corner animation of fighter X. The record gives the row, column, width, height and a list of frame words."},
+    {"at":17,"placement":"side","text":"Record of the animation: table at $bc43."},
+    {"at":35,"placement":"side","text":"Bitmap address of the row (table $7f7e)."},
+    {"at":52,"placement":"side","text":"Adds 8 times the column (table $7fce)."},
+    {"at":67,"placement":"side","text":"Width of the block in characters."},
+    {"at":72,"placement":"side","text":"Height of the block in character rows."},
+    {"at":76,"placement":"line","text":"Reads the next word of the record. A word of 4 or more is the address of a frame."},
+    {"at":104,"placement":"line","text":"Word 0: starts the list again."},
+    {"at":115,"placement":"line","text":"Word 1: continues at the offset in the next byte."},
+    {"at":129,"placement":"line","text":"Word 2: starts the animation in the next byte."},
+    {"at":146,"placement":"line","text":"Word 3: stops the animation."},
+    {"at":153,"placement":"line","text":"Copies a frame of block_width x block_rows characters from copy_src_ptr to the bitmap at copy_dst_ptr."},
+    {"at":194,"placement":"side","text":"Next character row of the bitmap: +$140."}
+  ],
+  "references": [],
+  "operands": []
+}

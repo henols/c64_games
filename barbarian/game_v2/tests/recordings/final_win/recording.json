@@ -1,0 +1,194 @@
+{
+  "format": 1,
+  "name": "One player: wins a bout against opponent 7 (computer energy set to 1, opponent number set to 7), dodges Drax's bolts by rolling and crouching, reaches the princess",
+  "program": "original/fairlight/barbarian_p2_flt.prg",
+  "sha256": "637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285",
+  "symbols": "none",
+  "load": false,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$dc04",
+    "$dc06"
+  ],
+  "events": [
+    {
+      "step": 10,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$80bb",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$80bb",
+        "count": 31
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "write": {
+          "address": "$0094",
+          "data": "01",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 62,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$80bb",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$80bb",
+        "count": 86
+      }
+    },
+    {
+      "step": 63,
+      "action": {
+        "write": {
+          "address": "$00be",
+          "data": "07",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 65,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$84a7",
+            "space": "c64"
+          },
+          "timeoutFrames": 900
+        }
+      },
+      "key": {
+        "pc": "$84a7",
+        "count": 1
+      }
+    },
+    {
+      "step": 66,
+      "action": {
+        "runUntil": {
+          "target": {
+            "kind": "address",
+            "address": "$80bb",
+            "space": "c64"
+          },
+          "timeoutFrames": 600
+        }
+      },
+      "key": {
+        "pc": "$80bb",
+        "count": 100
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$c14a",
+      "addr": "$dc01",
+      "reads": 274,
+      "rom": false
+    },
+    {
+      "site": "$93b6",
+      "addr": "$dc01",
+      "reads": 179,
+      "rom": false
+    },
+    {
+      "site": "$93e5",
+      "addr": "$dc01",
+      "reads": 179,
+      "rom": false
+    },
+    {
+      "site": "$942a",
+      "addr": "$dc01",
+      "reads": 179,
+      "rom": false
+    },
+    {
+      "site": "$9451",
+      "addr": "$dc01",
+      "reads": 179,
+      "rom": false
+    },
+    {
+      "site": "$9474",
+      "addr": "$dc01",
+      "reads": 179,
+      "rom": false
+    },
+    {
+      "site": "$948d",
+      "addr": "$dc01",
+      "reads": 179,
+      "rom": false
+    },
+    {
+      "site": "$864e",
+      "addr": "$dc00",
+      "reads": 45,
+      "rom": false
+    },
+    {
+      "site": "$875b",
+      "addr": "$dc06",
+      "reads": 90,
+      "rom": false
+    },
+    {
+      "site": "$875e",
+      "addr": "$dc04",
+      "reads": 90,
+      "rom": false
+    }
+  ],
+  "ticks": 84134104,
+  "hash": "e5761b62"
+}

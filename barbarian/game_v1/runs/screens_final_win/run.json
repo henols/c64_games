@@ -1,0 +1,459 @@
+{
+ "name": "screens of final_win",
+ "start": {
+  "program": "original/rdi/barbarian_part2_rdi.prg"
+ },
+ "symbols": "knowledge",
+ "steps": [
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f000400"
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f000800"
+  },
+  {
+   "frames": 100
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 170
+  },
+  {
+   "screen": "f001200"
+  },
+  {
+   "frames": 30
+  },
+  {
+   "frames": 1
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "$0094",
+    "data": "01"
+   }
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 14
+  },
+  {
+   "screen": "f001600"
+  },
+  {
+   "frames": 16
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": true
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 15
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "write": {
+    "address": "$00be",
+    "data": "07"
+   }
+  },
+  {
+   "frames": 189
+  },
+  {
+   "screen": "f002000"
+  },
+  {
+   "frames": 111
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$849d"
+    },
+    "timeoutFrames": 900
+   }
+  },
+  {
+   "runUntil": {
+    "target": {
+     "kind": "address",
+     "address": "$80bb"
+    },
+    "timeoutFrames": 600
+   }
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 30
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 25
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 25
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down-right",
+    "fire": false
+   }
+  },
+  {
+   "frames": 24
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "down",
+    "fire": false
+   }
+  },
+  {
+   "frames": 185
+  },
+  {
+   "screen": "f002400"
+  },
+  {
+   "frames": 15
+  },
+  {
+   "joystick": {
+    "port": 2,
+    "direction": "center",
+    "fire": false
+   }
+  },
+  {
+   "frames": 385
+  },
+  {
+   "screen": "f002800"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f003200"
+  },
+  {
+   "frames": 400
+  },
+  {
+   "screen": "f003600"
+  },
+  {
+   "frames": 315
+  },
+  {
+   "screen": "end"
+  }
+ ]
+}

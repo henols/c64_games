@@ -1,0 +1,35 @@
+{
+  "name": "quit_to_demo",
+  "title": "Quit the game and restart the demo",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$94ab"},
+  "length": 61,
+  "bytes": [
+    "a90085178d15d020fa8520778c20ad8c",
+    "203892a5b7f007498185b720e38ca5bb",
+    "100d20368d20dc8da5bc1003205a8da5",
+    "c4f00320738e78a2ff9a4c0e80"
+  ],
+  "instructions": [0,2,4,7,10,13,16,19,21,23,25,27,30,32,34,37,40,42,44,47,49,51,54,55,57,58],
+  "relocations": [],
+  "variable": [3,5,6,8,9,11,12,14,15,17,18,20,26,28,29,31,35,36,38,39,41,45,46,48,52,53,59,60],
+  "symbols": [
+    {"at":0,"name":"quit_to_demo","kind":"routine"},
+    {"at":30,"name":"quit_to_demo_check_end","kind":"label"},
+    {"at":47,"name":"quit_to_demo_check_scene","kind":"label"},
+    {"at":54,"name":"quit_to_demo_restart","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":60,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Stops the game: removes the sprites, restores the screen and restarts at $800e. The demo starts again."},
+    {"at":7,"placement":"side","text":"Stops the scripts and animations of sprites 0-4."},
+    {"at":16,"placement":"side","text":"Clears the text area of the screen."},
+    {"at":19,"placement":"side","text":"Mirrors the fighter sprites back when they are mirrored."},
+    {"at":30,"placement":"side","text":"Bit 7 of $bb: restores the screen areas of the end scene."},
+    {"at":47,"placement":"side","text":"Goes back to scene 0 when scene 1 shows."},
+    {"at":54,"placement":"side","text":"Resets the stack and runs the warm start. The music setting stays."}
+  ],
+  "references": [],
+  "operands": []
+}

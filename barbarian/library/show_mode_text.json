@@ -1,0 +1,51 @@
+{
+  "name": "show_mode_text",
+  "title": "Mode text, counter, energy bars and scores",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8282"},
+  "length": 139,
+  "bytes": [
+    "a5b3f005a9844c9082a5bd18698220df",
+    "9260a9860aa8b978ba857fb979ba8580",
+    "a5b3d021a5bdf01da003a2ffa5c8859d",
+    "e838e90a10f88a0930917fc8a59d0930",
+    "917f4cd482a003a930917fa5be0930c8",
+    "917fa98620df9260a201869db5931869",
+    "8b480aa8b978ba857fb979ba8580a000",
+    "bd3cbc917fa00a917f6820df92a59d18",
+    "698720df92a69dca10d060"
+  ],
+  "instructions": [0,2,4,6,9,11,12,14,17,18,20,21,22,25,27,30,32,34,36,38,40,42,44,46,48,49,50,52,54,55,57,59,60,62,64,66,69,71,73,75,77,79,80,82,84,87,88,90,92,94,95,97,98,99,100,103,105,108,110,112,115,117,119,121,122,125,127,128,130,133,135,136,138],
+  "relocations": [
+    {"at":7,"size":"word","value":14},
+    {"at":67,"size":"word","value":82}
+  ],
+  "variable": [1,10,15,16,23,24,26,28,29,31,33,37,45,47,58,61,65,74,76,81,85,86,91,93,101,102,104,106,107,109,113,114,116,120,123,124,126,131,132,134],
+  "symbols": [
+    {"at":0,"name":"show_mode_text","kind":"routine"},
+    {"at":9,"name":"show_mode_text_players","kind":"label"},
+    {"at":14,"name":"show_mode_text_print","kind":"label"},
+    {"at":18,"name":"show_counter","kind":"routine"},
+    {"at":46,"name":"show_counter_time_loop","kind":"label"},
+    {"at":69,"name":"show_counter_opponent","kind":"label"},
+    {"at":82,"name":"show_counter_print","kind":"label"},
+    {"at":88,"name":"show_energy_scores","kind":"routine"},
+    {"at":90,"name":"show_energy_scores_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":8,"type":"code"},
+    {"start":9,"end":13,"type":"code"},
+    {"start":14,"end":138,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Shows DEMO in the demo. Else shows 1PLR or 2PLR."},
+    {"at":4,"placement":"side","text":"Text $84: DEMO."},
+    {"at":12,"placement":"side","text":"Text $82 or $83: 1PLR or 2PLR."},
+    {"at":18,"placement":"line","text":"Writes the 2-digit number of text $86 and shows it. Two-player game: the time left. Else: the opponent number."},
+    {"at":40,"placement":"side","text":"Converts time_left to two decimal digits."},
+    {"at":88,"placement":"line","text":"Shows the energy bar and the score of each fighter. The texts $8b-$97 are the bars for energy 0-12."},
+    {"at":112,"placement":"side","text":"Column of the bar: 0 for fighter 0, 34 for fighter 1. The bar has 2 rows."},
+    {"at":128,"placement":"side","text":"Text $87 or $88: the score of the fighter."}
+  ],
+  "references": [],
+  "operands": []
+}

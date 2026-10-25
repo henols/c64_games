@@ -1,0 +1,69 @@
+{
+  "name": "run_sprite_scripts",
+  "title": "Sprite scripts: movement steps and commands",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$97f3"},
+  "length": 229,
+  "bytes": [
+    "a207bd5a021007200998ca10f560a900",
+    "9d7a024cfd97bd5a020aa8b9e3cc8563",
+    "b9e4cc8564bd6202d032bd7202d031bd",
+    "6a021869049d6a02a888b1639d720288",
+    "b1639d620288b16348290f9d8a02684a",
+    "4a4a4a9d820288b1639d7a02de620260",
+    "c901d01fbc6a02b16309809d5a02c8b1",
+    "639d920220cc989d7a029d9a02a9029d",
+    "a20260c902d010bc6a02b16309809d5a",
+    "0220cc984c0998c903d015bc6a02b163",
+    "0a0a9d6a02a9009d62029d72024c0998",
+    "c904d010a9009d5a029d9202a5173dae",
+    "ce851760bc6a02b16385dcfe6a02a900",
+    "9d62029d72024c0998a9009d62029d72",
+    "029d6a0260"
+  ],
+  "instructions": [0,2,5,7,10,11,13,14,16,19,22,25,26,27,30,32,35,37,40,42,45,47,50,51,53,56,57,58,60,63,64,66,69,70,72,73,75,78,79,80,81,82,83,86,87,89,92,95,96,98,100,103,105,107,110,111,113,116,119,122,125,127,130,131,133,135,138,140,142,145,148,151,153,155,158,160,161,162,165,167,170,173,176,178,180,182,185,188,190,193,195,196,199,201,203,206,208,211,214,217,219,222,225,228],
+  "relocations": [
+    {"at":8,"size":"word","value":22},
+    {"at":20,"size":"word","value":10},
+    {"at":117,"size":"word","value":217},
+    {"at":146,"size":"word","value":217},
+    {"at":149,"size":"word","value":22},
+    {"at":174,"size":"word","value":22},
+    {"at":215,"size":"word","value":22}
+  ],
+  "variable": [3,4,17,18,23,24,28,29,31,33,34,36,38,39,43,44,48,49,54,55,59,61,62,65,67,68,71,76,77,84,85,88,90,91,93,94,101,102,104,108,109,112,114,115,120,121,123,124,128,129,136,137,139,143,144,156,157,159,163,164,168,169,171,172,183,184,186,187,189,191,192,194,197,198,200,202,204,205,209,210,212,213,220,221,223,224,226,227],
+  "symbols": [
+    {"at":0,"name":"run_sprite_scripts","kind":"routine"},
+    {"at":2,"name":"run_sprite_scripts_loop","kind":"label"},
+    {"at":10,"name":"run_sprite_scripts_next","kind":"label"},
+    {"at":14,"name":"run_sprite_scripts_idle","kind":"label"},
+    {"at":22,"name":"run_sprite_script","kind":"routine"},
+    {"at":92,"name":"run_sprite_script_count","kind":"label"},
+    {"at":96,"name":"run_sprite_script_command","kind":"label"},
+    {"at":131,"name":"run_sprite_script_cmd_script","kind":"label"},
+    {"at":151,"name":"run_sprite_script_cmd_goto","kind":"label"},
+    {"at":176,"name":"run_sprite_script_cmd_stop","kind":"label"},
+    {"at":196,"name":"run_sprite_script_cmd_sound","kind":"label"},
+    {"at":217,"name":"reset_sprite_script","kind":"routine"}
+  ],
+  "regions": [
+    {"start":0,"end":216,"type":"code"},
+    {"start":217,"end":228,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Runs the script of each sprite 7-0 with sprite_script bit 7 set. Other sprites stop moving."},
+    {"at":14,"placement":"side","text":"No script: clears the direction bits."},
+    {"at":22,"placement":"line","text":"Steps the script of sprite X. A step has 4 bytes: directions, speeds, frames, command."},
+    {"at":27,"placement":"side","text":"Gets the script pointer from the table at $cce3."},
+    {"at":47,"placement":"side","text":"Reads the next step: byte 3 command, byte 2 frames, byte 1 speeds, byte 0 directions."},
+    {"at":73,"placement":"side","text":"Low nibble: Y speed. High nibble: X speed."},
+    {"at":92,"placement":"side","text":"Counts down the frames of the step."},
+    {"at":96,"placement":"line","text":"At the end of a step, command 1 reads a new script and a new animation."},
+    {"at":131,"placement":"side","text":"Command 2: the next byte is the new script."},
+    {"at":151,"placement":"side","text":"Command 3: goes to step n of the script."},
+    {"at":176,"placement":"side","text":"Command 4: stops the script and the animation and switches the sprite off."},
+    {"at":196,"placement":"side","text":"Other command: the next byte is a sound request for voice 1."},
+    {"at":217,"placement":"line","text":"Sets the step frames, step command and script offset of sprite X to 0. Out: A = 0."}
+  ],
+  "references": [],
+  "operands": []
+}

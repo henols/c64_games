@@ -1,0 +1,28 @@
+{
+  "name": "stop_sound",
+  "title": "Fade out and stop all sound",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$948a"},
+  "length": 18,
+  "bytes": [
+    "a5e030fca98185e1a5e130fc78206e9e",
+    "5860"
+  ],
+  "instructions": [0,2,4,6,8,10,12,13,16,17],
+  "relocations": [],
+  "variable": [1,7,9,14,15],
+  "symbols": [
+    {"at":0,"name":"stop_sound","kind":"routine"},
+    {"at":8,"name":"stop_sound_wait_fade_out","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":17,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Waits for the end of a fade-in, then fades out. Then it silences the SID and clears the sound state."},
+    {"at":4,"placement":"side","text":"Requests a fade-out."},
+    {"at":8,"placement":"side","text":"The timer IRQ clears bit 7 when the volume is 0."},
+    {"at":13,"placement":"side","text":"Clears the SID registers, the sound variables and their shadows."}
+  ],
+  "references": [],
+  "operands": []
+}

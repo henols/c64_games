@@ -1,0 +1,127 @@
+{
+ "name": "The keys: F3 music/effects, CTRL+V, F5, F1 and F7 to start, F5 in the game, Q to quit",
+ "program": "original/fairlight/barbarian_p1_flt.prg",
+ "symbols": "none",
+ "inputs": [
+  "$dc00",
+  "$dc01",
+  "$dc04",
+  "$dc06"
+ ],
+ "coverage": "$8009",
+ "steps": [
+  {
+   "frames": 400
+  },
+  {
+   "press": {
+    "keys": "{SPACE}"
+   }
+  },
+  {
+   "frames": 500
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 200
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{CTRL+V}",
+    "frames": 40
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 40
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 60
+  },
+  {
+   "press": {
+    "keys": "{F7}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 300
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 60
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 100
+  },
+  {
+   "press": {
+    "keys": "{Q}",
+    "frames": 10
+   }
+  },
+  {
+   "frames": 600
+  }
+ ]
+}

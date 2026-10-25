@@ -1,0 +1,52 @@
+{
+  "name": "main_loop",
+  "title": "Main loop",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$80bb"},
+  "length": 72,
+  "bytes": [
+    "20b18120828220948220da82200d8320",
+    "0f86200c8720778c203a8920f09020a7",
+    "9120cc8f20ad8c20278920b390209b87",
+    "20e38c20588320f88320c286209b9320",
+    "ac8420178e4cbb80"
+  ],
+  "instructions": [0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,63,66,69],
+  "relocations": [
+    {"at":70,"size":"word","value":0}
+  ],
+  "variable": [1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40,41,43,44,46,47,49,50,52,53,55,56,58,59,61,62,64,65,67,68],
+  "symbols": [
+    {"at":0,"name":"main_loop","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":71,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Main loop: one pass for each frame. The raster IRQ and the wait routines set the speed."},
+    {"at":0,"placement":"side","text":"Animates the top corner blocks of both fighters."},
+    {"at":3,"placement":"side","text":"Shows DEMO, 1PLR or 2PLR."},
+    {"at":6,"placement":"side","text":"Shows the time or the opponent number."},
+    {"at":9,"placement":"side","text":"Shows the energy bars and the scores."},
+    {"at":12,"placement":"side","text":"Two-player game: ends the bout when the time is 0."},
+    {"at":15,"placement":"side","text":"Reads the joysticks of the human players."},
+    {"at":18,"placement":"side","text":"Selects the moves of the computer fighters."},
+    {"at":21,"placement":"side","text":"Copies the saved background to the work buffer."},
+    {"at":24,"placement":"side","text":"Steps the move scripts of both fighters."},
+    {"at":27,"placement":"side","text":"Checks move $08 of a fighter."},
+    {"at":30,"placement":"side","text":"Starts the goblin (sprites 3 and 4) when the loser lies on the floor."},
+    {"at":33,"placement":"side","text":"Draws both fighters into the work buffer."},
+    {"at":36,"placement":"side","text":"Copies the work buffer to the bitmap."},
+    {"at":39,"placement":"side","text":"Calculates the distance between the fighters."},
+    {"at":42,"placement":"side","text":"Starts the turn of both fighters after they cross."},
+    {"at":45,"placement":"side","text":"Finds the hits and decreases the energy."},
+    {"at":48,"placement":"side","text":"Mirrors the sprite images when a flip is pending."},
+    {"at":51,"placement":"side","text":"Walks the fighters in at the start of a bout."},
+    {"at":54,"placement":"side","text":"Ends a bout when the loser is out of the screen."},
+    {"at":57,"placement":"side","text":"Starts the idle move of a player who does nothing."},
+    {"at":60,"placement":"side","text":"Reads the function keys, Q and CTRL+V."},
+    {"at":63,"placement":"side","text":"Final stage: moves sprite 4 to fighter 0."},
+    {"at":66,"placement":"side","text":"Final stage: sets sprites 0-3 of the scene."}
+  ],
+  "references": [],
+  "operands": []
+}

@@ -1,0 +1,71 @@
+{
+  "name": "move_sprites",
+  "title": "Move the sprites by their direction bits and speeds",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$9568"},
+  "length": 209,
+  "bytes": [
+    "a2078a0aa8bd7a02859e469e90032092",
+    "95469e900320a695469e900320ba9546",
+    "9e900320f595ca10d960b9030038fd8a",
+    "02990300c932b005a93299030060b903",
+    "00187d8a02990300c9e59005a9e59903",
+    "0060a5123da6ced020b9020038fd8202",
+    "990200c938b025a9009d92029d5a02a5",
+    "173daece85174cf495b9020038fd8202",
+    "990200b007a5123daece851260a5123d",
+    "a6cef029b90200187d8202990200c92c",
+    "902ea9009d9202a5173daece8517bd5a",
+    "02c985f01ba9009d5a024c3896b90200",
+    "187d82029902009007a5121da6ce8512",
+    "60"
+  ],
+  "instructions": [0,2,3,4,5,8,10,12,14,17,19,21,24,26,28,31,33,35,38,39,41,42,45,46,49,52,54,56,58,61,62,65,66,69,72,74,76,78,81,82,84,87,89,92,93,96,99,101,103,105,108,111,113,116,118,121,124,125,128,131,133,135,138,140,141,143,146,148,151,152,155,158,162,164,167,169,172,174,177,179,181,183,186,189,192,193,196,199,201,203,206,208],
+  "relocations": [
+    {"at":15,"size":"word","value":42},
+    {"at":22,"size":"word","value":62},
+    {"at":29,"size":"word","value":82},
+    {"at":36,"size":"word","value":141},
+    {"at":119,"size":"word","value":140},
+    {"at":187,"size":"word","value":208}
+  ],
+  "variable": [6,7,9,11,18,25,32,43,44,47,48,50,51,59,60,63,64,67,68,70,71,79,80,83,85,86,90,91,94,95,97,98,106,107,109,110,112,114,115,117,122,123,126,127,129,130,134,136,137,139,142,144,145,149,150,153,154,156,157,165,166,168,170,171,173,175,176,184,185,190,191,194,195,197,198,202,204,205,207],
+  "symbols": [
+    {"at":0,"name":"move_sprites","kind":"routine"},
+    {"at":2,"name":"move_sprites_loop","kind":"label"},
+    {"at":17,"name":"move_sprites_check_down","kind":"label"},
+    {"at":24,"name":"move_sprites_check_left","kind":"label"},
+    {"at":31,"name":"move_sprites_check_right","kind":"label"},
+    {"at":38,"name":"move_sprites_next","kind":"label"},
+    {"at":42,"name":"move_sprite_up","kind":"routine"},
+    {"at":61,"name":"move_sprite_up_exit","kind":"label"},
+    {"at":62,"name":"move_sprite_down","kind":"routine"},
+    {"at":81,"name":"move_sprite_down_exit","kind":"label"},
+    {"at":82,"name":"move_sprite_left","kind":"routine"},
+    {"at":121,"name":"move_sprite_left_msb_set","kind":"label"},
+    {"at":140,"name":"move_sprite_left_exit","kind":"label"},
+    {"at":141,"name":"move_sprite_right","kind":"routine"},
+    {"at":189,"name":"move_sprite_right_msb_clear","kind":"label"},
+    {"at":208,"name":"move_sprite_right_exit","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":159,"type":"code"},
+    {"start":162,"end":208,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Moves sprites 7-0 by the direction bits in sprite_move_dirs: bit 0 up, 1 down, 2 left, 3 right."},
+    {"at":2,"placement":"side","text":"Y = X * 2, the index of the sprite position."},
+    {"at":42,"placement":"line","text":"Subtracts the Y speed from the Y of sprite X (Y = X * 2). The lowest Y is $32."},
+    {"at":62,"placement":"line","text":"Adds the Y speed to the Y of sprite X (Y = X * 2). The highest Y is $e5."},
+    {"at":82,"placement":"line","text":"Subtracts the X speed from the 9-bit X position of sprite X. Stops the sprite at the left edge."},
+    {"at":99,"placement":"side","text":"Left of X = $38: stops the script and the animation and switches the sprite off."},
+    {"at":121,"placement":"side","text":"X position 256 or more."},
+    {"at":133,"placement":"side","text":"Clears the X bit 8 on a borrow."},
+    {"at":141,"placement":"line","text":"Adds the X speed to the 9-bit X position of sprite X. Stops the sprite at the right edge."},
+    {"at":158,"placement":"side","text":"Right of X = $12c: stops the animation and switches the sprite off."},
+    {"at":174,"placement":"side","text":"Script value $85 stays active past the right edge. Other scripts stop."},
+    {"at":189,"placement":"side","text":"X position below 256."},
+    {"at":201,"placement":"side","text":"Sets the X bit 8 on a carry."}
+  ],
+  "references": [],
+  "operands": []
+}

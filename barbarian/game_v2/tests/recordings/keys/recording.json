@@ -1,0 +1,109 @@
+{
+  "format": 1,
+  "name": "The keys: F3 music/effects, CTRL+V, F5, F1 and F7 to start, F5 in the game, Q to quit",
+  "program": "original/fairlight/barbarian_p2_flt.prg",
+  "sha256": "637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285",
+  "symbols": "none",
+  "load": false,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$dc04",
+    "$dc06"
+  ],
+  "events": [],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 123,
+      "rom": true
+    },
+    {
+      "site": "$c14a",
+      "addr": "$dc01",
+      "reads": 274,
+      "rom": false
+    },
+    {
+      "site": "$93b6",
+      "addr": "$dc01",
+      "reads": 45,
+      "rom": false
+    },
+    {
+      "site": "$93e5",
+      "addr": "$dc01",
+      "reads": 45,
+      "rom": false
+    },
+    {
+      "site": "$942a",
+      "addr": "$dc01",
+      "reads": 45,
+      "rom": false
+    },
+    {
+      "site": "$9451",
+      "addr": "$dc01",
+      "reads": 45,
+      "rom": false
+    },
+    {
+      "site": "$9474",
+      "addr": "$dc01",
+      "reads": 44,
+      "rom": false
+    },
+    {
+      "site": "$948d",
+      "addr": "$dc01",
+      "reads": 44,
+      "rom": false
+    },
+    {
+      "site": "$875b",
+      "addr": "$dc06",
+      "reads": 48,
+      "rom": false
+    },
+    {
+      "site": "$875e",
+      "addr": "$dc04",
+      "reads": 48,
+      "rom": false
+    },
+    {
+      "site": "$93c2",
+      "addr": "$dc01",
+      "reads": 1,
+      "rom": false
+    },
+    {
+      "site": "$93d2",
+      "addr": "$dc01",
+      "reads": 45,
+      "rom": false
+    },
+    {
+      "site": "$9463",
+      "addr": "$dc01",
+      "reads": 2872862,
+      "rom": false
+    }
+  ],
+  "ticks": 67341456,
+  "hash": "cf0f2bda"
+}

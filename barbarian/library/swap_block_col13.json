@@ -1,0 +1,69 @@
+{
+  "name": "swap_block_col13",
+  "title": "Swaps of picture blocks and sprite shapes for the end of the story",
+  "from": {"program":"game_v1","image":"knowledge revision 20261024T094858.881-yl2tr9","start":"$8d36"},
+  "length": 225,
+  "bytes": [
+    "a9a88575a96b8576a9aa8577a9048578",
+    "a975857ba9d9857ca9aa8579a905857a",
+    "207e8d60a9f88575a96b8576a92a8577",
+    "a9058578a97f857ba9d9857ca9ba8579",
+    "a905857a207e8d60a903859ba01fb175",
+    "48b17791756891778810f318a5756940",
+    "8575a57669018576a57769208577a578",
+    "69008578c69b10d4a203a003b17b48b1",
+    "79917b6891798810f318a57b6928857b",
+    "a57c6900857ca57969048579a57a6900",
+    "857aca10d560a9408575a9fc8576a9c0",
+    "8577a9548578a20ca03fb17548b17791",
+    "756891778810f318a575694085759003",
+    "18e676a577694085779002e678ca10d8",
+    "60"
+  ],
+  "instructions": [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,35,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,71,72,74,76,78,80,81,83,85,86,88,89,91,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,127,129,131,132,134,135,137,138,140,142,144,146,148,150,152,154,156,158,160,162,163,165,166,168,170,172,174,176,178,180,182,184,186,188,189,191,193,194,196,197,199,200,202,204,206,208,209,211,213,215,217,219,221,222,224],
+  "relocations": [
+    {"at":33,"size":"word","value":72},
+    {"at":69,"size":"word","value":72}
+  ],
+  "variable": [3,7,11,15,19,23,27,31,39,43,47,51,55,59,63,67,75,79,82,84,87,93,97,99,103,105,109,111,115,117,125,128,130,133,139,143,145,149,151,155,157,161,169,173,177,181,187,190,192,195,201,205,210,212,216,220],
+  "symbols": [
+    {"at":0,"name":"swap_block_col13","kind":"routine"},
+    {"at":36,"name":"swap_block_col23","kind":"routine"},
+    {"at":72,"name":"swap_block_4x4","kind":"routine"},
+    {"at":76,"name":"swap_block_4x4_row","kind":"label"},
+    {"at":78,"name":"swap_block_4x4_byte","kind":"label"},
+    {"at":122,"name":"swap_block_4x4_crow","kind":"label"},
+    {"at":124,"name":"swap_block_4x4_cbyte","kind":"label"},
+    {"at":166,"name":"swap_end_shapes","kind":"routine"},
+    {"at":184,"name":"swap_end_shapes_shape","kind":"label"},
+    {"at":186,"name":"swap_end_shapes_byte","kind":"label"},
+    {"at":211,"name":"swap_end_shapes_store","kind":"label"},
+    {"at":221,"name":"swap_end_shapes_next","kind":"label"}
+  ],
+  "regions": [
+    {"start":0,"end":224,"type":"code"}
+  ],
+  "comments": [
+    {"at":0,"placement":"line","text":"Swaps the 4x4-character picture block at row 9, column 13 with block_store_a. Also swaps its 16 colour RAM bytes with block_colours_a. A second call undoes the swap."},
+    {"at":0,"placement":"side","text":"Bitmap $6ba8 = row 9, column 13."},
+    {"at":8,"placement":"side","text":"Store $04aa (128 bytes)."},
+    {"at":16,"placement":"side","text":"Colour RAM $d975."},
+    {"at":24,"placement":"side","text":"Colour store $05aa (16 bytes)."},
+    {"at":36,"placement":"line","text":"Swaps the 4x4-character picture block at row 9, column 23 with block_store_b. Also swaps its 16 colour RAM bytes with block_colours_b. A second call undoes the swap."},
+    {"at":36,"placement":"side","text":"Bitmap $6bf8 = row 9, column 23."},
+    {"at":44,"placement":"side","text":"Store $052a (128 bytes)."},
+    {"at":52,"placement":"side","text":"Colour RAM $d97f."},
+    {"at":60,"placement":"side","text":"Colour store $05ba (16 bytes)."},
+    {"at":72,"placement":"line","text":"Swaps a 4x4-character bitmap block with a store. Input: $75 bitmap, $77 store, $7b colour RAM, $79 colour store."},
+    {"at":72,"placement":"side","text":"4 character rows."},
+    {"at":78,"placement":"side","text":"Swaps 32 bitmap bytes (4 characters) of one row."},
+    {"at":91,"placement":"side","text":"Bitmap pointer + $140 (next character row), store pointer + $20."},
+    {"at":120,"placement":"side","text":"4 rows of colour RAM."},
+    {"at":124,"placement":"side","text":"Swaps 4 colour RAM bytes of one row."},
+    {"at":137,"placement":"side","text":"Colour RAM pointer + 40, store pointer + 4."},
+    {"at":166,"placement":"line","text":"Swaps the 13 sprite shapes $53-$5f ($54c0-$57ff) with the store at $fc40-$ff7f. A second call undoes the swap."},
+    {"at":182,"placement":"side","text":"13 shapes of 64 bytes."}
+  ],
+  "references": [],
+  "operands": []
+}
