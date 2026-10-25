@@ -1,0 +1,19 @@
+{
+  "name": "The landing session with all four damage flags set at touchdown: the service repairs them; the plane then stays parked so the runway attacker comes",
+  "completed": true,
+  "steps": 40,
+  "done": 40,
+  "pc": "$7f39",
+  "files": [
+    "p0.png",
+    "p1.png",
+    "p2.png",
+    "p3.png",
+    "p4.png",
+    "p5.png",
+    "p6.png",
+    "p7.png",
+    "coverage.bin"
+  ],
+  "observations": {}
+}

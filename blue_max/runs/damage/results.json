@@ -1,0 +1,18 @@
+{
+  "name": "Damage flags fuel, bombs, motor and gun written in flight: status letters, fuel loss, jams and engine trouble; then shots and bombs",
+  "completed": true,
+  "steps": 256,
+  "done": 256,
+  "pc": "$43cc",
+  "files": [
+    "f00600.png",
+    "f01200.png",
+    "f01800.png",
+    "f02400.png",
+    "f03000.png",
+    "f03600.png",
+    "end.png",
+    "coverage.bin"
+  ],
+  "observations": {}
+}

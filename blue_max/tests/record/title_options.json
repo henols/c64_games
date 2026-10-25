@@ -1,0 +1,173 @@
+{
+ "name": "Title screen, then each option key: F1 opens the options, F3 selects a line, F5 changes it",
+ "program": "original/anonymous/bluem_1.prg",
+ "load": true,
+ "symbols": "none",
+ "coverage": "start",
+ "steps": [
+  {
+   "frames": 100
+  },
+  {
+   "write": {
+    "address": "$033c",
+    "data": "a00098990010c8d0f9a9858d0002a9fc8d0102a9a58d0202a9fb8d0302a9608d0402a9058d0001a9168d0101a9048d02014c00404144524f4e204c4541444552202020202020202020424c5545204d415820ad9840f006ce98404cc97fad86400d9340f004784c1d41ad00dc2910d00978a9008d11d04c26416020202020202020202020202020202020202020202020202020434c415353202020202020202020208d87408d0bd460a900d04c294160f016ad8c4038e9648d8c40ad8d40e9008d8d40c6d34c027eadbf4085d3a5d3f017ad8c4038e90a8d8c40ad8d40e9008d8d40cebf404c217ead8c4038edc0408d8d40ad8d40e9008d8d401011"
+   }
+  },
+  {
+   "write": {
+    "address": "$1000",
+    "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff"
+   }
+  },
+  {
+   "write": {
+    "address": "$0200",
+    "data": "85fca5fb60"
+   }
+  },
+  {
+   "write": {
+    "address": "$0100",
+    "data": "051604"
+   }
+  },
+  {
+   "registers": {
+    "pc": "$4000"
+   }
+  },
+  {
+   "frames": 1200
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F3}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F5}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "press": {
+    "keys": "{F1}",
+    "frames": 5
+   }
+  },
+  {
+   "frames": 40
+  },
+  {
+   "frames": 600
+  }
+ ]
+}

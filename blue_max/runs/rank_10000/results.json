@@ -1,0 +1,15 @@
+{
+  "name": "Score 10000 written in flight, then a crash: rank_after_crash with a score of 10000 or more",
+  "completed": true,
+  "steps": 32,
+  "done": 32,
+  "pc": "$7074",
+  "files": [
+    "f00600.png",
+    "f01200.png",
+    "f01800.png",
+    "end.png",
+    "coverage.bin"
+  ],
+  "observations": {}
+}

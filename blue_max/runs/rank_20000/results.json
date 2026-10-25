@@ -1,0 +1,14 @@
+{
+  "name": "Score 25000, skill level 2 and gravity on, 6 targets hit, written in flight, then a crash",
+  "completed": true,
+  "steps": 29,
+  "done": 29,
+  "pc": "$7f39",
+  "files": [
+    "f00600.png",
+    "f01200.png",
+    "end.png",
+    "coverage.bin"
+  ],
+  "observations": {}
+}

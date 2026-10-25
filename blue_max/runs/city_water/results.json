@@ -1,0 +1,28 @@
+{
+  "name": "City sections 3, 4 and 5 (approach, water with the special targets, shore): targets_left = 0 and map_section = 3 are written; the plane is invincible",
+  "completed": true,
+  "steps": 767,
+  "done": 767,
+  "pc": "$708a",
+  "files": [
+    "f00600.png",
+    "f01200.png",
+    "f01800.png",
+    "f02400.png",
+    "f03000.png",
+    "f03600.png",
+    "f04200.png",
+    "f04800.png",
+    "f05400.png",
+    "f06000.png",
+    "f06600.png",
+    "f07200.png",
+    "f07800.png",
+    "f08400.png",
+    "f09000.png",
+    "f09600.png",
+    "end.png",
+    "coverage.bin"
+  ],
+  "observations": {}
+}

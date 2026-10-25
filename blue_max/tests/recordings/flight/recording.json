@@ -1,0 +1,138 @@
+{
+  "format": 1,
+  "name": "Take-off, then a long flight with turns, climbs, dives, shots and bombs until the end of the game; fire restarts",
+  "program": "original/anonymous/bluem_1.prg",
+  "sha256": "428bbd334cdbc12140941e4fcb7b641da8a84944893ece8f4d59f6fc862d4480",
+  "symbols": "none",
+  "load": true,
+  "inputs": [
+    "$dc00",
+    "$dc01",
+    "$d419",
+    "$d41a",
+    "$d41b",
+    "$d41c",
+    "$de00-$dfff"
+  ],
+  "events": [
+    {
+      "step": 2,
+      "action": {
+        "write": {
+          "address": "$033c",
+          "data": "a00098990010c8d0f9a9858d0002a9fc8d0102a9a58d0202a9fb8d0302a9608d0402a9058d0001a9168d0101a9048d02014c00404144524f4e204c4541444552202020202020202020424c5545204d415820ad9840f006ce98404cc97fad86400d9340f004784c1d41ad00dc2910d00978a9008d11d04c26416020202020202020202020202020202020202020202020202020434c415353202020202020202020208d87408d0bd460a900d04c294160f016ad8c4038e9648d8c40ad8d40e9008d8d40c6d34c027eadbf4085d3a5d3f017ad8c4038e90a8d8c40ad8d40e9008d8d40cebf404c217ead8c4038edc0408d8d40ad8d40e9008d8d401011",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "tick": 5896801
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "write": {
+          "address": "$1000",
+          "data": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "write": {
+          "address": "$0200",
+          "data": "85fca5fb60",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "write": {
+          "address": "$0100",
+          "data": "051604",
+          "space": "c64",
+          "view": "cpu"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "registers": {
+          "pc": "$4000"
+        }
+      },
+      "key": {
+        "previous": true
+      }
+    }
+  ],
+  "sites": [
+    {
+      "site": "$f6bc",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$f6bf",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$ea93",
+      "addr": "$dc01",
+      "reads": 234,
+      "rom": true
+    },
+    {
+      "site": "$5d94",
+      "addr": "$dc01",
+      "reads": 4250,
+      "rom": false
+    },
+    {
+      "site": "$7192",
+      "addr": "$dc00",
+      "reads": 225125,
+      "rom": false
+    },
+    {
+      "site": "$5d41",
+      "addr": "$dc01",
+      "reads": 4248,
+      "rom": false
+    },
+    {
+      "site": "$5934",
+      "addr": "$dc00",
+      "reads": 3804,
+      "rom": false
+    },
+    {
+      "site": "$7fb9",
+      "addr": "$dc00",
+      "reads": 335,
+      "rom": false
+    }
+  ],
+  "ticks": 173601796,
+  "hash": "5ccdc2c0"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "F3 in flight: the base release fails the loader check ($0342 is not 4) and the game ends at the rank screen",
+  "completed": true,
+  "steps": 23,
+  "done": 23,
+  "pc": "$7188",
+  "files": [
+    "f00600.png",
+    "f01200.png",
+    "end.png",
+    "coverage.bin"
+  ],
+  "observations": {}
+}

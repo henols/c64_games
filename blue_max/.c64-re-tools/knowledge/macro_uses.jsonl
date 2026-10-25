@@ -1,0 +1,16 @@
+{"id":"20261024T103919.365-q790a1/4","space":"c64","start":"$4104","end":"$410d","macro":"set16","args":"$fffe, irq_ram_entry","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/5","space":"c64","start":"$410e","end":"$4117","macro":"set16","args":"$fffa, nmi_return","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/6","space":"c64","start":"$45f3","end":"$45fa","macro":"inc16","args":"play_time_mid","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/7","space":"c64","start":"$46e6","end":"$46f1","macro":"mov16","args":"map_copy_ptr, map_row_ptr","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/8","space":"c64","start":"$52ae","end":"$52b5","macro":"mov16","args":"map_ptr, zp_temp6","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/9","space":"c64","start":"$63b4","end":"$63bd","macro":"mov16","args":"map_ptr, splash_ptr","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/10","space":"c64","start":"$64c6","end":"$64cf","macro":"mov16","args":"splash_ptr, map_ptr","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/11","space":"c64","start":"$75e4","end":"$75ed","macro":"set16","args":"music_ptr_1, tune_voice1","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/12","space":"c64","start":"$75ee","end":"$75f7","macro":"set16","args":"music_ptr_2, tune_voice2","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/13","space":"c64","start":"$75f8","end":"$7601","macro":"set16","args":"music_ptr_3, tune_voice3","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/14","space":"c64","start":"$7637","end":"$7640","macro":"mov16","args":"row_ptr, music_ptr_1","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/15","space":"c64","start":"$76a4","end":"$76ad","macro":"mov16","args":"row_ptr, music_ptr_2","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/16","space":"c64","start":"$7711","end":"$771a","macro":"mov16","args":"row_ptr, music_ptr_3","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/17","space":"c64","start":"$7776","end":"$7781","macro":"mov16","args":"FRELO1, music_freq_1","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/18","space":"c64","start":"$7782","end":"$778d","macro":"mov16","args":"FRELO2, music_freq_2","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}
+{"id":"20261024T103919.365-q790a1/19","space":"c64","start":"$778e","end":"$7799","macro":"mov16","args":"FRELO3, music_freq_3","origin":"llm","added":"20261024T103919.365-q790a1","closed":null}

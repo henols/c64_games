@@ -1,0 +1,21 @@
+{
+  "name": "The landing session with the three special targets cleared at touchdown: the mission ends and rank_after_mission runs",
+  "completed": true,
+  "steps": 48,
+  "done": 48,
+  "pc": "$7029",
+  "files": [
+    "f00600.png",
+    "f01200.png",
+    "f01800.png",
+    "f02400.png",
+    "f03000.png",
+    "f03600.png",
+    "f04200.png",
+    "f04800.png",
+    "f05400.png",
+    "end.png",
+    "coverage.bin"
+  ],
+  "observations": {}
+}
