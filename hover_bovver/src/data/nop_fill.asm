@@ -60,7 +60,7 @@ nop_fill_7e63
 !byte $00,$00,$00,$00,$00,$00,$00,$00
 !byte $00,$00,$00,$00,$00,$00,$00,$00
 !byte $00,$00,$00,$00,$00
-        !if * - .patch_start > 413 { !error "The patch CRACK_HF at $7e63 has ", * - .patch_start, " bytes; the range has 413." } else { !fill 413 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 413 { !error "The patch CRACK_HF at $7e63 has ", ((* - .patch_start) & $ffff), " bytes; the range has 413." } else { !fill 413 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !fill 412, $ea
         !byte $00

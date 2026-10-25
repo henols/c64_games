@@ -19,7 +19,7 @@ disk_protection
         ; CRACK_MAM on: 47 bytes at $3a59-$3a87, NOP after the code
         ; MAM: NOPs over the protection reads.
 !byte $ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea,$ea
-        !if * - .patch_start > 47 { !error "The patch CRACK_MAM at $3a59 has ", * - .patch_start, " bytes; the range has 47." } else { !fill 47 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 47 { !error "The patch CRACK_MAM at $3a59 has ", ((* - .patch_start) & $ffff), " bytes; the range has 47." } else { !fill 47 - ((* - .patch_start) & $ffff), $ea }
 } else {
         jsr protection_open_buffer
         lda #$0b                        ; Command U1:5,0,1,1 (11 bytes): reads track 1 sector 1 into the buffer of channel 5.
@@ -65,7 +65,7 @@ protection_commands
         ; CRACK_MAM on: 1 byte at $3a97-$3a97, NOP after the code
         ; MAM: W in place of U in the first U1 command. The drive does not know W1, so it reads no block.
 !byte $57
-        !if * - .patch_start > 1 { !error "The patch CRACK_MAM at $3a97 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch CRACK_MAM at $3a97 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !pet "u"
 }
@@ -78,7 +78,7 @@ protection_commands
         ; CRACK_MAM on: 1 byte at $3aa2-$3aa2, NOP after the code
         ; MAM: W in place of U in the second U1 command.
 !byte $57
-        !if * - .patch_start > 1 { !error "The patch CRACK_MAM at $3aa2 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch CRACK_MAM at $3aa2 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !pet "u"
 }
@@ -93,7 +93,7 @@ protection_open_buffer
         ; CRACK_MAM on: 9 bytes at $3aad-$3ab5, NOP after the code
         ; MAM: writes 2 to $0850 and returns. Nothing calls this code in the MAM release: its callers are in the NOP range at $3a59.
 !byte $a9,$02,$8d,$50,$08,$60,$3a,$bd,$ff
-        !if * - .patch_start > 9 { !error "The patch CRACK_MAM at $3aad has ", * - .patch_start, " bytes; the range has 9." } else { !fill 9 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 9 { !error "The patch CRACK_MAM at $3aad has ", ((* - .patch_start) & $ffff), " bytes; the range has 9." } else { !fill 9 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda #$01
         ldx #$96
@@ -117,7 +117,7 @@ protection_read_status
         ; CRACK_MAM on: 3 bytes at $3aca-$3acc, NOP after the code
         ; MAM: NOP and LDA #$02 in place of JSR CHRIN. Nothing calls this code in the MAM release.
 !byte $ea,$a9,$02
-        !if * - .patch_start > 3 { !error "The patch CRACK_MAM at $3aca has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch CRACK_MAM at $3aca has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         jsr CHRIN
 }

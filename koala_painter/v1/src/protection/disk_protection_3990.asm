@@ -19,7 +19,7 @@ protection_open_buffer
         ; CRACK_MAYDAY off: 2 bytes at $39ba-$39bb, NOP after the code
         ; Drive 8 for the buffer channel of the protection (Mayday!: LDX $ba).
 ldx #$08
-        !if * - .patch_start > 2 { !error "The patch CRACK_MAYDAY at $39ba has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch CRACK_MAYDAY at $39ba has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldx FA
 }

@@ -122,7 +122,7 @@ The timer gives the NMI [`nmi_floor_colour` `$2FF2`](../src/irq/irq_screen_split
 
 At line `$D9`, one of four handlers runs. `row4_irq_vector` selects it. [`irq_a_row4` `$2FFF`](../src/irq/irq_screen_split.asm#L54), `irq_b_row4` and `irq_ab_row4` move the sprites of a fighter in the air to Y `$DA` and show his shadow. `irq_no_row4` runs when both fighters are on the ground, and it shows no shadow. All four set the next IRQ at line `$FF`. **Code**.
 
-At line `$FF`, [`irq_frame_end` `$30E5`](../src/irq/irq_screen_split.asm#L165) sets the next IRQ to `irq_frame_start` at line 0. It sets text mode (`$D011` = `$1B`) and `panel_bg_colour` for the score panel. Then it calls [`music_play_frame` `$09A5`](../src/music/music_driver.asm#L6) one time. The row-4 handlers and the frame end are the same as in version I, except the first four instructions. **Code**.
+At line `$FF`, [`irq_frame_end` `$30E5`](../src/irq/irq_screen_split.asm#L166) sets the next IRQ to `irq_frame_start` at line 0. It sets text mode (`$D011` = `$1B`) and `panel_bg_colour` for the score panel. Then it calls [`music_play_frame` `$09A5`](../src/music/music_driver.asm#L6) one time. The row-4 handlers and the frame end are the same as in version I, except the first four instructions. **Code**.
 
 ## The timeline of a frame
 

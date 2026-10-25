@@ -59,7 +59,7 @@ actor_caught_gordon
         ; TRAINER_INVINCIBLE on: 2 bytes at $9718-$9719, NOP after the code
         ; Trainer: RTS at the start of the routine.
 !byte $60, $01
-        !if * - .patch_start > 2 { !error "The patch TRAINER_INVINCIBLE at $9718 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch TRAINER_INVINCIBLE at $9718 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         cpx #$01
 }

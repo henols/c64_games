@@ -16,7 +16,7 @@ unpack_charset_loop = * + 2
 !byte $7f,$20,$59,$7e,$a9,$13,$a2,$66
 !byte $a0,$7e,$20,$bd,$ff,$a6,$ba,$8a
 !byte $a8,$20,$ba,$ff,$a5,$fb,$a6
-        !if * - .patch_start > 47 { !error "The patch CRACK_HF at $7e00 has ", * - .patch_start, " bytes; the range has 47." } else { !fill 47 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 47 { !error "The patch CRACK_HF at $7e00 has ", ((* - .patch_start) & $ffff), " bytes; the range has 47." } else { !fill 47 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldx #$00
         lda charset_image_2000,x        ; 8 pages in one loop with X.
@@ -42,12 +42,12 @@ unpack_charset_loop = * + 2
 !if CRACK_HF {
         ; CRACK_HF on: 3 bytes at $7e2f-$7e31, NOP after the code
 !byte $fc,$8d,$48
-        !if * - .patch_start > 3 { !error "The patch CRACK_HF at $7e2f has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch CRACK_HF at $7e2f has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else { !if CRACK_KSX_RELOCATE {
         ; CRACK_KSX_RELOCATE on: 3 bytes at $7e2f-$7e31, NOP after the code
         ; Kraksnax: the unpack copies the last packed charset page to $0b04, not to $2700.
 sta $0b04,x
-        !if * - .patch_start > 3 { !error "The patch CRACK_KSX_RELOCATE at $7e2f has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch CRACK_KSX_RELOCATE at $7e2f has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         sta $2700,x
 }}
@@ -66,7 +66,7 @@ unpack_sprites_test_end = * + 37
 !byte $11,$d0,$20,$5f,$7e,$a9,$81,$8d
 !byte $0d,$dc,$8d,$0d,$dd,$ad,$0d,$dc
 !byte $ad
-        !if * - .patch_start > 49 { !error "The patch CRACK_HF at $7e32 has ", * - .patch_start, " bytes; the range has 49." } else { !fill 49 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 49 { !error "The patch CRACK_HF at $7e32 has ", ((* - .patch_start) & $ffff), " bytes; the range has 49." } else { !fill 49 - ((* - .patch_start) & $ffff), $ea }
 } else {
         inx
         bne unpack_charset_loop

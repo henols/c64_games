@@ -10,7 +10,7 @@ gordon_read_stick
         ; TRAINER_SKIP_LEVEL on: 3 bytes at $917a-$917c, NOP after the code
         ; Trainer: calls the HF routine at $2a00, which clears the grass counter on key S and reads the joystick. The routine is outside the MAIN block, so the rebuild does not have it.
 jsr $2a00
-        !if * - .patch_start > 3 { !error "The patch TRAINER_SKIP_LEVEL at $917a has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch TRAINER_SKIP_LEVEL at $917a has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         jsr read_joystick
 }

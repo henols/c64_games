@@ -16,7 +16,7 @@ tbc_joy_x = * + 52
         ; CRACK_TBC off: 57 bytes at $4800-$4838, NOP after the code
         ; Without the TBC joystick routine. The bytes of the original program here are not known.
 !fill 57, $00
-        !if * - .patch_start > 57 { !error "The patch CRACK_TBC at $4800 has ", * - .patch_start, " bytes; the range has 57." } else { !fill 57 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 57 { !error "The patch CRACK_TBC at $4800 has ", ((* - .patch_start) & $ffff), " bytes; the range has 57." } else { !fill 57 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda CIAPRB
         and #$01

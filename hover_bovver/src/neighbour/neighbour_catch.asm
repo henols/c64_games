@@ -162,7 +162,7 @@ next_mower
         ; TRAINER_LIVES on: 2 bytes at $98b9-$98ba, NOP after the code
         ; Trainer: INC becomes LDA, so the count does not change.
 lda $20
-        !if * - .patch_start > 2 { !error "The patch TRAINER_LIVES at $98b9 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch TRAINER_LIVES at $98b9 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         inc mower_lender                ; $20 is the number of the mower: 1 JIM, 2 TOM, 3 ALF.
 }

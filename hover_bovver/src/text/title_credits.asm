@@ -43,7 +43,7 @@ text_title_copyright
 !byte $52,$41,$4b,$53,$4e,$41,$58,$21
 !byte $20,$32,$30,$32,$32,$20,$55,$53
 !byte $2f,$43,$41,$20,$45,$44,$2e
-        !if * - .patch_start > 39 { !error "The patch CRACK_KSX_TEXTS at $83ae has ", * - .patch_start, " bytes; the range has 39." } else { !fill 39 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 39 { !error "The patch CRACK_KSX_TEXTS at $83ae has ", ((* - .patch_start) & $ffff), " bytes; the range has 39." } else { !fill 39 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $20,$20,$20,$20,$40,$20,$20,$31
         !byte $39,$38,$33,$20,$20,$20,$20,$4c

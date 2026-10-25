@@ -31,7 +31,7 @@ status_text_template
         ; CRACK_KSX_TEXTS on: 3 bytes at $89ef-$89f1, NOP after the code
         ; Kraksnax: "DOC" in place of "TOM".
 !byte $44,$4f,$43
-        !if * - .patch_start > 3 { !error "The patch CRACK_KSX_TEXTS at $89ef has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch CRACK_KSX_TEXTS at $89ef has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $54,$4f,$4d
 }

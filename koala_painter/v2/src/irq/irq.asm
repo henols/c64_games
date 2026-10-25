@@ -47,7 +47,7 @@ irq_timer
         ; CRACK_MAM on: 9 bytes at $0998-$09a0, NOP after the code
         ; MAM: the button test reads fire on port 1 and port 2.
 !byte $29,$10,$f0,$07,$ad,$00,$dc,$29,$10
-        !if * - .patch_start > 9 { !error "The patch CRACK_MAM at $0998 has ", * - .patch_start, " bytes; the range has 9." } else { !fill 9 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 9 { !error "The patch CRACK_MAM at $0998 has ", ((* - .patch_start) & $ffff), " bytes; the range has 9." } else { !fill 9 - ((* - .patch_start) & $ffff), $ea }
 } else {
         and #$04
         beq irq_button_down
@@ -114,7 +114,7 @@ read_pad_registers
         ; CRACK_MAM on: 10 bytes at $09fc-$0a05, NOP after the code
         ; MAM: the IRQ calls the MAM joystick and keyboard code at $0829 in place of the paddle reads. That code is in the first page of the MAM file KOALAPAINTER ($0801-$08ff), which the program of the knowledge does not have.
 !byte $20,$29,$08,$ea,$ea,$ea,$ea,$ea,$ea,$ea
-        !if * - .patch_start > 10 { !error "The patch CRACK_MAM at $09fc has ", * - .patch_start, " bytes; the range has 10." } else { !fill 10 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 10 { !error "The patch CRACK_MAM at $09fc has ", ((* - .patch_start) & $ffff), " bytes; the range has 10." } else { !fill 10 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda POTX
         sta pad_x_raw

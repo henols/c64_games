@@ -12,7 +12,7 @@ charset_image_2300 = * + 768
 !if CRACK_HF {
         ; CRACK_HF on: 1024 bytes at $6400-$67ff, NOP after the code
 !fill 1024, $ff
-        !if * - .patch_start > 1024 { !error "The patch CRACK_HF at $6400 has ", * - .patch_start, " bytes; the range has 1024." } else { !fill 1024 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1024 { !error "The patch CRACK_HF at $6400 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1024." } else { !fill 1024 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $3c,$66,$db,$b1,$b1,$db,$66,$3c
         !byte $18,$3c,$66,$7e,$cc,$cc,$ce,$00

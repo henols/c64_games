@@ -122,7 +122,7 @@ well_done_text
         ; CRACK_KSX_TEXTS on: 8 bytes at $9a8c-$9a93, NOP after the code
         ; Kraksnax: "YIPPEEEE" in place of "WELL DON".
 !byte $59,$49,$50,$50,$45,$45,$45,$45
-        !if * - .patch_start > 8 { !error "The patch CRACK_KSX_TEXTS at $9a8c has ", * - .patch_start, " bytes; the range has 8." } else { !fill 8 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 8 { !error "The patch CRACK_KSX_TEXTS at $9a8c has ", ((* - .patch_start) & $ffff), " bytes; the range has 8." } else { !fill 8 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $57,$45,$4c,$4c,$20,$44,$4f,$4e
 }
@@ -139,7 +139,7 @@ fidelity_bonus_text
         ; CRACK_KSX_TEXTS on: 6 bytes at $9ab1-$9ab6, NOP after the code
         ; Kraksnax: "+DOGGY" in place of "CANINE".
 !byte $2b,$44,$4f,$47,$47,$59
-        !if * - .patch_start > 6 { !error "The patch CRACK_KSX_TEXTS at $9ab1 has ", * - .patch_start, " bytes; the range has 6." } else { !fill 6 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 6 { !error "The patch CRACK_KSX_TEXTS at $9ab1 has ", ((* - .patch_start) & $ffff), " bytes; the range has 6." } else { !fill 6 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $43,$41,$4e,$49,$4e,$45
 }

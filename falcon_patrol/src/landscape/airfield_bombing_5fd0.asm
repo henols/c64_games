@@ -28,7 +28,7 @@ airfields_restore_next
 !if RUN_STATE_RGR {
         ; RUN_STATE_RGR on: 2 bytes at $5ffe-$5fff, NOP after the code
 !byte $88,$88
-        !if * - .patch_start > 2 { !error "The patch RUN_STATE_RGR at $5ffe has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch RUN_STATE_RGR at $5ffe has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $ea,$00
 }
@@ -40,7 +40,7 @@ panel_bar_buffer
 !if RUN_STATE {
         ; RUN_STATE on: 1 byte at $6000-$6000, NOP after the code
 !byte $b4
-        !if * - .patch_start > 1 { !error "The patch RUN_STATE at $6000 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch RUN_STATE at $6000 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $00
 }

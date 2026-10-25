@@ -11,7 +11,7 @@ asm_leftover_2600 = * + 512
 !if CRACK_HF {
         ; CRACK_HF on: 668 bytes at $6800-$6a9b, NOP after the code
 !fill 668, $ff
-        !if * - .patch_start > 668 { !error "The patch CRACK_HF at $6800 has ", * - .patch_start, " bytes; the range has 668." } else { !fill 668 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 668 { !error "The patch CRACK_HF at $6800 has ", ((* - .patch_start) & $ffff), " bytes; the range has 668." } else { !fill 668 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $45,$44,$20,$53,$59,$4d,$42,$4f
         !byte $4c,$2a,$2a,$2a,$2a,$2a,$44,$55
@@ -111,7 +111,7 @@ asm_leftover_2700 = * + 100
 !if CRACK_HF {
         ; CRACK_HF on: 354 bytes at $6a9c-$6bfd, NOP after the code
 !fill 354, $ff
-        !if * - .patch_start > 354 { !error "The patch CRACK_HF at $6a9c has ", * - .patch_start, " bytes; the range has 354." } else { !fill 354 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 354 { !error "The patch CRACK_HF at $6a9c has ", ((* - .patch_start) & $ffff), " bytes; the range has 354." } else { !fill 354 - ((* - .patch_start) & $ffff), $ea }
 } else { !if CRACK_KSX_RELOCATE {
         ; CRACK_KSX_RELOCATE on: 354 bytes at $6a9c-$6bfd, NOP after the code
         ; Kraksnax: the address bytes of the assembler leftover code, moved by -$1bfc for its new place at $0b04.
@@ -160,7 +160,7 @@ asm_leftover_2700 = * + 100
 !byte $20,$e4,$ff,$09,$00,$f0,$f9,$c9
 !byte $42,$f0,$04,$20,$5f,$0b,$60,$4c
 !byte $b1,$0b
-        !if * - .patch_start > 354 { !error "The patch CRACK_KSX_RELOCATE at $6a9c has ", * - .patch_start, " bytes; the range has 354." } else { !fill 354 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 354 { !error "The patch CRACK_KSX_RELOCATE at $6a9c has ", ((* - .patch_start) & $ffff), " bytes; the range has 354." } else { !fill 354 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $fe,$27,$4c,$ad,$27,$a9,$00,$8d
         !byte $4b,$08,$98,$a4,$04,$a6,$05,$60
@@ -214,7 +214,7 @@ asm_leftover_2700 = * + 100
 !if CRACK_HF {
         ; CRACK_HF on: 2 bytes at $6bfe-$6bff, NOP after the code
 !byte $ff,$ff
-        !if * - .patch_start > 2 { !error "The patch CRACK_HF at $6bfe has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch CRACK_HF at $6bfe has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $20,$cc
 }

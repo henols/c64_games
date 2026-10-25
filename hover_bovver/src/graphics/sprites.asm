@@ -9,7 +9,7 @@ sprite_image_3000
 !if CRACK_HF {
         ; CRACK_HF on: 4096 bytes at $6c00-$7bff, NOP after the code
 !fill 4096, $ff
-        !if * - .patch_start > 4096 { !error "The patch CRACK_HF at $6c00 has ", * - .patch_start, " bytes; the range has 4096." } else { !fill 4096 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 4096 { !error "The patch CRACK_HF at $6c00 has ", ((* - .patch_start) & $ffff), " bytes; the range has 4096." } else { !fill 4096 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte %00000000,%10101000,%00000000
         !byte %00000000,%10101000,%00000000

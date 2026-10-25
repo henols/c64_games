@@ -25,7 +25,7 @@ main_loop
         ; TRAINER_HYPERSPEED on: 3 bytes at $9082-$9084, NOP after the code
         ; Trainer: LDA in place of JSR, so the main loop skips its delay.
 lda $9094
-        !if * - .patch_start > 3 { !error "The patch TRAINER_HYPERSPEED at $9082 has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch TRAINER_HYPERSPEED at $9082 has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         jsr main_loop_delay
 }

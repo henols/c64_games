@@ -39,12 +39,12 @@ hiscore_title_loop
         ; CRACK_HF_MENU on: 1 byte at $9fd5-$9fd5, NOP after the code
         ; Hokuto Force menu: STX $9fd5 keeps the answer T.
 !byte $2c
-        !if * - .patch_start > 1 { !error "The patch CRACK_HF_MENU at $9fd5 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch CRACK_HF_MENU at $9fd5 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else { !if CRACK_HF_SCORES {
         ; CRACK_HF_SCORES on: 1 byte at $9fd5-$9fd5, NOP after the code
         ; Hokuto Force menu: STX $9fd5 keeps the answer H.
 !byte $00
-        !if * - .patch_start > 1 { !error "The patch CRACK_HF_SCORES at $9fd5 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch CRACK_HF_SCORES at $9fd5 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $ff
 }}
@@ -61,7 +61,7 @@ hiscore_title_loop
 !byte $00,$00,$00,$00,$00,$00,$00,$00
 !byte $00,$00,$00,$00,$00,$00,$00,$00
 !byte $00,$2a
-        !if * - .patch_start > 42 { !error "The patch CRACK_HF at $9fd6 has ", * - .patch_start, " bytes; the range has 42." } else { !fill 42 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 42 { !error "The patch CRACK_HF at $9fd6 has ", ((* - .patch_start) & $ffff), " bytes; the range has 42." } else { !fill 42 - ((* - .patch_start) & $ffff), $ea }
 } else { !if CRACK_KSX_RELOCATE {
         ; CRACK_KSX_RELOCATE on: 42 bytes at $9fd6-$9fff, NOP after the code
         ; Kraksnax: $ff fill in the free bytes after the game.
@@ -71,7 +71,7 @@ hiscore_title_loop
 !byte $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff
 !byte $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff
 !byte $00,$00
-        !if * - .patch_start > 42 { !error "The patch CRACK_KSX_RELOCATE at $9fd6 has ", * - .patch_start, " bytes; the range has 42." } else { !fill 42 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 42 { !error "The patch CRACK_KSX_RELOCATE at $9fd6 has ", ((* - .patch_start) & $ffff), " bytes; the range has 42." } else { !fill 42 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff
         !byte $ff,$ff

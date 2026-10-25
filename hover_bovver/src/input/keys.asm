@@ -22,6 +22,7 @@ check_keys_wait_release
 check_keys_done
         rts
 check_keys_p
+; not executed $9d26-$9d36
         cmp #$29                        ; Key P.
         bne check_keys_done
 pause_wait_release

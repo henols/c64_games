@@ -15,7 +15,7 @@ drive_status
         ; CRACK_MAYDAY off: 2 bytes at $39cd-$39ce, NOP after the code
         ; Sets the device number to 8 (Mayday!: LDA $ba keeps the device number of the load).
 sta $ba
-        !if * - .patch_start > 2 { !error "The patch CRACK_MAYDAY at $39cd has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch CRACK_MAYDAY at $39cd has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda FA
 }

@@ -238,7 +238,7 @@ Each sample start clears all SID registers in the loop `sfx_clear_sid_loop` at `
 
 The two players also share `$D418`. The sample IRQ writes only 0 or 15, with the filter mode bits 0. The music driver writes `music_volume` to `$D418` in each frame. Thus the music changes the level of the sample one time in each frame. The sample removes the filter mode of the music until the next frame. (**Code**, **Conclusion**)
 
-The frame-end raster IRQ [`irq_frame_end` `$30E5`](../src/irq/irq_screen_split.asm#L165) calls the music driver with the I flag set. A timer B IRQ must wait until the driver ends. The half-wave at that time becomes longer, one time in each frame. (**Code**, **Conclusion**)
+The frame-end raster IRQ [`irq_frame_end` `$30E5`](../src/irq/irq_screen_split.asm#L166) calls the music driver with the I flag set. A timer B IRQ must wait until the driver ends. The half-wave at that time becomes longer, one time in each frame. (**Code**, **Conclusion**)
 
 ## Still open
 

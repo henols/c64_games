@@ -93,7 +93,7 @@ lender_names
         ; Kraksnax: the lenders " MO", "JO", "DOC" and "KSX".
 !byte $20,$4d,$4f,$20,$4a,$4f,$44,$4f
 !byte $43,$4b,$53,$58
-        !if * - .patch_start > 12 { !error "The patch CRACK_KSX_TEXTS at $8ab6 has ", * - .patch_start, " bytes; the range has 12." } else { !fill 12 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 12 { !error "The patch CRACK_KSX_TEXTS at $8ab6 has ", ((* - .patch_start) & $ffff), " bytes; the range has 12." } else { !fill 12 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $4a,$49,$4d,$54,$4f,$4d,$41,$4c
         !byte $46,$4a,$43,$4d

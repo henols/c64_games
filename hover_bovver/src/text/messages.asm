@@ -124,7 +124,7 @@ msg_hit_the_dog = * + 409
 !byte $21,$20,$20,$49,$27,$56,$45,$20
 !byte $48,$49,$54,$20,$54,$48,$45,$20
 !byte $4d,$55,$54,$54,$21
-        !if * - .patch_start > 445 { !error "The patch CRACK_KSX_TEXTS at $9b48 has ", * - .patch_start, " bytes; the range has 445." } else { !fill 445 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 445 { !error "The patch CRACK_KSX_TEXTS at $9b48 has ", ((* - .patch_start) & $ffff), " bytes; the range has 445." } else { !fill 445 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $4a,$49,$4d,$20,$57,$4f,$4e,$27
         !byte $54,$20,$4d,$49,$4e,$44,$20,$49

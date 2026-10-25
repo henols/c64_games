@@ -16,7 +16,7 @@ nop
 nop
 lda #$80
 sta $0291
-        !if * - .patch_start > 10 { !error "The patch CRACK_HF at $8000 has ", * - .patch_start, " bytes; the range has 10." } else { !fill 10 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 10 { !error "The patch CRACK_HF at $8000 has ", ((* - .patch_start) & $ffff), " bytes; the range has 10." } else { !fill 10 - ((* - .patch_start) & $ffff), $ea }
 } else {
         nop
         nop

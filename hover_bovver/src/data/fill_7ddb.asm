@@ -10,7 +10,7 @@ fill_7ddb
         ; CRACK_HF on: 5 bytes at $7ddb-$7ddf, NOP after the code
         ; Hokuto Force: zero fill.
 !byte $00,$00,$00,$00,$00
-        !if * - .patch_start > 5 { !error "The patch CRACK_HF at $7ddb has ", * - .patch_start, " bytes; the range has 5." } else { !fill 5 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 5 { !error "The patch CRACK_HF at $7ddb has ", ((* - .patch_start) & $ffff), " bytes; the range has 5." } else { !fill 5 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $ff,$ff,$ff,$ff,$ff
 }
@@ -21,7 +21,7 @@ fill_7ddb
 !if CRACK_HF {
         ; CRACK_HF on: 1 byte at $7dfd-$7dfd, NOP after the code
 !byte $00
-        !if * - .patch_start > 1 { !error "The patch CRACK_HF at $7dfd has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch CRACK_HF at $7dfd has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $ff
 }

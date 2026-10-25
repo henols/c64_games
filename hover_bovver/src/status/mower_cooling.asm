@@ -10,7 +10,7 @@ mower_cooling
         ; TRAINER_NO_OVERLOAD on: 2 bytes at $9234-$9235, NOP after the code
         ; Trainer: LDA #0 in place of DEC, so the branch is never taken.
 lda #$00
-        !if * - .patch_start > 2 { !error "The patch TRAINER_NO_OVERLOAD at $9234 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch TRAINER_NO_OVERLOAD at $9234 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         dec cooldown_timer
 }

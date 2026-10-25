@@ -45,6 +45,7 @@ plot_brush_next
         sty brush_point_index
         jmp plot_brush_loop
 plot_brush_skip
+; not executed $17d1-$17d9
         ldy brush_point_index           ; Skips dy of a point that is not plotted.
         iny
         iny

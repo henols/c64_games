@@ -92,7 +92,7 @@ initial_hiscore_table
 !byte $52,$41,$57,$30,$30,$30,$30,$34
 !byte $35,$31,$4a,$4f,$53,$30,$30,$30
 !byte $30,$34,$32,$30,$5a,$49,$4c
-        !if * - .patch_start > 47 { !error "The patch CRACK_KSX_TEXTS at $9e46 has ", * - .patch_start, " bytes; the range has 47." } else { !fill 47 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 47 { !error "The patch CRACK_KSX_TEXTS at $9e46 has ", ((* - .patch_start) & $ffff), " bytes; the range has 47." } else { !fill 47 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $30,$30,$30,$30,$4a,$43,$4d
         !byte $30,$30,$30,$30,$30,$30,$30,$4e
@@ -260,7 +260,7 @@ enter_initials_done
         ; CRACK_HF_SCORES on: 3 bytes at $9f9d-$9f9f, NOP after the code
         ; Hokuto Force: save the new table with the routine at $7e79 (in CRACK_HF), which continues at $9e04.
 jmp $7e79
-        !if * - .patch_start > 3 { !error "The patch CRACK_HF_SCORES at $9f9d has ", * - .patch_start, " bytes; the range has 3." } else { !fill 3 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 3 { !error "The patch CRACK_HF_SCORES at $9f9d has ", ((* - .patch_start) & $ffff), " bytes; the range has 3." } else { !fill 3 - ((* - .patch_start) & $ffff), $ea }
 } else {
         jmp hiscore_next_player
 }

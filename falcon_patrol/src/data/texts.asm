@@ -10,7 +10,7 @@ credit_text
         ; CRACK_RGR on: 7 bytes at $2f80-$2f86, NOP after the code
         ; RGR credit text: ' (c) MIKE' in place of '(c)VIRGIN'.
 !byte $20,$9d,$20,$8d,$89,$8b,$85
-        !if * - .patch_start > 7 { !error "The patch CRACK_RGR at $2f80 has ", * - .patch_start, " bytes; the range has 7." } else { !fill 7 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 7 { !error "The patch CRACK_RGR at $2f80 has ", ((* - .patch_start) & $ffff), " bytes; the range has 7." } else { !fill 7 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $9d,$96,$89,$92,$87,$89,$8e
 }

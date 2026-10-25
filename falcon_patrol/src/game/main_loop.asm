@@ -42,7 +42,7 @@ game_life_begin
         ; TRAINER on: 2 bytes at $417c-$417d, NOP after the code
         ; Derbyshire Ram trainer: read the lives counter and do not decrement it.
 lda $1d
-        !if * - .patch_start > 2 { !error "The patch TRAINER at $417c has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch TRAINER at $417c has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         dec lives                       ; Takes one spare jet. The TRAINER switch removes this DEC.
 }

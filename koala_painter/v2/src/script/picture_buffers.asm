@@ -35,7 +35,7 @@ startup_script
         ; PROTECTION off: 1 byte at $1e30-$1e30, NOP after the code
         ; End the start-up script here, before its jump to the disk protection at $3a43 (op 9).
 !byte $ff
-        !if * - .patch_start > 1 { !error "The patch PROTECTION at $1e30 has ", * - .patch_start, " bytes; the range has 1." } else { !fill 1 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 1 { !error "The patch PROTECTION at $1e30 has ", ((* - .patch_start) & $ffff), " bytes; the range has 1." } else { !fill 1 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $09
 }

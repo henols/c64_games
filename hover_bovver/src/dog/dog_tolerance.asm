@@ -10,7 +10,7 @@ dog_tolerance_step_down
         ; TRAINER_DOG_TOLERANCE on: 2 bytes at $9624-$9625, NOP after the code
         ; Trainer: RTS at the start of the routine.
 !byte $60, $2b
-        !if * - .patch_start > 2 { !error "The patch TRAINER_DOG_TOLERANCE at $9624 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch TRAINER_DOG_TOLERANCE at $9624 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         lda tolerance_bar
 }

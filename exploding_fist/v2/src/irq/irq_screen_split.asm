@@ -110,6 +110,7 @@ irq_b_row4_ptr_right = * + 1
 irq_ab_row4
         bit CIAICR                      ; Reads and clears the CIA1 interrupt flags; bit 7 set means a CIA1 timer B IRQ
         bpl irq_ab_row4_vic
+; not executed $3078-$307b
         cli                             ; CIA1 IRQ: raster IRQs can interrupt the sample IRQ
         jmp sfx_sample_irq              ; Not a VIC IRQ: a CIA1 IRQ for the sample player
 irq_ab_row4_vic

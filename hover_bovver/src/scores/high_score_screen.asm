@@ -124,7 +124,7 @@ text_mega_mower_maniacs
 !byte $42,$59,$2d,$54,$4f,$52,$27,$53
 !byte $20,$42,$45,$53,$54,$20,$53,$43
 !byte $4f,$52,$45,$53
-        !if * - .patch_start > 20 { !error "The patch CRACK_KSX_TEXTS at $7cca has ", * - .patch_start, " bytes; the range has 20." } else { !fill 20 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 20 { !error "The patch CRACK_KSX_TEXTS at $7cca has ", ((* - .patch_start) & $ffff), " bytes; the range has 20." } else { !fill 20 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $4d,$45,$47,$41,$20,$20,$4d,$4f
         !byte $57,$45,$52,$20,$20,$4d,$41,$4e

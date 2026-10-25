@@ -351,7 +351,7 @@ set_picture_file
         ; CRACK_MAYDAY off: 2 bytes at $2c3e-$2c3f, NOP after the code
         ; Drive 8 for the picture file (Mayday!: LDX $ba).
 ldx #$08
-        !if * - .patch_start > 2 { !error "The patch CRACK_MAYDAY at $2c3e has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch CRACK_MAYDAY at $2c3e has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldx FA
 }
@@ -406,7 +406,7 @@ send_command_close
         ; CRACK_MAYDAY off: 2 bytes at $2c88-$2c89, NOP after the code
         ; Drive 8 for the command channel (Mayday!: LDX $ba).
 ldx #$08
-        !if * - .patch_start > 2 { !error "The patch CRACK_MAYDAY at $2c88 has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch CRACK_MAYDAY at $2c88 has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         ldx FA
 }

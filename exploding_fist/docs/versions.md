@@ -147,7 +147,7 @@ The table gives the routines of version I with their addresses in version II, in
 
 The pages: [v1 game flow](../v1/docs/game_flow.md) and [v2 game flow](../v2/docs/game_flow.md).
 
-The game flow of version II has the same modes as version I: the demo, one player and two players. The title loop [`v1:title_main_loop` `$19A7`](../v1/src/game/title_and_scene.asm#L64) is [`v2:title_main_loop` `$1EE1`](../v2/src/game/title_and_scene.asm#L82) in version II. After a one-player game, version II shows the high score table. Version I started a new game at once when fire was still down. In the one-player game [`v2:game_one_player` `$1BA7`](../v2/src/game/game_modes.asm#L89), the test [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game/game_modes.asm#L146) stops the promotions at stage 10 (**Code**).
+The game flow of version II has the same modes as version I: the demo, one player and two players. The title loop [`v1:title_main_loop` `$19A7`](../v1/src/game/title_and_scene.asm#L62) is [`v2:title_main_loop` `$1EE1`](../v2/src/game/title_and_scene.asm#L80) in version II. After a one-player game, version II shows the high score table. Version I started a new game at once when fire was still down. In the one-player game [`v2:game_one_player` `$1BA7`](../v2/src/game/game_modes.asm#L89), the test [`v2:game_1p_rank_cap_test` `$1C27`](../v2/src/game/game_modes.asm#L146) stops the promotions at stage 10 (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -296,7 +296,7 @@ The switch PROTECTION of version II (default 0) replaces the read of `$DD0E` wit
 
 The pages: [v1 graphics](../v1/docs/graphics.md) and [v2 graphics](../v2/docs/graphics.md).
 
-The four scenes look the same in both versions. Version II unpacks the colour and screen maps with the new routine [`v2:scene_unpack_maps` `$1849`](../v2/src/scenes/scene_unpack.asm#L87). Version I copies them with [`v1:scene_copy_maps` `$19F6`](../v1/src/game/title_and_scene.asm#L110). The bitmap unpacker is the same code at a new address. The sprite graphics change where the bull and the samples need space (**Code**).
+The four scenes look the same in both versions. Version II unpacks the colour and screen maps with the new routine [`v2:scene_unpack_maps` `$1849`](../v2/src/scenes/scene_unpack.asm#L87). Version I copies them with [`v1:scene_copy_maps` `$19F6`](../v1/src/game/title_and_scene.asm#L108). The bitmap unpacker is the same code at a new address. The sprite graphics change where the bull and the samples need space (**Code**).
 
 | v1 | v2 | Part | Change |
 |---|---|---|---|
@@ -363,7 +363,7 @@ Version II corrects the rank overflow, the order list of tune 1 and the X limit 
 - **A store without X in special action 8.** [`v2:ai_spec_set_crouch_punch` `$2646`](../v2/src/ai/ai_opponent_2521.asm#L185) writes ai_special_action of fighter 0 also for fighter 1.
 - **A compare with the wrong register in special action 7.** [`v2:ai_spec_sweep_by_facing` `$2661`](../v2/src/ai/ai_opponent_2521.asm#L206) compares the facing with `fighter_facing,Y` and Y = 14. It reads fighter_move of fighter 0. No run executed this code.
 - **The tie break of fighter 1.** [`v2:bout_hit_value_add` `$2169`](../v2/src/game/timer_and_texts.asm#L59) reads hit_points without X. The value of fighter 1 uses the hit points of fighter 0.
-- **F5 during a game.** [`v2:title_key_f5` `$1ED1`](../v2/src/game/title_and_scene.asm#L69) jumps to the title loop from inside the bout loop and does not reset the stack. The stack wraps, so the game does not crash.
+- **F5 during a game.** [`v2:title_key_f5` `$1ED1`](../v2/src/game/title_and_scene.asm#L68) jumps to the title loop from inside the bout loop and does not reset the stack. The stack wraps, so the game does not crash.
 - **A two-player draw.** [`v2:game_2p_draw` `$1B61`](../v2/src/game/game_modes.asm#L47) calls high_score_update with X = 0. The scores are equal, so this has no effect. No run executed this code.
 - **The collision latch.** [`v2:fighter_update` `$2808`](../v2/src/fighter/fighter_input.asm#L6) reads `$D01E` for each fighter. The first read clears the latch, so the second read sees only new collisions.
 - **No negative dy in reverse play.** [`v2:anim_apply_move` `$3837`](../v2/src/fighter/anim_step_37d8.asm#L61) subtracts dx for a reversed animation, but it always adds dy.

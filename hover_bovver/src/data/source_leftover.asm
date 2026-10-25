@@ -10,7 +10,7 @@ source_text_leftover
         ; CRACK_HF on: 64 bytes at $63c0-$63ff, NOP after the code
         ; Hokuto Force: $ff fill. HF puts the graphics in place, so the packed copies are free.
 !fill 64, $ff
-        !if * - .patch_start > 64 { !error "The patch CRACK_HF at $63c0 has ", * - .patch_start, " bytes; the range has 64." } else { !fill 64 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 64 { !error "The patch CRACK_HF at $63c0 has ", ((* - .patch_start) & $ffff), " bytes; the range has 64." } else { !fill 64 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $2c,$33,$2c,$33,$2c,$36,$2c,$36
         !byte $2c,$39,$2c,$24,$46,$36,$2c,$33

@@ -11,7 +11,7 @@ scale_chars
         ; CRACK_KSX_RELOCATE on: 2 bytes at $922c-$922d, NOP after the code
         ; Kraksnax: the relocation changed these two table bytes from $2a,$29 to $2e,$0d.
 !byte $2e,$0d
-        !if * - .patch_start > 2 { !error "The patch CRACK_KSX_RELOCATE at $922c has ", * - .patch_start, " bytes; the range has 2." } else { !fill 2 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 2 { !error "The patch CRACK_KSX_RELOCATE at $922c has ", ((* - .patch_start) & $ffff), " bytes; the range has 2." } else { !fill 2 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $2a,$29
 }

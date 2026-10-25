@@ -52,7 +52,7 @@ crater_chars
 !if RUN_STATE_RGR {
         ; RUN_STATE_RGR on: 16 bytes at $3150-$315f, NOP after the code
 !byte $55,$5d,$57,$57,$5d,$5f,$55,$55,$5d,$5d,$55,$57,$5f,$55,$55,$55
-        !if * - .patch_start > 16 { !error "The patch RUN_STATE_RGR at $3150 has ", * - .patch_start, " bytes; the range has 16." } else { !fill 16 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 16 { !error "The patch RUN_STATE_RGR at $3150 has ", ((* - .patch_start) & $ffff), " bytes; the range has 16." } else { !fill 16 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $7d,$5d,$7d,$5d,$ff,$d7,$df,$7f ; Characters $2a-$2b: the fire of a bomb crater. $5e45 writes random bits each frame.
         !byte $5d,$7d,$5d,$fd,$d7,$f7,$d5,$75
@@ -201,7 +201,7 @@ gauge_part_char
 !if RUN_STATE {
         ; RUN_STATE on: 8 bytes at $35a0-$35a7, NOP after the code
 !byte $00,$00,$00,$00,$00,$00,$00,$00
-        !if * - .patch_start > 8 { !error "The patch RUN_STATE at $35a0 has ", * - .patch_start, " bytes; the range has 8." } else { !fill 8 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 8 { !error "The patch RUN_STATE at $35a0 has ", ((* - .patch_start) & $ffff), " bytes; the range has 8." } else { !fill 8 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff ; Character $b4: the last gas gauge cell. $4f70 writes its bits.
 }
@@ -260,7 +260,7 @@ radar_mark_bottom = * + 40
 !if RUN_STATE {
         ; RUN_STATE on: 108 bytes at $3710-$377b, NOP after the code
 !byte $aa,$aa,$aa,$ab,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$ea,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$ab,$ab,$ab,$ab,$57,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$ea,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$ba,$55,$55,$55,$55,$aa,$aa,$aa,$aa,$55,$55,$55,$55,$aa,$aa,$aa,$ea
-        !if * - .patch_start > 108 { !error "The patch RUN_STATE at $3710 has ", * - .patch_start, " bytes; the range has 108." } else { !fill 108 - (* - .patch_start), $ea }
+        !if ((* - .patch_start) & $ffff) > 108 { !error "The patch RUN_STATE at $3710 has ", ((* - .patch_start) & $ffff), " bytes; the range has 108." } else { !fill 108 - ((* - .patch_start) & $ffff), $ea }
 } else {
         !byte $ae,$ab,$aa,$aa,$55,$55,$55,$55
         !byte $aa,$aa,$aa,$ba,$55,$55,$55,$55
