@@ -3,7 +3,7 @@
 ; Build a release with -DRELEASE_<label>=1 (the build option --release <label>):
 ; then each switch has the value of that release, and the build does not read config.asm.
 
-; FLT (the program of the knowledge): Fairlight (21 May 1987, CSDb 21950, crack by Strider): BARBARIAN P2/FLT, captured at the game entry $8009 without the crack colour copy at $0400-$07e7 and the crack colour copier $cf80-$cfa1
+; FLT (the program of the knowledge): releases/fairlight/barbarian_p2_flt.prg (SHA-256 637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285), the file BARBARIAN P2/FLT of releases/fairlight/flt-barbarianpart1-2.d64 (SHA-256 abf6320286ee4c60d37d0491bd4a505cac0f94a526092cfd3e874150660d8a34): Fairlight, crack by Strider, 21 May 1987, CSDb 21950, build V 05 10 87. The disk is the repack of the FairLight Archive of November 2019 (releases/fairlight/flt-barbarianpart1-2.nfo). The capture at the game entry $8009 is the program of the knowledge. It leaves out the crack colour copy at $0400-$07E7 and the crack colour copier $CF80-$CFA1.
 !ifdef RELEASE_FLT {
         LEFTOVERS = 1
 }

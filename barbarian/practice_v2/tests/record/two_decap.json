@@ -1,6 +1,6 @@
 {
  "name": "Two players: player 1 walks in and cuts off the head of player 2 (fire and back), the goblin drags the body away",
- "program": "original/fairlight/barbarian_p1_flt.prg",
+ "program": "releases/fairlight/barbarian_p1_flt.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

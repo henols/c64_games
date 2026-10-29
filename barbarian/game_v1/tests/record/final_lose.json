@@ -1,6 +1,6 @@
 {
  "name": "One player: wins a bout against opponent 7 (computer energy set to 1, opponent number set to 7), then stands still until Drax's bolt kills him",
- "program": "original/rdi/barbarian_part2_rdi.prg",
+ "program": "releases/rdi/barbarian_part2_rdi.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

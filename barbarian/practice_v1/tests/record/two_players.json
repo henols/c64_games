@@ -1,6 +1,6 @@
 {
  "name": "Two players: player 1 does each move, then player 2 does each move, then no input until the bout time runs out",
- "program": "original/rdi/barbarian_part1_rdi.prg",
+ "program": "releases/rdi/barbarian_part1_rdi.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

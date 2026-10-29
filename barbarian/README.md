@@ -1,8 +1,8 @@
 # Barbarian: The Ultimate Warrior
 
-Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This folder holds the rebuild of the C64 game, from three cracked releases. The C64 game has two programs. Part 1, Combat Practice, is a fight in an arena for one or two players. Part 2 is the story game: the barbarian fights eight opponents and then the sorcerer Drax, and frees princess Mariana.
+Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This folder holds the rebuild of the C64 game from three cracks: Raw Deal Inc. (RDI), Hotline (HTL) and Fairlight (FLT). These cracks are the reference files. Nobody examined a Palace disk or tape of the game. The C64 game has two programs. Part 1, Combat Practice, is a fight in an arena for one or two players. Part 2 is the story game: the barbarian fights eight opponents and then the sorcerer Drax, and frees princess Mariana.
 
-Each part exists in two builds, V 05 05 87 and V 05 10 87. Thus this group folder has four projects, one for each program. Each project has a byte-identical source, a verified loader and recordings that replay on the default build. This is not the Barbarian of Psygnosis (1988).
+Each part exists in two builds, V 05 05 87 and V 05 10 87. Thus this group folder has four projects, one for each program. In each project, the source assembles byte for byte to the capture of its base release, RDI or FLT. Thus "identical" on these pages means identical to a crack, not to the commercial original. Each project also has a verified loader and recordings that replay on the default build. This is not the Barbarian of Psygnosis (1988).
 
 **Evidence.** **Observed** marks a fact that an emulator run, a byte compare or the coverage of the runs showed. **Code** marks a fact from the code only. **Conclusion** marks an interpretation.
 
@@ -50,7 +50,7 @@ Each crack starts the game at `$8009` after its intro and after a copy of 1000 c
 - **The Hotline trainer has a bug.** A branch of the hit code jumps into the middle of the trainer patch. There the CPU runs illegal opcodes, and no fighter loses energy while its hit animation runs (**Code**). See [docs/releases.md](docs/releases.md).
 - **Part 2 has a dead two-player mode.** Part 2 writes only 0 to `two_players`, so its bout clock, time out and time bonus never run. A bout of part 2 has no time limit (**Code**, **Observed** in the coverage).
 - **A raster bit chooses the path of Drax's bolt.** In the final stage, bit 0 of the raster line at the throw selects one of two bolt paths. One path needs a crouch or a roll, and the other path needs a jump (**Code** / **Observed** in the recordings `final_win` and `final_lose`).
-- **The default build shows wrong colours.** The game writes only some areas of colour RAM. Each crack copies the rest before the jump to `$8009`. The entry state in the knowledge has these colours, but the loader of c64-re-tools 2.6.0-rc.20 does not write them. Thus `build/clean_loader.prg` shows the pictures in the wrong colours (**Observed**). The replays still pass, because they compare RAM, not colour RAM. This is a defect of the toolkit, not of the knowledge.
+- **The default build shows wrong colours.** The game writes only some areas of colour RAM. Each crack copies the rest before the jump to `$8009`. The entry state in the knowledge has these colours, but the loader of c64-re-tools 2.7.0-rc.1 does not write them. Thus `build/clean_loader.prg` shows the pictures in the wrong colours (**Observed**). The replays still pass, because they compare RAM, not colour RAM. This is a defect of the toolkit, not of the knowledge.
 
 ![Part 1 in the demo: the arena with the sunset](practice_v1/docs/images/practice_sunset.png)
 
@@ -70,6 +70,6 @@ Part 1 in the demo: the arena with the sunset (**Observed**).
 
 ## Still open
 
-- Did the original Palace disk have a loader with a copy protection? No release has it. Only an image of the original disk can tell.
+- Did the Palace disk have a loader with a copy protection? No reference file has it. Only an image of an authenticated Palace disk can tell.
 - What did the authors use the Commodore 128 code and the cartridge header for? The code does not tell.
 - Does another release on CSDb hold a third build of the game?

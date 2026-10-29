@@ -1,7 +1,7 @@
 {
   "format": 1,
   "name": "Demo mode: the computer fights the computer for 15000 frames",
-  "program": "original/rdi/barbarian_part2_rdi.prg",
+  "program": "releases/rdi/barbarian_part2_rdi.prg",
   "sha256": "ba39ad343eaeef9ed43fda3dc6abcd99d20834cbb9ca4ec877bf10d0552da491",
   "symbols": "none",
   "load": false,

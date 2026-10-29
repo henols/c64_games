@@ -11,7 +11,7 @@ This page tells about the three cracked releases of "Barbarian: The Ultimate War
 
 ## The three releases
 
-Each release is a crack. The project has no original Palace disk. The three releases hold the two builds of the game (**Observed**: the version texts in the captures).
+Each release is a crack, and the three cracks are the reference files. Nobody examined a Palace disk or tape. The three releases hold the two builds of the game (**Observed**: the version texts in the captures).
 
 | Label | Group, date | CSDb | Build | Projects |
 |---|---|---|---|---|
@@ -19,7 +19,7 @@ Each release is a crack. The project has no original Palace disk. The three rele
 | HTL | Hotline, trainer, 1 June 1987 | 94591 | V 05 05 87 | `practice_v1`, `game_v1` |
 | FLT | Fairlight, crack by Strider, 21 May 1987 | 21950 | V 05 10 87 | `practice_v2`, `game_v2` (base release) |
 
-The files are in the folder `original/` of each project. The SHA-256 values come from sha256sum (**Observed**).
+The files are in the folder `releases/` of each project. The SHA-256 values come from sha256sum (**Observed**).
 
 | Release | File | SHA-256 |
 |---|---|---|
@@ -36,7 +36,7 @@ The files are in the folder `original/` of each project. The SHA-256 values come
 | FLT | `barbarian_p1_flt.prg` | `cb0f51b0b8a3f2d5ae08a064d776872ffc823c227e721724f2137a1506f99a99` |
 | FLT | `barbarian_p2_flt.prg` | `637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285` |
 
-Each PRG file in `original/` has the same bytes as its entry in the T64 file or the disk image (**Observed**: a byte compare).
+Each PRG file in `releases/` has the same bytes as its entry in the T64 file or the disk image (**Observed**: a byte compare).
 
 ## The files of each release
 
@@ -52,7 +52,7 @@ All game files load at `$0801` and start with a BASIC line and a SYS (**Observed
 | FLT | D64 | FLT PRESENTS:, id FL | BARBARIAN P1/FLT | 161 blocks |
 | FLT | D64 | FLT PRESENTS:, id FL | BARBARIAN P2/FLT | 158 blocks |
 
-The file BARBARIAN CP/RDI of the D64 has the same bytes as PART 1 of the T64 (**Observed**). CP means Combat Practice. A CSDb comment tells that a user added this D64 in 2016 to show the original file name of part 1. The comment also tells that many copies of the game had no part 2 (**Observed** on the CSDb page of the release).
+The file BARBARIAN CP/RDI of the D64 has the same bytes as PART 1 of the T64 (**Observed**). CP means Combat Practice. A CSDb comment tells that a user added this D64 in 2016 to show the first file name of part 1. The comment also tells that many copies of the game had no part 2 (**Observed** on the CSDb page of the release).
 
 The FLT disk has DEL entries that make a picture in the directory. One entry is "FLT ARCHIVE 2019". The .nfo file says "Repacked for FairLight Archive 2019 November" (**Observed**). Thus the FLT files are a new pack of 2019, and the 1987 files can have other bytes outside the game (**Conclusion**). The game bytes come from 1987, because the intro text has the date 870521 (**Observed** in the file).
 
@@ -74,7 +74,7 @@ flowchart TD
 2. FLT: the intro runs at `$C000`. The colour copy runs at `$CF80` in part 2 and at `$CF00` in part 1. It reads `$0400-$07E7` (**Observed**).
 3. HTL: the intro runs at `$0C00`, and the trainer menu runs at `$B400`. The colour copy runs at `$A900` and reads `$B000-$B3E7` (**Observed**).
 
-All three cracks copy a full colour RAM before the entry. The game itself writes only some areas of colour RAM, for example the fight area and the texts (**Code**). Thus the original Palace loader most likely loaded the colours into colour RAM, and each crack must do the same (**Conclusion**).
+All three cracks copy a full colour RAM before the entry. The game itself writes only some areas of colour RAM, for example the fight area and the texts (**Code**). Thus the loader of the commercial original most likely loaded the colours into colour RAM, and each crack must do the same (**Conclusion**). No reference file has that loader.
 
 In part 2, the 1000 colours of RDI and of FLT have the same low nibbles (**Observed**: a byte compare). HTL has the same 1000 bytes as RDI, also in the high nibbles that colour RAM does not keep (**Observed**). Thus Hotline copied the colour block of the RDI file and did not read colour RAM again (**Conclusion**).
 
@@ -167,7 +167,7 @@ The .nfo gives the keys "F1 for 1 or 2 Players", "F3 for Music/SFX" and "F7 to s
 
 ## No copy protection in the game programs
 
-No release has a protection check in the game. The project found no code that reads a loader value, a disk or a special memory state (**Conclusion**). The original Palace disk most likely held the protection in its loader, and each crack replaced that loader (**Conclusion**). Thus no project has a switch PROTECTION.
+No release has a protection check in the game. The project found no code that reads a loader value, a disk or a special memory state (**Conclusion**). The commercial original most likely held the protection in its loader, and each crack replaced that loader (**Conclusion**). No reference file has that loader, so the rebuild cannot show it. Thus no project has a switch PROTECTION.
 
 No release shows a Palace loading picture or a Palace title picture. The game has no title screen. Its demo is the title (**Observed**).
 

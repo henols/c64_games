@@ -3,14 +3,14 @@
 ; Build a release with -DRELEASE_<label>=1 (the build option --release <label>):
 ; then each switch has the value of that release, and the build does not read config.asm.
 
-; RDI (the program of the knowledge): Raw Deal Inc. (19 May 1987, CSDb 22600): BARBARIAN PART 2 of the T64, captured at the game entry $8009 without the cracktro screen $0400-$07e7, the crack colour copier $0810-$0837 and its colour copy $b000-$b3e7
+; RDI (the program of the knowledge): releases/rdi/barbarian_part2_rdi.prg (SHA-256 ba39ad343eaeef9ed43fda3dc6abcd99d20834cbb9ca4ec877bf10d0552da491), the file BARBARIAN PART 2 of releases/rdi/Barbarian (Palace) [Raw Deal Inc.].t64 (SHA-256 3dd5163e552a0992ee6ab2158e8056a58301dbf52588987864384452e77e09d4): Raw Deal Inc., 19 May 1987, CSDb 22600, build V 05 05 87. The capture at the game entry $8009 is the program of the knowledge. It leaves out the cracktro screen $0400-$07E7, the crack colour copier $0810-$0837 and its colour copy $B000-$B3E7.
 !ifdef RELEASE_RDI {
         CRACK_HOTLINE = 0
         TRAINER = 0
         LEFTOVERS = 1
 }
 
-; HTL: Hotline trainer (1 June 1987, CSDb 94591): a recrack of the RDI file. Captured at $8009 after T in the trainer menu, without the crack screen $0334-$07ff, the crack code at $0800-$0837, $a900-$a918 and $b400-$b6ff, the colour copy $b000-$b3e7, the crack-cleared RAM after the trainer routine, and the vectors $fffa-$ffff that the game writes at its start. $a600-$a614 is in the capture.
+; HTL: releases/hotline/barbarian_ii_hotline.prg (SHA-256 2f9b267c7f9abbeae8f990a01a12242cec39626e97df37465ead9c3669e1bedf), the file BARBARIAN II + of releases/hotline/Barbarian.D64 (SHA-256 b24e7f4156b35c1a2b8884a4813fb104e55e0d3a2e51ae41f2e0f290fe9685a2): Hotline trainer, 1 June 1987, CSDb 94591, a recrack of the RDI file. Captured at $8009 after T in the trainer menu. The capture leaves out the crack screen $0334-$07FF, the crack code at $0800-$0837, $A900-$A918 and $B400-$B6FF, the colour copy $B000-$B3E7, the RAM that the crack clears after the trainer routine ($CF2C-$CFFF), and the vectors $FFFA-$FFFF that the game writes at its start. $A600-$A614 is in the capture.
 !ifdef RELEASE_HTL {
         CRACK_HOTLINE = 1
         TRAINER = 1

@@ -127,7 +127,7 @@ Each cell of the fight area thus has the same colours. A fighter can stand at ea
 
 [`colour_side_blocks` `$91FA`](../src/screen/colours.asm#L6) colours the snake heads in rows 2-5. The left side gets screen RAM `$73` and colour RAM `$0E`: yellow, cyan and light blue. The right side gets `$7D` and `$05`: yellow, light green and green. (**Code**) The left snake is blue and the right snake is green in the images (**Observed**).
 
-No code of the program writes the colour RAM of the other cells at the start. These are rows 0-1, row 6, rows 23-24, the side columns of rows 6-24 and the centre of the first picture. (**Code**) The crack of each release fills the colour RAM from `$B000-$B3E7` before the game starts (see [the releases page](../../docs/releases.md)). **Conclusion**: the original loader of Palace also filled the colour RAM before the jump to `$8009`. The scene change keeps the colour RAM of the centre of the other picture at `$E400`.
+No code of the program writes the colour RAM of the other cells at the start. These are rows 0-1, row 6, rows 23-24, the side columns of rows 6-24 and the centre of the first picture. (**Code**) The crack of each release fills the colour RAM from `$B000-$B3E7` before the game starts (see [the releases page](../../docs/releases.md)). **Conclusion**: the loader of the commercial original also filled the colour RAM before the jump to `$8009`. No reference file has that loader. The scene change keeps the colour RAM of the centre of the other picture at `$E400`.
 
 ## The scene change
 
@@ -155,7 +155,7 @@ The cleared centre hides the old picture before its colours change. The player s
 
 Part 1 during the scene change: the lower half shows the new picture, the upper half is still black (**Observed**).
 
-The program calls `change_scene` at the end of each bout in the demo and after each win in a game. It also calls it at the start of the final stage when scene 0 shows. F1 and the quit to the demo call it when scene 1 shows. Thus a new game and the demo always start in the throne room. (**Code**) The recordings of the tests compare `scene_index` at each checkpoint, and the rebuild gives the same values as the original (**Observed**). The bouts and the order of the scenes are on [game_flow.md](game_flow.md).
+The program calls `change_scene` at the end of each bout in the demo and after each win in a game. It also calls it at the start of the final stage when scene 0 shows. F1 and the quit to the demo call it when scene 1 shows. Thus a new game and the demo always start in the throne room. (**Code**) The recordings of the tests compare `scene_index` at each checkpoint, and the rebuild gives the same values as the RDI crack (**Observed**). The bouts and the order of the scenes are on [game_flow.md](game_flow.md).
 
 The final stage changes two more blocks of the bitmap. `swap_block_col13` exchanges the 4 x 4 cells at row 9, column 13 with a store full of `$FF` bytes. `swap_block_col23` does the same at row 9, column 23 at the end of the story. `swap_end_shapes` exchanges 13 sprite images. (**Code**) **Conclusion**: the two blocks are the windows of Drax and the princess in the dungeon, and the swaps empty them. See [final_stage.md](final_stage.md).
 

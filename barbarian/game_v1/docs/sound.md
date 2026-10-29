@@ -382,7 +382,7 @@ Tune `$6A` on voice 2 is `F3 3B F9 0D C0 15 C1 0E F2`. It uses the same instrume
 - **The effects share the tempo and the filter.** A new effect sets the timer B latch and the filter for all voices. A note on any voice starts the filter sweep again. (**Code**)
 - **The fade stops the main loop.** In effects mode, the end of each walk-in waits for a fade-out of 15 music ticks in `stop_sound`. (**Code**)
 
-The rebuild keeps all these parts, because it must give the bytes of the original. Build V 05 10 87 has the same driver instructions and the same tune data, but its zero-page driver variables are one byte higher. (**Code**)
+The rebuild keeps all these parts, because it must give the bytes of the RDI capture. Build V 05 10 87 has the same driver instructions and the same tune data, but its zero-page driver variables are one byte higher. (**Code**)
 
 ## Still open
 

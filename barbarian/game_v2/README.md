@@ -1,6 +1,6 @@
 # Barbarian, part 2, V 05 10 87
 
-Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This project is part 2 of the C64 game, the story game. The barbarian fights opponents 0 to 7, one bout each. Then the sorcerer Drax throws bolts at him, and the barbarian must reach princess Mariana. The program has the version text "V 05 10 87", the later of the two builds. The documentation is for the release FLT, the crack of Fairlight of 21 May 1987. The parts that the four projects share are on [../README.md](../README.md).
+Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This project is part 2 of the C64 game, the story game. The barbarian fights opponents 0 to 7, one bout each. Then the sorcerer Drax throws bolts at him, and the barbarian must reach princess Mariana. The program has the version text "V 05 10 87", the later of the two builds. The documentation is for the release FLT, the crack of Fairlight of 21 May 1987. This crack is the reference file. Nobody examined a Palace disk or tape. Thus "identical" on these pages means identical to the FLT capture, not to the commercial original. The parts that the four projects share are on [../README.md](../README.md).
 
 **Evidence.** **Observed** marks a fact that a run, a byte compare or the coverage of the recordings showed. **Code** marks a fact from the code only. **Conclusion** marks an interpretation.
 
@@ -23,7 +23,7 @@ The program has no credit text, no author name and no copyright line. The traces
 
 **The later build.** This build has each part of V 05 05 87 and adds guards and corrections. It adds a new pose routine, new AI rows, changed hit lists and a bout clock of 90 seconds. No change goes in the other direction. Thus this program is the later build (**Code**, **Conclusion**). The graphics and the music data have the same bytes in both builds (**Observed** byte compare). The differences are on [../docs/versions.md](../docs/versions.md).
 
-**The Commodore 128 code.** [`unused_ff80` `$FF80`](src/leftovers/leftover_ff80.asm#L6) holds 32 bytes of code at `$FFD0-$FFEF`. The first half is 6502 code that writes the C128 MMU registers `$FF00` and `$D505` and jumps to `$1100`. The second half is Z80 code that returns the bus to the 8502. No code of the game jumps there (**Code**). Part 2 of V 05 05 87 has the same 32 bytes, and another group cracked it (**Observed** byte compare). **Conclusion:** the bytes were in the original file of part 2. Thus part 2 was in the memory of a C128 in C64 mode before the save.
+**The Commodore 128 code.** [`unused_ff80` `$FF80`](src/leftovers/leftover_ff80.asm#L6) holds 32 bytes of code at `$FFD0-$FFEF`. The first half is 6502 code that writes the C128 MMU registers `$FF00` and `$D505` and jumps to `$1100`. The second half is Z80 code that returns the bus to the 8502. No code of the game jumps there (**Code**). Part 2 of V 05 05 87 has the same 32 bytes, and another group cracked it (**Observed** byte compare). **Conclusion:** the bytes were in the file of part 2 before each group cracked it. Thus part 2 was in the memory of a C128 in C64 mode before the save.
 
 **The cartridge header.** [`cart_cold_start_vector` `$8000`](src/init/cartridge_header.asm#L6) holds the address `$8009` two times and the signature "CBM80". At a hardware reset, the KERNAL finds the signature and starts the game again without a new load (**Code**). The game fills `$0800-$FFFF`, much more than a cartridge of 16 KB holds (**Code**). **Conclusion:** the authors used the header to restart a hung game fast during the tests.
 
@@ -35,11 +35,11 @@ The program has no credit text, no author name and no copyright line. The traces
 
 ## The copy protection
 
-The project has no original Palace disk. FLT is a crack, and it starts the game with its own intro and unpacker. The game code reads no disk, no loader value and no special memory state (**Code**). Thus no project of the group has a PROTECTION switch. **Conclusion:** the original Palace loader held the protection, and the cracks replaced it. The chain of each crack is on [../docs/releases.md](../docs/releases.md).
+Nobody examined a Palace disk or tape. FLT is a crack, and it starts the game with its own intro and unpacker. The game code reads no disk, no loader value and no special memory state (**Code**). Thus no project of the group has a PROTECTION switch. **Conclusion:** the loader of the commercial original held the protection, and the cracks replaced it. The chain of each crack is on [../docs/releases.md](../docs/releases.md).
 
 The game needs one service of its loader: the colours. The game writes colour RAM in the fight area, the texts and the snake heads. A scene change also swaps the colours of the centre. Rows 0-1, row 6, rows 23-24, the side columns and the centre of the first picture keep the colours of the loader (**Code**).
 
-FLT copies 1000 bytes from `$0400-$07E7` to colour RAM `$D800` and then jumps to `$8009` (**Observed**). The RDI and HTL cracks of V 05 05 87 read `$B000-$B3E7` in its place. After the start, this game uses `$0400-$07E7` as work RAM. The area holds the mask table, the block stores of the final stage and the composition buffer of the fighters (**Code**). **Conclusion:** the original loader also filled colour RAM before the jump.
+FLT copies 1000 bytes from `$0400-$07E7` to colour RAM `$D800` and then jumps to `$8009` (**Observed**). The RDI and HTL cracks of V 05 05 87 read `$B000-$B3E7` in its place. After the start, this game uses `$0400-$07E7` as work RAM. The area holds the mask table, the block stores of the final stage and the composition buffer of the fighters (**Code**). **Conclusion:** the loader of the commercial original also filled colour RAM before the jump. No reference file has that loader.
 
 The game also takes the phase of its CIA 1 timers from the loader. It starts the timers without a force load, so the timer values at the entry decide when the sound interrupts come (**Code**). The demo AI also reads these timers as its random source. A loader of rc.19 entered with other timer values, and its replays went one frame off after about 500 checkpoints (**Observed**, see [tests/README.md](tests/README.md)).
 
@@ -114,10 +114,10 @@ flowchart TB
 
 | Label | File | SHA-256 |
 |---|---|---|
-| FLT | `original/fairlight/flt-barbarianpart1-2.d64` | `abf6320286ee4c60d37d0491bd4a505cac0f94a526092cfd3e874150660d8a34` |
-| FLT | `original/fairlight/barbarian_p2_flt.prg` | `637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285` |
-| FLT | `original/fairlight/flt-barbarianpart1-2.zip` | `9403181e5caec190fe2d975af763f87a6071bf645d273b38e18d8703fb8e0dbb` |
-| FLT | `original/fairlight/flt-barbarianpart1-2.nfo` | `1ad8a85237d636a90d8fee169578f4e4347798be9fa32639577a816a604a9495` |
+| FLT | `releases/fairlight/flt-barbarianpart1-2.d64` | `abf6320286ee4c60d37d0491bd4a505cac0f94a526092cfd3e874150660d8a34` |
+| FLT | `releases/fairlight/barbarian_p2_flt.prg` | `637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285` |
+| FLT | `releases/fairlight/flt-barbarianpart1-2.zip` | `9403181e5caec190fe2d975af763f87a6071bf645d273b38e18d8703fb8e0dbb` |
+| FLT | `releases/fairlight/flt-barbarianpart1-2.nfo` | `1ad8a85237d636a90d8fee169578f4e4347798be9fa32639577a816a604a9495` |
 
 - **FLT** (Fairlight, 21 May 1987, crack by Strider, CSDb 21950): the D64 holds BARBARIAN P1/FLT and BARBARIAN P2/FLT. `barbarian_p2_flt.prg` is P2 of the D64. The .nfo file tells that Fairlight packed the files again for its archive in November 2019. The intro text has the date 870521, so the game bytes come from 1987. FLT changed no byte of the game (**Observed**, **Conclusion**).
 
@@ -133,7 +133,7 @@ The RDI and HTL releases hold the other build, V 05 05 87. Their part 2 is the p
 
 **The entry state.** `build/clean_loader.prg` is a packed program that starts with RUN. Its copier puts the segments into place and writes the entry state at `$0002-$03FF`. It sets the VIC-II registers of the entry state. Then it waits for a raster line, loads the CIA 1 timers and jumps to `$8009` (**Code**). The timer load keeps the phase of the timer interrupts of the capture. A loader without it made the replays go one frame off after about 500 checkpoints (**Observed**).
 
-**The colour RAM defect.** The entry state in the knowledge holds the 1000 colours of colour RAM. The loader of c64-re-tools 2.6.0-rc.20 has no write to colour RAM (**Code**). Thus `build/clean_loader.prg` shows the pictures in wrong colours. The game itself writes colour RAM only in the fight area, the texts, the snake heads and the centre at a scene change. The replays compare RAM and not colour RAM, so they pass. This is a defect of the toolkit, not of the knowledge or the source.
+**The colour RAM defect.** The entry state in the knowledge holds the 1000 colours of colour RAM. The loader of c64-re-tools 2.7.0-rc.1 has no write to colour RAM (**Code**). Thus `build/clean_loader.prg` shows the pictures in wrong colours. The game itself writes colour RAM only in the fight area, the texts, the snake heads and the centre at a scene change. The replays compare RAM and not colour RAM, so they pass. This is a defect of the toolkit, not of the knowledge or the source.
 
 **The switches.** FLT has no trainer and changed no byte of the game. Thus the knowledge holds no switch and no patch of a crack (**Code**). `src/config.asm` holds the value of each switch, and `src/switches.asm` holds the values of the release. The default build gives the clean FLT program without the leftovers (**Code**).
 
@@ -166,7 +166,7 @@ The RDI and HTL releases hold the other build, V 05 05 87. Their part 2 is the p
 - Does the bolt of Drax continue on the same path after a pause? — A run that presses F5 while a bolt flies.
 - How many frames does a pass take in a bout, not in the demo? — A run that logs the frame at each `main_loop` in the recording `fight`.
 - Do the two demo fighters now win about the same number of bouts? — A count of `bout_loser` at each bout end in the recording `attract`.
-- Did the original Palace disk have a loader with a copy protection? — Only an image of the original disk can tell.
+- Did the Palace disk have a loader with a copy protection? — No reference file has the Palace loader. Only an image of an authenticated Palace disk can tell.
 
 ## The reference
 

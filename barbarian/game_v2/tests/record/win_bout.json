@@ -1,6 +1,6 @@
 {
  "name": "One player: wins a bout (computer energy set to 1), the background changes for opponent 1, then no input until the game ends",
- "program": "original/fairlight/barbarian_p2_flt.prg",
+ "program": "releases/fairlight/barbarian_p2_flt.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

@@ -1,6 +1,6 @@
 {
  "name": "One player against opponent 7 (opponent number set to 7): no input, the computer cuts off the player's head",
- "program": "original/fairlight/barbarian_p1_flt.prg",
+ "program": "releases/fairlight/barbarian_p1_flt.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

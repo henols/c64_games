@@ -1,7 +1,7 @@
 {
  "name": "decapitation, dense screens",
  "start": {
-  "program": "original/rdi/barbarian_part2_rdi.prg"
+  "program": "releases/rdi/barbarian_part2_rdi.prg"
  },
  "symbols": "knowledge",
  "steps": [

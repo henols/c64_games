@@ -149,7 +149,7 @@ apply_hit_damage_energy = * + 2
 .patch_start
 !if TRAINER {
         ; TRAINER on: 4 bytes at $8714-$8717, NOP after the code
-        ; Hotline trainer (key T in its menu): calls the trainer routine in place of sta $5d,x / dec $93,x. Bug: the BMI at $870b still jumps to $8716, into the JSR. There the CPU does DEC $d0ea, ORA $098a and the illegal NOP #$85 and LAX $9ba9, then the STA $67,x of the original code. Thus during a hit animation no fighter loses energy, X becomes 2, and $d0ea (the colour register of sprite 3) decrements.
+        ; Hotline trainer (key T in its menu): calls the trainer routine in place of sta $5d,x / dec $93,x. Bug: the BMI at $870b still jumps to $8716, into the JSR. There the CPU does DEC $d0ea, ORA $098a and the illegal NOP #$85 and LAX $9ba9, then the STA $67,x of the RDI code. Thus during a hit animation no fighter loses energy, X becomes 2, and $d0ea (the colour register of sprite 3) decrements.
 jsr $ce00
 nop
         !if ((* - .patch_start) & $ffff) > 4 { !error "The patch TRAINER at $8714 has ", ((* - .patch_start) & $ffff), " bytes; the range has 4." } else { !fill 4 - ((* - .patch_start) & $ffff), $ea }

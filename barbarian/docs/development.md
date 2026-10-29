@@ -1,6 +1,6 @@
 # The development of Barbarian
 
-This page tells what the four programs show about the work of Palace Software on the C64 game. The game has two parts, and each part comes in two builds with a date in a version text. The page compares the builds and the parts byte by byte. It also explains the bytes that no code uses. These are a CPU switch of the Commodore 128, RAM fill patterns, copies of screen and colour RAM, and a cartridge header. Each of these tells something about the machine and the tools of the authors.
+This page tells what the four programs show about the work of Palace Software on the C64 game. The reference files are three cracks: RDI, HTL and FLT. Nobody examined a Palace disk or tape, so each fact on this page is true for these cracks only. The game has two parts, and each part comes in two builds with a date in a version text. The page compares the builds and the parts byte by byte. It also explains the bytes that no code uses. These are a CPU switch of the Commodore 128, RAM fill patterns, copies of screen and colour RAM, and a cartridge header. Each of these tells something about the machine and the tools of the authors.
 
 **Evidence.** **Observed** marks a fact that a run or a byte compare of the captured programs showed. **Code** marks a fact from the code only. **Conclusion** marks an interpretation.
 
@@ -26,7 +26,7 @@ The text is a date. In the US order (month, day, year), the builds are of 5 May 
 
 The second line answers the player who found the hidden key: "WHY DID YOU PRESS ME". It is the only text in the game that speaks to the person at the keyboard. **Conclusion** (a joke of the programmer).
 
-The older build was still on sale after the newer build existed: Raw Deal Inc. cracked V 05 05 87 on 19 May 1987, nine days after the date of V 05 10 87. **Conclusion** (from the dates of the releases). The releases are on [releases.md](releases.md).
+Copies of the older build were still in use after the newer build existed: Raw Deal Inc. cracked V 05 05 87 on 19 May 1987, nine days after the date of V 05 10 87. **Conclusion** (from the dates of the releases). Other explanations are possible. For example, Raw Deal Inc. got an early copy, or Palace sold both builds. The releases are on [releases.md](releases.md).
 
 ## V 05 10 87 is the later build
 
@@ -137,7 +137,7 @@ $FFEF  FF        RST $38
 
 The first half gives the bus to the Z80 of a C128. The second half gives the bus back to the 8502. **Code** (decode of the bytes). These are the two CPU switch routines of the Commodore 128, which the C128 keeps in RAM at `$FFD0`. **Conclusion** (from the decode. We did not compare the bytes with a C128 ROM).
 
-Both builds of part 2 have the same 32 bytes, and two different groups cracked them. Part 1 of V 05 05 87 comes from the same crack as part 2 (RDI), but it has the fill pattern at `$FFD0-$FFEF`. Thus the crack did not write these bytes. They were in the original file of part 2. **Observed** (byte compare) / **Conclusion**.
+Both builds of part 2 have the same 32 bytes, and two different groups cracked them. Part 1 of V 05 05 87 comes from the same crack as part 2 (RDI), but it has the fill pattern at `$FFD0-$FFEF`. Thus the crack did not write these bytes. They were in the file of part 2 before each group cracked it. **Observed** (byte compare) / **Conclusion**.
 
 Conclusion: a Commodore 128 held part 2 in its memory before the save. The C128 keeps its RAM when it changes to C64 mode, so the bytes stayed. The authors, or the person who mastered the disk, used a C128 in C64 mode for part 2. Part 1 has no such trace.
 
@@ -218,8 +218,8 @@ The traces give this order of the work (**Conclusion**):
 3. **Part 2 was in the memory of a Commodore 128.** The CPU switch code of the C128 is in both builds of part 2.
 4. **The cartridge header made the tests fast.** A reset restarts the game without a new load.
 5. **Two parts from one source.** Part 1 is the source without the final stage. Part 2 keeps the two-player code with F1 set to one player.
-6. **V 05 05 87, 5 May 1987.** The first build went on sale with the pause fault and without the guards of the hit code.
-7. **V 05 10 87, 10 May 1987.** Five days later, the authors made a corrected build. It has guards, a new pose routine, new AI rows, a longer bout clock and a joke in the version text. Both builds were on sale in May 1987.
+6. **V 05 05 87, 5 May 1987.** The first build has the pause fault and does not have the guards of the hit code. RDI cracked this build.
+7. **V 05 10 87, 10 May 1987.** Five days later, the authors made a corrected build. It has guards, a new pose routine, new AI rows, a longer bout clock and a joke in the version text. Cracks of both builds were out in May 1987.
 
 ## Still open
 
@@ -227,4 +227,4 @@ The traces give this order of the work (**Conclusion**):
 - Which action copied `$9FF0-$9FFE` to `$FFF0-$FFFE`? A loader, a monitor or a save tool of the authors can do it. A search for this behaviour in common tools of 1987 can answer it.
 - Did the FLT crack write the `$00` and `$A3` bytes in part 1 of V 05 10 87? An analysis of the FLT unpacker and its memory fill can answer it.
 - Do the two-hit fault and the IRQ fault of V 05 05 87 occur in a game? A recording with both fighters at a distance of one column, and with both attacks in the same frame, can show the first fault.
-- Did the original Palace disk have a loader with copy protection? No release has the original loader.
+- Did the Palace disk have a loader with copy protection? No reference file has the Palace loader. Only an image of an authenticated Palace disk can tell.

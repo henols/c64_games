@@ -1,7 +1,7 @@
 {
   "format": 1,
   "name": "The keys: F3 music/effects, CTRL+V, F5, F1 and F7 to start, F5 in the game, Q to quit",
-  "program": "original/fairlight/barbarian_p2_flt.prg",
+  "program": "releases/fairlight/barbarian_p2_flt.prg",
   "sha256": "637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285",
   "symbols": "none",
   "load": false,

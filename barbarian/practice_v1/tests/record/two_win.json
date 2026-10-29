@@ -1,6 +1,6 @@
 {
  "name": "Two players: player 1 wins a bout against player 2 (energy of player 2 set to 1), then the time bonus",
- "program": "original/rdi/barbarian_part1_rdi.prg",
+ "program": "releases/rdi/barbarian_part1_rdi.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

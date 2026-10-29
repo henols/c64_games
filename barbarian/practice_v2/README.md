@@ -1,6 +1,6 @@
 # Barbarian, part 1, V 05 10 87
 
-Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This project is part 1 of the C64 game, Combat Practice. One player fights the computer at levels 0 to 7, or two players fight each other with a bout clock. Part 1 has no story and no final stage. The program has the version text "V 05 10 87". The documentation is for the release FLT, the crack of Fairlight of 21 May 1987. The parts that the four projects share are on [../README.md](../README.md).
+Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This project is part 1 of the C64 game, Combat Practice. One player fights the computer at levels 0 to 7, or two players fight each other with a bout clock. Part 1 has no story and no final stage. The program has the version text "V 05 10 87". The documentation is for the release FLT, the crack of Fairlight of 21 May 1987. This crack is the reference file. Nobody examined a Palace disk or tape. Thus "identical" on these pages means identical to the FLT capture, not to the commercial original. The parts that the four projects share are on [../README.md](../README.md).
 
 **Evidence.** **Observed** marks a fact that a run, a byte compare or the coverage of the recordings showed. **Code** marks a fact from the code only. **Conclusion** marks an interpretation.
 
@@ -32,9 +32,9 @@ The program has no credit text, no author name and no copyright line. The traces
 
 ## The copy protection
 
-The project has no original Palace disk. FLT is a crack, and it starts the game with its own intro and unpacker. The game code reads no disk, no loader value and no special memory state (**Code**). Thus the project has no PROTECTION switch. **Conclusion:** the original Palace loader held the protection, and the crack replaced it. The chain of the crack is on [../docs/releases.md](../docs/releases.md#the-chain-of-a-crack).
+Nobody examined a Palace disk or tape. FLT is a crack, and it starts the game with its own intro and unpacker. The game code reads no disk, no loader value and no special memory state (**Code**). Thus the project has no PROTECTION switch. **Conclusion:** the loader of the commercial original held the protection, and the crack replaced it. The chain of the crack is on [../docs/releases.md](../docs/releases.md#the-chain-of-a-crack).
 
-The game needs one service of its loader: the colours. The game writes colour RAM only in some areas, for example the fight area and the texts. A scene change also swaps the colours of the centre of the picture (**Code**). The FLT crack copies 1000 bytes from `$0400-$07E7` to colour RAM `$D800` with code at `$CF00-$CF21`. Then it jumps to `$8009` (**Observed**). **Conclusion:** the original loader also filled colour RAM before the jump.
+The game needs one service of its loader: the colours. The game writes colour RAM only in some areas, for example the fight area and the texts. A scene change also swaps the colours of the centre of the picture (**Code**). The FLT crack copies 1000 bytes from `$0400-$07E7` to colour RAM `$D800` with code at `$CF00-$CF21`. Then it jumps to `$8009` (**Observed**). **Conclusion:** the loader of the commercial original also filled colour RAM before the jump. No reference file has that loader.
 
 The game also takes the phase of its CIA 1 timers from the loader. It starts the timers without a force load, so the timer values at the entry decide when the sound interrupts come (**Observed**, see [tests/README.md](tests/README.md#replays)). The demo AI also reads these timers as its random source (**Code**).
 
@@ -106,10 +106,10 @@ The status line, the walk-in and the end of a bout are 6 bytes lower than in par
 
 | Label | File | SHA-256 |
 |---|---|---|
-| FLT | `original/fairlight/flt-barbarianpart1-2.d64` | `abf6320286ee4c60d37d0491bd4a505cac0f94a526092cfd3e874150660d8a34` |
-| FLT | `original/fairlight/barbarian_p1_flt.prg` | `cb0f51b0b8a3f2d5ae08a064d776872ffc823c227e721724f2137a1506f99a99` |
-| FLT | `original/fairlight/flt-barbarianpart1-2.zip` | `9403181e5caec190fe2d975af763f87a6071bf645d273b38e18d8703fb8e0dbb` |
-| FLT | `original/fairlight/flt-barbarianpart1-2.nfo` | `1ad8a85237d636a90d8fee169578f4e4347798be9fa32639577a816a604a9495` |
+| FLT | `releases/fairlight/flt-barbarianpart1-2.d64` | `abf6320286ee4c60d37d0491bd4a505cac0f94a526092cfd3e874150660d8a34` |
+| FLT | `releases/fairlight/barbarian_p1_flt.prg` | `cb0f51b0b8a3f2d5ae08a064d776872ffc823c227e721724f2137a1506f99a99` |
+| FLT | `releases/fairlight/flt-barbarianpart1-2.zip` | `9403181e5caec190fe2d975af763f87a6071bf645d273b38e18d8703fb8e0dbb` |
+| FLT | `releases/fairlight/flt-barbarianpart1-2.nfo` | `1ad8a85237d636a90d8fee169578f4e4347798be9fa32639577a816a604a9495` |
 
 - **FLT** (Fairlight, crack by Strider, 21 May 1987, CSDb 21950): the D64 holds BARBARIAN P1/FLT (161 blocks) and BARBARIAN P2/FLT (158 blocks). `barbarian_p1_flt.prg` is the file BARBARIAN P1/FLT. The .nfo says "Repacked for FairLight Archive 2019 November", so the files are a new pack of 2019. FLT changed no byte of the game (**Observed**, **Conclusion**).
 
@@ -123,7 +123,7 @@ The .nfo gives the keys "F1 for 1 or 2 Players", "F3 for Music/SFX" and "F7 to s
 
 **The entry state.** `build/clean_loader.prg` is a program that Exomizer packed, and it starts with RUN. Its copier puts the segments into place and writes the entry state at `$0002-$03FF`. It sets the VIC-II registers of the entry state. Then it waits for raster line `$E8`, loads timer A of CIA 1 and jumps to `$8009` (**Code**). The timer load keeps the phase of the timer interrupts of the capture (**Observed**, see [tests/README.md](tests/README.md#replays)).
 
-**The colour RAM defect.** The entry state in the knowledge holds the 1000 colours of colour RAM. The loader of c64-re-tools 2.6.0-rc.20 does not write them: the loader source has no store to `$D800-$DBE7` (**Code**). Thus `build/clean_loader.prg` shows the pictures in wrong colours. The game itself never writes most of colour RAM. FLT copies the 1000 colours from `$0400-$07E7` before the jump. The replays compare RAM and not colour RAM, so they pass. This is a defect of the toolkit, not of the knowledge or the source.
+**The colour RAM defect.** The entry state in the knowledge holds the 1000 colours of colour RAM. The loader of c64-re-tools 2.7.0-rc.1 does not write them: the loader source has no store to `$D800-$DBE7` (**Code**). Thus `build/clean_loader.prg` shows the pictures in wrong colours. The game itself never writes most of colour RAM. FLT copies the 1000 colours from `$0400-$07E7` before the jump. The replays compare RAM and not colour RAM, so they pass. This is a defect of the toolkit, not of the knowledge or the source.
 
 **The switches.** The knowledge of this project has no switch and no patch, because FLT changed no byte of the game. The generated source adds one switch for the leftovers. `src/config.asm` holds its value, and `src/switches.asm` holds the value of the release (**Code**).
 

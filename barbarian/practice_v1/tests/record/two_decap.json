@@ -1,6 +1,6 @@
 {
  "name": "Two players: player 1 walks in and cuts off the head of player 2 (fire and back), the goblin drags the body away",
- "program": "original/rdi/barbarian_part1_rdi.prg",
+ "program": "releases/rdi/barbarian_part1_rdi.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

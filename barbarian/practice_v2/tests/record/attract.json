@@ -1,6 +1,6 @@
 {
  "name": "Demo mode: the computer fights the computer for 15000 frames",
- "program": "original/fairlight/barbarian_p1_flt.prg",
+ "program": "releases/fairlight/barbarian_p1_flt.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

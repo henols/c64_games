@@ -1,6 +1,6 @@
 {
  "name": "Two players: player 1 wins a bout against player 2 (energy of player 2 set to 1), then the time bonus",
- "program": "original/fairlight/barbarian_p1_flt.prg",
+ "program": "releases/fairlight/barbarian_p1_flt.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

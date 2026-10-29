@@ -1,7 +1,7 @@
 {
   "format": 1,
   "name": "The keys: F3 music/effects, CTRL+V, F5, F1 and F7 to start, F5 in the game, Q to quit",
-  "program": "original/rdi/barbarian_part1_rdi.prg",
+  "program": "releases/rdi/barbarian_part1_rdi.prg",
   "sha256": "be23d11d9c2fd24241ff5607f82d871ece4af1cf8e7576972c7e8d8d7c787c1e",
   "symbols": "none",
   "load": false,

@@ -4,9 +4,11 @@ The record files in this folder have only the keys of the c64-testing format. Th
 
 ## Recordings
 
-The recordings in `recordings/` come from the record files in `record/`. Claude wrote the input as steps. No person played. Each record file starts `original/fairlight/barbarian_p2_flt.prg`, the game file of BARBARIAN P2/FLT of the Fairlight release. The crack intro waits for a key, and a `press` of SPACE ends it. The coverage map of each recording starts at the game entry `$8009`.
+The recordings in `recordings/` come from the record files in `record/`. Claude wrote the input as steps. No person played. Each record file starts `releases/fairlight/barbarian_p2_flt.prg`, the game file of BARBARIAN P2/FLT of the Fairlight release. The crack intro waits for a key, and a `press` of SPACE ends it. The coverage map of each recording starts at the game entry `$8009`.
 
 Player 1 uses the joystick in port 2 (`$DC00`), and player 2 uses port 1 (`$DC01`). The game reads the keys through the keyboard matrix. The record files also give the CIA1 timers `$DC04` and `$DC06` as inputs, because the game reads them.
+
+The recording `keys` ends in the pause loop [`read_keys_pause_wait` `$9463`](../src/input/keyboard.asm#L100).
 
 | Recording | What it does | Checkpoints |
 |---|---|---|
@@ -15,7 +17,7 @@ Player 1 uses the joystick in port 2 (`$DC00`), and player 2 uses port 1 (`$DC01
 | `fight` | One player. Each joystick direction with and without fire, then no input to the end of the game. | 816 |
 | `final_lose` | One player wins a bout against opponent 7. Then the player stands still, and the bolt of Drax kills him. | 201 |
 | `final_win` | One player wins a bout against opponent 7. Then the player rolls and crouches under the bolts of Drax and reaches the princess. | 180 |
-| `keys` | The steps press F3 (music or effects) two times, CTRL+V and F5 in the demo, then F1, F3 two times, F7, F5 and Q. The program calls `read_keys` 45 times and reads F5 at call 43. Then it stays in `read_keys_pause_wait` `$9463`. Thus the recording ends in the F5 pause (**Observed**). | 45 |
+| `keys` | The steps press F3 (music or effects) two times, CTRL+V and F5 in the demo, then F1, F3 two times, F7, F5 and Q. The program calls `read_keys` 45 times and reads F5 at call 43. Then it stays in `read_keys_pause_wait`. Thus the recording ends in the F5 pause (**Observed**). | 45 |
 | `win_bout` | One player wins a bout. The background changes for opponent 1, then no input to the end of the game. | 470 |
 
 Some record files write bytes only for the test. The project knowledge, the source and the builds do not have these changes.
@@ -32,7 +34,7 @@ Some record files write bytes only for the test. The project knowledge, the sour
 
 A replay on the default build uses `build/clean_loader.prg` with `build/symbols/clean_loader.json`. The loader has no start screen. The replay counts from the game entry `$8009`, where the loader jumps to.
 
-- The checkpoint is `main_loop` `$80BB`. It runs one time in each pass of the game.
+- The checkpoint is [`main_loop` `$80BB`](../src/main/main_loop.asm#L6). It runs one time in each pass of the game.
 - The state is `fighter_energy` (2 bytes), `fighter_x` (2), `fighter_move` (2), `opponent_index`, `scene_index`, `bout_loser` and `final_stage`.
 - The replay needs no pins.
 
@@ -43,6 +45,6 @@ node <c64-testing>/scripts/testing.ts replay tests/recordings/fight --checkpoint
   --rebuild build/clean_loader.prg --symbols build/symbols/clean_loader.json
 ```
 
-All 7 recordings replay on the original. They also replay on the default build with the same state at each checkpoint (**Observed**, c64-re-tools 2.6.0-rc.20).
+All 7 recordings come from runs of the reference file, the FLT crack. They replay on the default build with the same state at each checkpoint (**Observed**, c64-re-tools 2.7.0-rc.1).
 
 **Why the loader must keep the timer phase.** The game starts the CIA1 timers without a force load. Thus the phase of the timer interrupts comes from the state at the entry. A loader of rc.19 entered with another timer value, and the replays went one frame off after about 500 checkpoints. The loader of rc.20 waits for a raster line and loads the timers before it jumps to `$8009`. With this loader, all replays pass (**Observed**).

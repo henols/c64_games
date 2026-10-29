@@ -1,7 +1,7 @@
 {
   "format": 1,
   "name": "One player against opponent 7 (opponent number set to 7): no input, the computer cuts off the player's head, the goblin drags the body away",
-  "program": "original/fairlight/barbarian_p2_flt.prg",
+  "program": "releases/fairlight/barbarian_p2_flt.prg",
   "sha256": "637197f7f392a78be2225362f8ffca022ca8146deddef24fe5732a9358132285",
   "symbols": "none",
   "load": false,

@@ -1,6 +1,6 @@
 # Barbarian, part 1, V 05 05 87
 
-Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This project is part 1 of the C64 game, Combat Practice. Two fighters fight in an arena with a sunset and in a forest. One player fights the computer opponents 0 to 7, or two players fight each other. The program has the version text "V 05 05 87". The documentation is for the releases RDI and HTL. The base release is RDI, the crack of Raw Deal Inc. of 19 May 1987. The parts that the four projects share are on [../README.md](../README.md).
+Barbarian: The Ultimate Warrior is a sword-fighting game by Palace Software, 1987. This project is part 1 of the C64 game, Combat Practice. Two fighters fight in an arena with a sunset and in a forest. One player fights the computer opponents 0 to 7, or two players fight each other. The program has the version text "V 05 05 87". The documentation is for the releases RDI and HTL. The base release is RDI, the crack of Raw Deal Inc. of 19 May 1987. These cracks are the reference files. Nobody examined a Palace disk or tape. Thus "identical" on these pages means identical to the RDI capture, not to the commercial original. The parts that the four projects share are on [../README.md](../README.md).
 
 **Evidence.** **Observed** marks a fact that a run, a byte compare or the coverage of the recordings showed. **Code** marks a fact from the code only. **Conclusion** marks an interpretation.
 
@@ -41,9 +41,9 @@ The two parts differ in one instruction of F1. Part 1 has `LDA two_players` and 
 
 ## The copy protection
 
-The project has no original Palace disk. RDI and HTL are cracks, and each crack starts the game with its own intro and unpacker. The game code reads no disk, no loader value and no special memory state (**Code**). Thus no project of the group has a PROTECTION switch. **Conclusion:** the original Palace loader held the protection, and the cracks replaced it. The chain of each crack is on [../docs/releases.md](../docs/releases.md).
+Nobody examined a Palace disk or tape. RDI and HTL are cracks, and each crack starts the game with its own intro and unpacker. The game code reads no disk, no loader value and no special memory state (**Code**). Thus no project of the group has a PROTECTION switch. **Conclusion:** the loader of the commercial original held the protection, and the cracks replaced it. The chain of each crack is on [../docs/releases.md](../docs/releases.md).
 
-The game needs one service of its loader: the colours. The game writes colour RAM only in some areas, for example the fight area and the texts (**Code**). RDI copies 1000 bytes from `$B000-$B3E7` to colour RAM `$D800` and then jumps to `$8009` (**Observed**). After the start, the game uses `$B000-$B3E7` as a part of the clean copy of the fight area (**Code**). **Conclusion:** the original loader also filled colour RAM before the jump.
+The game needs one service of its loader: the colours. The game writes colour RAM only in some areas, for example the fight area and the texts (**Code**). RDI copies 1000 bytes from `$B000-$B3E7` to colour RAM `$D800` and then jumps to `$8009` (**Observed**). After the start, the game uses `$B000-$B3E7` as a part of the clean copy of the fight area (**Code**). **Conclusion:** the loader of the commercial original also filled colour RAM before the jump. No reference file has that loader.
 
 The game also takes the phase of its CIA 1 timers from the loader. It starts the timers without a force load, so the timer values at the entry decide when the sound interrupts come (**Code**). The demo AI also reads these timers as its random source. A loader of rc.19 entered with other timer values, and its replays went one frame off after about 500 checkpoints (**Observed**, see [tests/README.md](tests/README.md)).
 
@@ -118,11 +118,11 @@ The project has one page of its own, the game flow. Part 1 uses the code and the
 
 | Label | File | SHA-256 |
 |---|---|---|
-| RDI | `original/rdi/Barbarian (Palace) [Raw Deal Inc.].t64` | `3dd5163e552a0992ee6ab2158e8056a58301dbf52588987864384452e77e09d4` |
-| RDI | `original/rdi/barbarian_part1_rdi.prg` | `be23d11d9c2fd24241ff5607f82d871ece4af1cf8e7576972c7e8d8d7c787c1e` |
-| RDI | `original/rdi/BARBARIAN.d64` | `190eba60b94c7099135e30500cb27be9ba9d5e80c431be492bd86a53f84f02f9` |
-| HTL | `original/hotline/Barbarian.D64` | `b24e7f4156b35c1a2b8884a4813fb104e55e0d3a2e51ae41f2e0f290fe9685a2` |
-| HTL | `original/hotline/barbarian_i_hotline.prg` | `bb9559a7cf6563d5fead1e8f13b1331d45753a5a377367f573879abc55a9037a` |
+| RDI | `releases/rdi/Barbarian (Palace) [Raw Deal Inc.].t64` | `3dd5163e552a0992ee6ab2158e8056a58301dbf52588987864384452e77e09d4` |
+| RDI | `releases/rdi/barbarian_part1_rdi.prg` | `be23d11d9c2fd24241ff5607f82d871ece4af1cf8e7576972c7e8d8d7c787c1e` |
+| RDI | `releases/rdi/BARBARIAN.d64` | `190eba60b94c7099135e30500cb27be9ba9d5e80c431be492bd86a53f84f02f9` |
+| HTL | `releases/hotline/Barbarian.D64` | `b24e7f4156b35c1a2b8884a4813fb104e55e0d3a2e51ae41f2e0f290fe9685a2` |
+| HTL | `releases/hotline/barbarian_i_hotline.prg` | `bb9559a7cf6563d5fead1e8f13b1331d45753a5a377367f573879abc55a9037a` |
 
 - **RDI** (Raw Deal Inc., 19 May 1987, CSDb 22600): the T64 holds PART 1 and PART 2. `barbarian_part1_rdi.prg` is PART 1 of the T64. The D64 holds only part 1, as BARBARIAN CP/RDI, with the same bytes. CP means Combat Practice. RDI changed no byte of the game (**Observed**, **Conclusion**).
 - **HTL** (Hotline, 1 June 1987, CSDb 94591): a recrack of the RDI file with a trainer menu. The patches of the two switches of Hotline hold 24 bytes. Each release build gives the bytes of its capture, so the patches hold each change of Hotline (**Observed**).
@@ -139,7 +139,7 @@ The FLT release of Fairlight holds the other build, V 05 10 87. Its part 1 is th
 
 **The entry state.** `build/clean_loader.prg` is a packed program that starts with RUN. Its copier puts the segments into place and writes the entry state at `$0002-$03FF`. It sets the VIC-II registers of the entry state. Then it waits for a raster line, loads the CIA 1 timers and jumps to `$8009` (**Code**). The timer load keeps the phase of the timer interrupts of the capture (**Observed** in the replays).
 
-**The colour RAM defect.** The entry state in the knowledge holds the 1000 colours of colour RAM. The loader of c64-re-tools 2.6.0-rc.20 does not write them. Thus `build/clean_loader.prg` shows the pictures in wrong colours. The game itself writes only some areas of colour RAM, for example the fight area and the texts. The crack copies the other colours from `$B000-$B3E7` before the jump (**Observed**). The replays compare RAM and not colour RAM, so they pass. This is a defect of the toolkit, not of the knowledge or the source.
+**The colour RAM defect.** The entry state in the knowledge holds the 1000 colours of colour RAM. The loader of c64-re-tools 2.7.0-rc.1 does not write them. Thus `build/clean_loader.prg` shows the pictures in wrong colours. The game itself writes only some areas of colour RAM, for example the fight area and the texts. The crack copies the other colours from `$B000-$B3E7` before the jump (**Observed**). The replays compare RAM and not colour RAM, so they pass. This is a defect of the toolkit, not of the knowledge or the source.
 
 **The switches.** `src/config.asm` holds the value of each switch, and `src/switches.asm` holds the values of each release. Each switch is 0 in the default build, so the default build gives the clean RDI program without the leftovers (**Code**).
 

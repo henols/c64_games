@@ -1,6 +1,6 @@
 {
  "name": "One player against opponent 7 (opponent number set to 7): no input, the computer cuts off the player's head, the goblin drags the body away",
- "program": "original/rdi/barbarian_part2_rdi.prg",
+ "program": "releases/rdi/barbarian_part2_rdi.prg",
  "symbols": "none",
  "inputs": [
   "$dc00",

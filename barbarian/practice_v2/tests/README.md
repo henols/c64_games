@@ -4,7 +4,7 @@ The record files in this folder have only the keys of the c64-testing format. Th
 
 ## Recordings
 
-The recordings in `recordings/` come from the record files in `record/`. Claude wrote the input as steps. No person played. Each record file starts `original/fairlight/barbarian_p1_flt.prg`, the game file of BARBARIAN P1/FLT of the Fairlight release. The crack intro waits for a key, and a `press` of SPACE ends it. The coverage map of each recording starts at the game entry `$8009`.
+The recordings in `recordings/` come from the record files in `record/`. Claude wrote the input as steps. No person played. Each record file starts `releases/fairlight/barbarian_p1_flt.prg`, the game file of BARBARIAN P1/FLT of the Fairlight release. The crack intro waits for a key, and a `press` of SPACE ends it. The coverage map of each recording starts at the game entry `$8009`.
 
 Player 1 uses the joystick in port 2 (`$DC00`), and player 2 uses port 1 (`$DC01`). The game reads the keys through the keyboard matrix. The record files also give the CIA1 timers `$DC04` and `$DC06` as inputs, because the game reads them.
 
@@ -34,7 +34,7 @@ Some record files write bytes only for the test. The project knowledge, the sour
 
 A replay on the default build uses `build/clean_loader.prg` with `build/symbols/clean_loader.json`. The loader has no start screen. The replay counts from the game entry `$8009`, where the loader jumps to.
 
-- The checkpoint is `main_loop` `$80BB`. It runs one time in each pass of the game.
+- The checkpoint is [`main_loop` `$80BB`](../src/main/main_loop.asm#L6). It runs one time in each pass of the game.
 - The state is `fighter_energy` (2 bytes), `fighter_x` (2), `fighter_move` (2), `opponent_index`, `scene_index`, `bout_loser` and `final_stage`.
 - The replay needs no pins.
 
@@ -45,6 +45,6 @@ node <c64-testing>/scripts/testing.ts replay tests/recordings/fight --checkpoint
   --rebuild build/clean_loader.prg --symbols build/symbols/clean_loader.json
 ```
 
-All 8 recordings replay on the original. They also replay on the default build with the same state at each checkpoint (**Observed**, c64-re-tools 2.6.0-rc.20).
+All 8 recordings come from runs of the reference file, the FLT crack. They replay on the default build with the same state at each checkpoint (**Observed**, c64-re-tools 2.7.0-rc.1).
 
 **Why the loader must keep the timer phase.** The game starts the CIA1 timers without a force load. Thus the phase of the timer interrupts comes from the state at the entry. A loader of rc.19 entered with another timer value, and the replays went one frame off after about 500 checkpoints. The loader of rc.20 waits for a raster line and loads the timers before it jumps to `$8009`. With this loader, all replays pass (**Observed**).
