@@ -1,11 +1,11 @@
 {
- "name": "Original loader stage: junk in $033C-$03FE at the game entry changes nothing (the encoded last stage of the original protected loader, which the crack relocator copied there)",
- "original": {
-  "program": "original/bruce_lee.prg",
+ "name": "Crack leftover: junk in $033C-$03FE at the game entry changes nothing (the encoded last stage of the protected loader, which the crack relocator copied there)",
+ "reference": {
+  "program": "releases/bruce_lee.prg",
   "symbols": "none"
  },
  "rebuild": {
-  "program": "original/bruce_lee.prg",
+  "program": "releases/bruce_lee.prg",
   "symbols": "none"
  },
  "steps": [

@@ -420,7 +420,7 @@ These entries of `message_ptrs` have no caller. No code loads their number befor
 | `$53` | `msg_unused_player_2` | `PLAYER 2` |
 | `$62` | `msg_presents` | `DATASOFT PRESENTS`, but `DIABOLO  PRESENTS` (two spaces) in the SAEGER release |
 
-**Message `$62` was changed by a cracker.** Message `$62`, [`msg_presents` `$4770`](../src/text/messages_rooms.asm#L322), reads `DIABOLO  PRESENTS` in the SAEGER release and `DATASOFT PRESENTS` in the TBC and DC releases (**Observed**: [releases.md](releases.md)). In the SAEGER image, the actor workspace also held an older copy of the end of the message area. This copy is a development leftover, and the knowledge keeps it in space `bank1`. The 81 bytes `contact_col0` .. `contact_count_c10` (`$4EED-$4F3D`) held a copy of the bytes `$4731-$4781`. That range goes from the second byte of [`msg_blank2` `$472F`](../src/text/messages_rooms.asm#L273) to the end of `msg_presents`. The copy agrees with the message area, except in the text of message `$62` (**Observed**: the bytes of the original image):
+**Message `$62` was changed by a cracker.** Message `$62`, [`msg_presents` `$4770`](../src/text/messages_rooms.asm#L322), reads `DIABOLO  PRESENTS` in the SAEGER release and `DATASOFT PRESENTS` in the TBC and DC releases (**Observed**: [releases.md](releases.md)). In the SAEGER image, the actor workspace also held an older copy of the end of the message area. This copy is a development leftover, and the knowledge keeps it in space `bank1`. The 81 bytes `contact_col0` .. `contact_count_c10` (`$4EED-$4F3D`) held a copy of the bytes `$4731-$4781`. That range goes from the second byte of [`msg_blank2` `$472F`](../src/text/messages_rooms.asm#L273) to the end of `msg_presents`. The copy agrees with the message area, except in the text of message `$62` (**Observed**: the bytes of the SAEGER image):
 
 | Bytes | Message `$62` now (`msg_presents`) | The copy (`contact_col2+17`) |
 |---|---|---|
@@ -429,13 +429,13 @@ These entries of `message_ptrs` have no caller. No code loads their number befor
 | 12-16 | `53 45 4E 54 53` `SENTS` | `53 45 4E 54 53` `SENTS` |
 | 17 | `A0` end | `A0` end |
 
-The original text of message `$62` was `DATASOFT PRESENTS`, 17 characters. The six zero bytes held `FT PRE`. The TBC and DC releases still have this text. A cracker, Diabolo, changed it to `DIABOLO  PRESENTS`, with two spaces to keep the length (**Conclusion**).
+The text of message `$62` in the copy was `DATASOFT PRESENTS`, 17 characters. The six zero bytes held `FT PRE`. The TBC and DC releases have this text. A cracker, Diabolo, changed it to `DIABOLO  PRESENTS`, with two spaces to keep the length (**Conclusion**).
 
 The change has no visible effect. No code prints message `$62`, and the title shows `DATASOFT PRESENTS` from [`title_logo_row2` `$4A0D`](../src/graphics/banners.asm#L20) in logo letters (**Observed**: the title screenshot). [`init_game_variables` `$0F72`](../src/game/game_setup.asm#L18) clears the copy at the first game start. So the copy is image residue only, and the rebuild leaves it out of the image. The switch `CRACK_DIABOLO` puts the edit into a build. The default build has `DATASOFT PRESENTS` ([releases.md](releases.md)).
 
 ### Texts without a pointer
 
-The original image also held texts in the message format that no pointer and no code reaches (**Code**). They are `BRUCE LEE`, `BY` and `RON J FORTIER` at `$4563-$457D`, and `GAME OVER` and `PLAYER ` at `$4598-$45A9`. They are not part of the game: the knowledge keeps them as leftovers in space `bank1`.
+The image of the base release also holds texts in the message format that no pointer and no code reaches (**Code**). They are `BRUCE LEE`, `BY` and `RON J FORTIER` at `$4563-$457D`, and `GAME OVER` and `PLAYER ` at `$4598-$45A9`. They are not part of the game: the knowledge keeps them as leftovers in space `bank1`.
 
 With messages `$52`, `$53` and `$62`, they are the texts of the title, PLAYER n and GAME OVER screens in the message format. This version draws those screens with the big glyphs of `title_logo_chars` instead (see [The big banners](#the-big-banners)) (**Conclusion**).
 

@@ -3,7 +3,7 @@
 ; Build a release with -DRELEASE_<label>=1 (the build option --release <label>):
 ; then each switch has the value of that release, and the build does not read config.asm.
 
-; SAEGER (the program of the knowledge): original/saeger.d64, file BRUCE LEE: cracked in October 1984 by Saeger Soft Group (SSG). The image was saved from a game that had run: it holds the run state of the music player, a byte of an interrupted KERNAL RAM test at $9B00, and the edit DIABOLO PRESENTS.
+; SAEGER (the program of the knowledge): releases/saeger.d64 (SHA-256 b45e53e602fe94654934beffaa483f59989a6d3973ef054afaeea4ea4bc2b8f5), file BRUCE LEE, extracted as releases/bruce_lee.prg (SHA-256 032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590): cracked in October 1984 by Saeger Soft Group (SSG). The capture at cold_start is the program of the knowledge. The image was saved from a game that had run: it holds the run state of the music player, a byte of an interrupted KERNAL RAM test at $9B00, and the edit DIABOLO PRESENTS.
 !ifdef RELEASE_SAEGER {
         CRACK_DIABOLO = 1
         FIX_RAM_TEST_BYTE = 0
@@ -13,7 +13,7 @@
         START_SCREEN = 0
 }
 
-; DC: original/danish.d64, file BRUCE LEE   (DC): Danish Crackers DC-011/P, TCS-CRUNCH packed. The game bytes are the TBC bytes, but the packed file ends at $F200: the demo input at $F300-$F538 is missing.
+; DC: releases/danish.d64 (SHA-256 1a9d294e07f9593ba59d878423d157bacfe6c6902d3a52ef6ac96512a15fb6c5), file BRUCE LEE   (DC), extracted as releases/bruce_lee_dc.prg (SHA-256 331fe97e73f8c77624242b4da3029efcb9199ffa184d6cd95220a60311efdaf4): Danish Crackers DC-011/P, TCS-CRUNCH packed. The game bytes are the TBC bytes, but the packed file ends at $F200: the demo input at $F300-$F538 is missing.
 !ifdef RELEASE_DC {
         CRACK_DIABOLO = 0
         FIX_RAM_TEST_BYTE = 1
@@ -23,7 +23,7 @@
         START_SCREEN = 0
 }
 
-; TBC: original/bruce_lee_tbc.prg: CRACKED BY TBC. Same crack image as SAEGER (same relocator at $C000 and copies at $A000), saved before a run: no run state, no RAM-test byte, DATASOFT PRESENTS.
+; TBC: releases/bruce_lee_tbc.prg (SHA-256 0ed44d52101414928872eddbe1220427f90cbaf129aa41b3d81ba18909b1d597): CRACKED BY TBC. Same crack image as SAEGER: the same relocator at $C000 and the same copies at $A000, which the game does not use (tests/crack_leftover_a000.json). Saved before a run: no run state, no RAM-test byte, DATASOFT PRESENTS.
 !ifdef RELEASE_TBC {
         CRACK_DIABOLO = 0
         FIX_RAM_TEST_BYTE = 1

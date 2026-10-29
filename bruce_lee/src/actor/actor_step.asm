@@ -552,7 +552,7 @@ actor_set_state_timer4
 ;      zero, it increments the operands main_loop_prot_key_lo/_pair_lo; when the key operand reaches $9A it
 ;      writes $9A (TXS) over the CLC at step_sound_crash_point with X = 4, so the stack pointer becomes $04 and
 ;      the following PLA/RTS crash the game.
-; With the original protection bytes both values are nonzero and nothing happens.
+; With the key bytes of the three releases both values are nonzero and nothing happens.
 actor_play_step_sound
         pha
         txa
@@ -565,7 +565,7 @@ actor_play_step_sound
 .patch_start
 !if PROTECTION = 0 {
         ; PROTECTION off: 5 bytes at $1fce-$1fd2, NOP after the code
-        ; Check 10: the Yamo key never moves the operands or patches random_byte. 7 cycles, as the passing path of the original (LDA abs, BNE taken).
+        ; Check 10: the Yamo key never moves the operands or patches random_byte. 7 cycles, as the passing path of the base release SAEGER (LDA abs, BNE taken).
 nop
 nop
 jmp step_sound_check_protection2
@@ -588,7 +588,7 @@ step_sound_check_protection2
 .patch_start
 !if PROTECTION = 0 {
         ; PROTECTION off: 5 bytes at $1fe5-$1fe9, NOP after the code
-        ; Check 11: the tick key never moves the operands or plants TXS at step_sound_crash_point. 7 cycles, as the passing path of the original (LDA abs, BNE taken).
+        ; Check 11: the tick key never moves the operands or plants TXS at step_sound_crash_point. 7 cycles, as the passing path of the base release SAEGER (LDA abs, BNE taken).
 nop
 nop
 jmp step_sound_restore_regs

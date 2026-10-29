@@ -1,7 +1,7 @@
 {
  "name": "demo F1 abort: F1 ends the second attract demo, fire ends the third",
  "start": {
-  "program": "original/bruce_lee.prg"
+  "program": "releases/bruce_lee.prg"
  },
  "symbols": "knowledge",
  "steps": [

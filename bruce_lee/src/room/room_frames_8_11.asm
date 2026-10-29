@@ -292,7 +292,7 @@ room10_frame_protection_check
 .patch_start
 !if PROTECTION = 0 {
         ; PROTECTION off: 6 bytes at $3ca9-$3cae, NOP after the code
-        ; Check 8: room 10 never damages the room maps. 9 cycles, as the passing path of the original (LDX zp,Y, CPX #, BEQ taken). update_burst_traps loads X at once, so X and the flags are free.
+        ; Check 8: room 10 never damages the room maps. 9 cycles, as the passing path of the base release SAEGER (LDX zp,Y, CPX #, BEQ taken). update_burst_traps loads X at once, so X and the flags are free.
 nop
 nop
 nop

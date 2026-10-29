@@ -1,7 +1,7 @@
 {
   "format": 1,
   "name": "title screen, then fire on port 1 and the first seconds of play in room 0",
-  "program": "original/bruce_lee.prg",
+  "program": "releases/bruce_lee.prg",
   "sha256": "032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590",
   "symbols": "knowledge",
   "load": false,

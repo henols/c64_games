@@ -41,7 +41,7 @@ room04_init
         rts
 ; Room 5 init.
 ; First a protection check: it loops forever unless prot_loader_mark (zero page $02) holds $32, a value that the
-; original loader leaves there.
+; protected loader leaves there.
 ; Then colour 12 for the cells of text line 2, columns 34-36 (where room05_frame later draws tile $19), and the
 ; three sliders: slider 0 at row 9 column 27, slider 1 at row 10 column 27, slider 2 at row 5 column 1.
 ; slider_timer 0/1/2 = $FF/$FC/$F8.

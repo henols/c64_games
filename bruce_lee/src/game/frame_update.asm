@@ -246,7 +246,7 @@ frame_update_check_loader_mark
 .patch_start
 !if PROTECTION = 0 {
         ; PROTECTION off: 8 bytes at $1703-$170a, NOP after the code
-        ; Check 5: the loader mark check always passes, no memory wipe. 8 cycles, as the passing path of the original (LDA zp, CMP #, BEQ taken): BIT reads $02 like the original, and the value is not used. The code after frame_update_restore_ddr loads A and sets the flags again.
+        ; Check 5: the loader mark check always passes, no memory wipe. 8 cycles, as the passing path of the base release SAEGER (LDA zp, CMP #, BEQ taken): BIT reads $02 like the base release, and the value is not used. The code after frame_update_restore_ddr loads A and sets the flags again.
 lda #$32
 bit prot_loader_mark
 jmp frame_update_restore_ddr

@@ -1,11 +1,11 @@
 {
  "name": "Crack leftover: junk in $A000-$A9FF at the game entry changes nothing (relocator copy and duplicated $CF00/$E000 pages)",
- "original": {
-  "program": "original/bruce_lee.prg",
+ "reference": {
+  "program": "releases/bruce_lee.prg",
   "symbols": "none"
  },
  "rebuild": {
-  "program": "original/bruce_lee.prg",
+  "program": "releases/bruce_lee.prg",
   "symbols": "none"
  },
  "steps": [

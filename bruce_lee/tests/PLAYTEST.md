@@ -1,6 +1,6 @@
 # Playtest checklist
 
-The replays in [README.md](README.md) compare the game state of the default build with the original. Only a person can judge the items below.
+The replays in [README.md](README.md) compare the game state of the default build with the SAEGER file `releases/bruce_lee.prg`. Only a person can judge the items below.
 
 ## Application
 
@@ -15,8 +15,8 @@ The replays in [README.md](README.md) compare the game state of the default buil
 - [ ] With 2 PLAYERS and OPPONENT, joystick port 2 moves the Yamo. When Bruce loses a fall, the PLAYER 2 screen appears.
 - [ ] Lose all falls. GAME OVER appears, and the game returns to the title.
 - [ ] The title tune plays on the title screen (every few titles), and the sound effects play in the game.
-- [ ] The controls respond as fast as in the original.
+- [ ] The controls respond as fast as in the SAEGER file.
 - [ ] The animation is smooth and has no glitches.
-- [ ] The music and the sound effects sound the same as in the original.
-- [ ] The game flow and the room changes work from start to end. A room change can stop the game in rare cases. The original has the same fault (see [docs/interrupts.md](../docs/interrupts.md)).
+- [ ] The music and the sound effects sound the same as in the SAEGER file.
+- [ ] The game flow and the room changes work from start to end. A room change can stop the game in rare cases. The three releases have the same fault (see [docs/interrupts.md](../docs/interrupts.md)).
 - [ ] Nothing unexpected happens outside the tested parts.

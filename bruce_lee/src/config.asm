@@ -6,7 +6,7 @@
 ; knowledge does not have. The build of a release does not read this file.
 
 ; Copy protection: off by default
-PROTECTION        = 0 ; on in DC, SAEGER, TBC. $0440-$0442, $06f1-$06f4, $166c-$1671, $1703-$170a, $1fce-$1fd2, $1fe5-$1fe9, $31a1-$31a3, $342a-$3430, $36a8-$36ad, $3ca9-$3cae, $5134-$5135, $5139-$513a, $517b-$517d. The copy protection checks of the original loader marks and the key page $CF00. Each patch takes the passing path with the same registers and flags.
+PROTECTION        = 0 ; on in DC, SAEGER, TBC. $0440-$0442, $06f1-$06f4, $166c-$1671, $1703-$170a, $1fce-$1fd2, $1fe5-$1fe9, $31a1-$31a3, $342a-$3430, $36a8-$36ad, $3ca9-$3cae, $5134-$5135, $5139-$513a, $517b-$517d. The copy protection checks of the marks of the protected loader and of the key page $CF00. Each patch takes the passing path with the same registers and flags.
 
 ; Changes of a crack: off by default
 CRACK_DIABOLO     = 0 ; on in SAEGER. $4771-$4777. msg_presents reads DIABOLO  PRESENTS in SAEGER, DATASOFT PRESENTS in TBC and DC.

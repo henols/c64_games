@@ -1,6 +1,6 @@
 {
   "name": "title screen, then fire on port 1 and the first seconds of play in room 0",
-  "program": "original/bruce_lee.prg",
+  "program": "releases/bruce_lee.prg",
   "symbols": "knowledge",
   "checkpoint": "main_loop",
   "state": [

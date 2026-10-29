@@ -1,18 +1,18 @@
 # Bruce Lee
 
-*Bruce Lee* is a single-load C64 action game by Ron J. Fortier. Datasoft published it in 1984, and the title reads "REV.2 BY RJF". Bruce goes through 20 rooms, collects lanterns and fights the Yamo (a green sumo) and the Ninja. A second player can control the Yamo. The way leads to the wizard in room 18 and the "CONGRATULATIONS" room 19. Then the game starts a new, faster loop. This documentation is for the game file of `original/saeger.d64`, a crack of October 1984, and compares it with two other cracks of the same image. The source in [src/](src/) assembles byte for byte to the game without the crack, and the rebuild shows the Datasoft title picture at the start.
+*Bruce Lee* is a single-load C64 action game by Ron J. Fortier. Datasoft published it in 1984, and the title reads "REV.2 BY RJF". Bruce goes through 20 rooms, collects lanterns and fights the Yamo (a green sumo) and the Ninja. A second player can control the Yamo. The way leads to the wizard in room 18 and the "CONGRATULATIONS" room 19. Then the game starts a new, faster loop. This documentation is for three cracks of the game, not for a Datasoft release. The base release is the game file of `releases/saeger.d64`, a crack of October 1984 by Saeger Soft Group. The other two reference files are the TBC and DC cracks of the same image. The user gave the three files, and their earlier history is not known. Nobody examined a Datasoft disk or tape of the game. Thus "identical" on these pages means identical to the SAEGER capture, not to the commercial original. The source in [src/](src/) assembles byte for byte to that capture without the crack, and the rebuild shows the Datasoft title picture at the start.
 
-**Evidence.** **Observed** marks a fact that an emulator run or the coverage of the runs showed. **Code** marks a fact from the code or the image only. **Conclusion** marks an interpretation. A scenario is named by its file in [tests/](tests/).
+**Evidence.** **Observed** marks a fact that an emulator run or the coverage of the runs showed. **Code** marks a fact from the code or the image only. **Conclusion** marks an interpretation. An **Observed** or **Code** fact is true for the three cracks. A scenario is named by its file in [tests/](tests/).
 
 ## The development
 
-The release image is a memory dump of the development machine, not a clean assembly. About 6 KB of it is bytes that no code of the game reads. The final source only reserved some areas, for example the actor workspace, the sprite buffers, the screen and the gaps in the music code. The assembler did not write these areas, so the older memory content stayed in them. These bytes include copies of older builds and a part of the assembler source text. They also include a part of the symbol table and the data file of a music editor. The rebuild keeps them out of the game, and the knowledge keeps them in the spaces `bank1` to `bank7`. `tests/leftovers_unused.json` fills each leftover with `$A5` at the entry, and the game runs the same (**Observed**).
+The game image of the three cracks is not a clean assembly. About 6 KB of it is bytes that no code of the game reads. The final source only reserved some areas, for example the actor workspace, the sprite buffers, the screen and the gaps in the music code. The assembler did not write these areas, so the older memory content stayed in them. These bytes include copies of older builds and a part of the assembler source text. They also include a part of the symbol table and the data file of a music editor. The rebuild keeps them out of the game, and the knowledge keeps them in the spaces `bank1` to `bank7`. `tests/leftovers_unused.json` fills each leftover with `$A5` at the entry, and the game runs the same (**Observed**).
 
-**A port from the Atari.** Bruce Lee was first an Atari 8-bit game. `atari_digit_key_codes` in bank1 at `$4CBA` holds the Atari keyboard codes of the keys 0-9. The next table holds the same codes plus the Atari SHIFT bit `$40`. No code reads them, and the C64 game has no digit keys (**Code**). So the authors made the C64 version from the Atari source, and a table of the Atari version stayed in it (**Conclusion**).
+**A port from the Atari.** Bruce Lee was first an Atari 8-bit game. `atari_digit_key_codes` in bank1 at `$4CBA` holds the Atari keyboard codes of the keys 0-9. The next table holds the same codes plus the Atari SHIFT bit `$40`. No code reads them, and the C64 game has no digit keys (**Code**). So the authors probably made the C64 version from the Atari source, and a table of the Atari version stayed in it (**Conclusion**). A table that the authors copied from Atari notes can also explain it.
 
 **Source text with Apple II conventions.** `$5900-$59A4` holds 165 bytes of assembler source text: the end of the source file of a room charset, with `* CHAR 97` comment lines and `DFB` lines. The characters have bit 7 set, and the lines end in `$8D`. These are the conventions of Apple II assemblers. The 31 bytes in the text are equal to tiles 96-99 of `room_charset_d` (**Observed**). So the authors typed even the graphics as assembler source, one tile at a time (**Conclusion**).
 
-**The original names.** `$8B00-$8E7F` in bank2 holds 896 bytes of the symbol table of an older build: 88 entries of a length byte, the name and the value. Two offsets give the final address of each value. The names are short codes, for example PLOFS for the frame offset of an actor and IMGL/IMGH for the image address of a frame. The 46 frame labels have the form action, side, phase and sprite layer, for example ADOWNL11. One entry is the typo ADWONL22. The build never referenced it, and a copy of the frame with the right name is in the final build (**Observed**: byte decode). The frame labels show that the Yamo frames first came after the frames of Bruce, and later moved in front of them (**Conclusion**).
+**The source names of the authors.** `$8B00-$8E7F` in bank2 holds 896 bytes of the symbol table of an older build: 88 entries of a length byte, the name and the value. Two offsets give the final address of each value. The names are short codes, for example PLOFS for the frame offset of an actor and IMGL/IMGH for the image address of a frame. The 46 frame labels have the form action, side, phase and sprite layer, for example ADOWNL11. One entry is the typo ADWONL22. The build never referenced it, and a copy of the frame with the right name is in the final build (**Observed**: byte decode). The frame labels show that the Yamo frames first came after the frames of Bruce, and later moved in front of them (**Conclusion**).
 
 **Older builds.** Pages `$EF-$F1` hold code of an older build, `$C600` higher than where it ran. Its addresses show how the program grew: zero page moved up by 3 bytes, and code moved by `$7D` to `$12E` bytes. The old `check_fight_pair` does not have the test for a fall attack that hit the attacker (**Code**). Older copies of two room charsets, two sprite mask tables, four sound effects and the attract demo recording are also in the image. Each differs a little from the final version, so the authors changed these parts late in the work (**Observed**: byte compares).
 
@@ -22,11 +22,11 @@ The release image is a memory dump of the development machine, not a clean assem
 
 **The graphic artist.** The game names only Ron J. Fortier ("REV.2 BY RJF"). The Datasoft title picture also names the graphic artist: "GRAPHIC ART BY KELLY DAY" (**Observed**: the picture of the TBC intro). Only the TBC release holds the picture. The rebuild shows it at the start, without the changes of TBC (see Releases and cracks).
 
-The details and their evidence are on [docs/development.md](docs/development.md).
+The leftovers show what was in memory when somebody saved the image. They do not tell on which computer the authors worked, or the path of the image to the crackers. The details and their evidence are on [docs/development.md](docs/development.md).
 
 ## The copy protection
 
-The original disk had a protected loader. It left three marks in memory: `$EF` in the data direction register `$00` of the CPU port, `$32` in `$02`, and an RTS at `$0080`. The image also holds a key page at `$CF00-$CFFF`. Its two halves of 32 bytes form key pairs: a byte and the byte `$20` higher. A reset machine has `$2F` in `$00`, and nothing in the program writes `$02` (**Code**). So the game cannot run from a plain load of its file (**Conclusion**).
+The game expects a protected loader. Nobody examined that loader, because the three files are cracks. The game code tells that the loader left three marks in memory. These are `$EF` in the data direction register `$00` of the CPU port, `$32` in `$02`, and an RTS at `$0080`. The image also holds a key page at `$CF00-$CFFF`. Its two halves of 32 bytes form key pairs: a byte and the byte `$20` higher. A reset machine has `$2F` in `$00`, and nothing in the program writes `$02` (**Code**). So the game cannot run from a plain load of its file (**Conclusion**).
 
 The game checks these marks and keys in eleven places, in all its parts. Two checks run at the cold start, and one runs on each title screen. Two run in every frame, and three are in the room code of rooms 2, 5 and 10. One runs on each pass of a game. The last two checks compute a value in one place and use it in another place (**Code**). Thus a cracker who removes one check still meets the next one (**Conclusion**).
 
@@ -36,13 +36,13 @@ A check that fails does one of three things (**Code**. **Observed** for checks 4
 - **It destroys.** Two checks wipe memory, and one jumps through the empty I/O area at `$DE00`. The room 10 check cuts the maps of rooms 0, 1 and 5. The game then draws these rooms empty in each later game.
 - **It waits.** The two delayed checks move their own operands one key pair further on each footstep of any actor. After 32 footsteps they write a TXS into the code, and the game crashes. The crash comes many seconds after the cause, and this hides the source of the crash (**Conclusion**).
 
-All three releases keep every check. Their relocator sets the loader marks again, and the key page comes with the image. Thus their game passes every check (**Observed**: title, demo and game runs). In the rebuild, the switch `PROTECTION` gives each of the 13 patched places its passing path, with the same registers and flags. The patches of the checks that run often also take the same cycles as the original. The default build has it off, and each release build has it on. The details are on [docs/protection.md](docs/protection.md).
+All three releases keep every check. Their relocator sets the loader marks again, and the key page comes with the image. Thus their game passes every check (**Observed**: title, demo and game runs). In the rebuild, the switch `PROTECTION` gives each of the 13 patched places its passing path, with the same registers and flags. The patches of the checks that run often also take the same cycles as the passing path of SAEGER. The default build has it off, and each release build has it on. The details are on [docs/protection.md](docs/protection.md).
 
 ## Findings
 
 The facts that a reader does not expect. Each page has more.
 
-- **The copy protection is still in the game, and it is delayed.** Several checks compare marks of the original loader in zero page and pairs of bytes on the key page `$CF00`. A failed check does not stop the game at once. It changes code step by step. Then [`random_byte` `$1159`](src/irq/interrupt_entry_1131.asm#L45) breaks, the game jumps through `$DE00`, or the game wipes memory or damages the maps of rooms 0, 1 and 5. **Code**. **Observed**: junk on the `$CF00` page breaks the game. See [protection.md](docs/protection.md).
+- **The copy protection is still in the game, and it is delayed.** Several checks compare marks of the protected loader in zero page and pairs of bytes on the key page `$CF00`. A failed check does not stop the game at once. It changes code step by step. Then [`random_byte` `$1159`](src/irq/interrupt_entry_1131.asm#L45) breaks, the game jumps through `$DE00`, or the game wipes memory or damages the maps of rooms 0, 1 and 5. **Code**. **Observed**: junk on the `$CF00` page breaks the game. See [protection.md](docs/protection.md).
 - **A room change can stop the game.** [`draw_room` `$09BC`](src/room/draw_room.asm#L28) switches the screen off and on with a read and a write of `SCROLY`. Each write puts bit 8 of the current raster line into the raster compare line. When both writes come on lines 256-311, the compare line stays above the last line of the frame. Then no raster interrupt comes again, and the game waits for ever. **Observed**: the exit from room 15 to room 13 in `runs/room_change_freeze`. See [interrupts.md](docs/interrupts.md).
 - **A knock-out by a fall attack repeats.** After the knock-out, [`apply_fight_ko` `$2C24`](src/actor/fight_hits.asm#L384) jumps back to `apply_fight_hits_fall`. So the damage and the points repeat until the energy wraps to a positive value. **Observed**: in one run the score went from 2000 to 15050, and the Yamo survived with 124 energy. See [combat.md](docs/combat.md).
 - **Six rooms write 2 bytes into a contact mask.** The maps of rooms 4, 7, 10, 13, 17 and 18 decode to 442 cells instead of 440. The two extra cells write `$80` to `$9010-$9011`, a mask of Bruce's frames. **Observed** in the room runs. See [rooms.md](docs/rooms.md).
@@ -143,19 +143,19 @@ The order of the rooms and the conditions that open each way are on [game_flow.m
 
 ## Releases and cracks
 
-Three cracks of the game are in the project. All three come from one cracked image. Their game bytes are the same, except for the traces below.
+Three cracks of the game are in the project, in `releases/`. The user gave them, and nobody knows where they were before. All three come from one cracked image. Their game bytes are the same, except for the traces below.
 
-| Label | File | SHA-256 of the file |
+| Label | File | SHA-256 of the PRG file |
 |---|---|---|
-| SAEGER (base) | `original/saeger.d64`, file `BRUCE LEE` (`original/bruce_lee.prg`) | `032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590` |
-| TBC | `original/bruce_lee_tbc.prg` | `0ed44d52101414928872eddbe1220427f90cbaf129aa41b3d81ba18909b1d597` |
-| DC | `original/danish.d64`, file `BRUCE LEE   (DC)` (`original/bruce_lee_dc.prg`) | `331fe97e73f8c77624242b4da3029efcb9199ffa184d6cd95220a60311efdaf4` |
+| SAEGER (base) | `releases/saeger.d64`, file `BRUCE LEE` (`releases/bruce_lee.prg`) | `032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590` |
+| TBC | `releases/bruce_lee_tbc.prg` | `0ed44d52101414928872eddbe1220427f90cbaf129aa41b3d81ba18909b1d597` |
+| DC | `releases/danish.d64`, file `BRUCE LEE   (DC)` (`releases/bruce_lee_dc.prg`) | `331fe97e73f8c77624242b4da3029efcb9199ffa184d6cd95220a60311efdaf4` |
 
 - **SAEGER.** Saeger Soft Group, October 1984. It adds an intro that waits for SPACE, a mover and a relocator. The file is not packed. Its game bytes are different from TBC in 76 bytes: message `$62`, the byte at `$9B00` and the music state.
 - **TBC.** It adds an intro with the Datasoft title picture, a mover and the same relocator. The file is not packed. It changed no byte of the game.
 - **DC.** Danish Crackers, "DC-011/P". It adds an intro and the same relocator, and TCS-CRUNCH packs the file. It changed no byte of the game, but the file does not hold the demo input.
 
-No crack removed a copy protection check. The common relocator writes again the marks of the original loader (**Observed**: the byte compare, and runs of the title, the demo and the game).
+No crack removed a copy protection check. The common relocator writes again the marks of the protected loader (**Observed**: the byte compare, and runs of the title, the demo and the game).
 
 **SAEGER: the edit of another cracker.** [`msg_presents` `$4770`](src/text/messages_rooms.asm#L322) reads "DIABOLO  PRESENTS" in SAEGER and "DATASOFT PRESENTS" in TBC and DC (**Observed**: a byte compare of the releases). No code prints this message (**Code**). Thus a cracker who signed as Diabolo edited the image first, and SSG released that copy later (**Conclusion**). The text identifies a copy of the SAEGER line. The switch `CRACK_DIABOLO` gives the text in the rebuild.
 
@@ -174,16 +174,16 @@ The details, the hashes of the disk images and each different byte are on [relea
 **The base release.** The knowledge holds the memory of the SAEGER release when it gets to [`cold_start` `$0400`](src/game/cold_start.asm#L22). It holds only the game: 24 segments from `$03FF` to `$FFFF` (40,075 bytes). The capture leaves out these parts:
 
 - the crack at `$A000-$A9FF`: a copy of the relocator and duplicated pages
-- the original loader stage at `$033C-$03FE`
+- the encoded last stage of the protected loader at `$033C-$03FE`
 - 28 leftover blocks of the development and the release, and the 10 leftover ranges of the source
 
-The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033c.json` and `tests/leftovers_unused.json` show that the game uses none of them (**Observed**).
+The scenarios `tests/crack_leftover_a000.json`, `tests/crack_leftover_033c.json` and `tests/leftovers_unused.json` show that the game uses none of them (**Observed**).
 
-**The entry state.** The game needs the marks that the original loader left. The relocator of each crack sets them again: `$00` = `$EF`, `$02` = `$32`, an RTS at `$0080`, and `warm_start_flag` = 0. They stay in the entry state. `build/clean_loader.prg` copies the segments into place, sets the entry state of the capture and jumps to `cold_start`. The emulator check of c64-source verified it.
+**The entry state.** The game needs the marks of the protected loader. The relocator of each crack sets them again: `$00` = `$EF`, `$02` = `$32`, an RTS at `$0080`, and `warm_start_flag` = 0. They stay in the entry state. `build/clean_loader.prg` copies the segments into place, sets the entry state of the capture and jumps to `cold_start`. The emulator check of c64-source verified it.
 
-**The start screen.** `build/clean_loader.prg` first shows the Datasoft title picture. Then it waits for a key, or for the fire button of joystick port 1 or 2. The picture comes from the TBC intro: the knowledge holds a capture of the intro at `$0872` in the space `loading`. The switch `CRACK_TBC_PICTURE` of that space holds the changes of TBC: the text "CRACKED BY TBC" and the light blue Chinese name. Its default is 0, so the loader shows the clean picture. The clean cells come from a reference screenshot of the original picture, through `src/title_picture.kla` of commit a67158a. No original Datasoft file holds them (**Observed**: the loader check and a byte compare in memory). An older capture of the same intro stays in space bank8 as history. The loader does not use it. Set `START_SCREEN = 0` in `src/config.asm` to start the game at once.
+**The start screen.** `build/clean_loader.prg` first shows the Datasoft title picture. Then it waits for a key, or for the fire button of joystick port 1 or 2. The picture comes from the TBC intro: the knowledge holds a capture of the intro at `$0872` in the space `loading`. The switch `CRACK_TBC_PICTURE` of that space holds the changes of TBC: the text "CRACKED BY TBC" and the light blue Chinese name. Its default is 0, so the loader shows the clean picture. The clean cells come from a screenshot of the picture that the user gave, through `src/title_picture.kla` of commit a67158a. Nobody examined a Datasoft file of the picture (**Observed**: the loader check and a byte compare in memory). An older capture of the same intro stays in space bank8 as history. The loader does not use it. Set `START_SCREEN = 0` in `src/config.asm` to start the game at once.
 
-**The leftovers.** No code uses 114 bytes of code and data in 13 ranges (**Observed**: `generate` of c64-re-tools 2.6.0-rc.3 and the test `leftovers_unused`). Examples are an RTS that no code reaches, the unused copy `inc_pointer_06_copy` and the unreachable `unused_jump_reset_vector`. The source keeps them in the files `src/leftovers/leftover_xxxx.asm`. The default build and `build/clean_loader.prg` do not have them, and each release build has them. The switch `LEFTOVERS` in `src/config.asm` puts them in.
+**The leftovers.** No code uses 122 bytes of code and data in 14 ranges (**Observed**: `generate` of c64-re-tools 2.7.0-rc.1 and the test `leftovers_unused`). Examples are an RTS that no code reaches, the unused copy `inc_pointer_06_copy` and the unreachable `unused_jump_reset_vector`. The source keeps them in the files `src/leftovers/leftover_xxxx.asm`. The default build and `build/clean_loader.prg` do not have them, and each release build has them. The switch `LEFTOVERS` in `src/config.asm` puts them in.
 
 **The switches.** `src/config.asm` holds the value of each switch. Change a value there, then build again. `src/switches.asm` holds the value of each switch for each release. The default build is the clean game.
 
@@ -198,11 +198,13 @@ The scenarios `tests/crack_leftover_a000.json`, `tests/original_loader_stage_033
 
 - `build/clean_loader.prg` is the clean game with the start screen, ready to run. Start the game with this file. `source.ts generate --out src --loader` makes it again. `src/loader.asm` is the packed form, so do not build it alone.
 - `assembler.ts build src main.asm --out build/bruce_lee.prg` gives the clean game without a loader.
-- `assembler.ts build src main.asm --release SAEGER --compare --out build/bruce_lee_SAEGER.prg` checks the original against the knowledge. `--release TBC` and `--release DC` check the other releases. Each release build gives its capture byte for byte: SAEGER in all 24 segments, TBC and DC in their 23 segments.
+- `assembler.ts build src main.asm --release SAEGER --compare --out build/bruce_lee_SAEGER.prg` checks the SAEGER build against the bytes of SAEGER in the knowledge. `--release TBC` and `--release DC` check the other releases. Each release build gives its capture byte for byte: SAEGER in all 24 segments, TBC and DC in their 23 segments. The compares include only the captured game. They leave out the crack, the loader stage at `$033C-$03FE` and the leftover blocks.
 
-**The tests.** Nine recordings in [tests/recordings/](tests/recordings/) play parts of the original: the title and its options, the demo and the game keys. Other recordings play two players, a player Yamo, a game over and all 20 rooms. Each recording replays on `build/clean_loader.prg` with the same game state at each checkpoint, 11845 checkpoints in all (**Observed**). The replays pin the stack page, because `random_byte` reads it. Seven scenarios and run files test what a replay cannot test:
+**The evidence files.** The release files are in `releases/`. The folder `original/` holds the `image.json` of four old captures and a copy of the TBC file. The knowledge gives these files as evidence of old revisions, so they stay. [tests/README.md](tests/README.md) tells more.
 
-- `leftovers_unused`, `crack_leftover_a000` and `original_loader_stage_033c` put junk in the unused blocks of the original, and the game runs the same.
+**The tests.** Nine recordings in [tests/recordings/](tests/recordings/) play parts of `releases/bruce_lee.prg`, the SAEGER file: the title and its options, the demo and the game keys. Other recordings play two players, a player Yamo, a game over and all 20 rooms. Each recording replays on `build/clean_loader.prg` with the same game state at each checkpoint, 11845 checkpoints in all (**Observed**, c64-re-tools 2.7.0-rc.1). The replays pin the stack page, because `random_byte` reads it. Seven scenarios and run files test what a replay cannot test:
+
+- `leftovers_unused`, `crack_leftover_a000` and `crack_leftover_033c` put junk in the unused blocks of the SAEGER file, and the game runs the same.
 - `no_protection` destroys the protection data of the default build and compares it with the TBC release.
 - `start_screen`, `start_screen_fire` and `start_screen_waits` test the start screen of the loader.
 
@@ -214,7 +216,7 @@ These questions come up on more than one page. Each page lists its own questions
 
 - **Some code never ran.** The coverage of all runs misses 763 instructions in 121 ranges. Examples are parts of the wizard defeat, some room events and several protection paths. The source marks each range with `; not executed`, and `.c64-re-tools/local/generated/src/not_executed.json` lists them. Git does not keep that file: `generate` writes it again. Runs that reach these paths can close the gaps.
 - **What some room pieces are in game terms.** The sliders, the runners and some graphic messages have names that come from their place and use. See [rooms.md](docs/rooms.md).
-- **The warm-start flag.** [`warm_start_flag` `$03FF`](src/game/cold_start.asm#L7) must be 0, and nothing writes it. The original loader may have had a restart path. See [protection.md](docs/protection.md).
+- **The warm-start flag.** [`warm_start_flag` `$03FF`](src/game/cold_start.asm#L7) must be 0, and nothing writes it. The protected loader may have had a restart path. See [protection.md](docs/protection.md).
 
 ## The reference
 

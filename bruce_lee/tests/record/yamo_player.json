@@ -1,6 +1,6 @@
 {
  "name": "Yamo controlled by player 2 (F5): random moves on both ports",
- "program": "original/bruce_lee.prg",
+ "program": "releases/bruce_lee.prg",
  "symbols": "knowledge",
  "coverage": "$0400",
  "checkpoint": "main_loop",

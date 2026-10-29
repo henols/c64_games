@@ -225,6 +225,7 @@ draw_room_done
 ; write both come on raster lines 256-311, the compare line stays above 311 (for example 256 + 64 = 320). The
 ; raster IRQ then never fires again, frame_countdown stays 3, and main_loop waits for ever. When the screen-off
 ; write comes before line 256, the compare line still matches during the draw, and the IRQ runs after the CLI.
+; Observed in runs/room_change_freeze/run.json on releases/bruce_lee.prg (SAEGER).
         lda SCROLY                      ; screen on
         ora #$10
         sta SCROLY

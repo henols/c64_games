@@ -1,7 +1,7 @@
 {
  "name": "room change freeze: exit from room 15 to room 13, draw_room starts and ends on raster lines 256-311",
  "start": {
-  "program": "original/bruce_lee.prg"
+  "program": "releases/bruce_lee.prg"
  },
  "symbols": "knowledge",
  "steps": [

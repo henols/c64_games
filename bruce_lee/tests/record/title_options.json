@@ -1,6 +1,6 @@
 {
  "name": "title options: F3, F5, L, R, shift-L, shift-R, F3, F5 and L again",
- "program": "original/bruce_lee.prg",
+ "program": "releases/bruce_lee.prg",
  "symbols": "knowledge",
  "coverage": "$0400",
  "checkpoint": "title_menu_option_changed",

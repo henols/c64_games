@@ -1,6 +1,6 @@
 {
  "name": "all 20 rooms: place Bruce at the start of each room and move at random",
- "program": "original/bruce_lee.prg",
+ "program": "releases/bruce_lee.prg",
  "symbols": "knowledge",
  "coverage": "$0400",
  "checkpoint": "main_loop",

@@ -1,11 +1,11 @@
 {
  "name": "Leftovers: junk in every leftover block of the image (unused data, old copies, source text, symbol table, tape tool, unread key bytes) changes nothing",
- "original": {
-  "program": "original/bruce_lee.prg",
+ "reference": {
+  "program": "releases/bruce_lee.prg",
   "symbols": "knowledge"
  },
  "rebuild": {
-  "program": "original/bruce_lee.prg",
+  "program": "releases/bruce_lee.prg",
   "symbols": "knowledge"
  },
  "steps": [

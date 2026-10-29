@@ -1,6 +1,6 @@
 {
  "name": "two players (F3): random moves of player 1 on port 1 and player 2 on port 2, turn by turn",
- "program": "original/bruce_lee.prg",
+ "program": "releases/bruce_lee.prg",
  "symbols": "knowledge",
  "coverage": "$0400",
  "checkpoint": "main_loop",

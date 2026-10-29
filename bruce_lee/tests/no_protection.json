@@ -1,7 +1,7 @@
 {
  "name": "No protection: the default build (PROTECTION = 0) runs like the original even when the protection data is destroyed ($00 = $2F, $02 = 0, $0080 = 0, $CF00 page = 0)",
- "original": {
-  "program": "original/bruce_lee_tbc.prg",
+ "reference": {
+  "program": "releases/bruce_lee_tbc.prg",
   "symbols": "knowledge"
  },
  "rebuild": {
@@ -39,14 +39,14 @@
     },
     "timeoutFrames": 900
    },
-   "side": "original"
+   "side": "reference"
   },
   {
    "type": {
     "mode": "text",
     "text": " "
    },
-   "side": "original"
+   "side": "reference"
   },
   {
    "runUntil": {

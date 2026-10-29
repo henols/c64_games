@@ -315,8 +315,8 @@ msg_room3_ledge_b
 ; exit marker char 2 of the map, so the way back to room 17 closes when the wizard is defeated.
 msg_wizard_left_marker
         !byte $a6,$a0
-; Message $62: "DIABOLO  PRESENTS" in the SAEGER release: no code prints this index. TBC and DC have the original
-; "DATASOFT PRESENTS" here, and the original image also held a copy of these bytes from the build at $4F2C
+; Message $62: "DIABOLO  PRESENTS" in the SAEGER release: no code prints this index. TBC and DC have
+; "DATASOFT PRESENTS" here, and the SAEGER image also holds a copy of these bytes from the build at $4F2C
 ; (knowledge space bank1) with "DATASO...SENTS". The edit is a crack trace (Diabolo); the switch CRACK_DIABOLO
 ; puts it in the build (two spaces keep the length 17).
 msg_presents

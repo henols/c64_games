@@ -107,7 +107,7 @@ spawn_actor_ninja_side
         jsr random_byte
         cmp #$c0
         bcs spawn_actor_random_side
-        lda yamo_spawn_side,x           ; reads yamo_spawn_side, not ninja_spawn_side (as in the original)
+        lda yamo_spawn_side,x           ; reads yamo_spawn_side, not ninja_spawn_side (a slip of the authors that all three releases have)
         bpl spawn_actor_use_start_a
         bmi spawn_actor_use_start_b
 ; Follow Bruce: X position (A), Y position and energy saved by change_room, then clear the carry-over.

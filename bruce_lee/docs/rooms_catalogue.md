@@ -151,7 +151,7 @@ The screenshot shows pagoda roofs with a ladder at the left, a blue lattice in t
 
 **The behaviour.** [`room02_frame` `$36A6`](../src/room/room_frames_0_7.asm#L75) does three things on each pass:
 
-1. **The copy protection check.** The handler loops forever if [`D6510` `$0000`](../src/constants.asm#L7) does not hold $EF. The original loader leaves this value there. The check passed in all runs of the coverage. **Observed.** It is check 6 of [protection.md](protection.md). The default build (`PROTECTION` = 0) replaces it with code that always passes. **Code.**
+1. **The copy protection check.** The handler loops forever if [`D6510` `$0000`](../src/constants.asm#L7) does not hold $EF. The protected loader leaves this value there. The check passed in all runs of the coverage. **Observed.** It is check 6 of [protection.md](protection.md). The default build (`PROTECTION` = 0) replaces it with code that always passes. **Code.**
 2. **The right wall opens.** When room 6 is cleared, the handler opens the wall one time (`room_state_b`). It calls `play_open_sound`, then draws tile $1A (codes $00 $00 $05) at L11 C37 and tile $07 (codes $11 $11 $11) at L12 C37. Exit marker 5 then shows at L11 C39. **Code.**
 3. **The statue's mouth moves.** When room 6 is cleared, the mouth at L9 C33 moves as the mouth of room 0 does. `room_state_c` is the timer, and `room_state_a` tells which tile is on the screen. **Code.**
 
@@ -326,7 +326,7 @@ The screenshot shows a blue cave with lattice towers in the middle and a moving 
 
 **The setup.** [`room05_init` `$3428`](../src/room/room_specific_init.asm#L48) does three things:
 
-1. **The copy protection check.** The handler loops forever if [`prot_loader_mark` `$0002`](../src/constants.asm#L9) does not hold $32. The original loader leaves this value there. The check passed in the coverage. **Observed.** It is check 7 of [protection.md](protection.md). The default build (`PROTECTION` = 0) replaces it. **Code.**
+1. **The copy protection check.** The handler loops forever if [`prot_loader_mark` `$0002`](../src/constants.asm#L9) does not hold $32. The protected loader leaves this value there. The check passed in the coverage. **Observed.** It is check 7 of [protection.md](protection.md). The default build (`PROTECTION` = 0) replaces it. **Code.**
 2. It sets colour RAM $FC (colour 12) for L2 C34-36. Tile $19 shows there later.
 3. It puts slider 0 at L9 C27, slider 1 at L10 C27 and slider 2 at L5 C1. It sets `slider_timer` = $FF, $FC and $F8.
 

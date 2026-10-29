@@ -65,7 +65,7 @@ room01_frame_draw_trapdoor
 room01_frame_done
         rts
 ; Room 2 frame handler.
-; First a protection check: loops forever unless zero page $00 (D6510) holds $EF, the value the original loader
+; First a protection check: loops forever unless zero page $00 (D6510) holds $EF, the value the protected loader
 ; leaves there.
 ; When room 6 has no lanterns left:
 ;  - one time (room_state_b): play_open_sound, tile $1A at row 11 and tile $07 at row 12, column 37 (opens the

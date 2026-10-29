@@ -1,6 +1,6 @@
 # Bruce Lee: the releases
 
-The project has three cracked releases of *Bruce Lee*: SAEGER, TBC and DC. No uncracked copy of the Datasoft release is in the project. This page tells where each release comes from and what each crack added. It tells what the crackers did with the copy protection, and which traces the cracks and other people left in the program. It also lists each byte where the game differs between the releases, and the switch that gives that byte in the rebuild. A preservation project can use it to identify a copy and to build each release again.
+The project has three cracked releases of *Bruce Lee*: SAEGER, TBC and DC. They are the reference files of this documentation. No uncracked copy of the Datasoft release is in the project, and nobody examined one. Thus a byte compare on this page tells about the three cracks, not about the commercial original. This page tells where each release comes from and what each crack added. It tells what the crackers did with the copy protection, and which traces the cracks and other people left in the program. It also lists each byte where the game differs between the releases, and the switch that gives that byte in the rebuild. A preservation project can use it to identify a copy and to build each release again.
 
 **Conventions.**
 - Addresses are C64 addresses. Names are the names of the knowledge.
@@ -12,15 +12,15 @@ The project has three cracked releases of *Bruce Lee*: SAEGER, TBC and DC. No un
 
 ## The known releases
 
-The three releases are three cracks of one game image. The table gives the facts that identify each file. The SHA-256 is the hash of the file in `original/` (**Observed**: `sha256sum`). Each extracted file is equal to the file on its disk image (**Observed**: an extraction from each D64).
+The three releases are three cracks of one game image. The table gives the facts that identify each file. The SHA-256 is the hash of the file in `releases/` (**Observed**: `sha256sum`). The user gave the files to the project: `saeger.d64` on 2026-10-15, and the TBC file (`bruce_lee_tbc.prg`) and `danish.d64` on 2026-10-18. Where the files were before is not known. Each extracted file is equal to the file on its disk image (**Observed**: an extraction from each D64).
 
 | Label | Disk image | File | Group | Date | SHA-256 of the file |
 |---|---|---|---|---|---|
-| SAEGER (base) | `original/saeger.d64`, disk name "XIDEX", file "BRUCE LEE", 186 blocks | `original/bruce_lee.prg`, 47,107 bytes, `$0801-$C001` | Saeger Soft Group (SSG) | October 1984 (intro text) | `032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590` |
-| TBC | unknown (only the PRG file) | `original/bruce_lee_tbc.prg`, 49,423 bytes, `$0801-$C90D` | TBC | unknown | `0ed44d52101414928872eddbe1220427f90cbaf129aa41b3d81ba18909b1d597` |
-| DC | `original/danish.d64`, no disk name, file "BRUCE LEE   (DC)", 178 blocks | `original/bruce_lee_dc.prg`, 45,074 bytes, `$0801-$B810` | Danish Crackers (DC) | unknown | `331fe97e73f8c77624242b4da3029efcb9199ffa184d6cd95220a60311efdaf4` |
+| SAEGER (base) | `releases/saeger.d64`, disk name "XIDEX", file "BRUCE LEE", 186 blocks | `releases/bruce_lee.prg`, 47,107 bytes, `$0801-$C001` | Saeger Soft Group (SSG) | October 1984 (intro text) | `032fb72523f73a0c9e755809c71bd6072709e42b119deb443b119ca392fb7590` |
+| TBC | unknown (only the PRG file) | `releases/bruce_lee_tbc.prg`, 49,423 bytes, `$0801-$C90D` | TBC | unknown | `0ed44d52101414928872eddbe1220427f90cbaf129aa41b3d81ba18909b1d597` |
+| DC | `releases/danish.d64`, no disk name, file "BRUCE LEE   (DC)", 178 blocks | `releases/bruce_lee_dc.prg`, 45,074 bytes, `$0801-$B810` | Danish Crackers (DC) | unknown | `331fe97e73f8c77624242b4da3029efcb9199ffa184d6cd95220a60311efdaf4` |
 
-The disk images have these hashes: `original/saeger.d64` is `b45e53e602fe94654934beffaa483f59989a6d3973ef054afaeea4ea4bc2b8f5`, and `original/danish.d64` is `1a9d294e07f9593ba59d878423d157bacfe6c6902d3a52ef6ac96512a15fb6c5` (**Observed**).
+The disk images have these hashes: `releases/saeger.d64` is `b45e53e602fe94654934beffaa483f59989a6d3973ef054afaeea4ea4bc2b8f5`, and `releases/danish.d64` is `1a9d294e07f9593ba59d878423d157bacfe6c6902d3a52ef6ac96512a15fb6c5` (**Observed**).
 
 Each file starts with one BASIC line that starts the crack. The line numbers are 1984 in SAEGER, 6368 in TBC and 1985 in DC (**Observed**: the first bytes of each file).
 
@@ -34,16 +34,16 @@ The line number 1985 of the DC file may be the year of the crack. No other sourc
 
 The knowledge records each release with its bytes and the define that builds it. The bytes of each release are in the project knowledge. They come from the captures of the three files at the jump to `cold_start` (**Observed**: `knowledge.ts releases`).
 
-## The original
+## The commercial original
 
-**TBC holds the game nearest to the original program.** Its game bytes have the text "DATASOFT PRESENTS", the bytes from before a run, and the demo input. DC has the same game bytes, but it lost the demo input. SAEGER holds an image that somebody saved from a game that ran, with a text edit of another cracker (**Observed**: byte compare of the captures. **Conclusion**: which release is nearest).
+**TBC holds the game nearest to the program of the authors.** Its game bytes have the text "DATASOFT PRESENTS", the bytes from before a run, and the demo input. DC has the same game bytes, but it lost the demo input. SAEGER holds an image that somebody saved from a game that ran, with a text edit of another cracker (**Observed**: byte compare of the captures. **Conclusion**: which release is nearest). All three share one cracked image. Thus a byte that all three have is not proof of a byte of the commercial original.
 
-SAEGER is the base release of the knowledge. The rebuild gives each release byte for byte. The default build is the TBC game without the protection checks (**Observed**: the byte compare of the builds).
+SAEGER is the base release of the knowledge. The rebuild gives the captured game of each release byte for byte. The default build is the TBC game without the protection checks (**Observed**: the byte compare of the builds).
 
-These parts of the original release are missing:
-- **The original disk or tape.** Each release in the project is a crack. So the original protection loader is not available.
-- **The earlier stages of the original loader.** Each crack file still holds the last stage, in its encoded form. The relocator copies it to `$033C-$03FE`. Decoded, it decrypts the game into `$0400-$A0FF`, writes the RTS at `$0080`, and calls `$0400`. The knowledge keeps the encoded stage in space bank6 at `$033C` and the decoded stage in space bank7 (**Code**). The game does not use these bytes (**Observed**: `tests/original_loader_stage_033c.json` writes `$A5` over the 195 bytes and gives PASS).
-- **A clean original text.** The image also holds an old copy of `msg_presents` from an earlier build, in space bank1 at `$4F2C`. That copy reads "DATASO...SENTS" (**Code**: the comment of `msg_presents`). So "DATASOFT PRESENTS" in TBC and DC is the text of the authors (**Conclusion**).
+These parts of the commercial original are missing:
+- **The Datasoft disk or tape.** Each release in the project is a crack. So the protected loader is not available.
+- **The earlier stages of the protected loader.** Each crack file still holds the last stage, in its encoded form. The relocator copies it to `$033C-$03FE`. Decoded, it decrypts the game into `$0400-$A0FF`, writes the RTS at `$0080`, and calls `$0400`. The knowledge keeps the encoded stage in space bank6 at `$033C` and the decoded stage in space bank7 (**Code**). The game does not use these bytes (**Observed**: `tests/crack_leftover_033c.json` writes `$A5` over the 195 bytes and gives PASS).
+- **A clean text of message `$62`.** The image also holds an old copy of `msg_presents` from an earlier build, in space bank1 at `$4F2C`. That copy reads "DATASO...SENTS" (**Code**: the comment of `msg_presents`). So "DATASOFT PRESENTS" in TBC and DC is probably the text of the authors (**Conclusion**). A cracker before TBC and DC can also have changed it, but no trace shows that.
 
 ## The cracks
 
@@ -55,7 +55,7 @@ Each crack adds an intro and a mover in front of the game. The intros and the mo
 
 **The relocator is crack code.** It is the same in the three releases (**Observed**: `$C000-$C1FF` is equal in the three captures). It starts from the layout of a single file, with the game at `$0900`. It writes again the marks that the protected loader left. Thus it comes from the first crack, the image that the three releases share (**Conclusion**).
 
-**Two parts outside the game are original.** These parts are the encoded last stage of the protected loader at `$C13C` and the title picture of TBC. The relocator copies the loader stage to `$033C-$03FE` (see "The original"). The other bytes outside the game and the leftovers are copies that the relocation left (**Observed**: a byte compare of the three captures). The game does not need `$A000-$A9FF` (**Observed**: `tests/crack_leftover_a000.json` writes `$A5` over the 2,560 bytes and gives PASS).
+**Two parts outside the game are not crack code.** These parts are the encoded last stage of the protected loader at `$C13C` and the title picture of TBC (**Conclusion**). The relocator copies the loader stage to `$033C-$03FE` (see "The commercial original"). The other bytes outside the game and the leftovers are copies that the relocation left (**Observed**: a byte compare of the three captures). The game does not need `$A000-$A9FF` (**Observed**: `tests/crack_leftover_a000.json` writes `$A5` over the 2,560 bytes and gives PASS).
 
 ### The title picture
 
@@ -69,17 +69,17 @@ The title picture is not crack work. It is the Datasoft title picture, and only 
 
 ### How the cracks dealt with the protection
 
-**No crack removed a protection check.** The checks are equal in the three releases. Each crack copies the key page to `$CF00`, and its relocator writes the marks that the original loader left. So the game passes every check (**Observed**: the byte compare, and runs of the title, the demo and the game).
+**No crack removed a protection check.** The checks are equal in the three releases. Each crack copies the key page to `$CF00`, and its relocator writes the marks that the protected loader left. So the game passes every check (**Observed**: the byte compare, and runs of the title, the demo and the game).
 
 ## The copy protection
 
-The original game holds eleven checks of three loader marks and of a key page. The marks are `$00` = `$EF`, `$02` = `$32` and an RTS at `$0080`. The key bytes are at `$CF79-$CFBA`. A failed check hangs the game, wipes memory, or crashes the game after 32 footsteps (**Code**). [protection.md](protection.md) tells about each check.
+The game of the three releases holds eleven checks of three loader marks and of a key page. The marks are `$00` = `$EF`, `$02` = `$32` and an RTS at `$0080`. The key bytes are at `$CF79-$CFBA`. A failed check hangs the game, wipes memory, or crashes the game after 32 footsteps (**Code**). [protection.md](protection.md) tells about each check.
 
 All three releases still have every check. The switch `PROTECTION` is on in the three releases and off in the default build (**Observed**: `knowledge.ts switches`).
 
 ## The traces in the program
 
-The files hold traces of the cracks in the program, and traces of people other than the authors and the three named groups. The traces show that the cracks did not start from a fresh copy of the original.
+The files hold traces of the cracks in the program, and traces of people other than the authors and the three named groups. The traces show that the cracks did not start from a fresh copy of the commercial release.
 
 ### The DIABOLO edit
 
@@ -129,7 +129,7 @@ The table lists the 76 bytes by variable. The byte compare splits `$E30A-$E314` 
 
 ### The switches and the builds
 
-The source holds each difference as a switch in `src/switches.asm`. The default build is the clean game. It has no protection, the original text, the clean charset byte, and the music bytes from before a run (**Observed**: `knowledge.ts switches`).
+The source holds each difference as a switch in `src/switches.asm`. The default build is the clean game. It has no protection, the text DATASOFT PRESENTS, the clean charset byte, and the music bytes from before a run (**Observed**: `knowledge.ts switches`).
 
 | Switch | Kind | Default | Releases with it on | Patches |
 |---|---|---|---|---|

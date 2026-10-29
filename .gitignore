@@ -1,5 +1,5 @@
 # What git keeps of a project folder (for example bruce_lee/):
-#   original/       the input disk or file
+#   releases/       the release files as you got them (original/ in projects before c64-re-tools 2.7)
 #   .c64-re-tools/knowledge/   the knowledge
 #   src/            the generated source, identical to the image
 #   docs/           the written pages and the generated reference
@@ -27,7 +27,7 @@ skills-lock.json
 build/
 snapshots/
 
-# Copies and archives in the top folder: the input disk belongs in <project>/original/.
+# Copies and archives in the top folder: the input disk belongs in <project>/releases/.
 /*.d64
 /*.d71
 /*.d81

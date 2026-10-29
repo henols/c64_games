@@ -1,6 +1,6 @@
 {
   "name": "first rooms: game start, room 1 and back to room 0, fights with the Ninja",
-  "program": "original/bruce_lee.prg",
+  "program": "releases/bruce_lee.prg",
   "symbols": "knowledge",
   "checkpoint": "main_loop",
   "state": [

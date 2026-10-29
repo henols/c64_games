@@ -151,7 +151,7 @@ The program puts in `$8000-$BFFF` only the data that the VIC must see. The one e
 | Range | Name | VIC use | CPU use |
 |---|---|---|---|
 | `$8000-$817F` | `room_map_19` (end) | Characters `$00-$2F` of the charset at `$8000`, sprite blocks 0-5. No screen uses them. | The end of the map of room 19. |
-| `$8180-$83FF` | `sprite_buf_a_spr0` .. `sprite_buf_b_spr4` | Sprite blocks `$06-$0F`: the two sprite buffers. Also characters `$30-$7F` of the charset at `$8000` (not used). | Work RAM. The sprite builder writes it. Not part of the image. The knowledge space `bank2` keeps the bytes that the original image had here (an older room charset). |
+| `$8180-$83FF` | `sprite_buf_a_spr0` .. `sprite_buf_b_spr4` | Sprite blocks `$06-$0F`: the two sprite buffers. Also characters `$30-$7F` of the charset at `$8000` (not used). | Work RAM. The sprite builder writes it. Not part of the image. The knowledge space `bank2` keeps the bytes that the image of the base release has here (an older room charset). |
 | `$8400-$87FF` | `title_logo_chars` | Characters `$80-$FF` of the charset at `$8000` (`$D018` = `$30`): the logo, the big letters and the big digits. | No code reads or writes it. |
 | `$8800-$8BFF` | `text_font` | The text font (`$D018` = `$32`): title menu, status line. | `cold_start` builds it. |
 | `$8C00-$8FE7` | `game_screen` | Screen RAM, 40 x 25. | All screens. |
@@ -392,7 +392,7 @@ The actor *type* is the index of [`actor_frame_base` `$59A5`](../src/actor/actor
   - Bruce: 4-7, 25, 29, 59, 63, 65, 67.
   - Yamo: 74-77, 94, 95, 98, 99, 128, 132, 133.
   - Ninja: 190, 194, 196, 198, 200, 202.
-- The original image held 42 more bytes in frame format at `$63C1-$63EA`. They are equal to frame 59, and no table entry points to them. This is the frame ADWONL22 with a misspelt source label. It is a development leftover and not part of the rebuilt game. The knowledge keeps it in space `bank1` (**Code**).
+- The image of the base release holds 42 more bytes in frame format at `$63C1-$63EA`. They are equal to frame 59, and no table entry points to them. This is the frame ADWONL22 with a misspelt source label. It is a development leftover and not part of the rebuilt game. The knowledge keeps it in space `bank1` (**Code**).
 
 ### The byte layout
 

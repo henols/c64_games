@@ -52,7 +52,7 @@ The rebuild shows the picture as its start screen. `build/clean_loader.prg` does
 3. It waits for a key, or for the fire button of joystick port 1 or 2. The wait is `loader_start_screen_wait` at `$6A9B`.
 4. It stops the screen and starts the packed game. The game unpacks over the picture. Then the loader sets the entry state and jumps to [`cold_start` `$0400`](../src/game/cold_start.asm#L22).
 
-The picture comes from a capture of the TBC intro at `$0872`, in the space `loading` of the knowledge. The switch `CRACK_TBC_PICTURE` of that space holds the changes of TBC. The clean picture is different from the TBC picture in 51 bitmap cells and 53 screen cells. These cells hold the text "CRACKED BY TBC", the Chinese name and some cells at the edge of the face. The clean cells come from a reference screenshot of the original picture. The default of the switch is 0, so the loader shows the clean picture (**Observed**: a byte compare in memory at the wait).
+The picture comes from a capture of the TBC intro at `$0872`, in the space `loading` of the knowledge. The switch `CRACK_TBC_PICTURE` of that space holds the changes of TBC. The clean picture is different from the TBC picture in 51 bitmap cells and 53 screen cells. These cells hold the text "CRACKED BY TBC", the Chinese name and some cells at the edge of the face. The clean cells come from a screenshot of the picture that the user gave. Nobody examined a Datasoft file of the picture. The default of the switch is 0, so the loader shows the clean picture (**Observed**: a byte compare in memory at the wait).
 
 ![The start screen of the rebuild](images/screens/start_screen.png)
 

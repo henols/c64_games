@@ -1,6 +1,6 @@
 # Bruce Lee: copy protection
 
-In eleven places, the game checks for three marks of the original loader in zero page and for key bytes at `$CF00`. Some checks fail at once: the game hangs, wipes memory or empties the maps of three rooms. Two checks fail late: they change their own code on each footstep, and the game crashes after 32 footsteps, long after the cause. The cracked releases keep every check and supply the marks and the key page. Thus their game passes every check (**Observed**: title, demo and game runs). In the rebuild, the switch `PROTECTION` gives each check its passing path by default, and the releases restore the checks.
+In eleven places, the game checks for three marks of the protected loader in zero page and for key bytes at `$CF00`. Some checks fail at once: the game hangs, wipes memory or empties the maps of three rooms. Two checks fail late: they change their own code on each footstep, and the game crashes after 32 footsteps, long after the cause. The cracked releases keep every check and supply the marks and the key page. Thus their game passes every check (**Observed**: title, demo and game runs). In the rebuild, the switch `PROTECTION` gives each check its passing path by default, and the releases restore the checks.
 
 **Conventions.**
 - Addresses are C64 addresses. Names are the names of the knowledge.
@@ -26,7 +26,7 @@ The game has checks in all its parts:
 
 ~~~mermaid
 flowchart TB
-  L["Original loader: the loader marks in zero page"] --> C["Cold start: checks 1 and 2"]
+  L["Protected loader: the loader marks in zero page"] --> C["Cold start: checks 1 and 2"]
   K["Key page $CF79-$CFBA in the image"] --> C
   C --> T["Each title screen: check 3"]
   T --> F["Each frame: checks 4 and 5"]
@@ -102,7 +102,7 @@ Both delayed checks act in [`actor_play_step_sound` `$1FC4`](../src/actor/actor_
 **Check 10, the Yamo key.**
 
 1. When Yamo enters a room, `spawn_yamo` runs [`spawn_yamo_protection_xor` `$0CD8`](../src/actor/actor_spawn.asm#L205). It loads `prot_key_yamo` and XORs `prot_key_yamo_pair`.
-2. It stores the result in [`protection_result` `$1166`](../src/room/room_enemy_tables.asm#L7). The result is `$89` with the original bytes. The image holds `$FF`.
+2. It stores the result in [`protection_result` `$1166`](../src/room/room_enemy_tables.asm#L7). The result is `$89` with the key bytes of the three releases. The image holds `$FF`.
 3. On each footstep, when `protection_result` is 0, `actor_play_step_sound` increments [`spawn_yamo_prot_key_lo` `$0CD9`](../src/actor/actor_spawn.asm#L206) and `spawn_yamo_prot_pair_lo`.
 4. When `spawn_yamo_prot_key_lo` reaches `$99`, the code writes `$9A` into the first byte of [`random_byte` `$1159`](../src/irq/interrupt_entry_1131.asm#L45). It writes it again on each later footstep.
 5. The first byte of `random_byte` was the `LDA` of `LDA game_mode`. Now the routine starts with TXS. The stack pointer becomes the X of the caller, and the RTS of the routine returns to a wrong address.
@@ -114,7 +114,7 @@ Both delayed checks act in [`actor_play_step_sound` `$1FC4`](../src/actor/actor_
 **Check 11, the tick key.**
 
 1. On each pass, [`main_loop_protection_check` `$1C13`](../src/game/game_main_loop.asm#L67) loads `prot_key_tick` and XORs `prot_key_tick_pair`.
-2. It stores the result in [`protection_check_value` `$2007`](../src/actor/actor_step.asm#L627). The result is `$04` with the original bytes. The image holds `$FF`.
+2. It stores the result in [`protection_check_value` `$2007`](../src/actor/actor_step.asm#L627). The result is `$04` with the key bytes of the three releases. The image holds `$FF`.
 3. On each footstep, when `protection_check_value` is 0, [`step_sound_check_protection2` `$1FE5`](../src/actor/actor_step.asm#L586) increments `main_loop_prot_key_lo` and `main_loop_prot_pair_lo`.
 4. When `main_loop_prot_key_lo` reaches `$9A`, the code loads X = 4. It writes `$9A` over the `CLC` at [`step_sound_crash_point` `$1FFE`](../src/actor/actor_step.asm#L610).
 5. That instruction is the next instruction, so TXS runs at once. The stack pointer becomes 4, and the next `PLA`/RTS read the wrong stack bytes.
@@ -131,13 +131,13 @@ The cold start has a short path for a restart. [`cold_start` `$0400`](../src/gam
 
 A run that wrote `$55` to `$03FF` at the entry showed the title with a garbage font. **Observed** (run of the variables analysis)
 
-**Conclusion.** The flag is not a check of the key data. A loader of the original release may have used it for a restart. The flag is on this page because a crack that leaves a byte at `$03FF` breaks the game.
+**Conclusion.** The flag is not a check of the key data. The protected loader may have used it for a restart. The flag is on this page because a crack that leaves a byte at `$03FF` breaks the game.
 
 ## The data
 
 ### The loader marks
 
-The original loader leaves three values in zero page. Nothing in the program writes `$00` or `$02`. **Code**
+The game expects three values in zero page from the protected loader. Nothing in the program writes `$00` or `$02`. **Code**
 
 | Address | Name | Value | Checks |
 |---|---|---|---|
@@ -147,7 +147,7 @@ The original loader leaves three values in zero page. Nothing in the program wri
 
 The entry state of the capture in the knowledge holds these three values. **Observed**
 
-The RTS comes from the original loader. The release file still holds the last stage of this loader in encoded form. The stage starts with `LDA #$60` / `STA $80`. Then it decrypts the game into `$0400-$A0FF` and calls `$0400`. The stage does not set `$00` or `$02`. **Code**: the decoded stage is in the knowledge space `bank7`, and the encoded bytes are in space `bank6`.
+The RTS comes from the protected loader. Each crack file still holds the last stage of this loader in encoded form. The stage starts with `LDA #$60` / `STA $80`. Then it decrypts the game into `$0400-$A0FF` and calls `$0400`. The stage does not set `$00` or `$02`. **Code**: the decoded stage is in the knowledge space `bank7`, and the encoded bytes are in space `bank6`.
 
 ### The key page `$CF00-$CFFF`
 
@@ -165,7 +165,7 @@ The checks read only `$CF79-$CFBA`. The page has two halves of 32 bytes: `$CF79-
 | `prot_signature_a_3` | `$B4` | `prot_signature_b_3` | `$B4` | 0 | check 3 |
 | `$CF7C-$CF98` | | `$CF9C-$CFB8` | | | the moving operands of checks 10 and 11 |
 
-**Conclusion.** A page of zeros passes check 3 but hangs check 1. A page with two equal halves passes checks 1 and 3 and fails checks 9, 10 and 11. Only the original bytes pass all checks.
+**Conclusion.** A page of zeros passes check 3 but hangs check 1. A page with two equal halves passes checks 1 and 3 and fails checks 9, 10 and 11. Only the key bytes of the three releases pass all checks.
 
 ## The state machine of the delayed checks
 
@@ -193,7 +193,7 @@ stateDiagram-v2
 | Failing | a footstep moves the key operand to `$9A` (11) or `$99` (10) | Sabotaged | `step_sound_check_protection2` (11), `actor_play_step_sound` (10) |
 | Sabotaged | check 11: TXS at `step_sound_crash_point` runs at once. Check 10: the next call of `random_byte` runs TXS. | Crashed | `step_sound_crash_point`, `random_byte` |
 
-**Conclusion.** The key operands start at `$79` and `$7A`, and the end marks are `$99` and `$9A`. That is 32 steps. Check 11 computes its value again on every pass, so its sabotage needs 32 equal pairs in a row. With a page of equal halves, or a blank page, it crashes after 32 footsteps, some seconds after Bruce first walks. Check 10 computes its value only when Yamo enters, so 32 footsteps before the next Yamo entry are sufficient. With the original bytes, neither check starts, because the first pairs differ.
+**Conclusion.** The key operands start at `$79` and `$7A`, and the end marks are `$99` and `$9A`. That is 32 steps. Check 11 computes its value again on every pass, so its sabotage needs 32 equal pairs in a row. With a page of equal halves, or a blank page, it crashes after 32 footsteps, some seconds after Bruce first walks. Check 10 computes its value only when Yamo enters, so 32 footsteps before the next Yamo entry are sufficient. With the key bytes of the three releases, neither check starts, because the first pairs differ.
 
 The crash comes long after the cause, and this hides the source of the crash. **Conclusion**
 
@@ -226,7 +226,7 @@ The project has three cracked releases of the same game image. [releases.md](rel
 - **The releases keep every check.** The check bytes are equal in the three releases. Their common relocator jumps to `cold_start` with the same loader marks. **Observed**
 - **The rebuild loader sets the marks.** `src/loader.asm` copies the 24 program segments of [src/main.asm](../src/main.asm) (from `$03FF` to `$FFFF`) and the entry state `$0002-$03FE` into position. It writes `$00` = `$EF` and `$01` = `$36` and jumps to `cold_start`. Thus the loader marks are correct in the rebuild. **Code**
 - **The image holds only the part of the key page that the checks read.** The bytes `$CF79-$CFBA` stay in the image. The unread bytes `$CF00-$CF78` and `$CFBB-$CFFF` are among 28 leftover blocks. The knowledge keeps these blocks in the spaces `bank1` to `bank7`. [tests/leftovers_unused.json](../tests/leftovers_unused.json) fills all of them with `$A5` at the game entry: PASS at all 10 checkpoints. **Observed**
-- **The last loader stage is not crack code.** At the game entry, `$033C-$03FE` holds the encoded last stage of the original protected loader (83 bytes), then zeros. The crack relocator copied it from `$C13C`. The decoded stage writes the RTS at `$0080`. The entry state of the rebuild holds zeros there. `tests/original_loader_stage_033c.json` writes 195 bytes of `$A5` there at the entry: PASS. **Code**, **Observed**
+- **The last loader stage is not crack code.** At the game entry, `$033C-$03FE` holds the encoded last stage of the protected loader (83 bytes), then zeros. The crack relocator copied it from `$C13C`. The decoded stage writes the RTS at `$0080`. The entry state of the rebuild holds zeros there. `tests/crack_leftover_033c.json` writes 195 bytes of `$A5` there at the entry: PASS. **Code**, **Observed**
 - **The crack copies at `$A000-$A9FF`.** They hold a copy of the crack relocator and duplicates of the `$CF00` and `$E000` pages. `cold_start` expands the room charsets over them (**Code**). `tests/crack_leftover_a000.json` writes 2560 bytes of `$A5` there at the entry. The title, the demo, room 0 and walking stay the same. **Observed**
 
 **No cheat or trainer.** No release has a trainer or cheat code. The three releases differ only in the bytes that [releases.md](releases.md) lists, and the game runs none of them as code. The game keys are only F1, S, SPACE and V ([`handle_game_keys` `$1B29`](../src/game/status_and_keys.asm#L57)). Only this code writes the number of falls, [`falls_left` `$0028`](../src/constants.asm#L27):
@@ -240,7 +240,7 @@ No code skips the decrement in `lose_fall`. **Code**
 
 ## The switch PROTECTION
 
-The knowledge holds 13 patches under the switch `PROTECTION` (kind `protection`). The switch is on in the three releases and off in the default build. Each patch makes one check take its passing path. The registers and flags are the same as on the passing path of the original, where the code after the check uses them. The patches change 53 bytes and no length. **Code**
+The knowledge holds 13 patches under the switch `PROTECTION` (kind `protection`). The switch is on in the three releases and off in the default build. Each patch makes one check take its passing path. The registers and flags are the same as on the passing path of the base release SAEGER, where the code after the check uses them. The patches change 53 bytes and no length. **Code**
 
 | Check | Patch range | Code with the switch off | Effect |
 |---|---|---|---|
@@ -262,17 +262,17 @@ The checks still read their bytes. They still store [`protection_result` `$1166`
 **The builds.**
 
 - `src/main.asm` and `src/loader.asm` without a define give the default build. In it, `PROTECTION` = 0, so the patches are in and the protection is off. The other switches of [releases.md](releases.md) also take their default values.
-- `--release SAEGER` gives the original program byte for byte (`PROTECTION` = 1). `build/clean_loader.prg` is the loader of that build. c64-source builds it and checks it with the switch values of the base release.
+- `--release SAEGER` gives the SAEGER capture byte for byte (`PROTECTION` = 1). `build/clean_loader.prg` is the loader of that build. c64-source builds it and checks it with the switch values of the base release.
 - `--define PROTECTION=1` restores only the checks in the default build.
 
-**The default build runs like the original without the protection data.** [tests/no_protection.json](../tests/no_protection.json) runs the default loader and destroys the protection data at the entry. It sets `$00` = `$2F`, `$02` = 0, `$0080` = 0 and the full `$CF00` page to 0. Its original is the TBC release, whose game bytes are the default build without the patches. The test plays the title, the demo and room 0, and enters rooms 2, 5 and 10. The screens and the memory are the same as in the original. Only the bytes of the patch ranges and the two check results differ. **Observed**: PASS.
+**The default build runs like a release without the protection data.** [tests/no_protection.json](../tests/no_protection.json) runs the default loader and destroys the protection data at the entry. It sets `$00` = `$2F`, `$02` = 0, `$0080` = 0 and the full `$CF00` page to 0. Its reference is the TBC release, whose game bytes are the default build without the patches. The test plays the title, the demo and room 0, and enters rooms 2, 5 and 10. The screens and the memory are the same as in the TBC release. Only the bytes of the patch ranges and the two check results differ. **Observed**: PASS.
 
-The recording `all_rooms` in [tests/recordings/](../tests/recordings/) visits each of the 20 rooms. It replays on the default build with the same game state and the same screen memory as the original (**Observed**).
+The recording `all_rooms` in [tests/recordings/](../tests/recordings/) visits each of the 20 rooms. It replays on the default build with the same game state and the same screen memory as the SAEGER file (**Observed**).
 
-**The patches keep the cycles.** The patches of checks 5, 8, 10 and 11 run in each frame, in each pass of room 10 or on each footstep. They take the same number of cycles as the passing path of the original. For example, check 10 is `NOP` / `NOP` / `JMP`: 7 cycles, as `LDA` absolute and a taken `BNE`. Check 5 uses `BIT` on `$02` to get 8 cycles, and it does not use the value. Thus the default build keeps the timing of the original, and the replays can compare each pass (see [tests/README.md](../tests/README.md)).
+**The patches keep the cycles.** The patches of checks 5, 8, 10 and 11 run in each frame, in each pass of room 10 or on each footstep. They take the same number of cycles as the passing path of SAEGER. For example, check 10 is `NOP` / `NOP` / `JMP`: 7 cycles, as `LDA` absolute and a taken `BNE`. Check 5 uses `BIT` on `$02` to get 8 cycles, and it does not use the value. Thus the default build keeps the timing of SAEGER, and the replays can compare each pass (see [tests/README.md](../tests/README.md)).
 
 ## Still open
 
-- Why the original loader leaves `$EF` in `$00` and `$32` in `$02`. The release file holds only the last loader stage (see the loader marks). That stage sets `$0080` but not `$00` or `$02`. The earlier stages are not on the disk.
+- Why the protected loader leaves `$EF` in `$00` and `$32` in `$02`. Each crack file holds only the last loader stage (see the loader marks). That stage sets `$0080` but not `$00` or `$02`. Nobody examined a protected disk or tape, so the earlier stages are not known.
 - Whether a loader ever set `warm_start_flag`.
 - No run tested checks 6, 7 and 8. A run from the snapshots of rooms 2, 5 and 10 with `$00` = `$2F` or `$02` = 0 can show their failure.

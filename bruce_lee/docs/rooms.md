@@ -331,7 +331,7 @@ The markers are cells of the maps, or cells of tiles that the room code draws la
 
 - **Enemy-free rooms.** [`room_no_enemies` `$4C9E`](../src/room/room_tables.asm#L164) is $FF for rooms 3, 8, 9, 11, 13, 17, 18 and 19. `draw_room` copies it to `room_no_enemy_flag`. While the flag is not 0, `main_loop` skips `tick_spawn_timers`, `update_yamo_spawn`, `update_ninja_spawn` and `check_fight_collisions`. Rooms 13 and 17 have delay values, but the flag makes them unused. **Code.**
 - **Delays.** The units are passes. `draw_room` loads `ninja_spawn_timer` and `yamo_spawn_timer` from the "first" columns. When `game_loop_count` is not 0, both timers are 3. This occurs after a player completes the game one time. When player 2 controls Yamo, Yamo's timer is 8. **Code.**
-- **Sides.** [`spawn_actor` `$0B8E`](../src/actor/actor_spawn.asm#L20) tests `ninja_spawn_side` for 0. But on the Ninja path at `spawn_actor_ninja_side`, it takes the side bit from `yamo_spawn_side`. **Code.** **Conclusion:** this is probably a slip of the original program. The rebuild keeps it.
+- **Sides.** [`spawn_actor` `$0B8E`](../src/actor/actor_spawn.asm#L20) tests `ninja_spawn_side` for 0. But on the Ninja path at `spawn_actor_ninja_side`, it takes the side bit from `yamo_spawn_side`. **Code.** **Conclusion:** this is probably a slip of the authors. All three releases have it, and the rebuild keeps it.
 
 ### Lantern lists
 

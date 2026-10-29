@@ -1,0 +1,163 @@
+{
+  "entry": "$0872",
+  "segments": [
+    {
+      "start": "$0800",
+      "end": "$ffff",
+      "file": "segment-0800-ffff.prg"
+    }
+  ],
+  "vectors": {
+    "irq": "$ea31",
+    "brk": "$fe66",
+    "nmi": "$fe47",
+    "ram": {
+      "nmi": "$e80a",
+      "reset": "$158d",
+      "irq": "$c8d4"
+    },
+    "rom": {
+      "nmi": "$fe43",
+      "reset": "$fce2",
+      "irq": "$ff48"
+    }
+  },
+  "stages": [
+    {
+      "stage": 0,
+      "entry": "$0827",
+      "frames": 0,
+      "wrote": [
+        {
+          "start": "$000d",
+          "end": "$000d"
+        },
+        {
+          "start": "$0014",
+          "end": "$0015"
+        },
+        {
+          "start": "$0022",
+          "end": "$0022"
+        },
+        {
+          "start": "$004d",
+          "end": "$004d"
+        },
+        {
+          "start": "$0056",
+          "end": "$0056"
+        },
+        {
+          "start": "$005d",
+          "end": "$0070"
+        },
+        {
+          "start": "$007a",
+          "end": "$007a"
+        },
+        {
+          "start": "$0100",
+          "end": "$01ff"
+        }
+      ],
+      "next": "$0100"
+    },
+    {
+      "stage": 1,
+      "entry": "$0100",
+      "frames": 288,
+      "wrote": [
+        {
+          "start": "$0001",
+          "end": "$0001"
+        },
+        {
+          "start": "$0091",
+          "end": "$0091"
+        },
+        {
+          "start": "$00a2",
+          "end": "$00a2"
+        },
+        {
+          "start": "$00ac",
+          "end": "$00af"
+        },
+        {
+          "start": "$00c0",
+          "end": "$00c0"
+        },
+        {
+          "start": "$00c5",
+          "end": "$00c5"
+        },
+        {
+          "start": "$00cb",
+          "end": "$00cb"
+        },
+        {
+          "start": "$01f8",
+          "end": "$01ff"
+        },
+        {
+          "start": "$028d",
+          "end": "$028e"
+        },
+        {
+          "start": "$0800",
+          "end": "$ffff"
+        }
+      ],
+      "next": "$0800"
+    },
+    {
+      "stage": 2,
+      "entry": "$0800",
+      "frames": 8,
+      "wrote": [
+        {
+          "start": "$0001",
+          "end": "$0001"
+        },
+        {
+          "start": "$0091",
+          "end": "$0091"
+        },
+        {
+          "start": "$00a2",
+          "end": "$00a2"
+        },
+        {
+          "start": "$00c0",
+          "end": "$00c0"
+        },
+        {
+          "start": "$00c5",
+          "end": "$00c6"
+        },
+        {
+          "start": "$00cb",
+          "end": "$00cb"
+        },
+        {
+          "start": "$00fb",
+          "end": "$00fe"
+        },
+        {
+          "start": "$01f8",
+          "end": "$01ff"
+        },
+        {
+          "start": "$028d",
+          "end": "$028e"
+        },
+        {
+          "start": "$d800",
+          "end": "$ffff"
+        }
+      ]
+    }
+  ],
+  "image": "image.bin"
+}

@@ -6,9 +6,9 @@ This page tells how Ron J. Fortier and Datasoft made the C64 version of *Bruce L
 
 **Conventions.**
 - Addresses are C64 addresses. Names are the names of the knowledge.
-- A *leftover* is a block of the release image that no code of the game reads. Each leftover is in a space of its own (`bank1` to `bank7`), so it has no line in the source. This page gives its name, its space and its address, for example `old_demo_input_stream` in bank4 at `$F200`.
+- A *leftover* is a block of the game image of the three cracks that no code of the game reads. Each leftover is in a space of its own (`bank1` to `bank7`), so it has no line in the source. This page gives its name, its space and its address, for example `old_demo_input_stream` in bank4 at `$F200`.
 - The *final build* is the build that made the game in the image. An *older build* is an earlier build that left bytes in a leftover.
-- A *source label* is a name of the original assembler source, in upper case, for example PLOFS.
+- A *source label* is a name of the assembler source of the authors, in upper case, for example PLOFS.
 
 ## The authors and the version
 
@@ -113,7 +113,7 @@ Three blocks are copies of the final program at a wrong address (**Observed**: b
 
 The copies hold the final addresses. The copy at `$4FE8` calls `JSR $478D` and reads `LDA $480B,X`. The lantern pointers point to the lantern lists of the game. So these blocks are the final layout at a higher address, not older builds that ran there (**Code**).
 
-The first copy has one more trace. Its copy of message `$62` reads `DATASO`, six zero bytes and `SENTS` (**Observed**). This is the original text "DATASOFT PRESENTS" of [`msg_presents` `$4770`](../src/text/messages_rooms.asm#L322). The SAEGER release changed this text to "DIABOLO  PRESENTS". The six zero bytes, and nine more at `$4FDE`, are game variables in the workspace. The final build writes these variables with initial zeros (**Code**).
+The first copy has one more trace. Its copy of message `$62` reads `DATASO`, six zero bytes and `SENTS` (**Observed**). This is the text "DATASOFT PRESENTS" that TBC and DC have in [`msg_presents` `$4770`](../src/text/messages_rooms.asm#L322). The SAEGER release changed this text to "DIABOLO  PRESENTS". The six zero bytes, and nine more at `$4FDE`, are game variables in the workspace. The final build writes these variables with initial zeros (**Code**).
 
 Some gaps hold a repeated pattern with stray bits, the content of C64 DRAM after power-on (**Observed**). Examples are `micropearl_gap_e009` in bank4, between the parts of the music code, and `demo_area_uninitialised` in bank4 at `$F539`, after the demo input. So someone saved the block `$E000-$F5FF` as whole pages from the memory of a C64. The pages held old data and noise between the parts of the game (**Conclusion**). The text at `$5900` also starts in the middle of a line at the start of a page. So whole pages were written over the text (**Observed**).
 
@@ -182,7 +182,7 @@ Bank4 holds four parts of the effect data of an older build (**Observed**: byte 
 
 So the authors tuned and removed effects late in the work. In the final build, the passage sound ends two semitones lower, and the rattle is not there (**Conclusion**).
 
-## The original names
+## The source names of the authors
 
 ### The symbol table fragment
 
@@ -251,7 +251,7 @@ The author typed this frame with a wrong label. A reference to ADOWNL22 did not 
 
 ### Names of the knowledge from the table
 
-The knowledge keeps the source labels as comments, not as names. Each of the 46 Bruce frames with a label has the comment "Original source label …" in [src/graphics/bruce_frames.asm](../src/graphics/bruce_frames.asm) and [src/graphics/bruce_frames_b.asm](../src/graphics/bruce_frames_b.asm). The names of the knowledge tell the content. An example is `actor_frame_base` for PLOFS, and `frame_is_wide` for PLSIZE. Some leftover names contain the source label (**Code**):
+The knowledge keeps the source labels as comments, not as names. Each of the 46 Bruce frames with a label has the comment "Source label …" in [src/graphics/bruce_frames.asm](../src/graphics/bruce_frames.asm) and [src/graphics/bruce_frames_b.asm](../src/graphics/bruce_frames_b.asm). The names of the knowledge tell the content. An example is `actor_frame_base` for PLOFS, and `frame_is_wide` for PLSIZE. Some leftover names contain the source label (**Code**):
 
 - `plantb_sprite_bit_masks`, `pleortb_sprite_flip_masks` and `adwonl22_frame` in bank1.
 - `sym_<label>` for each entry of the symbol table in bank2.
@@ -269,10 +269,10 @@ The game and its image hold texts, code and data that nothing uses (**Code**: no
 
 The scenario in the section on old versions fills the leftovers of the image with other bytes. The game runs the same without them (**Observed**).
 
-The image also holds traces of the original release and of the cracks. These traces are the following:
+The image also holds traces of the protected release that the crackers had, and of the cracks. These traces are the following:
 
 - The unread bytes of the protection key page (bank3).
-- The encoded last stage of the original protected loader (bank6, decoded in bank7).
+- The encoded last stage of the protected loader (bank6, decoded in bank7).
 - A tape loader with a RAM tool (bank5).
 
 They are not part of the development. [releases.md](releases.md) and [protection.md](protection.md) tell about them.
@@ -281,7 +281,7 @@ They are not part of the development. [releases.md](releases.md) and [protection
 
 ```mermaid
 flowchart TD
-  A["Atari 8-bit original"] --> B["C64 port of the Atari source"]
+  A["Atari 8-bit version"] --> B["C64 port of the Atari source"]
   B --> C["Older build: the symbol table"]
   C --> D["Older build: the old code pages"]
   D --> E["Final build, saved over the development memory"]
@@ -289,7 +289,7 @@ flowchart TD
   E --> F["REV.2 by RJF, Datasoft 1984"]
 ```
 
-The leftovers tell this story of the development (**Conclusion**):
+The leftovers fit this story of the development (**Conclusion**). It is one possible order of the work, not a proven one:
 
 1. **A port from the Atari.** The authors made Bruce Lee for the C64 from the Atari 8-bit source. An Atari key table stayed in the C64 code.
 2. **Tools with Apple II conventions.** The authors typed the source as text for an assembler with Apple II conventions, also the graphics. Its source text and symbol table were in memory when the image was saved.
@@ -297,7 +297,9 @@ The leftovers tell this story of the development (**Conclusion**):
 4. **The layout grew.** After the symbol table build, about 3.7 KB of code and data came in front of the actor tables. The frames of Yamo moved from after the frames of Bruce to before them. A later build still moved code by `$7D-$12E` bytes and added a test to the fight code.
 5. **Late changes.** The authors changed the room charsets, the sprite masks, the sound effects and the attract demo near the release. They made the title tune shorter in the editor and corrected the game with a pointer, not with a new file.
 6. **New screens.** The first title screen and game over screen printed plain text. The logo and the big letters came later.
-7. **A memory dump, not a clean assembly.** Someone saved the image from the memory of the development machine. In the space that the source only reserved, the image holds displaced copies, old data and power-on noise.
+7. **A memory dump, not a clean assembly.** Somebody saved the image from the memory of a C64 that held the development work. In the space that the source only reserved, the image holds displaced copies, old data and power-on noise.
+
+**Other interpretations.** The bytes do not tell on which computer the authors worked. A machine of the publisher or of a duplicator can also have assembled the final source over older memory. The Atari key table can come from notes of the Atari version, not from its source. The three cracks share one image, so the leftovers also do not tell the path of the image to the crackers. Two older builds explain the old code and the symbol table, but more builds are also possible.
 
 ## Still open
 
